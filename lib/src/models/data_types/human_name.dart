@@ -36,56 +36,53 @@ class HumanName extends DataType
     Map<String, dynamic> json,
   ) {
     return HumanName(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      use: (json['use'] != null || json['_use'] != null)
-          ? NameUse.fromJson({
-              'value': json['use'],
-              '_value': json['_use'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
-      family: (json['family'] != null || json['_family'] != null)
-          ? FhirString.fromJson({
-              'value': json['family'],
-              '_value': json['_family'],
-            })
-          : null,
-      given: parsePrimitiveList<FhirString>(
-        json['given'] as List<dynamic>?,
-        json['_given'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      prefix: parsePrimitiveList<FhirString>(
-        json['prefix'] as List<dynamic>?,
-        json['_prefix'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      use: JsonParser.parsePrimitive<NameUse>(
+        json,
+        'use',
+        NameUse.fromJson,
       ),
-      suffix: parsePrimitiveList<FhirString>(
-        json['suffix'] as List<dynamic>?,
-        json['_suffix'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      text: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'text',
+        FhirString.fromJson,
       ),
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
+      family: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'family',
+        FhirString.fromJson,
+      ),
+      given: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'given',
+        FhirString.fromJson,
+      ),
+      prefix: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'prefix',
+        FhirString.fromJson,
+      ),
+      suffix: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'suffix',
+        FhirString.fromJson,
+      ),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
     );
   }
 

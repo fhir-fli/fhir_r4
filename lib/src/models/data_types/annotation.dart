@@ -33,38 +33,32 @@ class Annotation extends DataType
     Map<String, dynamic> json,
   ) {
     return Annotation(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      authorX: json['authorReference'] != null
-          ? Reference.fromJson(
-              json['authorReference'] as Map<String, dynamic>,
-            )
-          : json['authorString'] != null || json['_authorString'] != null
-              ? FhirString.fromJson({
-                  'value': json['authorString'],
-                  '_value': json['_authorString'],
-                })
-              : null,
-      time: (json['time'] != null || json['_time'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['time'],
-              '_value': json['_time'],
-            })
-          : null,
-      text: FhirMarkdown.fromJson({
-        'value': json['text'],
-        '_value': json['_text'],
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      authorX: JsonParser.parsePolymorphic<AuthorXAnnotation>(json, {
+        'authorReference': Reference.fromJson,
+        'authorString': FhirString.fromJson,
       }),
+      time: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'time',
+        FhirDateTime.fromJson,
+      ),
+      text: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'text',
+        FhirMarkdown.fromJson,
+      )!,
     );
   }
 

@@ -47,165 +47,144 @@ class DocumentReference extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return DocumentReference(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      masterIdentifier: json['masterIdentifier'] != null
-          ? Identifier.fromJson(
-              json['masterIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: DocumentReferenceStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      docStatus: (json['docStatus'] != null || json['_docStatus'] != null)
-          ? CompositionStatus.fromJson({
-              'value': json['docStatus'],
-              '_value': json['_docStatus'],
-            })
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(
-              json['type'] as Map<String, dynamic>,
-            )
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      subject: json['subject'] != null
-          ? Reference.fromJson(
-              json['subject'] as Map<String, dynamic>,
-            )
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      authenticator: json['authenticator'] != null
-          ? Reference.fromJson(
-              json['authenticator'] as Map<String, dynamic>,
-            )
-          : null,
-      custodian: json['custodian'] != null
-          ? Reference.fromJson(
-              json['custodian'] as Map<String, dynamic>,
-            )
-          : null,
-      relatesTo: json['relatesTo'] != null
-          ? (json['relatesTo'] as List<dynamic>)
-              .map<DocumentReferenceRelatesTo>(
-                (v) => DocumentReferenceRelatesTo.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      securityLabel: json['securityLabel'] != null
-          ? (json['securityLabel'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      content: ensureNonNullList(
-        (json['content'] as List<dynamic>)
-            .map<DocumentReferenceContent>(
-              (v) => DocumentReferenceContent.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      context: json['context'] != null
-          ? DocumentReferenceContext.fromJson(
-              json['context'] as Map<String, dynamic>,
-            )
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      masterIdentifier: JsonParser.parseObject<Identifier>(
+        json,
+        'masterIdentifier',
+        Identifier.fromJson,
+      ),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<DocumentReferenceStatus>(
+        json,
+        'status',
+        DocumentReferenceStatus.fromJson,
+      )!,
+      docStatus: JsonParser.parsePrimitive<CompositionStatus>(
+        json,
+        'docStatus',
+        CompositionStatus.fromJson,
+      ),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      ),
+      category: (json['category'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      subject: JsonParser.parseObject<Reference>(
+        json,
+        'subject',
+        Reference.fromJson,
+      ),
+      date: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'date',
+        FhirInstant.fromJson,
+      ),
+      author: (json['author'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      authenticator: JsonParser.parseObject<Reference>(
+        json,
+        'authenticator',
+        Reference.fromJson,
+      ),
+      custodian: JsonParser.parseObject<Reference>(
+        json,
+        'custodian',
+        Reference.fromJson,
+      ),
+      relatesTo: (json['relatesTo'] as List<dynamic>?)
+          ?.map<DocumentReferenceRelatesTo>(
+            (v) => DocumentReferenceRelatesTo.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      securityLabel: (json['securityLabel'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      content: (json['content'] as List<dynamic>)
+          .map<DocumentReferenceContent>(
+            (v) => DocumentReferenceContent.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      context: JsonParser.parseObject<DocumentReferenceContext>(
+        json,
+        'context',
+        DocumentReferenceContext.fromJson,
+      ),
     );
   }
 
@@ -530,34 +509,35 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return DocumentReferenceRelatesTo(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: DocumentRelationshipType.fromJson({
-        'value': json['code'],
-        '_value': json['_code'],
-      }),
-      target: Reference.fromJson(
-        json['target'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parsePrimitive<DocumentRelationshipType>(
+        json,
+        'code',
+        DocumentRelationshipType.fromJson,
+      )!,
+      target: JsonParser.parseObject<Reference>(
+        json,
+        'target',
+        Reference.fromJson,
+      )!,
     );
   }
 
@@ -690,35 +670,35 @@ class DocumentReferenceContent extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return DocumentReferenceContent(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      attachment: Attachment.fromJson(
-        json['attachment'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      format: json['format'] != null
-          ? Coding.fromJson(
-              json['format'] as Map<String, dynamic>,
-            )
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      attachment: JsonParser.parseObject<Attachment>(
+        json,
+        'attachment',
+        Attachment.fromJson,
+      )!,
+      format: JsonParser.parseObject<Coding>(
+        json,
+        'format',
+        Coding.fromJson,
+      ),
     );
   }
 
@@ -861,74 +841,66 @@ class DocumentReferenceContext extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return DocumentReferenceContext(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      encounter: json['encounter'] != null
-          ? (json['encounter'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      event: json['event'] != null
-          ? (json['event'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
-      facilityType: json['facilityType'] != null
-          ? CodeableConcept.fromJson(
-              json['facilityType'] as Map<String, dynamic>,
-            )
-          : null,
-      practiceSetting: json['practiceSetting'] != null
-          ? CodeableConcept.fromJson(
-              json['practiceSetting'] as Map<String, dynamic>,
-            )
-          : null,
-      sourcePatientInfo: json['sourcePatientInfo'] != null
-          ? Reference.fromJson(
-              json['sourcePatientInfo'] as Map<String, dynamic>,
-            )
-          : null,
-      related: json['related'] != null
-          ? (json['related'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      encounter: (json['encounter'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      event: (json['event'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
+      facilityType: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'facilityType',
+        CodeableConcept.fromJson,
+      ),
+      practiceSetting: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'practiceSetting',
+        CodeableConcept.fromJson,
+      ),
+      sourcePatientInfo: JsonParser.parseObject<Reference>(
+        json,
+        'sourcePatientInfo',
+        Reference.fromJson,
+      ),
+      related: (json['related'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 

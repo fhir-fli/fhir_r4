@@ -35,100 +35,94 @@ class ResearchSubject extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return ResearchSubject(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: ResearchSubjectStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
-      study: Reference.fromJson(
-        json['study'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      individual: Reference.fromJson(
-        json['individual'] as Map<String, dynamic>,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
       ),
-      assignedArm: (json['assignedArm'] != null || json['_assignedArm'] != null)
-          ? FhirString.fromJson({
-              'value': json['assignedArm'],
-              '_value': json['_assignedArm'],
-            })
-          : null,
-      actualArm: (json['actualArm'] != null || json['_actualArm'] != null)
-          ? FhirString.fromJson({
-              'value': json['actualArm'],
-              '_value': json['_actualArm'],
-            })
-          : null,
-      consent: json['consent'] != null
-          ? Reference.fromJson(
-              json['consent'] as Map<String, dynamic>,
-            )
-          : null,
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<ResearchSubjectStatus>(
+        json,
+        'status',
+        ResearchSubjectStatus.fromJson,
+      )!,
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
+      study: JsonParser.parseObject<Reference>(
+        json,
+        'study',
+        Reference.fromJson,
+      )!,
+      individual: JsonParser.parseObject<Reference>(
+        json,
+        'individual',
+        Reference.fromJson,
+      )!,
+      assignedArm: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'assignedArm',
+        FhirString.fromJson,
+      ),
+      actualArm: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'actualArm',
+        FhirString.fromJson,
+      ),
+      consent: JsonParser.parseObject<Reference>(
+        json,
+        'consent',
+        Reference.fromJson,
+      ),
     );
   }
 

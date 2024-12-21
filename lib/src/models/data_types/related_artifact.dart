@@ -37,57 +37,53 @@ class RelatedArtifact extends DataType
     Map<String, dynamic> json,
   ) {
     return RelatedArtifact(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: RelatedArtifactType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      label: (json['label'] != null || json['_label'] != null)
-          ? FhirString.fromJson({
-              'value': json['label'],
-              '_value': json['_label'],
-            })
-          : null,
-      display: (json['display'] != null || json['_display'] != null)
-          ? FhirString.fromJson({
-              'value': json['display'],
-              '_value': json['_display'],
-            })
-          : null,
-      citation: (json['citation'] != null || json['_citation'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['citation'],
-              '_value': json['_citation'],
-            })
-          : null,
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      document: json['document'] != null
-          ? Attachment.fromJson(
-              json['document'] as Map<String, dynamic>,
-            )
-          : null,
-      resource: (json['resource'] != null || json['_resource'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['resource'],
-              '_value': json['_resource'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<RelatedArtifactType>(
+        json,
+        'type',
+        RelatedArtifactType.fromJson,
+      )!,
+      label: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'label',
+        FhirString.fromJson,
+      ),
+      display: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'display',
+        FhirString.fromJson,
+      ),
+      citation: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'citation',
+        FhirMarkdown.fromJson,
+      ),
+      url: JsonParser.parsePrimitive<FhirUrl>(
+        json,
+        'url',
+        FhirUrl.fromJson,
+      ),
+      document: JsonParser.parseObject<Attachment>(
+        json,
+        'document',
+        Attachment.fromJson,
+      ),
+      resource: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'resource',
+        FhirCanonical.fromJson,
+      ),
     );
   }
 

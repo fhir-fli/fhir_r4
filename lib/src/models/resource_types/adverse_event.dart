@@ -49,188 +49,166 @@ class AdverseEvent extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return AdverseEvent(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      actuality: AdverseEventActuality.fromJson({
-        'value': json['actuality'],
-        '_value': json['_actuality'],
-      }),
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      event: json['event'] != null
-          ? CodeableConcept.fromJson(
-              json['event'] as Map<String, dynamic>,
-            )
-          : null,
-      subject: Reference.fromJson(
-        json['subject'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(
-              json['encounter'] as Map<String, dynamic>,
-            )
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      detected: (json['detected'] != null || json['_detected'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['detected'],
-              '_value': json['_detected'],
-            })
-          : null,
-      recordedDate:
-          (json['recordedDate'] != null || json['_recordedDate'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['recordedDate'],
-                  '_value': json['_recordedDate'],
-                })
-              : null,
-      resultingCondition: json['resultingCondition'] != null
-          ? (json['resultingCondition'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      location: json['location'] != null
-          ? Reference.fromJson(
-              json['location'] as Map<String, dynamic>,
-            )
-          : null,
-      seriousness: json['seriousness'] != null
-          ? CodeableConcept.fromJson(
-              json['seriousness'] as Map<String, dynamic>,
-            )
-          : null,
-      severity: json['severity'] != null
-          ? CodeableConcept.fromJson(
-              json['severity'] as Map<String, dynamic>,
-            )
-          : null,
-      outcome: json['outcome'] != null
-          ? CodeableConcept.fromJson(
-              json['outcome'] as Map<String, dynamic>,
-            )
-          : null,
-      recorder: json['recorder'] != null
-          ? Reference.fromJson(
-              json['recorder'] as Map<String, dynamic>,
-            )
-          : null,
-      contributor: json['contributor'] != null
-          ? (json['contributor'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      suspectEntity: json['suspectEntity'] != null
-          ? (json['suspectEntity'] as List<dynamic>)
-              .map<AdverseEventSuspectEntity>(
-                (v) => AdverseEventSuspectEntity.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      subjectMedicalHistory: json['subjectMedicalHistory'] != null
-          ? (json['subjectMedicalHistory'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      referenceDocument: json['referenceDocument'] != null
-          ? (json['referenceDocument'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      study: json['study'] != null
-          ? (json['study'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
+      ),
+      actuality: JsonParser.parsePrimitive<AdverseEventActuality>(
+        json,
+        'actuality',
+        AdverseEventActuality.fromJson,
+      )!,
+      category: (json['category'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      event: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'event',
+        CodeableConcept.fromJson,
+      ),
+      subject: JsonParser.parseObject<Reference>(
+        json,
+        'subject',
+        Reference.fromJson,
+      )!,
+      encounter: JsonParser.parseObject<Reference>(
+        json,
+        'encounter',
+        Reference.fromJson,
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'date',
+        FhirDateTime.fromJson,
+      ),
+      detected: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'detected',
+        FhirDateTime.fromJson,
+      ),
+      recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'recordedDate',
+        FhirDateTime.fromJson,
+      ),
+      resultingCondition: (json['resultingCondition'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      location: JsonParser.parseObject<Reference>(
+        json,
+        'location',
+        Reference.fromJson,
+      ),
+      seriousness: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'seriousness',
+        CodeableConcept.fromJson,
+      ),
+      severity: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'severity',
+        CodeableConcept.fromJson,
+      ),
+      outcome: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'outcome',
+        CodeableConcept.fromJson,
+      ),
+      recorder: JsonParser.parseObject<Reference>(
+        json,
+        'recorder',
+        Reference.fromJson,
+      ),
+      contributor: (json['contributor'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      suspectEntity: (json['suspectEntity'] as List<dynamic>?)
+          ?.map<AdverseEventSuspectEntity>(
+            (v) => AdverseEventSuspectEntity.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      subjectMedicalHistory: (json['subjectMedicalHistory'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      referenceDocument: (json['referenceDocument'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      study: (json['study'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -596,39 +574,37 @@ class AdverseEventSuspectEntity extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return AdverseEventSuspectEntity(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      instance: Reference.fromJson(
-        json['instance'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      causality: json['causality'] != null
-          ? (json['causality'] as List<dynamic>)
-              .map<AdverseEventCausality>(
-                (v) => AdverseEventCausality.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      instance: JsonParser.parseObject<Reference>(
+        json,
+        'instance',
+        Reference.fromJson,
+      )!,
+      causality: (json['causality'] as List<dynamic>?)
+          ?.map<AdverseEventCausality>(
+            (v) => AdverseEventCausality.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -767,49 +743,45 @@ class AdverseEventCausality extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return AdverseEventCausality(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      assessment: json['assessment'] != null
-          ? CodeableConcept.fromJson(
-              json['assessment'] as Map<String, dynamic>,
-            )
-          : null,
-      productRelatedness: (json['productRelatedness'] != null ||
-              json['_productRelatedness'] != null)
-          ? FhirString.fromJson({
-              'value': json['productRelatedness'],
-              '_value': json['_productRelatedness'],
-            })
-          : null,
-      author: json['author'] != null
-          ? Reference.fromJson(
-              json['author'] as Map<String, dynamic>,
-            )
-          : null,
-      method: json['method'] != null
-          ? CodeableConcept.fromJson(
-              json['method'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      assessment: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'assessment',
+        CodeableConcept.fromJson,
+      ),
+      productRelatedness: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'productRelatedness',
+        FhirString.fromJson,
+      ),
+      author: JsonParser.parseObject<Reference>(
+        json,
+        'author',
+        Reference.fromJson,
+      ),
+      method: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'method',
+        CodeableConcept.fromJson,
+      ),
     );
   }
 

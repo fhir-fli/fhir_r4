@@ -43,28 +43,28 @@ class Ratio extends DataType
     Map<String, dynamic> json,
   ) {
     return Ratio(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      numerator: json['numerator'] != null
-          ? Quantity.fromJson(
-              json['numerator'] as Map<String, dynamic>,
-            )
-          : null,
-      denominator: json['denominator'] != null
-          ? Quantity.fromJson(
-              json['denominator'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      numerator: JsonParser.parseObject<Quantity>(
+        json,
+        'numerator',
+        Quantity.fromJson,
+      ),
+      denominator: JsonParser.parseObject<Quantity>(
+        json,
+        'denominator',
+        Quantity.fromJson,
+      ),
     );
   }
 

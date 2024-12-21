@@ -35,107 +35,96 @@ class AppointmentResponse extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return AppointmentResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      appointment: Reference.fromJson(
-        json['appointment'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
-      participantType: json['participantType'] != null
-          ? (json['participantType'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      actor: json['actor'] != null
-          ? Reference.fromJson(
-              json['actor'] as Map<String, dynamic>,
-            )
-          : null,
-      participantStatus: ParticipationStatus.fromJson({
-        'value': json['participantStatus'],
-        '_value': json['_participantStatus'],
-      }),
-      comment: (json['comment'] != null || json['_comment'] != null)
-          ? FhirString.fromJson({
-              'value': json['comment'],
-              '_value': json['_comment'],
-            })
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      appointment: JsonParser.parseObject<Reference>(
+        json,
+        'appointment',
+        Reference.fromJson,
+      )!,
+      start: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'start',
+        FhirInstant.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'end',
+        FhirInstant.fromJson,
+      ),
+      participantType: (json['participantType'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      actor: JsonParser.parseObject<Reference>(
+        json,
+        'actor',
+        Reference.fromJson,
+      ),
+      participantStatus: JsonParser.parsePrimitive<ParticipationStatus>(
+        json,
+        'participantStatus',
+        ParticipationStatus.fromJson,
+      )!,
+      comment: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'comment',
+        FhirString.fromJson,
+      ),
     );
   }
 

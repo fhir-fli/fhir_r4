@@ -39,53 +39,53 @@ class SampledData extends DataType
     Map<String, dynamic> json,
   ) {
     return SampledData(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      origin: Quantity.fromJson(
-        json['origin'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      period: FhirDecimal.fromJson({
-        'value': json['period'],
-        '_value': json['_period'],
-      }),
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
-      lowerLimit: (json['lowerLimit'] != null || json['_lowerLimit'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['lowerLimit'],
-              '_value': json['_lowerLimit'],
-            })
-          : null,
-      upperLimit: (json['upperLimit'] != null || json['_upperLimit'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['upperLimit'],
-              '_value': json['_upperLimit'],
-            })
-          : null,
-      dimensions: FhirPositiveInt.fromJson({
-        'value': json['dimensions'],
-        '_value': json['_dimensions'],
-      }),
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirString.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      origin: JsonParser.parseObject<Quantity>(
+        json,
+        'origin',
+        Quantity.fromJson,
+      )!,
+      period: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'period',
+        FhirDecimal.fromJson,
+      )!,
+      factor: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'factor',
+        FhirDecimal.fromJson,
+      ),
+      lowerLimit: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'lowerLimit',
+        FhirDecimal.fromJson,
+      ),
+      upperLimit: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'upperLimit',
+        FhirDecimal.fromJson,
+      ),
+      dimensions: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'dimensions',
+        FhirPositiveInt.fromJson,
+      )!,
+      data: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'data',
+        FhirString.fromJson,
+      ),
     );
   }
 

@@ -35,100 +35,96 @@ class VisionPrescription extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return VisionPrescription(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: FinancialResourceStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      created: FhirDateTime.fromJson({
-        'value': json['created'],
-        '_value': json['_created'],
-      }),
-      patient: Reference.fromJson(
-        json['patient'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(
-              json['encounter'] as Map<String, dynamic>,
-            )
-          : null,
-      dateWritten: FhirDateTime.fromJson({
-        'value': json['dateWritten'],
-        '_value': json['_dateWritten'],
-      }),
-      prescriber: Reference.fromJson(
-        json['prescriber'] as Map<String, dynamic>,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
       ),
-      lensSpecification: ensureNonNullList(
-        (json['lensSpecification'] as List<dynamic>)
-            .map<VisionPrescriptionLensSpecification>(
-              (v) => VisionPrescriptionLensSpecification.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
       ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+        json,
+        'status',
+        FinancialResourceStatusCodes.fromJson,
+      )!,
+      created: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'created',
+        FhirDateTime.fromJson,
+      )!,
+      patient: JsonParser.parseObject<Reference>(
+        json,
+        'patient',
+        Reference.fromJson,
+      )!,
+      encounter: JsonParser.parseObject<Reference>(
+        json,
+        'encounter',
+        Reference.fromJson,
+      ),
+      dateWritten: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'dateWritten',
+        FhirDateTime.fromJson,
+      )!,
+      prescriber: JsonParser.parseObject<Reference>(
+        json,
+        'prescriber',
+        Reference.fromJson,
+      )!,
+      lensSpecification: (json['lensSpecification'] as List<dynamic>)
+          .map<VisionPrescriptionLensSpecification>(
+            (v) => VisionPrescriptionLensSpecification.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -362,111 +358,99 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return VisionPrescriptionLensSpecification(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      product: CodeableConcept.fromJson(
-        json['product'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      eye: VisionEyes.fromJson({
-        'value': json['eye'],
-        '_value': json['_eye'],
-      }),
-      sphere: (json['sphere'] != null || json['_sphere'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['sphere'],
-              '_value': json['_sphere'],
-            })
-          : null,
-      cylinder: (json['cylinder'] != null || json['_cylinder'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['cylinder'],
-              '_value': json['_cylinder'],
-            })
-          : null,
-      axis: (json['axis'] != null || json['_axis'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['axis'],
-              '_value': json['_axis'],
-            })
-          : null,
-      prism: json['prism'] != null
-          ? (json['prism'] as List<dynamic>)
-              .map<VisionPrescriptionPrism>(
-                (v) => VisionPrescriptionPrism.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      add: (json['add'] != null || json['_add'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['add'],
-              '_value': json['_add'],
-            })
-          : null,
-      power: (json['power'] != null || json['_power'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['power'],
-              '_value': json['_power'],
-            })
-          : null,
-      backCurve: (json['backCurve'] != null || json['_backCurve'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['backCurve'],
-              '_value': json['_backCurve'],
-            })
-          : null,
-      diameter: (json['diameter'] != null || json['_diameter'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['diameter'],
-              '_value': json['_diameter'],
-            })
-          : null,
-      duration: json['duration'] != null
-          ? Quantity.fromJson(
-              json['duration'] as Map<String, dynamic>,
-            )
-          : null,
-      color: (json['color'] != null || json['_color'] != null)
-          ? FhirString.fromJson({
-              'value': json['color'],
-              '_value': json['_color'],
-            })
-          : null,
-      brand: (json['brand'] != null || json['_brand'] != null)
-          ? FhirString.fromJson({
-              'value': json['brand'],
-              '_value': json['_brand'],
-            })
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      product: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'product',
+        CodeableConcept.fromJson,
+      )!,
+      eye: JsonParser.parsePrimitive<VisionEyes>(
+        json,
+        'eye',
+        VisionEyes.fromJson,
+      )!,
+      sphere: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'sphere',
+        FhirDecimal.fromJson,
+      ),
+      cylinder: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'cylinder',
+        FhirDecimal.fromJson,
+      ),
+      axis: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'axis',
+        FhirInteger.fromJson,
+      ),
+      prism: (json['prism'] as List<dynamic>?)
+          ?.map<VisionPrescriptionPrism>(
+            (v) => VisionPrescriptionPrism.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      add: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'add',
+        FhirDecimal.fromJson,
+      ),
+      power: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'power',
+        FhirDecimal.fromJson,
+      ),
+      backCurve: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'backCurve',
+        FhirDecimal.fromJson,
+      ),
+      diameter: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'diameter',
+        FhirDecimal.fromJson,
+      ),
+      duration: JsonParser.parseObject<Quantity>(
+        json,
+        'duration',
+        Quantity.fromJson,
+      ),
+      color: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'color',
+        FhirString.fromJson,
+      ),
+      brand: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'brand',
+        FhirString.fromJson,
+      ),
+      note: (json['note'] as List<dynamic>?)
+          ?.map<Annotation>(
+            (v) => Annotation.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -720,35 +704,35 @@ class VisionPrescriptionPrism extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return VisionPrescriptionPrism(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      amount: FhirDecimal.fromJson({
-        'value': json['amount'],
-        '_value': json['_amount'],
-      }),
-      base: VisionBase.fromJson({
-        'value': json['base'],
-        '_value': json['_base'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      amount: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'amount',
+        FhirDecimal.fromJson,
+      )!,
+      base: JsonParser.parsePrimitive<VisionBase>(
+        json,
+        'base',
+        VisionBase.fromJson,
+      )!,
     );
   }
 

@@ -42,166 +42,144 @@ class MolecularSequence extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return MolecularSequence(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? SequenceType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      coordinateSystem: FhirInteger.fromJson({
-        'value': json['coordinateSystem'],
-        '_value': json['_coordinateSystem'],
-      }),
-      patient: json['patient'] != null
-          ? Reference.fromJson(
-              json['patient'] as Map<String, dynamic>,
-            )
-          : null,
-      specimen: json['specimen'] != null
-          ? Reference.fromJson(
-              json['specimen'] as Map<String, dynamic>,
-            )
-          : null,
-      device: json['device'] != null
-          ? Reference.fromJson(
-              json['device'] as Map<String, dynamic>,
-            )
-          : null,
-      performer: json['performer'] != null
-          ? Reference.fromJson(
-              json['performer'] as Map<String, dynamic>,
-            )
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(
-              json['quantity'] as Map<String, dynamic>,
-            )
-          : null,
-      referenceSeq: json['referenceSeq'] != null
-          ? MolecularSequenceReferenceSeq.fromJson(
-              json['referenceSeq'] as Map<String, dynamic>,
-            )
-          : null,
-      variant: json['variant'] != null
-          ? (json['variant'] as List<dynamic>)
-              .map<MolecularSequenceVariant>(
-                (v) => MolecularSequenceVariant.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      observedSeq: (json['observedSeq'] != null || json['_observedSeq'] != null)
-          ? FhirString.fromJson({
-              'value': json['observedSeq'],
-              '_value': json['_observedSeq'],
-            })
-          : null,
-      quality: json['quality'] != null
-          ? (json['quality'] as List<dynamic>)
-              .map<MolecularSequenceQuality>(
-                (v) => MolecularSequenceQuality.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      readCoverage:
-          (json['readCoverage'] != null || json['_readCoverage'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['readCoverage'],
-                  '_value': json['_readCoverage'],
-                })
-              : null,
-      repository: json['repository'] != null
-          ? (json['repository'] as List<dynamic>)
-              .map<MolecularSequenceRepository>(
-                (v) => MolecularSequenceRepository.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      pointer: json['pointer'] != null
-          ? (json['pointer'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      structureVariant: json['structureVariant'] != null
-          ? (json['structureVariant'] as List<dynamic>)
-              .map<MolecularSequenceStructureVariant>(
-                (v) => MolecularSequenceStructureVariant.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<SequenceType>(
+        json,
+        'type',
+        SequenceType.fromJson,
+      ),
+      coordinateSystem: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'coordinateSystem',
+        FhirInteger.fromJson,
+      )!,
+      patient: JsonParser.parseObject<Reference>(
+        json,
+        'patient',
+        Reference.fromJson,
+      ),
+      specimen: JsonParser.parseObject<Reference>(
+        json,
+        'specimen',
+        Reference.fromJson,
+      ),
+      device: JsonParser.parseObject<Reference>(
+        json,
+        'device',
+        Reference.fromJson,
+      ),
+      performer: JsonParser.parseObject<Reference>(
+        json,
+        'performer',
+        Reference.fromJson,
+      ),
+      quantity: JsonParser.parseObject<Quantity>(
+        json,
+        'quantity',
+        Quantity.fromJson,
+      ),
+      referenceSeq: JsonParser.parseObject<MolecularSequenceReferenceSeq>(
+        json,
+        'referenceSeq',
+        MolecularSequenceReferenceSeq.fromJson,
+      ),
+      variant: (json['variant'] as List<dynamic>?)
+          ?.map<MolecularSequenceVariant>(
+            (v) => MolecularSequenceVariant.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      observedSeq: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'observedSeq',
+        FhirString.fromJson,
+      ),
+      quality: (json['quality'] as List<dynamic>?)
+          ?.map<MolecularSequenceQuality>(
+            (v) => MolecularSequenceQuality.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      readCoverage: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'readCoverage',
+        FhirInteger.fromJson,
+      ),
+      repository: (json['repository'] as List<dynamic>?)
+          ?.map<MolecularSequenceRepository>(
+            (v) => MolecularSequenceRepository.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      pointer: (json['pointer'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      structureVariant: (json['structureVariant'] as List<dynamic>?)
+          ?.map<MolecularSequenceStructureVariant>(
+            (v) => MolecularSequenceStructureVariant.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -529,79 +507,70 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceReferenceSeq(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      chromosome: json['chromosome'] != null
-          ? CodeableConcept.fromJson(
-              json['chromosome'] as Map<String, dynamic>,
-            )
-          : null,
-      genomeBuild: (json['genomeBuild'] != null || json['_genomeBuild'] != null)
-          ? FhirString.fromJson({
-              'value': json['genomeBuild'],
-              '_value': json['_genomeBuild'],
-            })
-          : null,
-      orientation: (json['orientation'] != null || json['_orientation'] != null)
-          ? OrientationType.fromJson({
-              'value': json['orientation'],
-              '_value': json['_orientation'],
-            })
-          : null,
-      referenceSeqId: json['referenceSeqId'] != null
-          ? CodeableConcept.fromJson(
-              json['referenceSeqId'] as Map<String, dynamic>,
-            )
-          : null,
-      referenceSeqPointer: json['referenceSeqPointer'] != null
-          ? Reference.fromJson(
-              json['referenceSeqPointer'] as Map<String, dynamic>,
-            )
-          : null,
-      referenceSeqString: (json['referenceSeqString'] != null ||
-              json['_referenceSeqString'] != null)
-          ? FhirString.fromJson({
-              'value': json['referenceSeqString'],
-              '_value': json['_referenceSeqString'],
-            })
-          : null,
-      strand: (json['strand'] != null || json['_strand'] != null)
-          ? StrandType.fromJson({
-              'value': json['strand'],
-              '_value': json['_strand'],
-            })
-          : null,
-      windowStart: (json['windowStart'] != null || json['_windowStart'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['windowStart'],
-              '_value': json['_windowStart'],
-            })
-          : null,
-      windowEnd: (json['windowEnd'] != null || json['_windowEnd'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['windowEnd'],
-              '_value': json['_windowEnd'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      chromosome: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'chromosome',
+        CodeableConcept.fromJson,
+      ),
+      genomeBuild: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'genomeBuild',
+        FhirString.fromJson,
+      ),
+      orientation: JsonParser.parsePrimitive<OrientationType>(
+        json,
+        'orientation',
+        OrientationType.fromJson,
+      ),
+      referenceSeqId: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'referenceSeqId',
+        CodeableConcept.fromJson,
+      ),
+      referenceSeqPointer: JsonParser.parseObject<Reference>(
+        json,
+        'referenceSeqPointer',
+        Reference.fromJson,
+      ),
+      referenceSeqString: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'referenceSeqString',
+        FhirString.fromJson,
+      ),
+      strand: JsonParser.parsePrimitive<StrandType>(
+        json,
+        'strand',
+        StrandType.fromJson,
+      ),
+      windowStart: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'windowStart',
+        FhirInteger.fromJson,
+      ),
+      windowEnd: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'windowEnd',
+        FhirInteger.fromJson,
+      ),
     );
   }
 
@@ -834,64 +803,55 @@ class MolecularSequenceVariant extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceVariant(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
-      observedAllele:
-          (json['observedAllele'] != null || json['_observedAllele'] != null)
-              ? FhirString.fromJson({
-                  'value': json['observedAllele'],
-                  '_value': json['_observedAllele'],
-                })
-              : null,
-      referenceAllele:
-          (json['referenceAllele'] != null || json['_referenceAllele'] != null)
-              ? FhirString.fromJson({
-                  'value': json['referenceAllele'],
-                  '_value': json['_referenceAllele'],
-                })
-              : null,
-      cigar: (json['cigar'] != null || json['_cigar'] != null)
-          ? FhirString.fromJson({
-              'value': json['cigar'],
-              '_value': json['_cigar'],
-            })
-          : null,
-      variantPointer: json['variantPointer'] != null
-          ? Reference.fromJson(
-              json['variantPointer'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      start: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'start',
+        FhirInteger.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'end',
+        FhirInteger.fromJson,
+      ),
+      observedAllele: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'observedAllele',
+        FhirString.fromJson,
+      ),
+      referenceAllele: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'referenceAllele',
+        FhirString.fromJson,
+      ),
+      cigar: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'cigar',
+        FhirString.fromJson,
+      ),
+      variantPointer: JsonParser.parseObject<Reference>(
+        json,
+        'variantPointer',
+        Reference.fromJson,
+      ),
     );
   }
 
@@ -1102,111 +1062,100 @@ class MolecularSequenceQuality extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceQuality(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: QualityType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      standardSequence: json['standardSequence'] != null
-          ? CodeableConcept.fromJson(
-              json['standardSequence'] as Map<String, dynamic>,
-            )
-          : null,
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
-      score: json['score'] != null
-          ? Quantity.fromJson(
-              json['score'] as Map<String, dynamic>,
-            )
-          : null,
-      method: json['method'] != null
-          ? CodeableConcept.fromJson(
-              json['method'] as Map<String, dynamic>,
-            )
-          : null,
-      truthTP: (json['truthTP'] != null || json['_truthTP'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['truthTP'],
-              '_value': json['_truthTP'],
-            })
-          : null,
-      queryTP: (json['queryTP'] != null || json['_queryTP'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['queryTP'],
-              '_value': json['_queryTP'],
-            })
-          : null,
-      truthFN: (json['truthFN'] != null || json['_truthFN'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['truthFN'],
-              '_value': json['_truthFN'],
-            })
-          : null,
-      queryFP: (json['queryFP'] != null || json['_queryFP'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['queryFP'],
-              '_value': json['_queryFP'],
-            })
-          : null,
-      gtFP: (json['gtFP'] != null || json['_gtFP'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['gtFP'],
-              '_value': json['_gtFP'],
-            })
-          : null,
-      precision: (json['precision'] != null || json['_precision'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['precision'],
-              '_value': json['_precision'],
-            })
-          : null,
-      recall: (json['recall'] != null || json['_recall'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['recall'],
-              '_value': json['_recall'],
-            })
-          : null,
-      fScore: (json['fScore'] != null || json['_fScore'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['fScore'],
-              '_value': json['_fScore'],
-            })
-          : null,
-      roc: json['roc'] != null
-          ? MolecularSequenceRoc.fromJson(
-              json['roc'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<QualityType>(
+        json,
+        'type',
+        QualityType.fromJson,
+      )!,
+      standardSequence: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'standardSequence',
+        CodeableConcept.fromJson,
+      ),
+      start: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'start',
+        FhirInteger.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'end',
+        FhirInteger.fromJson,
+      ),
+      score: JsonParser.parseObject<Quantity>(
+        json,
+        'score',
+        Quantity.fromJson,
+      ),
+      method: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'method',
+        CodeableConcept.fromJson,
+      ),
+      truthTP: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'truthTP',
+        FhirDecimal.fromJson,
+      ),
+      queryTP: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'queryTP',
+        FhirDecimal.fromJson,
+      ),
+      truthFN: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'truthFN',
+        FhirDecimal.fromJson,
+      ),
+      queryFP: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'queryFP',
+        FhirDecimal.fromJson,
+      ),
+      gtFP: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'gtFP',
+        FhirDecimal.fromJson,
+      ),
+      precision: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'precision',
+        FhirDecimal.fromJson,
+      ),
+      recall: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'recall',
+        FhirDecimal.fromJson,
+      ),
+      fScore: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'fScore',
+        FhirDecimal.fromJson,
+      ),
+      roc: JsonParser.parseObject<MolecularSequenceRoc>(
+        json,
+        'roc',
+        MolecularSequenceRoc.fromJson,
+      ),
     );
   }
 
@@ -1498,61 +1447,59 @@ class MolecularSequenceRoc extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceRoc(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      score: parsePrimitiveList<FhirInteger>(
-        json['score'] as List<dynamic>?,
-        json['_score'] as List<dynamic>?,
-        fromJson: FhirInteger.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      numTP: parsePrimitiveList<FhirInteger>(
-        json['numTP'] as List<dynamic>?,
-        json['_numTP'] as List<dynamic>?,
-        fromJson: FhirInteger.fromJson,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      score: JsonParser.parsePrimitiveList<FhirInteger>(
+        json,
+        'score',
+        FhirInteger.fromJson,
       ),
-      numFP: parsePrimitiveList<FhirInteger>(
-        json['numFP'] as List<dynamic>?,
-        json['_numFP'] as List<dynamic>?,
-        fromJson: FhirInteger.fromJson,
+      numTP: JsonParser.parsePrimitiveList<FhirInteger>(
+        json,
+        'numTP',
+        FhirInteger.fromJson,
       ),
-      numFN: parsePrimitiveList<FhirInteger>(
-        json['numFN'] as List<dynamic>?,
-        json['_numFN'] as List<dynamic>?,
-        fromJson: FhirInteger.fromJson,
+      numFP: JsonParser.parsePrimitiveList<FhirInteger>(
+        json,
+        'numFP',
+        FhirInteger.fromJson,
       ),
-      precision: parsePrimitiveList<FhirDecimal>(
-        json['precision'] as List<dynamic>?,
-        json['_precision'] as List<dynamic>?,
-        fromJson: FhirDecimal.fromJson,
+      numFN: JsonParser.parsePrimitiveList<FhirInteger>(
+        json,
+        'numFN',
+        FhirInteger.fromJson,
       ),
-      sensitivity: parsePrimitiveList<FhirDecimal>(
-        json['sensitivity'] as List<dynamic>?,
-        json['_sensitivity'] as List<dynamic>?,
-        fromJson: FhirDecimal.fromJson,
+      precision: JsonParser.parsePrimitiveList<FhirDecimal>(
+        json,
+        'precision',
+        FhirDecimal.fromJson,
       ),
-      fMeasure: parsePrimitiveList<FhirDecimal>(
-        json['fMeasure'] as List<dynamic>?,
-        json['_fMeasure'] as List<dynamic>?,
-        fromJson: FhirDecimal.fromJson,
+      sensitivity: JsonParser.parsePrimitiveList<FhirDecimal>(
+        json,
+        'sensitivity',
+        FhirDecimal.fromJson,
+      ),
+      fMeasure: JsonParser.parsePrimitiveList<FhirDecimal>(
+        json,
+        'fMeasure',
+        FhirDecimal.fromJson,
       ),
     );
   }
@@ -1780,62 +1727,55 @@ class MolecularSequenceRepository extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceRepository(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: RepositoryType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUri.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      datasetId: (json['datasetId'] != null || json['_datasetId'] != null)
-          ? FhirString.fromJson({
-              'value': json['datasetId'],
-              '_value': json['_datasetId'],
-            })
-          : null,
-      variantsetId:
-          (json['variantsetId'] != null || json['_variantsetId'] != null)
-              ? FhirString.fromJson({
-                  'value': json['variantsetId'],
-                  '_value': json['_variantsetId'],
-                })
-              : null,
-      readsetId: (json['readsetId'] != null || json['_readsetId'] != null)
-          ? FhirString.fromJson({
-              'value': json['readsetId'],
-              '_value': json['_readsetId'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<RepositoryType>(
+        json,
+        'type',
+        RepositoryType.fromJson,
+      )!,
+      url: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'url',
+        FhirUri.fromJson,
+      ),
+      name: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'name',
+        FhirString.fromJson,
+      ),
+      datasetId: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'datasetId',
+        FhirString.fromJson,
+      ),
+      variantsetId: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'variantsetId',
+        FhirString.fromJson,
+      ),
+      readsetId: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'readsetId',
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -2019,54 +1959,50 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceStructureVariant(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      variantType: json['variantType'] != null
-          ? CodeableConcept.fromJson(
-              json['variantType'] as Map<String, dynamic>,
-            )
-          : null,
-      exact: (json['exact'] != null || json['_exact'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['exact'],
-              '_value': json['_exact'],
-            })
-          : null,
-      length: (json['length'] != null || json['_length'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['length'],
-              '_value': json['_length'],
-            })
-          : null,
-      outer: json['outer'] != null
-          ? MolecularSequenceOuter.fromJson(
-              json['outer'] as Map<String, dynamic>,
-            )
-          : null,
-      inner: json['inner'] != null
-          ? MolecularSequenceInner.fromJson(
-              json['inner'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      variantType: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'variantType',
+        CodeableConcept.fromJson,
+      ),
+      exact: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'exact',
+        FhirBoolean.fromJson,
+      ),
+      length: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'length',
+        FhirInteger.fromJson,
+      ),
+      outer: JsonParser.parseObject<MolecularSequenceOuter>(
+        json,
+        'outer',
+        MolecularSequenceOuter.fromJson,
+      ),
+      inner: JsonParser.parseObject<MolecularSequenceInner>(
+        json,
+        'inner',
+        MolecularSequenceInner.fromJson,
+      ),
     );
   }
 
@@ -2234,39 +2170,35 @@ class MolecularSequenceOuter extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceOuter(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      start: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'start',
+        FhirInteger.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'end',
+        FhirInteger.fromJson,
+      ),
     );
   }
 
@@ -2407,39 +2339,35 @@ class MolecularSequenceInner extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MolecularSequenceInner(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      start: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'start',
+        FhirInteger.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'end',
+        FhirInteger.fromJson,
+      ),
     );
   }
 

@@ -49,76 +49,68 @@ class Address extends DataType
     Map<String, dynamic> json,
   ) {
     return Address(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      use: (json['use'] != null || json['_use'] != null)
-          ? AddressUse.fromJson({
-              'value': json['use'],
-              '_value': json['_use'],
-            })
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? AddressType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
-      line: parsePrimitiveList<FhirString>(
-        json['line'] as List<dynamic>?,
-        json['_line'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      city: (json['city'] != null || json['_city'] != null)
-          ? FhirString.fromJson({
-              'value': json['city'],
-              '_value': json['_city'],
-            })
-          : null,
-      district: (json['district'] != null || json['_district'] != null)
-          ? FhirString.fromJson({
-              'value': json['district'],
-              '_value': json['_district'],
-            })
-          : null,
-      state: (json['state'] != null || json['_state'] != null)
-          ? FhirString.fromJson({
-              'value': json['state'],
-              '_value': json['_state'],
-            })
-          : null,
-      postalCode: (json['postalCode'] != null || json['_postalCode'] != null)
-          ? FhirString.fromJson({
-              'value': json['postalCode'],
-              '_value': json['_postalCode'],
-            })
-          : null,
-      country: (json['country'] != null || json['_country'] != null)
-          ? FhirString.fromJson({
-              'value': json['country'],
-              '_value': json['_country'],
-            })
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      use: JsonParser.parsePrimitive<AddressUse>(
+        json,
+        'use',
+        AddressUse.fromJson,
+      ),
+      type: JsonParser.parsePrimitive<AddressType>(
+        json,
+        'type',
+        AddressType.fromJson,
+      ),
+      text: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'text',
+        FhirString.fromJson,
+      ),
+      line: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'line',
+        FhirString.fromJson,
+      ),
+      city: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'city',
+        FhirString.fromJson,
+      ),
+      district: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'district',
+        FhirString.fromJson,
+      ),
+      state: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'state',
+        FhirString.fromJson,
+      ),
+      postalCode: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'postalCode',
+        FhirString.fromJson,
+      ),
+      country: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'country',
+        FhirString.fromJson,
+      ),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
     );
   }
 

@@ -79,30 +79,28 @@ class Period extends DataType
     Map<String, dynamic> json,
   ) {
     return Period(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      start: (json['start'] != null || json['_start'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['start'],
-              '_value': json['_start'],
-            })
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      start: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'start',
+        FhirDateTime.fromJson,
+      ),
+      end: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'end',
+        FhirDateTime.fromJson,
+      ),
     );
   }
 

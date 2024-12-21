@@ -105,41 +105,38 @@ class Reference extends DataType
     Map<String, dynamic> json,
   ) {
     return Reference(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      reference: (json['reference'] != null || json['_reference'] != null)
-          ? FhirString.fromJson({
-              'value': json['reference'],
-              '_value': json['_reference'],
-            })
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? FhirUri.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      display: (json['display'] != null || json['_display'] != null)
-          ? FhirString.fromJson({
-              'value': json['display'],
-              '_value': json['_display'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      reference: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'reference',
+        FhirString.fromJson,
+      ),
+      type: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'type',
+        FhirUri.fromJson,
+      ),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
+      ),
+      display: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'display',
+        FhirString.fromJson,
+      ),
     );
   }
 

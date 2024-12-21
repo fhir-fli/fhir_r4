@@ -22,26 +22,28 @@ class Narrative extends DataType {
     Map<String, dynamic> json,
   ) {
     return Narrative(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: NarrativeStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      div: FhirXhtml.fromJson({
-        'value': json['div'],
-        '_value': json['_div'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<NarrativeStatus>(
+        json,
+        'status',
+        NarrativeStatus.fromJson,
+      )!,
+      div: JsonParser.parsePrimitive<FhirXhtml>(
+        json,
+        'div',
+        FhirXhtml.fromJson,
+      )!,
     );
   }
 

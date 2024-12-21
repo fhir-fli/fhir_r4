@@ -42,49 +42,43 @@ class Coding extends DataType
     Map<String, dynamic> json,
   ) {
     return Coding(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      system: (json['system'] != null || json['_system'] != null)
-          ? FhirUri.fromJson({
-              'value': json['system'],
-              '_value': json['_system'],
-            })
-          : null,
-      version: (json['version'] != null || json['_version'] != null)
-          ? FhirString.fromJson({
-              'value': json['version'],
-              '_value': json['_version'],
-            })
-          : null,
-      code: (json['code'] != null || json['_code'] != null)
-          ? FhirCode.fromJson({
-              'value': json['code'],
-              '_value': json['_code'],
-            })
-          : null,
-      display: (json['display'] != null || json['_display'] != null)
-          ? FhirString.fromJson({
-              'value': json['display'],
-              '_value': json['_display'],
-            })
-          : null,
-      userSelected:
-          (json['userSelected'] != null || json['_userSelected'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['userSelected'],
-                  '_value': json['_userSelected'],
-                })
-              : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      system: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'system',
+        FhirUri.fromJson,
+      ),
+      version: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'version',
+        FhirString.fromJson,
+      ),
+      code: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'code',
+        FhirCode.fromJson,
+      ),
+      display: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'display',
+        FhirString.fromJson,
+      ),
+      userSelected: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'userSelected',
+        FhirBoolean.fromJson,
+      ),
     );
   }
 

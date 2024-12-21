@@ -45,209 +45,155 @@ class FamilyMemberHistory extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return FamilyMemberHistory(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-        json['instantiatesCanonical'] as List<dynamic>?,
-        json['_instantiatesCanonical'] as List<dynamic>?,
-        fromJson: FhirCanonical.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      instantiatesUri: parsePrimitiveList<FhirUri>(
-        json['instantiatesUri'] as List<dynamic>?,
-        json['_instantiatesUri'] as List<dynamic>?,
-        fromJson: FhirUri.fromJson,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
       ),
-      status: FamilyHistoryStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+        json,
+        'instantiatesCanonical',
+        FhirCanonical.fromJson,
+      ),
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+        json,
+        'instantiatesUri',
+        FhirUri.fromJson,
+      ),
+      status: JsonParser.parsePrimitive<FamilyHistoryStatus>(
+        json,
+        'status',
+        FamilyHistoryStatus.fromJson,
+      )!,
+      dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'dataAbsentReason',
+        CodeableConcept.fromJson,
+      ),
+      patient: JsonParser.parseObject<Reference>(
+        json,
+        'patient',
+        Reference.fromJson,
+      )!,
+      date: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'date',
+        FhirDateTime.fromJson,
+      ),
+      name: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'name',
+        FhirString.fromJson,
+      ),
+      relationship: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'relationship',
+        CodeableConcept.fromJson,
+      )!,
+      sex: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'sex',
+        CodeableConcept.fromJson,
+      ),
+      bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistory>(json, {
+        'bornPeriod': Period.fromJson,
+        'bornDate': FhirDate.fromJson,
+        'bornString': FhirString.fromJson,
       }),
-      dataAbsentReason: json['dataAbsentReason'] != null
-          ? CodeableConcept.fromJson(
-              json['dataAbsentReason'] as Map<String, dynamic>,
-            )
-          : null,
-      patient: Reference.fromJson(
-        json['patient'] as Map<String, dynamic>,
+      ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistory>(json, {
+        'ageAge': Age.fromJson,
+        'ageRange': Range.fromJson,
+        'ageString': FhirString.fromJson,
+      }),
+      estimatedAge: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'estimatedAge',
+        FhirBoolean.fromJson,
       ),
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      relationship: CodeableConcept.fromJson(
-        json['relationship'] as Map<String, dynamic>,
-      ),
-      sex: json['sex'] != null
-          ? CodeableConcept.fromJson(
-              json['sex'] as Map<String, dynamic>,
-            )
-          : null,
-      bornX: json['bornPeriod'] != null
-          ? Period.fromJson(
-              json['bornPeriod'] as Map<String, dynamic>,
-            )
-          : json['bornDate'] != null || json['_bornDate'] != null
-              ? FhirDate.fromJson({
-                  'value': json['bornDate'],
-                  '_value': json['_bornDate'],
-                })
-              : json['bornString'] != null || json['_bornString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['bornString'],
-                      '_value': json['_bornString'],
-                    })
-                  : null,
-      ageX: json['ageAge'] != null
-          ? Age.fromJson(
-              json['ageAge'] as Map<String, dynamic>,
-            )
-          : json['ageRange'] != null
-              ? Range.fromJson(
-                  json['ageRange'] as Map<String, dynamic>,
-                )
-              : json['ageString'] != null || json['_ageString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['ageString'],
-                      '_value': json['_ageString'],
-                    })
-                  : null,
-      estimatedAge:
-          (json['estimatedAge'] != null || json['_estimatedAge'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['estimatedAge'],
-                  '_value': json['_estimatedAge'],
-                })
-              : null,
       deceasedX:
-          json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null
-              ? FhirBoolean.fromJson({
-                  'value': json['deceasedBoolean'],
-                  '_value': json['_deceasedBoolean'],
-                })
-              : json['deceasedAge'] != null
-                  ? Age.fromJson(
-                      json['deceasedAge'] as Map<String, dynamic>,
-                    )
-                  : json['deceasedRange'] != null
-                      ? Range.fromJson(
-                          json['deceasedRange'] as Map<String, dynamic>,
-                        )
-                      : json['deceasedDate'] != null ||
-                              json['_deceasedDate'] != null
-                          ? FhirDate.fromJson({
-                              'value': json['deceasedDate'],
-                              '_value': json['_deceasedDate'],
-                            })
-                          : json['deceasedString'] != null ||
-                                  json['_deceasedString'] != null
-                              ? FhirString.fromJson({
-                                  'value': json['deceasedString'],
-                                  '_value': json['_deceasedString'],
-                                })
-                              : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      condition: json['condition'] != null
-          ? (json['condition'] as List<dynamic>)
-              .map<FamilyMemberHistoryCondition>(
-                (v) => FamilyMemberHistoryCondition.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+          JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(json, {
+        'deceasedBoolean': FhirBoolean.fromJson,
+        'deceasedAge': Age.fromJson,
+        'deceasedRange': Range.fromJson,
+        'deceasedDate': FhirDate.fromJson,
+        'deceasedString': FhirString.fromJson,
+      }),
+      reasonCode: (json['reasonCode'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      reasonReference: (json['reasonReference'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      note: (json['note'] as List<dynamic>?)
+          ?.map<Annotation>(
+            (v) => Annotation.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      condition: (json['condition'] as List<dynamic>?)
+          ?.map<FamilyMemberHistoryCondition>(
+            (v) => FamilyMemberHistoryCondition.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -605,69 +551,54 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return FamilyMemberHistoryCondition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: CodeableConcept.fromJson(
-        json['code'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      outcome: json['outcome'] != null
-          ? CodeableConcept.fromJson(
-              json['outcome'] as Map<String, dynamic>,
-            )
-          : null,
-      contributedToDeath: (json['contributedToDeath'] != null ||
-              json['_contributedToDeath'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['contributedToDeath'],
-              '_value': json['_contributedToDeath'],
-            })
-          : null,
-      onsetX: json['onsetAge'] != null
-          ? Age.fromJson(
-              json['onsetAge'] as Map<String, dynamic>,
-            )
-          : json['onsetRange'] != null
-              ? Range.fromJson(
-                  json['onsetRange'] as Map<String, dynamic>,
-                )
-              : json['onsetPeriod'] != null
-                  ? Period.fromJson(
-                      json['onsetPeriod'] as Map<String, dynamic>,
-                    )
-                  : json['onsetString'] != null || json['_onsetString'] != null
-                      ? FhirString.fromJson({
-                          'value': json['onsetString'],
-                          '_value': json['_onsetString'],
-                        })
-                      : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      )!,
+      outcome: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'outcome',
+        CodeableConcept.fromJson,
+      ),
+      contributedToDeath: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'contributedToDeath',
+        FhirBoolean.fromJson,
+      ),
+      onsetX: JsonParser.parsePolymorphic<OnsetXFamilyMemberHistoryCondition>(
+          json, {
+        'onsetAge': Age.fromJson,
+        'onsetRange': Range.fromJson,
+        'onsetPeriod': Period.fromJson,
+        'onsetString': FhirString.fromJson,
+      }),
+      note: (json['note'] as List<dynamic>?)
+          ?.map<Annotation>(
+            (v) => Annotation.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 

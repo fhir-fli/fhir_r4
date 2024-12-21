@@ -32,102 +32,88 @@ class SpecimenDefinition extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return SpecimenDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      typeCollected: json['typeCollected'] != null
-          ? CodeableConcept.fromJson(
-              json['typeCollected'] as Map<String, dynamic>,
-            )
-          : null,
-      patientPreparation: json['patientPreparation'] != null
-          ? (json['patientPreparation'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      timeAspect: (json['timeAspect'] != null || json['_timeAspect'] != null)
-          ? FhirString.fromJson({
-              'value': json['timeAspect'],
-              '_value': json['_timeAspect'],
-            })
-          : null,
-      collection: json['collection'] != null
-          ? (json['collection'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      typeTested: json['typeTested'] != null
-          ? (json['typeTested'] as List<dynamic>)
-              .map<SpecimenDefinitionTypeTested>(
-                (v) => SpecimenDefinitionTypeTested.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
+      ),
+      typeCollected: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'typeCollected',
+        CodeableConcept.fromJson,
+      ),
+      patientPreparation: (json['patientPreparation'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      timeAspect: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'timeAspect',
+        FhirString.fromJson,
+      ),
+      collection: (json['collection'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      typeTested: (json['typeTested'] as List<dynamic>?)
+          ?.map<SpecimenDefinitionTypeTested>(
+            (v) => SpecimenDefinitionTypeTested.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -344,76 +330,69 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return SpecimenDefinitionTypeTested(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      isDerived: (json['isDerived'] != null || json['_isDerived'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['isDerived'],
-              '_value': json['_isDerived'],
-            })
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(
-              json['type'] as Map<String, dynamic>,
-            )
-          : null,
-      preference: SpecimenContainedPreference.fromJson({
-        'value': json['preference'],
-        '_value': json['_preference'],
-      }),
-      container: json['container'] != null
-          ? SpecimenDefinitionContainer.fromJson(
-              json['container'] as Map<String, dynamic>,
-            )
-          : null,
-      requirement: (json['requirement'] != null || json['_requirement'] != null)
-          ? FhirString.fromJson({
-              'value': json['requirement'],
-              '_value': json['_requirement'],
-            })
-          : null,
-      retentionTime: json['retentionTime'] != null
-          ? FhirDuration.fromJson(
-              json['retentionTime'] as Map<String, dynamic>,
-            )
-          : null,
-      rejectionCriterion: json['rejectionCriterion'] != null
-          ? (json['rejectionCriterion'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      handling: json['handling'] != null
-          ? (json['handling'] as List<dynamic>)
-              .map<SpecimenDefinitionHandling>(
-                (v) => SpecimenDefinitionHandling.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      isDerived: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'isDerived',
+        FhirBoolean.fromJson,
+      ),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      ),
+      preference: JsonParser.parsePrimitive<SpecimenContainedPreference>(
+        json,
+        'preference',
+        SpecimenContainedPreference.fromJson,
+      )!,
+      container: JsonParser.parseObject<SpecimenDefinitionContainer>(
+        json,
+        'container',
+        SpecimenDefinitionContainer.fromJson,
+      ),
+      requirement: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'requirement',
+        FhirString.fromJson,
+      ),
+      retentionTime: JsonParser.parseObject<FhirDuration>(
+        json,
+        'retentionTime',
+        FhirDuration.fromJson,
+      ),
+      rejectionCriterion: (json['rejectionCriterion'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      handling: (json['handling'] as List<dynamic>?)
+          ?.map<SpecimenDefinitionHandling>(
+            (v) => SpecimenDefinitionHandling.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -618,79 +597,67 @@ class SpecimenDefinitionContainer extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return SpecimenDefinitionContainer(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      material: json['material'] != null
-          ? CodeableConcept.fromJson(
-              json['material'] as Map<String, dynamic>,
-            )
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(
-              json['type'] as Map<String, dynamic>,
-            )
-          : null,
-      cap: json['cap'] != null
-          ? CodeableConcept.fromJson(
-              json['cap'] as Map<String, dynamic>,
-            )
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      capacity: json['capacity'] != null
-          ? Quantity.fromJson(
-              json['capacity'] as Map<String, dynamic>,
-            )
-          : null,
-      minimumVolumeX: json['minimumVolumeQuantity'] != null
-          ? Quantity.fromJson(
-              json['minimumVolumeQuantity'] as Map<String, dynamic>,
-            )
-          : json['minimumVolumeString'] != null ||
-                  json['_minimumVolumeString'] != null
-              ? FhirString.fromJson({
-                  'value': json['minimumVolumeString'],
-                  '_value': json['_minimumVolumeString'],
-                })
-              : null,
-      additive: json['additive'] != null
-          ? (json['additive'] as List<dynamic>)
-              .map<SpecimenDefinitionAdditive>(
-                (v) => SpecimenDefinitionAdditive.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      preparation: (json['preparation'] != null || json['_preparation'] != null)
-          ? FhirString.fromJson({
-              'value': json['preparation'],
-              '_value': json['_preparation'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      material: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'material',
+        CodeableConcept.fromJson,
+      ),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      ),
+      cap: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'cap',
+        CodeableConcept.fromJson,
+      ),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      capacity: JsonParser.parseObject<Quantity>(
+        json,
+        'capacity',
+        Quantity.fromJson,
+      ),
+      minimumVolumeX: JsonParser.parsePolymorphic<
+          MinimumVolumeXSpecimenDefinitionContainer>(json, {
+        'minimumVolumeQuantity': Quantity.fromJson,
+        'minimumVolumeString': FhirString.fromJson,
+      }),
+      additive: (json['additive'] as List<dynamic>?)
+          ?.map<SpecimenDefinitionAdditive>(
+            (v) => SpecimenDefinitionAdditive.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      preparation: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'preparation',
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -890,34 +857,31 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return SpecimenDefinitionAdditive(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      additiveX: json['additiveCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['additiveCodeableConcept'] as Map<String, dynamic>,
-            )
-          : Reference.fromJson(
-              json['additiveReference'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
             ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      additiveX:
+          JsonParser.parsePolymorphic<AdditiveXSpecimenDefinitionAdditive>(
+              json, {
+        'additiveCodeableConcept': CodeableConcept.fromJson,
+        'additiveReference': Reference.fromJson,
+      })!,
     );
   }
 
@@ -1046,48 +1010,45 @@ class SpecimenDefinitionHandling extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return SpecimenDefinitionHandling(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      temperatureQualifier: json['temperatureQualifier'] != null
-          ? CodeableConcept.fromJson(
-              json['temperatureQualifier'] as Map<String, dynamic>,
-            )
-          : null,
-      temperatureRange: json['temperatureRange'] != null
-          ? Range.fromJson(
-              json['temperatureRange'] as Map<String, dynamic>,
-            )
-          : null,
-      maxDuration: json['maxDuration'] != null
-          ? FhirDuration.fromJson(
-              json['maxDuration'] as Map<String, dynamic>,
-            )
-          : null,
-      instruction: (json['instruction'] != null || json['_instruction'] != null)
-          ? FhirString.fromJson({
-              'value': json['instruction'],
-              '_value': json['_instruction'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      temperatureQualifier: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'temperatureQualifier',
+        CodeableConcept.fromJson,
+      ),
+      temperatureRange: JsonParser.parseObject<Range>(
+        json,
+        'temperatureRange',
+        Range.fromJson,
+      ),
+      maxDuration: JsonParser.parseObject<FhirDuration>(
+        json,
+        'maxDuration',
+        FhirDuration.fromJson,
+      ),
+      instruction: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'instruction',
+        FhirString.fromJson,
+      ),
     );
   }
 

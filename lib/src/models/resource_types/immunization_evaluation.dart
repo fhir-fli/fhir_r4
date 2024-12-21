@@ -41,142 +41,122 @@ class ImmunizationEvaluation extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return ImmunizationEvaluation(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: ImmunizationEvaluationStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<ImmunizationEvaluationStatusCodes>(
+        json,
+        'status',
+        ImmunizationEvaluationStatusCodes.fromJson,
+      )!,
+      patient: JsonParser.parseObject<Reference>(
+        json,
+        'patient',
+        Reference.fromJson,
+      )!,
+      date: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'date',
+        FhirDateTime.fromJson,
+      ),
+      authority: JsonParser.parseObject<Reference>(
+        json,
+        'authority',
+        Reference.fromJson,
+      ),
+      targetDisease: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'targetDisease',
+        CodeableConcept.fromJson,
+      )!,
+      immunizationEvent: JsonParser.parseObject<Reference>(
+        json,
+        'immunizationEvent',
+        Reference.fromJson,
+      )!,
+      doseStatus: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'doseStatus',
+        CodeableConcept.fromJson,
+      )!,
+      doseStatusReason: (json['doseStatusReason'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      series: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'series',
+        FhirString.fromJson,
+      ),
+      doseNumberX:
+          JsonParser.parsePolymorphic<DoseNumberXImmunizationEvaluation>(json, {
+        'doseNumberPositiveInt': FhirPositiveInt.fromJson,
+        'doseNumberString': FhirString.fromJson,
       }),
-      patient: Reference.fromJson(
-        json['patient'] as Map<String, dynamic>,
-      ),
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      authority: json['authority'] != null
-          ? Reference.fromJson(
-              json['authority'] as Map<String, dynamic>,
-            )
-          : null,
-      targetDisease: CodeableConcept.fromJson(
-        json['targetDisease'] as Map<String, dynamic>,
-      ),
-      immunizationEvent: Reference.fromJson(
-        json['immunizationEvent'] as Map<String, dynamic>,
-      ),
-      doseStatus: CodeableConcept.fromJson(
-        json['doseStatus'] as Map<String, dynamic>,
-      ),
-      doseStatusReason: json['doseStatusReason'] != null
-          ? (json['doseStatusReason'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      series: (json['series'] != null || json['_series'] != null)
-          ? FhirString.fromJson({
-              'value': json['series'],
-              '_value': json['_series'],
-            })
-          : null,
-      doseNumberX: json['doseNumberPositiveInt'] != null ||
-              json['_doseNumberPositiveInt'] != null
-          ? FhirPositiveInt.fromJson({
-              'value': json['doseNumberPositiveInt'],
-              '_value': json['_doseNumberPositiveInt'],
-            })
-          : json['doseNumberString'] != null ||
-                  json['_doseNumberString'] != null
-              ? FhirString.fromJson({
-                  'value': json['doseNumberString'],
-                  '_value': json['_doseNumberString'],
-                })
-              : null,
-      seriesDosesX: json['seriesDosesPositiveInt'] != null ||
-              json['_seriesDosesPositiveInt'] != null
-          ? FhirPositiveInt.fromJson({
-              'value': json['seriesDosesPositiveInt'],
-              '_value': json['_seriesDosesPositiveInt'],
-            })
-          : json['seriesDosesString'] != null ||
-                  json['_seriesDosesString'] != null
-              ? FhirString.fromJson({
-                  'value': json['seriesDosesString'],
-                  '_value': json['_seriesDosesString'],
-                })
-              : null,
+      seriesDosesX:
+          JsonParser.parsePolymorphic<SeriesDosesXImmunizationEvaluation>(
+              json, {
+        'seriesDosesPositiveInt': FhirPositiveInt.fromJson,
+        'seriesDosesString': FhirString.fromJson,
+      }),
     );
   }
 

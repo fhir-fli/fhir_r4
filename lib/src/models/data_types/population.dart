@@ -24,51 +24,44 @@ class Population extends BackboneType {
     Map<String, dynamic> json,
   ) {
     return Population(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      ageX: json['ageRange'] != null
-          ? Range.fromJson(
-              json['ageRange'] as Map<String, dynamic>,
-            )
-          : json['ageCodeableConcept'] != null
-              ? CodeableConcept.fromJson(
-                  json['ageCodeableConcept'] as Map<String, dynamic>,
-                )
-              : null,
-      gender: json['gender'] != null
-          ? CodeableConcept.fromJson(
-              json['gender'] as Map<String, dynamic>,
-            )
-          : null,
-      race: json['race'] != null
-          ? CodeableConcept.fromJson(
-              json['race'] as Map<String, dynamic>,
-            )
-          : null,
-      physiologicalCondition: json['physiologicalCondition'] != null
-          ? CodeableConcept.fromJson(
-              json['physiologicalCondition'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      ageX: JsonParser.parsePolymorphic<AgeXPopulation>(json, {
+        'ageRange': Range.fromJson,
+        'ageCodeableConcept': CodeableConcept.fromJson,
+      }),
+      gender: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'gender',
+        CodeableConcept.fromJson,
+      ),
+      race: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'race',
+        CodeableConcept.fromJson,
+      ),
+      physiologicalCondition: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'physiologicalCondition',
+        CodeableConcept.fromJson,
+      ),
     );
   }
 

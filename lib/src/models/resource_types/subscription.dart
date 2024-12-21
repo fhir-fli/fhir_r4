@@ -38,95 +38,89 @@ class Subscription extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return Subscription(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: SubscriptionStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactPoint>(
-                (v) => ContactPoint.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      end: (json['end'] != null || json['_end'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['end'],
-              '_value': json['_end'],
-            })
-          : null,
-      reason: FhirString.fromJson({
-        'value': json['reason'],
-        '_value': json['_reason'],
-      }),
-      criteria: FhirString.fromJson({
-        'value': json['criteria'],
-        '_value': json['_criteria'],
-      }),
-      error: (json['error'] != null || json['_error'] != null)
-          ? FhirString.fromJson({
-              'value': json['error'],
-              '_value': json['_error'],
-            })
-          : null,
-      channel: SubscriptionChannel.fromJson(
-        json['channel'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<SubscriptionStatusCodes>(
+        json,
+        'status',
+        SubscriptionStatusCodes.fromJson,
+      )!,
+      contact: (json['contact'] as List<dynamic>?)
+          ?.map<ContactPoint>(
+            (v) => ContactPoint.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      end: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'end',
+        FhirInstant.fromJson,
+      ),
+      reason: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'reason',
+        FhirString.fromJson,
+      )!,
+      criteria: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'criteria',
+        FhirString.fromJson,
+      )!,
+      error: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'error',
+        FhirString.fromJson,
+      ),
+      channel: JsonParser.parseObject<SubscriptionChannel>(
+        json,
+        'channel',
+        SubscriptionChannel.fromJson,
+      )!,
     );
   }
 
@@ -341,47 +335,44 @@ class SubscriptionChannel extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return SubscriptionChannel(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: SubscriptionChannelType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      endpoint: (json['endpoint'] != null || json['_endpoint'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['endpoint'],
-              '_value': json['_endpoint'],
-            })
-          : null,
-      payload: (json['payload'] != null || json['_payload'] != null)
-          ? FhirCode.fromJson({
-              'value': json['payload'],
-              '_value': json['_payload'],
-            })
-          : null,
-      header: parsePrimitiveList<FhirString>(
-        json['header'] as List<dynamic>?,
-        json['_header'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<SubscriptionChannelType>(
+        json,
+        'type',
+        SubscriptionChannelType.fromJson,
+      )!,
+      endpoint: JsonParser.parsePrimitive<FhirUrl>(
+        json,
+        'endpoint',
+        FhirUrl.fromJson,
+      ),
+      payload: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'payload',
+        FhirCode.fromJson,
+      ),
+      header: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'header',
+        FhirString.fromJson,
       ),
     );
   }

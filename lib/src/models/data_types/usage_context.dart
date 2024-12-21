@@ -34,36 +34,29 @@ class UsageContext extends DataType
     Map<String, dynamic> json,
   ) {
     return UsageContext(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: Coding.fromJson(
-        json['code'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      valueX: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : json['valueQuantity'] != null
-              ? Quantity.fromJson(
-                  json['valueQuantity'] as Map<String, dynamic>,
-                )
-              : json['valueRange'] != null
-                  ? Range.fromJson(
-                      json['valueRange'] as Map<String, dynamic>,
-                    )
-                  : Reference.fromJson(
-                      json['valueReference'] as Map<String, dynamic>,
-                    ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<Coding>(
+        json,
+        'code',
+        Coding.fromJson,
+      )!,
+      valueX: JsonParser.parsePolymorphic<ValueXUsageContext>(json, {
+        'valueCodeableConcept': CodeableConcept.fromJson,
+        'valueQuantity': Quantity.fromJson,
+        'valueRange': Range.fromJson,
+        'valueReference': Reference.fromJson,
+      })!,
     );
   }
 

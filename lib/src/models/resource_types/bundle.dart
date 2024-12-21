@@ -29,71 +29,65 @@ class Bundle extends Resource {
     Map<String, dynamic> json,
   ) {
     return Bundle(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      type: BundleType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      timestamp: (json['timestamp'] != null || json['_timestamp'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['timestamp'],
-              '_value': json['_timestamp'],
-            })
-          : null,
-      total: (json['total'] != null || json['_total'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['total'],
-              '_value': json['_total'],
-            })
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<BundleLink>(
-                (v) => BundleLink.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      entry: json['entry'] != null
-          ? (json['entry'] as List<dynamic>)
-              .map<BundleEntry>(
-                (v) => BundleEntry.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      signature: json['signature'] != null
-          ? Signature.fromJson(
-              json['signature'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
+      ),
+      type: JsonParser.parsePrimitive<BundleType>(
+        json,
+        'type',
+        BundleType.fromJson,
+      )!,
+      timestamp: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'timestamp',
+        FhirInstant.fromJson,
+      ),
+      total: JsonParser.parsePrimitive<FhirUnsignedInt>(
+        json,
+        'total',
+        FhirUnsignedInt.fromJson,
+      ),
+      link: (json['link'] as List<dynamic>?)
+          ?.map<BundleLink>(
+            (v) => BundleLink.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      entry: (json['entry'] as List<dynamic>?)
+          ?.map<BundleEntry>(
+            (v) => BundleEntry.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      signature: JsonParser.parseObject<Signature>(
+        json,
+        'signature',
+        Signature.fromJson,
+      ),
     );
   }
 
@@ -289,35 +283,35 @@ class BundleLink extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return BundleLink(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      relation: FhirString.fromJson({
-        'value': json['relation'],
-        '_value': json['_relation'],
-      }),
-      url: FhirUri.fromJson({
-        'value': json['url'],
-        '_value': json['_url'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      relation: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'relation',
+        FhirString.fromJson,
+      )!,
+      url: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'url',
+        FhirUri.fromJson,
+      )!,
     );
   }
 
@@ -454,62 +448,57 @@ class BundleEntry extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return BundleEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<BundleLink>(
-                (v) => BundleLink.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      fullUrl: (json['fullUrl'] != null || json['_fullUrl'] != null)
-          ? FhirUri.fromJson({
-              'value': json['fullUrl'],
-              '_value': json['_fullUrl'],
-            })
-          : null,
-      resource: json['resource'] != null
-          ? Resource.fromJson(
-              json['resource'] as Map<String, dynamic>,
-            )
-          : null,
-      search: json['search'] != null
-          ? BundleSearch.fromJson(
-              json['search'] as Map<String, dynamic>,
-            )
-          : null,
-      request: json['request'] != null
-          ? BundleRequest.fromJson(
-              json['request'] as Map<String, dynamic>,
-            )
-          : null,
-      response: json['response'] != null
-          ? BundleResponse.fromJson(
-              json['response'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      link: (json['link'] as List<dynamic>?)
+          ?.map<BundleLink>(
+            (v) => BundleLink.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      fullUrl: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'fullUrl',
+        FhirUri.fromJson,
+      ),
+      resource: JsonParser.parseObject<Resource>(
+        json,
+        'resource',
+        Resource.fromJson,
+      ),
+      search: JsonParser.parseObject<BundleSearch>(
+        json,
+        'search',
+        BundleSearch.fromJson,
+      ),
+      request: JsonParser.parseObject<BundleRequest>(
+        json,
+        'request',
+        BundleRequest.fromJson,
+      ),
+      response: JsonParser.parseObject<BundleResponse>(
+        json,
+        'response',
+        BundleResponse.fromJson,
+      ),
     );
   }
 
@@ -701,39 +690,35 @@ class BundleSearch extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return BundleSearch(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      mode: (json['mode'] != null || json['_mode'] != null)
-          ? SearchEntryMode.fromJson({
-              'value': json['mode'],
-              '_value': json['_mode'],
-            })
-          : null,
-      score: (json['score'] != null || json['_score'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['score'],
-              '_value': json['_score'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      mode: JsonParser.parsePrimitive<SearchEntryMode>(
+        json,
+        'mode',
+        SearchEntryMode.fromJson,
+      ),
+      score: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'score',
+        FhirDecimal.fromJson,
+      ),
     );
   }
 
@@ -878,60 +863,55 @@ class BundleRequest extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return BundleRequest(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      method: HTTPVerb.fromJson({
-        'value': json['method'],
-        '_value': json['_method'],
-      }),
-      url: FhirUri.fromJson({
-        'value': json['url'],
-        '_value': json['_url'],
-      }),
-      ifNoneMatch: (json['ifNoneMatch'] != null || json['_ifNoneMatch'] != null)
-          ? FhirString.fromJson({
-              'value': json['ifNoneMatch'],
-              '_value': json['_ifNoneMatch'],
-            })
-          : null,
-      ifModifiedSince:
-          (json['ifModifiedSince'] != null || json['_ifModifiedSince'] != null)
-              ? FhirInstant.fromJson({
-                  'value': json['ifModifiedSince'],
-                  '_value': json['_ifModifiedSince'],
-                })
-              : null,
-      ifMatch: (json['ifMatch'] != null || json['_ifMatch'] != null)
-          ? FhirString.fromJson({
-              'value': json['ifMatch'],
-              '_value': json['_ifMatch'],
-            })
-          : null,
-      ifNoneExist: (json['ifNoneExist'] != null || json['_ifNoneExist'] != null)
-          ? FhirString.fromJson({
-              'value': json['ifNoneExist'],
-              '_value': json['_ifNoneExist'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      method: JsonParser.parsePrimitive<HTTPVerb>(
+        json,
+        'method',
+        HTTPVerb.fromJson,
+      )!,
+      url: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'url',
+        FhirUri.fromJson,
+      )!,
+      ifNoneMatch: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'ifNoneMatch',
+        FhirString.fromJson,
+      ),
+      ifModifiedSince: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'ifModifiedSince',
+        FhirInstant.fromJson,
+      ),
+      ifMatch: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'ifMatch',
+        FhirString.fromJson,
+      ),
+      ifNoneExist: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'ifNoneExist',
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -1117,55 +1097,50 @@ class BundleResponse extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return BundleResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: FhirString.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      location: (json['location'] != null || json['_location'] != null)
-          ? FhirUri.fromJson({
-              'value': json['location'],
-              '_value': json['_location'],
-            })
-          : null,
-      etag: (json['etag'] != null || json['_etag'] != null)
-          ? FhirString.fromJson({
-              'value': json['etag'],
-              '_value': json['_etag'],
-            })
-          : null,
-      lastModified:
-          (json['lastModified'] != null || json['_lastModified'] != null)
-              ? FhirInstant.fromJson({
-                  'value': json['lastModified'],
-                  '_value': json['_lastModified'],
-                })
-              : null,
-      outcome: json['outcome'] != null
-          ? Resource.fromJson(
-              json['outcome'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'status',
+        FhirString.fromJson,
+      )!,
+      location: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'location',
+        FhirUri.fromJson,
+      ),
+      etag: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'etag',
+        FhirString.fromJson,
+      ),
+      lastModified: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'lastModified',
+        FhirInstant.fromJson,
+      ),
+      outcome: JsonParser.parseObject<Resource>(
+        json,
+        'outcome',
+        Resource.fromJson,
+      ),
     );
   }
 

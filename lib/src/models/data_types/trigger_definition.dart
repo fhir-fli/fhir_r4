@@ -35,62 +35,46 @@ class TriggerDefinition extends DataType
     Map<String, dynamic> json,
   ) {
     return TriggerDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: TriggerType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<TriggerType>(
+        json,
+        'type',
+        TriggerType.fromJson,
+      )!,
+      name: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'name',
+        FhirString.fromJson,
+      ),
+      timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(json, {
+        'timingTiming': Timing.fromJson,
+        'timingReference': Reference.fromJson,
+        'timingDate': FhirDate.fromJson,
+        'timingDateTime': FhirDateTime.fromJson,
       }),
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      timingX: json['timingTiming'] != null
-          ? Timing.fromJson(
-              json['timingTiming'] as Map<String, dynamic>,
-            )
-          : json['timingReference'] != null
-              ? Reference.fromJson(
-                  json['timingReference'] as Map<String, dynamic>,
-                )
-              : json['timingDate'] != null || json['_timingDate'] != null
-                  ? FhirDate.fromJson({
-                      'value': json['timingDate'],
-                      '_value': json['_timingDate'],
-                    })
-                  : json['timingDateTime'] != null ||
-                          json['_timingDateTime'] != null
-                      ? FhirDateTime.fromJson({
-                          'value': json['timingDateTime'],
-                          '_value': json['_timingDateTime'],
-                        })
-                      : null,
-      data: json['data'] != null
-          ? (json['data'] as List<dynamic>)
-              .map<DataRequirement>(
-                (v) => DataRequirement.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      condition: json['condition'] != null
-          ? FhirExpression.fromJson(
-              json['condition'] as Map<String, dynamic>,
-            )
-          : null,
+      data: (json['data'] as List<dynamic>?)
+          ?.map<DataRequirement>(
+            (v) => DataRequirement.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      condition: JsonParser.parseObject<FhirExpression>(
+        json,
+        'condition',
+        FhirExpression.fromJson,
+      ),
     );
   }
 

@@ -36,30 +36,28 @@ class Money extends DataType
     Map<String, dynamic> json,
   ) {
     return Money(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      value: (json['value'] != null || json['_value'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['value'],
-              '_value': json['_value'],
-            })
-          : null,
-      currency: (json['currency'] != null || json['_currency'] != null)
-          ? FhirCode.fromJson({
-              'value': json['currency'],
-              '_value': json['_currency'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      value: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'value',
+        FhirDecimal.fromJson,
+      ),
+      currency: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'currency',
+        FhirCode.fromJson,
+      ),
     );
   }
 

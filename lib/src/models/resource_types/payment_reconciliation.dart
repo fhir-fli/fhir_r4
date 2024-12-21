@@ -42,143 +42,133 @@ class PaymentReconciliation extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return PaymentReconciliation(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: FinancialResourceStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
-      created: FhirDateTime.fromJson({
-        'value': json['created'],
-        '_value': json['_created'],
-      }),
-      paymentIssuer: json['paymentIssuer'] != null
-          ? Reference.fromJson(
-              json['paymentIssuer'] as Map<String, dynamic>,
-            )
-          : null,
-      request: json['request'] != null
-          ? Reference.fromJson(
-              json['request'] as Map<String, dynamic>,
-            )
-          : null,
-      requestor: json['requestor'] != null
-          ? Reference.fromJson(
-              json['requestor'] as Map<String, dynamic>,
-            )
-          : null,
-      outcome: (json['outcome'] != null || json['_outcome'] != null)
-          ? RemittanceOutcome.fromJson({
-              'value': json['outcome'],
-              '_value': json['_outcome'],
-            })
-          : null,
-      disposition: (json['disposition'] != null || json['_disposition'] != null)
-          ? FhirString.fromJson({
-              'value': json['disposition'],
-              '_value': json['_disposition'],
-            })
-          : null,
-      paymentDate: FhirDate.fromJson({
-        'value': json['paymentDate'],
-        '_value': json['_paymentDate'],
-      }),
-      paymentAmount: Money.fromJson(
-        json['paymentAmount'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      paymentIdentifier: json['paymentIdentifier'] != null
-          ? Identifier.fromJson(
-              json['paymentIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      detail: json['detail'] != null
-          ? (json['detail'] as List<dynamic>)
-              .map<PaymentReconciliationDetail>(
-                (v) => PaymentReconciliationDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      formCode: json['formCode'] != null
-          ? CodeableConcept.fromJson(
-              json['formCode'] as Map<String, dynamic>,
-            )
-          : null,
-      processNote: json['processNote'] != null
-          ? (json['processNote'] as List<dynamic>)
-              .map<PaymentReconciliationProcessNote>(
-                (v) => PaymentReconciliationProcessNote.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+        json,
+        'status',
+        FinancialResourceStatusCodes.fromJson,
+      )!,
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
+      created: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'created',
+        FhirDateTime.fromJson,
+      )!,
+      paymentIssuer: JsonParser.parseObject<Reference>(
+        json,
+        'paymentIssuer',
+        Reference.fromJson,
+      ),
+      request: JsonParser.parseObject<Reference>(
+        json,
+        'request',
+        Reference.fromJson,
+      ),
+      requestor: JsonParser.parseObject<Reference>(
+        json,
+        'requestor',
+        Reference.fromJson,
+      ),
+      outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
+        json,
+        'outcome',
+        RemittanceOutcome.fromJson,
+      ),
+      disposition: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'disposition',
+        FhirString.fromJson,
+      ),
+      paymentDate: JsonParser.parsePrimitive<FhirDate>(
+        json,
+        'paymentDate',
+        FhirDate.fromJson,
+      )!,
+      paymentAmount: JsonParser.parseObject<Money>(
+        json,
+        'paymentAmount',
+        Money.fromJson,
+      )!,
+      paymentIdentifier: JsonParser.parseObject<Identifier>(
+        json,
+        'paymentIdentifier',
+        Identifier.fromJson,
+      ),
+      detail: (json['detail'] as List<dynamic>?)
+          ?.map<PaymentReconciliationDetail>(
+            (v) => PaymentReconciliationDetail.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      formCode: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'formCode',
+        CodeableConcept.fromJson,
+      ),
+      processNote: (json['processNote'] as List<dynamic>?)
+          ?.map<PaymentReconciliationProcessNote>(
+            (v) => PaymentReconciliationProcessNote.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -479,76 +469,75 @@ class PaymentReconciliationDetail extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return PaymentReconciliationDetail(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      predecessor: json['predecessor'] != null
-          ? Identifier.fromJson(
-              json['predecessor'] as Map<String, dynamic>,
-            )
-          : null,
-      type: CodeableConcept.fromJson(
-        json['type'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      request: json['request'] != null
-          ? Reference.fromJson(
-              json['request'] as Map<String, dynamic>,
-            )
-          : null,
-      submitter: json['submitter'] != null
-          ? Reference.fromJson(
-              json['submitter'] as Map<String, dynamic>,
-            )
-          : null,
-      response: json['response'] != null
-          ? Reference.fromJson(
-              json['response'] as Map<String, dynamic>,
-            )
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDate.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      responsible: json['responsible'] != null
-          ? Reference.fromJson(
-              json['responsible'] as Map<String, dynamic>,
-            )
-          : null,
-      payee: json['payee'] != null
-          ? Reference.fromJson(
-              json['payee'] as Map<String, dynamic>,
-            )
-          : null,
-      amount: json['amount'] != null
-          ? Money.fromJson(
-              json['amount'] as Map<String, dynamic>,
-            )
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
+      ),
+      predecessor: JsonParser.parseObject<Identifier>(
+        json,
+        'predecessor',
+        Identifier.fromJson,
+      ),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      )!,
+      request: JsonParser.parseObject<Reference>(
+        json,
+        'request',
+        Reference.fromJson,
+      ),
+      submitter: JsonParser.parseObject<Reference>(
+        json,
+        'submitter',
+        Reference.fromJson,
+      ),
+      response: JsonParser.parseObject<Reference>(
+        json,
+        'response',
+        Reference.fromJson,
+      ),
+      date: JsonParser.parsePrimitive<FhirDate>(
+        json,
+        'date',
+        FhirDate.fromJson,
+      ),
+      responsible: JsonParser.parseObject<Reference>(
+        json,
+        'responsible',
+        Reference.fromJson,
+      ),
+      payee: JsonParser.parseObject<Reference>(
+        json,
+        'payee',
+        Reference.fromJson,
+      ),
+      amount: JsonParser.parseObject<Money>(
+        json,
+        'amount',
+        Money.fromJson,
+      ),
     );
   }
 
@@ -769,39 +758,35 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return PaymentReconciliationProcessNote(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? NoteType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<NoteType>(
+        json,
+        'type',
+        NoteType.fromJson,
+      ),
+      text: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'text',
+        FhirString.fromJson,
+      ),
     );
   }
 

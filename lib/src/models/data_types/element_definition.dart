@@ -55,1110 +55,362 @@ class ElementDefinition extends BackboneType {
     Map<String, dynamic> json,
   ) {
     return ElementDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      path: FhirString.fromJson({
-        'value': json['path'],
-        '_value': json['_path'],
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      path: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'path',
+        FhirString.fromJson,
+      )!,
+      representation: JsonParser.parsePrimitiveList<PropertyRepresentation>(
+        json,
+        'representation',
+        PropertyRepresentation.fromJson,
+      ),
+      sliceName: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'sliceName',
+        FhirString.fromJson,
+      ),
+      sliceIsConstraining: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'sliceIsConstraining',
+        FhirBoolean.fromJson,
+      ),
+      label: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'label',
+        FhirString.fromJson,
+      ),
+      code: (json['code'] as List<dynamic>?)
+          ?.map<Coding>(
+            (v) => Coding.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      slicing: JsonParser.parseObject<ElementDefinitionSlicing>(
+        json,
+        'slicing',
+        ElementDefinitionSlicing.fromJson,
+      ),
+      short: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'short',
+        FhirString.fromJson,
+      ),
+      definition: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'definition',
+        FhirMarkdown.fromJson,
+      ),
+      comment: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'comment',
+        FhirMarkdown.fromJson,
+      ),
+      requirements: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'requirements',
+        FhirMarkdown.fromJson,
+      ),
+      alias: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'alias',
+        FhirString.fromJson,
+      ),
+      min: JsonParser.parsePrimitive<FhirUnsignedInt>(
+        json,
+        'min',
+        FhirUnsignedInt.fromJson,
+      ),
+      max: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'max',
+        FhirString.fromJson,
+      ),
+      base: JsonParser.parseObject<ElementDefinitionBase>(
+        json,
+        'base',
+        ElementDefinitionBase.fromJson,
+      ),
+      contentReference: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'contentReference',
+        FhirUri.fromJson,
+      ),
+      type: (json['type'] as List<dynamic>?)
+          ?.map<ElementDefinitionType>(
+            (v) => ElementDefinitionType.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      defaultValueX:
+          JsonParser.parsePolymorphic<DefaultValueXElementDefinition>(json, {
+        'defaultValueBase64Binary': FhirBase64Binary.fromJson,
+        'defaultValueBoolean': FhirBoolean.fromJson,
+        'defaultValueCanonical': FhirCanonical.fromJson,
+        'defaultValueCode': FhirCode.fromJson,
+        'defaultValueDate': FhirDate.fromJson,
+        'defaultValueDateTime': FhirDateTime.fromJson,
+        'defaultValueDecimal': FhirDecimal.fromJson,
+        'defaultValueId': FhirId.fromJson,
+        'defaultValueInstant': FhirInstant.fromJson,
+        'defaultValueInteger': FhirInteger.fromJson,
+        'defaultValueMarkdown': FhirMarkdown.fromJson,
+        'defaultValueOid': FhirOid.fromJson,
+        'defaultValuePositiveInt': FhirPositiveInt.fromJson,
+        'defaultValueString': FhirString.fromJson,
+        'defaultValueTime': FhirTime.fromJson,
+        'defaultValueUnsignedInt': FhirUnsignedInt.fromJson,
+        'defaultValueUri': FhirUri.fromJson,
+        'defaultValueUrl': FhirUrl.fromJson,
+        'defaultValueUuid': FhirUuid.fromJson,
+        'defaultValueAddress': Address.fromJson,
+        'defaultValueAge': Age.fromJson,
+        'defaultValueAnnotation': Annotation.fromJson,
+        'defaultValueAttachment': Attachment.fromJson,
+        'defaultValueCodeableConcept': CodeableConcept.fromJson,
+        'defaultValueCodeableReference': CodeableReference.fromJson,
+        'defaultValueCoding': Coding.fromJson,
+        'defaultValueContactPoint': ContactPoint.fromJson,
+        'defaultValueCount': Count.fromJson,
+        'defaultValueDistance': Distance.fromJson,
+        'defaultValueDuration': FhirDuration.fromJson,
+        'defaultValueHumanName': HumanName.fromJson,
+        'defaultValueIdentifier': Identifier.fromJson,
+        'defaultValueMoney': Money.fromJson,
+        'defaultValuePeriod': Period.fromJson,
+        'defaultValueQuantity': Quantity.fromJson,
+        'defaultValueRange': Range.fromJson,
+        'defaultValueRatio': Ratio.fromJson,
+        'defaultValueRatioRange': RatioRange.fromJson,
+        'defaultValueReference': Reference.fromJson,
+        'defaultValueSampledData': SampledData.fromJson,
+        'defaultValueSignature': Signature.fromJson,
+        'defaultValueTiming': Timing.fromJson,
+        'defaultValueContactDetail': ContactDetail.fromJson,
+        'defaultValueContributor': Contributor.fromJson,
+        'defaultValueDataRequirement': DataRequirement.fromJson,
+        'defaultValueExpression': FhirExpression.fromJson,
+        'defaultValueParameterDefinition': ParameterDefinition.fromJson,
+        'defaultValueRelatedArtifact': RelatedArtifact.fromJson,
+        'defaultValueTriggerDefinition': TriggerDefinition.fromJson,
+        'defaultValueUsageContext': UsageContext.fromJson,
+        'defaultValueDosage': Dosage.fromJson,
       }),
-      representation: parsePrimitiveList<PropertyRepresentation>(
-        json['representation'] as List<dynamic>?,
-        json['_representation'] as List<dynamic>?,
-        fromJson: PropertyRepresentation.fromJson,
+      meaningWhenMissing: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'meaningWhenMissing',
+        FhirMarkdown.fromJson,
       ),
-      sliceName: (json['sliceName'] != null || json['_sliceName'] != null)
-          ? FhirString.fromJson({
-              'value': json['sliceName'],
-              '_value': json['_sliceName'],
-            })
-          : null,
-      sliceIsConstraining: (json['sliceIsConstraining'] != null ||
-              json['_sliceIsConstraining'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['sliceIsConstraining'],
-              '_value': json['_sliceIsConstraining'],
-            })
-          : null,
-      label: (json['label'] != null || json['_label'] != null)
-          ? FhirString.fromJson({
-              'value': json['label'],
-              '_value': json['_label'],
-            })
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<Coding>(
-                (v) => Coding.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      slicing: json['slicing'] != null
-          ? ElementDefinitionSlicing.fromJson(
-              json['slicing'] as Map<String, dynamic>,
-            )
-          : null,
-      short: (json['short'] != null || json['_short'] != null)
-          ? FhirString.fromJson({
-              'value': json['short'],
-              '_value': json['_short'],
-            })
-          : null,
-      definition: (json['definition'] != null || json['_definition'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['definition'],
-              '_value': json['_definition'],
-            })
-          : null,
-      comment: (json['comment'] != null || json['_comment'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['comment'],
-              '_value': json['_comment'],
-            })
-          : null,
-      requirements:
-          (json['requirements'] != null || json['_requirements'] != null)
-              ? FhirMarkdown.fromJson({
-                  'value': json['requirements'],
-                  '_value': json['_requirements'],
-                })
-              : null,
-      alias: parsePrimitiveList<FhirString>(
-        json['alias'] as List<dynamic>?,
-        json['_alias'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      orderMeaning: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'orderMeaning',
+        FhirString.fromJson,
       ),
-      min: (json['min'] != null || json['_min'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['min'],
-              '_value': json['_min'],
-            })
-          : null,
-      max: (json['max'] != null || json['_max'] != null)
-          ? FhirString.fromJson({
-              'value': json['max'],
-              '_value': json['_max'],
-            })
-          : null,
-      base: json['base'] != null
-          ? ElementDefinitionBase.fromJson(
-              json['base'] as Map<String, dynamic>,
-            )
-          : null,
-      contentReference: (json['contentReference'] != null ||
-              json['_contentReference'] != null)
-          ? FhirUri.fromJson({
-              'value': json['contentReference'],
-              '_value': json['_contentReference'],
-            })
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<ElementDefinitionType>(
-                (v) => ElementDefinitionType.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      defaultValueX: json['defaultValueBase64Binary'] != null ||
-              json['_defaultValueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson({
-              'value': json['defaultValueBase64Binary'],
-              '_value': json['_defaultValueBase64Binary'],
-            })
-          : json['defaultValueBoolean'] != null ||
-                  json['_defaultValueBoolean'] != null
-              ? FhirBoolean.fromJson({
-                  'value': json['defaultValueBoolean'],
-                  '_value': json['_defaultValueBoolean'],
-                })
-              : json['defaultValueCanonical'] != null ||
-                      json['_defaultValueCanonical'] != null
-                  ? FhirCanonical.fromJson({
-                      'value': json['defaultValueCanonical'],
-                      '_value': json['_defaultValueCanonical'],
-                    })
-                  : json['defaultValueCode'] != null ||
-                          json['_defaultValueCode'] != null
-                      ? FhirCode.fromJson({
-                          'value': json['defaultValueCode'],
-                          '_value': json['_defaultValueCode'],
-                        })
-                      : json['defaultValueDate'] != null ||
-                              json['_defaultValueDate'] != null
-                          ? FhirDate.fromJson({
-                              'value': json['defaultValueDate'],
-                              '_value': json['_defaultValueDate'],
-                            })
-                          : json['defaultValueDateTime'] != null ||
-                                  json['_defaultValueDateTime'] != null
-                              ? FhirDateTime.fromJson({
-                                  'value': json['defaultValueDateTime'],
-                                  '_value': json['_defaultValueDateTime'],
-                                })
-                              : json['defaultValueDecimal'] != null ||
-                                      json['_defaultValueDecimal'] != null
-                                  ? FhirDecimal.fromJson({
-                                      'value': json['defaultValueDecimal'],
-                                      '_value': json['_defaultValueDecimal'],
-                                    })
-                                  : json['defaultValueId'] != null ||
-                                          json['_defaultValueId'] != null
-                                      ? FhirId.fromJson({
-                                          'value': json['defaultValueId'],
-                                          '_value': json['_defaultValueId'],
-                                        })
-                                      : json['defaultValueInstant'] != null ||
-                                              json['_defaultValueInstant'] !=
-                                                  null
-                                          ? FhirInstant.fromJson({
-                                              'value':
-                                                  json['defaultValueInstant'],
-                                              '_value':
-                                                  json['_defaultValueInstant'],
-                                            })
-                                          : json['defaultValueInteger'] != null ||
-                                                  json['_defaultValueInteger'] !=
-                                                      null
-                                              ? FhirInteger.fromJson({
-                                                  'value': json[
-                                                      'defaultValueInteger'],
-                                                  '_value': json[
-                                                      '_defaultValueInteger'],
-                                                })
-                                              : json['defaultValueMarkdown'] !=
-                                                          null ||
-                                                      json['_defaultValueMarkdown'] !=
-                                                          null
-                                                  ? FhirMarkdown.fromJson({
-                                                      'value': json[
-                                                          'defaultValueMarkdown'],
-                                                      '_value': json[
-                                                          '_defaultValueMarkdown'],
-                                                    })
-                                                  : json['defaultValueOid'] !=
-                                                              null ||
-                                                          json['_defaultValueOid'] !=
-                                                              null
-                                                      ? FhirOid.fromJson({
-                                                          'value': json[
-                                                              'defaultValueOid'],
-                                                          '_value': json[
-                                                              '_defaultValueOid'],
-                                                        })
-                                                      : json['defaultValuePositiveInt'] !=
-                                                                  null ||
-                                                              json['_defaultValuePositiveInt'] !=
-                                                                  null
-                                                          ? FhirPositiveInt.fromJson({
-                                                              'value': json[
-                                                                  'defaultValuePositiveInt'],
-                                                              '_value': json[
-                                                                  '_defaultValuePositiveInt'],
-                                                            })
-                                                          : json['defaultValueString'] !=
-                                                                      null ||
-                                                                  json['_defaultValueString'] !=
-                                                                      null
-                                                              ? FhirString.fromJson({
-                                                                  'value': json[
-                                                                      'defaultValueString'],
-                                                                  '_value': json[
-                                                                      '_defaultValueString'],
-                                                                })
-                                                              : json['defaultValueTime'] != null || json['_defaultValueTime'] != null
-                                                                  ? FhirTime.fromJson({
-                                                                      'value': json[
-                                                                          'defaultValueTime'],
-                                                                      '_value':
-                                                                          json[
-                                                                              '_defaultValueTime'],
-                                                                    })
-                                                                  : json['defaultValueUnsignedInt'] != null || json['_defaultValueUnsignedInt'] != null
-                                                                      ? FhirUnsignedInt.fromJson({
-                                                                          'value':
-                                                                              json['defaultValueUnsignedInt'],
-                                                                          '_value':
-                                                                              json['_defaultValueUnsignedInt'],
-                                                                        })
-                                                                      : json['defaultValueUri'] != null || json['_defaultValueUri'] != null
-                                                                          ? FhirUri.fromJson({
-                                                                              'value': json['defaultValueUri'],
-                                                                              '_value': json['_defaultValueUri'],
-                                                                            })
-                                                                          : json['defaultValueUrl'] != null || json['_defaultValueUrl'] != null
-                                                                              ? FhirUrl.fromJson({
-                                                                                  'value': json['defaultValueUrl'],
-                                                                                  '_value': json['_defaultValueUrl'],
-                                                                                })
-                                                                              : json['defaultValueUuid'] != null || json['_defaultValueUuid'] != null
-                                                                                  ? FhirUuid.fromJson({
-                                                                                      'value': json['defaultValueUuid'],
-                                                                                      '_value': json['_defaultValueUuid'],
-                                                                                    })
-                                                                                  : json['defaultValueAddress'] != null
-                                                                                      ? Address.fromJson(
-                                                                                          json['defaultValueAddress'] as Map<String, dynamic>,
-                                                                                        )
-                                                                                      : json['defaultValueAge'] != null
-                                                                                          ? Age.fromJson(
-                                                                                              json['defaultValueAge'] as Map<String, dynamic>,
-                                                                                            )
-                                                                                          : json['defaultValueAnnotation'] != null
-                                                                                              ? Annotation.fromJson(
-                                                                                                  json['defaultValueAnnotation'] as Map<String, dynamic>,
-                                                                                                )
-                                                                                              : json['defaultValueAttachment'] != null
-                                                                                                  ? Attachment.fromJson(
-                                                                                                      json['defaultValueAttachment'] as Map<String, dynamic>,
-                                                                                                    )
-                                                                                                  : json['defaultValueCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson(
-                                                                                                          json['defaultValueCodeableConcept'] as Map<String, dynamic>,
-                                                                                                        )
-                                                                                                      : json['defaultValueCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson(
-                                                                                                              json['defaultValueCodeableReference'] as Map<String, dynamic>,
-                                                                                                            )
-                                                                                                          : json['defaultValueCoding'] != null
-                                                                                                              ? Coding.fromJson(
-                                                                                                                  json['defaultValueCoding'] as Map<String, dynamic>,
-                                                                                                                )
-                                                                                                              : json['defaultValueContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson(
-                                                                                                                      json['defaultValueContactPoint'] as Map<String, dynamic>,
-                                                                                                                    )
-                                                                                                                  : json['defaultValueCount'] != null
-                                                                                                                      ? Count.fromJson(
-                                                                                                                          json['defaultValueCount'] as Map<String, dynamic>,
-                                                                                                                        )
-                                                                                                                      : json['defaultValueDistance'] != null
-                                                                                                                          ? Distance.fromJson(
-                                                                                                                              json['defaultValueDistance'] as Map<String, dynamic>,
-                                                                                                                            )
-                                                                                                                          : json['defaultValueDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson(
-                                                                                                                                  json['defaultValueDuration'] as Map<String, dynamic>,
-                                                                                                                                )
-                                                                                                                              : json['defaultValueHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson(
-                                                                                                                                      json['defaultValueHumanName'] as Map<String, dynamic>,
-                                                                                                                                    )
-                                                                                                                                  : json['defaultValueIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson(
-                                                                                                                                          json['defaultValueIdentifier'] as Map<String, dynamic>,
-                                                                                                                                        )
-                                                                                                                                      : json['defaultValueMoney'] != null
-                                                                                                                                          ? Money.fromJson(
-                                                                                                                                              json['defaultValueMoney'] as Map<String, dynamic>,
-                                                                                                                                            )
-                                                                                                                                          : json['defaultValuePeriod'] != null
-                                                                                                                                              ? Period.fromJson(
-                                                                                                                                                  json['defaultValuePeriod'] as Map<String, dynamic>,
-                                                                                                                                                )
-                                                                                                                                              : json['defaultValueQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson(
-                                                                                                                                                      json['defaultValueQuantity'] as Map<String, dynamic>,
-                                                                                                                                                    )
-                                                                                                                                                  : json['defaultValueRange'] != null
-                                                                                                                                                      ? Range.fromJson(
-                                                                                                                                                          json['defaultValueRange'] as Map<String, dynamic>,
-                                                                                                                                                        )
-                                                                                                                                                      : json['defaultValueRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson(
-                                                                                                                                                              json['defaultValueRatio'] as Map<String, dynamic>,
-                                                                                                                                                            )
-                                                                                                                                                          : json['defaultValueRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson(
-                                                                                                                                                                  json['defaultValueRatioRange'] as Map<String, dynamic>,
-                                                                                                                                                                )
-                                                                                                                                                              : json['defaultValueReference'] != null
-                                                                                                                                                                  ? Reference.fromJson(
-                                                                                                                                                                      json['defaultValueReference'] as Map<String, dynamic>,
-                                                                                                                                                                    )
-                                                                                                                                                                  : json['defaultValueSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson(
-                                                                                                                                                                          json['defaultValueSampledData'] as Map<String, dynamic>,
-                                                                                                                                                                        )
-                                                                                                                                                                      : json['defaultValueSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson(
-                                                                                                                                                                              json['defaultValueSignature'] as Map<String, dynamic>,
-                                                                                                                                                                            )
-                                                                                                                                                                          : json['defaultValueTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson(
-                                                                                                                                                                                  json['defaultValueTiming'] as Map<String, dynamic>,
-                                                                                                                                                                                )
-                                                                                                                                                                              : json['defaultValueContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson(
-                                                                                                                                                                                      json['defaultValueContactDetail'] as Map<String, dynamic>,
-                                                                                                                                                                                    )
-                                                                                                                                                                                  : json['defaultValueContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson(
-                                                                                                                                                                                          json['defaultValueContributor'] as Map<String, dynamic>,
-                                                                                                                                                                                        )
-                                                                                                                                                                                      : json['defaultValueDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson(
-                                                                                                                                                                                              json['defaultValueDataRequirement'] as Map<String, dynamic>,
-                                                                                                                                                                                            )
-                                                                                                                                                                                          : json['defaultValueExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson(
-                                                                                                                                                                                                  json['defaultValueExpression'] as Map<String, dynamic>,
-                                                                                                                                                                                                )
-                                                                                                                                                                                              : json['defaultValueParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
-                                                                                                                                                                                                      json['defaultValueParameterDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                    )
-                                                                                                                                                                                                  : json['defaultValueRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
-                                                                                                                                                                                                          json['defaultValueRelatedArtifact'] as Map<String, dynamic>,
-                                                                                                                                                                                                        )
-                                                                                                                                                                                                      : json['defaultValueTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
-                                                                                                                                                                                                              json['defaultValueTriggerDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                            )
-                                                                                                                                                                                                          : json['defaultValueUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson(
-                                                                                                                                                                                                                  json['defaultValueUsageContext'] as Map<String, dynamic>,
-                                                                                                                                                                                                                )
-                                                                                                                                                                                                              : json['defaultValueDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(
-                                                                                                                                                                                                                      json['defaultValueDosage'] as Map<String, dynamic>,
-                                                                                                                                                                                                                    )
-                                                                                                                                                                                                                  : null,
-      meaningWhenMissing: (json['meaningWhenMissing'] != null ||
-              json['_meaningWhenMissing'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['meaningWhenMissing'],
-              '_value': json['_meaningWhenMissing'],
-            })
-          : null,
-      orderMeaning:
-          (json['orderMeaning'] != null || json['_orderMeaning'] != null)
-              ? FhirString.fromJson({
-                  'value': json['orderMeaning'],
-                  '_value': json['_orderMeaning'],
-                })
-              : null,
-      fixedX: json['fixedBase64Binary'] != null ||
-              json['_fixedBase64Binary'] != null
-          ? FhirBase64Binary.fromJson({
-              'value': json['fixedBase64Binary'],
-              '_value': json['_fixedBase64Binary'],
-            })
-          : json['fixedBoolean'] != null || json['_fixedBoolean'] != null
-              ? FhirBoolean.fromJson({
-                  'value': json['fixedBoolean'],
-                  '_value': json['_fixedBoolean'],
-                })
-              : json['fixedCanonical'] != null ||
-                      json['_fixedCanonical'] != null
-                  ? FhirCanonical.fromJson({
-                      'value': json['fixedCanonical'],
-                      '_value': json['_fixedCanonical'],
-                    })
-                  : json['fixedCode'] != null || json['_fixedCode'] != null
-                      ? FhirCode.fromJson({
-                          'value': json['fixedCode'],
-                          '_value': json['_fixedCode'],
-                        })
-                      : json['fixedDate'] != null || json['_fixedDate'] != null
-                          ? FhirDate.fromJson({
-                              'value': json['fixedDate'],
-                              '_value': json['_fixedDate'],
-                            })
-                          : json['fixedDateTime'] != null ||
-                                  json['_fixedDateTime'] != null
-                              ? FhirDateTime.fromJson({
-                                  'value': json['fixedDateTime'],
-                                  '_value': json['_fixedDateTime'],
-                                })
-                              : json['fixedDecimal'] != null ||
-                                      json['_fixedDecimal'] != null
-                                  ? FhirDecimal.fromJson({
-                                      'value': json['fixedDecimal'],
-                                      '_value': json['_fixedDecimal'],
-                                    })
-                                  : json['fixedId'] != null ||
-                                          json['_fixedId'] != null
-                                      ? FhirId.fromJson({
-                                          'value': json['fixedId'],
-                                          '_value': json['_fixedId'],
-                                        })
-                                      : json['fixedInstant'] != null ||
-                                              json['_fixedInstant'] != null
-                                          ? FhirInstant.fromJson({
-                                              'value': json['fixedInstant'],
-                                              '_value': json['_fixedInstant'],
-                                            })
-                                          : json['fixedInteger'] != null ||
-                                                  json['_fixedInteger'] != null
-                                              ? FhirInteger.fromJson({
-                                                  'value': json['fixedInteger'],
-                                                  '_value':
-                                                      json['_fixedInteger'],
-                                                })
-                                              : json['fixedMarkdown'] != null ||
-                                                      json['_fixedMarkdown'] !=
-                                                          null
-                                                  ? FhirMarkdown.fromJson({
-                                                      'value':
-                                                          json['fixedMarkdown'],
-                                                      '_value': json[
-                                                          '_fixedMarkdown'],
-                                                    })
-                                                  : json['fixedOid'] != null ||
-                                                          json['_fixedOid'] !=
-                                                              null
-                                                      ? FhirOid.fromJson({
-                                                          'value':
-                                                              json['fixedOid'],
-                                                          '_value':
-                                                              json['_fixedOid'],
-                                                        })
-                                                      : json['fixedPositiveInt'] !=
-                                                                  null ||
-                                                              json['_fixedPositiveInt'] !=
-                                                                  null
-                                                          ? FhirPositiveInt.fromJson({
-                                                              'value': json[
-                                                                  'fixedPositiveInt'],
-                                                              '_value': json[
-                                                                  '_fixedPositiveInt'],
-                                                            })
-                                                          : json['fixedString'] !=
-                                                                      null ||
-                                                                  json['_fixedString'] !=
-                                                                      null
-                                                              ? FhirString.fromJson({
-                                                                  'value': json[
-                                                                      'fixedString'],
-                                                                  '_value': json[
-                                                                      '_fixedString'],
-                                                                })
-                                                              : json['fixedTime'] !=
-                                                                          null ||
-                                                                      json['_fixedTime'] !=
-                                                                          null
-                                                                  ? FhirTime.fromJson({
-                                                                      'value': json[
-                                                                          'fixedTime'],
-                                                                      '_value':
-                                                                          json[
-                                                                              '_fixedTime'],
-                                                                    })
-                                                                  : json['fixedUnsignedInt'] !=
-                                                                              null ||
-                                                                          json['_fixedUnsignedInt'] !=
-                                                                              null
-                                                                      ? FhirUnsignedInt.fromJson({
-                                                                          'value':
-                                                                              json['fixedUnsignedInt'],
-                                                                          '_value':
-                                                                              json['_fixedUnsignedInt'],
-                                                                        })
-                                                                      : json['fixedUri'] != null || json['_fixedUri'] != null
-                                                                          ? FhirUri.fromJson({
-                                                                              'value': json['fixedUri'],
-                                                                              '_value': json['_fixedUri'],
-                                                                            })
-                                                                          : json['fixedUrl'] != null || json['_fixedUrl'] != null
-                                                                              ? FhirUrl.fromJson({
-                                                                                  'value': json['fixedUrl'],
-                                                                                  '_value': json['_fixedUrl'],
-                                                                                })
-                                                                              : json['fixedUuid'] != null || json['_fixedUuid'] != null
-                                                                                  ? FhirUuid.fromJson({
-                                                                                      'value': json['fixedUuid'],
-                                                                                      '_value': json['_fixedUuid'],
-                                                                                    })
-                                                                                  : json['fixedAddress'] != null
-                                                                                      ? Address.fromJson(
-                                                                                          json['fixedAddress'] as Map<String, dynamic>,
-                                                                                        )
-                                                                                      : json['fixedAge'] != null
-                                                                                          ? Age.fromJson(
-                                                                                              json['fixedAge'] as Map<String, dynamic>,
-                                                                                            )
-                                                                                          : json['fixedAnnotation'] != null
-                                                                                              ? Annotation.fromJson(
-                                                                                                  json['fixedAnnotation'] as Map<String, dynamic>,
-                                                                                                )
-                                                                                              : json['fixedAttachment'] != null
-                                                                                                  ? Attachment.fromJson(
-                                                                                                      json['fixedAttachment'] as Map<String, dynamic>,
-                                                                                                    )
-                                                                                                  : json['fixedCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson(
-                                                                                                          json['fixedCodeableConcept'] as Map<String, dynamic>,
-                                                                                                        )
-                                                                                                      : json['fixedCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson(
-                                                                                                              json['fixedCodeableReference'] as Map<String, dynamic>,
-                                                                                                            )
-                                                                                                          : json['fixedCoding'] != null
-                                                                                                              ? Coding.fromJson(
-                                                                                                                  json['fixedCoding'] as Map<String, dynamic>,
-                                                                                                                )
-                                                                                                              : json['fixedContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson(
-                                                                                                                      json['fixedContactPoint'] as Map<String, dynamic>,
-                                                                                                                    )
-                                                                                                                  : json['fixedCount'] != null
-                                                                                                                      ? Count.fromJson(
-                                                                                                                          json['fixedCount'] as Map<String, dynamic>,
-                                                                                                                        )
-                                                                                                                      : json['fixedDistance'] != null
-                                                                                                                          ? Distance.fromJson(
-                                                                                                                              json['fixedDistance'] as Map<String, dynamic>,
-                                                                                                                            )
-                                                                                                                          : json['fixedDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson(
-                                                                                                                                  json['fixedDuration'] as Map<String, dynamic>,
-                                                                                                                                )
-                                                                                                                              : json['fixedHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson(
-                                                                                                                                      json['fixedHumanName'] as Map<String, dynamic>,
-                                                                                                                                    )
-                                                                                                                                  : json['fixedIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson(
-                                                                                                                                          json['fixedIdentifier'] as Map<String, dynamic>,
-                                                                                                                                        )
-                                                                                                                                      : json['fixedMoney'] != null
-                                                                                                                                          ? Money.fromJson(
-                                                                                                                                              json['fixedMoney'] as Map<String, dynamic>,
-                                                                                                                                            )
-                                                                                                                                          : json['fixedPeriod'] != null
-                                                                                                                                              ? Period.fromJson(
-                                                                                                                                                  json['fixedPeriod'] as Map<String, dynamic>,
-                                                                                                                                                )
-                                                                                                                                              : json['fixedQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson(
-                                                                                                                                                      json['fixedQuantity'] as Map<String, dynamic>,
-                                                                                                                                                    )
-                                                                                                                                                  : json['fixedRange'] != null
-                                                                                                                                                      ? Range.fromJson(
-                                                                                                                                                          json['fixedRange'] as Map<String, dynamic>,
-                                                                                                                                                        )
-                                                                                                                                                      : json['fixedRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson(
-                                                                                                                                                              json['fixedRatio'] as Map<String, dynamic>,
-                                                                                                                                                            )
-                                                                                                                                                          : json['fixedRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson(
-                                                                                                                                                                  json['fixedRatioRange'] as Map<String, dynamic>,
-                                                                                                                                                                )
-                                                                                                                                                              : json['fixedReference'] != null
-                                                                                                                                                                  ? Reference.fromJson(
-                                                                                                                                                                      json['fixedReference'] as Map<String, dynamic>,
-                                                                                                                                                                    )
-                                                                                                                                                                  : json['fixedSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson(
-                                                                                                                                                                          json['fixedSampledData'] as Map<String, dynamic>,
-                                                                                                                                                                        )
-                                                                                                                                                                      : json['fixedSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson(
-                                                                                                                                                                              json['fixedSignature'] as Map<String, dynamic>,
-                                                                                                                                                                            )
-                                                                                                                                                                          : json['fixedTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson(
-                                                                                                                                                                                  json['fixedTiming'] as Map<String, dynamic>,
-                                                                                                                                                                                )
-                                                                                                                                                                              : json['fixedContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson(
-                                                                                                                                                                                      json['fixedContactDetail'] as Map<String, dynamic>,
-                                                                                                                                                                                    )
-                                                                                                                                                                                  : json['fixedContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson(
-                                                                                                                                                                                          json['fixedContributor'] as Map<String, dynamic>,
-                                                                                                                                                                                        )
-                                                                                                                                                                                      : json['fixedDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson(
-                                                                                                                                                                                              json['fixedDataRequirement'] as Map<String, dynamic>,
-                                                                                                                                                                                            )
-                                                                                                                                                                                          : json['fixedExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson(
-                                                                                                                                                                                                  json['fixedExpression'] as Map<String, dynamic>,
-                                                                                                                                                                                                )
-                                                                                                                                                                                              : json['fixedParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
-                                                                                                                                                                                                      json['fixedParameterDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                    )
-                                                                                                                                                                                                  : json['fixedRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
-                                                                                                                                                                                                          json['fixedRelatedArtifact'] as Map<String, dynamic>,
-                                                                                                                                                                                                        )
-                                                                                                                                                                                                      : json['fixedTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
-                                                                                                                                                                                                              json['fixedTriggerDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                            )
-                                                                                                                                                                                                          : json['fixedUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson(
-                                                                                                                                                                                                                  json['fixedUsageContext'] as Map<String, dynamic>,
-                                                                                                                                                                                                                )
-                                                                                                                                                                                                              : json['fixedDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(
-                                                                                                                                                                                                                      json['fixedDosage'] as Map<String, dynamic>,
-                                                                                                                                                                                                                    )
-                                                                                                                                                                                                                  : null,
-      patternX: json['patternBase64Binary'] != null ||
-              json['_patternBase64Binary'] != null
-          ? FhirBase64Binary.fromJson({
-              'value': json['patternBase64Binary'],
-              '_value': json['_patternBase64Binary'],
-            })
-          : json['patternBoolean'] != null || json['_patternBoolean'] != null
-              ? FhirBoolean.fromJson({
-                  'value': json['patternBoolean'],
-                  '_value': json['_patternBoolean'],
-                })
-              : json['patternCanonical'] != null ||
-                      json['_patternCanonical'] != null
-                  ? FhirCanonical.fromJson({
-                      'value': json['patternCanonical'],
-                      '_value': json['_patternCanonical'],
-                    })
-                  : json['patternCode'] != null || json['_patternCode'] != null
-                      ? FhirCode.fromJson({
-                          'value': json['patternCode'],
-                          '_value': json['_patternCode'],
-                        })
-                      : json['patternDate'] != null ||
-                              json['_patternDate'] != null
-                          ? FhirDate.fromJson({
-                              'value': json['patternDate'],
-                              '_value': json['_patternDate'],
-                            })
-                          : json['patternDateTime'] != null ||
-                                  json['_patternDateTime'] != null
-                              ? FhirDateTime.fromJson({
-                                  'value': json['patternDateTime'],
-                                  '_value': json['_patternDateTime'],
-                                })
-                              : json['patternDecimal'] != null ||
-                                      json['_patternDecimal'] != null
-                                  ? FhirDecimal.fromJson({
-                                      'value': json['patternDecimal'],
-                                      '_value': json['_patternDecimal'],
-                                    })
-                                  : json['patternId'] != null ||
-                                          json['_patternId'] != null
-                                      ? FhirId.fromJson({
-                                          'value': json['patternId'],
-                                          '_value': json['_patternId'],
-                                        })
-                                      : json['patternInstant'] != null ||
-                                              json['_patternInstant'] != null
-                                          ? FhirInstant.fromJson({
-                                              'value': json['patternInstant'],
-                                              '_value': json['_patternInstant'],
-                                            })
-                                          : json['patternInteger'] != null ||
-                                                  json['_patternInteger'] !=
-                                                      null
-                                              ? FhirInteger.fromJson({
-                                                  'value':
-                                                      json['patternInteger'],
-                                                  '_value':
-                                                      json['_patternInteger'],
-                                                })
-                                              : json['patternMarkdown'] != null ||
-                                                      json['_patternMarkdown'] !=
-                                                          null
-                                                  ? FhirMarkdown.fromJson({
-                                                      'value': json[
-                                                          'patternMarkdown'],
-                                                      '_value': json[
-                                                          '_patternMarkdown'],
-                                                    })
-                                                  : json['patternOid'] != null ||
-                                                          json['_patternOid'] !=
-                                                              null
-                                                      ? FhirOid.fromJson({
-                                                          'value': json[
-                                                              'patternOid'],
-                                                          '_value': json[
-                                                              '_patternOid'],
-                                                        })
-                                                      : json['patternPositiveInt'] !=
-                                                                  null ||
-                                                              json['_patternPositiveInt'] !=
-                                                                  null
-                                                          ? FhirPositiveInt.fromJson({
-                                                              'value': json[
-                                                                  'patternPositiveInt'],
-                                                              '_value': json[
-                                                                  '_patternPositiveInt'],
-                                                            })
-                                                          : json['patternString'] !=
-                                                                      null ||
-                                                                  json['_patternString'] !=
-                                                                      null
-                                                              ? FhirString.fromJson({
-                                                                  'value': json[
-                                                                      'patternString'],
-                                                                  '_value': json[
-                                                                      '_patternString'],
-                                                                })
-                                                              : json['patternTime'] !=
-                                                                          null ||
-                                                                      json['_patternTime'] !=
-                                                                          null
-                                                                  ? FhirTime.fromJson({
-                                                                      'value': json[
-                                                                          'patternTime'],
-                                                                      '_value':
-                                                                          json[
-                                                                              '_patternTime'],
-                                                                    })
-                                                                  : json['patternUnsignedInt'] != null ||
-                                                                          json['_patternUnsignedInt'] != null
-                                                                      ? FhirUnsignedInt.fromJson({
-                                                                          'value':
-                                                                              json['patternUnsignedInt'],
-                                                                          '_value':
-                                                                              json['_patternUnsignedInt'],
-                                                                        })
-                                                                      : json['patternUri'] != null || json['_patternUri'] != null
-                                                                          ? FhirUri.fromJson({
-                                                                              'value': json['patternUri'],
-                                                                              '_value': json['_patternUri'],
-                                                                            })
-                                                                          : json['patternUrl'] != null || json['_patternUrl'] != null
-                                                                              ? FhirUrl.fromJson({
-                                                                                  'value': json['patternUrl'],
-                                                                                  '_value': json['_patternUrl'],
-                                                                                })
-                                                                              : json['patternUuid'] != null || json['_patternUuid'] != null
-                                                                                  ? FhirUuid.fromJson({
-                                                                                      'value': json['patternUuid'],
-                                                                                      '_value': json['_patternUuid'],
-                                                                                    })
-                                                                                  : json['patternAddress'] != null
-                                                                                      ? Address.fromJson(
-                                                                                          json['patternAddress'] as Map<String, dynamic>,
-                                                                                        )
-                                                                                      : json['patternAge'] != null
-                                                                                          ? Age.fromJson(
-                                                                                              json['patternAge'] as Map<String, dynamic>,
-                                                                                            )
-                                                                                          : json['patternAnnotation'] != null
-                                                                                              ? Annotation.fromJson(
-                                                                                                  json['patternAnnotation'] as Map<String, dynamic>,
-                                                                                                )
-                                                                                              : json['patternAttachment'] != null
-                                                                                                  ? Attachment.fromJson(
-                                                                                                      json['patternAttachment'] as Map<String, dynamic>,
-                                                                                                    )
-                                                                                                  : json['patternCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson(
-                                                                                                          json['patternCodeableConcept'] as Map<String, dynamic>,
-                                                                                                        )
-                                                                                                      : json['patternCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson(
-                                                                                                              json['patternCodeableReference'] as Map<String, dynamic>,
-                                                                                                            )
-                                                                                                          : json['patternCoding'] != null
-                                                                                                              ? Coding.fromJson(
-                                                                                                                  json['patternCoding'] as Map<String, dynamic>,
-                                                                                                                )
-                                                                                                              : json['patternContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson(
-                                                                                                                      json['patternContactPoint'] as Map<String, dynamic>,
-                                                                                                                    )
-                                                                                                                  : json['patternCount'] != null
-                                                                                                                      ? Count.fromJson(
-                                                                                                                          json['patternCount'] as Map<String, dynamic>,
-                                                                                                                        )
-                                                                                                                      : json['patternDistance'] != null
-                                                                                                                          ? Distance.fromJson(
-                                                                                                                              json['patternDistance'] as Map<String, dynamic>,
-                                                                                                                            )
-                                                                                                                          : json['patternDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson(
-                                                                                                                                  json['patternDuration'] as Map<String, dynamic>,
-                                                                                                                                )
-                                                                                                                              : json['patternHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson(
-                                                                                                                                      json['patternHumanName'] as Map<String, dynamic>,
-                                                                                                                                    )
-                                                                                                                                  : json['patternIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson(
-                                                                                                                                          json['patternIdentifier'] as Map<String, dynamic>,
-                                                                                                                                        )
-                                                                                                                                      : json['patternMoney'] != null
-                                                                                                                                          ? Money.fromJson(
-                                                                                                                                              json['patternMoney'] as Map<String, dynamic>,
-                                                                                                                                            )
-                                                                                                                                          : json['patternPeriod'] != null
-                                                                                                                                              ? Period.fromJson(
-                                                                                                                                                  json['patternPeriod'] as Map<String, dynamic>,
-                                                                                                                                                )
-                                                                                                                                              : json['patternQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson(
-                                                                                                                                                      json['patternQuantity'] as Map<String, dynamic>,
-                                                                                                                                                    )
-                                                                                                                                                  : json['patternRange'] != null
-                                                                                                                                                      ? Range.fromJson(
-                                                                                                                                                          json['patternRange'] as Map<String, dynamic>,
-                                                                                                                                                        )
-                                                                                                                                                      : json['patternRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson(
-                                                                                                                                                              json['patternRatio'] as Map<String, dynamic>,
-                                                                                                                                                            )
-                                                                                                                                                          : json['patternRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson(
-                                                                                                                                                                  json['patternRatioRange'] as Map<String, dynamic>,
-                                                                                                                                                                )
-                                                                                                                                                              : json['patternReference'] != null
-                                                                                                                                                                  ? Reference.fromJson(
-                                                                                                                                                                      json['patternReference'] as Map<String, dynamic>,
-                                                                                                                                                                    )
-                                                                                                                                                                  : json['patternSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson(
-                                                                                                                                                                          json['patternSampledData'] as Map<String, dynamic>,
-                                                                                                                                                                        )
-                                                                                                                                                                      : json['patternSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson(
-                                                                                                                                                                              json['patternSignature'] as Map<String, dynamic>,
-                                                                                                                                                                            )
-                                                                                                                                                                          : json['patternTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson(
-                                                                                                                                                                                  json['patternTiming'] as Map<String, dynamic>,
-                                                                                                                                                                                )
-                                                                                                                                                                              : json['patternContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson(
-                                                                                                                                                                                      json['patternContactDetail'] as Map<String, dynamic>,
-                                                                                                                                                                                    )
-                                                                                                                                                                                  : json['patternContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson(
-                                                                                                                                                                                          json['patternContributor'] as Map<String, dynamic>,
-                                                                                                                                                                                        )
-                                                                                                                                                                                      : json['patternDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson(
-                                                                                                                                                                                              json['patternDataRequirement'] as Map<String, dynamic>,
-                                                                                                                                                                                            )
-                                                                                                                                                                                          : json['patternExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson(
-                                                                                                                                                                                                  json['patternExpression'] as Map<String, dynamic>,
-                                                                                                                                                                                                )
-                                                                                                                                                                                              : json['patternParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
-                                                                                                                                                                                                      json['patternParameterDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                    )
-                                                                                                                                                                                                  : json['patternRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
-                                                                                                                                                                                                          json['patternRelatedArtifact'] as Map<String, dynamic>,
-                                                                                                                                                                                                        )
-                                                                                                                                                                                                      : json['patternTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
-                                                                                                                                                                                                              json['patternTriggerDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                            )
-                                                                                                                                                                                                          : json['patternUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson(
-                                                                                                                                                                                                                  json['patternUsageContext'] as Map<String, dynamic>,
-                                                                                                                                                                                                                )
-                                                                                                                                                                                                              : json['patternDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(
-                                                                                                                                                                                                                      json['patternDosage'] as Map<String, dynamic>,
-                                                                                                                                                                                                                    )
-                                                                                                                                                                                                                  : null,
-      example: json['example'] != null
-          ? (json['example'] as List<dynamic>)
-              .map<ElementDefinitionExample>(
-                (v) => ElementDefinitionExample.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      minValueX: json['minValueDate'] != null || json['_minValueDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['minValueDate'],
-              '_value': json['_minValueDate'],
-            })
-          : json['minValueDateTime'] != null ||
-                  json['_minValueDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['minValueDateTime'],
-                  '_value': json['_minValueDateTime'],
-                })
-              : json['minValueInstant'] != null ||
-                      json['_minValueInstant'] != null
-                  ? FhirInstant.fromJson({
-                      'value': json['minValueInstant'],
-                      '_value': json['_minValueInstant'],
-                    })
-                  : json['minValueTime'] != null ||
-                          json['_minValueTime'] != null
-                      ? FhirTime.fromJson({
-                          'value': json['minValueTime'],
-                          '_value': json['_minValueTime'],
-                        })
-                      : json['minValueDecimal'] != null ||
-                              json['_minValueDecimal'] != null
-                          ? FhirDecimal.fromJson({
-                              'value': json['minValueDecimal'],
-                              '_value': json['_minValueDecimal'],
-                            })
-                          : json['minValueInteger'] != null ||
-                                  json['_minValueInteger'] != null
-                              ? FhirInteger.fromJson({
-                                  'value': json['minValueInteger'],
-                                  '_value': json['_minValueInteger'],
-                                })
-                              : json['minValuePositiveInt'] != null ||
-                                      json['_minValuePositiveInt'] != null
-                                  ? FhirPositiveInt.fromJson({
-                                      'value': json['minValuePositiveInt'],
-                                      '_value': json['_minValuePositiveInt'],
-                                    })
-                                  : json['minValueUnsignedInt'] != null ||
-                                          json['_minValueUnsignedInt'] != null
-                                      ? FhirUnsignedInt.fromJson({
-                                          'value': json['minValueUnsignedInt'],
-                                          '_value':
-                                              json['_minValueUnsignedInt'],
-                                        })
-                                      : json['minValueQuantity'] != null
-                                          ? Quantity.fromJson(
-                                              json['minValueQuantity']
-                                                  as Map<String, dynamic>,
-                                            )
-                                          : null,
-      maxValueX: json['maxValueDate'] != null || json['_maxValueDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['maxValueDate'],
-              '_value': json['_maxValueDate'],
-            })
-          : json['maxValueDateTime'] != null ||
-                  json['_maxValueDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['maxValueDateTime'],
-                  '_value': json['_maxValueDateTime'],
-                })
-              : json['maxValueInstant'] != null ||
-                      json['_maxValueInstant'] != null
-                  ? FhirInstant.fromJson({
-                      'value': json['maxValueInstant'],
-                      '_value': json['_maxValueInstant'],
-                    })
-                  : json['maxValueTime'] != null ||
-                          json['_maxValueTime'] != null
-                      ? FhirTime.fromJson({
-                          'value': json['maxValueTime'],
-                          '_value': json['_maxValueTime'],
-                        })
-                      : json['maxValueDecimal'] != null ||
-                              json['_maxValueDecimal'] != null
-                          ? FhirDecimal.fromJson({
-                              'value': json['maxValueDecimal'],
-                              '_value': json['_maxValueDecimal'],
-                            })
-                          : json['maxValueInteger'] != null ||
-                                  json['_maxValueInteger'] != null
-                              ? FhirInteger.fromJson({
-                                  'value': json['maxValueInteger'],
-                                  '_value': json['_maxValueInteger'],
-                                })
-                              : json['maxValuePositiveInt'] != null ||
-                                      json['_maxValuePositiveInt'] != null
-                                  ? FhirPositiveInt.fromJson({
-                                      'value': json['maxValuePositiveInt'],
-                                      '_value': json['_maxValuePositiveInt'],
-                                    })
-                                  : json['maxValueUnsignedInt'] != null ||
-                                          json['_maxValueUnsignedInt'] != null
-                                      ? FhirUnsignedInt.fromJson({
-                                          'value': json['maxValueUnsignedInt'],
-                                          '_value':
-                                              json['_maxValueUnsignedInt'],
-                                        })
-                                      : json['maxValueQuantity'] != null
-                                          ? Quantity.fromJson(
-                                              json['maxValueQuantity']
-                                                  as Map<String, dynamic>,
-                                            )
-                                          : null,
-      maxLength: (json['maxLength'] != null || json['_maxLength'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['maxLength'],
-              '_value': json['_maxLength'],
-            })
-          : null,
-      condition: parsePrimitiveList<FhirId>(
-        json['condition'] as List<dynamic>?,
-        json['_condition'] as List<dynamic>?,
-        fromJson: FhirId.fromJson,
+      fixedX: JsonParser.parsePolymorphic<FixedXElementDefinition>(json, {
+        'fixedBase64Binary': FhirBase64Binary.fromJson,
+        'fixedBoolean': FhirBoolean.fromJson,
+        'fixedCanonical': FhirCanonical.fromJson,
+        'fixedCode': FhirCode.fromJson,
+        'fixedDate': FhirDate.fromJson,
+        'fixedDateTime': FhirDateTime.fromJson,
+        'fixedDecimal': FhirDecimal.fromJson,
+        'fixedId': FhirId.fromJson,
+        'fixedInstant': FhirInstant.fromJson,
+        'fixedInteger': FhirInteger.fromJson,
+        'fixedMarkdown': FhirMarkdown.fromJson,
+        'fixedOid': FhirOid.fromJson,
+        'fixedPositiveInt': FhirPositiveInt.fromJson,
+        'fixedString': FhirString.fromJson,
+        'fixedTime': FhirTime.fromJson,
+        'fixedUnsignedInt': FhirUnsignedInt.fromJson,
+        'fixedUri': FhirUri.fromJson,
+        'fixedUrl': FhirUrl.fromJson,
+        'fixedUuid': FhirUuid.fromJson,
+        'fixedAddress': Address.fromJson,
+        'fixedAge': Age.fromJson,
+        'fixedAnnotation': Annotation.fromJson,
+        'fixedAttachment': Attachment.fromJson,
+        'fixedCodeableConcept': CodeableConcept.fromJson,
+        'fixedCodeableReference': CodeableReference.fromJson,
+        'fixedCoding': Coding.fromJson,
+        'fixedContactPoint': ContactPoint.fromJson,
+        'fixedCount': Count.fromJson,
+        'fixedDistance': Distance.fromJson,
+        'fixedDuration': FhirDuration.fromJson,
+        'fixedHumanName': HumanName.fromJson,
+        'fixedIdentifier': Identifier.fromJson,
+        'fixedMoney': Money.fromJson,
+        'fixedPeriod': Period.fromJson,
+        'fixedQuantity': Quantity.fromJson,
+        'fixedRange': Range.fromJson,
+        'fixedRatio': Ratio.fromJson,
+        'fixedRatioRange': RatioRange.fromJson,
+        'fixedReference': Reference.fromJson,
+        'fixedSampledData': SampledData.fromJson,
+        'fixedSignature': Signature.fromJson,
+        'fixedTiming': Timing.fromJson,
+        'fixedContactDetail': ContactDetail.fromJson,
+        'fixedContributor': Contributor.fromJson,
+        'fixedDataRequirement': DataRequirement.fromJson,
+        'fixedExpression': FhirExpression.fromJson,
+        'fixedParameterDefinition': ParameterDefinition.fromJson,
+        'fixedRelatedArtifact': RelatedArtifact.fromJson,
+        'fixedTriggerDefinition': TriggerDefinition.fromJson,
+        'fixedUsageContext': UsageContext.fromJson,
+        'fixedDosage': Dosage.fromJson,
+      }),
+      patternX: JsonParser.parsePolymorphic<PatternXElementDefinition>(json, {
+        'patternBase64Binary': FhirBase64Binary.fromJson,
+        'patternBoolean': FhirBoolean.fromJson,
+        'patternCanonical': FhirCanonical.fromJson,
+        'patternCode': FhirCode.fromJson,
+        'patternDate': FhirDate.fromJson,
+        'patternDateTime': FhirDateTime.fromJson,
+        'patternDecimal': FhirDecimal.fromJson,
+        'patternId': FhirId.fromJson,
+        'patternInstant': FhirInstant.fromJson,
+        'patternInteger': FhirInteger.fromJson,
+        'patternMarkdown': FhirMarkdown.fromJson,
+        'patternOid': FhirOid.fromJson,
+        'patternPositiveInt': FhirPositiveInt.fromJson,
+        'patternString': FhirString.fromJson,
+        'patternTime': FhirTime.fromJson,
+        'patternUnsignedInt': FhirUnsignedInt.fromJson,
+        'patternUri': FhirUri.fromJson,
+        'patternUrl': FhirUrl.fromJson,
+        'patternUuid': FhirUuid.fromJson,
+        'patternAddress': Address.fromJson,
+        'patternAge': Age.fromJson,
+        'patternAnnotation': Annotation.fromJson,
+        'patternAttachment': Attachment.fromJson,
+        'patternCodeableConcept': CodeableConcept.fromJson,
+        'patternCodeableReference': CodeableReference.fromJson,
+        'patternCoding': Coding.fromJson,
+        'patternContactPoint': ContactPoint.fromJson,
+        'patternCount': Count.fromJson,
+        'patternDistance': Distance.fromJson,
+        'patternDuration': FhirDuration.fromJson,
+        'patternHumanName': HumanName.fromJson,
+        'patternIdentifier': Identifier.fromJson,
+        'patternMoney': Money.fromJson,
+        'patternPeriod': Period.fromJson,
+        'patternQuantity': Quantity.fromJson,
+        'patternRange': Range.fromJson,
+        'patternRatio': Ratio.fromJson,
+        'patternRatioRange': RatioRange.fromJson,
+        'patternReference': Reference.fromJson,
+        'patternSampledData': SampledData.fromJson,
+        'patternSignature': Signature.fromJson,
+        'patternTiming': Timing.fromJson,
+        'patternContactDetail': ContactDetail.fromJson,
+        'patternContributor': Contributor.fromJson,
+        'patternDataRequirement': DataRequirement.fromJson,
+        'patternExpression': FhirExpression.fromJson,
+        'patternParameterDefinition': ParameterDefinition.fromJson,
+        'patternRelatedArtifact': RelatedArtifact.fromJson,
+        'patternTriggerDefinition': TriggerDefinition.fromJson,
+        'patternUsageContext': UsageContext.fromJson,
+        'patternDosage': Dosage.fromJson,
+      }),
+      example: (json['example'] as List<dynamic>?)
+          ?.map<ElementDefinitionExample>(
+            (v) => ElementDefinitionExample.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      minValueX: JsonParser.parsePolymorphic<MinValueXElementDefinition>(json, {
+        'minValueDate': FhirDate.fromJson,
+        'minValueDateTime': FhirDateTime.fromJson,
+        'minValueInstant': FhirInstant.fromJson,
+        'minValueTime': FhirTime.fromJson,
+        'minValueDecimal': FhirDecimal.fromJson,
+        'minValueInteger': FhirInteger.fromJson,
+        'minValuePositiveInt': FhirPositiveInt.fromJson,
+        'minValueUnsignedInt': FhirUnsignedInt.fromJson,
+        'minValueQuantity': Quantity.fromJson,
+      }),
+      maxValueX: JsonParser.parsePolymorphic<MaxValueXElementDefinition>(json, {
+        'maxValueDate': FhirDate.fromJson,
+        'maxValueDateTime': FhirDateTime.fromJson,
+        'maxValueInstant': FhirInstant.fromJson,
+        'maxValueTime': FhirTime.fromJson,
+        'maxValueDecimal': FhirDecimal.fromJson,
+        'maxValueInteger': FhirInteger.fromJson,
+        'maxValuePositiveInt': FhirPositiveInt.fromJson,
+        'maxValueUnsignedInt': FhirUnsignedInt.fromJson,
+        'maxValueQuantity': Quantity.fromJson,
+      }),
+      maxLength: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'maxLength',
+        FhirInteger.fromJson,
       ),
-      constraint: json['constraint'] != null
-          ? (json['constraint'] as List<dynamic>)
-              .map<ElementDefinitionConstraint>(
-                (v) => ElementDefinitionConstraint.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      mustSupport: (json['mustSupport'] != null || json['_mustSupport'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['mustSupport'],
-              '_value': json['_mustSupport'],
-            })
-          : null,
-      isModifier: (json['isModifier'] != null || json['_isModifier'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['isModifier'],
-              '_value': json['_isModifier'],
-            })
-          : null,
-      isModifierReason: (json['isModifierReason'] != null ||
-              json['_isModifierReason'] != null)
-          ? FhirString.fromJson({
-              'value': json['isModifierReason'],
-              '_value': json['_isModifierReason'],
-            })
-          : null,
-      isSummary: (json['isSummary'] != null || json['_isSummary'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['isSummary'],
-              '_value': json['_isSummary'],
-            })
-          : null,
-      binding: json['binding'] != null
-          ? ElementDefinitionBinding.fromJson(
-              json['binding'] as Map<String, dynamic>,
-            )
-          : null,
-      mapping: json['mapping'] != null
-          ? (json['mapping'] as List<dynamic>)
-              .map<ElementDefinitionMapping>(
-                (v) => ElementDefinitionMapping.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      condition: JsonParser.parsePrimitiveList<FhirId>(
+        json,
+        'condition',
+        FhirId.fromJson,
+      ),
+      constraint: (json['constraint'] as List<dynamic>?)
+          ?.map<ElementDefinitionConstraint>(
+            (v) => ElementDefinitionConstraint.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      mustSupport: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'mustSupport',
+        FhirBoolean.fromJson,
+      ),
+      isModifier: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'isModifier',
+        FhirBoolean.fromJson,
+      ),
+      isModifierReason: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'isModifierReason',
+        FhirString.fromJson,
+      ),
+      isSummary: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'isSummary',
+        FhirBoolean.fromJson,
+      ),
+      binding: JsonParser.parseObject<ElementDefinitionBinding>(
+        json,
+        'binding',
+        ElementDefinitionBinding.fromJson,
+      ),
+      mapping: (json['mapping'] as List<dynamic>?)
+          ?.map<ElementDefinitionMapping>(
+            (v) => ElementDefinitionMapping.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -1725,43 +977,40 @@ class ElementDefinitionSlicing extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionSlicing(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      discriminator: json['discriminator'] != null
-          ? (json['discriminator'] as List<dynamic>)
-              .map<ElementDefinitionDiscriminator>(
-                (v) => ElementDefinitionDiscriminator.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      ordered: (json['ordered'] != null || json['_ordered'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['ordered'],
-              '_value': json['_ordered'],
-            })
-          : null,
-      rules: SlicingRules.fromJson({
-        'value': json['rules'],
-        '_value': json['_rules'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      discriminator: (json['discriminator'] as List<dynamic>?)
+          ?.map<ElementDefinitionDiscriminator>(
+            (v) => ElementDefinitionDiscriminator.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      ordered: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'ordered',
+        FhirBoolean.fromJson,
+      ),
+      rules: JsonParser.parsePrimitive<SlicingRules>(
+        json,
+        'rules',
+        SlicingRules.fromJson,
+      )!,
     );
   }
 
@@ -1920,26 +1169,28 @@ class ElementDefinitionDiscriminator extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionDiscriminator(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: DiscriminatorType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      path: FhirString.fromJson({
-        'value': json['path'],
-        '_value': json['_path'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<DiscriminatorType>(
+        json,
+        'type',
+        DiscriminatorType.fromJson,
+      )!,
+      path: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'path',
+        FhirString.fromJson,
+      )!,
     );
   }
 
@@ -2072,30 +1323,33 @@ class ElementDefinitionBase extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionBase(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      path: FhirString.fromJson({
-        'value': json['path'],
-        '_value': json['_path'],
-      }),
-      min: FhirUnsignedInt.fromJson({
-        'value': json['min'],
-        '_value': json['_min'],
-      }),
-      max: FhirString.fromJson({
-        'value': json['max'],
-        '_value': json['_max'],
-      }),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      path: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'path',
+        FhirString.fromJson,
+      )!,
+      min: JsonParser.parsePrimitive<FhirUnsignedInt>(
+        json,
+        'min',
+        FhirUnsignedInt.fromJson,
+      )!,
+      max: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'max',
+        FhirString.fromJson,
+      )!,
     );
   }
 
@@ -2233,43 +1487,43 @@ class ElementDefinitionType extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionType(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: FhirUri.fromJson({
-        'value': json['code'],
-        '_value': json['_code'],
-      }),
-      profile: parsePrimitiveList<FhirCanonical>(
-        json['profile'] as List<dynamic>?,
-        json['_profile'] as List<dynamic>?,
-        fromJson: FhirCanonical.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      targetProfile: parsePrimitiveList<FhirCanonical>(
-        json['targetProfile'] as List<dynamic>?,
-        json['_targetProfile'] as List<dynamic>?,
-        fromJson: FhirCanonical.fromJson,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'code',
+        FhirUri.fromJson,
+      )!,
+      profile: JsonParser.parsePrimitiveList<FhirCanonical>(
+        json,
+        'profile',
+        FhirCanonical.fromJson,
       ),
-      aggregation: parsePrimitiveList<AggregationMode>(
-        json['aggregation'] as List<dynamic>?,
-        json['_aggregation'] as List<dynamic>?,
-        fromJson: AggregationMode.fromJson,
+      targetProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
+        json,
+        'targetProfile',
+        FhirCanonical.fromJson,
       ),
-      versioning: (json['versioning'] != null || json['_versioning'] != null)
-          ? ReferenceVersionRules.fromJson({
-              'value': json['versioning'],
-              '_value': json['_versioning'],
-            })
-          : null,
+      aggregation: JsonParser.parsePrimitiveList<AggregationMode>(
+        json,
+        'aggregation',
+        AggregationMode.fromJson,
+      ),
+      versioning: JsonParser.parsePrimitive<ReferenceVersionRules>(
+        json,
+        'versioning',
+        ReferenceVersionRules.fromJson,
+      ),
     );
   }
 
@@ -2458,281 +1712,77 @@ class ElementDefinitionExample extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionExample(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      label: FhirString.fromJson({
-        'value': json['label'],
-        '_value': json['_label'],
-      }),
-      valueX: json['valueBase64Binary'] != null ||
-              json['_valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson({
-              'value': json['valueBase64Binary'],
-              '_value': json['_valueBase64Binary'],
-            })
-          : json['valueBoolean'] != null || json['_valueBoolean'] != null
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : json['valueCanonical'] != null ||
-                      json['_valueCanonical'] != null
-                  ? FhirCanonical.fromJson({
-                      'value': json['valueCanonical'],
-                      '_value': json['_valueCanonical'],
-                    })
-                  : json['valueCode'] != null || json['_valueCode'] != null
-                      ? FhirCode.fromJson({
-                          'value': json['valueCode'],
-                          '_value': json['_valueCode'],
-                        })
-                      : json['valueDate'] != null || json['_valueDate'] != null
-                          ? FhirDate.fromJson({
-                              'value': json['valueDate'],
-                              '_value': json['_valueDate'],
-                            })
-                          : json['valueDateTime'] != null ||
-                                  json['_valueDateTime'] != null
-                              ? FhirDateTime.fromJson({
-                                  'value': json['valueDateTime'],
-                                  '_value': json['_valueDateTime'],
-                                })
-                              : json['valueDecimal'] != null ||
-                                      json['_valueDecimal'] != null
-                                  ? FhirDecimal.fromJson({
-                                      'value': json['valueDecimal'],
-                                      '_value': json['_valueDecimal'],
-                                    })
-                                  : json['valueId'] != null ||
-                                          json['_valueId'] != null
-                                      ? FhirId.fromJson({
-                                          'value': json['valueId'],
-                                          '_value': json['_valueId'],
-                                        })
-                                      : json['valueInstant'] != null ||
-                                              json['_valueInstant'] != null
-                                          ? FhirInstant.fromJson({
-                                              'value': json['valueInstant'],
-                                              '_value': json['_valueInstant'],
-                                            })
-                                          : json['valueInteger'] != null ||
-                                                  json['_valueInteger'] != null
-                                              ? FhirInteger.fromJson({
-                                                  'value': json['valueInteger'],
-                                                  '_value':
-                                                      json['_valueInteger'],
-                                                })
-                                              : json['valueMarkdown'] != null ||
-                                                      json['_valueMarkdown'] !=
-                                                          null
-                                                  ? FhirMarkdown.fromJson({
-                                                      'value':
-                                                          json['valueMarkdown'],
-                                                      '_value': json[
-                                                          '_valueMarkdown'],
-                                                    })
-                                                  : json['valueOid'] != null ||
-                                                          json['_valueOid'] !=
-                                                              null
-                                                      ? FhirOid.fromJson({
-                                                          'value':
-                                                              json['valueOid'],
-                                                          '_value':
-                                                              json['_valueOid'],
-                                                        })
-                                                      : json['valuePositiveInt'] !=
-                                                                  null ||
-                                                              json['_valuePositiveInt'] !=
-                                                                  null
-                                                          ? FhirPositiveInt.fromJson({
-                                                              'value': json[
-                                                                  'valuePositiveInt'],
-                                                              '_value': json[
-                                                                  '_valuePositiveInt'],
-                                                            })
-                                                          : json['valueString'] !=
-                                                                      null ||
-                                                                  json['_valueString'] !=
-                                                                      null
-                                                              ? FhirString.fromJson({
-                                                                  'value': json[
-                                                                      'valueString'],
-                                                                  '_value': json[
-                                                                      '_valueString'],
-                                                                })
-                                                              : json['valueTime'] !=
-                                                                          null ||
-                                                                      json['_valueTime'] !=
-                                                                          null
-                                                                  ? FhirTime.fromJson({
-                                                                      'value': json[
-                                                                          'valueTime'],
-                                                                      '_value':
-                                                                          json[
-                                                                              '_valueTime'],
-                                                                    })
-                                                                  : json['valueUnsignedInt'] !=
-                                                                              null ||
-                                                                          json['_valueUnsignedInt'] !=
-                                                                              null
-                                                                      ? FhirUnsignedInt.fromJson({
-                                                                          'value':
-                                                                              json['valueUnsignedInt'],
-                                                                          '_value':
-                                                                              json['_valueUnsignedInt'],
-                                                                        })
-                                                                      : json['valueUri'] != null || json['_valueUri'] != null
-                                                                          ? FhirUri.fromJson({
-                                                                              'value': json['valueUri'],
-                                                                              '_value': json['_valueUri'],
-                                                                            })
-                                                                          : json['valueUrl'] != null || json['_valueUrl'] != null
-                                                                              ? FhirUrl.fromJson({
-                                                                                  'value': json['valueUrl'],
-                                                                                  '_value': json['_valueUrl'],
-                                                                                })
-                                                                              : json['valueUuid'] != null || json['_valueUuid'] != null
-                                                                                  ? FhirUuid.fromJson({
-                                                                                      'value': json['valueUuid'],
-                                                                                      '_value': json['_valueUuid'],
-                                                                                    })
-                                                                                  : json['valueAddress'] != null
-                                                                                      ? Address.fromJson(
-                                                                                          json['valueAddress'] as Map<String, dynamic>,
-                                                                                        )
-                                                                                      : json['valueAge'] != null
-                                                                                          ? Age.fromJson(
-                                                                                              json['valueAge'] as Map<String, dynamic>,
-                                                                                            )
-                                                                                          : json['valueAnnotation'] != null
-                                                                                              ? Annotation.fromJson(
-                                                                                                  json['valueAnnotation'] as Map<String, dynamic>,
-                                                                                                )
-                                                                                              : json['valueAttachment'] != null
-                                                                                                  ? Attachment.fromJson(
-                                                                                                      json['valueAttachment'] as Map<String, dynamic>,
-                                                                                                    )
-                                                                                                  : json['valueCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson(
-                                                                                                          json['valueCodeableConcept'] as Map<String, dynamic>,
-                                                                                                        )
-                                                                                                      : json['valueCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson(
-                                                                                                              json['valueCodeableReference'] as Map<String, dynamic>,
-                                                                                                            )
-                                                                                                          : json['valueCoding'] != null
-                                                                                                              ? Coding.fromJson(
-                                                                                                                  json['valueCoding'] as Map<String, dynamic>,
-                                                                                                                )
-                                                                                                              : json['valueContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson(
-                                                                                                                      json['valueContactPoint'] as Map<String, dynamic>,
-                                                                                                                    )
-                                                                                                                  : json['valueCount'] != null
-                                                                                                                      ? Count.fromJson(
-                                                                                                                          json['valueCount'] as Map<String, dynamic>,
-                                                                                                                        )
-                                                                                                                      : json['valueDistance'] != null
-                                                                                                                          ? Distance.fromJson(
-                                                                                                                              json['valueDistance'] as Map<String, dynamic>,
-                                                                                                                            )
-                                                                                                                          : json['valueDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson(
-                                                                                                                                  json['valueDuration'] as Map<String, dynamic>,
-                                                                                                                                )
-                                                                                                                              : json['valueHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson(
-                                                                                                                                      json['valueHumanName'] as Map<String, dynamic>,
-                                                                                                                                    )
-                                                                                                                                  : json['valueIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson(
-                                                                                                                                          json['valueIdentifier'] as Map<String, dynamic>,
-                                                                                                                                        )
-                                                                                                                                      : json['valueMoney'] != null
-                                                                                                                                          ? Money.fromJson(
-                                                                                                                                              json['valueMoney'] as Map<String, dynamic>,
-                                                                                                                                            )
-                                                                                                                                          : json['valuePeriod'] != null
-                                                                                                                                              ? Period.fromJson(
-                                                                                                                                                  json['valuePeriod'] as Map<String, dynamic>,
-                                                                                                                                                )
-                                                                                                                                              : json['valueQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson(
-                                                                                                                                                      json['valueQuantity'] as Map<String, dynamic>,
-                                                                                                                                                    )
-                                                                                                                                                  : json['valueRange'] != null
-                                                                                                                                                      ? Range.fromJson(
-                                                                                                                                                          json['valueRange'] as Map<String, dynamic>,
-                                                                                                                                                        )
-                                                                                                                                                      : json['valueRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson(
-                                                                                                                                                              json['valueRatio'] as Map<String, dynamic>,
-                                                                                                                                                            )
-                                                                                                                                                          : json['valueRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson(
-                                                                                                                                                                  json['valueRatioRange'] as Map<String, dynamic>,
-                                                                                                                                                                )
-                                                                                                                                                              : json['valueReference'] != null
-                                                                                                                                                                  ? Reference.fromJson(
-                                                                                                                                                                      json['valueReference'] as Map<String, dynamic>,
-                                                                                                                                                                    )
-                                                                                                                                                                  : json['valueSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson(
-                                                                                                                                                                          json['valueSampledData'] as Map<String, dynamic>,
-                                                                                                                                                                        )
-                                                                                                                                                                      : json['valueSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson(
-                                                                                                                                                                              json['valueSignature'] as Map<String, dynamic>,
-                                                                                                                                                                            )
-                                                                                                                                                                          : json['valueTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson(
-                                                                                                                                                                                  json['valueTiming'] as Map<String, dynamic>,
-                                                                                                                                                                                )
-                                                                                                                                                                              : json['valueContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson(
-                                                                                                                                                                                      json['valueContactDetail'] as Map<String, dynamic>,
-                                                                                                                                                                                    )
-                                                                                                                                                                                  : json['valueContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson(
-                                                                                                                                                                                          json['valueContributor'] as Map<String, dynamic>,
-                                                                                                                                                                                        )
-                                                                                                                                                                                      : json['valueDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson(
-                                                                                                                                                                                              json['valueDataRequirement'] as Map<String, dynamic>,
-                                                                                                                                                                                            )
-                                                                                                                                                                                          : json['valueExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson(
-                                                                                                                                                                                                  json['valueExpression'] as Map<String, dynamic>,
-                                                                                                                                                                                                )
-                                                                                                                                                                                              : json['valueParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
-                                                                                                                                                                                                      json['valueParameterDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                    )
-                                                                                                                                                                                                  : json['valueRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
-                                                                                                                                                                                                          json['valueRelatedArtifact'] as Map<String, dynamic>,
-                                                                                                                                                                                                        )
-                                                                                                                                                                                                      : json['valueTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
-                                                                                                                                                                                                              json['valueTriggerDefinition'] as Map<String, dynamic>,
-                                                                                                                                                                                                            )
-                                                                                                                                                                                                          : json['valueUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson(
-                                                                                                                                                                                                                  json['valueUsageContext'] as Map<String, dynamic>,
-                                                                                                                                                                                                                )
-                                                                                                                                                                                                              : Dosage.fromJson(
-                                                                                                                                                                                                                  json['valueDosage'] as Map<String, dynamic>,
-                                                                                                                                                                                                                ),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      label: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'label',
+        FhirString.fromJson,
+      )!,
+      valueX:
+          JsonParser.parsePolymorphic<ValueXElementDefinitionExample>(json, {
+        'valueBase64Binary': FhirBase64Binary.fromJson,
+        'valueBoolean': FhirBoolean.fromJson,
+        'valueCanonical': FhirCanonical.fromJson,
+        'valueCode': FhirCode.fromJson,
+        'valueDate': FhirDate.fromJson,
+        'valueDateTime': FhirDateTime.fromJson,
+        'valueDecimal': FhirDecimal.fromJson,
+        'valueId': FhirId.fromJson,
+        'valueInstant': FhirInstant.fromJson,
+        'valueInteger': FhirInteger.fromJson,
+        'valueMarkdown': FhirMarkdown.fromJson,
+        'valueOid': FhirOid.fromJson,
+        'valuePositiveInt': FhirPositiveInt.fromJson,
+        'valueString': FhirString.fromJson,
+        'valueTime': FhirTime.fromJson,
+        'valueUnsignedInt': FhirUnsignedInt.fromJson,
+        'valueUri': FhirUri.fromJson,
+        'valueUrl': FhirUrl.fromJson,
+        'valueUuid': FhirUuid.fromJson,
+        'valueAddress': Address.fromJson,
+        'valueAge': Age.fromJson,
+        'valueAnnotation': Annotation.fromJson,
+        'valueAttachment': Attachment.fromJson,
+        'valueCodeableConcept': CodeableConcept.fromJson,
+        'valueCodeableReference': CodeableReference.fromJson,
+        'valueCoding': Coding.fromJson,
+        'valueContactPoint': ContactPoint.fromJson,
+        'valueCount': Count.fromJson,
+        'valueDistance': Distance.fromJson,
+        'valueDuration': FhirDuration.fromJson,
+        'valueHumanName': HumanName.fromJson,
+        'valueIdentifier': Identifier.fromJson,
+        'valueMoney': Money.fromJson,
+        'valuePeriod': Period.fromJson,
+        'valueQuantity': Quantity.fromJson,
+        'valueRange': Range.fromJson,
+        'valueRatio': Ratio.fromJson,
+        'valueRatioRange': RatioRange.fromJson,
+        'valueReference': Reference.fromJson,
+        'valueSampledData': SampledData.fromJson,
+        'valueSignature': Signature.fromJson,
+        'valueTiming': Timing.fromJson,
+        'valueContactDetail': ContactDetail.fromJson,
+        'valueContributor': Contributor.fromJson,
+        'valueDataRequirement': DataRequirement.fromJson,
+        'valueExpression': FhirExpression.fromJson,
+        'valueParameterDefinition': ParameterDefinition.fromJson,
+        'valueRelatedArtifact': RelatedArtifact.fromJson,
+        'valueTriggerDefinition': TriggerDefinition.fromJson,
+        'valueUsageContext': UsageContext.fromJson,
+        'valueDosage': Dosage.fromJson,
+      })!,
     );
   }
 
@@ -2862,55 +1912,53 @@ class ElementDefinitionConstraint extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionConstraint(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      key: FhirId.fromJson({
-        'value': json['key'],
-        '_value': json['_key'],
-      }),
-      requirements:
-          (json['requirements'] != null || json['_requirements'] != null)
-              ? FhirString.fromJson({
-                  'value': json['requirements'],
-                  '_value': json['_requirements'],
-                })
-              : null,
-      severity: ConstraintSeverity.fromJson({
-        'value': json['severity'],
-        '_value': json['_severity'],
-      }),
-      human: FhirString.fromJson({
-        'value': json['human'],
-        '_value': json['_human'],
-      }),
-      expression: (json['expression'] != null || json['_expression'] != null)
-          ? FhirString.fromJson({
-              'value': json['expression'],
-              '_value': json['_expression'],
-            })
-          : null,
-      xpath: (json['xpath'] != null || json['_xpath'] != null)
-          ? FhirString.fromJson({
-              'value': json['xpath'],
-              '_value': json['_xpath'],
-            })
-          : null,
-      source: (json['source'] != null || json['_source'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['source'],
-              '_value': json['_source'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      key: JsonParser.parsePrimitive<FhirId>(
+        json,
+        'key',
+        FhirId.fromJson,
+      )!,
+      requirements: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'requirements',
+        FhirString.fromJson,
+      ),
+      severity: JsonParser.parsePrimitive<ConstraintSeverity>(
+        json,
+        'severity',
+        ConstraintSeverity.fromJson,
+      )!,
+      human: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'human',
+        FhirString.fromJson,
+      )!,
+      expression: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'expression',
+        FhirString.fromJson,
+      ),
+      xpath: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'xpath',
+        FhirString.fromJson,
+      ),
+      source: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'source',
+        FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -3089,34 +2137,33 @@ class ElementDefinitionBinding extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionBinding(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      strength: BindingStrength.fromJson({
-        'value': json['strength'],
-        '_value': json['_strength'],
-      }),
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      valueSet: (json['valueSet'] != null || json['_valueSet'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['valueSet'],
-              '_value': json['_valueSet'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      strength: JsonParser.parsePrimitive<BindingStrength>(
+        json,
+        'strength',
+        BindingStrength.fromJson,
+      )!,
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      valueSet: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'valueSet',
+        FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -3258,38 +2305,38 @@ class ElementDefinitionMapping extends Element {
     Map<String, dynamic> json,
   ) {
     return ElementDefinitionMapping(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identity: FhirId.fromJson({
-        'value': json['identity'],
-        '_value': json['_identity'],
-      }),
-      language: (json['language'] != null || json['_language'] != null)
-          ? FhirCode.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      map: FhirString.fromJson({
-        'value': json['map'],
-        '_value': json['_map'],
-      }),
-      comment: (json['comment'] != null || json['_comment'] != null)
-          ? FhirString.fromJson({
-              'value': json['comment'],
-              '_value': json['_comment'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identity: JsonParser.parsePrimitive<FhirId>(
+        json,
+        'identity',
+        FhirId.fromJson,
+      )!,
+      language: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'language',
+        FhirCode.fromJson,
+      ),
+      map: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'map',
+        FhirString.fromJson,
+      )!,
+      comment: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'comment',
+        FhirString.fromJson,
+      ),
     );
   }
 

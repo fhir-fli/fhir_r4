@@ -25,47 +25,48 @@ class ProductShelfLife extends BackboneType {
     Map<String, dynamic> json,
   ) {
     return ProductShelfLife(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(
-              json['identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      type: CodeableConcept.fromJson(
-        json['type'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      period: Quantity.fromJson(
-        json['period'] as Map<String, dynamic>,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: JsonParser.parseObject<Identifier>(
+        json,
+        'identifier',
+        Identifier.fromJson,
       ),
-      specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
-          ? (json['specialPrecautionsForStorage'] as List<dynamic>)
-              .map<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      )!,
+      period: JsonParser.parseObject<Quantity>(
+        json,
+        'period',
+        Quantity.fromJson,
+      )!,
+      specialPrecautionsForStorage:
+          (json['specialPrecautionsForStorage'] as List<dynamic>?)
+              ?.map<CodeableConcept>(
                 (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
-              .toList()
-          : null,
+              .toList(),
     );
   }
 

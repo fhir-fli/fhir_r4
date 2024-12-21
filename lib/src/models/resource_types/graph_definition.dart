@@ -44,156 +44,135 @@ class GraphDefinition extends CanonicalResource {
     Map<String, dynamic> json,
   ) {
     return GraphDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUri.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      version: (json['version'] != null || json['_version'] != null)
-          ? FhirString.fromJson({
-              'value': json['version'],
-              '_value': json['_version'],
-            })
-          : null,
-      name: FhirString.fromJson({
-        'value': json['name'],
-        '_value': json['_name'],
-      }),
-      status: PublicationStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      experimental:
-          (json['experimental'] != null || json['_experimental'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['experimental'],
-                  '_value': json['_experimental'],
-                })
-              : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      publisher: (json['publisher'] != null || json['_publisher'] != null)
-          ? FhirString.fromJson({
-              'value': json['publisher'],
-              '_value': json['_publisher'],
-            })
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>(
-                (v) => UsageContext.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      purpose: (json['purpose'] != null || json['_purpose'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['purpose'],
-              '_value': json['_purpose'],
-            })
-          : null,
-      start: FhirCode.fromJson({
-        'value': json['start'],
-        '_value': json['_start'],
-      }),
-      profile: (json['profile'] != null || json['_profile'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['profile'],
-              '_value': json['_profile'],
-            })
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<GraphDefinitionLink>(
-                (v) => GraphDefinitionLink.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      url: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'url',
+        FhirUri.fromJson,
+      ),
+      version: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'version',
+        FhirString.fromJson,
+      ),
+      name: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'name',
+        FhirString.fromJson,
+      )!,
+      status: JsonParser.parsePrimitive<PublicationStatus>(
+        json,
+        'status',
+        PublicationStatus.fromJson,
+      )!,
+      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'experimental',
+        FhirBoolean.fromJson,
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'date',
+        FhirDateTime.fromJson,
+      ),
+      publisher: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'publisher',
+        FhirString.fromJson,
+      ),
+      contact: (json['contact'] as List<dynamic>?)
+          ?.map<ContactDetail>(
+            (v) => ContactDetail.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      description: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'description',
+        FhirMarkdown.fromJson,
+      ),
+      useContext: (json['useContext'] as List<dynamic>?)
+          ?.map<UsageContext>(
+            (v) => UsageContext.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      jurisdiction: (json['jurisdiction'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+        json,
+        'purpose',
+        FhirMarkdown.fromJson,
+      ),
+      start: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'start',
+        FhirCode.fromJson,
+      )!,
+      profile: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'profile',
+        FhirCanonical.fromJson,
+      ),
+      link: (json['link'] as List<dynamic>?)
+          ?.map<GraphDefinitionLink>(
+            (v) => GraphDefinitionLink.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -449,66 +428,57 @@ class GraphDefinitionLink extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return GraphDefinitionLink(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      path: (json['path'] != null || json['_path'] != null)
-          ? FhirString.fromJson({
-              'value': json['path'],
-              '_value': json['_path'],
-            })
-          : null,
-      sliceName: (json['sliceName'] != null || json['_sliceName'] != null)
-          ? FhirString.fromJson({
-              'value': json['sliceName'],
-              '_value': json['_sliceName'],
-            })
-          : null,
-      min: (json['min'] != null || json['_min'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['min'],
-              '_value': json['_min'],
-            })
-          : null,
-      max: (json['max'] != null || json['_max'] != null)
-          ? FhirString.fromJson({
-              'value': json['max'],
-              '_value': json['_max'],
-            })
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      target: json['target'] != null
-          ? (json['target'] as List<dynamic>)
-              .map<GraphDefinitionTarget>(
-                (v) => GraphDefinitionTarget.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      path: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'path',
+        FhirString.fromJson,
+      ),
+      sliceName: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'sliceName',
+        FhirString.fromJson,
+      ),
+      min: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'min',
+        FhirInteger.fromJson,
+      ),
+      max: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'max',
+        FhirString.fromJson,
+      ),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      target: (json['target'] as List<dynamic>?)
+          ?.map<GraphDefinitionTarget>(
+            (v) => GraphDefinitionTarget.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -690,61 +660,54 @@ class GraphDefinitionTarget extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return GraphDefinitionTarget(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: FhirCode.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      params: (json['params'] != null || json['_params'] != null)
-          ? FhirString.fromJson({
-              'value': json['params'],
-              '_value': json['_params'],
-            })
-          : null,
-      profile: (json['profile'] != null || json['_profile'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['profile'],
-              '_value': json['_profile'],
-            })
-          : null,
-      compartment: json['compartment'] != null
-          ? (json['compartment'] as List<dynamic>)
-              .map<GraphDefinitionCompartment>(
-                (v) => GraphDefinitionCompartment.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<GraphDefinitionLink>(
-                (v) => GraphDefinitionLink.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'type',
+        FhirCode.fromJson,
+      )!,
+      params: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'params',
+        FhirString.fromJson,
+      ),
+      profile: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'profile',
+        FhirCanonical.fromJson,
+      ),
+      compartment: (json['compartment'] as List<dynamic>?)
+          ?.map<GraphDefinitionCompartment>(
+            (v) => GraphDefinitionCompartment.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      link: (json['link'] as List<dynamic>?)
+          ?.map<GraphDefinitionLink>(
+            (v) => GraphDefinitionLink.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -911,51 +874,50 @@ class GraphDefinitionCompartment extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return GraphDefinitionCompartment(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      use: GraphCompartmentUse.fromJson({
-        'value': json['use'],
-        '_value': json['_use'],
-      }),
-      code: CompartmentType.fromJson({
-        'value': json['code'],
-        '_value': json['_code'],
-      }),
-      rule: GraphCompartmentRule.fromJson({
-        'value': json['rule'],
-        '_value': json['_rule'],
-      }),
-      expression: (json['expression'] != null || json['_expression'] != null)
-          ? FhirString.fromJson({
-              'value': json['expression'],
-              '_value': json['_expression'],
-            })
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      use: JsonParser.parsePrimitive<GraphCompartmentUse>(
+        json,
+        'use',
+        GraphCompartmentUse.fromJson,
+      )!,
+      code: JsonParser.parsePrimitive<CompartmentType>(
+        json,
+        'code',
+        CompartmentType.fromJson,
+      )!,
+      rule: JsonParser.parsePrimitive<GraphCompartmentRule>(
+        json,
+        'rule',
+        GraphCompartmentRule.fromJson,
+      )!,
+      expression: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'expression',
+        FhirString.fromJson,
+      ),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
     );
   }
 

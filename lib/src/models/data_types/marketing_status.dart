@@ -27,51 +27,50 @@ class MarketingStatus extends BackboneType {
     Map<String, dynamic> json,
   ) {
     return MarketingStatus(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      country: json['country'] != null
-          ? CodeableConcept.fromJson(
-              json['country'] as Map<String, dynamic>,
-            )
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? CodeableConcept.fromJson(
-              json['jurisdiction'] as Map<String, dynamic>,
-            )
-          : null,
-      status: CodeableConcept.fromJson(
-        json['status'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      dateRange: json['dateRange'] != null
-          ? Period.fromJson(
-              json['dateRange'] as Map<String, dynamic>,
-            )
-          : null,
-      restoreDate: (json['restoreDate'] != null || json['_restoreDate'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['restoreDate'],
-              '_value': json['_restoreDate'],
-            })
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      country: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'country',
+        CodeableConcept.fromJson,
+      ),
+      jurisdiction: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'jurisdiction',
+        CodeableConcept.fromJson,
+      ),
+      status: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'status',
+        CodeableConcept.fromJson,
+      )!,
+      dateRange: JsonParser.parseObject<Period>(
+        json,
+        'dateRange',
+        Period.fromJson,
+      ),
+      restoreDate: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'restoreDate',
+        FhirDateTime.fromJson,
+      ),
     );
   }
 

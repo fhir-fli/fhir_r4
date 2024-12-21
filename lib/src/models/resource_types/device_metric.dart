@@ -37,117 +37,107 @@ class DeviceMetric extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return DeviceMetric(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(
-        json['type'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      unit: json['unit'] != null
-          ? CodeableConcept.fromJson(
-              json['unit'] as Map<String, dynamic>,
-            )
-          : null,
-      source: json['source'] != null
-          ? Reference.fromJson(
-              json['source'] as Map<String, dynamic>,
-            )
-          : null,
-      parent: json['parent'] != null
-          ? Reference.fromJson(
-              json['parent'] as Map<String, dynamic>,
-            )
-          : null,
-      operationalStatus: (json['operationalStatus'] != null ||
-              json['_operationalStatus'] != null)
-          ? DeviceMetricOperationalStatus.fromJson({
-              'value': json['operationalStatus'],
-              '_value': json['_operationalStatus'],
-            })
-          : null,
-      color: (json['color'] != null || json['_color'] != null)
-          ? DeviceMetricColor.fromJson({
-              'value': json['color'],
-              '_value': json['_color'],
-            })
-          : null,
-      category: DeviceMetricCategory.fromJson({
-        'value': json['category'],
-        '_value': json['_category'],
-      }),
-      measurementPeriod: json['measurementPeriod'] != null
-          ? Timing.fromJson(
-              json['measurementPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      calibration: json['calibration'] != null
-          ? (json['calibration'] as List<dynamic>)
-              .map<DeviceMetricCalibration>(
-                (v) => DeviceMetricCalibration.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      )!,
+      unit: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'unit',
+        CodeableConcept.fromJson,
+      ),
+      source: JsonParser.parseObject<Reference>(
+        json,
+        'source',
+        Reference.fromJson,
+      ),
+      parent: JsonParser.parseObject<Reference>(
+        json,
+        'parent',
+        Reference.fromJson,
+      ),
+      operationalStatus:
+          JsonParser.parsePrimitive<DeviceMetricOperationalStatus>(
+        json,
+        'operationalStatus',
+        DeviceMetricOperationalStatus.fromJson,
+      ),
+      color: JsonParser.parsePrimitive<DeviceMetricColor>(
+        json,
+        'color',
+        DeviceMetricColor.fromJson,
+      ),
+      category: JsonParser.parsePrimitive<DeviceMetricCategory>(
+        json,
+        'category',
+        DeviceMetricCategory.fromJson,
+      )!,
+      measurementPeriod: JsonParser.parseObject<Timing>(
+        json,
+        'measurementPeriod',
+        Timing.fromJson,
+      ),
+      calibration: (json['calibration'] as List<dynamic>?)
+          ?.map<DeviceMetricCalibration>(
+            (v) => DeviceMetricCalibration.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -418,45 +408,40 @@ class DeviceMetricCalibration extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return DeviceMetricCalibration(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? DeviceMetricCalibrationType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      state: (json['state'] != null || json['_state'] != null)
-          ? DeviceMetricCalibrationState.fromJson({
-              'value': json['state'],
-              '_value': json['_state'],
-            })
-          : null,
-      time: (json['time'] != null || json['_time'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['time'],
-              '_value': json['_time'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parsePrimitive<DeviceMetricCalibrationType>(
+        json,
+        'type',
+        DeviceMetricCalibrationType.fromJson,
+      ),
+      state: JsonParser.parsePrimitive<DeviceMetricCalibrationState>(
+        json,
+        'state',
+        DeviceMetricCalibrationState.fromJson,
+      ),
+      time: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'time',
+        FhirInstant.fromJson,
+      ),
     );
   }
 

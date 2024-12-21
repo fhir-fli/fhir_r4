@@ -61,28 +61,28 @@ class Range extends DataType
     Map<String, dynamic> json,
   ) {
     return Range(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      low: json['low'] != null
-          ? Quantity.fromJson(
-              json['low'] as Map<String, dynamic>,
-            )
-          : null,
-      high: json['high'] != null
-          ? Quantity.fromJson(
-              json['high'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      low: JsonParser.parseObject<Quantity>(
+        json,
+        'low',
+        Quantity.fromJson,
+      ),
+      high: JsonParser.parseObject<Quantity>(
+        json,
+        'high',
+        Quantity.fromJson,
+      ),
     );
   }
 

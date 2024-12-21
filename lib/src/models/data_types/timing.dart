@@ -53,42 +53,40 @@ class Timing extends BackboneType
     Map<String, dynamic> json,
   ) {
     return Timing(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      event: parsePrimitiveList<FhirDateTime>(
-        json['event'] as List<dynamic>?,
-        json['_event'] as List<dynamic>?,
-        fromJson: FhirDateTime.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      repeat: json['repeat'] != null
-          ? TimingRepeat.fromJson(
-              json['repeat'] as Map<String, dynamic>,
-            )
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(
-              json['code'] as Map<String, dynamic>,
-            )
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      event: JsonParser.parsePrimitiveList<FhirDateTime>(
+        json,
+        'event',
+        FhirDateTime.fromJson,
+      ),
+      repeat: JsonParser.parseObject<TimingRepeat>(
+        json,
+        'repeat',
+        TimingRepeat.fromJson,
+      ),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      ),
     );
   }
 
@@ -257,114 +255,93 @@ class TimingRepeat extends Element {
     Map<String, dynamic> json,
   ) {
     return TimingRepeat(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      boundsX: json['boundsDuration'] != null
-          ? FhirDuration.fromJson(
-              json['boundsDuration'] as Map<String, dynamic>,
-            )
-          : json['boundsRange'] != null
-              ? Range.fromJson(
-                  json['boundsRange'] as Map<String, dynamic>,
-                )
-              : json['boundsPeriod'] != null
-                  ? Period.fromJson(
-                      json['boundsPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
-      count: (json['count'] != null || json['_count'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['count'],
-              '_value': json['_count'],
-            })
-          : null,
-      countMax: (json['countMax'] != null || json['_countMax'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['countMax'],
-              '_value': json['_countMax'],
-            })
-          : null,
-      duration: (json['duration'] != null || json['_duration'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['duration'],
-              '_value': json['_duration'],
-            })
-          : null,
-      durationMax: (json['durationMax'] != null || json['_durationMax'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['durationMax'],
-              '_value': json['_durationMax'],
-            })
-          : null,
-      durationUnit:
-          (json['durationUnit'] != null || json['_durationUnit'] != null)
-              ? UnitsOfTime.fromJson({
-                  'value': json['durationUnit'],
-                  '_value': json['_durationUnit'],
-                })
-              : null,
-      frequency: (json['frequency'] != null || json['_frequency'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['frequency'],
-              '_value': json['_frequency'],
-            })
-          : null,
-      frequencyMax:
-          (json['frequencyMax'] != null || json['_frequencyMax'] != null)
-              ? FhirPositiveInt.fromJson({
-                  'value': json['frequencyMax'],
-                  '_value': json['_frequencyMax'],
-                })
-              : null,
-      period: (json['period'] != null || json['_period'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['period'],
-              '_value': json['_period'],
-            })
-          : null,
-      periodMax: (json['periodMax'] != null || json['_periodMax'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['periodMax'],
-              '_value': json['_periodMax'],
-            })
-          : null,
-      periodUnit: (json['periodUnit'] != null || json['_periodUnit'] != null)
-          ? UnitsOfTime.fromJson({
-              'value': json['periodUnit'],
-              '_value': json['_periodUnit'],
-            })
-          : null,
-      dayOfWeek: parsePrimitiveList<DaysOfWeek>(
-        json['dayOfWeek'] as List<dynamic>?,
-        json['_dayOfWeek'] as List<dynamic>?,
-        fromJson: DaysOfWeek.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      timeOfDay: parsePrimitiveList<FhirTime>(
-        json['timeOfDay'] as List<dynamic>?,
-        json['_timeOfDay'] as List<dynamic>?,
-        fromJson: FhirTime.fromJson,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      boundsX: JsonParser.parsePolymorphic<BoundsXTimingRepeat>(json, {
+        'boundsDuration': FhirDuration.fromJson,
+        'boundsRange': Range.fromJson,
+        'boundsPeriod': Period.fromJson,
+      }),
+      count: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'count',
+        FhirPositiveInt.fromJson,
       ),
-      when: parsePrimitiveList<EventTiming>(
-        json['when'] as List<dynamic>?,
-        json['_when'] as List<dynamic>?,
-        fromJson: EventTiming.fromJson,
+      countMax: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'countMax',
+        FhirPositiveInt.fromJson,
       ),
-      offset: (json['offset'] != null || json['_offset'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['offset'],
-              '_value': json['_offset'],
-            })
-          : null,
+      duration: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'duration',
+        FhirDecimal.fromJson,
+      ),
+      durationMax: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'durationMax',
+        FhirDecimal.fromJson,
+      ),
+      durationUnit: JsonParser.parsePrimitive<UnitsOfTime>(
+        json,
+        'durationUnit',
+        UnitsOfTime.fromJson,
+      ),
+      frequency: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'frequency',
+        FhirPositiveInt.fromJson,
+      ),
+      frequencyMax: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'frequencyMax',
+        FhirPositiveInt.fromJson,
+      ),
+      period: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'period',
+        FhirDecimal.fromJson,
+      ),
+      periodMax: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'periodMax',
+        FhirDecimal.fromJson,
+      ),
+      periodUnit: JsonParser.parsePrimitive<UnitsOfTime>(
+        json,
+        'periodUnit',
+        UnitsOfTime.fromJson,
+      ),
+      dayOfWeek: JsonParser.parsePrimitiveList<DaysOfWeek>(
+        json,
+        'dayOfWeek',
+        DaysOfWeek.fromJson,
+      ),
+      timeOfDay: JsonParser.parsePrimitiveList<FhirTime>(
+        json,
+        'timeOfDay',
+        FhirTime.fromJson,
+      ),
+      when: JsonParser.parsePrimitiveList<EventTiming>(
+        json,
+        'when',
+        EventTiming.fromJson,
+      ),
+      offset: JsonParser.parsePrimitive<FhirUnsignedInt>(
+        json,
+        'offset',
+        FhirUnsignedInt.fromJson,
+      ),
     );
   }
 

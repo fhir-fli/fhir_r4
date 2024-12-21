@@ -35,47 +35,43 @@ class ContactPoint extends DataType
     Map<String, dynamic> json,
   ) {
     return ContactPoint(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      system: (json['system'] != null || json['_system'] != null)
-          ? ContactPointSystem.fromJson({
-              'value': json['system'],
-              '_value': json['_system'],
-            })
-          : null,
-      value: (json['value'] != null || json['_value'] != null)
-          ? FhirString.fromJson({
-              'value': json['value'],
-              '_value': json['_value'],
-            })
-          : null,
-      use: (json['use'] != null || json['_use'] != null)
-          ? ContactPointUse.fromJson({
-              'value': json['use'],
-              '_value': json['_use'],
-            })
-          : null,
-      rank: (json['rank'] != null || json['_rank'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['rank'],
-              '_value': json['_rank'],
-            })
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      system: JsonParser.parsePrimitive<ContactPointSystem>(
+        json,
+        'system',
+        ContactPointSystem.fromJson,
+      ),
+      value: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'value',
+        FhirString.fromJson,
+      ),
+      use: JsonParser.parsePrimitive<ContactPointUse>(
+        json,
+        'use',
+        ContactPointUse.fromJson,
+      ),
+      rank: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'rank',
+        FhirPositiveInt.fromJson,
+      ),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
     );
   }
 

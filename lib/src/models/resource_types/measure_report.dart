@@ -39,122 +39,113 @@ class MeasureReport extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return MeasureReport(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: MeasureReportStatus.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      type: MeasureReportType.fromJson({
-        'value': json['type'],
-        '_value': json['_type'],
-      }),
-      measure: FhirCanonical.fromJson({
-        'value': json['measure'],
-        '_value': json['_measure'],
-      }),
-      subject: json['subject'] != null
-          ? Reference.fromJson(
-              json['subject'] as Map<String, dynamic>,
-            )
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      reporter: json['reporter'] != null
-          ? Reference.fromJson(
-              json['reporter'] as Map<String, dynamic>,
-            )
-          : null,
-      period: Period.fromJson(
-        json['period'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      improvementNotation: json['improvementNotation'] != null
-          ? CodeableConcept.fromJson(
-              json['improvementNotation'] as Map<String, dynamic>,
-            )
-          : null,
-      group: json['group'] != null
-          ? (json['group'] as List<dynamic>)
-              .map<MeasureReportGroup>(
-                (v) => MeasureReportGroup.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      evaluatedResource: json['evaluatedResource'] != null
-          ? (json['evaluatedResource'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<MeasureReportStatus>(
+        json,
+        'status',
+        MeasureReportStatus.fromJson,
+      )!,
+      type: JsonParser.parsePrimitive<MeasureReportType>(
+        json,
+        'type',
+        MeasureReportType.fromJson,
+      )!,
+      measure: JsonParser.parsePrimitive<FhirCanonical>(
+        json,
+        'measure',
+        FhirCanonical.fromJson,
+      )!,
+      subject: JsonParser.parseObject<Reference>(
+        json,
+        'subject',
+        Reference.fromJson,
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'date',
+        FhirDateTime.fromJson,
+      ),
+      reporter: JsonParser.parseObject<Reference>(
+        json,
+        'reporter',
+        Reference.fromJson,
+      ),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      )!,
+      improvementNotation: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'improvementNotation',
+        CodeableConcept.fromJson,
+      ),
+      group: (json['group'] as List<dynamic>?)
+          ?.map<MeasureReportGroup>(
+            (v) => MeasureReportGroup.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      evaluatedResource: (json['evaluatedResource'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -418,55 +409,49 @@ class MeasureReportGroup extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportGroup(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(
-              json['code'] as Map<String, dynamic>,
-            )
-          : null,
-      population: json['population'] != null
-          ? (json['population'] as List<dynamic>)
-              .map<MeasureReportPopulation>(
-                (v) => MeasureReportPopulation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      measureScore: json['measureScore'] != null
-          ? Quantity.fromJson(
-              json['measureScore'] as Map<String, dynamic>,
-            )
-          : null,
-      stratifier: json['stratifier'] != null
-          ? (json['stratifier'] as List<dynamic>)
-              .map<MeasureReportStratifier>(
-                (v) => MeasureReportStratifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      ),
+      population: (json['population'] as List<dynamic>?)
+          ?.map<MeasureReportPopulation>(
+            (v) => MeasureReportPopulation.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      measureScore: JsonParser.parseObject<Quantity>(
+        json,
+        'measureScore',
+        Quantity.fromJson,
+      ),
+      stratifier: (json['stratifier'] as List<dynamic>?)
+          ?.map<MeasureReportStratifier>(
+            (v) => MeasureReportStratifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -630,43 +615,40 @@ class MeasureReportPopulation extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportPopulation(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(
-              json['code'] as Map<String, dynamic>,
-            )
-          : null,
-      count: (json['count'] != null || json['_count'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['count'],
-              '_value': json['_count'],
-            })
-          : null,
-      subjectResults: json['subjectResults'] != null
-          ? Reference.fromJson(
-              json['subjectResults'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      ),
+      count: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'count',
+        FhirInteger.fromJson,
+      ),
+      subjectResults: JsonParser.parseObject<Reference>(
+        json,
+        'subjectResults',
+        Reference.fromJson,
+      ),
     );
   }
 
@@ -815,45 +797,39 @@ class MeasureReportStratifier extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportStratifier(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      stratum: json['stratum'] != null
-          ? (json['stratum'] as List<dynamic>)
-              .map<MeasureReportStratum>(
-                (v) => MeasureReportStratum.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: (json['code'] as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      stratum: (json['stratum'] as List<dynamic>?)
+          ?.map<MeasureReportStratum>(
+            (v) => MeasureReportStratum.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -996,55 +972,49 @@ class MeasureReportStratum extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportStratum(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      value: json['value'] != null
-          ? CodeableConcept.fromJson(
-              json['value'] as Map<String, dynamic>,
-            )
-          : null,
-      component: json['component'] != null
-          ? (json['component'] as List<dynamic>)
-              .map<MeasureReportComponent>(
-                (v) => MeasureReportComponent.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      population: json['population'] != null
-          ? (json['population'] as List<dynamic>)
-              .map<MeasureReportPopulation>(
-                (v) => MeasureReportPopulation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      measureScore: json['measureScore'] != null
-          ? Quantity.fromJson(
-              json['measureScore'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      value: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'value',
+        CodeableConcept.fromJson,
+      ),
+      component: (json['component'] as List<dynamic>?)
+          ?.map<MeasureReportComponent>(
+            (v) => MeasureReportComponent.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      population: (json['population'] as List<dynamic>?)
+          ?.map<MeasureReportPopulation>(
+            (v) => MeasureReportPopulation.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      measureScore: JsonParser.parseObject<Quantity>(
+        json,
+        'measureScore',
+        Quantity.fromJson,
+      ),
     );
   }
 
@@ -1206,33 +1176,35 @@ class MeasureReportComponent extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: CodeableConcept.fromJson(
-        json['code'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      value: CodeableConcept.fromJson(
-        json['value'] as Map<String, dynamic>,
-      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      )!,
+      value: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'value',
+        CodeableConcept.fromJson,
+      )!,
     );
   }
 
@@ -1367,43 +1339,40 @@ class MeasureReportPopulation1 extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return MeasureReportPopulation1(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(
-              json['code'] as Map<String, dynamic>,
-            )
-          : null,
-      count: (json['count'] != null || json['_count'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['count'],
-              '_value': json['_count'],
-            })
-          : null,
-      subjectResults: json['subjectResults'] != null
-          ? Reference.fromJson(
-              json['subjectResults'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      code: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'code',
+        CodeableConcept.fromJson,
+      ),
+      count: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'count',
+        FhirInteger.fromJson,
+      ),
+      subjectResults: JsonParser.parseObject<Reference>(
+        json,
+        'subjectResults',
+        Reference.fromJson,
+      ),
     );
   }
 

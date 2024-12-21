@@ -34,48 +34,43 @@ class Distance extends Quantity
     Map<String, dynamic> json,
   ) {
     return Distance(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      value: (json['value'] != null || json['_value'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['value'],
-              '_value': json['_value'],
-            })
-          : null,
-      comparator: (json['comparator'] != null || json['_comparator'] != null)
-          ? QuantityComparator.fromJson({
-              'value': json['comparator'],
-              '_value': json['_comparator'],
-            })
-          : null,
-      unit: (json['unit'] != null || json['_unit'] != null)
-          ? FhirString.fromJson({
-              'value': json['unit'],
-              '_value': json['_unit'],
-            })
-          : null,
-      system: (json['system'] != null || json['_system'] != null)
-          ? FhirUri.fromJson({
-              'value': json['system'],
-              '_value': json['_system'],
-            })
-          : null,
-      code: (json['code'] != null || json['_code'] != null)
-          ? FhirCode.fromJson({
-              'value': json['code'],
-              '_value': json['_code'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      value: JsonParser.parsePrimitive<FhirDecimal>(
+        json,
+        'value',
+        FhirDecimal.fromJson,
+      ),
+      comparator: JsonParser.parsePrimitive<QuantityComparator>(
+        json,
+        'comparator',
+        QuantityComparator.fromJson,
+      ),
+      unit: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'unit',
+        FhirString.fromJson,
+      ),
+      system: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'system',
+        FhirUri.fromJson,
+      ),
+      code: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'code',
+        FhirCode.fromJson,
+      ),
     );
   }
 

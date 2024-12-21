@@ -57,66 +57,58 @@ class Attachment extends DataType
     Map<String, dynamic> json,
   ) {
     return Attachment(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      contentType: (json['contentType'] != null || json['_contentType'] != null)
-          ? FhirCode.fromJson({
-              'value': json['contentType'],
-              '_value': json['_contentType'],
-            })
-          : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      size: (json['size'] != null || json['_size'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['size'],
-              '_value': json['_size'],
-            })
-          : null,
-      hash: (json['hash'] != null || json['_hash'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['hash'],
-              '_value': json['_hash'],
-            })
-          : null,
-      title: (json['title'] != null || json['_title'] != null)
-          ? FhirString.fromJson({
-              'value': json['title'],
-              '_value': json['_title'],
-            })
-          : null,
-      creation: (json['creation'] != null || json['_creation'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['creation'],
-              '_value': json['_creation'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      contentType: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'contentType',
+        FhirCode.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+        json,
+        'data',
+        FhirBase64Binary.fromJson,
+      ),
+      url: JsonParser.parsePrimitive<FhirUrl>(
+        json,
+        'url',
+        FhirUrl.fromJson,
+      ),
+      size: JsonParser.parsePrimitive<FhirUnsignedInt>(
+        json,
+        'size',
+        FhirUnsignedInt.fromJson,
+      ),
+      hash: JsonParser.parsePrimitive<FhirBase64Binary>(
+        json,
+        'hash',
+        FhirBase64Binary.fromJson,
+      ),
+      title: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'title',
+        FhirString.fromJson,
+      ),
+      creation: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'creation',
+        FhirDateTime.fromJson,
+      ),
     );
   }
 

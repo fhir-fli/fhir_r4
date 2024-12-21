@@ -32,59 +32,52 @@ class FhirMeta extends DataType
     Map<String, dynamic> json,
   ) {
     return FhirMeta(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      versionId: (json['versionId'] != null || json['_versionId'] != null)
-          ? FhirId.fromJson({
-              'value': json['versionId'],
-              '_value': json['_versionId'],
-            })
-          : null,
-      lastUpdated: (json['lastUpdated'] != null || json['_lastUpdated'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['lastUpdated'],
-              '_value': json['_lastUpdated'],
-            })
-          : null,
-      source: (json['source'] != null || json['_source'] != null)
-          ? FhirUri.fromJson({
-              'value': json['source'],
-              '_value': json['_source'],
-            })
-          : null,
-      profile: parsePrimitiveList<FhirCanonical>(
-        json['profile'] as List<dynamic>?,
-        json['_profile'] as List<dynamic>?,
-        fromJson: FhirCanonical.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      security: json['security'] != null
-          ? (json['security'] as List<dynamic>)
-              .map<Coding>(
-                (v) => Coding.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      tag: json['tag'] != null
-          ? (json['tag'] as List<dynamic>)
-              .map<Coding>(
-                (v) => Coding.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      versionId: JsonParser.parsePrimitive<FhirId>(
+        json,
+        'versionId',
+        FhirId.fromJson,
+      ),
+      lastUpdated: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'lastUpdated',
+        FhirInstant.fromJson,
+      ),
+      source: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'source',
+        FhirUri.fromJson,
+      ),
+      profile: JsonParser.parsePrimitiveList<FhirCanonical>(
+        json,
+        'profile',
+        FhirCanonical.fromJson,
+      ),
+      security: (json['security'] as List<dynamic>?)
+          ?.map<Coding>(
+            (v) => Coding.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      tag: (json['tag'] as List<dynamic>?)
+          ?.map<Coding>(
+            (v) => Coding.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 

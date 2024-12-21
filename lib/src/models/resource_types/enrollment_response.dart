@@ -35,107 +35,94 @@ class EnrollmentResponse extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return EnrollmentResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: (json['status'] != null || json['_status'] != null)
-          ? FinancialResourceStatusCodes.fromJson({
-              'value': json['status'],
-              '_value': json['_status'],
-            })
-          : null,
-      request: json['request'] != null
-          ? Reference.fromJson(
-              json['request'] as Map<String, dynamic>,
-            )
-          : null,
-      outcome: (json['outcome'] != null || json['_outcome'] != null)
-          ? RemittanceOutcome.fromJson({
-              'value': json['outcome'],
-              '_value': json['_outcome'],
-            })
-          : null,
-      disposition: (json['disposition'] != null || json['_disposition'] != null)
-          ? FhirString.fromJson({
-              'value': json['disposition'],
-              '_value': json['_disposition'],
-            })
-          : null,
-      created: (json['created'] != null || json['_created'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['created'],
-              '_value': json['_created'],
-            })
-          : null,
-      organization: json['organization'] != null
-          ? Reference.fromJson(
-              json['organization'] as Map<String, dynamic>,
-            )
-          : null,
-      requestProvider: json['requestProvider'] != null
-          ? Reference.fromJson(
-              json['requestProvider'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+        json,
+        'status',
+        FinancialResourceStatusCodes.fromJson,
+      ),
+      request: JsonParser.parseObject<Reference>(
+        json,
+        'request',
+        Reference.fromJson,
+      ),
+      outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
+        json,
+        'outcome',
+        RemittanceOutcome.fromJson,
+      ),
+      disposition: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'disposition',
+        FhirString.fromJson,
+      ),
+      created: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'created',
+        FhirDateTime.fromJson,
+      ),
+      organization: JsonParser.parseObject<Reference>(
+        json,
+        'organization',
+        Reference.fromJson,
+      ),
+      requestProvider: JsonParser.parseObject<Reference>(
+        json,
+        'requestProvider',
+        Reference.fromJson,
+      ),
     );
   }
 

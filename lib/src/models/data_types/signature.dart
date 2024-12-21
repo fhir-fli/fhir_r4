@@ -41,58 +41,55 @@ class Signature extends DataType
     Map<String, dynamic> json,
   ) {
     return Signature(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: ensureNonNullList(
-        (json['type'] as List<dynamic>)
-            .map<Coding>(
-              (v) => Coding.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      when: FhirInstant.fromJson({
-        'value': json['when'],
-        '_value': json['_when'],
-      }),
-      who: Reference.fromJson(
-        json['who'] as Map<String, dynamic>,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: (json['type'] as List<dynamic>)
+          .map<Coding>(
+            (v) => Coding.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      when: JsonParser.parsePrimitive<FhirInstant>(
+        json,
+        'when',
+        FhirInstant.fromJson,
+      )!,
+      who: JsonParser.parseObject<Reference>(
+        json,
+        'who',
+        Reference.fromJson,
+      )!,
+      onBehalfOf: JsonParser.parseObject<Reference>(
+        json,
+        'onBehalfOf',
+        Reference.fromJson,
       ),
-      onBehalfOf: json['onBehalfOf'] != null
-          ? Reference.fromJson(
-              json['onBehalfOf'] as Map<String, dynamic>,
-            )
-          : null,
-      targetFormat:
-          (json['targetFormat'] != null || json['_targetFormat'] != null)
-              ? FhirCode.fromJson({
-                  'value': json['targetFormat'],
-                  '_value': json['_targetFormat'],
-                })
-              : null,
-      sigFormat: (json['sigFormat'] != null || json['_sigFormat'] != null)
-          ? FhirCode.fromJson({
-              'value': json['sigFormat'],
-              '_value': json['_sigFormat'],
-            })
-          : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      targetFormat: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'targetFormat',
+        FhirCode.fromJson,
+      ),
+      sigFormat: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'sigFormat',
+        FhirCode.fromJson,
+      ),
+      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+        json,
+        'data',
+        FhirBase64Binary.fromJson,
+      ),
     );
   }
 

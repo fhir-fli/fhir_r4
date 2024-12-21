@@ -44,167 +44,147 @@ class Coverage extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return Coverage(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: FinancialResourceStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(
-              json['type'] as Map<String, dynamic>,
-            )
-          : null,
-      policyHolder: json['policyHolder'] != null
-          ? Reference.fromJson(
-              json['policyHolder'] as Map<String, dynamic>,
-            )
-          : null,
-      subscriber: json['subscriber'] != null
-          ? Reference.fromJson(
-              json['subscriber'] as Map<String, dynamic>,
-            )
-          : null,
-      subscriberId:
-          (json['subscriberId'] != null || json['_subscriberId'] != null)
-              ? FhirString.fromJson({
-                  'value': json['subscriberId'],
-                  '_value': json['_subscriberId'],
-                })
-              : null,
-      beneficiary: Reference.fromJson(
-        json['beneficiary'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      dependent: (json['dependent'] != null || json['_dependent'] != null)
-          ? FhirString.fromJson({
-              'value': json['dependent'],
-              '_value': json['_dependent'],
-            })
-          : null,
-      relationship: json['relationship'] != null
-          ? CodeableConcept.fromJson(
-              json['relationship'] as Map<String, dynamic>,
-            )
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
-      payor: ensureNonNullList(
-        (json['payor'] as List<dynamic>)
-            .map<Reference>(
-              (v) => Reference.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
       ),
-      class_: json['class'] != null
-          ? (json['class'] as List<dynamic>)
-              .map<CoverageClass>(
-                (v) => CoverageClass.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      order: (json['order'] != null || json['_order'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['order'],
-              '_value': json['_order'],
-            })
-          : null,
-      network: (json['network'] != null || json['_network'] != null)
-          ? FhirString.fromJson({
-              'value': json['network'],
-              '_value': json['_network'],
-            })
-          : null,
-      costToBeneficiary: json['costToBeneficiary'] != null
-          ? (json['costToBeneficiary'] as List<dynamic>)
-              .map<CoverageCostToBeneficiary>(
-                (v) => CoverageCostToBeneficiary.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      subrogation: (json['subrogation'] != null || json['_subrogation'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['subrogation'],
-              '_value': json['_subrogation'],
-            })
-          : null,
-      contract: json['contract'] != null
-          ? (json['contract'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+        json,
+        'status',
+        FinancialResourceStatusCodes.fromJson,
+      )!,
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      ),
+      policyHolder: JsonParser.parseObject<Reference>(
+        json,
+        'policyHolder',
+        Reference.fromJson,
+      ),
+      subscriber: JsonParser.parseObject<Reference>(
+        json,
+        'subscriber',
+        Reference.fromJson,
+      ),
+      subscriberId: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'subscriberId',
+        FhirString.fromJson,
+      ),
+      beneficiary: JsonParser.parseObject<Reference>(
+        json,
+        'beneficiary',
+        Reference.fromJson,
+      )!,
+      dependent: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'dependent',
+        FhirString.fromJson,
+      ),
+      relationship: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'relationship',
+        CodeableConcept.fromJson,
+      ),
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
+      payor: (json['payor'] as List<dynamic>)
+          .map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      class_: (json['class'] as List<dynamic>?)
+          ?.map<CoverageClass>(
+            (v) => CoverageClass.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      order: JsonParser.parsePrimitive<FhirPositiveInt>(
+        json,
+        'order',
+        FhirPositiveInt.fromJson,
+      ),
+      network: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'network',
+        FhirString.fromJson,
+      ),
+      costToBeneficiary: (json['costToBeneficiary'] as List<dynamic>?)
+          ?.map<CoverageCostToBeneficiary>(
+            (v) => CoverageCostToBeneficiary.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      subrogation: JsonParser.parsePrimitive<FhirBoolean>(
+        json,
+        'subrogation',
+        FhirBoolean.fromJson,
+      ),
+      contract: (json['contract'] as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -537,40 +517,40 @@ class CoverageClass extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return CoverageClass(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(
-        json['type'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      value: FhirString.fromJson({
-        'value': json['value'],
-        '_value': json['_value'],
-      }),
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      )!,
+      value: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'value',
+        FhirString.fromJson,
+      )!,
+      name: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'name',
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -717,48 +697,42 @@ class CoverageCostToBeneficiary extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return CoverageCostToBeneficiary(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(
-              json['type'] as Map<String, dynamic>,
-            )
-          : null,
-      valueX: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : Money.fromJson(
-              json['valueMoney'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
             ),
-      exception: json['exception'] != null
-          ? (json['exception'] as List<dynamic>)
-              .map<CoverageException>(
-                (v) => CoverageException.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      ),
+      valueX:
+          JsonParser.parsePolymorphic<ValueXCoverageCostToBeneficiary>(json, {
+        'valueQuantity': Quantity.fromJson,
+        'valueMoney': Money.fromJson,
+      })!,
+      exception: (json['exception'] as List<dynamic>?)
+          ?.map<CoverageException>(
+            (v) => CoverageException.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -905,35 +879,35 @@ class CoverageException extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     return CoverageException(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(
-        json['type'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      period: json['period'] != null
-          ? Period.fromJson(
-              json['period'] as Map<String, dynamic>,
-            )
-          : null,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      type: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'type',
+        CodeableConcept.fromJson,
+      )!,
+      period: JsonParser.parseObject<Period>(
+        json,
+        'period',
+        Period.fromJson,
+      ),
     );
   }
 

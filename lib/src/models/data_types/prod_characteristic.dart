@@ -33,87 +33,82 @@ class ProdCharacteristic extends BackboneType {
     Map<String, dynamic> json,
   ) {
     return ProdCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      height: json['height'] != null
-          ? Quantity.fromJson(
-              json['height'] as Map<String, dynamic>,
-            )
-          : null,
-      width: json['width'] != null
-          ? Quantity.fromJson(
-              json['width'] as Map<String, dynamic>,
-            )
-          : null,
-      depth: json['depth'] != null
-          ? Quantity.fromJson(
-              json['depth'] as Map<String, dynamic>,
-            )
-          : null,
-      weight: json['weight'] != null
-          ? Quantity.fromJson(
-              json['weight'] as Map<String, dynamic>,
-            )
-          : null,
-      nominalVolume: json['nominalVolume'] != null
-          ? Quantity.fromJson(
-              json['nominalVolume'] as Map<String, dynamic>,
-            )
-          : null,
-      externalDiameter: json['externalDiameter'] != null
-          ? Quantity.fromJson(
-              json['externalDiameter'] as Map<String, dynamic>,
-            )
-          : null,
-      shape: (json['shape'] != null || json['_shape'] != null)
-          ? FhirString.fromJson({
-              'value': json['shape'],
-              '_value': json['_shape'],
-            })
-          : null,
-      color: parsePrimitiveList<FhirString>(
-        json['color'] as List<dynamic>?,
-        json['_color'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      imprint: parsePrimitiveList<FhirString>(
-        json['imprint'] as List<dynamic>?,
-        json['_imprint'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      height: JsonParser.parseObject<Quantity>(
+        json,
+        'height',
+        Quantity.fromJson,
       ),
-      image: json['image'] != null
-          ? (json['image'] as List<dynamic>)
-              .map<Attachment>(
-                (v) => Attachment.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      scoring: json['scoring'] != null
-          ? CodeableConcept.fromJson(
-              json['scoring'] as Map<String, dynamic>,
-            )
-          : null,
+      width: JsonParser.parseObject<Quantity>(
+        json,
+        'width',
+        Quantity.fromJson,
+      ),
+      depth: JsonParser.parseObject<Quantity>(
+        json,
+        'depth',
+        Quantity.fromJson,
+      ),
+      weight: JsonParser.parseObject<Quantity>(
+        json,
+        'weight',
+        Quantity.fromJson,
+      ),
+      nominalVolume: JsonParser.parseObject<Quantity>(
+        json,
+        'nominalVolume',
+        Quantity.fromJson,
+      ),
+      externalDiameter: JsonParser.parseObject<Quantity>(
+        json,
+        'externalDiameter',
+        Quantity.fromJson,
+      ),
+      shape: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'shape',
+        FhirString.fromJson,
+      ),
+      color: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'color',
+        FhirString.fromJson,
+      ),
+      imprint: JsonParser.parsePrimitiveList<FhirString>(
+        json,
+        'imprint',
+        FhirString.fromJson,
+      ),
+      image: (json['image'] as List<dynamic>?)
+          ?.map<Attachment>(
+            (v) => Attachment.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      scoring: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'scoring',
+        CodeableConcept.fromJson,
+      ),
     );
   }
 

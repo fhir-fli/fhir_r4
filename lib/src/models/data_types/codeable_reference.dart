@@ -28,28 +28,28 @@ class CodeableReference extends DataType
     Map<String, dynamic> json,
   ) {
     return CodeableReference(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      concept: json['concept'] != null
-          ? CodeableConcept.fromJson(
-              json['concept'] as Map<String, dynamic>,
-            )
-          : null,
-      reference: json['reference'] != null
-          ? Reference.fromJson(
-              json['reference'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      concept: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'concept',
+        CodeableConcept.fromJson,
+      ),
+      reference: JsonParser.parseObject<Reference>(
+        json,
+        'reference',
+        Reference.fromJson,
+      ),
     );
   }
 

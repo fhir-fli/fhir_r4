@@ -32,33 +32,33 @@ class RatioRange extends DataType
     Map<String, dynamic> json,
   ) {
     return RatioRange(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      lowNumerator: json['lowNumerator'] != null
-          ? Quantity.fromJson(
-              json['lowNumerator'] as Map<String, dynamic>,
-            )
-          : null,
-      highNumerator: json['highNumerator'] != null
-          ? Quantity.fromJson(
-              json['highNumerator'] as Map<String, dynamic>,
-            )
-          : null,
-      denominator: json['denominator'] != null
-          ? Quantity.fromJson(
-              json['denominator'] as Map<String, dynamic>,
-            )
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      lowNumerator: JsonParser.parseObject<Quantity>(
+        json,
+        'lowNumerator',
+        Quantity.fromJson,
+      ),
+      highNumerator: JsonParser.parseObject<Quantity>(
+        json,
+        'highNumerator',
+        Quantity.fromJson,
+      ),
+      denominator: JsonParser.parseObject<Quantity>(
+        json,
+        'denominator',
+        Quantity.fromJson,
+      ),
     );
   }
 

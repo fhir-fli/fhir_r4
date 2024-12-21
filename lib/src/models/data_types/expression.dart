@@ -39,46 +39,43 @@ class FhirExpression extends DataType
     Map<String, dynamic> json,
   ) {
     return FhirExpression(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirId.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      language: ExpressionLanguage.fromJson({
-        'value': json['language'],
-        '_value': json['_language'],
-      }),
-      expression: (json['expression'] != null || json['_expression'] != null)
-          ? FhirString.fromJson({
-              'value': json['expression'],
-              '_value': json['_expression'],
-            })
-          : null,
-      reference: (json['reference'] != null || json['_reference'] != null)
-          ? FhirUri.fromJson({
-              'value': json['reference'],
-              '_value': json['_reference'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      description: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'description',
+        FhirString.fromJson,
+      ),
+      name: JsonParser.parsePrimitive<FhirId>(
+        json,
+        'name',
+        FhirId.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<ExpressionLanguage>(
+        json,
+        'language',
+        ExpressionLanguage.fromJson,
+      )!,
+      expression: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'expression',
+        FhirString.fromJson,
+      ),
+      reference: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'reference',
+        FhirUri.fromJson,
+      ),
     );
   }
 

@@ -27,42 +27,41 @@ class Binary extends Resource {
     Map<String, dynamic> json,
   ) {
     return Binary(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      contentType: FhirCode.fromJson({
-        'value': json['contentType'],
-        '_value': json['_contentType'],
-      }),
-      securityContext: json['securityContext'] != null
-          ? Reference.fromJson(
-              json['securityContext'] as Map<String, dynamic>,
-            )
-          : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+      ),
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
+      ),
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
+      ),
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      contentType: JsonParser.parsePrimitive<FhirCode>(
+        json,
+        'contentType',
+        FhirCode.fromJson,
+      )!,
+      securityContext: JsonParser.parseObject<Reference>(
+        json,
+        'securityContext',
+        Reference.fromJson,
+      ),
+      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+        json,
+        'data',
+        FhirBase64Binary.fromJson,
+      ),
     );
   }
 

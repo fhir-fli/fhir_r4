@@ -39,116 +39,114 @@ class PaymentNotice extends DomainResource {
     Map<String, dynamic> json,
   ) {
     return PaymentNotice(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(
-              json['meta'] as Map<String, dynamic>,
-            )
-          : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(
-              json['text'] as Map<String, dynamic>,
-            )
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: FinancialResourceStatusCodes.fromJson({
-        'value': json['status'],
-        '_value': json['_status'],
-      }),
-      request: json['request'] != null
-          ? Reference.fromJson(
-              json['request'] as Map<String, dynamic>,
-            )
-          : null,
-      response: json['response'] != null
-          ? Reference.fromJson(
-              json['response'] as Map<String, dynamic>,
-            )
-          : null,
-      created: FhirDateTime.fromJson({
-        'value': json['created'],
-        '_value': json['_created'],
-      }),
-      provider: json['provider'] != null
-          ? Reference.fromJson(
-              json['provider'] as Map<String, dynamic>,
-            )
-          : null,
-      payment: Reference.fromJson(
-        json['payment'] as Map<String, dynamic>,
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
       ),
-      paymentDate: (json['paymentDate'] != null || json['_paymentDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['paymentDate'],
-              '_value': json['_paymentDate'],
-            })
-          : null,
-      payee: json['payee'] != null
-          ? Reference.fromJson(
-              json['payee'] as Map<String, dynamic>,
-            )
-          : null,
-      recipient: Reference.fromJson(
-        json['recipient'] as Map<String, dynamic>,
+      meta: JsonParser.parseObject<FhirMeta>(
+        json,
+        'meta',
+        FhirMeta.fromJson,
       ),
-      amount: Money.fromJson(
-        json['amount'] as Map<String, dynamic>,
+      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+        json,
+        'implicitRules',
+        FhirUri.fromJson,
       ),
-      paymentStatus: json['paymentStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['paymentStatus'] as Map<String, dynamic>,
-            )
-          : null,
+      language: JsonParser.parsePrimitive<CommonLanguages>(
+        json,
+        'language',
+        CommonLanguages.fromJson,
+      ),
+      text: JsonParser.parseObject<Narrative>(
+        json,
+        'text',
+        Narrative.fromJson,
+      ),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map<Resource>(
+            (v) => Resource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map<Identifier>(
+            (v) => Identifier.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+        json,
+        'status',
+        FinancialResourceStatusCodes.fromJson,
+      )!,
+      request: JsonParser.parseObject<Reference>(
+        json,
+        'request',
+        Reference.fromJson,
+      ),
+      response: JsonParser.parseObject<Reference>(
+        json,
+        'response',
+        Reference.fromJson,
+      ),
+      created: JsonParser.parsePrimitive<FhirDateTime>(
+        json,
+        'created',
+        FhirDateTime.fromJson,
+      )!,
+      provider: JsonParser.parseObject<Reference>(
+        json,
+        'provider',
+        Reference.fromJson,
+      ),
+      payment: JsonParser.parseObject<Reference>(
+        json,
+        'payment',
+        Reference.fromJson,
+      )!,
+      paymentDate: JsonParser.parsePrimitive<FhirDate>(
+        json,
+        'paymentDate',
+        FhirDate.fromJson,
+      ),
+      payee: JsonParser.parseObject<Reference>(
+        json,
+        'payee',
+        Reference.fromJson,
+      ),
+      recipient: JsonParser.parseObject<Reference>(
+        json,
+        'recipient',
+        Reference.fromJson,
+      )!,
+      amount: JsonParser.parseObject<Money>(
+        json,
+        'amount',
+        Money.fromJson,
+      )!,
+      paymentStatus: JsonParser.parseObject<CodeableConcept>(
+        json,
+        'paymentStatus',
+        CodeableConcept.fromJson,
+      ),
     );
   }
 
