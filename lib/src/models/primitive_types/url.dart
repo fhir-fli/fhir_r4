@@ -135,6 +135,10 @@ class FhirUrl extends PrimitiveType<Uri>
         '_value': canonicals.map((c) => c.element?.toJson()).toList(),
       };
 
+  /// Returns the FHIR type as a [String]
+  @override
+  String get fhirType => 'url';
+
   /// Returns the canonical URL as a [String]
   @override
   String toString() => value?.toString() ?? '';

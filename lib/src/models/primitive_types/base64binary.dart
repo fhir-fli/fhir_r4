@@ -157,6 +157,10 @@ class FhirBase64Binary extends PrimitiveType<String?>
         '_value': binaries.map((binary) => binary.element?.toJson()).toList(),
       };
 
+  /// Returns the FHIR type as a [String]
+  @override
+  String get fhirType => 'base64Binary';
+
   /// Provides a string representation of the instance
   @override
   String toString() => value.toString();
