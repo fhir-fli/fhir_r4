@@ -259,13 +259,22 @@ class FhirGroup extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -287,15 +296,24 @@ class FhirGroup extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     addField('type', type);
     addField('actual', actual);
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    addField('name', name);
-    addField('quantity', quantity);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (quantity != null) {
+      addField('quantity', quantity);
+    }
+
     if (managingEntity != null) {
       json['managingEntity'] = managingEntity!.toJson();
     }
@@ -408,27 +426,23 @@ class GroupCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['valueBoolean'] != null || json['_valueBoolean'] != null
               ? FhirBoolean.fromJson({
                   'value': json['valueBoolean'],
                   '_value': json['_valueBoolean'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? Quantity.fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
-                    })
-                  : json['valueRange'] != null || json['_valueRange'] != null
-                      ? Range.fromJson({
-                          'value': json['valueRange'],
-                          '_value': json['_valueRange'],
-                        })
+              : json['valueQuantity'] != null
+                  ? Quantity.fromJson(
+                      json['valueQuantity'] as Map<String, dynamic>,
+                    )
+                  : json['valueRange'] != null
+                      ? Range.fromJson(
+                          json['valueRange'] as Map<String, dynamic>,
+                        )
                       : Reference.fromJson(
                           json['valueReference'] as Map<String, dynamic>,
                         ),
@@ -516,7 +530,10 @@ class GroupCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -693,7 +710,10 @@ class GroupMember extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -709,7 +729,10 @@ class GroupMember extends BackboneElement {
       json['period'] = period!.toJson();
     }
 
-    addField('inactive', inactive);
+    if (inactive != null) {
+      addField('inactive', inactive);
+    }
+
     return json;
   }
 

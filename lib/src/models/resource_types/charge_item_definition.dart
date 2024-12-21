@@ -455,13 +455,22 @@ class ChargeItemDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -484,8 +493,14 @@ class ChargeItemDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (derivedFromUri != null && derivedFromUri!.isNotEmpty) {
       final fieldJson0 = derivedFromUri!.map((e) => e.toJson()).toList();
       json['derivedFromUri'] = fieldJson0.map((e) => e['value']).toList();
@@ -511,14 +526,26 @@ class ChargeItemDefinition extends DomainResource {
     }
 
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -527,9 +554,18 @@ class ChargeItemDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -763,7 +799,10 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -773,9 +812,18 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('language', language);
-    addField('expression', expression);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
     return json;
   }
 
@@ -936,7 +984,10 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1123,7 +1174,10 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1138,7 +1192,10 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (amount != null) {
       json['amount'] = amount!.toJson();
     }

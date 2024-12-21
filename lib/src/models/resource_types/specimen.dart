@@ -306,13 +306,22 @@ class Specimen extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -338,7 +347,10 @@ class Specimen extends DomainResource {
       json['accessionIdentifier'] = accessionIdentifier!.toJson();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -347,7 +359,10 @@ class Specimen extends DomainResource {
       json['subject'] = subject!.toJson();
     }
 
-    addField('receivedTime', receivedTime);
+    if (receivedTime != null) {
+      addField('receivedTime', receivedTime);
+    }
+
     if (parent != null && parent!.isNotEmpty) {
       json['parent'] = parent!.map((e) => e.toJson()).toList();
     }
@@ -517,12 +532,10 @@ class SpecimenCollection extends BackboneElement {
               json['bodySite'] as Map<String, dynamic>,
             )
           : null,
-      fastingStatusX: json['fastingStatusCodeableConcept'] != null ||
-              json['_fastingStatusCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['fastingStatusCodeableConcept'],
-              '_value': json['_fastingStatusCodeableConcept'],
-            })
+      fastingStatusX: json['fastingStatusCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['fastingStatusCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['fastingStatusDuration'] != null
               ? FhirDuration.fromJson(
                   json['fastingStatusDuration'] as Map<String, dynamic>,
@@ -618,7 +631,10 @@ class SpecimenCollection extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -632,7 +648,10 @@ class SpecimenCollection extends BackboneElement {
       json['collector'] = collector!.toJson();
     }
 
-    addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
+    if (collectedX != null) {
+      addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
+    }
+
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }
@@ -838,7 +857,10 @@ class SpecimenProcessing extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -848,7 +870,10 @@ class SpecimenProcessing extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (procedure != null) {
       json['procedure'] = procedure!.toJson();
     }
@@ -857,7 +882,10 @@ class SpecimenProcessing extends BackboneElement {
       json['additive'] = additive!.map((e) => e.toJson()).toList();
     }
 
-    addField('time${timeX!.fhirType.capitalize()}', timeX);
+    if (timeX != null) {
+      addField('time${timeX!.fhirType.capitalize()}', timeX);
+    }
+
     return json;
   }
 
@@ -965,12 +993,10 @@ class SpecimenContainer extends BackboneElement {
               json['specimenQuantity'] as Map<String, dynamic>,
             )
           : null,
-      additiveX: json['additiveCodeableConcept'] != null ||
-              json['_additiveCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['additiveCodeableConcept'],
-              '_value': json['_additiveCodeableConcept'],
-            })
+      additiveX: json['additiveCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['additiveCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['additiveReference'] != null
               ? Reference.fromJson(
                   json['additiveReference'] as Map<String, dynamic>,
@@ -1061,7 +1087,10 @@ class SpecimenContainer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1075,7 +1104,10 @@ class SpecimenContainer extends BackboneElement {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }

@@ -248,13 +248,22 @@ class Schedule extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -276,7 +285,10 @@ class Schedule extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (serviceCategory != null && serviceCategory!.isNotEmpty) {
       json['serviceCategory'] =
           serviceCategory!.map((e) => e.toJson()).toList();
@@ -298,7 +310,10 @@ class Schedule extends DomainResource {
       json['planningHorizon'] = planningHorizon!.toJson();
     }
 
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 

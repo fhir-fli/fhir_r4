@@ -432,13 +432,22 @@ class StructureDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -461,18 +470,36 @@ class StructureDefinition extends CanonicalResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -481,13 +508,22 @@ class StructureDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     if (keyword != null && keyword!.isNotEmpty) {
       json['keyword'] = keyword!.map((e) => e.toJson()).toList();
     }
 
-    addField('fhirVersion', fhirVersion);
+    if (fhirVersion != null) {
+      addField('fhirVersion', fhirVersion);
+    }
+
     if (mapping != null && mapping!.isNotEmpty) {
       json['mapping'] = mapping!.map((e) => e.toJson()).toList();
     }
@@ -507,8 +543,14 @@ class StructureDefinition extends CanonicalResource {
     }
 
     addField('type', type);
-    addField('baseDefinition', baseDefinition);
-    addField('derivation', derivation);
+    if (baseDefinition != null) {
+      addField('baseDefinition', baseDefinition);
+    }
+
+    if (derivation != null) {
+      addField('derivation', derivation);
+    }
+
     if (snapshot != null) {
       json['snapshot'] = snapshot!.toJson();
     }
@@ -744,7 +786,10 @@ class StructureDefinitionMapping extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -755,9 +800,18 @@ class StructureDefinitionMapping extends BackboneElement {
     }
 
     addField('identity', identity);
-    addField('uri', uri);
-    addField('name', name);
-    addField('comment', comment);
+    if (uri != null) {
+      addField('uri', uri);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 
@@ -904,7 +958,10 @@ class StructureDefinitionContext extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1053,7 +1110,10 @@ class StructureDefinitionSnapshot extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1202,7 +1262,10 @@ class StructureDefinitionDifferential extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

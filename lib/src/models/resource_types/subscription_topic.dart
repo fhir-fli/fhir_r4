@@ -380,13 +380,22 @@ class SubscriptionTopic extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -409,8 +418,14 @@ class SubscriptionTopic extends CanonicalResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
       final fieldJson0 = derivedFrom!.map((e) => e.toJson()).toList();
       json['derivedFrom'] = fieldJson0.map((e) => e['value']).toList();
@@ -420,14 +435,26 @@ class SubscriptionTopic extends CanonicalResource {
     }
 
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -436,10 +463,22 @@ class SubscriptionTopic extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -703,7 +742,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -713,7 +755,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     addField('resource', resource);
     if (supportedInteraction != null && supportedInteraction!.isNotEmpty) {
       final fieldJson0 = supportedInteraction!.map((e) => e.toJson()).toList();
@@ -728,7 +773,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       json['queryCriteria'] = queryCriteria!.toJson();
     }
 
-    addField('fhirPathCriteria', fhirPathCriteria);
+    if (fhirPathCriteria != null) {
+      addField('fhirPathCriteria', fhirPathCriteria);
+    }
+
     return json;
   }
 
@@ -921,7 +969,10 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -931,11 +982,26 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('previous', previous);
-    addField('resultForCreate', resultForCreate);
-    addField('current', current);
-    addField('resultForDelete', resultForDelete);
-    addField('requireBoth', requireBoth);
+    if (previous != null) {
+      addField('previous', previous);
+    }
+
+    if (resultForCreate != null) {
+      addField('resultForCreate', resultForCreate);
+    }
+
+    if (current != null) {
+      addField('current', current);
+    }
+
+    if (resultForDelete != null) {
+      addField('resultForDelete', resultForDelete);
+    }
+
+    if (requireBoth != null) {
+      addField('requireBoth', requireBoth);
+    }
+
     return json;
   }
 
@@ -1102,7 +1168,10 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1112,7 +1181,10 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     json['event'] = event.toJson();
 
     addField('resource', resource);
@@ -1309,7 +1381,10 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1319,10 +1394,19 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('resource', resource);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (resource != null) {
+      addField('resource', resource);
+    }
+
     addField('filterParameter', filterParameter);
-    addField('filterDefinition', filterDefinition);
+    if (filterDefinition != null) {
+      addField('filterDefinition', filterDefinition);
+    }
+
     if (modifier != null && modifier!.isNotEmpty) {
       final fieldJson0 = modifier!.map((e) => e.toJson()).toList();
       json['modifier'] = fieldJson0.map((e) => e['value']).toList();
@@ -1502,7 +1586,10 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

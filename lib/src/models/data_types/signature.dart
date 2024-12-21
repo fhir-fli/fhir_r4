@@ -187,7 +187,10 @@ class Signature extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -203,9 +206,18 @@ class Signature extends DataType
       json['onBehalfOf'] = onBehalfOf!.toJson();
     }
 
-    addField('targetFormat', targetFormat);
-    addField('sigFormat', sigFormat);
-    addField('data', data);
+    if (targetFormat != null) {
+      addField('targetFormat', targetFormat);
+    }
+
+    if (sigFormat != null) {
+      addField('sigFormat', sigFormat);
+    }
+
+    if (data != null) {
+      addField('data', data);
+    }
+
     return json;
   }
 

@@ -295,13 +295,22 @@ class CatalogEntry extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -339,13 +348,22 @@ class CatalogEntry extends DomainResource {
       json['classification'] = classification!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (validityPeriod != null) {
       json['validityPeriod'] = validityPeriod!.toJson();
     }
 
-    addField('validTo', validTo);
-    addField('lastUpdated', lastUpdated);
+    if (validTo != null) {
+      addField('validTo', validTo);
+    }
+
+    if (lastUpdated != null) {
+      addField('lastUpdated', lastUpdated);
+    }
+
     if (additionalCharacteristic != null &&
         additionalCharacteristic!.isNotEmpty) {
       json['additionalCharacteristic'] =
@@ -537,7 +555,10 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

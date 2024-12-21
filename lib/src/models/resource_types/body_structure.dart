@@ -234,13 +234,22 @@ class BodyStructure extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -262,7 +271,10 @@ class BodyStructure extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (morphology != null) {
       json['morphology'] = morphology!.toJson();
     }
@@ -276,7 +288,10 @@ class BodyStructure extends DomainResource {
           locationQualifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (image != null && image!.isNotEmpty) {
       json['image'] = image!.map((e) => e.toJson()).toList();
     }

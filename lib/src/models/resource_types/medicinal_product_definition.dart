@@ -549,13 +549,22 @@ class MedicinalProductDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -585,13 +594,22 @@ class MedicinalProductDefinition extends DomainResource {
       json['domain'] = domain!.toJson();
     }
 
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     if (status != null) {
       json['status'] = status!.toJson();
     }
 
-    addField('statusDate', statusDate);
-    addField('description', description);
+    if (statusDate != null) {
+      addField('statusDate', statusDate);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (combinedPharmaceuticalDoseForm != null) {
       json['combinedPharmaceuticalDoseForm'] =
           combinedPharmaceuticalDoseForm!.toJson();
@@ -601,7 +619,10 @@ class MedicinalProductDefinition extends DomainResource {
       json['route'] = route!.map((e) => e.toJson()).toList();
     }
 
-    addField('indication', indication);
+    if (indication != null) {
+      addField('indication', indication);
+    }
+
     if (legalStatusOfSupply != null) {
       json['legalStatusOfSupply'] = legalStatusOfSupply!.toJson();
     }
@@ -887,7 +908,10 @@ class MedicinalProductDefinitionContact extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1073,7 +1097,10 @@ class MedicinalProductDefinitionName extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1240,7 +1267,10 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1403,7 +1433,10 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1568,7 +1601,10 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1757,7 +1793,10 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1860,17 +1899,14 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
-                })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['valueQuantity'] != null
+              ? Quantity.fromJson(
+                  json['valueQuantity'] as Map<String, dynamic>,
+                )
               : json['valueDate'] != null || json['_valueDate'] != null
                   ? FhirDate.fromJson({
                       'value': json['valueDate'],
@@ -1951,7 +1987,10 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

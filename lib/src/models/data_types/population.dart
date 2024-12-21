@@ -45,11 +45,10 @@ class Population extends BackboneType {
               )
               .toList()
           : null,
-      ageX: json['ageRange'] != null || json['_ageRange'] != null
-          ? Range.fromJson({
-              'value': json['ageRange'],
-              '_value': json['_ageRange'],
-            })
+      ageX: json['ageRange'] != null
+          ? Range.fromJson(
+              json['ageRange'] as Map<String, dynamic>,
+            )
           : json['ageCodeableConcept'] != null
               ? CodeableConcept.fromJson(
                   json['ageCodeableConcept'] as Map<String, dynamic>,
@@ -143,7 +142,10 @@ class Population extends BackboneType {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

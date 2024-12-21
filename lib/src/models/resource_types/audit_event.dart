@@ -266,13 +266,22 @@ class AuditEvent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -296,14 +305,23 @@ class AuditEvent extends DomainResource {
       json['subtype'] = subtype!.map((e) => e.toJson()).toList();
     }
 
-    addField('action', action);
+    if (action != null) {
+      addField('action', action);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }
 
     addField('recorded', recorded);
-    addField('outcome', outcome);
-    addField('outcomeDesc', outcomeDesc);
+    if (outcome != null) {
+      addField('outcome', outcome);
+    }
+
+    if (outcomeDesc != null) {
+      addField('outcomeDesc', outcomeDesc);
+    }
+
     if (purposeOfEvent != null && purposeOfEvent!.isNotEmpty) {
       json['purposeOfEvent'] = purposeOfEvent!.map((e) => e.toJson()).toList();
     }
@@ -600,7 +618,10 @@ class AuditEventAgent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -622,8 +643,14 @@ class AuditEventAgent extends BackboneElement {
       json['who'] = who!.toJson();
     }
 
-    addField('altId', altId);
-    addField('name', name);
+    if (altId != null) {
+      addField('altId', altId);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
     addField('requestor', requestor);
     if (location != null) {
       json['location'] = location!.toJson();
@@ -814,7 +841,10 @@ class AuditEventNetwork extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -824,8 +854,14 @@ class AuditEventNetwork extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('address', address);
-    addField('type', type);
+    if (address != null) {
+      addField('address', address);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
     return json;
   }
 
@@ -983,7 +1019,10 @@ class AuditEventSource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -993,7 +1032,10 @@ class AuditEventSource extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('site', site);
+    if (site != null) {
+      addField('site', site);
+    }
+
     json['observer'] = observer.toJson();
 
     if (type != null && type!.isNotEmpty) {
@@ -1228,7 +1270,10 @@ class AuditEventEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1258,9 +1303,18 @@ class AuditEventEntity extends BackboneElement {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('description', description);
-    addField('query', query);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (query != null) {
+      addField('query', query);
+    }
+
     if (detail != null && detail!.isNotEmpty) {
       json['detail'] = detail!.map((e) => e.toJson()).toList();
     }
@@ -1425,7 +1479,10 @@ class AuditEventDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -376,13 +376,22 @@ class ExampleScenario extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -400,17 +409,35 @@ class ExampleScenario extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
@@ -423,8 +450,14 @@ class ExampleScenario extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('copyright', copyright);
-    addField('purpose', purpose);
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
     if (actor != null && actor!.isNotEmpty) {
       json['actor'] = actor!.map((e) => e.toJson()).toList();
     }
@@ -647,7 +680,10 @@ class ExampleScenarioActor extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -659,8 +695,14 @@ class ExampleScenarioActor extends BackboneElement {
 
     addField('actorId', actorId);
     addField('type', type);
-    addField('name', name);
-    addField('description', description);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 
@@ -856,7 +898,10 @@ class ExampleScenarioInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -868,8 +913,14 @@ class ExampleScenarioInstance extends BackboneElement {
 
     addField('resourceId', resourceId);
     addField('resourceType', resourceType);
-    addField('name', name);
-    addField('description', description);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (version != null && version!.isNotEmpty) {
       json['version'] = version!.map((e) => e.toJson()).toList();
     }
@@ -1027,7 +1078,10 @@ class ExampleScenarioVersion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1182,7 +1236,10 @@ class ExampleScenarioContainedInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1193,7 +1250,10 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     }
 
     addField('resourceId', resourceId);
-    addField('versionId', versionId);
+    if (versionId != null) {
+      addField('versionId', versionId);
+    }
+
     return json;
   }
 
@@ -1374,7 +1434,10 @@ class ExampleScenarioProcess extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1385,9 +1448,18 @@ class ExampleScenarioProcess extends BackboneElement {
     }
 
     addField('title', title);
-    addField('description', description);
-    addField('preConditions', preConditions);
-    addField('postConditions', postConditions);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (preConditions != null) {
+      addField('preConditions', preConditions);
+    }
+
+    if (postConditions != null) {
+      addField('postConditions', postConditions);
+    }
+
     if (step != null && step!.isNotEmpty) {
       json['step'] = step!.map((e) => e.toJson()).toList();
     }
@@ -1570,7 +1642,10 @@ class ExampleScenarioStep extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1584,7 +1659,10 @@ class ExampleScenarioStep extends BackboneElement {
       json['process'] = process!.map((e) => e.toJson()).toList();
     }
 
-    addField('pause', pause);
+    if (pause != null) {
+      addField('pause', pause);
+    }
+
     if (operation != null) {
       json['operation'] = operation!.toJson();
     }
@@ -1827,7 +1905,10 @@ class ExampleScenarioOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1838,13 +1919,34 @@ class ExampleScenarioOperation extends BackboneElement {
     }
 
     addField('number', number);
-    addField('type', type);
-    addField('name', name);
-    addField('initiator', initiator);
-    addField('receiver', receiver);
-    addField('description', description);
-    addField('initiatorActive', initiatorActive);
-    addField('receiverActive', receiverActive);
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (initiator != null) {
+      addField('initiator', initiator);
+    }
+
+    if (receiver != null) {
+      addField('receiver', receiver);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (initiatorActive != null) {
+      addField('initiatorActive', initiatorActive);
+    }
+
+    if (receiverActive != null) {
+      addField('receiverActive', receiverActive);
+    }
+
     if (request != null) {
       json['request'] = request!.toJson();
     }
@@ -2028,7 +2130,10 @@ class ExampleScenarioAlternative extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2039,7 +2144,10 @@ class ExampleScenarioAlternative extends BackboneElement {
     }
 
     addField('title', title);
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (step != null && step!.isNotEmpty) {
       json['step'] = step!.map((e) => e.toJson()).toList();
     }

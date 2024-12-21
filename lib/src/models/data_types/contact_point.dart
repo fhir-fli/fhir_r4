@@ -156,15 +156,30 @@ class ContactPoint extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('system', system);
-    addField('value', value);
-    addField('use', use);
-    addField('rank', rank);
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (value != null) {
+      addField('value', value);
+    }
+
+    if (use != null) {
+      addField('use', use);
+    }
+
+    if (rank != null) {
+      addField('rank', rank);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }

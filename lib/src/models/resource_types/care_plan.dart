@@ -440,13 +440,22 @@ class CarePlan extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -504,8 +513,14 @@ class CarePlan extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    addField('title', title);
-    addField('description', description);
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     json['subject'] = subject.toJson();
 
     if (encounter != null) {
@@ -516,7 +531,10 @@ class CarePlan extends DomainResource {
       json['period'] = period!.toJson();
     }
 
-    addField('created', created);
+    if (created != null) {
+      addField('created', created);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -797,7 +815,10 @@ class CarePlanActivity extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -985,17 +1006,14 @@ class CarePlanDetail extends BackboneElement {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      scheduledX: json['scheduledTiming'] != null ||
-              json['_scheduledTiming'] != null
-          ? Timing.fromJson({
-              'value': json['scheduledTiming'],
-              '_value': json['_scheduledTiming'],
-            })
-          : json['scheduledPeriod'] != null || json['_scheduledPeriod'] != null
-              ? Period.fromJson({
-                  'value': json['scheduledPeriod'],
-                  '_value': json['_scheduledPeriod'],
-                })
+      scheduledX: json['scheduledTiming'] != null
+          ? Timing.fromJson(
+              json['scheduledTiming'] as Map<String, dynamic>,
+            )
+          : json['scheduledPeriod'] != null
+              ? Period.fromJson(
+                  json['scheduledPeriod'] as Map<String, dynamic>,
+                )
               : json['scheduledString'] != null ||
                       json['_scheduledString'] != null
                   ? FhirString.fromJson({
@@ -1017,12 +1035,10 @@ class CarePlanDetail extends BackboneElement {
               )
               .toList()
           : null,
-      productX: json['productCodeableConcept'] != null ||
-              json['_productCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['productCodeableConcept'],
-              '_value': json['_productCodeableConcept'],
-            })
+      productX: json['productCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['productCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['productReference'] != null
               ? Reference.fromJson(
                   json['productReference'] as Map<String, dynamic>,
@@ -1194,7 +1210,10 @@ class CarePlanDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1204,7 +1223,10 @@ class CarePlanDetail extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('kind', kind);
+    if (kind != null) {
+      addField('kind', kind);
+    }
+
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
@@ -1245,7 +1267,10 @@ class CarePlanDetail extends BackboneElement {
       json['statusReason'] = statusReason!.toJson();
     }
 
-    addField('doNotPerform', doNotPerform);
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
     if (scheduledX != null) {
       json['scheduled${scheduledX!.fhirType.capitalize()}'] =
           scheduledX!.toJson();
@@ -1271,7 +1296,10 @@ class CarePlanDetail extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 

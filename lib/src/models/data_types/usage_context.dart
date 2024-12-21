@@ -49,22 +49,18 @@ class UsageContext extends DataType
       code: Coding.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
-                })
-              : json['valueRange'] != null || json['_valueRange'] != null
-                  ? Range.fromJson({
-                      'value': json['valueRange'],
-                      '_value': json['_valueRange'],
-                    })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['valueQuantity'] != null
+              ? Quantity.fromJson(
+                  json['valueQuantity'] as Map<String, dynamic>,
+                )
+              : json['valueRange'] != null
+                  ? Range.fromJson(
+                      json['valueRange'] as Map<String, dynamic>,
+                    )
                   : Reference.fromJson(
                       json['valueReference'] as Map<String, dynamic>,
                     ),
@@ -134,7 +130,10 @@ class UsageContext extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

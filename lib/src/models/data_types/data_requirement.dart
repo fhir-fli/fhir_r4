@@ -60,12 +60,10 @@ class DataRequirement extends DataType
         json['_profile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      subjectX: json['subjectCodeableConcept'] != null ||
-              json['_subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['subjectCodeableConcept'],
-              '_value': json['_subjectCodeableConcept'],
-            })
+      subjectX: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['subjectReference'] != null
               ? Reference.fromJson(
                   json['subjectReference'] as Map<String, dynamic>,
@@ -218,7 +216,10 @@ class DataRequirement extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -252,7 +253,10 @@ class DataRequirement extends DataType
       json['dateFilter'] = dateFilter!.map((e) => e.toJson()).toList();
     }
 
-    addField('limit', limit);
+    if (limit != null) {
+      addField('limit', limit);
+    }
+
     if (sort != null && sort!.isNotEmpty) {
       json['sort'] = sort!.map((e) => e.toJson()).toList();
     }
@@ -445,14 +449,26 @@ class DataRequirementCodeFilter extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('path', path);
-    addField('searchParam', searchParam);
-    addField('valueSet', valueSet);
+    if (path != null) {
+      addField('path', path);
+    }
+
+    if (searchParam != null) {
+      addField('searchParam', searchParam);
+    }
+
+    if (valueSet != null) {
+      addField('valueSet', valueSet);
+    }
+
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -538,11 +554,10 @@ class DataRequirementDateFilter extends Element {
               'value': json['valueDateTime'],
               '_value': json['_valueDateTime'],
             })
-          : json['valuePeriod'] != null || json['_valuePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['valuePeriod'],
-                  '_value': json['_valuePeriod'],
-                })
+          : json['valuePeriod'] != null
+              ? Period.fromJson(
+                  json['valuePeriod'] as Map<String, dynamic>,
+                )
               : json['valueDuration'] != null
                   ? FhirDuration.fromJson(
                       json['valueDuration'] as Map<String, dynamic>,
@@ -631,14 +646,26 @@ class DataRequirementDateFilter extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('path', path);
-    addField('searchParam', searchParam);
-    addField('value${valueX!.fhirType.capitalize()}', valueX);
+    if (path != null) {
+      addField('path', path);
+    }
+
+    if (searchParam != null) {
+      addField('searchParam', searchParam);
+    }
+
+    if (valueX != null) {
+      addField('value${valueX!.fhirType.capitalize()}', valueX);
+    }
+
     return json;
   }
 
@@ -773,7 +800,10 @@ class DataRequirementSort extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

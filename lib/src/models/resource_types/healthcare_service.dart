@@ -473,13 +473,22 @@ class HealthcareService extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -501,7 +510,10 @@ class HealthcareService extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (providedBy != null) {
       json['providedBy'] = providedBy!.toJson();
     }
@@ -522,9 +534,18 @@ class HealthcareService extends DomainResource {
       json['location'] = location!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('comment', comment);
-    addField('extraDetails', extraDetails);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
+    if (extraDetails != null) {
+      addField('extraDetails', extraDetails);
+    }
+
     if (photo != null) {
       json['photo'] = photo!.toJson();
     }
@@ -562,7 +583,10 @@ class HealthcareService extends DomainResource {
       json['referralMethod'] = referralMethod!.map((e) => e.toJson()).toList();
     }
 
-    addField('appointmentRequired', appointmentRequired);
+    if (appointmentRequired != null) {
+      addField('appointmentRequired', appointmentRequired);
+    }
+
     if (availableTime != null && availableTime!.isNotEmpty) {
       json['availableTime'] = availableTime!.map((e) => e.toJson()).toList();
     }
@@ -571,7 +595,10 @@ class HealthcareService extends DomainResource {
       json['notAvailable'] = notAvailable!.map((e) => e.toJson()).toList();
     }
 
-    addField('availabilityExceptions', availabilityExceptions);
+    if (availabilityExceptions != null) {
+      addField('availabilityExceptions', availabilityExceptions);
+    }
+
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
@@ -775,7 +802,10 @@ class HealthcareServiceEligibility extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -789,7 +819,10 @@ class HealthcareServiceEligibility extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 
@@ -961,7 +994,10 @@ class HealthcareServiceAvailableTime extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -979,9 +1015,18 @@ class HealthcareServiceAvailableTime extends BackboneElement {
       }
     }
 
-    addField('allDay', allDay);
-    addField('availableStartTime', availableStartTime);
-    addField('availableEndTime', availableEndTime);
+    if (allDay != null) {
+      addField('allDay', allDay);
+    }
+
+    if (availableStartTime != null) {
+      addField('availableStartTime', availableStartTime);
+    }
+
+    if (availableEndTime != null) {
+      addField('availableEndTime', availableEndTime);
+    }
+
     return json;
   }
 
@@ -1130,7 +1175,10 @@ class HealthcareServiceNotAvailable extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -177,18 +177,14 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectX: json['subjectCodeableConcept'] != null ||
-              json['_subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['subjectCodeableConcept'],
-              '_value': json['_subjectCodeableConcept'],
-            })
-          : json['subjectReference'] != null ||
-                  json['_subjectReference'] != null
-              ? Reference.fromJson({
-                  'value': json['subjectReference'],
-                  '_value': json['_subjectReference'],
-                })
+      subjectX: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['subjectReference'] != null
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
               : json['subjectSubjectType'] != null
                   ? SubjectType.fromJson(
                       json['subjectSubjectType'] as Map<String, dynamic>,
@@ -371,33 +367,27 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      timingX: json['timingTiming'] != null || json['_timingTiming'] != null
-          ? Timing.fromJson({
-              'value': json['timingTiming'],
-              '_value': json['_timingTiming'],
-            })
+      timingX: json['timingTiming'] != null
+          ? Timing.fromJson(
+              json['timingTiming'] as Map<String, dynamic>,
+            )
           : json['timingDateTime'] != null || json['_timingDateTime'] != null
               ? FhirDateTime.fromJson({
                   'value': json['timingDateTime'],
                   '_value': json['_timingDateTime'],
                 })
-              : json['timingAge'] != null || json['_timingAge'] != null
-                  ? Age.fromJson({
-                      'value': json['timingAge'],
-                      '_value': json['_timingAge'],
-                    })
-                  : json['timingPeriod'] != null ||
-                          json['_timingPeriod'] != null
-                      ? Period.fromJson({
-                          'value': json['timingPeriod'],
-                          '_value': json['_timingPeriod'],
-                        })
-                      : json['timingRange'] != null ||
-                              json['_timingRange'] != null
-                          ? Range.fromJson({
-                              'value': json['timingRange'],
-                              '_value': json['_timingRange'],
-                            })
+              : json['timingAge'] != null
+                  ? Age.fromJson(
+                      json['timingAge'] as Map<String, dynamic>,
+                    )
+                  : json['timingPeriod'] != null
+                      ? Period.fromJson(
+                          json['timingPeriod'] as Map<String, dynamic>,
+                        )
+                      : json['timingRange'] != null
+                          ? Range.fromJson(
+                              json['timingRange'] as Map<String, dynamic>,
+                            )
                           : json['timingDuration'] != null
                               ? FhirDuration.fromJson(
                                   json['timingDuration']
@@ -418,17 +408,15 @@ class ActivityDefinition extends CanonicalResource {
               )
               .toList()
           : null,
-      productX:
-          json['productReference'] != null || json['_productReference'] != null
-              ? Reference.fromJson({
-                  'value': json['productReference'],
-                  '_value': json['_productReference'],
-                })
-              : json['productCodeableConcept'] != null
-                  ? CodeableConcept.fromJson(
-                      json['productCodeableConcept'] as Map<String, dynamic>,
-                    )
-                  : null,
+      productX: json['productReference'] != null
+          ? Reference.fromJson(
+              json['productReference'] as Map<String, dynamic>,
+            )
+          : json['productCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['productCodeableConcept'] as Map<String, dynamic>,
+                )
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -749,13 +737,22 @@ class ActivityDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -773,28 +770,55 @@ class ActivityDefinition extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('subtitle', subtitle);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (subtitle != null) {
+      addField('subtitle', subtitle);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     if (subjectX != null) {
       json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
-    addField('date', date);
-    addField('publisher', publisher);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -803,11 +827,26 @@ class ActivityDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('usage', usage);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (usage != null) {
+      addField('usage', usage);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -845,15 +884,30 @@ class ActivityDefinition extends CanonicalResource {
       }
     }
 
-    addField('kind', kind);
-    addField('profile', profile);
+    if (kind != null) {
+      addField('kind', kind);
+    }
+
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    addField('intent', intent);
-    addField('priority', priority);
-    addField('doNotPerform', doNotPerform);
+    if (intent != null) {
+      addField('intent', intent);
+    }
+
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
     if (timingX != null) {
       json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }
@@ -898,7 +952,10 @@ class ActivityDefinition extends CanonicalResource {
           observationResultRequirement!.map((e) => e.toJson()).toList();
     }
 
-    addField('transform', transform);
+    if (transform != null) {
+      addField('transform', transform);
+    }
+
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!.map((e) => e.toJson()).toList();
     }
@@ -1145,7 +1202,10 @@ class ActivityDefinitionParticipant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1311,7 +1371,10 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

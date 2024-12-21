@@ -238,13 +238,22 @@ class Medication extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -270,7 +279,10 @@ class Medication extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (manufacturer != null) {
       json['manufacturer'] = manufacturer!.toJson();
     }
@@ -382,12 +394,10 @@ class MedicationIngredient extends BackboneElement {
               )
               .toList()
           : null,
-      itemX: json['itemCodeableConcept'] != null ||
-              json['_itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['itemCodeableConcept'],
-              '_value': json['_itemCodeableConcept'],
-            })
+      itemX: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['itemReference'] as Map<String, dynamic>,
             ),
@@ -474,7 +484,10 @@ class MedicationIngredient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -486,7 +499,10 @@ class MedicationIngredient extends BackboneElement {
 
     json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
-    addField('isActive', isActive);
+    if (isActive != null) {
+      addField('isActive', isActive);
+    }
+
     if (strength != null) {
       json['strength'] = strength!.toJson();
     }
@@ -638,7 +654,10 @@ class MedicationBatch extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -648,8 +667,14 @@ class MedicationBatch extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('lotNumber', lotNumber);
-    addField('expirationDate', expirationDate);
+    if (lotNumber != null) {
+      addField('lotNumber', lotNumber);
+    }
+
+    if (expirationDate != null) {
+      addField('expirationDate', expirationDate);
+    }
+
     return json;
   }
 

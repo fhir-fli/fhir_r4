@@ -294,13 +294,22 @@ class DetectedIssue extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -327,12 +336,18 @@ class DetectedIssue extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    addField('severity', severity);
+    if (severity != null) {
+      addField('severity', severity);
+    }
+
     if (patient != null) {
       json['patient'] = patient!.toJson();
     }
 
-    addField('identified${identifiedX!.fhirType.capitalize()}', identifiedX);
+    if (identifiedX != null) {
+      addField('identified${identifiedX!.fhirType.capitalize()}', identifiedX);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -345,8 +360,14 @@ class DetectedIssue extends DomainResource {
       json['evidence'] = evidence!.map((e) => e.toJson()).toList();
     }
 
-    addField('detail', detail);
-    addField('reference', reference);
+    if (detail != null) {
+      addField('detail', detail);
+    }
+
+    if (reference != null) {
+      addField('reference', reference);
+    }
+
     if (mitigation != null && mitigation!.isNotEmpty) {
       json['mitigation'] = mitigation!.map((e) => e.toJson()).toList();
     }
@@ -534,7 +555,10 @@ class DetectedIssueEvidence extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -708,7 +732,10 @@ class DetectedIssueMitigation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -720,7 +747,10 @@ class DetectedIssueMitigation extends BackboneElement {
 
     json['action'] = action.toJson();
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }

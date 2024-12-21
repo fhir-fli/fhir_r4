@@ -220,11 +220,10 @@ class MessageDefinition extends CanonicalResource {
         json['_parent'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      eventX: json['eventCoding'] != null || json['_eventCoding'] != null
-          ? Coding.fromJson({
-              'value': json['eventCoding'],
-              '_value': json['_eventCoding'],
-            })
+      eventX: json['eventCoding'] != null
+          ? Coding.fromJson(
+              json['eventCoding'] as Map<String, dynamic>,
+            )
           : FhirUri.fromJson({
               'value': json['eventUri'],
               '_value': json['_eventUri'],
@@ -395,13 +394,22 @@ class MessageDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -419,14 +427,26 @@ class MessageDefinition extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (replaces != null && replaces!.isNotEmpty) {
       final fieldJson0 = replaces!.map((e) => e.toJson()).toList();
       json['replaces'] = fieldJson0.map((e) => e['value']).toList();
@@ -436,14 +456,23 @@ class MessageDefinition extends CanonicalResource {
     }
 
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     addField('date', date);
-    addField('publisher', publisher);
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -452,9 +481,18 @@ class MessageDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('base', base);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (base != null) {
+      addField('base', base);
+    }
+
     if (parent != null && parent!.isNotEmpty) {
       final fieldJson1 = parent!.map((e) => e.toJson()).toList();
       json['parent'] = fieldJson1.map((e) => e['value']).toList();
@@ -465,12 +503,18 @@ class MessageDefinition extends CanonicalResource {
 
     json['event${eventX.fhirType.capitalize()}'] = eventX.toJson();
 
-    addField('category', category);
+    if (category != null) {
+      addField('category', category);
+    }
+
     if (focus != null && focus!.isNotEmpty) {
       json['focus'] = focus!.map((e) => e.toJson()).toList();
     }
 
-    addField('responseRequired', responseRequired);
+    if (responseRequired != null) {
+      addField('responseRequired', responseRequired);
+    }
+
     if (allowedResponse != null && allowedResponse!.isNotEmpty) {
       json['allowedResponse'] =
           allowedResponse!.map((e) => e.toJson()).toList();
@@ -707,7 +751,10 @@ class MessageDefinitionFocus extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -718,9 +765,15 @@ class MessageDefinitionFocus extends BackboneElement {
     }
 
     addField('code', code);
-    addField('profile', profile);
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     addField('min', min);
-    addField('max', max);
+    if (max != null) {
+      addField('max', max);
+    }
+
     return json;
   }
 
@@ -870,7 +923,10 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -881,7 +937,10 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     }
 
     addField('message', message);
-    addField('situation', situation);
+    if (situation != null) {
+      addField('situation', situation);
+    }
+
     return json;
   }
 

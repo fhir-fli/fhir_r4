@@ -177,13 +177,22 @@ class Linkage extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -201,7 +210,10 @@ class Linkage extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -364,7 +376,10 @@ class LinkageItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

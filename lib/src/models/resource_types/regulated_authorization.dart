@@ -314,13 +314,22 @@ class RegulatedAuthorization extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -350,7 +359,10 @@ class RegulatedAuthorization extends DomainResource {
       json['type'] = type!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (region != null && region!.isNotEmpty) {
       json['region'] = region!.map((e) => e.toJson()).toList();
     }
@@ -359,7 +371,10 @@ class RegulatedAuthorization extends DomainResource {
       json['status'] = status!.toJson();
     }
 
-    addField('statusDate', statusDate);
+    if (statusDate != null) {
+      addField('statusDate', statusDate);
+    }
+
     if (validityPeriod != null) {
       json['validityPeriod'] = validityPeriod!.toJson();
     }
@@ -514,11 +529,10 @@ class RegulatedAuthorizationCase extends BackboneElement {
               json['status'] as Map<String, dynamic>,
             )
           : null,
-      dateX: json['datePeriod'] != null || json['_datePeriod'] != null
-          ? Period.fromJson({
-              'value': json['datePeriod'],
-              '_value': json['_datePeriod'],
-            })
+      dateX: json['datePeriod'] != null
+          ? Period.fromJson(
+              json['datePeriod'] as Map<String, dynamic>,
+            )
           : json['dateDateTime'] != null || json['_dateDateTime'] != null
               ? FhirDateTime.fromJson({
                   'value': json['dateDateTime'],
@@ -614,7 +628,10 @@ class RegulatedAuthorizationCase extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

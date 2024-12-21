@@ -308,13 +308,22 @@ class CoverageEligibilityRequest extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -351,7 +360,10 @@ class CoverageEligibilityRequest extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    if (servicedX != null) {
+      addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    }
+
     addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
@@ -568,7 +580,10 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -581,7 +596,10 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     addField('sequence', sequence);
     json['information'] = information.toJson();
 
-    addField('appliesToAll', appliesToAll);
+    if (appliesToAll != null) {
+      addField('appliesToAll', appliesToAll);
+    }
+
     return json;
   }
 
@@ -744,7 +762,10 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -754,10 +775,16 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('focal', focal);
+    if (focal != null) {
+      addField('focal', focal);
+    }
+
     json['coverage'] = coverage.toJson();
 
-    addField('businessArrangement', businessArrangement);
+    if (businessArrangement != null) {
+      addField('businessArrangement', businessArrangement);
+    }
+
     return json;
   }
 
@@ -1001,7 +1028,10 @@ class CoverageEligibilityRequestItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1142,12 +1172,10 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
               )
               .toList()
           : null,
-      diagnosisX: json['diagnosisCodeableConcept'] != null ||
-              json['_diagnosisCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['diagnosisCodeableConcept'],
-              '_value': json['_diagnosisCodeableConcept'],
-            })
+      diagnosisX: json['diagnosisCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['diagnosisCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['diagnosisReference'] != null
               ? Reference.fromJson(
                   json['diagnosisReference'] as Map<String, dynamic>,
@@ -1214,7 +1242,10 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

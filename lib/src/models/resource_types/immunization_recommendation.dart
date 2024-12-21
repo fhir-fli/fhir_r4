@@ -193,13 +193,22 @@ class ImmunizationRecommendation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -538,7 +547,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -572,10 +584,23 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       json['dateCriterion'] = dateCriterion!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('series', series);
-    addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
-    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (series != null) {
+      addField('series', series);
+    }
+
+    if (doseNumberX != null) {
+      addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
+    }
+
+    if (seriesDosesX != null) {
+      addField(
+          'seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    }
+
     if (supportingImmunization != null && supportingImmunization!.isNotEmpty) {
       json['supportingImmunization'] =
           supportingImmunization!.map((e) => e.toJson()).toList();
@@ -752,7 +777,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -195,13 +195,22 @@ class Basic extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -229,7 +238,10 @@ class Basic extends DomainResource {
       json['subject'] = subject!.toJson();
     }
 
-    addField('created', created);
+    if (created != null) {
+      addField('created', created);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }

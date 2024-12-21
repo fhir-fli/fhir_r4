@@ -150,21 +150,18 @@ class AllergyIntolerance extends DomainResource {
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
             })
-          : json['onsetAge'] != null || json['_onsetAge'] != null
-              ? Age.fromJson({
-                  'value': json['onsetAge'],
-                  '_value': json['_onsetAge'],
-                })
-              : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['onsetPeriod'],
-                      '_value': json['_onsetPeriod'],
-                    })
-                  : json['onsetRange'] != null || json['_onsetRange'] != null
-                      ? Range.fromJson({
-                          'value': json['onsetRange'],
-                          '_value': json['_onsetRange'],
-                        })
+          : json['onsetAge'] != null
+              ? Age.fromJson(
+                  json['onsetAge'] as Map<String, dynamic>,
+                )
+              : json['onsetPeriod'] != null
+                  ? Period.fromJson(
+                      json['onsetPeriod'] as Map<String, dynamic>,
+                    )
+                  : json['onsetRange'] != null
+                      ? Range.fromJson(
+                          json['onsetRange'] as Map<String, dynamic>,
+                        )
                       : json['onsetString'] != null ||
                               json['_onsetString'] != null
                           ? FhirString.fromJson({
@@ -363,13 +360,22 @@ class AllergyIntolerance extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -399,7 +405,10 @@ class AllergyIntolerance extends DomainResource {
       json['verificationStatus'] = verificationStatus!.toJson();
     }
 
-    addField('type', type);
+    if (type != null) {
+      addField('type', type);
+    }
+
     if (category != null && category!.isNotEmpty) {
       final fieldJson0 = category!.map((e) => e.toJson()).toList();
       json['category'] = fieldJson0.map((e) => e['value']).toList();
@@ -408,7 +417,10 @@ class AllergyIntolerance extends DomainResource {
       }
     }
 
-    addField('criticality', criticality);
+    if (criticality != null) {
+      addField('criticality', criticality);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -419,8 +431,14 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
-    addField('recordedDate', recordedDate);
+    if (onsetX != null) {
+      addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
+    }
+
+    if (recordedDate != null) {
+      addField('recordedDate', recordedDate);
+    }
+
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -429,7 +447,10 @@ class AllergyIntolerance extends DomainResource {
       json['asserter'] = asserter!.toJson();
     }
 
-    addField('lastOccurrence', lastOccurrence);
+    if (lastOccurrence != null) {
+      addField('lastOccurrence', lastOccurrence);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -695,7 +716,10 @@ class AllergyIntoleranceReaction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -713,9 +737,18 @@ class AllergyIntoleranceReaction extends BackboneElement {
       json['manifestation'] = manifestation.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('onset', onset);
-    addField('severity', severity);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (onset != null) {
+      addField('onset', onset);
+    }
+
+    if (severity != null) {
+      addField('severity', severity);
+    }
+
     if (exposureRoute != null) {
       json['exposureRoute'] = exposureRoute!.toJson();
     }

@@ -451,13 +451,22 @@ class Appointment extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -510,23 +519,47 @@ class Appointment extends DomainResource {
           reasonReference!.map((e) => e.toJson()).toList();
     }
 
-    addField('priority', priority);
-    addField('description', description);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (supportingInformation != null && supportingInformation!.isNotEmpty) {
       json['supportingInformation'] =
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    addField('start', start);
-    addField('end', end);
-    addField('minutesDuration', minutesDuration);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
+    if (minutesDuration != null) {
+      addField('minutesDuration', minutesDuration);
+    }
+
     if (slot != null && slot!.isNotEmpty) {
       json['slot'] = slot!.map((e) => e.toJson()).toList();
     }
 
-    addField('created', created);
-    addField('comment', comment);
-    addField('patientInstruction', patientInstruction);
+    if (created != null) {
+      addField('created', created);
+    }
+
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
+    if (patientInstruction != null) {
+      addField('patientInstruction', patientInstruction);
+    }
+
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
@@ -770,7 +803,10 @@ class AppointmentParticipant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -788,7 +824,10 @@ class AppointmentParticipant extends BackboneElement {
       json['actor'] = actor!.toJson();
     }
 
-    addField('required', required_);
+    if (required_ != null) {
+      addField('required', required_);
+    }
+
     addField('status', status);
     if (period != null) {
       json['period'] = period!.toJson();

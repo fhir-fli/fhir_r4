@@ -170,16 +170,34 @@ class Coding extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('system', system);
-    addField('version', version);
-    addField('code', code);
-    addField('display', display);
-    addField('userSelected', userSelected);
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
+    if (userSelected != null) {
+      addField('userSelected', userSelected);
+    }
+
     return json;
   }
 

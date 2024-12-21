@@ -646,13 +646,22 @@ class ExplanationOfBenefit extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -742,7 +751,10 @@ class ExplanationOfBenefit extends DomainResource {
     }
 
     addField('outcome', outcome);
-    addField('disposition', disposition);
+    if (disposition != null) {
+      addField('disposition', disposition);
+    }
+
     if (preAuthRef != null && preAuthRef!.isNotEmpty) {
       final fieldJson0 = preAuthRef!.map((e) => e.toJson()).toList();
       json['preAuthRef'] = fieldJson0.map((e) => e['value']).toList();
@@ -772,7 +784,10 @@ class ExplanationOfBenefit extends DomainResource {
       json['procedure'] = procedure!.map((e) => e.toJson()).toList();
     }
 
-    addField('precedence', precedence);
+    if (precedence != null) {
+      addField('precedence', precedence);
+    }
+
     if (insurance.isNotEmpty) {
       json['insurance'] = insurance.map((e) => e.toJson()).toList();
     }
@@ -1068,7 +1083,10 @@ class ExplanationOfBenefitRelated extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1236,7 +1254,10 @@ class ExplanationOfBenefitPayee extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1427,7 +1448,10 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1440,7 +1464,10 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     addField('sequence', sequence);
     json['provider'] = provider.toJson();
 
-    addField('responsible', responsible);
+    if (responsible != null) {
+      addField('responsible', responsible);
+    }
+
     if (role != null) {
       json['role'] = role!.toJson();
     }
@@ -1560,17 +1587,14 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? Quantity.fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
-                    })
-                  : json['valueAttachment'] != null ||
-                          json['_valueAttachment'] != null
-                      ? Attachment.fromJson({
-                          'value': json['valueAttachment'],
-                          '_value': json['_valueAttachment'],
-                        })
+              : json['valueQuantity'] != null
+                  ? Quantity.fromJson(
+                      json['valueQuantity'] as Map<String, dynamic>,
+                    )
+                  : json['valueAttachment'] != null
+                      ? Attachment.fromJson(
+                          json['valueAttachment'] as Map<String, dynamic>,
+                        )
                       : json['valueReference'] != null
                           ? Reference.fromJson(
                               json['valueReference'] as Map<String, dynamic>,
@@ -1667,7 +1691,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1684,8 +1711,14 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('timing${timingX!.fhirType.capitalize()}', timingX);
-    addField('value${valueX!.fhirType.capitalize()}', valueX);
+    if (timingX != null) {
+      addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    }
+
+    if (valueX != null) {
+      addField('value${valueX!.fhirType.capitalize()}', valueX);
+    }
+
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1773,12 +1806,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         'value': json['sequence'],
         '_value': json['_sequence'],
       }),
-      diagnosisX: json['diagnosisCodeableConcept'] != null ||
-              json['_diagnosisCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['diagnosisCodeableConcept'],
-              '_value': json['_diagnosisCodeableConcept'],
-            })
+      diagnosisX: json['diagnosisCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['diagnosisCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['diagnosisReference'] as Map<String, dynamic>,
             ),
@@ -1881,7 +1912,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2003,12 +2037,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
               '_value': json['_date'],
             })
           : null,
-      procedureX: json['procedureCodeableConcept'] != null ||
-              json['_procedureCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['procedureCodeableConcept'],
-              '_value': json['_procedureCodeableConcept'],
-            })
+      procedureX: json['procedureCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['procedureCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['procedureReference'] as Map<String, dynamic>,
             ),
@@ -2098,7 +2130,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2113,7 +2148,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     json['procedure${procedureX.fhirType.capitalize()}'] = procedureX.toJson();
 
     if (udi != null && udi!.isNotEmpty) {
@@ -2282,7 +2320,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2386,17 +2427,15 @@ class ExplanationOfBenefitAccident extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      locationX:
-          json['locationAddress'] != null || json['_locationAddress'] != null
-              ? Address.fromJson({
-                  'value': json['locationAddress'],
-                  '_value': json['_locationAddress'],
-                })
-              : json['locationReference'] != null
-                  ? Reference.fromJson(
-                      json['locationReference'] as Map<String, dynamic>,
-                    )
-                  : null,
+      locationX: json['locationAddress'] != null
+          ? Address.fromJson(
+              json['locationAddress'] as Map<String, dynamic>,
+            )
+          : json['locationReference'] != null
+              ? Reference.fromJson(
+                  json['locationReference'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -2468,7 +2507,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2478,7 +2520,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -2644,17 +2689,14 @@ class ExplanationOfBenefitItem extends BackboneElement {
                   json['servicedPeriod'] as Map<String, dynamic>,
                 )
               : null,
-      locationX: json['locationCodeableConcept'] != null ||
-              json['_locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['locationCodeableConcept'],
-              '_value': json['_locationCodeableConcept'],
-            })
-          : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? Address.fromJson({
-                  'value': json['locationAddress'],
-                  '_value': json['_locationAddress'],
-                })
+      locationX: json['locationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['locationCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['locationAddress'] != null
+              ? Address.fromJson(
+                  json['locationAddress'] as Map<String, dynamic>,
+                )
               : json['locationReference'] != null
                   ? Reference.fromJson(
                       json['locationReference'] as Map<String, dynamic>,
@@ -2902,7 +2944,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2966,7 +3011,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    if (servicedX != null) {
+      addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    }
+
     if (locationX != null) {
       json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
@@ -2979,7 +3027,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3227,7 +3278,10 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3247,7 +3301,10 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
       json['amount'] = amount!.toJson();
     }
 
-    addField('value', value);
+    if (value != null) {
+      addField('value', value);
+    }
+
     return json;
   }
 
@@ -3545,7 +3602,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3582,7 +3642,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3910,7 +3973,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3947,7 +4013,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -4130,17 +4199,14 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
                   json['servicedPeriod'] as Map<String, dynamic>,
                 )
               : null,
-      locationX: json['locationCodeableConcept'] != null ||
-              json['_locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['locationCodeableConcept'],
-              '_value': json['_locationCodeableConcept'],
-            })
-          : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? Address.fromJson({
-                  'value': json['locationAddress'],
-                  '_value': json['_locationAddress'],
-                })
+      locationX: json['locationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['locationCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['locationAddress'] != null
+              ? Address.fromJson(
+                  json['locationAddress'] as Map<String, dynamic>,
+                )
               : json['locationReference'] != null
                   ? Reference.fromJson(
                       json['locationReference'] as Map<String, dynamic>,
@@ -4347,7 +4413,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4396,7 +4465,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    if (servicedX != null) {
+      addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    }
+
     if (locationX != null) {
       json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
@@ -4409,7 +4481,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -4703,7 +4778,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4727,7 +4805,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -4981,7 +5062,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5005,7 +5089,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -5176,7 +5263,10 @@ class ExplanationOfBenefitTotal extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5376,7 +5466,10 @@ class ExplanationOfBenefitPayment extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5398,7 +5491,10 @@ class ExplanationOfBenefitPayment extends BackboneElement {
       json['adjustmentReason'] = adjustmentReason!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (amount != null) {
       json['amount'] = amount!.toJson();
     }
@@ -5581,7 +5677,10 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5591,9 +5690,18 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('number', number);
-    addField('type', type);
-    addField('text', text);
+    if (number != null) {
+      addField('number', number);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -5814,7 +5922,10 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5826,9 +5937,18 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
 
     json['category'] = category.toJson();
 
-    addField('excluded', excluded);
-    addField('name', name);
-    addField('description', description);
+    if (excluded != null) {
+      addField('excluded', excluded);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (network != null) {
       json['network'] = network!.toJson();
     }
@@ -6023,7 +6143,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -6035,8 +6158,14 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('allowed${allowedX!.fhirType.capitalize()}', allowedX);
-    addField('used${usedX!.fhirType.capitalize()}', usedX);
+    if (allowedX != null) {
+      addField('allowed${allowedX!.fhirType.capitalize()}', allowedX);
+    }
+
+    if (usedX != null) {
+      addField('used${usedX!.fhirType.capitalize()}', usedX);
+    }
+
     return json;
   }
 

@@ -127,16 +127,14 @@ class DeviceUseStatement extends DomainResource {
               )
               .toList()
           : null,
-      timingX: json['timingTiming'] != null || json['_timingTiming'] != null
-          ? Timing.fromJson({
-              'value': json['timingTiming'],
-              '_value': json['_timingTiming'],
-            })
-          : json['timingPeriod'] != null || json['_timingPeriod'] != null
-              ? Period.fromJson({
-                  'value': json['timingPeriod'],
-                  '_value': json['_timingPeriod'],
-                })
+      timingX: json['timingTiming'] != null
+          ? Timing.fromJson(
+              json['timingTiming'] as Map<String, dynamic>,
+            )
+          : json['timingPeriod'] != null
+              ? Period.fromJson(
+                  json['timingPeriod'] as Map<String, dynamic>,
+                )
               : json['timingDateTime'] != null ||
                       json['_timingDateTime'] != null
                   ? FhirDateTime.fromJson({
@@ -309,13 +307,22 @@ class DeviceUseStatement extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -352,7 +359,10 @@ class DeviceUseStatement extends DomainResource {
       json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }
 
-    addField('recordedOn', recordedOn);
+    if (recordedOn != null) {
+      addField('recordedOn', recordedOn);
+    }
+
     if (source != null) {
       json['source'] = source!.toJson();
     }

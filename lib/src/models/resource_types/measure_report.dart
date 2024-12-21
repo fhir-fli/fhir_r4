@@ -269,13 +269,22 @@ class MeasureReport extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -304,7 +313,10 @@ class MeasureReport extends DomainResource {
       json['subject'] = subject!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (reporter != null) {
       json['reporter'] = reporter!.toJson();
     }
@@ -528,7 +540,10 @@ class MeasureReportGroup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -713,7 +728,10 @@ class MeasureReportPopulation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -727,7 +745,10 @@ class MeasureReportPopulation extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('count', count);
+    if (count != null) {
+      addField('count', count);
+    }
+
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }
@@ -887,7 +908,10 @@ class MeasureReportStratifier extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1082,7 +1106,10 @@ class MeasureReportStratum extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1250,7 +1277,10 @@ class MeasureReportComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1419,7 +1449,10 @@ class MeasureReportPopulation1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1433,7 +1466,10 @@ class MeasureReportPopulation1 extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('count', count);
+    if (count != null) {
+      addField('count', count);
+    }
+
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }

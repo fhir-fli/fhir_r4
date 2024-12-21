@@ -397,13 +397,22 @@ class ClinicalImpression extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -434,15 +443,24 @@ class ClinicalImpression extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     json['subject'] = subject.toJson();
 
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
-    addField('date', date);
+    if (effectiveX != null) {
+      addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
     }
@@ -467,7 +485,10 @@ class ClinicalImpression extends DomainResource {
       }
     }
 
-    addField('summary', summary);
+    if (summary != null) {
+      addField('summary', summary);
+    }
+
     if (finding != null && finding!.isNotEmpty) {
       json['finding'] = finding!.map((e) => e.toJson()).toList();
     }
@@ -689,7 +710,10 @@ class ClinicalImpressionInvestigation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -861,7 +885,10 @@ class ClinicalImpressionFinding extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -879,7 +906,10 @@ class ClinicalImpressionFinding extends BackboneElement {
       json['itemReference'] = itemReference!.toJson();
     }
 
-    addField('basis', basis);
+    if (basis != null) {
+      addField('basis', basis);
+    }
+
     return json;
   }
 

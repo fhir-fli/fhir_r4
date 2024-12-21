@@ -145,16 +145,34 @@ class FhirDuration extends Quantity
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('value', value);
-    addField('comparator', comparator);
-    addField('unit', unit);
-    addField('system', system);
-    addField('code', code);
+    if (value != null) {
+      addField('value', value);
+    }
+
+    if (comparator != null) {
+      addField('comparator', comparator);
+    }
+
+    if (unit != null) {
+      addField('unit', unit);
+    }
+
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (code != null) {
+      addField('code', code);
+    }
+
     return json;
   }
 

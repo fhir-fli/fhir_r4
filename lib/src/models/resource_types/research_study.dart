@@ -470,13 +470,22 @@ class ResearchStudy extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -498,7 +507,10 @@ class ResearchStudy extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (protocol != null && protocol!.isNotEmpty) {
       json['protocol'] = protocol!.map((e) => e.toJson()).toList();
     }
@@ -545,7 +557,10 @@ class ResearchStudy extends DomainResource {
       json['location'] = location!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (enrollment != null && enrollment!.isNotEmpty) {
       json['enrollment'] = enrollment!.map((e) => e.toJson()).toList();
     }
@@ -793,7 +808,10 @@ class ResearchStudyArm extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -808,7 +826,10 @@ class ResearchStudyArm extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 
@@ -956,7 +977,10 @@ class ResearchStudyObjective extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -966,7 +990,10 @@ class ResearchStudyObjective extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }

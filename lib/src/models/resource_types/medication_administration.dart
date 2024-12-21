@@ -143,12 +143,10 @@ class MedicationAdministration extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationX: json['medicationCodeableConcept'] != null ||
-              json['_medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['medicationCodeableConcept'],
-              '_value': json['_medicationCodeableConcept'],
-            })
+      medicationX: json['medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['medicationReference'] as Map<String, dynamic>,
             ),
@@ -400,13 +398,22 @@ class MedicationAdministration extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -684,7 +691,10 @@ class MedicationAdministrationPerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -799,11 +809,10 @@ class MedicationAdministrationDosage extends BackboneElement {
               json['dose'] as Map<String, dynamic>,
             )
           : null,
-      rateX: json['rateRatio'] != null || json['_rateRatio'] != null
-          ? Ratio.fromJson({
-              'value': json['rateRatio'],
-              '_value': json['_rateRatio'],
-            })
+      rateX: json['rateRatio'] != null
+          ? Ratio.fromJson(
+              json['rateRatio'] as Map<String, dynamic>,
+            )
           : json['rateQuantity'] != null
               ? Quantity.fromJson(
                   json['rateQuantity'] as Map<String, dynamic>,
@@ -904,7 +913,10 @@ class MedicationAdministrationDosage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -914,7 +926,10 @@ class MedicationAdministrationDosage extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (site != null) {
       json['site'] = site!.toJson();
     }

@@ -326,13 +326,22 @@ class PractitionerRole extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -354,7 +363,10 @@ class PractitionerRole extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -396,7 +408,10 @@ class PractitionerRole extends DomainResource {
       json['notAvailable'] = notAvailable!.map((e) => e.toJson()).toList();
     }
 
-    addField('availabilityExceptions', availabilityExceptions);
+    if (availabilityExceptions != null) {
+      addField('availabilityExceptions', availabilityExceptions);
+    }
+
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
@@ -608,7 +623,10 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -626,9 +644,18 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       }
     }
 
-    addField('allDay', allDay);
-    addField('availableStartTime', availableStartTime);
-    addField('availableEndTime', availableEndTime);
+    if (allDay != null) {
+      addField('allDay', allDay);
+    }
+
+    if (availableStartTime != null) {
+      addField('availableStartTime', availableStartTime);
+    }
+
+    if (availableEndTime != null) {
+      addField('availableEndTime', availableEndTime);
+    }
+
     return json;
   }
 
@@ -777,7 +804,10 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

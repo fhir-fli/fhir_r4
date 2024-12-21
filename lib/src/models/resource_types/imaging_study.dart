@@ -404,13 +404,22 @@ class ImagingStudy extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -443,7 +452,10 @@ class ImagingStudy extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('started', started);
+    if (started != null) {
+      addField('started', started);
+    }
+
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
@@ -460,8 +472,14 @@ class ImagingStudy extends DomainResource {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
 
-    addField('numberOfSeries', numberOfSeries);
-    addField('numberOfInstances', numberOfInstances);
+    if (numberOfSeries != null) {
+      addField('numberOfSeries', numberOfSeries);
+    }
+
+    if (numberOfInstances != null) {
+      addField('numberOfInstances', numberOfInstances);
+    }
+
     if (procedureReference != null) {
       json['procedureReference'] = procedureReference!.toJson();
     }
@@ -487,7 +505,10 @@ class ImagingStudy extends DomainResource {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (series != null && series!.isNotEmpty) {
       json['series'] = series!.map((e) => e.toJson()).toList();
     }
@@ -812,7 +833,10 @@ class ImagingStudySeries extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -823,11 +847,20 @@ class ImagingStudySeries extends BackboneElement {
     }
 
     addField('uid', uid);
-    addField('number', number);
+    if (number != null) {
+      addField('number', number);
+    }
+
     json['modality'] = modality.toJson();
 
-    addField('description', description);
-    addField('numberOfInstances', numberOfInstances);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (numberOfInstances != null) {
+      addField('numberOfInstances', numberOfInstances);
+    }
+
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
@@ -844,7 +877,10 @@ class ImagingStudySeries extends BackboneElement {
       json['specimen'] = specimen!.map((e) => e.toJson()).toList();
     }
 
-    addField('started', started);
+    if (started != null) {
+      addField('started', started);
+    }
+
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -1013,7 +1049,10 @@ class ImagingStudyPerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1191,7 +1230,10 @@ class ImagingStudyInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1204,8 +1246,14 @@ class ImagingStudyInstance extends BackboneElement {
     addField('uid', uid);
     json['sopClass'] = sopClass.toJson();
 
-    addField('number', number);
-    addField('title', title);
+    if (number != null) {
+      addField('number', number);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     return json;
   }
 

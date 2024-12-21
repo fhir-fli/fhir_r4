@@ -179,23 +179,20 @@ class Procedure extends DomainResource {
               'value': json['performedDateTime'],
               '_value': json['_performedDateTime'],
             })
-          : json['performedPeriod'] != null || json['_performedPeriod'] != null
-              ? Period.fromJson({
-                  'value': json['performedPeriod'],
-                  '_value': json['_performedPeriod'],
-                })
+          : json['performedPeriod'] != null
+              ? Period.fromJson(
+                  json['performedPeriod'] as Map<String, dynamic>,
+                )
               : json['performedString'] != null ||
                       json['_performedString'] != null
                   ? FhirString.fromJson({
                       'value': json['performedString'],
                       '_value': json['_performedString'],
                     })
-                  : json['performedAge'] != null ||
-                          json['_performedAge'] != null
-                      ? Age.fromJson({
-                          'value': json['performedAge'],
-                          '_value': json['_performedAge'],
-                        })
+                  : json['performedAge'] != null
+                      ? Age.fromJson(
+                          json['performedAge'] as Map<String, dynamic>,
+                        )
                       : json['performedRange'] != null
                           ? Range.fromJson(
                               json['performedRange'] as Map<String, dynamic>,
@@ -528,13 +525,22 @@ class Procedure extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -601,7 +607,10 @@ class Procedure extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('performed${performedX!.fhirType.capitalize()}', performedX);
+    if (performedX != null) {
+      addField('performed${performedX!.fhirType.capitalize()}', performedX);
+    }
+
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -882,7 +891,10 @@ class ProcedurePerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1046,7 +1058,10 @@ class ProcedureFocalDevice extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

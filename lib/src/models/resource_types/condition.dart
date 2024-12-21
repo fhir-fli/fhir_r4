@@ -157,21 +157,18 @@ class Condition extends DomainResource {
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
             })
-          : json['onsetAge'] != null || json['_onsetAge'] != null
-              ? Age.fromJson({
-                  'value': json['onsetAge'],
-                  '_value': json['_onsetAge'],
-                })
-              : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['onsetPeriod'],
-                      '_value': json['_onsetPeriod'],
-                    })
-                  : json['onsetRange'] != null || json['_onsetRange'] != null
-                      ? Range.fromJson({
-                          'value': json['onsetRange'],
-                          '_value': json['_onsetRange'],
-                        })
+          : json['onsetAge'] != null
+              ? Age.fromJson(
+                  json['onsetAge'] as Map<String, dynamic>,
+                )
+              : json['onsetPeriod'] != null
+                  ? Period.fromJson(
+                      json['onsetPeriod'] as Map<String, dynamic>,
+                    )
+                  : json['onsetRange'] != null
+                      ? Range.fromJson(
+                          json['onsetRange'] as Map<String, dynamic>,
+                        )
                       : json['onsetString'] != null ||
                               json['_onsetString'] != null
                           ? FhirString.fromJson({
@@ -185,23 +182,18 @@ class Condition extends DomainResource {
               'value': json['abatementDateTime'],
               '_value': json['_abatementDateTime'],
             })
-          : json['abatementAge'] != null || json['_abatementAge'] != null
-              ? Age.fromJson({
-                  'value': json['abatementAge'],
-                  '_value': json['_abatementAge'],
-                })
-              : json['abatementPeriod'] != null ||
-                      json['_abatementPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['abatementPeriod'],
-                      '_value': json['_abatementPeriod'],
-                    })
-                  : json['abatementRange'] != null ||
-                          json['_abatementRange'] != null
-                      ? Range.fromJson({
-                          'value': json['abatementRange'],
-                          '_value': json['_abatementRange'],
-                        })
+          : json['abatementAge'] != null
+              ? Age.fromJson(
+                  json['abatementAge'] as Map<String, dynamic>,
+                )
+              : json['abatementPeriod'] != null
+                  ? Period.fromJson(
+                      json['abatementPeriod'] as Map<String, dynamic>,
+                    )
+                  : json['abatementRange'] != null
+                      ? Range.fromJson(
+                          json['abatementRange'] as Map<String, dynamic>,
+                        )
                       : json['abatementString'] != null ||
                               json['_abatementString'] != null
                           ? FhirString.fromJson({
@@ -395,13 +387,22 @@ class Condition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -453,9 +454,18 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
-    addField('abatement${abatementX!.fhirType.capitalize()}', abatementX);
-    addField('recordedDate', recordedDate);
+    if (onsetX != null) {
+      addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
+    }
+
+    if (abatementX != null) {
+      addField('abatement${abatementX!.fhirType.capitalize()}', abatementX);
+    }
+
+    if (recordedDate != null) {
+      addField('recordedDate', recordedDate);
+    }
+
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -675,7 +685,10 @@ class ConditionStage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -851,7 +864,10 @@ class ConditionEvidence extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

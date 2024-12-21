@@ -172,17 +172,14 @@ class Observation extends DomainResource {
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
             })
-          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['effectivePeriod'],
-                  '_value': json['_effectivePeriod'],
-                })
-              : json['effectiveTiming'] != null ||
-                      json['_effectiveTiming'] != null
-                  ? Timing.fromJson({
-                      'value': json['effectiveTiming'],
-                      '_value': json['_effectiveTiming'],
-                    })
+          : json['effectivePeriod'] != null
+              ? Period.fromJson(
+                  json['effectivePeriod'] as Map<String, dynamic>,
+                )
+              : json['effectiveTiming'] != null
+                  ? Timing.fromJson(
+                      json['effectiveTiming'] as Map<String, dynamic>,
+                    )
                   : json['effectiveInstant'] != null ||
                           json['_effectiveInstant'] != null
                       ? FhirInstant.fromJson({
@@ -205,17 +202,14 @@ class Observation extends DomainResource {
               )
               .toList()
           : null,
-      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['valueQuantity'],
-              '_value': json['_valueQuantity'],
-            })
-          : json['valueCodeableConcept'] != null ||
-                  json['_valueCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['valueCodeableConcept'],
-                  '_value': json['_valueCodeableConcept'],
-                })
+      valueX: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : json['valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueCodeableConcept'] as Map<String, dynamic>,
+                )
               : json['valueString'] != null || json['_valueString'] != null
                   ? FhirString.fromJson({
                       'value': json['valueString'],
@@ -233,24 +227,20 @@ class Observation extends DomainResource {
                               'value': json['valueInteger'],
                               '_value': json['_valueInteger'],
                             })
-                          : json['valueRange'] != null ||
-                                  json['_valueRange'] != null
-                              ? Range.fromJson({
-                                  'value': json['valueRange'],
-                                  '_value': json['_valueRange'],
-                                })
-                              : json['valueRatio'] != null ||
-                                      json['_valueRatio'] != null
-                                  ? Ratio.fromJson({
-                                      'value': json['valueRatio'],
-                                      '_value': json['_valueRatio'],
-                                    })
-                                  : json['valueSampledData'] != null ||
-                                          json['_valueSampledData'] != null
-                                      ? SampledData.fromJson({
-                                          'value': json['valueSampledData'],
-                                          '_value': json['_valueSampledData'],
-                                        })
+                          : json['valueRange'] != null
+                              ? Range.fromJson(
+                                  json['valueRange'] as Map<String, dynamic>,
+                                )
+                              : json['valueRatio'] != null
+                                  ? Ratio.fromJson(
+                                      json['valueRatio']
+                                          as Map<String, dynamic>,
+                                    )
+                                  : json['valueSampledData'] != null
+                                      ? SampledData.fromJson(
+                                          json['valueSampledData']
+                                              as Map<String, dynamic>,
+                                        )
                                       : json['valueTime'] != null ||
                                               json['_valueTime'] != null
                                           ? FhirTime.fromJson({
@@ -542,13 +532,22 @@ class Observation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -597,8 +596,14 @@ class Observation extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
-    addField('issued', issued);
+    if (effectiveX != null) {
+      addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
+    }
+
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -911,7 +916,10 @@ class ObservationReferenceRange extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -941,7 +949,10 @@ class ObservationReferenceRange extends BackboneElement {
       json['age'] = age!.toJson();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     return json;
   }
 
@@ -1028,17 +1039,14 @@ class ObservationComponent extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['valueQuantity'],
-              '_value': json['_valueQuantity'],
-            })
-          : json['valueCodeableConcept'] != null ||
-                  json['_valueCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['valueCodeableConcept'],
-                  '_value': json['_valueCodeableConcept'],
-                })
+      valueX: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : json['valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueCodeableConcept'] as Map<String, dynamic>,
+                )
               : json['valueString'] != null || json['_valueString'] != null
                   ? FhirString.fromJson({
                       'value': json['valueString'],
@@ -1056,24 +1064,20 @@ class ObservationComponent extends BackboneElement {
                               'value': json['valueInteger'],
                               '_value': json['_valueInteger'],
                             })
-                          : json['valueRange'] != null ||
-                                  json['_valueRange'] != null
-                              ? Range.fromJson({
-                                  'value': json['valueRange'],
-                                  '_value': json['_valueRange'],
-                                })
-                              : json['valueRatio'] != null ||
-                                      json['_valueRatio'] != null
-                                  ? Ratio.fromJson({
-                                      'value': json['valueRatio'],
-                                      '_value': json['_valueRatio'],
-                                    })
-                                  : json['valueSampledData'] != null ||
-                                          json['_valueSampledData'] != null
-                                      ? SampledData.fromJson({
-                                          'value': json['valueSampledData'],
-                                          '_value': json['_valueSampledData'],
-                                        })
+                          : json['valueRange'] != null
+                              ? Range.fromJson(
+                                  json['valueRange'] as Map<String, dynamic>,
+                                )
+                              : json['valueRatio'] != null
+                                  ? Ratio.fromJson(
+                                      json['valueRatio']
+                                          as Map<String, dynamic>,
+                                    )
+                                  : json['valueSampledData'] != null
+                                      ? SampledData.fromJson(
+                                          json['valueSampledData']
+                                              as Map<String, dynamic>,
+                                        )
                                       : json['valueTime'] != null ||
                                               json['_valueTime'] != null
                                           ? FhirTime.fromJson({
@@ -1199,7 +1203,10 @@ class ObservationComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

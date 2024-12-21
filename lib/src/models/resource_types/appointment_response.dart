@@ -236,13 +236,22 @@ class AppointmentResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -266,8 +275,14 @@ class AppointmentResponse extends DomainResource {
 
     json['appointment'] = appointment.toJson();
 
-    addField('start', start);
-    addField('end', end);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
     if (participantType != null && participantType!.isNotEmpty) {
       json['participantType'] =
           participantType!.map((e) => e.toJson()).toList();
@@ -278,7 +293,10 @@ class AppointmentResponse extends DomainResource {
     }
 
     addField('participantStatus', participantStatus);
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 

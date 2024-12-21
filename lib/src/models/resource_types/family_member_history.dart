@@ -149,11 +149,10 @@ class FamilyMemberHistory extends DomainResource {
               json['sex'] as Map<String, dynamic>,
             )
           : null,
-      bornX: json['bornPeriod'] != null || json['_bornPeriod'] != null
-          ? Period.fromJson({
-              'value': json['bornPeriod'],
-              '_value': json['_bornPeriod'],
-            })
+      bornX: json['bornPeriod'] != null
+          ? Period.fromJson(
+              json['bornPeriod'] as Map<String, dynamic>,
+            )
           : json['bornDate'] != null || json['_bornDate'] != null
               ? FhirDate.fromJson({
                   'value': json['bornDate'],
@@ -165,16 +164,14 @@ class FamilyMemberHistory extends DomainResource {
                       '_value': json['_bornString'],
                     })
                   : null,
-      ageX: json['ageAge'] != null || json['_ageAge'] != null
-          ? Age.fromJson({
-              'value': json['ageAge'],
-              '_value': json['_ageAge'],
-            })
-          : json['ageRange'] != null || json['_ageRange'] != null
-              ? Range.fromJson({
-                  'value': json['ageRange'],
-                  '_value': json['_ageRange'],
-                })
+      ageX: json['ageAge'] != null
+          ? Age.fromJson(
+              json['ageAge'] as Map<String, dynamic>,
+            )
+          : json['ageRange'] != null
+              ? Range.fromJson(
+                  json['ageRange'] as Map<String, dynamic>,
+                )
               : json['ageString'] != null || json['_ageString'] != null
                   ? FhirString.fromJson({
                       'value': json['ageString'],
@@ -188,35 +185,33 @@ class FamilyMemberHistory extends DomainResource {
                   '_value': json['_estimatedAge'],
                 })
               : null,
-      deceasedX: json['deceasedBoolean'] != null ||
-              json['_deceasedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['deceasedBoolean'],
-              '_value': json['_deceasedBoolean'],
-            })
-          : json['deceasedAge'] != null || json['_deceasedAge'] != null
-              ? Age.fromJson({
-                  'value': json['deceasedAge'],
-                  '_value': json['_deceasedAge'],
+      deceasedX:
+          json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null
+              ? FhirBoolean.fromJson({
+                  'value': json['deceasedBoolean'],
+                  '_value': json['_deceasedBoolean'],
                 })
-              : json['deceasedRange'] != null || json['_deceasedRange'] != null
-                  ? Range.fromJson({
-                      'value': json['deceasedRange'],
-                      '_value': json['_deceasedRange'],
-                    })
-                  : json['deceasedDate'] != null ||
-                          json['_deceasedDate'] != null
-                      ? FhirDate.fromJson({
-                          'value': json['deceasedDate'],
-                          '_value': json['_deceasedDate'],
-                        })
-                      : json['deceasedString'] != null ||
-                              json['_deceasedString'] != null
-                          ? FhirString.fromJson({
-                              'value': json['deceasedString'],
-                              '_value': json['_deceasedString'],
+              : json['deceasedAge'] != null
+                  ? Age.fromJson(
+                      json['deceasedAge'] as Map<String, dynamic>,
+                    )
+                  : json['deceasedRange'] != null
+                      ? Range.fromJson(
+                          json['deceasedRange'] as Map<String, dynamic>,
+                        )
+                      : json['deceasedDate'] != null ||
+                              json['_deceasedDate'] != null
+                          ? FhirDate.fromJson({
+                              'value': json['deceasedDate'],
+                              '_value': json['_deceasedDate'],
                             })
-                          : null,
+                          : json['deceasedString'] != null ||
+                                  json['_deceasedString'] != null
+                              ? FhirString.fromJson({
+                                  'value': json['deceasedString'],
+                                  '_value': json['_deceasedString'],
+                                })
+                              : null,
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -401,13 +396,22 @@ class FamilyMemberHistory extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -454,8 +458,14 @@ class FamilyMemberHistory extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('date', date);
-    addField('name', name);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
     json['relationship'] = relationship.toJson();
 
     if (sex != null) {
@@ -470,8 +480,14 @@ class FamilyMemberHistory extends DomainResource {
       json['age${ageX!.fhirType.capitalize()}'] = ageX!.toJson();
     }
 
-    addField('estimatedAge', estimatedAge);
-    addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
+    if (estimatedAge != null) {
+      addField('estimatedAge', estimatedAge);
+    }
+
+    if (deceasedX != null) {
+      addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
+    }
+
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
@@ -621,21 +637,18 @@ class FamilyMemberHistoryCondition extends BackboneElement {
               '_value': json['_contributedToDeath'],
             })
           : null,
-      onsetX: json['onsetAge'] != null || json['_onsetAge'] != null
-          ? Age.fromJson({
-              'value': json['onsetAge'],
-              '_value': json['_onsetAge'],
-            })
-          : json['onsetRange'] != null || json['_onsetRange'] != null
-              ? Range.fromJson({
-                  'value': json['onsetRange'],
-                  '_value': json['_onsetRange'],
-                })
-              : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['onsetPeriod'],
-                      '_value': json['_onsetPeriod'],
-                    })
+      onsetX: json['onsetAge'] != null
+          ? Age.fromJson(
+              json['onsetAge'] as Map<String, dynamic>,
+            )
+          : json['onsetRange'] != null
+              ? Range.fromJson(
+                  json['onsetRange'] as Map<String, dynamic>,
+                )
+              : json['onsetPeriod'] != null
+                  ? Period.fromJson(
+                      json['onsetPeriod'] as Map<String, dynamic>,
+                    )
                   : json['onsetString'] != null || json['_onsetString'] != null
                       ? FhirString.fromJson({
                           'value': json['onsetString'],
@@ -735,7 +748,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -751,7 +767,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       json['outcome'] = outcome!.toJson();
     }
 
-    addField('contributedToDeath', contributedToDeath);
+    if (contributedToDeath != null) {
+      addField('contributedToDeath', contributedToDeath);
+    }
+
     if (onsetX != null) {
       json['onset${onsetX!.fhirType.capitalize()}'] = onsetX!.toJson();
     }

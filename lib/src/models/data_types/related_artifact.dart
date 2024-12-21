@@ -178,21 +178,39 @@ class RelatedArtifact extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     addField('type', type);
-    addField('label', label);
-    addField('display', display);
-    addField('citation', citation);
-    addField('url', url);
+    if (label != null) {
+      addField('label', label);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
+    if (citation != null) {
+      addField('citation', citation);
+    }
+
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (document != null) {
       json['document'] = document!.toJson();
     }
 
-    addField('resource', resource);
+    if (resource != null) {
+      addField('resource', resource);
+    }
+
     return json;
   }
 

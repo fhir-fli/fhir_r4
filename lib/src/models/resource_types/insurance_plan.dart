@@ -321,13 +321,22 @@ class InsurancePlan extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -349,12 +358,18 @@ class InsurancePlan extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (alias != null && alias!.isNotEmpty) {
       final fieldJson0 = alias!.map((e) => e.toJson()).toList();
       json['alias'] = fieldJson0.map((e) => e['value']).toList();
@@ -600,7 +615,10 @@ class InsurancePlanContact extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -789,7 +807,10 @@ class InsurancePlanCoverage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -966,7 +987,10 @@ class InsurancePlanBenefit extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -978,7 +1002,10 @@ class InsurancePlanBenefit extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('requirement', requirement);
+    if (requirement != null) {
+      addField('requirement', requirement);
+    }
+
     if (limit != null && limit!.isNotEmpty) {
       json['limit'] = limit!.map((e) => e.toJson()).toList();
     }
@@ -1128,7 +1155,10 @@ class InsurancePlanLimit extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1351,7 +1381,10 @@ class InsurancePlanPlan extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1558,7 +1591,10 @@ class InsurancePlanGeneralCost extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1572,12 +1608,18 @@ class InsurancePlanGeneralCost extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('groupSize', groupSize);
+    if (groupSize != null) {
+      addField('groupSize', groupSize);
+    }
+
     if (cost != null) {
       json['cost'] = cost!.toJson();
     }
 
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 
@@ -1727,7 +1769,10 @@ class InsurancePlanSpecificCost extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1888,7 +1933,10 @@ class InsurancePlanBenefit1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2072,7 +2120,10 @@ class InsurancePlanCost extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -290,13 +290,22 @@ class ObservationDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -333,12 +342,18 @@ class ObservationDefinition extends DomainResource {
       }
     }
 
-    addField('multipleResultsAllowed', multipleResultsAllowed);
+    if (multipleResultsAllowed != null) {
+      addField('multipleResultsAllowed', multipleResultsAllowed);
+    }
+
     if (method != null) {
       json['method'] = method!.toJson();
     }
 
-    addField('preferredReportName', preferredReportName);
+    if (preferredReportName != null) {
+      addField('preferredReportName', preferredReportName);
+    }
+
     if (quantitativeDetails != null) {
       json['quantitativeDetails'] = quantitativeDetails!.toJson();
     }
@@ -569,7 +584,10 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -587,8 +605,14 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       json['unit'] = unit!.toJson();
     }
 
-    addField('conversionFactor', conversionFactor);
-    addField('decimalPrecision', decimalPrecision);
+    if (conversionFactor != null) {
+      addField('conversionFactor', conversionFactor);
+    }
+
+    if (decimalPrecision != null) {
+      addField('decimalPrecision', decimalPrecision);
+    }
+
     return json;
   }
 
@@ -810,7 +834,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -820,7 +847,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('category', category);
+    if (category != null) {
+      addField('category', category);
+    }
+
     if (range != null) {
       json['range'] = range!.toJson();
     }
@@ -833,7 +863,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       json['appliesTo'] = appliesTo!.map((e) => e.toJson()).toList();
     }
 
-    addField('gender', gender);
+    if (gender != null) {
+      addField('gender', gender);
+    }
+
     if (age != null) {
       json['age'] = age!.toJson();
     }
@@ -842,7 +875,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       json['gestationalAge'] = gestationalAge!.toJson();
     }
 
-    addField('condition', condition);
+    if (condition != null) {
+      addField('condition', condition);
+    }
+
     return json;
   }
 

@@ -535,13 +535,22 @@ class Citation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -559,23 +568,47 @@ class Citation extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -584,10 +617,22 @@ class Citation extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -841,7 +886,10 @@ class CitationSummary extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1002,7 +1050,10 @@ class CitationClassification extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1169,7 +1220,10 @@ class CitationStatusDate extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1181,7 +1235,10 @@ class CitationStatusDate extends BackboneElement {
 
     json['activity'] = activity.toJson();
 
-    addField('actual', actual);
+    if (actual != null) {
+      addField('actual', actual);
+    }
+
     json['period'] = period.toJson();
 
     return json;
@@ -1272,18 +1329,14 @@ class CitationRelatesTo extends BackboneElement {
               'value': json['targetUri'],
               '_value': json['_targetUri'],
             })
-          : json['targetIdentifier'] != null ||
-                  json['_targetIdentifier'] != null
-              ? Identifier.fromJson({
-                  'value': json['targetIdentifier'],
-                  '_value': json['_targetIdentifier'],
-                })
-              : json['targetReference'] != null ||
-                      json['_targetReference'] != null
-                  ? Reference.fromJson({
-                      'value': json['targetReference'],
-                      '_value': json['_targetReference'],
-                    })
+          : json['targetIdentifier'] != null
+              ? Identifier.fromJson(
+                  json['targetIdentifier'] as Map<String, dynamic>,
+                )
+              : json['targetReference'] != null
+                  ? Reference.fromJson(
+                      json['targetReference'] as Map<String, dynamic>,
+                    )
                   : Attachment.fromJson(
                       json['targetAttachment'] as Map<String, dynamic>,
                     ),
@@ -1355,7 +1408,10 @@ class CitationRelatesTo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1698,7 +1754,10 @@ class CitationCitedArtifact extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1717,7 +1776,10 @@ class CitationCitedArtifact extends BackboneElement {
           relatedIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('dateAccessed', dateAccessed);
+    if (dateAccessed != null) {
+      addField('dateAccessed', dateAccessed);
+    }
+
     if (version != null) {
       json['version'] = version!.toJson();
     }
@@ -1934,7 +1996,10 @@ class CitationVersion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2098,7 +2163,10 @@ class CitationStatusDate1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2110,7 +2178,10 @@ class CitationStatusDate1 extends BackboneElement {
 
     json['activity'] = activity.toJson();
 
-    addField('actual', actual);
+    if (actual != null) {
+      addField('actual', actual);
+    }
+
     json['period'] = period.toJson();
 
     return json;
@@ -2270,7 +2341,10 @@ class CitationTitle extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2453,7 +2527,10 @@ class CitationAbstract extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2472,7 +2549,10 @@ class CitationAbstract extends BackboneElement {
     }
 
     addField('text', text);
-    addField('copyright', copyright);
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     return json;
   }
 
@@ -2630,7 +2710,10 @@ class CitationPart extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2644,7 +2727,10 @@ class CitationPart extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('value', value);
+    if (value != null) {
+      addField('value', value);
+    }
+
     if (baseCitation != null) {
       json['baseCitation'] = baseCitation!.toJson();
     }
@@ -2737,18 +2823,14 @@ class CitationRelatesTo1 extends BackboneElement {
               'value': json['targetUri'],
               '_value': json['_targetUri'],
             })
-          : json['targetIdentifier'] != null ||
-                  json['_targetIdentifier'] != null
-              ? Identifier.fromJson({
-                  'value': json['targetIdentifier'],
-                  '_value': json['_targetIdentifier'],
-                })
-              : json['targetReference'] != null ||
-                      json['_targetReference'] != null
-                  ? Reference.fromJson({
-                      'value': json['targetReference'],
-                      '_value': json['_targetReference'],
-                    })
+          : json['targetIdentifier'] != null
+              ? Identifier.fromJson(
+                  json['targetIdentifier'] as Map<String, dynamic>,
+                )
+              : json['targetReference'] != null
+                  ? Reference.fromJson(
+                      json['targetReference'] as Map<String, dynamic>,
+                    )
                   : Attachment.fromJson(
                       json['targetAttachment'] as Map<String, dynamic>,
                     ),
@@ -2820,7 +2902,10 @@ class CitationRelatesTo1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3089,7 +3174,10 @@ class CitationPublicationForm extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3107,18 +3195,42 @@ class CitationPublicationForm extends BackboneElement {
       json['periodicRelease'] = periodicRelease!.toJson();
     }
 
-    addField('articleDate', articleDate);
-    addField('lastRevisionDate', lastRevisionDate);
+    if (articleDate != null) {
+      addField('articleDate', articleDate);
+    }
+
+    if (lastRevisionDate != null) {
+      addField('lastRevisionDate', lastRevisionDate);
+    }
+
     if (language != null && language!.isNotEmpty) {
       json['language'] = language!.map((e) => e.toJson()).toList();
     }
 
-    addField('accessionNumber', accessionNumber);
-    addField('pageString', pageString);
-    addField('firstPage', firstPage);
-    addField('lastPage', lastPage);
-    addField('pageCount', pageCount);
-    addField('copyright', copyright);
+    if (accessionNumber != null) {
+      addField('accessionNumber', accessionNumber);
+    }
+
+    if (pageString != null) {
+      addField('pageString', pageString);
+    }
+
+    if (firstPage != null) {
+      addField('firstPage', firstPage);
+    }
+
+    if (lastPage != null) {
+      addField('lastPage', lastPage);
+    }
+
+    if (pageCount != null) {
+      addField('pageCount', pageCount);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     return json;
   }
 
@@ -3317,7 +3429,10 @@ class CitationPublishedIn extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3335,12 +3450,18 @@ class CitationPublishedIn extends BackboneElement {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (publisher != null) {
       json['publisher'] = publisher!.toJson();
     }
 
-    addField('publisherLocation', publisherLocation);
+    if (publisherLocation != null) {
+      addField('publisherLocation', publisherLocation);
+    }
+
     return json;
   }
 
@@ -3512,7 +3633,10 @@ class CitationPeriodicRelease extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3526,8 +3650,14 @@ class CitationPeriodicRelease extends BackboneElement {
       json['citedMedium'] = citedMedium!.toJson();
     }
 
-    addField('volume', volume);
-    addField('issue', issue);
+    if (volume != null) {
+      addField('volume', volume);
+    }
+
+    if (issue != null) {
+      addField('issue', issue);
+    }
+
     if (dateOfPublication != null) {
       json['dateOfPublication'] = dateOfPublication!.toJson();
     }
@@ -3725,7 +3855,10 @@ class CitationDateOfPublication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3735,12 +3868,30 @@ class CitationDateOfPublication extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('date', date);
-    addField('year', year);
-    addField('month', month);
-    addField('day', day);
-    addField('season', season);
-    addField('text', text);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (year != null) {
+      addField('year', year);
+    }
+
+    if (month != null) {
+      addField('month', month);
+    }
+
+    if (day != null) {
+      addField('day', day);
+    }
+
+    if (season != null) {
+      addField('season', season);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     return json;
   }
 
@@ -3892,7 +4043,10 @@ class CitationWebLocation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3906,7 +4060,10 @@ class CitationWebLocation extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     return json;
   }
 
@@ -4063,7 +4220,10 @@ class CitationClassification1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4263,7 +4423,10 @@ class CitationWhoClassified extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4285,8 +4448,14 @@ class CitationWhoClassified extends BackboneElement {
       json['publisher'] = publisher!.toJson();
     }
 
-    addField('classifierCopyright', classifierCopyright);
-    addField('freeToShare', freeToShare);
+    if (classifierCopyright != null) {
+      addField('classifierCopyright', classifierCopyright);
+    }
+
+    if (freeToShare != null) {
+      addField('freeToShare', freeToShare);
+    }
+
     return json;
   }
 
@@ -4456,7 +4625,10 @@ class CitationContributorship extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4466,7 +4638,10 @@ class CitationContributorship extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('complete', complete);
+    if (complete != null) {
+      addField('complete', complete);
+    }
+
     if (entry != null && entry!.isNotEmpty) {
       json['entry'] = entry!.map((e) => e.toJson()).toList();
     }
@@ -4751,7 +4926,10 @@ class CitationEntry extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4765,8 +4943,14 @@ class CitationEntry extends BackboneElement {
       json['name'] = name!.toJson();
     }
 
-    addField('initials', initials);
-    addField('collectiveName', collectiveName);
+    if (initials != null) {
+      addField('initials', initials);
+    }
+
+    if (collectiveName != null) {
+      addField('collectiveName', collectiveName);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
@@ -4798,8 +4982,14 @@ class CitationEntry extends BackboneElement {
           contributionInstance!.map((e) => e.toJson()).toList();
     }
 
-    addField('correspondingContact', correspondingContact);
-    addField('listOrder', listOrder);
+    if (correspondingContact != null) {
+      addField('correspondingContact', correspondingContact);
+    }
+
+    if (listOrder != null) {
+      addField('listOrder', listOrder);
+    }
+
     return json;
   }
 
@@ -4978,7 +5168,10 @@ class CitationAffiliationInfo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4988,8 +5181,14 @@ class CitationAffiliationInfo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('affiliation', affiliation);
-    addField('role', role);
+    if (affiliation != null) {
+      addField('affiliation', affiliation);
+    }
+
+    if (role != null) {
+      addField('role', role);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
@@ -5137,7 +5336,10 @@ class CitationContributionInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5149,7 +5351,10 @@ class CitationContributionInstance extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('time', time);
+    if (time != null) {
+      addField('time', time);
+    }
+
     return json;
   }
 
@@ -5314,7 +5519,10 @@ class CitationSummary1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

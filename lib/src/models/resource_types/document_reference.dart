@@ -346,13 +346,22 @@ class DocumentReference extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -379,7 +388,10 @@ class DocumentReference extends DomainResource {
     }
 
     addField('status', status);
-    addField('docStatus', docStatus);
+    if (docStatus != null) {
+      addField('docStatus', docStatus);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -392,7 +404,10 @@ class DocumentReference extends DomainResource {
       json['subject'] = subject!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (author != null && author!.isNotEmpty) {
       json['author'] = author!.map((e) => e.toJson()).toList();
     }
@@ -409,7 +424,10 @@ class DocumentReference extends DomainResource {
       json['relatesTo'] = relatesTo!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
@@ -600,7 +618,10 @@ class DocumentReferenceRelatesTo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -757,7 +778,10 @@ class DocumentReferenceContent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -985,7 +1009,10 @@ class DocumentReferenceContext extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

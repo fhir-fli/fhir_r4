@@ -417,13 +417,22 @@ class CapabilityStatement extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -441,19 +450,40 @@ class CapabilityStatement extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     addField('date', date);
-    addField('publisher', publisher);
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -462,8 +492,14 @@ class CapabilityStatement extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     addField('kind', kind);
     if (instantiates != null && instantiates!.isNotEmpty) {
       final fieldJson0 = instantiates!.map((e) => e.toJson()).toList();
@@ -740,7 +776,10 @@ class CapabilityStatementSoftware extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -751,8 +790,14 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
 
     addField('name', name);
-    addField('version', version);
-    addField('releaseDate', releaseDate);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (releaseDate != null) {
+      addField('releaseDate', releaseDate);
+    }
+
     return json;
   }
 
@@ -912,7 +957,10 @@ class CapabilityStatementImplementation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -923,7 +971,10 @@ class CapabilityStatementImplementation extends BackboneElement {
     }
 
     addField('description', description);
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (custodian != null) {
       json['custodian'] = custodian!.toJson();
     }
@@ -1159,7 +1210,10 @@ class CapabilityStatementRest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1170,7 +1224,10 @@ class CapabilityStatementRest extends BackboneElement {
     }
 
     addField('mode', mode);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     if (security != null) {
       json['security'] = security!.toJson();
     }
@@ -1371,7 +1428,10 @@ class CapabilityStatementSecurity extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1381,12 +1441,18 @@ class CapabilityStatementSecurity extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('cors', cors);
+    if (cors != null) {
+      addField('cors', cors);
+    }
+
     if (service != null && service!.isNotEmpty) {
       json['service'] = service!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 
@@ -1733,7 +1799,10 @@ class CapabilityStatementResource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1744,7 +1813,10 @@ class CapabilityStatementResource extends BackboneElement {
     }
 
     addField('type', type);
-    addField('profile', profile);
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     if (supportedProfile != null && supportedProfile!.isNotEmpty) {
       final fieldJson0 = supportedProfile!.map((e) => e.toJson()).toList();
       json['supportedProfile'] = fieldJson0.map((e) => e['value']).toList();
@@ -1753,18 +1825,42 @@ class CapabilityStatementResource extends BackboneElement {
       }
     }
 
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     if (interaction != null && interaction!.isNotEmpty) {
       json['interaction'] = interaction!.map((e) => e.toJson()).toList();
     }
 
-    addField('versioning', versioning);
-    addField('readHistory', readHistory);
-    addField('updateCreate', updateCreate);
-    addField('conditionalCreate', conditionalCreate);
-    addField('conditionalRead', conditionalRead);
-    addField('conditionalUpdate', conditionalUpdate);
-    addField('conditionalDelete', conditionalDelete);
+    if (versioning != null) {
+      addField('versioning', versioning);
+    }
+
+    if (readHistory != null) {
+      addField('readHistory', readHistory);
+    }
+
+    if (updateCreate != null) {
+      addField('updateCreate', updateCreate);
+    }
+
+    if (conditionalCreate != null) {
+      addField('conditionalCreate', conditionalCreate);
+    }
+
+    if (conditionalRead != null) {
+      addField('conditionalRead', conditionalRead);
+    }
+
+    if (conditionalUpdate != null) {
+      addField('conditionalUpdate', conditionalUpdate);
+    }
+
+    if (conditionalDelete != null) {
+      addField('conditionalDelete', conditionalDelete);
+    }
+
     if (referencePolicy != null && referencePolicy!.isNotEmpty) {
       final fieldJson1 = referencePolicy!.map((e) => e.toJson()).toList();
       json['referencePolicy'] = fieldJson1.map((e) => e['value']).toList();
@@ -1972,7 +2068,10 @@ class CapabilityStatementInteraction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1983,7 +2082,10 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
 
     addField('code', code);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -2157,7 +2259,10 @@ class CapabilityStatementSearchParam extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2168,9 +2273,15 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
 
     addField('name', name);
-    addField('definition', definition);
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
     addField('type', type);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -2342,7 +2453,10 @@ class CapabilityStatementOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2354,7 +2468,10 @@ class CapabilityStatementOperation extends BackboneElement {
 
     addField('name', name);
     addField('definition', definition);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -2502,7 +2619,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2513,7 +2633,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     }
 
     addField('code', code);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -2695,7 +2818,10 @@ class CapabilityStatementMessaging extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2709,8 +2835,14 @@ class CapabilityStatementMessaging extends BackboneElement {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
 
-    addField('reliableCache', reliableCache);
-    addField('documentation', documentation);
+    if (reliableCache != null) {
+      addField('reliableCache', reliableCache);
+    }
+
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     if (supportedMessage != null && supportedMessage!.isNotEmpty) {
       json['supportedMessage'] =
           supportedMessage!.map((e) => e.toJson()).toList();
@@ -2862,7 +2994,10 @@ class CapabilityStatementEndpoint extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3018,7 +3153,10 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3186,7 +3324,10 @@ class CapabilityStatementDocument extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3197,7 +3338,10 @@ class CapabilityStatementDocument extends BackboneElement {
     }
 
     addField('mode', mode);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     addField('profile', profile);
     return json;
   }

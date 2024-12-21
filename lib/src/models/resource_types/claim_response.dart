@@ -454,13 +454,22 @@ class ClaimResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -504,8 +513,14 @@ class ClaimResponse extends DomainResource {
     }
 
     addField('outcome', outcome);
-    addField('disposition', disposition);
-    addField('preAuthRef', preAuthRef);
+    if (disposition != null) {
+      addField('disposition', disposition);
+    }
+
+    if (preAuthRef != null) {
+      addField('preAuthRef', preAuthRef);
+    }
+
     if (preAuthPeriod != null) {
       json['preAuthPeriod'] = preAuthPeriod!.toJson();
     }
@@ -797,7 +812,10 @@ class ClaimResponseItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -998,7 +1016,10 @@ class ClaimResponseAdjudication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1018,7 +1039,10 @@ class ClaimResponseAdjudication extends BackboneElement {
       json['amount'] = amount!.toJson();
     }
 
-    addField('value', value);
+    if (value != null) {
+      addField('value', value);
+    }
+
     return json;
   }
 
@@ -1194,7 +1218,10 @@ class ClaimResponseDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1381,7 +1408,10 @@ class ClaimResponseSubDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1546,17 +1576,14 @@ class ClaimResponseAddItem extends BackboneElement {
                   json['servicedPeriod'] as Map<String, dynamic>,
                 )
               : null,
-      locationX: json['locationCodeableConcept'] != null ||
-              json['_locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['locationCodeableConcept'],
-              '_value': json['_locationCodeableConcept'],
-            })
-          : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? Address.fromJson({
-                  'value': json['locationAddress'],
-                  '_value': json['_locationAddress'],
-                })
+      locationX: json['locationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['locationCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['locationAddress'] != null
+              ? Address.fromJson(
+                  json['locationAddress'] as Map<String, dynamic>,
+                )
               : json['locationReference'] != null
                   ? Reference.fromJson(
                       json['locationReference'] as Map<String, dynamic>,
@@ -1763,7 +1790,10 @@ class ClaimResponseAddItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1812,7 +1842,10 @@ class ClaimResponseAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    if (servicedX != null) {
+      addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
+    }
+
     if (locationX != null) {
       json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
@@ -1825,7 +1858,10 @@ class ClaimResponseAddItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -2119,7 +2155,10 @@ class ClaimResponseDetail1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2143,7 +2182,10 @@ class ClaimResponseDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -2397,7 +2439,10 @@ class ClaimResponseSubDetail1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2421,7 +2466,10 @@ class ClaimResponseSubDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -2592,7 +2640,10 @@ class ClaimResponseTotal extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2788,7 +2839,10 @@ class ClaimResponsePayment extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2808,7 +2862,10 @@ class ClaimResponsePayment extends BackboneElement {
       json['adjustmentReason'] = adjustmentReason!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     json['amount'] = amount.toJson();
 
     if (identifier != null) {
@@ -2987,7 +3044,10 @@ class ClaimResponseProcessNote extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2997,8 +3057,14 @@ class ClaimResponseProcessNote extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('number', number);
-    addField('type', type);
+    if (number != null) {
+      addField('number', number);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
     addField('text', text);
     if (language != null) {
       json['language'] = language!.toJson();
@@ -3186,7 +3252,10 @@ class ClaimResponseInsurance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3200,7 +3269,10 @@ class ClaimResponseInsurance extends BackboneElement {
     addField('focal', focal);
     json['coverage'] = coverage.toJson();
 
-    addField('businessArrangement', businessArrangement);
+    if (businessArrangement != null) {
+      addField('businessArrangement', businessArrangement);
+    }
+
     if (claimResponse != null) {
       json['claimResponse'] = claimResponse!.toJson();
     }
@@ -3384,7 +3456,10 @@ class ClaimResponseError extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3394,9 +3469,18 @@ class ClaimResponseError extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('itemSequence', itemSequence);
-    addField('detailSequence', detailSequence);
-    addField('subDetailSequence', subDetailSequence);
+    if (itemSequence != null) {
+      addField('itemSequence', itemSequence);
+    }
+
+    if (detailSequence != null) {
+      addField('detailSequence', detailSequence);
+    }
+
+    if (subDetailSequence != null) {
+      addField('subDetailSequence', subDetailSequence);
+    }
+
     json['code'] = code.toJson();
 
     return json;

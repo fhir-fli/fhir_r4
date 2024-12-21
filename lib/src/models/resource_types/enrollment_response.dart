@@ -227,13 +227,22 @@ class EnrollmentResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -255,14 +264,26 @@ class EnrollmentResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (request != null) {
       json['request'] = request!.toJson();
     }
 
-    addField('outcome', outcome);
-    addField('disposition', disposition);
-    addField('created', created);
+    if (outcome != null) {
+      addField('outcome', outcome);
+    }
+
+    if (disposition != null) {
+      addField('disposition', disposition);
+    }
+
+    if (created != null) {
+      addField('created', created);
+    }
+
     if (organization != null) {
       json['organization'] = organization!.toJson();
     }

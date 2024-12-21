@@ -169,18 +169,14 @@ class PlanDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectX: json['subjectCodeableConcept'] != null ||
-              json['_subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['subjectCodeableConcept'],
-              '_value': json['_subjectCodeableConcept'],
-            })
-          : json['subjectReference'] != null ||
-                  json['_subjectReference'] != null
-              ? Reference.fromJson({
-                  'value': json['subjectReference'],
-                  '_value': json['_subjectReference'],
-                })
+      subjectX: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['subjectReference'] != null
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
               : json['subjectSubjectType'] != null
                   ? SubjectType.fromJson(
                       json['subjectSubjectType'] as Map<String, dynamic>,
@@ -523,13 +519,22 @@ class PlanDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -547,32 +552,59 @@ class PlanDefinition extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('subtitle', subtitle);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (subtitle != null) {
+      addField('subtitle', subtitle);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     if (subjectX != null) {
       json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
-    addField('date', date);
-    addField('publisher', publisher);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -581,11 +613,26 @@ class PlanDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('usage', usage);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (usage != null) {
+      addField('usage', usage);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -912,7 +959,10 @@ class PlanDefinitionGoal extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1032,16 +1082,14 @@ class PlanDefinitionTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailX: json['detailQuantity'] != null || json['_detailQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['detailQuantity'],
-              '_value': json['_detailQuantity'],
-            })
-          : json['detailRange'] != null || json['_detailRange'] != null
-              ? Range.fromJson({
-                  'value': json['detailRange'],
-                  '_value': json['_detailRange'],
-                })
+      detailX: json['detailQuantity'] != null
+          ? Quantity.fromJson(
+              json['detailQuantity'] as Map<String, dynamic>,
+            )
+          : json['detailRange'] != null
+              ? Range.fromJson(
+                  json['detailRange'] as Map<String, dynamic>,
+                )
               : json['detailCodeableConcept'] != null
                   ? CodeableConcept.fromJson(
                       json['detailCodeableConcept'] as Map<String, dynamic>,
@@ -1128,7 +1176,10 @@ class PlanDefinitionTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1312,18 +1363,14 @@ class PlanDefinitionAction extends BackboneElement {
         json['_goalId'] as List<dynamic>?,
         fromJson: FhirId.fromJson,
       ),
-      subjectX: json['subjectCodeableConcept'] != null ||
-              json['_subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['subjectCodeableConcept'],
-              '_value': json['_subjectCodeableConcept'],
-            })
-          : json['subjectReference'] != null ||
-                  json['_subjectReference'] != null
-              ? Reference.fromJson({
-                  'value': json['subjectReference'],
-                  '_value': json['_subjectReference'],
-                })
+      subjectX: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['subjectReference'] != null
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
               : json['subjectSubjectType'] != null
                   ? SubjectType.fromJson(
                       json['subjectSubjectType'] as Map<String, dynamic>,
@@ -1379,28 +1426,22 @@ class PlanDefinitionAction extends BackboneElement {
               'value': json['timingDateTime'],
               '_value': json['_timingDateTime'],
             })
-          : json['timingAge'] != null || json['_timingAge'] != null
-              ? Age.fromJson({
-                  'value': json['timingAge'],
-                  '_value': json['_timingAge'],
-                })
-              : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['timingPeriod'],
-                      '_value': json['_timingPeriod'],
-                    })
-                  : json['timingDuration'] != null ||
-                          json['_timingDuration'] != null
-                      ? FhirDuration.fromJson({
-                          'value': json['timingDuration'],
-                          '_value': json['_timingDuration'],
-                        })
-                      : json['timingRange'] != null ||
-                              json['_timingRange'] != null
-                          ? Range.fromJson({
-                              'value': json['timingRange'],
-                              '_value': json['_timingRange'],
-                            })
+          : json['timingAge'] != null
+              ? Age.fromJson(
+                  json['timingAge'] as Map<String, dynamic>,
+                )
+              : json['timingPeriod'] != null
+                  ? Period.fromJson(
+                      json['timingPeriod'] as Map<String, dynamic>,
+                    )
+                  : json['timingDuration'] != null
+                      ? FhirDuration.fromJson(
+                          json['timingDuration'] as Map<String, dynamic>,
+                        )
+                      : json['timingRange'] != null
+                          ? Range.fromJson(
+                              json['timingRange'] as Map<String, dynamic>,
+                            )
                           : json['timingTiming'] != null
                               ? Timing.fromJson(
                                   json['timingTiming'] as Map<String, dynamic>,
@@ -1690,7 +1731,10 @@ class PlanDefinitionAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1700,11 +1744,26 @@ class PlanDefinitionAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('prefix', prefix);
-    addField('title', title);
-    addField('description', description);
-    addField('textEquivalent', textEquivalent);
-    addField('priority', priority);
+    if (prefix != null) {
+      addField('prefix', prefix);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (textEquivalent != null) {
+      addField('textEquivalent', textEquivalent);
+    }
+
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -1749,7 +1808,10 @@ class PlanDefinitionAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    if (timingX != null) {
+      addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    }
+
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -1758,13 +1820,34 @@ class PlanDefinitionAction extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('groupingBehavior', groupingBehavior);
-    addField('selectionBehavior', selectionBehavior);
-    addField('requiredBehavior', requiredBehavior);
-    addField('precheckBehavior', precheckBehavior);
-    addField('cardinalityBehavior', cardinalityBehavior);
-    addField('definition${definitionX!.fhirType.capitalize()}', definitionX);
-    addField('transform', transform);
+    if (groupingBehavior != null) {
+      addField('groupingBehavior', groupingBehavior);
+    }
+
+    if (selectionBehavior != null) {
+      addField('selectionBehavior', selectionBehavior);
+    }
+
+    if (requiredBehavior != null) {
+      addField('requiredBehavior', requiredBehavior);
+    }
+
+    if (precheckBehavior != null) {
+      addField('precheckBehavior', precheckBehavior);
+    }
+
+    if (cardinalityBehavior != null) {
+      addField('cardinalityBehavior', cardinalityBehavior);
+    }
+
+    if (definitionX != null) {
+      addField('definition${definitionX!.fhirType.capitalize()}', definitionX);
+    }
+
+    if (transform != null) {
+      addField('transform', transform);
+    }
+
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!.map((e) => e.toJson()).toList();
     }
@@ -1966,7 +2049,10 @@ class PlanDefinitionCondition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2059,11 +2145,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
         'value': json['relationship'],
         '_value': json['_relationship'],
       }),
-      offsetX: json['offsetDuration'] != null || json['_offsetDuration'] != null
-          ? FhirDuration.fromJson({
-              'value': json['offsetDuration'],
-              '_value': json['_offsetDuration'],
-            })
+      offsetX: json['offsetDuration'] != null
+          ? FhirDuration.fromJson(
+              json['offsetDuration'] as Map<String, dynamic>,
+            )
           : json['offsetRange'] != null
               ? Range.fromJson(
                   json['offsetRange'] as Map<String, dynamic>,
@@ -2138,7 +2223,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2298,7 +2386,10 @@ class PlanDefinitionParticipant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2468,7 +2559,10 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2478,7 +2572,10 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('path', path);
+    if (path != null) {
+      addField('path', path);
+    }
+
     if (expression != null) {
       json['expression'] = expression!.toJson();
     }

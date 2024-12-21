@@ -372,13 +372,22 @@ class Questionnaire extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -396,14 +405,26 @@ class Questionnaire extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
       final fieldJson0 = derivedFrom!.map((e) => e.toJson()).toList();
       json['derivedFrom'] = fieldJson0.map((e) => e['value']).toList();
@@ -413,7 +434,10 @@ class Questionnaire extends CanonicalResource {
     }
 
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     if (subjectType != null && subjectType!.isNotEmpty) {
       final fieldJson1 = subjectType!.map((e) => e.toJson()).toList();
       json['subjectType'] = fieldJson1.map((e) => e['value']).toList();
@@ -422,13 +446,22 @@ class Questionnaire extends CanonicalResource {
       }
     }
 
-    addField('date', date);
-    addField('publisher', publisher);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -437,10 +470,22 @@ class Questionnaire extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -849,7 +894,10 @@ class QuestionnaireItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -860,24 +908,51 @@ class QuestionnaireItem extends BackboneElement {
     }
 
     addField('linkId', linkId);
-    addField('definition', definition);
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
 
-    addField('prefix', prefix);
-    addField('text', text);
+    if (prefix != null) {
+      addField('prefix', prefix);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     addField('type', type);
     if (enableWhen != null && enableWhen!.isNotEmpty) {
       json['enableWhen'] = enableWhen!.map((e) => e.toJson()).toList();
     }
 
-    addField('enableBehavior', enableBehavior);
-    addField('required', required_);
-    addField('repeats', repeats);
-    addField('readOnly', readOnly);
-    addField('maxLength', maxLength);
-    addField('answerValueSet', answerValueSet);
+    if (enableBehavior != null) {
+      addField('enableBehavior', enableBehavior);
+    }
+
+    if (required_ != null) {
+      addField('required', required_);
+    }
+
+    if (repeats != null) {
+      addField('repeats', repeats);
+    }
+
+    if (readOnly != null) {
+      addField('readOnly', readOnly);
+    }
+
+    if (maxLength != null) {
+      addField('maxLength', maxLength);
+    }
+
+    if (answerValueSet != null) {
+      addField('answerValueSet', answerValueSet);
+    }
+
     if (answerOption != null && answerOption!.isNotEmpty) {
       json['answerOption'] = answerOption!.map((e) => e.toJson()).toList();
     }
@@ -1035,18 +1110,16 @@ class QuestionnaireEnableWhen extends BackboneElement {
                                       'value': json['answerString'],
                                       '_value': json['_answerString'],
                                     })
-                                  : json['answerCoding'] != null ||
-                                          json['_answerCoding'] != null
-                                      ? Coding.fromJson({
-                                          'value': json['answerCoding'],
-                                          '_value': json['_answerCoding'],
-                                        })
-                                      : json['answerQuantity'] != null ||
-                                              json['_answerQuantity'] != null
-                                          ? Quantity.fromJson({
-                                              'value': json['answerQuantity'],
-                                              '_value': json['_answerQuantity'],
-                                            })
+                                  : json['answerCoding'] != null
+                                      ? Coding.fromJson(
+                                          json['answerCoding']
+                                              as Map<String, dynamic>,
+                                        )
+                                      : json['answerQuantity'] != null
+                                          ? Quantity.fromJson(
+                                              json['answerQuantity']
+                                                  as Map<String, dynamic>,
+                                            )
                                           : Reference.fromJson(
                                               json['answerReference']
                                                   as Map<String, dynamic>,
@@ -1121,7 +1194,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1224,12 +1300,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
                           'value': json['valueString'],
                           '_value': json['_valueString'],
                         })
-                      : json['valueCoding'] != null ||
-                              json['_valueCoding'] != null
-                          ? Coding.fromJson({
-                              'value': json['valueCoding'],
-                              '_value': json['_valueCoding'],
-                            })
+                      : json['valueCoding'] != null
+                          ? Coding.fromJson(
+                              json['valueCoding'] as Map<String, dynamic>,
+                            )
                           : Reference.fromJson(
                               json['valueReference'] as Map<String, dynamic>,
                             ),
@@ -1305,7 +1379,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1316,7 +1393,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
     }
 
     addField('value${valueX.fhirType.capitalize()}', valueX);
-    addField('initialSelected', initialSelected);
+    if (initialSelected != null) {
+      addField('initialSelected', initialSelected);
+    }
+
     return json;
   }
 
@@ -1429,29 +1509,22 @@ class QuestionnaireInitial extends BackboneElement {
                                           'value': json['valueUri'],
                                           '_value': json['_valueUri'],
                                         })
-                                      : json['valueAttachment'] != null ||
-                                              json['_valueAttachment'] != null
-                                          ? Attachment.fromJson({
-                                              'value': json['valueAttachment'],
-                                              '_value':
-                                                  json['_valueAttachment'],
-                                            })
-                                          : json['valueCoding'] != null ||
-                                                  json['_valueCoding'] != null
-                                              ? Coding.fromJson({
-                                                  'value': json['valueCoding'],
-                                                  '_value':
-                                                      json['_valueCoding'],
-                                                })
-                                              : json['valueQuantity'] != null ||
-                                                      json['_valueQuantity'] !=
-                                                          null
-                                                  ? Quantity.fromJson({
-                                                      'value':
-                                                          json['valueQuantity'],
-                                                      '_value': json[
-                                                          '_valueQuantity'],
-                                                    })
+                                      : json['valueAttachment'] != null
+                                          ? Attachment.fromJson(
+                                              json['valueAttachment']
+                                                  as Map<String, dynamic>,
+                                            )
+                                          : json['valueCoding'] != null
+                                              ? Coding.fromJson(
+                                                  json['valueCoding']
+                                                      as Map<String, dynamic>,
+                                                )
+                                              : json['valueQuantity'] != null
+                                                  ? Quantity.fromJson(
+                                                      json['valueQuantity']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    )
                                                   : Reference.fromJson(
                                                       json['valueReference']
                                                           as Map<String,
@@ -1517,7 +1590,10 @@ class QuestionnaireInitial extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

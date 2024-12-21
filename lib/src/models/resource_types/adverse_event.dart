@@ -386,13 +386,22 @@ class AdverseEvent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -429,9 +438,18 @@ class AdverseEvent extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('date', date);
-    addField('detected', detected);
-    addField('recordedDate', recordedDate);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (detected != null) {
+      addField('detected', detected);
+    }
+
+    if (recordedDate != null) {
+      addField('recordedDate', recordedDate);
+    }
+
     if (resultingCondition != null && resultingCondition!.isNotEmpty) {
       json['resultingCondition'] =
           resultingCondition!.map((e) => e.toJson()).toList();
@@ -673,7 +691,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -853,7 +874,10 @@ class AdverseEventCausality extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -867,7 +891,10 @@ class AdverseEventCausality extends BackboneElement {
       json['assessment'] = assessment!.toJson();
     }
 
-    addField('productRelatedness', productRelatedness);
+    if (productRelatedness != null) {
+      addField('productRelatedness', productRelatedness);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }

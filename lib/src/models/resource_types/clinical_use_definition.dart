@@ -270,13 +270,22 @@ class ClinicalUseDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -550,7 +559,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -728,7 +740,10 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -839,11 +854,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
               json['intendedEffect'] as Map<String, dynamic>,
             )
           : null,
-      durationX: json['durationRange'] != null || json['_durationRange'] != null
-          ? Range.fromJson({
-              'value': json['durationRange'],
-              '_value': json['_durationRange'],
-            })
+      durationX: json['durationRange'] != null
+          ? Range.fromJson(
+              json['durationRange'] as Map<String, dynamic>,
+            )
           : json['durationString'] != null || json['_durationString'] != null
               ? FhirString.fromJson({
                   'value': json['durationString'],
@@ -959,7 +973,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1192,7 +1209,10 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1296,11 +1316,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
               )
               .toList()
           : null,
-      itemX: json['itemReference'] != null || json['_itemReference'] != null
-          ? Reference.fromJson({
-              'value': json['itemReference'],
-              '_value': json['_itemReference'],
-            })
+      itemX: json['itemReference'] != null
+          ? Reference.fromJson(
+              json['itemReference'] as Map<String, dynamic>,
+            )
           : CodeableConcept.fromJson(
               json['itemCodeableConcept'] as Map<String, dynamic>,
             ),
@@ -1364,7 +1383,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1527,7 +1549,10 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1699,7 +1724,10 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1709,7 +1737,10 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }

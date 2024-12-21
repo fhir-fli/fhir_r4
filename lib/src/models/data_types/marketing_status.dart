@@ -168,7 +168,10 @@ class MarketingStatus extends BackboneType {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -192,7 +195,10 @@ class MarketingStatus extends BackboneType {
       json['dateRange'] = dateRange!.toJson();
     }
 
-    addField('restoreDate', restoreDate);
+    if (restoreDate != null) {
+      addField('restoreDate', restoreDate);
+    }
+
     return json;
   }
 

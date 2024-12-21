@@ -274,13 +274,22 @@ class GraphDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -298,18 +307,36 @@ class GraphDefinition extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('version', version);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -318,9 +345,15 @@ class GraphDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
     addField('start', start);
-    addField('profile', profile);
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
@@ -554,7 +587,10 @@ class GraphDefinitionLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -564,11 +600,26 @@ class GraphDefinitionLink extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('path', path);
-    addField('sliceName', sliceName);
-    addField('min', min);
-    addField('max', max);
-    addField('description', description);
+    if (path != null) {
+      addField('path', path);
+    }
+
+    if (sliceName != null) {
+      addField('sliceName', sliceName);
+    }
+
+    if (min != null) {
+      addField('min', min);
+    }
+
+    if (max != null) {
+      addField('max', max);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -762,7 +813,10 @@ class GraphDefinitionTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -773,8 +827,14 @@ class GraphDefinitionTarget extends BackboneElement {
     }
 
     addField('type', type);
-    addField('params', params);
-    addField('profile', profile);
+    if (params != null) {
+      addField('params', params);
+    }
+
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     if (compartment != null && compartment!.isNotEmpty) {
       json['compartment'] = compartment!.map((e) => e.toJson()).toList();
     }
@@ -962,7 +1022,10 @@ class GraphDefinitionCompartment extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -975,8 +1038,14 @@ class GraphDefinitionCompartment extends BackboneElement {
     addField('use', use);
     addField('code', code);
     addField('rule', rule);
-    addField('expression', expression);
-    addField('description', description);
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 

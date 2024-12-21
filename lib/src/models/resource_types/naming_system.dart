@@ -305,13 +305,22 @@ class NamingSystem extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -333,17 +342,26 @@ class NamingSystem extends DomainResource {
     addField('status', status);
     addField('kind', kind);
     addField('date', date);
-    addField('publisher', publisher);
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('responsible', responsible);
+    if (responsible != null) {
+      addField('responsible', responsible);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -352,7 +370,10 @@ class NamingSystem extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('usage', usage);
+    if (usage != null) {
+      addField('usage', usage);
+    }
+
     if (uniqueId.isNotEmpty) {
       json['uniqueId'] = uniqueId.map((e) => e.toJson()).toList();
     }
@@ -567,7 +588,10 @@ class NamingSystemUniqueId extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -579,8 +603,14 @@ class NamingSystemUniqueId extends BackboneElement {
 
     addField('type', type);
     addField('value', value);
-    addField('preferred', preferred);
-    addField('comment', comment);
+    if (preferred != null) {
+      addField('preferred', preferred);
+    }
+
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }

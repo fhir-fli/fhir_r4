@@ -426,13 +426,22 @@ class CodeSystem extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -450,23 +459,47 @@ class CodeSystem extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -475,16 +508,43 @@ class CodeSystem extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('caseSensitive', caseSensitive);
-    addField('valueSet', valueSet);
-    addField('hierarchyMeaning', hierarchyMeaning);
-    addField('compositional', compositional);
-    addField('versionNeeded', versionNeeded);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (caseSensitive != null) {
+      addField('caseSensitive', caseSensitive);
+    }
+
+    if (valueSet != null) {
+      addField('valueSet', valueSet);
+    }
+
+    if (hierarchyMeaning != null) {
+      addField('hierarchyMeaning', hierarchyMeaning);
+    }
+
+    if (compositional != null) {
+      addField('compositional', compositional);
+    }
+
+    if (versionNeeded != null) {
+      addField('versionNeeded', versionNeeded);
+    }
+
     addField('content', content);
-    addField('supplements', supplements);
-    addField('count', count);
+    if (supplements != null) {
+      addField('supplements', supplements);
+    }
+
+    if (count != null) {
+      addField('count', count);
+    }
+
     if (filter != null && filter!.isNotEmpty) {
       json['filter'] = filter!.map((e) => e.toJson()).toList();
     }
@@ -720,7 +780,10 @@ class CodeSystemFilter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -731,7 +794,10 @@ class CodeSystemFilter extends BackboneElement {
     }
 
     addField('code', code);
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (operator_.isNotEmpty) {
       final fieldJson0 = operator_.map((e) => e.toJson()).toList();
       json['operator'] = fieldJson0.map((e) => e['value']).toList();
@@ -915,7 +981,10 @@ class CodeSystemProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -926,8 +995,14 @@ class CodeSystemProperty extends BackboneElement {
     }
 
     addField('code', code);
-    addField('uri', uri);
-    addField('description', description);
+    if (uri != null) {
+      addField('uri', uri);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     addField('type', type);
     return json;
   }
@@ -1138,7 +1213,10 @@ class CodeSystemConcept extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1149,8 +1227,14 @@ class CodeSystemConcept extends BackboneElement {
     }
 
     addField('code', code);
-    addField('display', display);
-    addField('definition', definition);
+    if (display != null) {
+      addField('display', display);
+    }
+
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
     if (designation != null && designation!.isNotEmpty) {
       json['designation'] = designation!.map((e) => e.toJson()).toList();
     }
@@ -1324,7 +1408,10 @@ class CodeSystemDesignation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1334,7 +1421,10 @@ class CodeSystemDesignation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('language', language);
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (use != null) {
       json['use'] = use!.toJson();
     }
@@ -1419,11 +1509,10 @@ class CodeSystemProperty1 extends BackboneElement {
               'value': json['valueCode'],
               '_value': json['_valueCode'],
             })
-          : json['valueCoding'] != null || json['_valueCoding'] != null
-              ? Coding.fromJson({
-                  'value': json['valueCoding'],
-                  '_value': json['_valueCoding'],
-                })
+          : json['valueCoding'] != null
+              ? Coding.fromJson(
+                  json['valueCoding'] as Map<String, dynamic>,
+                )
               : json['valueString'] != null || json['_valueString'] != null
                   ? FhirString.fromJson({
                       'value': json['valueString'],
@@ -1515,7 +1604,10 @@ class CodeSystemProperty1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

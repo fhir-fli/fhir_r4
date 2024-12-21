@@ -239,7 +239,10 @@ class ProdCharacteristic extends BackboneType {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -273,7 +276,10 @@ class ProdCharacteristic extends BackboneType {
       json['externalDiameter'] = externalDiameter!.toJson();
     }
 
-    addField('shape', shape);
+    if (shape != null) {
+      addField('shape', shape);
+    }
+
     if (color != null && color!.isNotEmpty) {
       final fieldJson0 = color!.map((e) => e.toJson()).toList();
       json['color'] = fieldJson0.map((e) => e['value']).toList();

@@ -336,13 +336,22 @@ class PackagedProductDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -364,7 +373,10 @@ class PackagedProductDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -377,13 +389,19 @@ class PackagedProductDefinition extends DomainResource {
       json['status'] = status!.toJson();
     }
 
-    addField('statusDate', statusDate);
+    if (statusDate != null) {
+      addField('statusDate', statusDate);
+    }
+
     if (containedItemQuantity != null && containedItemQuantity!.isNotEmpty) {
       json['containedItemQuantity'] =
           containedItemQuantity!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (legalStatusOfSupply != null && legalStatusOfSupply!.isNotEmpty) {
       json['legalStatusOfSupply'] =
           legalStatusOfSupply!.map((e) => e.toJson()).toList();
@@ -398,7 +416,10 @@ class PackagedProductDefinition extends DomainResource {
       json['characteristic'] = characteristic!.map((e) => e.toJson()).toList();
     }
 
-    addField('copackagedIndicator', copackagedIndicator);
+    if (copackagedIndicator != null) {
+      addField('copackagedIndicator', copackagedIndicator);
+    }
+
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] = manufacturer!.map((e) => e.toJson()).toList();
     }
@@ -587,7 +608,10 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -870,7 +894,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -888,7 +915,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('quantity', quantity);
+    if (quantity != null) {
+      addField('quantity', quantity);
+    }
+
     if (material != null && material!.isNotEmpty) {
       json['material'] = material!.map((e) => e.toJson()).toList();
     }
@@ -1009,11 +1039,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      periodX: json['periodDuration'] != null || json['_periodDuration'] != null
-          ? FhirDuration.fromJson({
-              'value': json['periodDuration'],
-              '_value': json['_periodDuration'],
-            })
+      periodX: json['periodDuration'] != null
+          ? FhirDuration.fromJson(
+              json['periodDuration'] as Map<String, dynamic>,
+            )
           : json['periodString'] != null || json['_periodString'] != null
               ? FhirString.fromJson({
                   'value': json['periodString'],
@@ -1108,7 +1137,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1207,17 +1239,14 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
-                })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['valueQuantity'] != null
+              ? Quantity.fromJson(
+                  json['valueQuantity'] as Map<String, dynamic>,
+                )
               : json['valueDate'] != null || json['_valueDate'] != null
                   ? FhirDate.fromJson({
                       'value': json['valueDate'],
@@ -1298,7 +1327,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1461,7 +1493,10 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

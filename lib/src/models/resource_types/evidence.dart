@@ -135,12 +135,10 @@ class Evidence extends DomainResource {
               '_value': json['_title'],
             })
           : null,
-      citeAsX: json['citeAsReference'] != null ||
-              json['_citeAsReference'] != null
-          ? Reference.fromJson({
-              'value': json['citeAsReference'],
-              '_value': json['_citeAsReference'],
-            })
+      citeAsX: json['citeAsReference'] != null
+          ? Reference.fromJson(
+              json['citeAsReference'] as Map<String, dynamic>,
+            )
           : json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null
               ? FhirMarkdown.fromJson({
                   'value': json['citeAsMarkdown'],
@@ -487,13 +485,22 @@ class Evidence extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -511,26 +518,47 @@ class Evidence extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (citeAsX != null) {
       json['citeAs${citeAsX!.fhirType.capitalize()}'] = citeAsX!.toJson();
     }
 
     addField('status', status);
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
 
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
-    addField('publisher', publisher);
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
@@ -556,8 +584,14 @@ class Evidence extends DomainResource {
           relatedArtifact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('assertion', assertion);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (assertion != null) {
+      addField('assertion', assertion);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -826,7 +860,10 @@ class EvidenceVariableDefinition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -836,7 +873,10 @@ class EvidenceVariableDefinition extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -1107,7 +1147,10 @@ class EvidenceStatistic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1117,7 +1160,10 @@ class EvidenceStatistic extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -1134,8 +1180,14 @@ class EvidenceStatistic extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    addField('numberOfEvents', numberOfEvents);
-    addField('numberAffected', numberAffected);
+    if (numberOfEvents != null) {
+      addField('numberOfEvents', numberOfEvents);
+    }
+
+    if (numberAffected != null) {
+      addField('numberAffected', numberAffected);
+    }
+
     if (sampleSize != null) {
       json['sampleSize'] = sampleSize!.toJson();
     }
@@ -1350,7 +1402,10 @@ class EvidenceSampleSize extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1360,14 +1415,26 @@ class EvidenceSampleSize extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
 
-    addField('numberOfStudies', numberOfStudies);
-    addField('numberOfParticipants', numberOfParticipants);
-    addField('knownDataCount', knownDataCount);
+    if (numberOfStudies != null) {
+      addField('numberOfStudies', numberOfStudies);
+    }
+
+    if (numberOfParticipants != null) {
+      addField('numberOfParticipants', numberOfParticipants);
+    }
+
+    if (knownDataCount != null) {
+      addField('knownDataCount', knownDataCount);
+    }
+
     return json;
   }
 
@@ -1580,7 +1647,10 @@ class EvidenceAttributeEstimate extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1590,7 +1660,10 @@ class EvidenceAttributeEstimate extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -1603,7 +1676,10 @@ class EvidenceAttributeEstimate extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    addField('level', level);
+    if (level != null) {
+      addField('level', level);
+    }
+
     if (range != null) {
       json['range'] = range!.toJson();
     }
@@ -1792,7 +1868,10 @@ class EvidenceModelCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2004,7 +2083,10 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2016,7 +2098,10 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
 
     json['variableDefinition'] = variableDefinition.toJson();
 
-    addField('handling', handling);
+    if (handling != null) {
+      addField('handling', handling);
+    }
+
     if (valueCategory != null && valueCategory!.isNotEmpty) {
       json['valueCategory'] = valueCategory!.map((e) => e.toJson()).toList();
     }
@@ -2228,7 +2313,10 @@ class EvidenceCertainty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2238,7 +2326,10 @@ class EvidenceCertainty extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -2251,7 +2342,10 @@ class EvidenceCertainty extends BackboneElement {
       json['rating'] = rating!.toJson();
     }
 
-    addField('rater', rater);
+    if (rater != null) {
+      addField('rater', rater);
+    }
+
     if (subcomponent != null && subcomponent!.isNotEmpty) {
       json['subcomponent'] = subcomponent!.map((e) => e.toJson()).toList();
     }

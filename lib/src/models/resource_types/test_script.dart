@@ -457,13 +457,22 @@ class TestScript extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -486,18 +495,36 @@ class TestScript extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -506,8 +533,14 @@ class TestScript extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     if (origin != null && origin!.isNotEmpty) {
       json['origin'] = origin!.map((e) => e.toJson()).toList();
     }
@@ -739,7 +772,10 @@ class TestScriptOrigin extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -893,7 +929,10 @@ class TestScriptDestination extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1058,7 +1097,10 @@ class TestScriptMetadata extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1219,7 +1261,10 @@ class TestScriptLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1230,7 +1275,10 @@ class TestScriptLink extends BackboneElement {
     }
 
     addField('url', url);
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 
@@ -1429,7 +1477,10 @@ class TestScriptCapability extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1441,7 +1492,10 @@ class TestScriptCapability extends BackboneElement {
 
     addField('required', required_);
     addField('validated', validated);
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (origin != null && origin!.isNotEmpty) {
       final fieldJson0 = origin!.map((e) => e.toJson()).toList();
       json['origin'] = fieldJson0.map((e) => e['value']).toList();
@@ -1450,7 +1504,10 @@ class TestScriptCapability extends BackboneElement {
       }
     }
 
-    addField('destination', destination);
+    if (destination != null) {
+      addField('destination', destination);
+    }
+
     if (link != null && link!.isNotEmpty) {
       final fieldJson1 = link!.map((e) => e.toJson()).toList();
       json['link'] = fieldJson1.map((e) => e['value']).toList();
@@ -1628,7 +1685,10 @@ class TestScriptFixture extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1864,7 +1924,10 @@ class TestScriptVariable extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1875,13 +1938,34 @@ class TestScriptVariable extends BackboneElement {
     }
 
     addField('name', name);
-    addField('defaultValue', defaultValue);
-    addField('description', description);
-    addField('expression', expression);
-    addField('headerField', headerField);
-    addField('hint', hint);
-    addField('path', path);
-    addField('sourceId', sourceId);
+    if (defaultValue != null) {
+      addField('defaultValue', defaultValue);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (headerField != null) {
+      addField('headerField', headerField);
+    }
+
+    if (hint != null) {
+      addField('hint', hint);
+    }
+
+    if (path != null) {
+      addField('path', path);
+    }
+
+    if (sourceId != null) {
+      addField('sourceId', sourceId);
+    }
+
     return json;
   }
 
@@ -2030,7 +2114,10 @@ class TestScriptSetup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2185,7 +2272,10 @@ class TestScriptAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2522,7 +2612,10 @@ class TestScriptOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2536,25 +2629,67 @@ class TestScriptOperation extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('resource', resource);
-    addField('label', label);
-    addField('description', description);
-    addField('accept', accept);
-    addField('contentType', contentType);
-    addField('destination', destination);
+    if (resource != null) {
+      addField('resource', resource);
+    }
+
+    if (label != null) {
+      addField('label', label);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (accept != null) {
+      addField('accept', accept);
+    }
+
+    if (contentType != null) {
+      addField('contentType', contentType);
+    }
+
+    if (destination != null) {
+      addField('destination', destination);
+    }
+
     addField('encodeRequestUrl', encodeRequestUrl);
-    addField('method', method);
-    addField('origin', origin);
-    addField('params', params);
+    if (method != null) {
+      addField('method', method);
+    }
+
+    if (origin != null) {
+      addField('origin', origin);
+    }
+
+    if (params != null) {
+      addField('params', params);
+    }
+
     if (requestHeader != null && requestHeader!.isNotEmpty) {
       json['requestHeader'] = requestHeader!.map((e) => e.toJson()).toList();
     }
 
-    addField('requestId', requestId);
-    addField('responseId', responseId);
-    addField('sourceId', sourceId);
-    addField('targetId', targetId);
-    addField('url', url);
+    if (requestId != null) {
+      addField('requestId', requestId);
+    }
+
+    if (responseId != null) {
+      addField('responseId', responseId);
+    }
+
+    if (sourceId != null) {
+      addField('sourceId', sourceId);
+    }
+
+    if (targetId != null) {
+      addField('targetId', targetId);
+    }
+
+    if (url != null) {
+      addField('url', url);
+    }
+
     return json;
   }
 
@@ -2725,7 +2860,10 @@ class TestScriptRequestHeader extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3124,7 +3262,10 @@ class TestScriptAssert extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3134,27 +3275,90 @@ class TestScriptAssert extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('label', label);
-    addField('description', description);
-    addField('direction', direction);
-    addField('compareToSourceId', compareToSourceId);
-    addField('compareToSourceExpression', compareToSourceExpression);
-    addField('compareToSourcePath', compareToSourcePath);
-    addField('contentType', contentType);
-    addField('expression', expression);
-    addField('headerField', headerField);
-    addField('minimumId', minimumId);
-    addField('navigationLinks', navigationLinks);
-    addField('operator', operator_);
-    addField('path', path);
-    addField('requestMethod', requestMethod);
-    addField('requestURL', requestURL);
-    addField('resource', resource);
-    addField('response', response);
-    addField('responseCode', responseCode);
-    addField('sourceId', sourceId);
-    addField('validateProfileId', validateProfileId);
-    addField('value', value);
+    if (label != null) {
+      addField('label', label);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (direction != null) {
+      addField('direction', direction);
+    }
+
+    if (compareToSourceId != null) {
+      addField('compareToSourceId', compareToSourceId);
+    }
+
+    if (compareToSourceExpression != null) {
+      addField('compareToSourceExpression', compareToSourceExpression);
+    }
+
+    if (compareToSourcePath != null) {
+      addField('compareToSourcePath', compareToSourcePath);
+    }
+
+    if (contentType != null) {
+      addField('contentType', contentType);
+    }
+
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (headerField != null) {
+      addField('headerField', headerField);
+    }
+
+    if (minimumId != null) {
+      addField('minimumId', minimumId);
+    }
+
+    if (navigationLinks != null) {
+      addField('navigationLinks', navigationLinks);
+    }
+
+    if (operator_ != null) {
+      addField('operator', operator_);
+    }
+
+    if (path != null) {
+      addField('path', path);
+    }
+
+    if (requestMethod != null) {
+      addField('requestMethod', requestMethod);
+    }
+
+    if (requestURL != null) {
+      addField('requestURL', requestURL);
+    }
+
+    if (resource != null) {
+      addField('resource', resource);
+    }
+
+    if (response != null) {
+      addField('response', response);
+    }
+
+    if (responseCode != null) {
+      addField('responseCode', responseCode);
+    }
+
+    if (sourceId != null) {
+      addField('sourceId', sourceId);
+    }
+
+    if (validateProfileId != null) {
+      addField('validateProfileId', validateProfileId);
+    }
+
+    if (value != null) {
+      addField('value', value);
+    }
+
     addField('warningOnly', warningOnly);
     return json;
   }
@@ -3357,7 +3561,10 @@ class TestScriptTest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3367,8 +3574,14 @@ class TestScriptTest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('description', description);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (action.isNotEmpty) {
       json['action'] = action.map((e) => e.toJson()).toList();
     }
@@ -3518,7 +3731,10 @@ class TestScriptAction1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3673,7 +3889,10 @@ class TestScriptTeardown extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3815,7 +4034,10 @@ class TestScriptAction2 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

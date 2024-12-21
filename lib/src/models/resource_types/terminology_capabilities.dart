@@ -384,13 +384,22 @@ class TerminologyCapabilities extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -408,19 +417,40 @@ class TerminologyCapabilities extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     addField('date', date);
-    addField('publisher', publisher);
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -429,8 +459,14 @@ class TerminologyCapabilities extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     addField('kind', kind);
     if (software != null) {
       json['software'] = software!.toJson();
@@ -440,7 +476,10 @@ class TerminologyCapabilities extends CanonicalResource {
       json['implementation'] = implementation!.toJson();
     }
 
-    addField('lockedDate', lockedDate);
+    if (lockedDate != null) {
+      addField('lockedDate', lockedDate);
+    }
+
     if (codeSystem != null && codeSystem!.isNotEmpty) {
       json['codeSystem'] = codeSystem!.map((e) => e.toJson()).toList();
     }
@@ -449,7 +488,10 @@ class TerminologyCapabilities extends CanonicalResource {
       json['expansion'] = expansion!.toJson();
     }
 
-    addField('codeSearch', codeSearch);
+    if (codeSearch != null) {
+      addField('codeSearch', codeSearch);
+    }
+
     if (validateCode != null) {
       json['validateCode'] = validateCode!.toJson();
     }
@@ -660,7 +702,10 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -671,7 +716,10 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
 
     addField('name', name);
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     return json;
   }
 
@@ -817,7 +865,10 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -828,7 +879,10 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     }
 
     addField('description', description);
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     return json;
   }
 
@@ -990,7 +1044,10 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1000,12 +1057,18 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('uri', uri);
+    if (uri != null) {
+      addField('uri', uri);
+    }
+
     if (version != null && version!.isNotEmpty) {
       json['version'] = version!.map((e) => e.toJson()).toList();
     }
 
-    addField('subsumption', subsumption);
+    if (subsumption != null) {
+      addField('subsumption', subsumption);
+    }
+
     return json;
   }
 
@@ -1200,7 +1263,10 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1210,9 +1276,18 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('code', code);
-    addField('isDefault', isDefault);
-    addField('compositional', compositional);
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (isDefault != null) {
+      addField('isDefault', isDefault);
+    }
+
+    if (compositional != null) {
+      addField('compositional', compositional);
+    }
+
     if (language != null && language!.isNotEmpty) {
       final fieldJson0 = language!.map((e) => e.toJson()).toList();
       json['language'] = fieldJson0.map((e) => e['value']).toList();
@@ -1384,7 +1459,10 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1585,7 +1663,10 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1595,14 +1676,26 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('hierarchical', hierarchical);
-    addField('paging', paging);
-    addField('incomplete', incomplete);
+    if (hierarchical != null) {
+      addField('hierarchical', hierarchical);
+    }
+
+    if (paging != null) {
+      addField('paging', paging);
+    }
+
+    if (incomplete != null) {
+      addField('incomplete', incomplete);
+    }
+
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    addField('textFilter', textFilter);
+    if (textFilter != null) {
+      addField('textFilter', textFilter);
+    }
+
     return json;
   }
 
@@ -1752,7 +1845,10 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1763,7 +1859,10 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -1897,7 +1996,10 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2038,7 +2140,10 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2180,7 +2285,10 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2190,7 +2298,10 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('translation', translation);
+    if (translation != null) {
+      addField('translation', translation);
+    }
+
     return json;
   }
 

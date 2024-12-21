@@ -343,13 +343,22 @@ class ImplementationGuide extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -368,18 +377,36 @@ class ImplementationGuide extends CanonicalResource {
     }
 
     addField('url', url);
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -388,9 +415,15 @@ class ImplementationGuide extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('copyright', copyright);
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     addField('packageId', packageId);
-    addField('license', license);
+    if (license != null) {
+      addField('license', license);
+    }
+
     if (fhirVersion.isNotEmpty) {
       final fieldJson0 = fhirVersion.map((e) => e.toJson()).toList();
       json['fhirVersion'] = fieldJson0.map((e) => e['value']).toList();
@@ -618,7 +651,10 @@ class ImplementationGuideDependsOn extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -629,8 +665,14 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
 
     addField('uri', uri);
-    addField('packageId', packageId);
-    addField('version', version);
+    if (packageId != null) {
+      addField('packageId', packageId);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
     return json;
   }
 
@@ -774,7 +816,10 @@ class ImplementationGuideGlobal extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -980,7 +1025,10 @@ class ImplementationGuideDefinition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1160,7 +1208,10 @@ class ImplementationGuideGrouping extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1171,7 +1222,10 @@ class ImplementationGuideGrouping extends BackboneElement {
     }
 
     addField('name', name);
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     return json;
   }
 
@@ -1373,7 +1427,10 @@ class ImplementationGuideResource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1393,10 +1450,22 @@ class ImplementationGuideResource extends BackboneElement {
       }
     }
 
-    addField('name', name);
-    addField('description', description);
-    addField('example${exampleX!.fhirType.capitalize()}', exampleX);
-    addField('groupingId', groupingId);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (exampleX != null) {
+      addField('example${exampleX!.fhirType.capitalize()}', exampleX);
+    }
+
+    if (groupingId != null) {
+      addField('groupingId', groupingId);
+    }
+
     return json;
   }
 
@@ -1574,7 +1643,10 @@ class ImplementationGuidePage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1737,7 +1809,10 @@ class ImplementationGuideParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1900,7 +1975,10 @@ class ImplementationGuideTemplate extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1912,7 +1990,10 @@ class ImplementationGuideTemplate extends BackboneElement {
 
     addField('code', code);
     addField('source', source);
-    addField('scope', scope);
+    if (scope != null) {
+      addField('scope', scope);
+    }
+
     return json;
   }
 
@@ -2103,7 +2184,10 @@ class ImplementationGuideManifest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2113,7 +2197,10 @@ class ImplementationGuideManifest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('rendering', rendering);
+    if (rendering != null) {
+      addField('rendering', rendering);
+    }
+
     if (resource.isNotEmpty) {
       json['resource'] = resource.map((e) => e.toJson()).toList();
     }
@@ -2309,7 +2396,10 @@ class ImplementationGuideResource1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2321,8 +2411,14 @@ class ImplementationGuideResource1 extends BackboneElement {
 
     json['reference'] = reference.toJson();
 
-    addField('example${exampleX!.fhirType.capitalize()}', exampleX);
-    addField('relativePath', relativePath);
+    if (exampleX != null) {
+      addField('example${exampleX!.fhirType.capitalize()}', exampleX);
+    }
+
+    if (relativePath != null) {
+      addField('relativePath', relativePath);
+    }
+
     return json;
   }
 
@@ -2477,7 +2573,10 @@ class ImplementationGuidePage1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2488,7 +2587,10 @@ class ImplementationGuidePage1 extends BackboneElement {
     }
 
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (anchor != null && anchor!.isNotEmpty) {
       final fieldJson0 = anchor!.map((e) => e.toJson()).toList();
       json['anchor'] = fieldJson0.map((e) => e['value']).toList();

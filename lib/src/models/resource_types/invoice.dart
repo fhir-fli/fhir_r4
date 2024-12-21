@@ -333,13 +333,22 @@ class Invoice extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -362,7 +371,10 @@ class Invoice extends DomainResource {
     }
 
     addField('status', status);
-    addField('cancelledReason', cancelledReason);
+    if (cancelledReason != null) {
+      addField('cancelledReason', cancelledReason);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -375,7 +387,10 @@ class Invoice extends DomainResource {
       json['recipient'] = recipient!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -405,7 +420,10 @@ class Invoice extends DomainResource {
       json['totalGross'] = totalGross!.toJson();
     }
 
-    addField('paymentTerms', paymentTerms);
+    if (paymentTerms != null) {
+      addField('paymentTerms', paymentTerms);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -591,7 +609,10 @@ class InvoiceParticipant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -684,12 +705,10 @@ class InvoiceLineItem extends BackboneElement {
               '_value': json['_sequence'],
             })
           : null,
-      chargeItemX: json['chargeItemReference'] != null ||
-              json['_chargeItemReference'] != null
-          ? Reference.fromJson({
-              'value': json['chargeItemReference'],
-              '_value': json['_chargeItemReference'],
-            })
+      chargeItemX: json['chargeItemReference'] != null
+          ? Reference.fromJson(
+              json['chargeItemReference'] as Map<String, dynamic>,
+            )
           : CodeableConcept.fromJson(
               json['chargeItemCodeableConcept'] as Map<String, dynamic>,
             ),
@@ -778,7 +797,10 @@ class InvoiceLineItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -788,7 +810,10 @@ class InvoiceLineItem extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('sequence', sequence);
+    if (sequence != null) {
+      addField('sequence', sequence);
+    }
+
     json['chargeItem${chargeItemX.fhirType.capitalize()}'] =
         chargeItemX.toJson();
 
@@ -967,7 +992,10 @@ class InvoicePriceComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -982,7 +1010,10 @@ class InvoicePriceComponent extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('factor', factor);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
     if (amount != null) {
       json['amount'] = amount!.toJson();
     }

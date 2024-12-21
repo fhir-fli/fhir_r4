@@ -123,12 +123,18 @@ class ContactDetail extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (telecom != null && telecom!.isNotEmpty) {
       json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }

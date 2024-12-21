@@ -332,13 +332,22 @@ class Composition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -381,7 +390,10 @@ class Composition extends DomainResource {
     }
 
     addField('title', title);
-    addField('confidentiality', confidentiality);
+    if (confidentiality != null) {
+      addField('confidentiality', confidentiality);
+    }
+
     if (attester != null && attester!.isNotEmpty) {
       json['attester'] = attester!.map((e) => e.toJson()).toList();
     }
@@ -591,7 +603,10 @@ class CompositionAttester extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -602,7 +617,10 @@ class CompositionAttester extends BackboneElement {
     }
 
     addField('mode', mode);
-    addField('time', time);
+    if (time != null) {
+      addField('time', time);
+    }
+
     if (party != null) {
       json['party'] = party!.toJson();
     }
@@ -682,15 +700,13 @@ class CompositionRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetX:
-          json['targetIdentifier'] != null || json['_targetIdentifier'] != null
-              ? Identifier.fromJson({
-                  'value': json['targetIdentifier'],
-                  '_value': json['_targetIdentifier'],
-                })
-              : Reference.fromJson(
-                  json['targetReference'] as Map<String, dynamic>,
-                ),
+      targetX: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>,
+            )
+          : Reference.fromJson(
+              json['targetReference'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -756,7 +772,10 @@ class CompositionRelatesTo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -938,7 +957,10 @@ class CompositionEvent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1219,7 +1241,10 @@ class CompositionSection extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1229,7 +1254,10 @@ class CompositionSection extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -1246,7 +1274,10 @@ class CompositionSection extends BackboneElement {
       json['text'] = text!.toJson();
     }
 
-    addField('mode', mode);
+    if (mode != null) {
+      addField('mode', mode);
+    }
+
     if (orderedBy != null) {
       json['orderedBy'] = orderedBy!.toJson();
     }

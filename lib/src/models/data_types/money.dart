@@ -124,13 +124,22 @@ class Money extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('value', value);
-    addField('currency', currency);
+    if (value != null) {
+      addField('value', value);
+    }
+
+    if (currency != null) {
+      addField('currency', currency);
+    }
+
     return json;
   }
 

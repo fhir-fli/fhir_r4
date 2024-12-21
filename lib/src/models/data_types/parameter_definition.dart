@@ -179,18 +179,36 @@ class ParameterDefinition extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     addField('use', use);
-    addField('min', min);
-    addField('max', max);
-    addField('documentation', documentation);
+    if (min != null) {
+      addField('min', min);
+    }
+
+    if (max != null) {
+      addField('max', max);
+    }
+
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     addField('type', type);
-    addField('profile', profile);
+    if (profile != null) {
+      addField('profile', profile);
+    }
+
     return json;
   }
 

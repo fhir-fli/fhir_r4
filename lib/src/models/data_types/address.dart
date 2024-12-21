@@ -224,14 +224,26 @@ class Address extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('use', use);
-    addField('type', type);
-    addField('text', text);
+    if (use != null) {
+      addField('use', use);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (line != null && line!.isNotEmpty) {
       final fieldJson0 = line!.map((e) => e.toJson()).toList();
       json['line'] = fieldJson0.map((e) => e['value']).toList();
@@ -240,11 +252,26 @@ class Address extends DataType
       }
     }
 
-    addField('city', city);
-    addField('district', district);
-    addField('state', state);
-    addField('postalCode', postalCode);
-    addField('country', country);
+    if (city != null) {
+      addField('city', city);
+    }
+
+    if (district != null) {
+      addField('district', district);
+    }
+
+    if (state != null) {
+      addField('state', state);
+    }
+
+    if (postalCode != null) {
+      addField('postalCode', postalCode);
+    }
+
+    if (country != null) {
+      addField('country', country);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }

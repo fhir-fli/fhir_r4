@@ -481,13 +481,22 @@ class Immunization extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -523,8 +532,14 @@ class Immunization extends DomainResource {
     }
 
     addField('occurrence${occurrenceX.fhirType.capitalize()}', occurrenceX);
-    addField('recorded', recorded);
-    addField('primarySource', primarySource);
+    if (recorded != null) {
+      addField('recorded', recorded);
+    }
+
+    if (primarySource != null) {
+      addField('primarySource', primarySource);
+    }
+
     if (reportOrigin != null) {
       json['reportOrigin'] = reportOrigin!.toJson();
     }
@@ -537,8 +552,14 @@ class Immunization extends DomainResource {
       json['manufacturer'] = manufacturer!.toJson();
     }
 
-    addField('lotNumber', lotNumber);
-    addField('expirationDate', expirationDate);
+    if (lotNumber != null) {
+      addField('lotNumber', lotNumber);
+    }
+
+    if (expirationDate != null) {
+      addField('expirationDate', expirationDate);
+    }
+
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -568,7 +589,10 @@ class Immunization extends DomainResource {
           reasonReference!.map((e) => e.toJson()).toList();
     }
 
-    addField('isSubpotent', isSubpotent);
+    if (isSubpotent != null) {
+      addField('isSubpotent', isSubpotent);
+    }
+
     if (subpotentReason != null && subpotentReason!.isNotEmpty) {
       json['subpotentReason'] =
           subpotentReason!.map((e) => e.toJson()).toList();
@@ -799,7 +823,10 @@ class ImmunizationPerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -986,7 +1013,10 @@ class ImmunizationEducation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -996,10 +1026,22 @@ class ImmunizationEducation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('documentType', documentType);
-    addField('reference', reference);
-    addField('publicationDate', publicationDate);
-    addField('presentationDate', presentationDate);
+    if (documentType != null) {
+      addField('documentType', documentType);
+    }
+
+    if (reference != null) {
+      addField('reference', reference);
+    }
+
+    if (publicationDate != null) {
+      addField('publicationDate', publicationDate);
+    }
+
+    if (presentationDate != null) {
+      addField('presentationDate', presentationDate);
+    }
+
     return json;
   }
 
@@ -1159,7 +1201,10 @@ class ImmunizationReaction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1169,12 +1214,18 @@ class ImmunizationReaction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (detail != null) {
       json['detail'] = detail!.toJson();
     }
 
-    addField('reported', reported);
+    if (reported != null) {
+      addField('reported', reported);
+    }
+
     return json;
   }
 
@@ -1370,7 +1421,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1380,7 +1434,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('series', series);
+    if (series != null) {
+      addField('series', series);
+    }
+
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
@@ -1390,7 +1447,11 @@ class ImmunizationProtocolApplied extends BackboneElement {
     }
 
     addField('doseNumber${doseNumberX.fhirType.capitalize()}', doseNumberX);
-    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    if (seriesDosesX != null) {
+      addField(
+          'seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    }
+
     return json;
   }
 

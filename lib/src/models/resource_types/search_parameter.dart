@@ -402,13 +402,22 @@ class SearchParameter extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -427,13 +436,28 @@ class SearchParameter extends CanonicalResource {
     }
 
     addField('url', url);
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('derivedFrom', derivedFrom);
+    if (derivedFrom != null) {
+      addField('derivedFrom', derivedFrom);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
@@ -447,7 +471,10 @@ class SearchParameter extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
     addField('code', code);
     if (base.isNotEmpty) {
       final fieldJson0 = base.map((e) => e.toJson()).toList();
@@ -458,9 +485,18 @@ class SearchParameter extends CanonicalResource {
     }
 
     addField('type', type);
-    addField('expression', expression);
-    addField('xpath', xpath);
-    addField('xpathUsage', xpathUsage);
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (xpath != null) {
+      addField('xpath', xpath);
+    }
+
+    if (xpathUsage != null) {
+      addField('xpathUsage', xpathUsage);
+    }
+
     if (target != null && target!.isNotEmpty) {
       final fieldJson1 = target!.map((e) => e.toJson()).toList();
       json['target'] = fieldJson1.map((e) => e['value']).toList();
@@ -469,8 +505,14 @@ class SearchParameter extends CanonicalResource {
       }
     }
 
-    addField('multipleOr', multipleOr);
-    addField('multipleAnd', multipleAnd);
+    if (multipleOr != null) {
+      addField('multipleOr', multipleOr);
+    }
+
+    if (multipleAnd != null) {
+      addField('multipleAnd', multipleAnd);
+    }
+
     if (comparator != null && comparator!.isNotEmpty) {
       final fieldJson2 = comparator!.map((e) => e.toJson()).toList();
       json['comparator'] = fieldJson2.map((e) => e['value']).toList();
@@ -698,7 +740,10 @@ class SearchParameterComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

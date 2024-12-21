@@ -144,12 +144,10 @@ class SupplyDelivery extends DomainResource {
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
-          : json['occurrencePeriod'] != null ||
-                  json['_occurrencePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurrencePeriod'],
-                  '_value': json['_occurrencePeriod'],
-                })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : json['occurrenceTiming'] != null
                   ? Timing.fromJson(
                       json['occurrenceTiming'] as Map<String, dynamic>,
@@ -282,13 +280,22 @@ class SupplyDelivery extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -318,7 +325,10 @@ class SupplyDelivery extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (patient != null) {
       json['patient'] = patient!.toJson();
     }
@@ -331,7 +341,10 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
     if (supplier != null) {
       json['supplier'] = supplier!.toJson();
     }
@@ -445,12 +458,10 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      itemX: json['itemCodeableConcept'] != null ||
-              json['_itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['itemCodeableConcept'],
-              '_value': json['_itemCodeableConcept'],
-            })
+      itemX: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['itemReference'] != null
               ? Reference.fromJson(
                   json['itemReference'] as Map<String, dynamic>,
@@ -522,7 +533,10 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

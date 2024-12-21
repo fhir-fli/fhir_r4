@@ -247,12 +247,10 @@ class Contract extends DomainResource {
               json['scope'] as Map<String, dynamic>,
             )
           : null,
-      topicX: json['topicCodeableConcept'] != null ||
-              json['_topicCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['topicCodeableConcept'],
-              '_value': json['_topicCodeableConcept'],
-            })
+      topicX: json['topicCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['topicCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['topicReference'] != null
               ? Reference.fromJson(
                   json['topicReference'] as Map<String, dynamic>,
@@ -340,12 +338,10 @@ class Contract extends DomainResource {
               )
               .toList()
           : null,
-      legallyBindingX: json['legallyBindingAttachment'] != null ||
-              json['_legallyBindingAttachment'] != null
-          ? Attachment.fromJson({
-              'value': json['legallyBindingAttachment'],
-              '_value': json['_legallyBindingAttachment'],
-            })
+      legallyBindingX: json['legallyBindingAttachment'] != null
+          ? Attachment.fromJson(
+              json['legallyBindingAttachment'] as Map<String, dynamic>,
+            )
           : json['legallyBindingReference'] != null
               ? Reference.fromJson(
                   json['legallyBindingReference'] as Map<String, dynamic>,
@@ -599,13 +595,22 @@ class Contract extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -627,9 +632,18 @@ class Contract extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('version', version);
-    addField('status', status);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (legalState != null) {
       json['legalState'] = legalState!.toJson();
     }
@@ -638,12 +652,18 @@ class Contract extends DomainResource {
       json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
     }
 
-    addField('instantiatesUri', instantiatesUri);
+    if (instantiatesUri != null) {
+      addField('instantiatesUri', instantiatesUri);
+    }
+
     if (contentDerivative != null) {
       json['contentDerivative'] = contentDerivative!.toJson();
     }
 
-    addField('issued', issued);
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (applies != null) {
       json['applies'] = applies!.toJson();
     }
@@ -668,9 +688,18 @@ class Contract extends DomainResource {
       json['site'] = site!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('title', title);
-    addField('subtitle', subtitle);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (subtitle != null) {
+      addField('subtitle', subtitle);
+    }
+
     if (alias != null && alias!.isNotEmpty) {
       final fieldJson0 = alias!.map((e) => e.toJson()).toList();
       json['alias'] = fieldJson0.map((e) => e['value']).toList();
@@ -1004,7 +1033,10 @@ class ContractContentDefinition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1024,9 +1056,15 @@ class ContractContentDefinition extends BackboneElement {
       json['publisher'] = publisher!.toJson();
     }
 
-    addField('publicationDate', publicationDate);
+    if (publicationDate != null) {
+      addField('publicationDate', publicationDate);
+    }
+
     addField('publicationStatus', publicationStatus);
-    addField('copyright', copyright);
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     return json;
   }
 
@@ -1130,12 +1168,10 @@ class ContractTerm extends BackboneElement {
               json['applies'] as Map<String, dynamic>,
             )
           : null,
-      topicX: json['topicCodeableConcept'] != null ||
-              json['_topicCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['topicCodeableConcept'],
-              '_value': json['_topicCodeableConcept'],
-            })
+      topicX: json['topicCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['topicCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['topicReference'] != null
               ? Reference.fromJson(
                   json['topicReference'] as Map<String, dynamic>,
@@ -1307,7 +1343,10 @@ class ContractTerm extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1321,7 +1360,10 @@ class ContractTerm extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('issued', issued);
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (applies != null) {
       json['applies'] = applies!.toJson();
     }
@@ -1338,7 +1380,10 @@ class ContractTerm extends BackboneElement {
       json['subType'] = subType!.toJson();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
@@ -1550,7 +1595,10 @@ class ContractSecurityLabel extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1826,7 +1874,10 @@ class ContractOffer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1864,7 +1915,10 @@ class ContractOffer extends BackboneElement {
       json['answer'] = answer!.map((e) => e.toJson()).toList();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (linkId != null && linkId!.isNotEmpty) {
       final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
       json['linkId'] = fieldJson0.map((e) => e['value']).toList();
@@ -2042,7 +2096,10 @@ class ContractParty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2169,29 +2226,22 @@ class ContractAnswer extends BackboneElement {
                                           'value': json['valueUri'],
                                           '_value': json['_valueUri'],
                                         })
-                                      : json['valueAttachment'] != null ||
-                                              json['_valueAttachment'] != null
-                                          ? Attachment.fromJson({
-                                              'value': json['valueAttachment'],
-                                              '_value':
-                                                  json['_valueAttachment'],
-                                            })
-                                          : json['valueCoding'] != null ||
-                                                  json['_valueCoding'] != null
-                                              ? Coding.fromJson({
-                                                  'value': json['valueCoding'],
-                                                  '_value':
-                                                      json['_valueCoding'],
-                                                })
-                                              : json['valueQuantity'] != null ||
-                                                      json['_valueQuantity'] !=
-                                                          null
-                                                  ? Quantity.fromJson({
-                                                      'value':
-                                                          json['valueQuantity'],
-                                                      '_value': json[
-                                                          '_valueQuantity'],
-                                                    })
+                                      : json['valueAttachment'] != null
+                                          ? Attachment.fromJson(
+                                              json['valueAttachment']
+                                                  as Map<String, dynamic>,
+                                            )
+                                          : json['valueCoding'] != null
+                                              ? Coding.fromJson(
+                                                  json['valueCoding']
+                                                      as Map<String, dynamic>,
+                                                )
+                                              : json['valueQuantity'] != null
+                                                  ? Quantity.fromJson(
+                                                      json['valueQuantity']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    )
                                                   : Reference.fromJson(
                                                       json['valueReference']
                                                           as Map<String,
@@ -2260,7 +2310,10 @@ class ContractAnswer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2585,7 +2638,10 @@ class ContractAsset extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2619,7 +2675,10 @@ class ContractAsset extends BackboneElement {
       json['context'] = context!.map((e) => e.toJson()).toList();
     }
 
-    addField('condition', condition);
+    if (condition != null) {
+      addField('condition', condition);
+    }
+
     if (periodType != null && periodType!.isNotEmpty) {
       json['periodType'] = periodType!.map((e) => e.toJson()).toList();
     }
@@ -2632,7 +2691,10 @@ class ContractAsset extends BackboneElement {
       json['usePeriod'] = usePeriod!.map((e) => e.toJson()).toList();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (linkId != null && linkId!.isNotEmpty) {
       final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
       json['linkId'] = fieldJson0.map((e) => e['value']).toList();
@@ -2844,7 +2906,10 @@ class ContractContext extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2862,7 +2927,10 @@ class ContractContext extends BackboneElement {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
 
-    addField('text', text);
+    if (text != null) {
+      addField('text', text);
+    }
+
     return json;
   }
 
@@ -2945,12 +3013,10 @@ class ContractValuedItem extends BackboneElement {
               )
               .toList()
           : null,
-      entityX: json['entityCodeableConcept'] != null ||
-              json['_entityCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['entityCodeableConcept'],
-              '_value': json['_entityCodeableConcept'],
-            })
+      entityX: json['entityCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['entityCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['entityReference'] != null
               ? Reference.fromJson(
                   json['entityReference'] as Map<String, dynamic>,
@@ -3154,7 +3220,10 @@ class ContractValuedItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3172,7 +3241,10 @@ class ContractValuedItem extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('effectiveTime', effectiveTime);
+    if (effectiveTime != null) {
+      addField('effectiveTime', effectiveTime);
+    }
+
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -3181,14 +3253,26 @@ class ContractValuedItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    addField('factor', factor);
-    addField('points', points);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
+    if (points != null) {
+      addField('points', points);
+    }
+
     if (net != null) {
       json['net'] = net!.toJson();
     }
 
-    addField('payment', payment);
-    addField('paymentDate', paymentDate);
+    if (payment != null) {
+      addField('payment', payment);
+    }
+
+    if (paymentDate != null) {
+      addField('paymentDate', paymentDate);
+    }
+
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
     }
@@ -3372,12 +3456,10 @@ class ContractAction extends BackboneElement {
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
-          : json['occurrencePeriod'] != null ||
-                  json['_occurrencePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurrencePeriod'],
-                  '_value': json['_occurrencePeriod'],
-                })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : json['occurrenceTiming'] != null
                   ? Timing.fromJson(
                       json['occurrenceTiming'] as Map<String, dynamic>,
@@ -3622,7 +3704,10 @@ class ContractAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3632,7 +3717,10 @@ class ContractAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('doNotPerform', doNotPerform);
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
     json['type'] = type.toJson();
 
     if (subject != null && subject!.isNotEmpty) {
@@ -3663,7 +3751,10 @@ class ContractAction extends BackboneElement {
       }
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
     if (requester != null && requester!.isNotEmpty) {
       json['requester'] = requester!.map((e) => e.toJson()).toList();
     }
@@ -3918,7 +4009,10 @@ class ContractSubject extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4091,7 +4185,10 @@ class ContractSigner extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4184,12 +4281,10 @@ class ContractFriendly extends BackboneElement {
               )
               .toList()
           : null,
-      contentX: json['contentAttachment'] != null ||
-              json['_contentAttachment'] != null
-          ? Attachment.fromJson({
-              'value': json['contentAttachment'],
-              '_value': json['_contentAttachment'],
-            })
+      contentX: json['contentAttachment'] != null
+          ? Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['contentReference'] as Map<String, dynamic>,
             ),
@@ -4255,7 +4350,10 @@ class ContractFriendly extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4332,12 +4430,10 @@ class ContractLegal extends BackboneElement {
               )
               .toList()
           : null,
-      contentX: json['contentAttachment'] != null ||
-              json['_contentAttachment'] != null
-          ? Attachment.fromJson({
-              'value': json['contentAttachment'],
-              '_value': json['_contentAttachment'],
-            })
+      contentX: json['contentAttachment'] != null
+          ? Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['contentReference'] as Map<String, dynamic>,
             ),
@@ -4401,7 +4497,10 @@ class ContractLegal extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4479,12 +4578,10 @@ class ContractRule extends BackboneElement {
               )
               .toList()
           : null,
-      contentX: json['contentAttachment'] != null ||
-              json['_contentAttachment'] != null
-          ? Attachment.fromJson({
-              'value': json['contentAttachment'],
-              '_value': json['_contentAttachment'],
-            })
+      contentX: json['contentAttachment'] != null
+          ? Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['contentReference'] as Map<String, dynamic>,
             ),
@@ -4549,7 +4646,10 @@ class ContractRule extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

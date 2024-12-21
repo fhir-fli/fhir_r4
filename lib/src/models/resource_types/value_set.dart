@@ -319,13 +319,22 @@ class ValueSet extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -343,23 +352,47 @@ class ValueSet extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -368,9 +401,18 @@ class ValueSet extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('immutable', immutable);
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (immutable != null) {
+      addField('immutable', immutable);
+    }
+
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     if (compose != null) {
       json['compose'] = compose!.toJson();
     }
@@ -605,7 +647,10 @@ class ValueSetCompose extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -615,8 +660,14 @@ class ValueSetCompose extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('lockedDate', lockedDate);
-    addField('inactive', inactive);
+    if (lockedDate != null) {
+      addField('lockedDate', lockedDate);
+    }
+
+    if (inactive != null) {
+      addField('inactive', inactive);
+    }
+
     if (include.isNotEmpty) {
       json['include'] = include.map((e) => e.toJson()).toList();
     }
@@ -819,7 +870,10 @@ class ValueSetInclude extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -829,8 +883,14 @@ class ValueSetInclude extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('system', system);
-    addField('version', version);
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
     if (concept != null && concept!.isNotEmpty) {
       json['concept'] = concept!.map((e) => e.toJson()).toList();
     }
@@ -1013,7 +1073,10 @@ class ValueSetConcept extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1024,7 +1087,10 @@ class ValueSetConcept extends BackboneElement {
     }
 
     addField('code', code);
-    addField('display', display);
+    if (display != null) {
+      addField('display', display);
+    }
+
     if (designation != null && designation!.isNotEmpty) {
       json['designation'] = designation!.map((e) => e.toJson()).toList();
     }
@@ -1185,7 +1251,10 @@ class ValueSetDesignation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1195,7 +1264,10 @@ class ValueSetDesignation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('language', language);
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (use != null) {
       json['use'] = use!.toJson();
     }
@@ -1361,7 +1433,10 @@ class ValueSetFilter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1581,7 +1656,10 @@ class ValueSetExpansion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1591,10 +1669,19 @@ class ValueSetExpansion extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('identifier', identifier);
+    if (identifier != null) {
+      addField('identifier', identifier);
+    }
+
     addField('timestamp', timestamp);
-    addField('total', total);
-    addField('offset', offset);
+    if (total != null) {
+      addField('total', total);
+    }
+
+    if (offset != null) {
+      addField('offset', offset);
+    }
+
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
@@ -1790,7 +1877,10 @@ class ValueSetParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1801,7 +1891,10 @@ class ValueSetParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('value${valueX!.fhirType.capitalize()}', valueX);
+    if (valueX != null) {
+      addField('value${valueX!.fhirType.capitalize()}', valueX);
+    }
+
     return json;
   }
 
@@ -2034,7 +2127,10 @@ class ValueSetContains extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2044,12 +2140,30 @@ class ValueSetContains extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('system', system);
-    addField('abstract', abstract_);
-    addField('inactive', inactive);
-    addField('version', version);
-    addField('code', code);
-    addField('display', display);
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (abstract_ != null) {
+      addField('abstract', abstract_);
+    }
+
+    if (inactive != null) {
+      addField('inactive', inactive);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
     if (designation != null && designation!.isNotEmpty) {
       json['designation'] = designation!.map((e) => e.toJson()).toList();
     }

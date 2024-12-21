@@ -428,13 +428,22 @@ class DeviceDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -461,13 +470,19 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField(
-        'manufacturer${manufacturerX!.fhirType.capitalize()}', manufacturerX);
+    if (manufacturerX != null) {
+      addField(
+          'manufacturer${manufacturerX!.fhirType.capitalize()}', manufacturerX);
+    }
+
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
 
-    addField('modelNumber', modelNumber);
+    if (modelNumber != null) {
+      addField('modelNumber', modelNumber);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -517,8 +532,14 @@ class DeviceDefinition extends DomainResource {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('onlineInformation', onlineInformation);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (onlineInformation != null) {
+      addField('onlineInformation', onlineInformation);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -740,7 +761,10 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -897,7 +921,10 @@ class DeviceDefinitionDeviceName extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1053,7 +1080,10 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1064,7 +1094,10 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     }
 
     addField('systemType', systemType);
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     return json;
   }
 
@@ -1209,7 +1242,10 @@ class DeviceDefinitionCapability extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1385,7 +1421,10 @@ class DeviceDefinitionProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1560,7 +1599,10 @@ class DeviceDefinitionMaterial extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1572,8 +1614,14 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
     json['substance'] = substance.toJson();
 
-    addField('alternate', alternate);
-    addField('allergenicIndicator', allergenicIndicator);
+    if (alternate != null) {
+      addField('alternate', alternate);
+    }
+
+    if (allergenicIndicator != null) {
+      addField('allergenicIndicator', allergenicIndicator);
+    }
+
     return json;
   }
 

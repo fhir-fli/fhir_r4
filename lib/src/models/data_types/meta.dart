@@ -178,14 +178,26 @@ class FhirMeta extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('versionId', versionId);
-    addField('lastUpdated', lastUpdated);
-    addField('source', source);
+    if (versionId != null) {
+      addField('versionId', versionId);
+    }
+
+    if (lastUpdated != null) {
+      addField('lastUpdated', lastUpdated);
+    }
+
+    if (source != null) {
+      addField('source', source);
+    }
+
     if (profile != null && profile!.isNotEmpty) {
       final fieldJson0 = profile!.map((e) => e.toJson()).toList();
       json['profile'] = fieldJson0.map((e) => e['value']).toList();

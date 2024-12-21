@@ -291,13 +291,22 @@ class ImmunizationEvaluation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -322,7 +331,10 @@ class ImmunizationEvaluation extends DomainResource {
     addField('status', status);
     json['patient'] = patient.toJson();
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
@@ -338,10 +350,23 @@ class ImmunizationEvaluation extends DomainResource {
           doseStatusReason!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('series', series);
-    addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
-    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (series != null) {
+      addField('series', series);
+    }
+
+    if (doseNumberX != null) {
+      addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
+    }
+
+    if (seriesDosesX != null) {
+      addField(
+          'seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
+    }
+
     return json;
   }
 

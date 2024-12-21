@@ -402,13 +402,22 @@ class Media extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -459,8 +468,14 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('created${createdX!.fhirType.capitalize()}', createdX);
-    addField('issued', issued);
+    if (createdX != null) {
+      addField('created${createdX!.fhirType.capitalize()}', createdX);
+    }
+
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
     }
@@ -473,15 +488,30 @@ class Media extends DomainResource {
       json['bodySite'] = bodySite!.toJson();
     }
 
-    addField('deviceName', deviceName);
+    if (deviceName != null) {
+      addField('deviceName', deviceName);
+    }
+
     if (device != null) {
       json['device'] = device!.toJson();
     }
 
-    addField('height', height);
-    addField('width', width);
-    addField('frames', frames);
-    addField('duration', duration);
+    if (height != null) {
+      addField('height', height);
+    }
+
+    if (width != null) {
+      addField('width', width);
+    }
+
+    if (frames != null) {
+      addField('frames', frames);
+    }
+
+    if (duration != null) {
+      addField('duration', duration);
+    }
+
     json['content'] = content.toJson();
 
     if (note != null && note!.isNotEmpty) {

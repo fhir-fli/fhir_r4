@@ -281,13 +281,22 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -309,17 +318,26 @@ class BiologicallyDerivedProduct extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('productCategory', productCategory);
+    if (productCategory != null) {
+      addField('productCategory', productCategory);
+    }
+
     if (productCode != null) {
       json['productCode'] = productCode!.toJson();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (request != null && request!.isNotEmpty) {
       json['request'] = request!.map((e) => e.toJson()).toList();
     }
 
-    addField('quantity', quantity);
+    if (quantity != null) {
+      addField('quantity', quantity);
+    }
+
     if (parent != null && parent!.isNotEmpty) {
       json['parent'] = parent!.map((e) => e.toJson()).toList();
     }
@@ -527,7 +545,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -545,7 +566,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       json['source'] = source!.toJson();
     }
 
-    addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
+    if (collectedX != null) {
+      addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
+    }
+
     return json;
   }
 
@@ -718,7 +742,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -728,7 +755,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (procedure != null) {
       json['procedure'] = procedure!.toJson();
     }
@@ -737,7 +767,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       json['additive'] = additive!.toJson();
     }
 
-    addField('time${timeX!.fhirType.capitalize()}', timeX);
+    if (timeX != null) {
+      addField('time${timeX!.fhirType.capitalize()}', timeX);
+    }
+
     return json;
   }
 
@@ -892,7 +925,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -902,8 +938,14 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('time${timeX!.fhirType.capitalize()}', timeX);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (timeX != null) {
+      addField('time${timeX!.fhirType.capitalize()}', timeX);
+    }
+
     return json;
   }
 
@@ -1069,7 +1111,10 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1079,9 +1124,18 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('temperature', temperature);
-    addField('scale', scale);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (temperature != null) {
+      addField('temperature', temperature);
+    }
+
+    if (scale != null) {
+      addField('scale', scale);
+    }
+
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }

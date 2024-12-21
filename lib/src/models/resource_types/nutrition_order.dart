@@ -353,13 +353,22 @@ class NutritionOrder extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -703,7 +712,10 @@ class NutritionOrderOralDiet extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -734,7 +746,10 @@ class NutritionOrderOralDiet extends BackboneElement {
           fluidConsistencyType!.map((e) => e.toJson()).toList();
     }
 
-    addField('instruction', instruction);
+    if (instruction != null) {
+      addField('instruction', instruction);
+    }
+
     return json;
   }
 
@@ -886,7 +901,10 @@ class NutritionOrderNutrient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1049,7 +1067,10 @@ class NutritionOrderTexture extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1251,7 +1272,10 @@ class NutritionOrderSupplement extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1265,7 +1289,10 @@ class NutritionOrderSupplement extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('productName', productName);
+    if (productName != null) {
+      addField('productName', productName);
+    }
+
     if (schedule != null && schedule!.isNotEmpty) {
       json['schedule'] = schedule!.map((e) => e.toJson()).toList();
     }
@@ -1274,7 +1301,10 @@ class NutritionOrderSupplement extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    addField('instruction', instruction);
+    if (instruction != null) {
+      addField('instruction', instruction);
+    }
+
     return json;
   }
 
@@ -1520,7 +1550,10 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1534,12 +1567,18 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       json['baseFormulaType'] = baseFormulaType!.toJson();
     }
 
-    addField('baseFormulaProductName', baseFormulaProductName);
+    if (baseFormulaProductName != null) {
+      addField('baseFormulaProductName', baseFormulaProductName);
+    }
+
     if (additiveType != null) {
       json['additiveType'] = additiveType!.toJson();
     }
 
-    addField('additiveProductName', additiveProductName);
+    if (additiveProductName != null) {
+      addField('additiveProductName', additiveProductName);
+    }
+
     if (caloricDensity != null) {
       json['caloricDensity'] = caloricDensity!.toJson();
     }
@@ -1556,7 +1595,10 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       json['maxVolumeToDeliver'] = maxVolumeToDeliver!.toJson();
     }
 
-    addField('administrationInstruction', administrationInstruction);
+    if (administrationInstruction != null) {
+      addField('administrationInstruction', administrationInstruction);
+    }
+
     return json;
   }
 
@@ -1657,11 +1699,10 @@ class NutritionOrderAdministration extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      rateX: json['rateQuantity'] != null || json['_rateQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['rateQuantity'],
-              '_value': json['_rateQuantity'],
-            })
+      rateX: json['rateQuantity'] != null
+          ? Quantity.fromJson(
+              json['rateQuantity'] as Map<String, dynamic>,
+            )
           : json['rateRatio'] != null
               ? Ratio.fromJson(
                   json['rateRatio'] as Map<String, dynamic>,
@@ -1738,7 +1779,10 @@ class NutritionOrderAdministration extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -163,11 +163,10 @@ class DeviceRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      codeX: json['codeReference'] != null || json['_codeReference'] != null
-          ? Reference.fromJson({
-              'value': json['codeReference'],
-              '_value': json['_codeReference'],
-            })
+      codeX: json['codeReference'] != null
+          ? Reference.fromJson(
+              json['codeReference'] as Map<String, dynamic>,
+            )
           : CodeableConcept.fromJson(
               json['codeCodeableConcept'] as Map<String, dynamic>,
             ),
@@ -194,12 +193,10 @@ class DeviceRequest extends DomainResource {
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
-          : json['occurrencePeriod'] != null ||
-                  json['_occurrencePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurrencePeriod'],
-                  '_value': json['_occurrencePeriod'],
-                })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : json['occurrenceTiming'] != null
                   ? Timing.fromJson(
                       json['occurrenceTiming'] as Map<String, dynamic>,
@@ -453,13 +450,22 @@ class DeviceRequest extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -511,9 +517,15 @@ class DeviceRequest extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     addField('intent', intent);
-    addField('priority', priority);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     json['code${codeX.fhirType.capitalize()}'] = codeX.toJson();
 
     if (parameter != null && parameter!.isNotEmpty) {
@@ -526,8 +538,14 @@ class DeviceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
-    addField('authoredOn', authoredOn);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
+    if (authoredOn != null) {
+      addField('authoredOn', authoredOn);
+    }
+
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -695,22 +713,18 @@ class DeviceRequestParameter extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
-                })
-              : json['valueRange'] != null || json['_valueRange'] != null
-                  ? Range.fromJson({
-                      'value': json['valueRange'],
-                      '_value': json['_valueRange'],
-                    })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : json['valueQuantity'] != null
+              ? Quantity.fromJson(
+                  json['valueQuantity'] as Map<String, dynamic>,
+                )
+              : json['valueRange'] != null
+                  ? Range.fromJson(
+                      json['valueRange'] as Map<String, dynamic>,
+                    )
                   : json['valueBoolean'] != null ||
                           json['_valueBoolean'] != null
                       ? FhirBoolean.fromJson({
@@ -782,7 +796,10 @@ class DeviceRequestParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

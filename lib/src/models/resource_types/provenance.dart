@@ -108,19 +108,17 @@ class Provenance extends DomainResource {
             )
             .toList(),
       ),
-      occurredX:
-          json['occurredPeriod'] != null || json['_occurredPeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurredPeriod'],
-                  '_value': json['_occurredPeriod'],
+      occurredX: json['occurredPeriod'] != null
+          ? Period.fromJson(
+              json['occurredPeriod'] as Map<String, dynamic>,
+            )
+          : json['occurredDateTime'] != null ||
+                  json['_occurredDateTime'] != null
+              ? FhirDateTime.fromJson({
+                  'value': json['occurredDateTime'],
+                  '_value': json['_occurredDateTime'],
                 })
-              : json['occurredDateTime'] != null ||
-                      json['_occurredDateTime'] != null
-                  ? FhirDateTime.fromJson({
-                      'value': json['occurredDateTime'],
-                      '_value': json['_occurredDateTime'],
-                    })
-                  : null,
+              : null,
       recorded: FhirInstant.fromJson({
         'value': json['recorded'],
         '_value': json['_recorded'],
@@ -281,13 +279,22 @@ class Provenance extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -538,7 +545,10 @@ class ProvenanceAgent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -723,7 +733,10 @@ class ProvenanceEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

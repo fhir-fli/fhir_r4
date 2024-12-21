@@ -224,13 +224,22 @@ class SubscriptionStatus extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -248,9 +257,15 @@ class SubscriptionStatus extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     addField('type', type);
-    addField('eventsSinceSubscriptionStart', eventsSinceSubscriptionStart);
+    if (eventsSinceSubscriptionStart != null) {
+      addField('eventsSinceSubscriptionStart', eventsSinceSubscriptionStart);
+    }
+
     if (notificationEvent != null && notificationEvent!.isNotEmpty) {
       json['notificationEvent'] =
           notificationEvent!.map((e) => e.toJson()).toList();
@@ -258,7 +273,10 @@ class SubscriptionStatus extends DomainResource {
 
     json['subscription'] = subscription.toJson();
 
-    addField('topic', topic);
+    if (topic != null) {
+      addField('topic', topic);
+    }
+
     if (error != null && error!.isNotEmpty) {
       json['error'] = error!.map((e) => e.toJson()).toList();
     }
@@ -457,7 +475,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -468,7 +489,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     }
 
     addField('eventNumber', eventNumber);
-    addField('timestamp', timestamp);
+    if (timestamp != null) {
+      addField('timestamp', timestamp);
+    }
+
     if (focus != null) {
       json['focus'] = focus!.toJson();
     }

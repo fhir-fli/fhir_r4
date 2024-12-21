@@ -348,13 +348,22 @@ class Coverage extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -389,10 +398,16 @@ class Coverage extends DomainResource {
       json['subscriber'] = subscriber!.toJson();
     }
 
-    addField('subscriberId', subscriberId);
+    if (subscriberId != null) {
+      addField('subscriberId', subscriberId);
+    }
+
     json['beneficiary'] = beneficiary.toJson();
 
-    addField('dependent', dependent);
+    if (dependent != null) {
+      addField('dependent', dependent);
+    }
+
     if (relationship != null) {
       json['relationship'] = relationship!.toJson();
     }
@@ -409,14 +424,23 @@ class Coverage extends DomainResource {
       json['class'] = class_!.map((e) => e.toJson()).toList();
     }
 
-    addField('order', order);
-    addField('network', network);
+    if (order != null) {
+      addField('order', order);
+    }
+
+    if (network != null) {
+      addField('network', network);
+    }
+
     if (costToBeneficiary != null && costToBeneficiary!.isNotEmpty) {
       json['costToBeneficiary'] =
           costToBeneficiary!.map((e) => e.toJson()).toList();
     }
 
-    addField('subrogation', subrogation);
+    if (subrogation != null) {
+      addField('subrogation', subrogation);
+    }
+
     if (contract != null && contract!.isNotEmpty) {
       json['contract'] = contract!.map((e) => e.toJson()).toList();
     }
@@ -613,7 +637,10 @@ class CoverageClass extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -626,7 +653,10 @@ class CoverageClass extends BackboneElement {
     json['type'] = type.toJson();
 
     addField('value', value);
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     return json;
   }
 
@@ -705,11 +735,10 @@ class CoverageCostToBeneficiary extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['valueQuantity'],
-              '_value': json['_valueQuantity'],
-            })
+      valueX: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
           : Money.fromJson(
               json['valueMoney'] as Map<String, dynamic>,
             ),
@@ -791,7 +820,10 @@ class CoverageCostToBeneficiary extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -954,7 +986,10 @@ class CoverageException extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

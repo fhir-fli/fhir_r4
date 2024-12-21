@@ -217,13 +217,22 @@ class Subscription extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -246,10 +255,16 @@ class Subscription extends DomainResource {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('end', end);
+    if (end != null) {
+      addField('end', end);
+    }
+
     addField('reason', reason);
     addField('criteria', criteria);
-    addField('error', error);
+    if (error != null) {
+      addField('error', error);
+    }
+
     json['channel'] = channel.toJson();
 
     return json;
@@ -439,7 +454,10 @@ class SubscriptionChannel extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -450,8 +468,14 @@ class SubscriptionChannel extends BackboneElement {
     }
 
     addField('type', type);
-    addField('endpoint', endpoint);
-    addField('payload', payload);
+    if (endpoint != null) {
+      addField('endpoint', endpoint);
+    }
+
+    if (payload != null) {
+      addField('payload', payload);
+    }
+
     if (header != null && header!.isNotEmpty) {
       final fieldJson0 = header!.map((e) => e.toJson()).toList();
       json['header'] = fieldJson0.map((e) => e['value']).toList();

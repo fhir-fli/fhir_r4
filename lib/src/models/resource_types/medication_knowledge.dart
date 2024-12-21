@@ -440,13 +440,22 @@ class MedicationKnowledge extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -468,7 +477,10 @@ class MedicationKnowledge extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (manufacturer != null) {
       json['manufacturer'] = manufacturer!.toJson();
     }
@@ -512,7 +524,10 @@ class MedicationKnowledge extends DomainResource {
       json['ingredient'] = ingredient!.map((e) => e.toJson()).toList();
     }
 
-    addField('preparationInstruction', preparationInstruction);
+    if (preparationInstruction != null) {
+      addField('preparationInstruction', preparationInstruction);
+    }
+
     if (intendedRoute != null && intendedRoute!.isNotEmpty) {
       json['intendedRoute'] = intendedRoute!.map((e) => e.toJson()).toList();
     }
@@ -758,7 +773,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -918,7 +936,10 @@ class MedicationKnowledgeMonograph extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1005,12 +1026,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
               )
               .toList()
           : null,
-      itemX: json['itemCodeableConcept'] != null ||
-              json['_itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['itemCodeableConcept'],
-              '_value': json['_itemCodeableConcept'],
-            })
+      itemX: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['itemReference'] as Map<String, dynamic>,
             ),
@@ -1097,7 +1116,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1109,7 +1131,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 
     json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
-    addField('isActive', isActive);
+    if (isActive != null) {
+      addField('isActive', isActive);
+    }
+
     if (strength != null) {
       json['strength'] = strength!.toJson();
     }
@@ -1266,7 +1291,10 @@ class MedicationKnowledgeCost extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1278,7 +1306,10 @@ class MedicationKnowledgeCost extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('source', source);
+    if (source != null) {
+      addField('source', source);
+    }
+
     json['cost'] = cost.toJson();
 
     return json;
@@ -1426,7 +1457,10 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1440,7 +1474,10 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     return json;
   }
 
@@ -1519,12 +1556,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
               )
               .toList()
           : null,
-      indicationX: json['indicationCodeableConcept'] != null ||
-              json['_indicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['indicationCodeableConcept'],
-              '_value': json['_indicationCodeableConcept'],
-            })
+      indicationX: json['indicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['indicationCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['indicationReference'] != null
               ? Reference.fromJson(
                   json['indicationReference'] as Map<String, dynamic>,
@@ -1609,7 +1644,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1782,7 +1820,10 @@ class MedicationKnowledgeDosage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1867,12 +1908,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
               )
               .toList()
           : null,
-      characteristicX: json['characteristicCodeableConcept'] != null ||
-              json['_characteristicCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['characteristicCodeableConcept'],
-              '_value': json['_characteristicCodeableConcept'],
-            })
+      characteristicX: json['characteristicCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['characteristicCodeableConcept'] as Map<String, dynamic>,
+            )
           : Quantity.fromJson(
               json['characteristicQuantity'] as Map<String, dynamic>,
             ),
@@ -1947,7 +1986,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2116,7 +2158,10 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2276,7 +2321,10 @@ class MedicationKnowledgePackaging extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2368,22 +2416,19 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['valueString'] != null || json['_valueString'] != null
               ? FhirString.fromJson({
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? Quantity.fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
-                    })
+              : json['valueQuantity'] != null
+                  ? Quantity.fromJson(
+                      json['valueQuantity'] as Map<String, dynamic>,
+                    )
                   : json['valueBase64Binary'] != null ||
                           json['_valueBase64Binary'] != null
                       ? FhirBase64Binary.fromJson({
@@ -2456,7 +2501,10 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2644,7 +2692,10 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2813,7 +2864,10 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2956,7 +3010,10 @@ class MedicationKnowledgeSchedule extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3107,7 +3164,10 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3285,7 +3345,10 @@ class MedicationKnowledgeKinetics extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

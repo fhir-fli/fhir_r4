@@ -185,20 +185,35 @@ class Bundle extends Resource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
     addField('type', type);
-    addField('timestamp', timestamp);
-    addField('total', total);
+    if (timestamp != null) {
+      addField('timestamp', timestamp);
+    }
+
+    if (total != null) {
+      addField('total', total);
+    }
+
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
@@ -364,7 +379,10 @@ class BundleLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -578,7 +596,10 @@ class BundleEntry extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -592,7 +613,10 @@ class BundleEntry extends BackboneElement {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
 
-    addField('fullUrl', fullUrl);
+    if (fullUrl != null) {
+      addField('fullUrl', fullUrl);
+    }
+
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -764,7 +788,10 @@ class BundleSearch extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -774,8 +801,14 @@ class BundleSearch extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('mode', mode);
-    addField('score', score);
+    if (mode != null) {
+      addField('mode', mode);
+    }
+
+    if (score != null) {
+      addField('score', score);
+    }
+
     return json;
   }
 
@@ -973,7 +1006,10 @@ class BundleRequest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -985,10 +1021,22 @@ class BundleRequest extends BackboneElement {
 
     addField('method', method);
     addField('url', url);
-    addField('ifNoneMatch', ifNoneMatch);
-    addField('ifModifiedSince', ifModifiedSince);
-    addField('ifMatch', ifMatch);
-    addField('ifNoneExist', ifNoneExist);
+    if (ifNoneMatch != null) {
+      addField('ifNoneMatch', ifNoneMatch);
+    }
+
+    if (ifModifiedSince != null) {
+      addField('ifModifiedSince', ifModifiedSince);
+    }
+
+    if (ifMatch != null) {
+      addField('ifMatch', ifMatch);
+    }
+
+    if (ifNoneExist != null) {
+      addField('ifNoneExist', ifNoneExist);
+    }
+
     return json;
   }
 
@@ -1181,7 +1229,10 @@ class BundleResponse extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1192,9 +1243,18 @@ class BundleResponse extends BackboneElement {
     }
 
     addField('status', status);
-    addField('location', location);
-    addField('etag', etag);
-    addField('lastModified', lastModified);
+    if (location != null) {
+      addField('location', location);
+    }
+
+    if (etag != null) {
+      addField('etag', etag);
+    }
+
+    if (lastModified != null) {
+      addField('lastModified', lastModified);
+    }
+
     if (outcome != null) {
       json['outcome'] = outcome!.toJson();
     }

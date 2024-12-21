@@ -178,14 +178,26 @@ class HumanName extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('use', use);
-    addField('text', text);
-    addField('family', family);
+    if (use != null) {
+      addField('use', use);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
+    if (family != null) {
+      addField('family', family);
+    }
+
     if (given != null && given!.isNotEmpty) {
       final fieldJson0 = given!.map((e) => e.toJson()).toList();
       json['given'] = fieldJson0.map((e) => e['value']).toList();

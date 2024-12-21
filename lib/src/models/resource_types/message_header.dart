@@ -94,11 +94,10 @@ class MessageHeader extends DomainResource {
               )
               .toList()
           : null,
-      eventX: json['eventCoding'] != null || json['_eventCoding'] != null
-          ? Coding.fromJson({
-              'value': json['eventCoding'],
-              '_value': json['_eventCoding'],
-            })
+      eventX: json['eventCoding'] != null
+          ? Coding.fromJson(
+              json['eventCoding'] as Map<String, dynamic>,
+            )
           : FhirUri.fromJson({
               'value': json['eventUri'],
               '_value': json['_eventUri'],
@@ -275,13 +274,22 @@ class MessageHeader extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -335,7 +343,10 @@ class MessageHeader extends DomainResource {
       json['focus'] = focus!.map((e) => e.toJson()).toList();
     }
 
-    addField('definition', definition);
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
     return json;
   }
 
@@ -529,7 +540,10 @@ class MessageHeaderDestination extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -539,7 +553,10 @@ class MessageHeaderDestination extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (target != null) {
       json['target'] = target!.toJson();
     }
@@ -729,7 +746,10 @@ class MessageHeaderSource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -739,9 +759,18 @@ class MessageHeaderSource extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('software', software);
-    addField('version', version);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (software != null) {
+      addField('software', software);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
     if (contact != null) {
       json['contact'] = contact!.toJson();
     }
@@ -906,7 +935,10 @@ class MessageHeaderResponse extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

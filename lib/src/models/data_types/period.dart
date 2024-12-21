@@ -170,13 +170,22 @@ class Period extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('start', start);
-    addField('end', end);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
     return json;
   }
 

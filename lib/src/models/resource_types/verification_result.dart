@@ -302,13 +302,22 @@ class VerificationResult extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -343,7 +352,10 @@ class VerificationResult extends DomainResource {
     }
 
     addField('status', status);
-    addField('statusDate', statusDate);
+    if (statusDate != null) {
+      addField('statusDate', statusDate);
+    }
+
     if (validationType != null) {
       json['validationType'] = validationType!.toJson();
     }
@@ -357,8 +369,14 @@ class VerificationResult extends DomainResource {
       json['frequency'] = frequency!.toJson();
     }
 
-    addField('lastPerformed', lastPerformed);
-    addField('nextScheduled', nextScheduled);
+    if (lastPerformed != null) {
+      addField('lastPerformed', lastPerformed);
+    }
+
+    if (nextScheduled != null) {
+      addField('nextScheduled', nextScheduled);
+    }
+
     if (failureAction != null) {
       json['failureAction'] = failureAction!.toJson();
     }
@@ -620,7 +638,10 @@ class VerificationResultPrimarySource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -647,7 +668,10 @@ class VerificationResultPrimarySource extends BackboneElement {
       json['validationStatus'] = validationStatus!.toJson();
     }
 
-    addField('validationDate', validationDate);
+    if (validationDate != null) {
+      addField('validationDate', validationDate);
+    }
+
     if (canPushUpdates != null) {
       json['canPushUpdates'] = canPushUpdates!.toJson();
     }
@@ -880,7 +904,10 @@ class VerificationResultAttestation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -902,9 +929,18 @@ class VerificationResultAttestation extends BackboneElement {
       json['communicationMethod'] = communicationMethod!.toJson();
     }
 
-    addField('date', date);
-    addField('sourceIdentityCertificate', sourceIdentityCertificate);
-    addField('proxyIdentityCertificate', proxyIdentityCertificate);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (sourceIdentityCertificate != null) {
+      addField('sourceIdentityCertificate', sourceIdentityCertificate);
+    }
+
+    if (proxyIdentityCertificate != null) {
+      addField('proxyIdentityCertificate', proxyIdentityCertificate);
+    }
+
     if (proxySignature != null) {
       json['proxySignature'] = proxySignature!.toJson();
     }
@@ -1080,7 +1116,10 @@ class VerificationResultValidator extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1092,7 +1131,10 @@ class VerificationResultValidator extends BackboneElement {
 
     json['organization'] = organization.toJson();
 
-    addField('identityCertificate', identityCertificate);
+    if (identityCertificate != null) {
+      addField('identityCertificate', identityCertificate);
+    }
+
     if (attestationSignature != null) {
       json['attestationSignature'] = attestationSignature!.toJson();
     }

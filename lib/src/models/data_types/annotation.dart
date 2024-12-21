@@ -45,18 +45,16 @@ class Annotation extends DataType
               )
               .toList()
           : null,
-      authorX:
-          json['authorReference'] != null || json['_authorReference'] != null
-              ? Reference.fromJson({
-                  'value': json['authorReference'],
-                  '_value': json['_authorReference'],
+      authorX: json['authorReference'] != null
+          ? Reference.fromJson(
+              json['authorReference'] as Map<String, dynamic>,
+            )
+          : json['authorString'] != null || json['_authorString'] != null
+              ? FhirString.fromJson({
+                  'value': json['authorString'],
+                  '_value': json['_authorString'],
                 })
-              : json['authorString'] != null || json['_authorString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['authorString'],
-                      '_value': json['_authorString'],
-                    })
-                  : null,
+              : null,
       time: (json['time'] != null || json['_time'] != null)
           ? FhirDateTime.fromJson({
               'value': json['time'],
@@ -135,7 +133,10 @@ class Annotation extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -144,7 +145,10 @@ class Annotation extends DataType
       json['author${authorX!.fhirType.capitalize()}'] = authorX!.toJson();
     }
 
-    addField('time', time);
+    if (time != null) {
+      addField('time', time);
+    }
+
     addField('text', text);
     return json;
   }

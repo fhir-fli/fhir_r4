@@ -337,13 +337,22 @@ class MolecularSequence extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -365,7 +374,10 @@ class MolecularSequence extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('type', type);
+    if (type != null) {
+      addField('type', type);
+    }
+
     addField('coordinateSystem', coordinateSystem);
     if (patient != null) {
       json['patient'] = patient!.toJson();
@@ -395,12 +407,18 @@ class MolecularSequence extends DomainResource {
       json['variant'] = variant!.map((e) => e.toJson()).toList();
     }
 
-    addField('observedSeq', observedSeq);
+    if (observedSeq != null) {
+      addField('observedSeq', observedSeq);
+    }
+
     if (quality != null && quality!.isNotEmpty) {
       json['quality'] = quality!.map((e) => e.toJson()).toList();
     }
 
-    addField('readCoverage', readCoverage);
+    if (readCoverage != null) {
+      addField('readCoverage', readCoverage);
+    }
+
     if (repository != null && repository!.isNotEmpty) {
       json['repository'] = repository!.map((e) => e.toJson()).toList();
     }
@@ -690,7 +708,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -704,8 +725,14 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       json['chromosome'] = chromosome!.toJson();
     }
 
-    addField('genomeBuild', genomeBuild);
-    addField('orientation', orientation);
+    if (genomeBuild != null) {
+      addField('genomeBuild', genomeBuild);
+    }
+
+    if (orientation != null) {
+      addField('orientation', orientation);
+    }
+
     if (referenceSeqId != null) {
       json['referenceSeqId'] = referenceSeqId!.toJson();
     }
@@ -714,10 +741,22 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       json['referenceSeqPointer'] = referenceSeqPointer!.toJson();
     }
 
-    addField('referenceSeqString', referenceSeqString);
-    addField('strand', strand);
-    addField('windowStart', windowStart);
-    addField('windowEnd', windowEnd);
+    if (referenceSeqString != null) {
+      addField('referenceSeqString', referenceSeqString);
+    }
+
+    if (strand != null) {
+      addField('strand', strand);
+    }
+
+    if (windowStart != null) {
+      addField('windowStart', windowStart);
+    }
+
+    if (windowEnd != null) {
+      addField('windowEnd', windowEnd);
+    }
+
     return json;
   }
 
@@ -944,7 +983,10 @@ class MolecularSequenceVariant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -954,11 +996,26 @@ class MolecularSequenceVariant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('start', start);
-    addField('end', end);
-    addField('observedAllele', observedAllele);
-    addField('referenceAllele', referenceAllele);
-    addField('cigar', cigar);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
+    if (observedAllele != null) {
+      addField('observedAllele', observedAllele);
+    }
+
+    if (referenceAllele != null) {
+      addField('referenceAllele', referenceAllele);
+    }
+
+    if (cigar != null) {
+      addField('cigar', cigar);
+    }
+
     if (variantPointer != null) {
       json['variantPointer'] = variantPointer!.toJson();
     }
@@ -1276,7 +1333,10 @@ class MolecularSequenceQuality extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1291,8 +1351,14 @@ class MolecularSequenceQuality extends BackboneElement {
       json['standardSequence'] = standardSequence!.toJson();
     }
 
-    addField('start', start);
-    addField('end', end);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
     if (score != null) {
       json['score'] = score!.toJson();
     }
@@ -1301,14 +1367,38 @@ class MolecularSequenceQuality extends BackboneElement {
       json['method'] = method!.toJson();
     }
 
-    addField('truthTP', truthTP);
-    addField('queryTP', queryTP);
-    addField('truthFN', truthFN);
-    addField('queryFP', queryFP);
-    addField('gtFP', gtFP);
-    addField('precision', precision);
-    addField('recall', recall);
-    addField('fScore', fScore);
+    if (truthTP != null) {
+      addField('truthTP', truthTP);
+    }
+
+    if (queryTP != null) {
+      addField('queryTP', queryTP);
+    }
+
+    if (truthFN != null) {
+      addField('truthFN', truthFN);
+    }
+
+    if (queryFP != null) {
+      addField('queryFP', queryFP);
+    }
+
+    if (gtFP != null) {
+      addField('gtFP', gtFP);
+    }
+
+    if (precision != null) {
+      addField('precision', precision);
+    }
+
+    if (recall != null) {
+      addField('recall', recall);
+    }
+
+    if (fScore != null) {
+      addField('fScore', fScore);
+    }
+
     if (roc != null) {
       json['roc'] = roc!.toJson();
     }
@@ -1539,7 +1629,10 @@ class MolecularSequenceRoc extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1810,7 +1903,10 @@ class MolecularSequenceRepository extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1821,11 +1917,26 @@ class MolecularSequenceRepository extends BackboneElement {
     }
 
     addField('type', type);
-    addField('url', url);
-    addField('name', name);
-    addField('datasetId', datasetId);
-    addField('variantsetId', variantsetId);
-    addField('readsetId', readsetId);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (datasetId != null) {
+      addField('datasetId', datasetId);
+    }
+
+    if (variantsetId != null) {
+      addField('variantsetId', variantsetId);
+    }
+
+    if (readsetId != null) {
+      addField('readsetId', readsetId);
+    }
+
     return json;
   }
 
@@ -2009,7 +2120,10 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2023,8 +2137,14 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       json['variantType'] = variantType!.toJson();
     }
 
-    addField('exact', exact);
-    addField('length', length);
+    if (exact != null) {
+      addField('exact', exact);
+    }
+
+    if (length != null) {
+      addField('length', length);
+    }
+
     if (outer != null) {
       json['outer'] = outer!.toJson();
     }
@@ -2187,7 +2307,10 @@ class MolecularSequenceOuter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2197,8 +2320,14 @@ class MolecularSequenceOuter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('start', start);
-    addField('end', end);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
     return json;
   }
 
@@ -2347,7 +2476,10 @@ class MolecularSequenceInner extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2357,8 +2489,14 @@ class MolecularSequenceInner extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('start', start);
-    addField('end', end);
+    if (start != null) {
+      addField('start', start);
+    }
+
+    if (end != null) {
+      addField('end', end);
+    }
+
     return json;
   }
 

@@ -327,13 +327,22 @@ class ConceptMap extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -351,23 +360,47 @@ class ConceptMap extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -376,10 +409,22 @@ class ConceptMap extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('source${sourceX!.fhirType.capitalize()}', sourceX);
-    addField('target${targetX!.fhirType.capitalize()}', targetX);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (sourceX != null) {
+      addField('source${sourceX!.fhirType.capitalize()}', sourceX);
+    }
+
+    if (targetX != null) {
+      addField('target${targetX!.fhirType.capitalize()}', targetX);
+    }
+
     if (group != null && group!.isNotEmpty) {
       json['group'] = group!.map((e) => e.toJson()).toList();
     }
@@ -625,7 +670,10 @@ class ConceptMapGroup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -635,10 +683,22 @@ class ConceptMapGroup extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('source', source);
-    addField('sourceVersion', sourceVersion);
-    addField('target', target);
-    addField('targetVersion', targetVersion);
+    if (source != null) {
+      addField('source', source);
+    }
+
+    if (sourceVersion != null) {
+      addField('sourceVersion', sourceVersion);
+    }
+
+    if (target != null) {
+      addField('target', target);
+    }
+
+    if (targetVersion != null) {
+      addField('targetVersion', targetVersion);
+    }
+
     if (element.isNotEmpty) {
       json['element'] = element.map((e) => e.toJson()).toList();
     }
@@ -815,7 +875,10 @@ class ConceptMapElement extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -825,8 +888,14 @@ class ConceptMapElement extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('code', code);
-    addField('display', display);
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -1035,7 +1104,10 @@ class ConceptMapTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1045,10 +1117,19 @@ class ConceptMapTarget extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('code', code);
-    addField('display', display);
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
     addField('equivalence', equivalence);
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     if (dependsOn != null && dependsOn!.isNotEmpty) {
       json['dependsOn'] = dependsOn!.map((e) => e.toJson()).toList();
     }
@@ -1235,7 +1316,10 @@ class ConceptMapDependsOn extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1246,9 +1330,15 @@ class ConceptMapDependsOn extends BackboneElement {
     }
 
     addField('property', property);
-    addField('system', system);
+    if (system != null) {
+      addField('system', system);
+    }
+
     addField('value', value);
-    addField('display', display);
+    if (display != null) {
+      addField('display', display);
+    }
+
     return json;
   }
 
@@ -1428,7 +1518,10 @@ class ConceptMapUnmapped extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1439,9 +1532,18 @@ class ConceptMapUnmapped extends BackboneElement {
     }
 
     addField('mode', mode);
-    addField('code', code);
-    addField('display', display);
-    addField('url', url);
+    if (code != null) {
+      addField('code', code);
+    }
+
+    if (display != null) {
+      addField('display', display);
+    }
+
+    if (url != null) {
+      addField('url', url);
+    }
+
     return json;
   }
 

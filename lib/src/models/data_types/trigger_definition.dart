@@ -57,16 +57,14 @@ class TriggerDefinition extends DataType
               '_value': json['_name'],
             })
           : null,
-      timingX: json['timingTiming'] != null || json['_timingTiming'] != null
-          ? Timing.fromJson({
-              'value': json['timingTiming'],
-              '_value': json['_timingTiming'],
-            })
-          : json['timingReference'] != null || json['_timingReference'] != null
-              ? Reference.fromJson({
-                  'value': json['timingReference'],
-                  '_value': json['_timingReference'],
-                })
+      timingX: json['timingTiming'] != null
+          ? Timing.fromJson(
+              json['timingTiming'] as Map<String, dynamic>,
+            )
+          : json['timingReference'] != null
+              ? Reference.fromJson(
+                  json['timingReference'] as Map<String, dynamic>,
+                )
               : json['timingDate'] != null || json['_timingDate'] != null
                   ? FhirDate.fromJson({
                       'value': json['timingDate'],
@@ -175,13 +173,19 @@ class TriggerDefinition extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     addField('type', type);
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (timingX != null) {
       json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }

@@ -149,17 +149,15 @@ class Consent extends DomainResource {
               )
               .toList()
           : null,
-      sourceX:
-          json['sourceAttachment'] != null || json['_sourceAttachment'] != null
-              ? Attachment.fromJson({
-                  'value': json['sourceAttachment'],
-                  '_value': json['_sourceAttachment'],
-                })
-              : json['sourceReference'] != null
-                  ? Reference.fromJson(
-                      json['sourceReference'] as Map<String, dynamic>,
-                    )
-                  : null,
+      sourceX: json['sourceAttachment'] != null
+          ? Attachment.fromJson(
+              json['sourceAttachment'] as Map<String, dynamic>,
+            )
+          : json['sourceReference'] != null
+              ? Reference.fromJson(
+                  json['sourceReference'] as Map<String, dynamic>,
+                )
+              : null,
       policy: json['policy'] != null
           ? (json['policy'] as List<dynamic>)
               .map<ConsentPolicy>(
@@ -312,13 +310,22 @@ class Consent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -351,7 +358,10 @@ class Consent extends DomainResource {
       json['patient'] = patient!.toJson();
     }
 
-    addField('dateTime', dateTime);
+    if (dateTime != null) {
+      addField('dateTime', dateTime);
+    }
+
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -561,7 +571,10 @@ class ConsentPolicy extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -571,8 +584,14 @@ class ConsentPolicy extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('authority', authority);
-    addField('uri', uri);
+    if (authority != null) {
+      addField('authority', authority);
+    }
+
+    if (uri != null) {
+      addField('uri', uri);
+    }
+
     return json;
   }
 
@@ -729,7 +748,10 @@ class ConsentVerification extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -744,7 +766,10 @@ class ConsentVerification extends BackboneElement {
       json['verifiedWith'] = verifiedWith!.toJson();
     }
 
-    addField('verificationDate', verificationDate);
+    if (verificationDate != null) {
+      addField('verificationDate', verificationDate);
+    }
+
     return json;
   }
 
@@ -1021,7 +1046,10 @@ class ConsentProvision extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1031,7 +1059,10 @@ class ConsentProvision extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('type', type);
+    if (type != null) {
+      addField('type', type);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -1232,7 +1263,10 @@ class ConsentActor extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1388,7 +1422,10 @@ class ConsentData extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

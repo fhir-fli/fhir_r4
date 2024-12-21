@@ -391,13 +391,22 @@ class DiagnosticReport extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -438,8 +447,14 @@ class DiagnosticReport extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
-    addField('issued', issued);
+    if (effectiveX != null) {
+      addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
+    }
+
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -465,7 +480,10 @@ class DiagnosticReport extends DomainResource {
       json['media'] = media!.map((e) => e.toJson()).toList();
     }
 
-    addField('conclusion', conclusion);
+    if (conclusion != null) {
+      addField('conclusion', conclusion);
+    }
+
     if (conclusionCode != null && conclusionCode!.isNotEmpty) {
       json['conclusionCode'] = conclusionCode!.map((e) => e.toJson()).toList();
     }
@@ -661,7 +679,10 @@ class DiagnosticReportMedia extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -671,7 +692,10 @@ class DiagnosticReportMedia extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     json['link'] = link.toJson();
 
     return json;

@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
@@ -319,13 +317,22 @@ class StructureMap extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -348,18 +355,36 @@ class StructureMap extends CanonicalResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -368,8 +393,14 @@ class StructureMap extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
     if (structure != null && structure!.isNotEmpty) {
       json['structure'] = structure!.map((e) => e.toJson()).toList();
     }
@@ -593,7 +624,10 @@ class StructureMapStructure extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -605,8 +639,14 @@ class StructureMapStructure extends BackboneElement {
 
     addField('url', url);
     addField('mode', mode);
-    addField('alias', alias);
-    addField('documentation', documentation);
+    if (alias != null) {
+      addField('alias', alias);
+    }
+
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -806,7 +846,10 @@ class StructureMapGroup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -817,9 +860,15 @@ class StructureMapGroup extends BackboneElement {
     }
 
     addField('name', name);
-    addField('extends', extends_);
+    if (extends_ != null) {
+      addField('extends', extends_);
+    }
+
     addField('typeMode', typeMode);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     if (input.isNotEmpty) {
       json['input'] = input.map((e) => e.toJson()).toList();
     }
@@ -1000,7 +1049,10 @@ class StructureMapInput extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1011,9 +1063,15 @@ class StructureMapInput extends BackboneElement {
     }
 
     addField('name', name);
-    addField('type', type);
+    if (type != null) {
+      addField('type', type);
+    }
+
     addField('mode', mode);
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -1217,7 +1275,10 @@ class StructureMapRule extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1244,7 +1305,10 @@ class StructureMapRule extends BackboneElement {
       json['dependent'] = dependent!.map((e) => e.toJson()).toList();
     }
 
-    addField('documentation', documentation);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
     return json;
   }
 
@@ -1488,156 +1552,126 @@ class StructureMapSource extends BackboneElement {
                                                                                       'value': json['defaultValueUuid'],
                                                                                       '_value': json['_defaultValueUuid'],
                                                                                     })
-                                                                                  : json['defaultValueAddress'] != null || json['_defaultValueAddress'] != null
-                                                                                      ? Address.fromJson({
-                                                                                          'value': json['defaultValueAddress'],
-                                                                                          '_value': json['_defaultValueAddress'],
-                                                                                        })
-                                                                                      : json['defaultValueAge'] != null || json['_defaultValueAge'] != null
-                                                                                          ? Age.fromJson({
-                                                                                              'value': json['defaultValueAge'],
-                                                                                              '_value': json['_defaultValueAge'],
-                                                                                            })
-                                                                                          : json['defaultValueAnnotation'] != null || json['_defaultValueAnnotation'] != null
-                                                                                              ? Annotation.fromJson({
-                                                                                                  'value': json['defaultValueAnnotation'],
-                                                                                                  '_value': json['_defaultValueAnnotation'],
-                                                                                                })
-                                                                                              : json['defaultValueAttachment'] != null || json['_defaultValueAttachment'] != null
-                                                                                                  ? Attachment.fromJson({
-                                                                                                      'value': json['defaultValueAttachment'],
-                                                                                                      '_value': json['_defaultValueAttachment'],
-                                                                                                    })
-                                                                                                  : json['defaultValueCodeableConcept'] != null || json['_defaultValueCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson({
-                                                                                                          'value': json['defaultValueCodeableConcept'],
-                                                                                                          '_value': json['_defaultValueCodeableConcept'],
-                                                                                                        })
-                                                                                                      : json['defaultValueCoding'] != null || json['_defaultValueCoding'] != null
-                                                                                                          ? Coding.fromJson({
-                                                                                                              'value': json['defaultValueCoding'],
-                                                                                                              '_value': json['_defaultValueCoding'],
-                                                                                                            })
-                                                                                                          : json['defaultValueContactPoint'] != null || json['_defaultValueContactPoint'] != null
-                                                                                                              ? ContactPoint.fromJson({
-                                                                                                                  'value': json['defaultValueContactPoint'],
-                                                                                                                  '_value': json['_defaultValueContactPoint'],
-                                                                                                                })
-                                                                                                              : json['defaultValueCount'] != null || json['_defaultValueCount'] != null
-                                                                                                                  ? Count.fromJson({
-                                                                                                                      'value': json['defaultValueCount'],
-                                                                                                                      '_value': json['_defaultValueCount'],
-                                                                                                                    })
-                                                                                                                  : json['defaultValueDistance'] != null || json['_defaultValueDistance'] != null
-                                                                                                                      ? Distance.fromJson({
-                                                                                                                          'value': json['defaultValueDistance'],
-                                                                                                                          '_value': json['_defaultValueDistance'],
-                                                                                                                        })
-                                                                                                                      : json['defaultValueDuration'] != null || json['_defaultValueDuration'] != null
-                                                                                                                          ? FhirDuration.fromJson({
-                                                                                                                              'value': json['defaultValueDuration'],
-                                                                                                                              '_value': json['_defaultValueDuration'],
-                                                                                                                            })
-                                                                                                                          : json['defaultValueHumanName'] != null || json['_defaultValueHumanName'] != null
-                                                                                                                              ? HumanName.fromJson({
-                                                                                                                                  'value': json['defaultValueHumanName'],
-                                                                                                                                  '_value': json['_defaultValueHumanName'],
-                                                                                                                                })
-                                                                                                                              : json['defaultValueIdentifier'] != null || json['_defaultValueIdentifier'] != null
-                                                                                                                                  ? Identifier.fromJson({
-                                                                                                                                      'value': json['defaultValueIdentifier'],
-                                                                                                                                      '_value': json['_defaultValueIdentifier'],
-                                                                                                                                    })
-                                                                                                                                  : json['defaultValueMoney'] != null || json['_defaultValueMoney'] != null
-                                                                                                                                      ? Money.fromJson({
-                                                                                                                                          'value': json['defaultValueMoney'],
-                                                                                                                                          '_value': json['_defaultValueMoney'],
-                                                                                                                                        })
-                                                                                                                                      : json['defaultValuePeriod'] != null || json['_defaultValuePeriod'] != null
-                                                                                                                                          ? Period.fromJson({
-                                                                                                                                              'value': json['defaultValuePeriod'],
-                                                                                                                                              '_value': json['_defaultValuePeriod'],
-                                                                                                                                            })
-                                                                                                                                          : json['defaultValueQuantity'] != null || json['_defaultValueQuantity'] != null
-                                                                                                                                              ? Quantity.fromJson({
-                                                                                                                                                  'value': json['defaultValueQuantity'],
-                                                                                                                                                  '_value': json['_defaultValueQuantity'],
-                                                                                                                                                })
-                                                                                                                                              : json['defaultValueRange'] != null || json['_defaultValueRange'] != null
-                                                                                                                                                  ? Range.fromJson({
-                                                                                                                                                      'value': json['defaultValueRange'],
-                                                                                                                                                      '_value': json['_defaultValueRange'],
-                                                                                                                                                    })
-                                                                                                                                                  : json['defaultValueRatio'] != null || json['_defaultValueRatio'] != null
-                                                                                                                                                      ? Ratio.fromJson({
-                                                                                                                                                          'value': json['defaultValueRatio'],
-                                                                                                                                                          '_value': json['_defaultValueRatio'],
-                                                                                                                                                        })
-                                                                                                                                                      : json['defaultValueReference'] != null || json['_defaultValueReference'] != null
-                                                                                                                                                          ? Reference.fromJson({
-                                                                                                                                                              'value': json['defaultValueReference'],
-                                                                                                                                                              '_value': json['_defaultValueReference'],
-                                                                                                                                                            })
-                                                                                                                                                          : json['defaultValueSampledData'] != null || json['_defaultValueSampledData'] != null
-                                                                                                                                                              ? SampledData.fromJson({
-                                                                                                                                                                  'value': json['defaultValueSampledData'],
-                                                                                                                                                                  '_value': json['_defaultValueSampledData'],
-                                                                                                                                                                })
-                                                                                                                                                              : json['defaultValueSignature'] != null || json['_defaultValueSignature'] != null
-                                                                                                                                                                  ? Signature.fromJson({
-                                                                                                                                                                      'value': json['defaultValueSignature'],
-                                                                                                                                                                      '_value': json['_defaultValueSignature'],
-                                                                                                                                                                    })
-                                                                                                                                                                  : json['defaultValueTiming'] != null || json['_defaultValueTiming'] != null
-                                                                                                                                                                      ? Timing.fromJson({
-                                                                                                                                                                          'value': json['defaultValueTiming'],
-                                                                                                                                                                          '_value': json['_defaultValueTiming'],
-                                                                                                                                                                        })
-                                                                                                                                                                      : json['defaultValueContactDetail'] != null || json['_defaultValueContactDetail'] != null
-                                                                                                                                                                          ? ContactDetail.fromJson({
-                                                                                                                                                                              'value': json['defaultValueContactDetail'],
-                                                                                                                                                                              '_value': json['_defaultValueContactDetail'],
-                                                                                                                                                                            })
-                                                                                                                                                                          : json['defaultValueContributor'] != null || json['_defaultValueContributor'] != null
-                                                                                                                                                                              ? Contributor.fromJson({
-                                                                                                                                                                                  'value': json['defaultValueContributor'],
-                                                                                                                                                                                  '_value': json['_defaultValueContributor'],
-                                                                                                                                                                                })
-                                                                                                                                                                              : json['defaultValueDataRequirement'] != null || json['_defaultValueDataRequirement'] != null
-                                                                                                                                                                                  ? DataRequirement.fromJson({
-                                                                                                                                                                                      'value': json['defaultValueDataRequirement'],
-                                                                                                                                                                                      '_value': json['_defaultValueDataRequirement'],
-                                                                                                                                                                                    })
-                                                                                                                                                                                  : json['defaultValueExpression'] != null || json['_defaultValueExpression'] != null
-                                                                                                                                                                                      ? FhirExpression.fromJson({
-                                                                                                                                                                                          'value': json['defaultValueExpression'],
-                                                                                                                                                                                          '_value': json['_defaultValueExpression'],
-                                                                                                                                                                                        })
-                                                                                                                                                                                      : json['defaultValueParameterDefinition'] != null || json['_defaultValueParameterDefinition'] != null
-                                                                                                                                                                                          ? ParameterDefinition.fromJson({
-                                                                                                                                                                                              'value': json['defaultValueParameterDefinition'],
-                                                                                                                                                                                              '_value': json['_defaultValueParameterDefinition'],
-                                                                                                                                                                                            })
-                                                                                                                                                                                          : json['defaultValueRelatedArtifact'] != null || json['_defaultValueRelatedArtifact'] != null
-                                                                                                                                                                                              ? RelatedArtifact.fromJson({
-                                                                                                                                                                                                  'value': json['defaultValueRelatedArtifact'],
-                                                                                                                                                                                                  '_value': json['_defaultValueRelatedArtifact'],
-                                                                                                                                                                                                })
-                                                                                                                                                                                              : json['defaultValueTriggerDefinition'] != null || json['_defaultValueTriggerDefinition'] != null
-                                                                                                                                                                                                  ? TriggerDefinition.fromJson({
-                                                                                                                                                                                                      'value': json['defaultValueTriggerDefinition'],
-                                                                                                                                                                                                      '_value': json['_defaultValueTriggerDefinition'],
-                                                                                                                                                                                                    })
-                                                                                                                                                                                                  : json['defaultValueUsageContext'] != null || json['_defaultValueUsageContext'] != null
-                                                                                                                                                                                                      ? UsageContext.fromJson({
-                                                                                                                                                                                                          'value': json['defaultValueUsageContext'],
-                                                                                                                                                                                                          '_value': json['_defaultValueUsageContext'],
-                                                                                                                                                                                                        })
-                                                                                                                                                                                                      : json['defaultValueDosage'] != null || json['_defaultValueDosage'] != null
-                                                                                                                                                                                                          ? Dosage.fromJson({
-                                                                                                                                                                                                              'value': json['defaultValueDosage'],
-                                                                                                                                                                                                              '_value': json['_defaultValueDosage'],
-                                                                                                                                                                                                            })
+                                                                                  : json['defaultValueAddress'] != null
+                                                                                      ? Address.fromJson(
+                                                                                          json['defaultValueAddress'] as Map<String, dynamic>,
+                                                                                        )
+                                                                                      : json['defaultValueAge'] != null
+                                                                                          ? Age.fromJson(
+                                                                                              json['defaultValueAge'] as Map<String, dynamic>,
+                                                                                            )
+                                                                                          : json['defaultValueAnnotation'] != null
+                                                                                              ? Annotation.fromJson(
+                                                                                                  json['defaultValueAnnotation'] as Map<String, dynamic>,
+                                                                                                )
+                                                                                              : json['defaultValueAttachment'] != null
+                                                                                                  ? Attachment.fromJson(
+                                                                                                      json['defaultValueAttachment'] as Map<String, dynamic>,
+                                                                                                    )
+                                                                                                  : json['defaultValueCodeableConcept'] != null
+                                                                                                      ? CodeableConcept.fromJson(
+                                                                                                          json['defaultValueCodeableConcept'] as Map<String, dynamic>,
+                                                                                                        )
+                                                                                                      : json['defaultValueCoding'] != null
+                                                                                                          ? Coding.fromJson(
+                                                                                                              json['defaultValueCoding'] as Map<String, dynamic>,
+                                                                                                            )
+                                                                                                          : json['defaultValueContactPoint'] != null
+                                                                                                              ? ContactPoint.fromJson(
+                                                                                                                  json['defaultValueContactPoint'] as Map<String, dynamic>,
+                                                                                                                )
+                                                                                                              : json['defaultValueCount'] != null
+                                                                                                                  ? Count.fromJson(
+                                                                                                                      json['defaultValueCount'] as Map<String, dynamic>,
+                                                                                                                    )
+                                                                                                                  : json['defaultValueDistance'] != null
+                                                                                                                      ? Distance.fromJson(
+                                                                                                                          json['defaultValueDistance'] as Map<String, dynamic>,
+                                                                                                                        )
+                                                                                                                      : json['defaultValueDuration'] != null
+                                                                                                                          ? FhirDuration.fromJson(
+                                                                                                                              json['defaultValueDuration'] as Map<String, dynamic>,
+                                                                                                                            )
+                                                                                                                          : json['defaultValueHumanName'] != null
+                                                                                                                              ? HumanName.fromJson(
+                                                                                                                                  json['defaultValueHumanName'] as Map<String, dynamic>,
+                                                                                                                                )
+                                                                                                                              : json['defaultValueIdentifier'] != null
+                                                                                                                                  ? Identifier.fromJson(
+                                                                                                                                      json['defaultValueIdentifier'] as Map<String, dynamic>,
+                                                                                                                                    )
+                                                                                                                                  : json['defaultValueMoney'] != null
+                                                                                                                                      ? Money.fromJson(
+                                                                                                                                          json['defaultValueMoney'] as Map<String, dynamic>,
+                                                                                                                                        )
+                                                                                                                                      : json['defaultValuePeriod'] != null
+                                                                                                                                          ? Period.fromJson(
+                                                                                                                                              json['defaultValuePeriod'] as Map<String, dynamic>,
+                                                                                                                                            )
+                                                                                                                                          : json['defaultValueQuantity'] != null
+                                                                                                                                              ? Quantity.fromJson(
+                                                                                                                                                  json['defaultValueQuantity'] as Map<String, dynamic>,
+                                                                                                                                                )
+                                                                                                                                              : json['defaultValueRange'] != null
+                                                                                                                                                  ? Range.fromJson(
+                                                                                                                                                      json['defaultValueRange'] as Map<String, dynamic>,
+                                                                                                                                                    )
+                                                                                                                                                  : json['defaultValueRatio'] != null
+                                                                                                                                                      ? Ratio.fromJson(
+                                                                                                                                                          json['defaultValueRatio'] as Map<String, dynamic>,
+                                                                                                                                                        )
+                                                                                                                                                      : json['defaultValueReference'] != null
+                                                                                                                                                          ? Reference.fromJson(
+                                                                                                                                                              json['defaultValueReference'] as Map<String, dynamic>,
+                                                                                                                                                            )
+                                                                                                                                                          : json['defaultValueSampledData'] != null
+                                                                                                                                                              ? SampledData.fromJson(
+                                                                                                                                                                  json['defaultValueSampledData'] as Map<String, dynamic>,
+                                                                                                                                                                )
+                                                                                                                                                              : json['defaultValueSignature'] != null
+                                                                                                                                                                  ? Signature.fromJson(
+                                                                                                                                                                      json['defaultValueSignature'] as Map<String, dynamic>,
+                                                                                                                                                                    )
+                                                                                                                                                                  : json['defaultValueTiming'] != null
+                                                                                                                                                                      ? Timing.fromJson(
+                                                                                                                                                                          json['defaultValueTiming'] as Map<String, dynamic>,
+                                                                                                                                                                        )
+                                                                                                                                                                      : json['defaultValueContactDetail'] != null
+                                                                                                                                                                          ? ContactDetail.fromJson(
+                                                                                                                                                                              json['defaultValueContactDetail'] as Map<String, dynamic>,
+                                                                                                                                                                            )
+                                                                                                                                                                          : json['defaultValueContributor'] != null
+                                                                                                                                                                              ? Contributor.fromJson(
+                                                                                                                                                                                  json['defaultValueContributor'] as Map<String, dynamic>,
+                                                                                                                                                                                )
+                                                                                                                                                                              : json['defaultValueDataRequirement'] != null
+                                                                                                                                                                                  ? DataRequirement.fromJson(
+                                                                                                                                                                                      json['defaultValueDataRequirement'] as Map<String, dynamic>,
+                                                                                                                                                                                    )
+                                                                                                                                                                                  : json['defaultValueExpression'] != null
+                                                                                                                                                                                      ? FhirExpression.fromJson(
+                                                                                                                                                                                          json['defaultValueExpression'] as Map<String, dynamic>,
+                                                                                                                                                                                        )
+                                                                                                                                                                                      : json['defaultValueParameterDefinition'] != null
+                                                                                                                                                                                          ? ParameterDefinition.fromJson(
+                                                                                                                                                                                              json['defaultValueParameterDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                            )
+                                                                                                                                                                                          : json['defaultValueRelatedArtifact'] != null
+                                                                                                                                                                                              ? RelatedArtifact.fromJson(
+                                                                                                                                                                                                  json['defaultValueRelatedArtifact'] as Map<String, dynamic>,
+                                                                                                                                                                                                )
+                                                                                                                                                                                              : json['defaultValueTriggerDefinition'] != null
+                                                                                                                                                                                                  ? TriggerDefinition.fromJson(
+                                                                                                                                                                                                      json['defaultValueTriggerDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                    )
+                                                                                                                                                                                                  : json['defaultValueUsageContext'] != null
+                                                                                                                                                                                                      ? UsageContext.fromJson(
+                                                                                                                                                                                                          json['defaultValueUsageContext'] as Map<String, dynamic>,
+                                                                                                                                                                                                        )
+                                                                                                                                                                                                      : json['defaultValueDosage'] != null
+                                                                                                                                                                                                          ? Dosage.fromJson(
+                                                                                                                                                                                                              json['defaultValueDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                            )
                                                                                                                                                                                                           : json['defaultValueMeta'] != null
                                                                                                                                                                                                               ? FhirMeta.fromJson(
                                                                                                                                                                                                                   json['defaultValueMeta'] as Map<String, dynamic>,
@@ -1785,7 +1819,10 @@ class StructureMapSource extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1796,17 +1833,47 @@ class StructureMapSource extends BackboneElement {
     }
 
     addField('context', context);
-    addField('min', min);
-    addField('max', max);
-    addField('type', type);
-    addField(
-        'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX,);
-    addField('element', element);
-    addField('listMode', listMode);
-    addField('variable', variable);
-    addField('condition', condition);
-    addField('check', check);
-    addField('logMessage', logMessage);
+    if (min != null) {
+      addField('min', min);
+    }
+
+    if (max != null) {
+      addField('max', max);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (defaultValueX != null) {
+      addField(
+          'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX);
+    }
+
+    if (element != null) {
+      addField('element', element);
+    }
+
+    if (listMode != null) {
+      addField('listMode', listMode);
+    }
+
+    if (variable != null) {
+      addField('variable', variable);
+    }
+
+    if (condition != null) {
+      addField('condition', condition);
+    }
+
+    if (check != null) {
+      addField('check', check);
+    }
+
+    if (logMessage != null) {
+      addField('logMessage', logMessage);
+    }
+
     return json;
   }
 
@@ -2037,7 +2104,10 @@ class StructureMapTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2047,10 +2117,22 @@ class StructureMapTarget extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('context', context);
-    addField('contextType', contextType);
-    addField('element', element);
-    addField('variable', variable);
+    if (context != null) {
+      addField('context', context);
+    }
+
+    if (contextType != null) {
+      addField('contextType', contextType);
+    }
+
+    if (element != null) {
+      addField('element', element);
+    }
+
+    if (variable != null) {
+      addField('variable', variable);
+    }
+
     if (listMode != null && listMode!.isNotEmpty) {
       final fieldJson0 = listMode!.map((e) => e.toJson()).toList();
       json['listMode'] = fieldJson0.map((e) => e['value']).toList();
@@ -2059,8 +2141,14 @@ class StructureMapTarget extends BackboneElement {
       }
     }
 
-    addField('listRuleId', listRuleId);
-    addField('transform', transform);
+    if (listRuleId != null) {
+      addField('listRuleId', listRuleId);
+    }
+
+    if (transform != null) {
+      addField('transform', transform);
+    }
+
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
@@ -2229,7 +2317,10 @@ class StructureMapParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2381,7 +2472,10 @@ class StructureMapDependent extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

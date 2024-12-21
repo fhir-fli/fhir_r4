@@ -168,18 +168,30 @@ class Identifier extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('use', use);
+    if (use != null) {
+      addField('use', use);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    addField('system', system);
-    addField('value', value);
+    if (system != null) {
+      addField('system', system);
+    }
+
+    if (value != null) {
+      addField('value', value);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }

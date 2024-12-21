@@ -471,13 +471,22 @@ class Device extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -507,23 +516,50 @@ class Device extends DomainResource {
       json['udiCarrier'] = udiCarrier!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (statusReason != null && statusReason!.isNotEmpty) {
       json['statusReason'] = statusReason!.map((e) => e.toJson()).toList();
     }
 
-    addField('distinctIdentifier', distinctIdentifier);
-    addField('manufacturer', manufacturer);
-    addField('manufactureDate', manufactureDate);
-    addField('expirationDate', expirationDate);
-    addField('lotNumber', lotNumber);
-    addField('serialNumber', serialNumber);
+    if (distinctIdentifier != null) {
+      addField('distinctIdentifier', distinctIdentifier);
+    }
+
+    if (manufacturer != null) {
+      addField('manufacturer', manufacturer);
+    }
+
+    if (manufactureDate != null) {
+      addField('manufactureDate', manufactureDate);
+    }
+
+    if (expirationDate != null) {
+      addField('expirationDate', expirationDate);
+    }
+
+    if (lotNumber != null) {
+      addField('lotNumber', lotNumber);
+    }
+
+    if (serialNumber != null) {
+      addField('serialNumber', serialNumber);
+    }
+
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
 
-    addField('modelNumber', modelNumber);
-    addField('partNumber', partNumber);
+    if (modelNumber != null) {
+      addField('modelNumber', modelNumber);
+    }
+
+    if (partNumber != null) {
+      addField('partNumber', partNumber);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -556,7 +592,10 @@ class Device extends DomainResource {
       json['location'] = location!.toJson();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -839,7 +878,10 @@ class DeviceUdiCarrier extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -849,12 +891,30 @@ class DeviceUdiCarrier extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('deviceIdentifier', deviceIdentifier);
-    addField('issuer', issuer);
-    addField('jurisdiction', jurisdiction);
-    addField('carrierAIDC', carrierAIDC);
-    addField('carrierHRF', carrierHRF);
-    addField('entryType', entryType);
+    if (deviceIdentifier != null) {
+      addField('deviceIdentifier', deviceIdentifier);
+    }
+
+    if (issuer != null) {
+      addField('issuer', issuer);
+    }
+
+    if (jurisdiction != null) {
+      addField('jurisdiction', jurisdiction);
+    }
+
+    if (carrierAIDC != null) {
+      addField('carrierAIDC', carrierAIDC);
+    }
+
+    if (carrierHRF != null) {
+      addField('carrierHRF', carrierHRF);
+    }
+
+    if (entryType != null) {
+      addField('entryType', entryType);
+    }
+
     return json;
   }
 
@@ -1008,7 +1068,10 @@ class DeviceDeviceName extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1163,7 +1226,10 @@ class DeviceSpecialization extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1175,7 +1241,10 @@ class DeviceSpecialization extends BackboneElement {
 
     json['systemType'] = systemType.toJson();
 
-    addField('version', version);
+    if (version != null) {
+      addField('version', version);
+    }
+
     return json;
   }
 
@@ -1328,7 +1397,10 @@ class DeviceVersion extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1509,7 +1581,10 @@ class DeviceProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

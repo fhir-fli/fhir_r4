@@ -275,13 +275,22 @@ class Practitioner extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -303,7 +312,10 @@ class Practitioner extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (name != null && name!.isNotEmpty) {
       json['name'] = name!.map((e) => e.toJson()).toList();
     }
@@ -316,8 +328,14 @@ class Practitioner extends DomainResource {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
 
-    addField('gender', gender);
-    addField('birthDate', birthDate);
+    if (gender != null) {
+      addField('gender', gender);
+    }
+
+    if (birthDate != null) {
+      addField('birthDate', birthDate);
+    }
+
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -523,7 +541,10 @@ class PractitionerQualification extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

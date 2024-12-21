@@ -171,12 +171,10 @@ class MedicationRequest extends DomainResource {
                       json['reportedReference'] as Map<String, dynamic>,
                     )
                   : null,
-      medicationX: json['medicationCodeableConcept'] != null ||
-              json['_medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['medicationCodeableConcept'],
-              '_value': json['_medicationCodeableConcept'],
-            })
+      medicationX: json['medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['medicationReference'] as Map<String, dynamic>,
             ),
@@ -564,13 +562,22 @@ class MedicationRequest extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -602,9 +609,18 @@ class MedicationRequest extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    addField('priority', priority);
-    addField('doNotPerform', doNotPerform);
-    addField('reported${reportedX!.fhirType.capitalize()}', reportedX);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
+    if (reportedX != null) {
+      addField('reported${reportedX!.fhirType.capitalize()}', reportedX);
+    }
+
     json['medication${medicationX.fhirType.capitalize()}'] =
         medicationX.toJson();
 
@@ -619,7 +635,10 @@ class MedicationRequest extends DomainResource {
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    addField('authoredOn', authoredOn);
+    if (authoredOn != null) {
+      addField('authoredOn', authoredOn);
+    }
+
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -991,7 +1010,10 @@ class MedicationRequestDispenseRequest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1013,7 +1035,10 @@ class MedicationRequestDispenseRequest extends BackboneElement {
       json['validityPeriod'] = validityPeriod!.toJson();
     }
 
-    addField('numberOfRepeatsAllowed', numberOfRepeatsAllowed);
+    if (numberOfRepeatsAllowed != null) {
+      addField('numberOfRepeatsAllowed', numberOfRepeatsAllowed);
+    }
+
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -1181,7 +1206,10 @@ class MedicationRequestInitialFill extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1350,7 +1378,10 @@ class MedicationRequestSubstitution extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

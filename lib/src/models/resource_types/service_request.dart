@@ -199,22 +199,19 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      quantityX:
-          json['quantityQuantity'] != null || json['_quantityQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['quantityQuantity'],
-                  '_value': json['_quantityQuantity'],
-                })
-              : json['quantityRatio'] != null || json['_quantityRatio'] != null
-                  ? Ratio.fromJson({
-                      'value': json['quantityRatio'],
-                      '_value': json['_quantityRatio'],
-                    })
-                  : json['quantityRange'] != null
-                      ? Range.fromJson(
-                          json['quantityRange'] as Map<String, dynamic>,
-                        )
-                      : null,
+      quantityX: json['quantityQuantity'] != null
+          ? Quantity.fromJson(
+              json['quantityQuantity'] as Map<String, dynamic>,
+            )
+          : json['quantityRatio'] != null
+              ? Ratio.fromJson(
+                  json['quantityRatio'] as Map<String, dynamic>,
+                )
+              : json['quantityRange'] != null
+                  ? Range.fromJson(
+                      json['quantityRange'] as Map<String, dynamic>,
+                    )
+                  : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -229,12 +226,10 @@ class ServiceRequest extends DomainResource {
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
-          : json['occurrencePeriod'] != null ||
-                  json['_occurrencePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurrencePeriod'],
-                  '_value': json['_occurrencePeriod'],
-                })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : json['occurrenceTiming'] != null
                   ? Timing.fromJson(
                       json['occurrenceTiming'] as Map<String, dynamic>,
@@ -606,13 +601,22 @@ class ServiceRequest extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -670,8 +674,14 @@ class ServiceRequest extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    addField('priority', priority);
-    addField('doNotPerform', doNotPerform);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -690,9 +700,18 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
-    addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
-    addField('authoredOn', authoredOn);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
+    if (asNeededX != null) {
+      addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
+    }
+
+    if (authoredOn != null) {
+      addField('authoredOn', authoredOn);
+    }
+
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -743,7 +762,10 @@ class ServiceRequest extends DomainResource {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
 
-    addField('patientInstruction', patientInstruction);
+    if (patientInstruction != null) {
+      addField('patientInstruction', patientInstruction);
+    }
+
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
           relevantHistory!.map((e) => e.toJson()).toList();

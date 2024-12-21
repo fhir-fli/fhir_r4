@@ -275,13 +275,22 @@ class QuestionnaireResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -311,7 +320,10 @@ class QuestionnaireResponse extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    addField('questionnaire', questionnaire);
+    if (questionnaire != null) {
+      addField('questionnaire', questionnaire);
+    }
+
     addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();
@@ -321,7 +333,10 @@ class QuestionnaireResponse extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('authored', authored);
+    if (authored != null) {
+      addField('authored', authored);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -547,7 +562,10 @@ class QuestionnaireResponseItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -558,8 +576,14 @@ class QuestionnaireResponseItem extends BackboneElement {
     }
 
     addField('linkId', linkId);
-    addField('definition', definition);
-    addField('text', text);
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (answer != null && answer!.isNotEmpty) {
       json['answer'] = answer!.map((e) => e.toJson()).toList();
     }
@@ -686,29 +710,22 @@ class QuestionnaireResponseAnswer extends BackboneElement {
                                           'value': json['valueUri'],
                                           '_value': json['_valueUri'],
                                         })
-                                      : json['valueAttachment'] != null ||
-                                              json['_valueAttachment'] != null
-                                          ? Attachment.fromJson({
-                                              'value': json['valueAttachment'],
-                                              '_value':
-                                                  json['_valueAttachment'],
-                                            })
-                                          : json['valueCoding'] != null ||
-                                                  json['_valueCoding'] != null
-                                              ? Coding.fromJson({
-                                                  'value': json['valueCoding'],
-                                                  '_value':
-                                                      json['_valueCoding'],
-                                                })
-                                              : json['valueQuantity'] != null ||
-                                                      json['_valueQuantity'] !=
-                                                          null
-                                                  ? Quantity.fromJson({
-                                                      'value':
-                                                          json['valueQuantity'],
-                                                      '_value': json[
-                                                          '_valueQuantity'],
-                                                    })
+                                      : json['valueAttachment'] != null
+                                          ? Attachment.fromJson(
+                                              json['valueAttachment']
+                                                  as Map<String, dynamic>,
+                                            )
+                                          : json['valueCoding'] != null
+                                              ? Coding.fromJson(
+                                                  json['valueCoding']
+                                                      as Map<String, dynamic>,
+                                                )
+                                              : json['valueQuantity'] != null
+                                                  ? Quantity.fromJson(
+                                                      json['valueQuantity']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    )
                                                   : json['valueReference'] !=
                                                           null
                                                       ? Reference.fromJson(
@@ -791,7 +808,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -801,7 +821,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('value${valueX!.fhirType.capitalize()}', valueX);
+    if (valueX != null) {
+      addField('value${valueX!.fhirType.capitalize()}', valueX);
+    }
+
     if (item != null && item!.isNotEmpty) {
       json['item'] = item!.map((e) => e.toJson()).toList();
     }

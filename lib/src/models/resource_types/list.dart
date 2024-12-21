@@ -285,13 +285,22 @@ class FhirList extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -315,7 +324,10 @@ class FhirList extends DomainResource {
 
     addField('status', status);
     addField('mode', mode);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -328,7 +340,10 @@ class FhirList extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (source != null) {
       json['source'] = source!.toJson();
     }
@@ -544,7 +559,10 @@ class ListEntry extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -558,8 +576,14 @@ class ListEntry extends BackboneElement {
       json['flag'] = flag!.toJson();
     }
 
-    addField('deleted', deleted);
-    addField('date', date);
+    if (deleted != null) {
+      addField('deleted', deleted);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
     json['item'] = item.toJson();
 
     return json;

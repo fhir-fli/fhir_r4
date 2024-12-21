@@ -180,7 +180,10 @@ class SampledData extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -188,11 +191,23 @@ class SampledData extends DataType
     json['origin'] = origin.toJson();
 
     addField('period', period);
-    addField('factor', factor);
-    addField('lowerLimit', lowerLimit);
-    addField('upperLimit', upperLimit);
+    if (factor != null) {
+      addField('factor', factor);
+    }
+
+    if (lowerLimit != null) {
+      addField('lowerLimit', lowerLimit);
+    }
+
+    if (upperLimit != null) {
+      addField('upperLimit', upperLimit);
+    }
+
     addField('dimensions', dimensions);
-    addField('data', data);
+    if (data != null) {
+      addField('data', data);
+    }
+
     return json;
   }
 

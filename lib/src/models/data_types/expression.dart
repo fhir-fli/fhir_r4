@@ -157,16 +157,31 @@ class FhirExpression extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('name', name);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
     addField('language', language);
-    addField('expression', expression);
-    addField('reference', reference);
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (reference != null) {
+      addField('reference', reference);
+    }
+
     return json;
   }
 

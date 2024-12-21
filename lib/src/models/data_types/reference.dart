@@ -236,18 +236,30 @@ class Reference extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('reference', reference);
-    addField('type', type);
+    if (reference != null) {
+      addField('reference', reference);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('display', display);
+    if (display != null) {
+      addField('display', display);
+    }
+
     return json;
   }
 

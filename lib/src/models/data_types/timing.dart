@@ -163,7 +163,10 @@ class Timing extends BackboneType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -262,16 +265,14 @@ class TimingRepeat extends Element {
               )
               .toList()
           : null,
-      boundsX: json['boundsDuration'] != null || json['_boundsDuration'] != null
-          ? FhirDuration.fromJson({
-              'value': json['boundsDuration'],
-              '_value': json['_boundsDuration'],
-            })
-          : json['boundsRange'] != null || json['_boundsRange'] != null
-              ? Range.fromJson({
-                  'value': json['boundsRange'],
-                  '_value': json['_boundsRange'],
-                })
+      boundsX: json['boundsDuration'] != null
+          ? FhirDuration.fromJson(
+              json['boundsDuration'] as Map<String, dynamic>,
+            )
+          : json['boundsRange'] != null
+              ? Range.fromJson(
+                  json['boundsRange'] as Map<String, dynamic>,
+                )
               : json['boundsPeriod'] != null
                   ? Period.fromJson(
                       json['boundsPeriod'] as Map<String, dynamic>,
@@ -497,7 +498,10 @@ class TimingRepeat extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -506,16 +510,46 @@ class TimingRepeat extends Element {
       json['bounds${boundsX!.fhirType.capitalize()}'] = boundsX!.toJson();
     }
 
-    addField('count', count);
-    addField('countMax', countMax);
-    addField('duration', duration);
-    addField('durationMax', durationMax);
-    addField('durationUnit', durationUnit);
-    addField('frequency', frequency);
-    addField('frequencyMax', frequencyMax);
-    addField('period', period);
-    addField('periodMax', periodMax);
-    addField('periodUnit', periodUnit);
+    if (count != null) {
+      addField('count', count);
+    }
+
+    if (countMax != null) {
+      addField('countMax', countMax);
+    }
+
+    if (duration != null) {
+      addField('duration', duration);
+    }
+
+    if (durationMax != null) {
+      addField('durationMax', durationMax);
+    }
+
+    if (durationUnit != null) {
+      addField('durationUnit', durationUnit);
+    }
+
+    if (frequency != null) {
+      addField('frequency', frequency);
+    }
+
+    if (frequencyMax != null) {
+      addField('frequencyMax', frequencyMax);
+    }
+
+    if (period != null) {
+      addField('period', period);
+    }
+
+    if (periodMax != null) {
+      addField('periodMax', periodMax);
+    }
+
+    if (periodUnit != null) {
+      addField('periodUnit', periodUnit);
+    }
+
     if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
       final fieldJson0 = dayOfWeek!.map((e) => e.toJson()).toList();
       json['dayOfWeek'] = fieldJson0.map((e) => e['value']).toList();
@@ -540,7 +574,10 @@ class TimingRepeat extends Element {
       }
     }
 
-    addField('offset', offset);
+    if (offset != null) {
+      addField('offset', offset);
+    }
+
     return json;
   }
 

@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
@@ -319,161 +317,130 @@ class ElementDefinition extends BackboneType {
                                                                                       'value': json['defaultValueUuid'],
                                                                                       '_value': json['_defaultValueUuid'],
                                                                                     })
-                                                                                  : json['defaultValueAddress'] != null || json['_defaultValueAddress'] != null
-                                                                                      ? Address.fromJson({
-                                                                                          'value': json['defaultValueAddress'],
-                                                                                          '_value': json['_defaultValueAddress'],
-                                                                                        })
-                                                                                      : json['defaultValueAge'] != null || json['_defaultValueAge'] != null
-                                                                                          ? Age.fromJson({
-                                                                                              'value': json['defaultValueAge'],
-                                                                                              '_value': json['_defaultValueAge'],
-                                                                                            })
-                                                                                          : json['defaultValueAnnotation'] != null || json['_defaultValueAnnotation'] != null
-                                                                                              ? Annotation.fromJson({
-                                                                                                  'value': json['defaultValueAnnotation'],
-                                                                                                  '_value': json['_defaultValueAnnotation'],
-                                                                                                })
-                                                                                              : json['defaultValueAttachment'] != null || json['_defaultValueAttachment'] != null
-                                                                                                  ? Attachment.fromJson({
-                                                                                                      'value': json['defaultValueAttachment'],
-                                                                                                      '_value': json['_defaultValueAttachment'],
-                                                                                                    })
-                                                                                                  : json['defaultValueCodeableConcept'] != null || json['_defaultValueCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson({
-                                                                                                          'value': json['defaultValueCodeableConcept'],
-                                                                                                          '_value': json['_defaultValueCodeableConcept'],
-                                                                                                        })
-                                                                                                      : json['defaultValueCodeableReference'] != null || json['_defaultValueCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson({
-                                                                                                              'value': json['defaultValueCodeableReference'],
-                                                                                                              '_value': json['_defaultValueCodeableReference'],
-                                                                                                            })
-                                                                                                          : json['defaultValueCoding'] != null || json['_defaultValueCoding'] != null
-                                                                                                              ? Coding.fromJson({
-                                                                                                                  'value': json['defaultValueCoding'],
-                                                                                                                  '_value': json['_defaultValueCoding'],
-                                                                                                                })
-                                                                                                              : json['defaultValueContactPoint'] != null || json['_defaultValueContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson({
-                                                                                                                      'value': json['defaultValueContactPoint'],
-                                                                                                                      '_value': json['_defaultValueContactPoint'],
-                                                                                                                    })
-                                                                                                                  : json['defaultValueCount'] != null || json['_defaultValueCount'] != null
-                                                                                                                      ? Count.fromJson({
-                                                                                                                          'value': json['defaultValueCount'],
-                                                                                                                          '_value': json['_defaultValueCount'],
-                                                                                                                        })
-                                                                                                                      : json['defaultValueDistance'] != null || json['_defaultValueDistance'] != null
-                                                                                                                          ? Distance.fromJson({
-                                                                                                                              'value': json['defaultValueDistance'],
-                                                                                                                              '_value': json['_defaultValueDistance'],
-                                                                                                                            })
-                                                                                                                          : json['defaultValueDuration'] != null || json['_defaultValueDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson({
-                                                                                                                                  'value': json['defaultValueDuration'],
-                                                                                                                                  '_value': json['_defaultValueDuration'],
-                                                                                                                                })
-                                                                                                                              : json['defaultValueHumanName'] != null || json['_defaultValueHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson({
-                                                                                                                                      'value': json['defaultValueHumanName'],
-                                                                                                                                      '_value': json['_defaultValueHumanName'],
-                                                                                                                                    })
-                                                                                                                                  : json['defaultValueIdentifier'] != null || json['_defaultValueIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson({
-                                                                                                                                          'value': json['defaultValueIdentifier'],
-                                                                                                                                          '_value': json['_defaultValueIdentifier'],
-                                                                                                                                        })
-                                                                                                                                      : json['defaultValueMoney'] != null || json['_defaultValueMoney'] != null
-                                                                                                                                          ? Money.fromJson({
-                                                                                                                                              'value': json['defaultValueMoney'],
-                                                                                                                                              '_value': json['_defaultValueMoney'],
-                                                                                                                                            })
-                                                                                                                                          : json['defaultValuePeriod'] != null || json['_defaultValuePeriod'] != null
-                                                                                                                                              ? Period.fromJson({
-                                                                                                                                                  'value': json['defaultValuePeriod'],
-                                                                                                                                                  '_value': json['_defaultValuePeriod'],
-                                                                                                                                                })
-                                                                                                                                              : json['defaultValueQuantity'] != null || json['_defaultValueQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson({
-                                                                                                                                                      'value': json['defaultValueQuantity'],
-                                                                                                                                                      '_value': json['_defaultValueQuantity'],
-                                                                                                                                                    })
-                                                                                                                                                  : json['defaultValueRange'] != null || json['_defaultValueRange'] != null
-                                                                                                                                                      ? Range.fromJson({
-                                                                                                                                                          'value': json['defaultValueRange'],
-                                                                                                                                                          '_value': json['_defaultValueRange'],
-                                                                                                                                                        })
-                                                                                                                                                      : json['defaultValueRatio'] != null || json['_defaultValueRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson({
-                                                                                                                                                              'value': json['defaultValueRatio'],
-                                                                                                                                                              '_value': json['_defaultValueRatio'],
-                                                                                                                                                            })
-                                                                                                                                                          : json['defaultValueRatioRange'] != null || json['_defaultValueRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson({
-                                                                                                                                                                  'value': json['defaultValueRatioRange'],
-                                                                                                                                                                  '_value': json['_defaultValueRatioRange'],
-                                                                                                                                                                })
-                                                                                                                                                              : json['defaultValueReference'] != null || json['_defaultValueReference'] != null
-                                                                                                                                                                  ? Reference.fromJson({
-                                                                                                                                                                      'value': json['defaultValueReference'],
-                                                                                                                                                                      '_value': json['_defaultValueReference'],
-                                                                                                                                                                    })
-                                                                                                                                                                  : json['defaultValueSampledData'] != null || json['_defaultValueSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson({
-                                                                                                                                                                          'value': json['defaultValueSampledData'],
-                                                                                                                                                                          '_value': json['_defaultValueSampledData'],
-                                                                                                                                                                        })
-                                                                                                                                                                      : json['defaultValueSignature'] != null || json['_defaultValueSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson({
-                                                                                                                                                                              'value': json['defaultValueSignature'],
-                                                                                                                                                                              '_value': json['_defaultValueSignature'],
-                                                                                                                                                                            })
-                                                                                                                                                                          : json['defaultValueTiming'] != null || json['_defaultValueTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson({
-                                                                                                                                                                                  'value': json['defaultValueTiming'],
-                                                                                                                                                                                  '_value': json['_defaultValueTiming'],
-                                                                                                                                                                                })
-                                                                                                                                                                              : json['defaultValueContactDetail'] != null || json['_defaultValueContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson({
-                                                                                                                                                                                      'value': json['defaultValueContactDetail'],
-                                                                                                                                                                                      '_value': json['_defaultValueContactDetail'],
-                                                                                                                                                                                    })
-                                                                                                                                                                                  : json['defaultValueContributor'] != null || json['_defaultValueContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson({
-                                                                                                                                                                                          'value': json['defaultValueContributor'],
-                                                                                                                                                                                          '_value': json['_defaultValueContributor'],
-                                                                                                                                                                                        })
-                                                                                                                                                                                      : json['defaultValueDataRequirement'] != null || json['_defaultValueDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson({
-                                                                                                                                                                                              'value': json['defaultValueDataRequirement'],
-                                                                                                                                                                                              '_value': json['_defaultValueDataRequirement'],
-                                                                                                                                                                                            })
-                                                                                                                                                                                          : json['defaultValueExpression'] != null || json['_defaultValueExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson({
-                                                                                                                                                                                                  'value': json['defaultValueExpression'],
-                                                                                                                                                                                                  '_value': json['_defaultValueExpression'],
-                                                                                                                                                                                                })
-                                                                                                                                                                                              : json['defaultValueParameterDefinition'] != null || json['_defaultValueParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson({
-                                                                                                                                                                                                      'value': json['defaultValueParameterDefinition'],
-                                                                                                                                                                                                      '_value': json['_defaultValueParameterDefinition'],
-                                                                                                                                                                                                    })
-                                                                                                                                                                                                  : json['defaultValueRelatedArtifact'] != null || json['_defaultValueRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson({
-                                                                                                                                                                                                          'value': json['defaultValueRelatedArtifact'],
-                                                                                                                                                                                                          '_value': json['_defaultValueRelatedArtifact'],
-                                                                                                                                                                                                        })
-                                                                                                                                                                                                      : json['defaultValueTriggerDefinition'] != null || json['_defaultValueTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson({
-                                                                                                                                                                                                              'value': json['defaultValueTriggerDefinition'],
-                                                                                                                                                                                                              '_value': json['_defaultValueTriggerDefinition'],
-                                                                                                                                                                                                            })
-                                                                                                                                                                                                          : json['defaultValueUsageContext'] != null || json['_defaultValueUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson({
-                                                                                                                                                                                                                  'value': json['defaultValueUsageContext'],
-                                                                                                                                                                                                                  '_value': json['_defaultValueUsageContext'],
-                                                                                                                                                                                                                })
+                                                                                  : json['defaultValueAddress'] != null
+                                                                                      ? Address.fromJson(
+                                                                                          json['defaultValueAddress'] as Map<String, dynamic>,
+                                                                                        )
+                                                                                      : json['defaultValueAge'] != null
+                                                                                          ? Age.fromJson(
+                                                                                              json['defaultValueAge'] as Map<String, dynamic>,
+                                                                                            )
+                                                                                          : json['defaultValueAnnotation'] != null
+                                                                                              ? Annotation.fromJson(
+                                                                                                  json['defaultValueAnnotation'] as Map<String, dynamic>,
+                                                                                                )
+                                                                                              : json['defaultValueAttachment'] != null
+                                                                                                  ? Attachment.fromJson(
+                                                                                                      json['defaultValueAttachment'] as Map<String, dynamic>,
+                                                                                                    )
+                                                                                                  : json['defaultValueCodeableConcept'] != null
+                                                                                                      ? CodeableConcept.fromJson(
+                                                                                                          json['defaultValueCodeableConcept'] as Map<String, dynamic>,
+                                                                                                        )
+                                                                                                      : json['defaultValueCodeableReference'] != null
+                                                                                                          ? CodeableReference.fromJson(
+                                                                                                              json['defaultValueCodeableReference'] as Map<String, dynamic>,
+                                                                                                            )
+                                                                                                          : json['defaultValueCoding'] != null
+                                                                                                              ? Coding.fromJson(
+                                                                                                                  json['defaultValueCoding'] as Map<String, dynamic>,
+                                                                                                                )
+                                                                                                              : json['defaultValueContactPoint'] != null
+                                                                                                                  ? ContactPoint.fromJson(
+                                                                                                                      json['defaultValueContactPoint'] as Map<String, dynamic>,
+                                                                                                                    )
+                                                                                                                  : json['defaultValueCount'] != null
+                                                                                                                      ? Count.fromJson(
+                                                                                                                          json['defaultValueCount'] as Map<String, dynamic>,
+                                                                                                                        )
+                                                                                                                      : json['defaultValueDistance'] != null
+                                                                                                                          ? Distance.fromJson(
+                                                                                                                              json['defaultValueDistance'] as Map<String, dynamic>,
+                                                                                                                            )
+                                                                                                                          : json['defaultValueDuration'] != null
+                                                                                                                              ? FhirDuration.fromJson(
+                                                                                                                                  json['defaultValueDuration'] as Map<String, dynamic>,
+                                                                                                                                )
+                                                                                                                              : json['defaultValueHumanName'] != null
+                                                                                                                                  ? HumanName.fromJson(
+                                                                                                                                      json['defaultValueHumanName'] as Map<String, dynamic>,
+                                                                                                                                    )
+                                                                                                                                  : json['defaultValueIdentifier'] != null
+                                                                                                                                      ? Identifier.fromJson(
+                                                                                                                                          json['defaultValueIdentifier'] as Map<String, dynamic>,
+                                                                                                                                        )
+                                                                                                                                      : json['defaultValueMoney'] != null
+                                                                                                                                          ? Money.fromJson(
+                                                                                                                                              json['defaultValueMoney'] as Map<String, dynamic>,
+                                                                                                                                            )
+                                                                                                                                          : json['defaultValuePeriod'] != null
+                                                                                                                                              ? Period.fromJson(
+                                                                                                                                                  json['defaultValuePeriod'] as Map<String, dynamic>,
+                                                                                                                                                )
+                                                                                                                                              : json['defaultValueQuantity'] != null
+                                                                                                                                                  ? Quantity.fromJson(
+                                                                                                                                                      json['defaultValueQuantity'] as Map<String, dynamic>,
+                                                                                                                                                    )
+                                                                                                                                                  : json['defaultValueRange'] != null
+                                                                                                                                                      ? Range.fromJson(
+                                                                                                                                                          json['defaultValueRange'] as Map<String, dynamic>,
+                                                                                                                                                        )
+                                                                                                                                                      : json['defaultValueRatio'] != null
+                                                                                                                                                          ? Ratio.fromJson(
+                                                                                                                                                              json['defaultValueRatio'] as Map<String, dynamic>,
+                                                                                                                                                            )
+                                                                                                                                                          : json['defaultValueRatioRange'] != null
+                                                                                                                                                              ? RatioRange.fromJson(
+                                                                                                                                                                  json['defaultValueRatioRange'] as Map<String, dynamic>,
+                                                                                                                                                                )
+                                                                                                                                                              : json['defaultValueReference'] != null
+                                                                                                                                                                  ? Reference.fromJson(
+                                                                                                                                                                      json['defaultValueReference'] as Map<String, dynamic>,
+                                                                                                                                                                    )
+                                                                                                                                                                  : json['defaultValueSampledData'] != null
+                                                                                                                                                                      ? SampledData.fromJson(
+                                                                                                                                                                          json['defaultValueSampledData'] as Map<String, dynamic>,
+                                                                                                                                                                        )
+                                                                                                                                                                      : json['defaultValueSignature'] != null
+                                                                                                                                                                          ? Signature.fromJson(
+                                                                                                                                                                              json['defaultValueSignature'] as Map<String, dynamic>,
+                                                                                                                                                                            )
+                                                                                                                                                                          : json['defaultValueTiming'] != null
+                                                                                                                                                                              ? Timing.fromJson(
+                                                                                                                                                                                  json['defaultValueTiming'] as Map<String, dynamic>,
+                                                                                                                                                                                )
+                                                                                                                                                                              : json['defaultValueContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetail.fromJson(
+                                                                                                                                                                                      json['defaultValueContactDetail'] as Map<String, dynamic>,
+                                                                                                                                                                                    )
+                                                                                                                                                                                  : json['defaultValueContributor'] != null
+                                                                                                                                                                                      ? Contributor.fromJson(
+                                                                                                                                                                                          json['defaultValueContributor'] as Map<String, dynamic>,
+                                                                                                                                                                                        )
+                                                                                                                                                                                      : json['defaultValueDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirement.fromJson(
+                                                                                                                                                                                              json['defaultValueDataRequirement'] as Map<String, dynamic>,
+                                                                                                                                                                                            )
+                                                                                                                                                                                          : json['defaultValueExpression'] != null
+                                                                                                                                                                                              ? FhirExpression.fromJson(
+                                                                                                                                                                                                  json['defaultValueExpression'] as Map<String, dynamic>,
+                                                                                                                                                                                                )
+                                                                                                                                                                                              : json['defaultValueParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
+                                                                                                                                                                                                      json['defaultValueParameterDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                    )
+                                                                                                                                                                                                  : json['defaultValueRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
+                                                                                                                                                                                                          json['defaultValueRelatedArtifact'] as Map<String, dynamic>,
+                                                                                                                                                                                                        )
+                                                                                                                                                                                                      : json['defaultValueTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
+                                                                                                                                                                                                              json['defaultValueTriggerDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                            )
+                                                                                                                                                                                                          : json['defaultValueUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContext.fromJson(
+                                                                                                                                                                                                                  json['defaultValueUsageContext'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : json['defaultValueDosage'] != null
                                                                                                                                                                                                                   ? Dosage.fromJson(
                                                                                                                                                                                                                       json['defaultValueDosage'] as Map<String, dynamic>,
@@ -625,161 +592,130 @@ class ElementDefinition extends BackboneType {
                                                                                       'value': json['fixedUuid'],
                                                                                       '_value': json['_fixedUuid'],
                                                                                     })
-                                                                                  : json['fixedAddress'] != null || json['_fixedAddress'] != null
-                                                                                      ? Address.fromJson({
-                                                                                          'value': json['fixedAddress'],
-                                                                                          '_value': json['_fixedAddress'],
-                                                                                        })
-                                                                                      : json['fixedAge'] != null || json['_fixedAge'] != null
-                                                                                          ? Age.fromJson({
-                                                                                              'value': json['fixedAge'],
-                                                                                              '_value': json['_fixedAge'],
-                                                                                            })
-                                                                                          : json['fixedAnnotation'] != null || json['_fixedAnnotation'] != null
-                                                                                              ? Annotation.fromJson({
-                                                                                                  'value': json['fixedAnnotation'],
-                                                                                                  '_value': json['_fixedAnnotation'],
-                                                                                                })
-                                                                                              : json['fixedAttachment'] != null || json['_fixedAttachment'] != null
-                                                                                                  ? Attachment.fromJson({
-                                                                                                      'value': json['fixedAttachment'],
-                                                                                                      '_value': json['_fixedAttachment'],
-                                                                                                    })
-                                                                                                  : json['fixedCodeableConcept'] != null || json['_fixedCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson({
-                                                                                                          'value': json['fixedCodeableConcept'],
-                                                                                                          '_value': json['_fixedCodeableConcept'],
-                                                                                                        })
-                                                                                                      : json['fixedCodeableReference'] != null || json['_fixedCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson({
-                                                                                                              'value': json['fixedCodeableReference'],
-                                                                                                              '_value': json['_fixedCodeableReference'],
-                                                                                                            })
-                                                                                                          : json['fixedCoding'] != null || json['_fixedCoding'] != null
-                                                                                                              ? Coding.fromJson({
-                                                                                                                  'value': json['fixedCoding'],
-                                                                                                                  '_value': json['_fixedCoding'],
-                                                                                                                })
-                                                                                                              : json['fixedContactPoint'] != null || json['_fixedContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson({
-                                                                                                                      'value': json['fixedContactPoint'],
-                                                                                                                      '_value': json['_fixedContactPoint'],
-                                                                                                                    })
-                                                                                                                  : json['fixedCount'] != null || json['_fixedCount'] != null
-                                                                                                                      ? Count.fromJson({
-                                                                                                                          'value': json['fixedCount'],
-                                                                                                                          '_value': json['_fixedCount'],
-                                                                                                                        })
-                                                                                                                      : json['fixedDistance'] != null || json['_fixedDistance'] != null
-                                                                                                                          ? Distance.fromJson({
-                                                                                                                              'value': json['fixedDistance'],
-                                                                                                                              '_value': json['_fixedDistance'],
-                                                                                                                            })
-                                                                                                                          : json['fixedDuration'] != null || json['_fixedDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson({
-                                                                                                                                  'value': json['fixedDuration'],
-                                                                                                                                  '_value': json['_fixedDuration'],
-                                                                                                                                })
-                                                                                                                              : json['fixedHumanName'] != null || json['_fixedHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson({
-                                                                                                                                      'value': json['fixedHumanName'],
-                                                                                                                                      '_value': json['_fixedHumanName'],
-                                                                                                                                    })
-                                                                                                                                  : json['fixedIdentifier'] != null || json['_fixedIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson({
-                                                                                                                                          'value': json['fixedIdentifier'],
-                                                                                                                                          '_value': json['_fixedIdentifier'],
-                                                                                                                                        })
-                                                                                                                                      : json['fixedMoney'] != null || json['_fixedMoney'] != null
-                                                                                                                                          ? Money.fromJson({
-                                                                                                                                              'value': json['fixedMoney'],
-                                                                                                                                              '_value': json['_fixedMoney'],
-                                                                                                                                            })
-                                                                                                                                          : json['fixedPeriod'] != null || json['_fixedPeriod'] != null
-                                                                                                                                              ? Period.fromJson({
-                                                                                                                                                  'value': json['fixedPeriod'],
-                                                                                                                                                  '_value': json['_fixedPeriod'],
-                                                                                                                                                })
-                                                                                                                                              : json['fixedQuantity'] != null || json['_fixedQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson({
-                                                                                                                                                      'value': json['fixedQuantity'],
-                                                                                                                                                      '_value': json['_fixedQuantity'],
-                                                                                                                                                    })
-                                                                                                                                                  : json['fixedRange'] != null || json['_fixedRange'] != null
-                                                                                                                                                      ? Range.fromJson({
-                                                                                                                                                          'value': json['fixedRange'],
-                                                                                                                                                          '_value': json['_fixedRange'],
-                                                                                                                                                        })
-                                                                                                                                                      : json['fixedRatio'] != null || json['_fixedRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson({
-                                                                                                                                                              'value': json['fixedRatio'],
-                                                                                                                                                              '_value': json['_fixedRatio'],
-                                                                                                                                                            })
-                                                                                                                                                          : json['fixedRatioRange'] != null || json['_fixedRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson({
-                                                                                                                                                                  'value': json['fixedRatioRange'],
-                                                                                                                                                                  '_value': json['_fixedRatioRange'],
-                                                                                                                                                                })
-                                                                                                                                                              : json['fixedReference'] != null || json['_fixedReference'] != null
-                                                                                                                                                                  ? Reference.fromJson({
-                                                                                                                                                                      'value': json['fixedReference'],
-                                                                                                                                                                      '_value': json['_fixedReference'],
-                                                                                                                                                                    })
-                                                                                                                                                                  : json['fixedSampledData'] != null || json['_fixedSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson({
-                                                                                                                                                                          'value': json['fixedSampledData'],
-                                                                                                                                                                          '_value': json['_fixedSampledData'],
-                                                                                                                                                                        })
-                                                                                                                                                                      : json['fixedSignature'] != null || json['_fixedSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson({
-                                                                                                                                                                              'value': json['fixedSignature'],
-                                                                                                                                                                              '_value': json['_fixedSignature'],
-                                                                                                                                                                            })
-                                                                                                                                                                          : json['fixedTiming'] != null || json['_fixedTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson({
-                                                                                                                                                                                  'value': json['fixedTiming'],
-                                                                                                                                                                                  '_value': json['_fixedTiming'],
-                                                                                                                                                                                })
-                                                                                                                                                                              : json['fixedContactDetail'] != null || json['_fixedContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson({
-                                                                                                                                                                                      'value': json['fixedContactDetail'],
-                                                                                                                                                                                      '_value': json['_fixedContactDetail'],
-                                                                                                                                                                                    })
-                                                                                                                                                                                  : json['fixedContributor'] != null || json['_fixedContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson({
-                                                                                                                                                                                          'value': json['fixedContributor'],
-                                                                                                                                                                                          '_value': json['_fixedContributor'],
-                                                                                                                                                                                        })
-                                                                                                                                                                                      : json['fixedDataRequirement'] != null || json['_fixedDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson({
-                                                                                                                                                                                              'value': json['fixedDataRequirement'],
-                                                                                                                                                                                              '_value': json['_fixedDataRequirement'],
-                                                                                                                                                                                            })
-                                                                                                                                                                                          : json['fixedExpression'] != null || json['_fixedExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson({
-                                                                                                                                                                                                  'value': json['fixedExpression'],
-                                                                                                                                                                                                  '_value': json['_fixedExpression'],
-                                                                                                                                                                                                })
-                                                                                                                                                                                              : json['fixedParameterDefinition'] != null || json['_fixedParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson({
-                                                                                                                                                                                                      'value': json['fixedParameterDefinition'],
-                                                                                                                                                                                                      '_value': json['_fixedParameterDefinition'],
-                                                                                                                                                                                                    })
-                                                                                                                                                                                                  : json['fixedRelatedArtifact'] != null || json['_fixedRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson({
-                                                                                                                                                                                                          'value': json['fixedRelatedArtifact'],
-                                                                                                                                                                                                          '_value': json['_fixedRelatedArtifact'],
-                                                                                                                                                                                                        })
-                                                                                                                                                                                                      : json['fixedTriggerDefinition'] != null || json['_fixedTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson({
-                                                                                                                                                                                                              'value': json['fixedTriggerDefinition'],
-                                                                                                                                                                                                              '_value': json['_fixedTriggerDefinition'],
-                                                                                                                                                                                                            })
-                                                                                                                                                                                                          : json['fixedUsageContext'] != null || json['_fixedUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson({
-                                                                                                                                                                                                                  'value': json['fixedUsageContext'],
-                                                                                                                                                                                                                  '_value': json['_fixedUsageContext'],
-                                                                                                                                                                                                                })
+                                                                                  : json['fixedAddress'] != null
+                                                                                      ? Address.fromJson(
+                                                                                          json['fixedAddress'] as Map<String, dynamic>,
+                                                                                        )
+                                                                                      : json['fixedAge'] != null
+                                                                                          ? Age.fromJson(
+                                                                                              json['fixedAge'] as Map<String, dynamic>,
+                                                                                            )
+                                                                                          : json['fixedAnnotation'] != null
+                                                                                              ? Annotation.fromJson(
+                                                                                                  json['fixedAnnotation'] as Map<String, dynamic>,
+                                                                                                )
+                                                                                              : json['fixedAttachment'] != null
+                                                                                                  ? Attachment.fromJson(
+                                                                                                      json['fixedAttachment'] as Map<String, dynamic>,
+                                                                                                    )
+                                                                                                  : json['fixedCodeableConcept'] != null
+                                                                                                      ? CodeableConcept.fromJson(
+                                                                                                          json['fixedCodeableConcept'] as Map<String, dynamic>,
+                                                                                                        )
+                                                                                                      : json['fixedCodeableReference'] != null
+                                                                                                          ? CodeableReference.fromJson(
+                                                                                                              json['fixedCodeableReference'] as Map<String, dynamic>,
+                                                                                                            )
+                                                                                                          : json['fixedCoding'] != null
+                                                                                                              ? Coding.fromJson(
+                                                                                                                  json['fixedCoding'] as Map<String, dynamic>,
+                                                                                                                )
+                                                                                                              : json['fixedContactPoint'] != null
+                                                                                                                  ? ContactPoint.fromJson(
+                                                                                                                      json['fixedContactPoint'] as Map<String, dynamic>,
+                                                                                                                    )
+                                                                                                                  : json['fixedCount'] != null
+                                                                                                                      ? Count.fromJson(
+                                                                                                                          json['fixedCount'] as Map<String, dynamic>,
+                                                                                                                        )
+                                                                                                                      : json['fixedDistance'] != null
+                                                                                                                          ? Distance.fromJson(
+                                                                                                                              json['fixedDistance'] as Map<String, dynamic>,
+                                                                                                                            )
+                                                                                                                          : json['fixedDuration'] != null
+                                                                                                                              ? FhirDuration.fromJson(
+                                                                                                                                  json['fixedDuration'] as Map<String, dynamic>,
+                                                                                                                                )
+                                                                                                                              : json['fixedHumanName'] != null
+                                                                                                                                  ? HumanName.fromJson(
+                                                                                                                                      json['fixedHumanName'] as Map<String, dynamic>,
+                                                                                                                                    )
+                                                                                                                                  : json['fixedIdentifier'] != null
+                                                                                                                                      ? Identifier.fromJson(
+                                                                                                                                          json['fixedIdentifier'] as Map<String, dynamic>,
+                                                                                                                                        )
+                                                                                                                                      : json['fixedMoney'] != null
+                                                                                                                                          ? Money.fromJson(
+                                                                                                                                              json['fixedMoney'] as Map<String, dynamic>,
+                                                                                                                                            )
+                                                                                                                                          : json['fixedPeriod'] != null
+                                                                                                                                              ? Period.fromJson(
+                                                                                                                                                  json['fixedPeriod'] as Map<String, dynamic>,
+                                                                                                                                                )
+                                                                                                                                              : json['fixedQuantity'] != null
+                                                                                                                                                  ? Quantity.fromJson(
+                                                                                                                                                      json['fixedQuantity'] as Map<String, dynamic>,
+                                                                                                                                                    )
+                                                                                                                                                  : json['fixedRange'] != null
+                                                                                                                                                      ? Range.fromJson(
+                                                                                                                                                          json['fixedRange'] as Map<String, dynamic>,
+                                                                                                                                                        )
+                                                                                                                                                      : json['fixedRatio'] != null
+                                                                                                                                                          ? Ratio.fromJson(
+                                                                                                                                                              json['fixedRatio'] as Map<String, dynamic>,
+                                                                                                                                                            )
+                                                                                                                                                          : json['fixedRatioRange'] != null
+                                                                                                                                                              ? RatioRange.fromJson(
+                                                                                                                                                                  json['fixedRatioRange'] as Map<String, dynamic>,
+                                                                                                                                                                )
+                                                                                                                                                              : json['fixedReference'] != null
+                                                                                                                                                                  ? Reference.fromJson(
+                                                                                                                                                                      json['fixedReference'] as Map<String, dynamic>,
+                                                                                                                                                                    )
+                                                                                                                                                                  : json['fixedSampledData'] != null
+                                                                                                                                                                      ? SampledData.fromJson(
+                                                                                                                                                                          json['fixedSampledData'] as Map<String, dynamic>,
+                                                                                                                                                                        )
+                                                                                                                                                                      : json['fixedSignature'] != null
+                                                                                                                                                                          ? Signature.fromJson(
+                                                                                                                                                                              json['fixedSignature'] as Map<String, dynamic>,
+                                                                                                                                                                            )
+                                                                                                                                                                          : json['fixedTiming'] != null
+                                                                                                                                                                              ? Timing.fromJson(
+                                                                                                                                                                                  json['fixedTiming'] as Map<String, dynamic>,
+                                                                                                                                                                                )
+                                                                                                                                                                              : json['fixedContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetail.fromJson(
+                                                                                                                                                                                      json['fixedContactDetail'] as Map<String, dynamic>,
+                                                                                                                                                                                    )
+                                                                                                                                                                                  : json['fixedContributor'] != null
+                                                                                                                                                                                      ? Contributor.fromJson(
+                                                                                                                                                                                          json['fixedContributor'] as Map<String, dynamic>,
+                                                                                                                                                                                        )
+                                                                                                                                                                                      : json['fixedDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirement.fromJson(
+                                                                                                                                                                                              json['fixedDataRequirement'] as Map<String, dynamic>,
+                                                                                                                                                                                            )
+                                                                                                                                                                                          : json['fixedExpression'] != null
+                                                                                                                                                                                              ? FhirExpression.fromJson(
+                                                                                                                                                                                                  json['fixedExpression'] as Map<String, dynamic>,
+                                                                                                                                                                                                )
+                                                                                                                                                                                              : json['fixedParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
+                                                                                                                                                                                                      json['fixedParameterDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                    )
+                                                                                                                                                                                                  : json['fixedRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
+                                                                                                                                                                                                          json['fixedRelatedArtifact'] as Map<String, dynamic>,
+                                                                                                                                                                                                        )
+                                                                                                                                                                                                      : json['fixedTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
+                                                                                                                                                                                                              json['fixedTriggerDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                            )
+                                                                                                                                                                                                          : json['fixedUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContext.fromJson(
+                                                                                                                                                                                                                  json['fixedUsageContext'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : json['fixedDosage'] != null
                                                                                                                                                                                                                   ? Dosage.fromJson(
                                                                                                                                                                                                                       json['fixedDosage'] as Map<String, dynamic>,
@@ -918,161 +854,130 @@ class ElementDefinition extends BackboneType {
                                                                                       'value': json['patternUuid'],
                                                                                       '_value': json['_patternUuid'],
                                                                                     })
-                                                                                  : json['patternAddress'] != null || json['_patternAddress'] != null
-                                                                                      ? Address.fromJson({
-                                                                                          'value': json['patternAddress'],
-                                                                                          '_value': json['_patternAddress'],
-                                                                                        })
-                                                                                      : json['patternAge'] != null || json['_patternAge'] != null
-                                                                                          ? Age.fromJson({
-                                                                                              'value': json['patternAge'],
-                                                                                              '_value': json['_patternAge'],
-                                                                                            })
-                                                                                          : json['patternAnnotation'] != null || json['_patternAnnotation'] != null
-                                                                                              ? Annotation.fromJson({
-                                                                                                  'value': json['patternAnnotation'],
-                                                                                                  '_value': json['_patternAnnotation'],
-                                                                                                })
-                                                                                              : json['patternAttachment'] != null || json['_patternAttachment'] != null
-                                                                                                  ? Attachment.fromJson({
-                                                                                                      'value': json['patternAttachment'],
-                                                                                                      '_value': json['_patternAttachment'],
-                                                                                                    })
-                                                                                                  : json['patternCodeableConcept'] != null || json['_patternCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson({
-                                                                                                          'value': json['patternCodeableConcept'],
-                                                                                                          '_value': json['_patternCodeableConcept'],
-                                                                                                        })
-                                                                                                      : json['patternCodeableReference'] != null || json['_patternCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson({
-                                                                                                              'value': json['patternCodeableReference'],
-                                                                                                              '_value': json['_patternCodeableReference'],
-                                                                                                            })
-                                                                                                          : json['patternCoding'] != null || json['_patternCoding'] != null
-                                                                                                              ? Coding.fromJson({
-                                                                                                                  'value': json['patternCoding'],
-                                                                                                                  '_value': json['_patternCoding'],
-                                                                                                                })
-                                                                                                              : json['patternContactPoint'] != null || json['_patternContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson({
-                                                                                                                      'value': json['patternContactPoint'],
-                                                                                                                      '_value': json['_patternContactPoint'],
-                                                                                                                    })
-                                                                                                                  : json['patternCount'] != null || json['_patternCount'] != null
-                                                                                                                      ? Count.fromJson({
-                                                                                                                          'value': json['patternCount'],
-                                                                                                                          '_value': json['_patternCount'],
-                                                                                                                        })
-                                                                                                                      : json['patternDistance'] != null || json['_patternDistance'] != null
-                                                                                                                          ? Distance.fromJson({
-                                                                                                                              'value': json['patternDistance'],
-                                                                                                                              '_value': json['_patternDistance'],
-                                                                                                                            })
-                                                                                                                          : json['patternDuration'] != null || json['_patternDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson({
-                                                                                                                                  'value': json['patternDuration'],
-                                                                                                                                  '_value': json['_patternDuration'],
-                                                                                                                                })
-                                                                                                                              : json['patternHumanName'] != null || json['_patternHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson({
-                                                                                                                                      'value': json['patternHumanName'],
-                                                                                                                                      '_value': json['_patternHumanName'],
-                                                                                                                                    })
-                                                                                                                                  : json['patternIdentifier'] != null || json['_patternIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson({
-                                                                                                                                          'value': json['patternIdentifier'],
-                                                                                                                                          '_value': json['_patternIdentifier'],
-                                                                                                                                        })
-                                                                                                                                      : json['patternMoney'] != null || json['_patternMoney'] != null
-                                                                                                                                          ? Money.fromJson({
-                                                                                                                                              'value': json['patternMoney'],
-                                                                                                                                              '_value': json['_patternMoney'],
-                                                                                                                                            })
-                                                                                                                                          : json['patternPeriod'] != null || json['_patternPeriod'] != null
-                                                                                                                                              ? Period.fromJson({
-                                                                                                                                                  'value': json['patternPeriod'],
-                                                                                                                                                  '_value': json['_patternPeriod'],
-                                                                                                                                                })
-                                                                                                                                              : json['patternQuantity'] != null || json['_patternQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson({
-                                                                                                                                                      'value': json['patternQuantity'],
-                                                                                                                                                      '_value': json['_patternQuantity'],
-                                                                                                                                                    })
-                                                                                                                                                  : json['patternRange'] != null || json['_patternRange'] != null
-                                                                                                                                                      ? Range.fromJson({
-                                                                                                                                                          'value': json['patternRange'],
-                                                                                                                                                          '_value': json['_patternRange'],
-                                                                                                                                                        })
-                                                                                                                                                      : json['patternRatio'] != null || json['_patternRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson({
-                                                                                                                                                              'value': json['patternRatio'],
-                                                                                                                                                              '_value': json['_patternRatio'],
-                                                                                                                                                            })
-                                                                                                                                                          : json['patternRatioRange'] != null || json['_patternRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson({
-                                                                                                                                                                  'value': json['patternRatioRange'],
-                                                                                                                                                                  '_value': json['_patternRatioRange'],
-                                                                                                                                                                })
-                                                                                                                                                              : json['patternReference'] != null || json['_patternReference'] != null
-                                                                                                                                                                  ? Reference.fromJson({
-                                                                                                                                                                      'value': json['patternReference'],
-                                                                                                                                                                      '_value': json['_patternReference'],
-                                                                                                                                                                    })
-                                                                                                                                                                  : json['patternSampledData'] != null || json['_patternSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson({
-                                                                                                                                                                          'value': json['patternSampledData'],
-                                                                                                                                                                          '_value': json['_patternSampledData'],
-                                                                                                                                                                        })
-                                                                                                                                                                      : json['patternSignature'] != null || json['_patternSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson({
-                                                                                                                                                                              'value': json['patternSignature'],
-                                                                                                                                                                              '_value': json['_patternSignature'],
-                                                                                                                                                                            })
-                                                                                                                                                                          : json['patternTiming'] != null || json['_patternTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson({
-                                                                                                                                                                                  'value': json['patternTiming'],
-                                                                                                                                                                                  '_value': json['_patternTiming'],
-                                                                                                                                                                                })
-                                                                                                                                                                              : json['patternContactDetail'] != null || json['_patternContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson({
-                                                                                                                                                                                      'value': json['patternContactDetail'],
-                                                                                                                                                                                      '_value': json['_patternContactDetail'],
-                                                                                                                                                                                    })
-                                                                                                                                                                                  : json['patternContributor'] != null || json['_patternContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson({
-                                                                                                                                                                                          'value': json['patternContributor'],
-                                                                                                                                                                                          '_value': json['_patternContributor'],
-                                                                                                                                                                                        })
-                                                                                                                                                                                      : json['patternDataRequirement'] != null || json['_patternDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson({
-                                                                                                                                                                                              'value': json['patternDataRequirement'],
-                                                                                                                                                                                              '_value': json['_patternDataRequirement'],
-                                                                                                                                                                                            })
-                                                                                                                                                                                          : json['patternExpression'] != null || json['_patternExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson({
-                                                                                                                                                                                                  'value': json['patternExpression'],
-                                                                                                                                                                                                  '_value': json['_patternExpression'],
-                                                                                                                                                                                                })
-                                                                                                                                                                                              : json['patternParameterDefinition'] != null || json['_patternParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson({
-                                                                                                                                                                                                      'value': json['patternParameterDefinition'],
-                                                                                                                                                                                                      '_value': json['_patternParameterDefinition'],
-                                                                                                                                                                                                    })
-                                                                                                                                                                                                  : json['patternRelatedArtifact'] != null || json['_patternRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson({
-                                                                                                                                                                                                          'value': json['patternRelatedArtifact'],
-                                                                                                                                                                                                          '_value': json['_patternRelatedArtifact'],
-                                                                                                                                                                                                        })
-                                                                                                                                                                                                      : json['patternTriggerDefinition'] != null || json['_patternTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson({
-                                                                                                                                                                                                              'value': json['patternTriggerDefinition'],
-                                                                                                                                                                                                              '_value': json['_patternTriggerDefinition'],
-                                                                                                                                                                                                            })
-                                                                                                                                                                                                          : json['patternUsageContext'] != null || json['_patternUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson({
-                                                                                                                                                                                                                  'value': json['patternUsageContext'],
-                                                                                                                                                                                                                  '_value': json['_patternUsageContext'],
-                                                                                                                                                                                                                })
+                                                                                  : json['patternAddress'] != null
+                                                                                      ? Address.fromJson(
+                                                                                          json['patternAddress'] as Map<String, dynamic>,
+                                                                                        )
+                                                                                      : json['patternAge'] != null
+                                                                                          ? Age.fromJson(
+                                                                                              json['patternAge'] as Map<String, dynamic>,
+                                                                                            )
+                                                                                          : json['patternAnnotation'] != null
+                                                                                              ? Annotation.fromJson(
+                                                                                                  json['patternAnnotation'] as Map<String, dynamic>,
+                                                                                                )
+                                                                                              : json['patternAttachment'] != null
+                                                                                                  ? Attachment.fromJson(
+                                                                                                      json['patternAttachment'] as Map<String, dynamic>,
+                                                                                                    )
+                                                                                                  : json['patternCodeableConcept'] != null
+                                                                                                      ? CodeableConcept.fromJson(
+                                                                                                          json['patternCodeableConcept'] as Map<String, dynamic>,
+                                                                                                        )
+                                                                                                      : json['patternCodeableReference'] != null
+                                                                                                          ? CodeableReference.fromJson(
+                                                                                                              json['patternCodeableReference'] as Map<String, dynamic>,
+                                                                                                            )
+                                                                                                          : json['patternCoding'] != null
+                                                                                                              ? Coding.fromJson(
+                                                                                                                  json['patternCoding'] as Map<String, dynamic>,
+                                                                                                                )
+                                                                                                              : json['patternContactPoint'] != null
+                                                                                                                  ? ContactPoint.fromJson(
+                                                                                                                      json['patternContactPoint'] as Map<String, dynamic>,
+                                                                                                                    )
+                                                                                                                  : json['patternCount'] != null
+                                                                                                                      ? Count.fromJson(
+                                                                                                                          json['patternCount'] as Map<String, dynamic>,
+                                                                                                                        )
+                                                                                                                      : json['patternDistance'] != null
+                                                                                                                          ? Distance.fromJson(
+                                                                                                                              json['patternDistance'] as Map<String, dynamic>,
+                                                                                                                            )
+                                                                                                                          : json['patternDuration'] != null
+                                                                                                                              ? FhirDuration.fromJson(
+                                                                                                                                  json['patternDuration'] as Map<String, dynamic>,
+                                                                                                                                )
+                                                                                                                              : json['patternHumanName'] != null
+                                                                                                                                  ? HumanName.fromJson(
+                                                                                                                                      json['patternHumanName'] as Map<String, dynamic>,
+                                                                                                                                    )
+                                                                                                                                  : json['patternIdentifier'] != null
+                                                                                                                                      ? Identifier.fromJson(
+                                                                                                                                          json['patternIdentifier'] as Map<String, dynamic>,
+                                                                                                                                        )
+                                                                                                                                      : json['patternMoney'] != null
+                                                                                                                                          ? Money.fromJson(
+                                                                                                                                              json['patternMoney'] as Map<String, dynamic>,
+                                                                                                                                            )
+                                                                                                                                          : json['patternPeriod'] != null
+                                                                                                                                              ? Period.fromJson(
+                                                                                                                                                  json['patternPeriod'] as Map<String, dynamic>,
+                                                                                                                                                )
+                                                                                                                                              : json['patternQuantity'] != null
+                                                                                                                                                  ? Quantity.fromJson(
+                                                                                                                                                      json['patternQuantity'] as Map<String, dynamic>,
+                                                                                                                                                    )
+                                                                                                                                                  : json['patternRange'] != null
+                                                                                                                                                      ? Range.fromJson(
+                                                                                                                                                          json['patternRange'] as Map<String, dynamic>,
+                                                                                                                                                        )
+                                                                                                                                                      : json['patternRatio'] != null
+                                                                                                                                                          ? Ratio.fromJson(
+                                                                                                                                                              json['patternRatio'] as Map<String, dynamic>,
+                                                                                                                                                            )
+                                                                                                                                                          : json['patternRatioRange'] != null
+                                                                                                                                                              ? RatioRange.fromJson(
+                                                                                                                                                                  json['patternRatioRange'] as Map<String, dynamic>,
+                                                                                                                                                                )
+                                                                                                                                                              : json['patternReference'] != null
+                                                                                                                                                                  ? Reference.fromJson(
+                                                                                                                                                                      json['patternReference'] as Map<String, dynamic>,
+                                                                                                                                                                    )
+                                                                                                                                                                  : json['patternSampledData'] != null
+                                                                                                                                                                      ? SampledData.fromJson(
+                                                                                                                                                                          json['patternSampledData'] as Map<String, dynamic>,
+                                                                                                                                                                        )
+                                                                                                                                                                      : json['patternSignature'] != null
+                                                                                                                                                                          ? Signature.fromJson(
+                                                                                                                                                                              json['patternSignature'] as Map<String, dynamic>,
+                                                                                                                                                                            )
+                                                                                                                                                                          : json['patternTiming'] != null
+                                                                                                                                                                              ? Timing.fromJson(
+                                                                                                                                                                                  json['patternTiming'] as Map<String, dynamic>,
+                                                                                                                                                                                )
+                                                                                                                                                                              : json['patternContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetail.fromJson(
+                                                                                                                                                                                      json['patternContactDetail'] as Map<String, dynamic>,
+                                                                                                                                                                                    )
+                                                                                                                                                                                  : json['patternContributor'] != null
+                                                                                                                                                                                      ? Contributor.fromJson(
+                                                                                                                                                                                          json['patternContributor'] as Map<String, dynamic>,
+                                                                                                                                                                                        )
+                                                                                                                                                                                      : json['patternDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirement.fromJson(
+                                                                                                                                                                                              json['patternDataRequirement'] as Map<String, dynamic>,
+                                                                                                                                                                                            )
+                                                                                                                                                                                          : json['patternExpression'] != null
+                                                                                                                                                                                              ? FhirExpression.fromJson(
+                                                                                                                                                                                                  json['patternExpression'] as Map<String, dynamic>,
+                                                                                                                                                                                                )
+                                                                                                                                                                                              : json['patternParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
+                                                                                                                                                                                                      json['patternParameterDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                    )
+                                                                                                                                                                                                  : json['patternRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
+                                                                                                                                                                                                          json['patternRelatedArtifact'] as Map<String, dynamic>,
+                                                                                                                                                                                                        )
+                                                                                                                                                                                                      : json['patternTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
+                                                                                                                                                                                                              json['patternTriggerDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                            )
+                                                                                                                                                                                                          : json['patternUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContext.fromJson(
+                                                                                                                                                                                                                  json['patternUsageContext'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : json['patternDosage'] != null
                                                                                                                                                                                                                   ? Dosage.fromJson(
                                                                                                                                                                                                                       json['patternDosage'] as Map<String, dynamic>,
@@ -1538,7 +1443,10 @@ class ElementDefinition extends BackboneType {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1557,9 +1465,18 @@ class ElementDefinition extends BackboneType {
       }
     }
 
-    addField('sliceName', sliceName);
-    addField('sliceIsConstraining', sliceIsConstraining);
-    addField('label', label);
+    if (sliceName != null) {
+      addField('sliceName', sliceName);
+    }
+
+    if (sliceIsConstraining != null) {
+      addField('sliceIsConstraining', sliceIsConstraining);
+    }
+
+    if (label != null) {
+      addField('label', label);
+    }
+
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -1568,10 +1485,22 @@ class ElementDefinition extends BackboneType {
       json['slicing'] = slicing!.toJson();
     }
 
-    addField('short', short);
-    addField('definition', definition);
-    addField('comment', comment);
-    addField('requirements', requirements);
+    if (short != null) {
+      addField('short', short);
+    }
+
+    if (definition != null) {
+      addField('definition', definition);
+    }
+
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
+    if (requirements != null) {
+      addField('requirements', requirements);
+    }
+
     if (alias != null && alias!.isNotEmpty) {
       final fieldJson1 = alias!.map((e) => e.toJson()).toList();
       json['alias'] = fieldJson1.map((e) => e['value']).toList();
@@ -1580,30 +1509,63 @@ class ElementDefinition extends BackboneType {
       }
     }
 
-    addField('min', min);
-    addField('max', max);
+    if (min != null) {
+      addField('min', min);
+    }
+
+    if (max != null) {
+      addField('max', max);
+    }
+
     if (base != null) {
       json['base'] = base!.toJson();
     }
 
-    addField('contentReference', contentReference);
+    if (contentReference != null) {
+      addField('contentReference', contentReference);
+    }
+
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    addField(
-        'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX,);
-    addField('meaningWhenMissing', meaningWhenMissing);
-    addField('orderMeaning', orderMeaning);
-    addField('fixed${fixedX!.fhirType.capitalize()}', fixedX);
-    addField('pattern${patternX!.fhirType.capitalize()}', patternX);
+    if (defaultValueX != null) {
+      addField(
+          'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX);
+    }
+
+    if (meaningWhenMissing != null) {
+      addField('meaningWhenMissing', meaningWhenMissing);
+    }
+
+    if (orderMeaning != null) {
+      addField('orderMeaning', orderMeaning);
+    }
+
+    if (fixedX != null) {
+      addField('fixed${fixedX!.fhirType.capitalize()}', fixedX);
+    }
+
+    if (patternX != null) {
+      addField('pattern${patternX!.fhirType.capitalize()}', patternX);
+    }
+
     if (example != null && example!.isNotEmpty) {
       json['example'] = example!.map((e) => e.toJson()).toList();
     }
 
-    addField('minValue${minValueX!.fhirType.capitalize()}', minValueX);
-    addField('maxValue${maxValueX!.fhirType.capitalize()}', maxValueX);
-    addField('maxLength', maxLength);
+    if (minValueX != null) {
+      addField('minValue${minValueX!.fhirType.capitalize()}', minValueX);
+    }
+
+    if (maxValueX != null) {
+      addField('maxValue${maxValueX!.fhirType.capitalize()}', maxValueX);
+    }
+
+    if (maxLength != null) {
+      addField('maxLength', maxLength);
+    }
+
     if (condition != null && condition!.isNotEmpty) {
       final fieldJson2 = condition!.map((e) => e.toJson()).toList();
       json['condition'] = fieldJson2.map((e) => e['value']).toList();
@@ -1616,10 +1578,22 @@ class ElementDefinition extends BackboneType {
       json['constraint'] = constraint!.map((e) => e.toJson()).toList();
     }
 
-    addField('mustSupport', mustSupport);
-    addField('isModifier', isModifier);
-    addField('isModifierReason', isModifierReason);
-    addField('isSummary', isSummary);
+    if (mustSupport != null) {
+      addField('mustSupport', mustSupport);
+    }
+
+    if (isModifier != null) {
+      addField('isModifier', isModifier);
+    }
+
+    if (isModifierReason != null) {
+      addField('isModifierReason', isModifierReason);
+    }
+
+    if (isSummary != null) {
+      addField('isSummary', isSummary);
+    }
+
     if (binding != null) {
       json['binding'] = binding!.toJson();
     }
@@ -1865,7 +1839,10 @@ class ElementDefinitionSlicing extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1874,8 +1851,14 @@ class ElementDefinitionSlicing extends Element {
       json['discriminator'] = discriminator!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
-    addField('ordered', ordered);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (ordered != null) {
+      addField('ordered', ordered);
+    }
+
     addField('rules', rules);
     return json;
   }
@@ -2015,7 +1998,10 @@ class ElementDefinitionDiscriminator extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2170,7 +2156,10 @@ class ElementDefinitionBase extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2361,7 +2350,10 @@ class ElementDefinitionType extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2391,7 +2383,10 @@ class ElementDefinitionType extends Element {
       }
     }
 
-    addField('versioning', versioning);
+    if (versioning != null) {
+      addField('versioning', versioning);
+    }
+
     return json;
   }
 
@@ -2591,161 +2586,130 @@ class ElementDefinitionExample extends Element {
                                                                                       'value': json['valueUuid'],
                                                                                       '_value': json['_valueUuid'],
                                                                                     })
-                                                                                  : json['valueAddress'] != null || json['_valueAddress'] != null
-                                                                                      ? Address.fromJson({
-                                                                                          'value': json['valueAddress'],
-                                                                                          '_value': json['_valueAddress'],
-                                                                                        })
-                                                                                      : json['valueAge'] != null || json['_valueAge'] != null
-                                                                                          ? Age.fromJson({
-                                                                                              'value': json['valueAge'],
-                                                                                              '_value': json['_valueAge'],
-                                                                                            })
-                                                                                          : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
-                                                                                              ? Annotation.fromJson({
-                                                                                                  'value': json['valueAnnotation'],
-                                                                                                  '_value': json['_valueAnnotation'],
-                                                                                                })
-                                                                                              : json['valueAttachment'] != null || json['_valueAttachment'] != null
-                                                                                                  ? Attachment.fromJson({
-                                                                                                      'value': json['valueAttachment'],
-                                                                                                      '_value': json['_valueAttachment'],
-                                                                                                    })
-                                                                                                  : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
-                                                                                                      ? CodeableConcept.fromJson({
-                                                                                                          'value': json['valueCodeableConcept'],
-                                                                                                          '_value': json['_valueCodeableConcept'],
-                                                                                                        })
-                                                                                                      : json['valueCodeableReference'] != null || json['_valueCodeableReference'] != null
-                                                                                                          ? CodeableReference.fromJson({
-                                                                                                              'value': json['valueCodeableReference'],
-                                                                                                              '_value': json['_valueCodeableReference'],
-                                                                                                            })
-                                                                                                          : json['valueCoding'] != null || json['_valueCoding'] != null
-                                                                                                              ? Coding.fromJson({
-                                                                                                                  'value': json['valueCoding'],
-                                                                                                                  '_value': json['_valueCoding'],
-                                                                                                                })
-                                                                                                              : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
-                                                                                                                  ? ContactPoint.fromJson({
-                                                                                                                      'value': json['valueContactPoint'],
-                                                                                                                      '_value': json['_valueContactPoint'],
-                                                                                                                    })
-                                                                                                                  : json['valueCount'] != null || json['_valueCount'] != null
-                                                                                                                      ? Count.fromJson({
-                                                                                                                          'value': json['valueCount'],
-                                                                                                                          '_value': json['_valueCount'],
-                                                                                                                        })
-                                                                                                                      : json['valueDistance'] != null || json['_valueDistance'] != null
-                                                                                                                          ? Distance.fromJson({
-                                                                                                                              'value': json['valueDistance'],
-                                                                                                                              '_value': json['_valueDistance'],
-                                                                                                                            })
-                                                                                                                          : json['valueDuration'] != null || json['_valueDuration'] != null
-                                                                                                                              ? FhirDuration.fromJson({
-                                                                                                                                  'value': json['valueDuration'],
-                                                                                                                                  '_value': json['_valueDuration'],
-                                                                                                                                })
-                                                                                                                              : json['valueHumanName'] != null || json['_valueHumanName'] != null
-                                                                                                                                  ? HumanName.fromJson({
-                                                                                                                                      'value': json['valueHumanName'],
-                                                                                                                                      '_value': json['_valueHumanName'],
-                                                                                                                                    })
-                                                                                                                                  : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
-                                                                                                                                      ? Identifier.fromJson({
-                                                                                                                                          'value': json['valueIdentifier'],
-                                                                                                                                          '_value': json['_valueIdentifier'],
-                                                                                                                                        })
-                                                                                                                                      : json['valueMoney'] != null || json['_valueMoney'] != null
-                                                                                                                                          ? Money.fromJson({
-                                                                                                                                              'value': json['valueMoney'],
-                                                                                                                                              '_value': json['_valueMoney'],
-                                                                                                                                            })
-                                                                                                                                          : json['valuePeriod'] != null || json['_valuePeriod'] != null
-                                                                                                                                              ? Period.fromJson({
-                                                                                                                                                  'value': json['valuePeriod'],
-                                                                                                                                                  '_value': json['_valuePeriod'],
-                                                                                                                                                })
-                                                                                                                                              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                                                                                                                                                  ? Quantity.fromJson({
-                                                                                                                                                      'value': json['valueQuantity'],
-                                                                                                                                                      '_value': json['_valueQuantity'],
-                                                                                                                                                    })
-                                                                                                                                                  : json['valueRange'] != null || json['_valueRange'] != null
-                                                                                                                                                      ? Range.fromJson({
-                                                                                                                                                          'value': json['valueRange'],
-                                                                                                                                                          '_value': json['_valueRange'],
-                                                                                                                                                        })
-                                                                                                                                                      : json['valueRatio'] != null || json['_valueRatio'] != null
-                                                                                                                                                          ? Ratio.fromJson({
-                                                                                                                                                              'value': json['valueRatio'],
-                                                                                                                                                              '_value': json['_valueRatio'],
-                                                                                                                                                            })
-                                                                                                                                                          : json['valueRatioRange'] != null || json['_valueRatioRange'] != null
-                                                                                                                                                              ? RatioRange.fromJson({
-                                                                                                                                                                  'value': json['valueRatioRange'],
-                                                                                                                                                                  '_value': json['_valueRatioRange'],
-                                                                                                                                                                })
-                                                                                                                                                              : json['valueReference'] != null || json['_valueReference'] != null
-                                                                                                                                                                  ? Reference.fromJson({
-                                                                                                                                                                      'value': json['valueReference'],
-                                                                                                                                                                      '_value': json['_valueReference'],
-                                                                                                                                                                    })
-                                                                                                                                                                  : json['valueSampledData'] != null || json['_valueSampledData'] != null
-                                                                                                                                                                      ? SampledData.fromJson({
-                                                                                                                                                                          'value': json['valueSampledData'],
-                                                                                                                                                                          '_value': json['_valueSampledData'],
-                                                                                                                                                                        })
-                                                                                                                                                                      : json['valueSignature'] != null || json['_valueSignature'] != null
-                                                                                                                                                                          ? Signature.fromJson({
-                                                                                                                                                                              'value': json['valueSignature'],
-                                                                                                                                                                              '_value': json['_valueSignature'],
-                                                                                                                                                                            })
-                                                                                                                                                                          : json['valueTiming'] != null || json['_valueTiming'] != null
-                                                                                                                                                                              ? Timing.fromJson({
-                                                                                                                                                                                  'value': json['valueTiming'],
-                                                                                                                                                                                  '_value': json['_valueTiming'],
-                                                                                                                                                                                })
-                                                                                                                                                                              : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
-                                                                                                                                                                                  ? ContactDetail.fromJson({
-                                                                                                                                                                                      'value': json['valueContactDetail'],
-                                                                                                                                                                                      '_value': json['_valueContactDetail'],
-                                                                                                                                                                                    })
-                                                                                                                                                                                  : json['valueContributor'] != null || json['_valueContributor'] != null
-                                                                                                                                                                                      ? Contributor.fromJson({
-                                                                                                                                                                                          'value': json['valueContributor'],
-                                                                                                                                                                                          '_value': json['_valueContributor'],
-                                                                                                                                                                                        })
-                                                                                                                                                                                      : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
-                                                                                                                                                                                          ? DataRequirement.fromJson({
-                                                                                                                                                                                              'value': json['valueDataRequirement'],
-                                                                                                                                                                                              '_value': json['_valueDataRequirement'],
-                                                                                                                                                                                            })
-                                                                                                                                                                                          : json['valueExpression'] != null || json['_valueExpression'] != null
-                                                                                                                                                                                              ? FhirExpression.fromJson({
-                                                                                                                                                                                                  'value': json['valueExpression'],
-                                                                                                                                                                                                  '_value': json['_valueExpression'],
-                                                                                                                                                                                                })
-                                                                                                                                                                                              : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
-                                                                                                                                                                                                  ? ParameterDefinition.fromJson({
-                                                                                                                                                                                                      'value': json['valueParameterDefinition'],
-                                                                                                                                                                                                      '_value': json['_valueParameterDefinition'],
-                                                                                                                                                                                                    })
-                                                                                                                                                                                                  : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
-                                                                                                                                                                                                      ? RelatedArtifact.fromJson({
-                                                                                                                                                                                                          'value': json['valueRelatedArtifact'],
-                                                                                                                                                                                                          '_value': json['_valueRelatedArtifact'],
-                                                                                                                                                                                                        })
-                                                                                                                                                                                                      : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
-                                                                                                                                                                                                          ? TriggerDefinition.fromJson({
-                                                                                                                                                                                                              'value': json['valueTriggerDefinition'],
-                                                                                                                                                                                                              '_value': json['_valueTriggerDefinition'],
-                                                                                                                                                                                                            })
-                                                                                                                                                                                                          : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
-                                                                                                                                                                                                              ? UsageContext.fromJson({
-                                                                                                                                                                                                                  'value': json['valueUsageContext'],
-                                                                                                                                                                                                                  '_value': json['_valueUsageContext'],
-                                                                                                                                                                                                                })
+                                                                                  : json['valueAddress'] != null
+                                                                                      ? Address.fromJson(
+                                                                                          json['valueAddress'] as Map<String, dynamic>,
+                                                                                        )
+                                                                                      : json['valueAge'] != null
+                                                                                          ? Age.fromJson(
+                                                                                              json['valueAge'] as Map<String, dynamic>,
+                                                                                            )
+                                                                                          : json['valueAnnotation'] != null
+                                                                                              ? Annotation.fromJson(
+                                                                                                  json['valueAnnotation'] as Map<String, dynamic>,
+                                                                                                )
+                                                                                              : json['valueAttachment'] != null
+                                                                                                  ? Attachment.fromJson(
+                                                                                                      json['valueAttachment'] as Map<String, dynamic>,
+                                                                                                    )
+                                                                                                  : json['valueCodeableConcept'] != null
+                                                                                                      ? CodeableConcept.fromJson(
+                                                                                                          json['valueCodeableConcept'] as Map<String, dynamic>,
+                                                                                                        )
+                                                                                                      : json['valueCodeableReference'] != null
+                                                                                                          ? CodeableReference.fromJson(
+                                                                                                              json['valueCodeableReference'] as Map<String, dynamic>,
+                                                                                                            )
+                                                                                                          : json['valueCoding'] != null
+                                                                                                              ? Coding.fromJson(
+                                                                                                                  json['valueCoding'] as Map<String, dynamic>,
+                                                                                                                )
+                                                                                                              : json['valueContactPoint'] != null
+                                                                                                                  ? ContactPoint.fromJson(
+                                                                                                                      json['valueContactPoint'] as Map<String, dynamic>,
+                                                                                                                    )
+                                                                                                                  : json['valueCount'] != null
+                                                                                                                      ? Count.fromJson(
+                                                                                                                          json['valueCount'] as Map<String, dynamic>,
+                                                                                                                        )
+                                                                                                                      : json['valueDistance'] != null
+                                                                                                                          ? Distance.fromJson(
+                                                                                                                              json['valueDistance'] as Map<String, dynamic>,
+                                                                                                                            )
+                                                                                                                          : json['valueDuration'] != null
+                                                                                                                              ? FhirDuration.fromJson(
+                                                                                                                                  json['valueDuration'] as Map<String, dynamic>,
+                                                                                                                                )
+                                                                                                                              : json['valueHumanName'] != null
+                                                                                                                                  ? HumanName.fromJson(
+                                                                                                                                      json['valueHumanName'] as Map<String, dynamic>,
+                                                                                                                                    )
+                                                                                                                                  : json['valueIdentifier'] != null
+                                                                                                                                      ? Identifier.fromJson(
+                                                                                                                                          json['valueIdentifier'] as Map<String, dynamic>,
+                                                                                                                                        )
+                                                                                                                                      : json['valueMoney'] != null
+                                                                                                                                          ? Money.fromJson(
+                                                                                                                                              json['valueMoney'] as Map<String, dynamic>,
+                                                                                                                                            )
+                                                                                                                                          : json['valuePeriod'] != null
+                                                                                                                                              ? Period.fromJson(
+                                                                                                                                                  json['valuePeriod'] as Map<String, dynamic>,
+                                                                                                                                                )
+                                                                                                                                              : json['valueQuantity'] != null
+                                                                                                                                                  ? Quantity.fromJson(
+                                                                                                                                                      json['valueQuantity'] as Map<String, dynamic>,
+                                                                                                                                                    )
+                                                                                                                                                  : json['valueRange'] != null
+                                                                                                                                                      ? Range.fromJson(
+                                                                                                                                                          json['valueRange'] as Map<String, dynamic>,
+                                                                                                                                                        )
+                                                                                                                                                      : json['valueRatio'] != null
+                                                                                                                                                          ? Ratio.fromJson(
+                                                                                                                                                              json['valueRatio'] as Map<String, dynamic>,
+                                                                                                                                                            )
+                                                                                                                                                          : json['valueRatioRange'] != null
+                                                                                                                                                              ? RatioRange.fromJson(
+                                                                                                                                                                  json['valueRatioRange'] as Map<String, dynamic>,
+                                                                                                                                                                )
+                                                                                                                                                              : json['valueReference'] != null
+                                                                                                                                                                  ? Reference.fromJson(
+                                                                                                                                                                      json['valueReference'] as Map<String, dynamic>,
+                                                                                                                                                                    )
+                                                                                                                                                                  : json['valueSampledData'] != null
+                                                                                                                                                                      ? SampledData.fromJson(
+                                                                                                                                                                          json['valueSampledData'] as Map<String, dynamic>,
+                                                                                                                                                                        )
+                                                                                                                                                                      : json['valueSignature'] != null
+                                                                                                                                                                          ? Signature.fromJson(
+                                                                                                                                                                              json['valueSignature'] as Map<String, dynamic>,
+                                                                                                                                                                            )
+                                                                                                                                                                          : json['valueTiming'] != null
+                                                                                                                                                                              ? Timing.fromJson(
+                                                                                                                                                                                  json['valueTiming'] as Map<String, dynamic>,
+                                                                                                                                                                                )
+                                                                                                                                                                              : json['valueContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetail.fromJson(
+                                                                                                                                                                                      json['valueContactDetail'] as Map<String, dynamic>,
+                                                                                                                                                                                    )
+                                                                                                                                                                                  : json['valueContributor'] != null
+                                                                                                                                                                                      ? Contributor.fromJson(
+                                                                                                                                                                                          json['valueContributor'] as Map<String, dynamic>,
+                                                                                                                                                                                        )
+                                                                                                                                                                                      : json['valueDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirement.fromJson(
+                                                                                                                                                                                              json['valueDataRequirement'] as Map<String, dynamic>,
+                                                                                                                                                                                            )
+                                                                                                                                                                                          : json['valueExpression'] != null
+                                                                                                                                                                                              ? FhirExpression.fromJson(
+                                                                                                                                                                                                  json['valueExpression'] as Map<String, dynamic>,
+                                                                                                                                                                                                )
+                                                                                                                                                                                              : json['valueParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinition.fromJson(
+                                                                                                                                                                                                      json['valueParameterDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                    )
+                                                                                                                                                                                                  : json['valueRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifact.fromJson(
+                                                                                                                                                                                                          json['valueRelatedArtifact'] as Map<String, dynamic>,
+                                                                                                                                                                                                        )
+                                                                                                                                                                                                      : json['valueTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinition.fromJson(
+                                                                                                                                                                                                              json['valueTriggerDefinition'] as Map<String, dynamic>,
+                                                                                                                                                                                                            )
+                                                                                                                                                                                                          : json['valueUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContext.fromJson(
+                                                                                                                                                                                                                  json['valueUsageContext'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : Dosage.fromJson(
                                                                                                                                                                                                                   json['valueDosage'] as Map<String, dynamic>,
                                                                                                                                                                                                                 ),
@@ -2814,7 +2778,10 @@ class ElementDefinitionExample extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3011,18 +2978,33 @@ class ElementDefinitionConstraint extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     addField('key', key);
-    addField('requirements', requirements);
+    if (requirements != null) {
+      addField('requirements', requirements);
+    }
+
     addField('severity', severity);
     addField('human', human);
-    addField('expression', expression);
-    addField('xpath', xpath);
-    addField('source', source);
+    if (expression != null) {
+      addField('expression', expression);
+    }
+
+    if (xpath != null) {
+      addField('xpath', xpath);
+    }
+
+    if (source != null) {
+      addField('source', source);
+    }
+
     return json;
   }
 
@@ -3178,14 +3160,23 @@ class ElementDefinitionBinding extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     addField('strength', strength);
-    addField('description', description);
-    addField('valueSet', valueSet);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (valueSet != null) {
+      addField('valueSet', valueSet);
+    }
+
     return json;
   }
 
@@ -3340,15 +3331,24 @@ class ElementDefinitionMapping extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     addField('identity', identity);
-    addField('language', language);
+    if (language != null) {
+      addField('language', language);
+    }
+
     addField('map', map);
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 

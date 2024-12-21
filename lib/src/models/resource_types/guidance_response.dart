@@ -351,13 +351,22 @@ class GuidanceResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -393,7 +402,10 @@ class GuidanceResponse extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
+    if (occurrenceDateTime != null) {
+      addField('occurrenceDateTime', occurrenceDateTime);
+    }
+
     if (performer != null) {
       json['performer'] = performer!.toJson();
     }

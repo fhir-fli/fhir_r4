@@ -272,13 +272,22 @@ class TestReport extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -300,14 +309,26 @@ class TestReport extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     addField('status', status);
     json['testScript'] = testScript.toJson();
 
     addField('result', result);
-    addField('score', score);
-    addField('tester', tester);
-    addField('issued', issued);
+    if (score != null) {
+      addField('score', score);
+    }
+
+    if (tester != null) {
+      addField('tester', tester);
+    }
+
+    if (issued != null) {
+      addField('issued', issued);
+    }
+
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -506,7 +527,10 @@ class TestReportParticipant extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -518,7 +542,10 @@ class TestReportParticipant extends BackboneElement {
 
     addField('type', type);
     addField('uri', uri);
-    addField('display', display);
+    if (display != null) {
+      addField('display', display);
+    }
+
     return json;
   }
 
@@ -658,7 +685,10 @@ class TestReportSetup extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -812,7 +842,10 @@ class TestReportAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -983,7 +1016,10 @@ class TestReportOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -994,8 +1030,14 @@ class TestReportOperation extends BackboneElement {
     }
 
     addField('result', result);
-    addField('message', message);
-    addField('detail', detail);
+    if (message != null) {
+      addField('message', message);
+    }
+
+    if (detail != null) {
+      addField('detail', detail);
+    }
+
     return json;
   }
 
@@ -1151,7 +1193,10 @@ class TestReportAssert extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1162,8 +1207,14 @@ class TestReportAssert extends BackboneElement {
     }
 
     addField('result', result);
-    addField('message', message);
-    addField('detail', detail);
+    if (message != null) {
+      addField('message', message);
+    }
+
+    if (detail != null) {
+      addField('detail', detail);
+    }
+
     return json;
   }
 
@@ -1326,7 +1377,10 @@ class TestReportTest extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1336,8 +1390,14 @@ class TestReportTest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('name', name);
-    addField('description', description);
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (action.isNotEmpty) {
       json['action'] = action.map((e) => e.toJson()).toList();
     }
@@ -1486,7 +1546,10 @@ class TestReportAction1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1641,7 +1704,10 @@ class TestReportTeardown extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1783,7 +1849,10 @@ class TestReportAction2 extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

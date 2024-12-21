@@ -350,13 +350,22 @@ class Location extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -378,12 +387,18 @@ class Location extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (operationalStatus != null) {
       json['operationalStatus'] = operationalStatus!.toJson();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (alias != null && alias!.isNotEmpty) {
       final fieldJson0 = alias!.map((e) => e.toJson()).toList();
       json['alias'] = fieldJson0.map((e) => e['value']).toList();
@@ -392,8 +407,14 @@ class Location extends DomainResource {
       }
     }
 
-    addField('description', description);
-    addField('mode', mode);
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (mode != null) {
+      addField('mode', mode);
+    }
+
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
@@ -427,7 +448,10 @@ class Location extends DomainResource {
           hoursOfOperation!.map((e) => e.toJson()).toList();
     }
 
-    addField('availabilityExceptions', availabilityExceptions);
+    if (availabilityExceptions != null) {
+      addField('availabilityExceptions', availabilityExceptions);
+    }
+
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
@@ -628,7 +652,10 @@ class LocationPosition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -640,7 +667,10 @@ class LocationPosition extends BackboneElement {
 
     addField('longitude', longitude);
     addField('latitude', latitude);
-    addField('altitude', altitude);
+    if (altitude != null) {
+      addField('altitude', altitude);
+    }
+
     return json;
   }
 
@@ -809,7 +839,10 @@ class LocationHoursOfOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -827,9 +860,18 @@ class LocationHoursOfOperation extends BackboneElement {
       }
     }
 
-    addField('allDay', allDay);
-    addField('openingTime', openingTime);
-    addField('closingTime', closingTime);
+    if (allDay != null) {
+      addField('allDay', allDay);
+    }
+
+    if (openingTime != null) {
+      addField('openingTime', openingTime);
+    }
+
+    if (closingTime != null) {
+      addField('closingTime', closingTime);
+    }
+
     return json;
   }
 

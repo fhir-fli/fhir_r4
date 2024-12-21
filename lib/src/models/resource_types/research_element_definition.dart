@@ -169,12 +169,10 @@ class ResearchElementDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectX: json['subjectCodeableConcept'] != null ||
-              json['_subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['subjectCodeableConcept'],
-              '_value': json['_subjectCodeableConcept'],
-            })
+      subjectX: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['subjectReference'] != null
               ? Reference.fromJson(
                   json['subjectReference'] as Map<String, dynamic>,
@@ -598,13 +596,22 @@ class ResearchElementDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -622,29 +629,59 @@ class ResearchElementDefinition extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('shortTitle', shortTitle);
-    addField('subtitle', subtitle);
+    if (version != null) {
+      addField('version', version);
+    }
+
+    if (name != null) {
+      addField('name', name);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (shortTitle != null) {
+      addField('shortTitle', shortTitle);
+    }
+
+    if (subtitle != null) {
+      addField('subtitle', subtitle);
+    }
+
     addField('status', status);
-    addField('experimental', experimental);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
     if (subjectX != null) {
       json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
-    addField('date', date);
-    addField('publisher', publisher);
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (comment != null && comment!.isNotEmpty) {
       final fieldJson0 = comment!.map((e) => e.toJson()).toList();
       json['comment'] = fieldJson0.map((e) => e['value']).toList();
@@ -661,11 +698,26 @@ class ResearchElementDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('usage', usage);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (usage != null) {
+      addField('usage', usage);
+    }
+
+    if (copyright != null) {
+      addField('copyright', copyright);
+    }
+
+    if (approvalDate != null) {
+      addField('approvalDate', approvalDate);
+    }
+
+    if (lastReviewDate != null) {
+      addField('lastReviewDate', lastReviewDate);
+    }
+
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -704,7 +756,10 @@ class ResearchElementDefinition extends DomainResource {
     }
 
     addField('type', type);
-    addField('variableType', variableType);
+    if (variableType != null) {
+      addField('variableType', variableType);
+    }
+
     if (characteristic.isNotEmpty) {
       json['characteristic'] = characteristic.map((e) => e.toJson()).toList();
     }
@@ -860,24 +915,20 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               )
               .toList()
           : null,
-      definitionX: json['definitionCodeableConcept'] != null ||
-              json['_definitionCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['definitionCodeableConcept'],
-              '_value': json['_definitionCodeableConcept'],
-            })
+      definitionX: json['definitionCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['definitionCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['definitionCanonical'] != null ||
                   json['_definitionCanonical'] != null
               ? FhirCanonical.fromJson({
                   'value': json['definitionCanonical'],
                   '_value': json['_definitionCanonical'],
                 })
-              : json['definitionExpression'] != null ||
-                      json['_definitionExpression'] != null
-                  ? FhirExpression.fromJson({
-                      'value': json['definitionExpression'],
-                      '_value': json['_definitionExpression'],
-                    })
+              : json['definitionExpression'] != null
+                  ? FhirExpression.fromJson(
+                      json['definitionExpression'] as Map<String, dynamic>,
+                    )
                   : DataRequirement.fromJson(
                       json['definitionDataRequirement'] as Map<String, dynamic>,
                     ),
@@ -914,18 +965,14 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               'value': json['studyEffectiveDateTime'],
               '_value': json['_studyEffectiveDateTime'],
             })
-          : json['studyEffectivePeriod'] != null ||
-                  json['_studyEffectivePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['studyEffectivePeriod'],
-                  '_value': json['_studyEffectivePeriod'],
-                })
-              : json['studyEffectiveDuration'] != null ||
-                      json['_studyEffectiveDuration'] != null
-                  ? FhirDuration.fromJson({
-                      'value': json['studyEffectiveDuration'],
-                      '_value': json['_studyEffectiveDuration'],
-                    })
+          : json['studyEffectivePeriod'] != null
+              ? Period.fromJson(
+                  json['studyEffectivePeriod'] as Map<String, dynamic>,
+                )
+              : json['studyEffectiveDuration'] != null
+                  ? FhirDuration.fromJson(
+                      json['studyEffectiveDuration'] as Map<String, dynamic>,
+                    )
                   : json['studyEffectiveTiming'] != null
                       ? Timing.fromJson(
                           json['studyEffectiveTiming'] as Map<String, dynamic>,
@@ -957,18 +1004,15 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               'value': json['participantEffectiveDateTime'],
               '_value': json['_participantEffectiveDateTime'],
             })
-          : json['participantEffectivePeriod'] != null ||
-                  json['_participantEffectivePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['participantEffectivePeriod'],
-                  '_value': json['_participantEffectivePeriod'],
-                })
-              : json['participantEffectiveDuration'] != null ||
-                      json['_participantEffectiveDuration'] != null
-                  ? FhirDuration.fromJson({
-                      'value': json['participantEffectiveDuration'],
-                      '_value': json['_participantEffectiveDuration'],
-                    })
+          : json['participantEffectivePeriod'] != null
+              ? Period.fromJson(
+                  json['participantEffectivePeriod'] as Map<String, dynamic>,
+                )
+              : json['participantEffectiveDuration'] != null
+                  ? FhirDuration.fromJson(
+                      json['participantEffectiveDuration']
+                          as Map<String, dynamic>,
+                    )
                   : json['participantEffectiveTiming'] != null
                       ? Timing.fromJson(
                           json['participantEffectiveTiming']
@@ -1102,7 +1146,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1119,32 +1166,53 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       json['usageContext'] = usageContext!.map((e) => e.toJson()).toList();
     }
 
-    addField('exclude', exclude);
+    if (exclude != null) {
+      addField('exclude', exclude);
+    }
+
     if (unitOfMeasure != null) {
       json['unitOfMeasure'] = unitOfMeasure!.toJson();
     }
 
-    addField('studyEffectiveDescription', studyEffectiveDescription);
-    addField('studyEffective${studyEffectiveX!.fhirType.capitalize()}',
-        studyEffectiveX);
+    if (studyEffectiveDescription != null) {
+      addField('studyEffectiveDescription', studyEffectiveDescription);
+    }
+
+    if (studyEffectiveX != null) {
+      addField('studyEffective${studyEffectiveX!.fhirType.capitalize()}',
+          studyEffectiveX);
+    }
+
     if (studyEffectiveTimeFromStart != null) {
       json['studyEffectiveTimeFromStart'] =
           studyEffectiveTimeFromStart!.toJson();
     }
 
-    addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
-    addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
-    addField(
-        'participantEffective${participantEffectiveX!.fhirType.capitalize()}',
-        participantEffectiveX);
+    if (studyEffectiveGroupMeasure != null) {
+      addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
+    }
+
+    if (participantEffectiveDescription != null) {
+      addField(
+          'participantEffectiveDescription', participantEffectiveDescription);
+    }
+
+    if (participantEffectiveX != null) {
+      addField(
+          'participantEffective${participantEffectiveX!.fhirType.capitalize()}',
+          participantEffectiveX);
+    }
+
     if (participantEffectiveTimeFromStart != null) {
       json['participantEffectiveTimeFromStart'] =
           participantEffectiveTimeFromStart!.toJson();
     }
 
-    addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+    if (participantEffectiveGroupMeasure != null) {
+      addField(
+          'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+    }
+
     return json;
   }
 

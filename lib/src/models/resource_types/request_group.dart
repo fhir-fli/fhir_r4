@@ -360,13 +360,22 @@ class RequestGroup extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -420,7 +429,10 @@ class RequestGroup extends DomainResource {
 
     addField('status', status);
     addField('intent', intent);
-    addField('priority', priority);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -433,7 +445,10 @@ class RequestGroup extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('authoredOn', authoredOn);
+    if (authoredOn != null) {
+      addField('authoredOn', authoredOn);
+    }
+
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -655,28 +670,22 @@ class RequestGroupAction extends BackboneElement {
               'value': json['timingDateTime'],
               '_value': json['_timingDateTime'],
             })
-          : json['timingAge'] != null || json['_timingAge'] != null
-              ? Age.fromJson({
-                  'value': json['timingAge'],
-                  '_value': json['_timingAge'],
-                })
-              : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['timingPeriod'],
-                      '_value': json['_timingPeriod'],
-                    })
-                  : json['timingDuration'] != null ||
-                          json['_timingDuration'] != null
-                      ? FhirDuration.fromJson({
-                          'value': json['timingDuration'],
-                          '_value': json['_timingDuration'],
-                        })
-                      : json['timingRange'] != null ||
-                              json['_timingRange'] != null
-                          ? Range.fromJson({
-                              'value': json['timingRange'],
-                              '_value': json['_timingRange'],
-                            })
+          : json['timingAge'] != null
+              ? Age.fromJson(
+                  json['timingAge'] as Map<String, dynamic>,
+                )
+              : json['timingPeriod'] != null
+                  ? Period.fromJson(
+                      json['timingPeriod'] as Map<String, dynamic>,
+                    )
+                  : json['timingDuration'] != null
+                      ? FhirDuration.fromJson(
+                          json['timingDuration'] as Map<String, dynamic>,
+                        )
+                      : json['timingRange'] != null
+                          ? Range.fromJson(
+                              json['timingRange'] as Map<String, dynamic>,
+                            )
                           : json['timingTiming'] != null
                               ? Timing.fromJson(
                                   json['timingTiming'] as Map<String, dynamic>,
@@ -889,7 +898,10 @@ class RequestGroupAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -899,11 +911,26 @@ class RequestGroupAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('prefix', prefix);
-    addField('title', title);
-    addField('description', description);
-    addField('textEquivalent', textEquivalent);
-    addField('priority', priority);
+    if (prefix != null) {
+      addField('prefix', prefix);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (description != null) {
+      addField('description', description);
+    }
+
+    if (textEquivalent != null) {
+      addField('textEquivalent', textEquivalent);
+    }
+
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -920,7 +947,10 @@ class RequestGroupAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    if (timingX != null) {
+      addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    }
+
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -929,11 +959,26 @@ class RequestGroupAction extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    addField('groupingBehavior', groupingBehavior);
-    addField('selectionBehavior', selectionBehavior);
-    addField('requiredBehavior', requiredBehavior);
-    addField('precheckBehavior', precheckBehavior);
-    addField('cardinalityBehavior', cardinalityBehavior);
+    if (groupingBehavior != null) {
+      addField('groupingBehavior', groupingBehavior);
+    }
+
+    if (selectionBehavior != null) {
+      addField('selectionBehavior', selectionBehavior);
+    }
+
+    if (requiredBehavior != null) {
+      addField('requiredBehavior', requiredBehavior);
+    }
+
+    if (precheckBehavior != null) {
+      addField('precheckBehavior', precheckBehavior);
+    }
+
+    if (cardinalityBehavior != null) {
+      addField('cardinalityBehavior', cardinalityBehavior);
+    }
+
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -1119,7 +1164,10 @@ class RequestGroupCondition extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1212,11 +1260,10 @@ class RequestGroupRelatedAction extends BackboneElement {
         'value': json['relationship'],
         '_value': json['_relationship'],
       }),
-      offsetX: json['offsetDuration'] != null || json['_offsetDuration'] != null
-          ? FhirDuration.fromJson({
-              'value': json['offsetDuration'],
-              '_value': json['_offsetDuration'],
-            })
+      offsetX: json['offsetDuration'] != null
+          ? FhirDuration.fromJson(
+              json['offsetDuration'] as Map<String, dynamic>,
+            )
           : json['offsetRange'] != null
               ? Range.fromJson(
                   json['offsetRange'] as Map<String, dynamic>,
@@ -1291,7 +1338,10 @@ class RequestGroupRelatedAction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

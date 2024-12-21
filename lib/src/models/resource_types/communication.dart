@@ -440,13 +440,22 @@ class Communication extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -507,7 +516,10 @@ class Communication extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    addField('priority', priority);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     if (medium != null && medium!.isNotEmpty) {
       json['medium'] = medium!.map((e) => e.toJson()).toList();
     }
@@ -528,8 +540,14 @@ class Communication extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('sent', sent);
-    addField('received', received);
+    if (sent != null) {
+      addField('sent', sent);
+    }
+
+    if (received != null) {
+      addField('received', received);
+    }
+
     if (recipient != null && recipient!.isNotEmpty) {
       json['recipient'] = recipient!.map((e) => e.toJson()).toList();
     }
@@ -681,12 +699,10 @@ class CommunicationPayload extends BackboneElement {
               'value': json['contentString'],
               '_value': json['_contentString'],
             })
-          : json['contentAttachment'] != null ||
-                  json['_contentAttachment'] != null
-              ? Attachment.fromJson({
-                  'value': json['contentAttachment'],
-                  '_value': json['_contentAttachment'],
-                })
+          : json['contentAttachment'] != null
+              ? Attachment.fromJson(
+                  json['contentAttachment'] as Map<String, dynamic>,
+                )
               : Reference.fromJson(
                   json['contentReference'] as Map<String, dynamic>,
                 ),
@@ -751,7 +767,10 @@ class CommunicationPayload extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

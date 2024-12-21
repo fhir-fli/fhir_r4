@@ -271,13 +271,22 @@ class DeviceMetric extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -313,8 +322,14 @@ class DeviceMetric extends DomainResource {
       json['parent'] = parent!.toJson();
     }
 
-    addField('operationalStatus', operationalStatus);
-    addField('color', color);
+    if (operationalStatus != null) {
+      addField('operationalStatus', operationalStatus);
+    }
+
+    if (color != null) {
+      addField('color', color);
+    }
+
     addField('category', category);
     if (measurementPeriod != null) {
       json['measurementPeriod'] = measurementPeriod!.toJson();
@@ -506,7 +521,10 @@ class DeviceMetricCalibration extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -516,9 +534,18 @@ class DeviceMetricCalibration extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('type', type);
-    addField('state', state);
-    addField('time', time);
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (state != null) {
+      addField('state', state);
+    }
+
+    if (time != null) {
+      addField('time', time);
+    }
+
     return json;
   }
 

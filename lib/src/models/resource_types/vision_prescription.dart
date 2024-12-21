@@ -223,13 +223,22 @@ class VisionPrescription extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -568,7 +577,10 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -581,23 +593,50 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     json['product'] = product.toJson();
 
     addField('eye', eye);
-    addField('sphere', sphere);
-    addField('cylinder', cylinder);
-    addField('axis', axis);
+    if (sphere != null) {
+      addField('sphere', sphere);
+    }
+
+    if (cylinder != null) {
+      addField('cylinder', cylinder);
+    }
+
+    if (axis != null) {
+      addField('axis', axis);
+    }
+
     if (prism != null && prism!.isNotEmpty) {
       json['prism'] = prism!.map((e) => e.toJson()).toList();
     }
 
-    addField('add', add);
-    addField('power', power);
-    addField('backCurve', backCurve);
-    addField('diameter', diameter);
+    if (add != null) {
+      addField('add', add);
+    }
+
+    if (power != null) {
+      addField('power', power);
+    }
+
+    if (backCurve != null) {
+      addField('backCurve', backCurve);
+    }
+
+    if (diameter != null) {
+      addField('diameter', diameter);
+    }
+
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }
 
-    addField('color', color);
-    addField('brand', brand);
+    if (color != null) {
+      addField('color', color);
+    }
+
+    if (brand != null) {
+      addField('brand', brand);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -766,7 +805,10 @@ class VisionPrescriptionPrism extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

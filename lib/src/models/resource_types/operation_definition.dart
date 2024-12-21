@@ -403,13 +403,22 @@ class OperationDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -427,20 +436,41 @@ class OperationDefinition extends CanonicalResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
-    addField('version', version);
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (version != null) {
+      addField('version', version);
+    }
+
     addField('name', name);
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     addField('status', status);
     addField('kind', kind);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
+    if (experimental != null) {
+      addField('experimental', experimental);
+    }
+
+    if (date != null) {
+      addField('date', date);
+    }
+
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -449,11 +479,23 @@ class OperationDefinition extends CanonicalResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    addField('purpose', purpose);
-    addField('affectsState', affectsState);
+    if (purpose != null) {
+      addField('purpose', purpose);
+    }
+
+    if (affectsState != null) {
+      addField('affectsState', affectsState);
+    }
+
     addField('code', code);
-    addField('comment', comment);
-    addField('base', base);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
+    if (base != null) {
+      addField('base', base);
+    }
+
     if (resource != null && resource!.isNotEmpty) {
       final fieldJson0 = resource!.map((e) => e.toJson()).toList();
       json['resource'] = fieldJson0.map((e) => e['value']).toList();
@@ -465,8 +507,14 @@ class OperationDefinition extends CanonicalResource {
     addField('system', system);
     addField('type', type);
     addField('instance', instance);
-    addField('inputProfile', inputProfile);
-    addField('outputProfile', outputProfile);
+    if (inputProfile != null) {
+      addField('inputProfile', inputProfile);
+    }
+
+    if (outputProfile != null) {
+      addField('outputProfile', outputProfile);
+    }
+
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
@@ -785,7 +833,10 @@ class OperationDefinitionParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -799,8 +850,14 @@ class OperationDefinitionParameter extends BackboneElement {
     addField('use', use);
     addField('min', min);
     addField('max', max);
-    addField('documentation', documentation);
-    addField('type', type);
+    if (documentation != null) {
+      addField('documentation', documentation);
+    }
+
+    if (type != null) {
+      addField('type', type);
+    }
+
     if (targetProfile != null && targetProfile!.isNotEmpty) {
       final fieldJson0 = targetProfile!.map((e) => e.toJson()).toList();
       json['targetProfile'] = fieldJson0.map((e) => e['value']).toList();
@@ -809,7 +866,10 @@ class OperationDefinitionParameter extends BackboneElement {
       }
     }
 
-    addField('searchType', searchType);
+    if (searchType != null) {
+      addField('searchType', searchType);
+    }
+
     if (binding != null) {
       json['binding'] = binding!.toJson();
     }
@@ -984,7 +1044,10 @@ class OperationDefinitionBinding extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1142,7 +1205,10 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1153,7 +1219,10 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
 
     addField('source', source);
-    addField('sourceId', sourceId);
+    if (sourceId != null) {
+      addField('sourceId', sourceId);
+    }
+
     return json;
   }
 
@@ -1299,7 +1368,10 @@ class OperationDefinitionOverload extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1317,7 +1389,10 @@ class OperationDefinitionOverload extends BackboneElement {
       }
     }
 
-    addField('comment', comment);
+    if (comment != null) {
+      addField('comment', comment);
+    }
+
     return json;
   }
 

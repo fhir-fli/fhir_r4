@@ -429,13 +429,22 @@ class CommunicationRequest extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -478,8 +487,14 @@ class CommunicationRequest extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    addField('priority', priority);
-    addField('doNotPerform', doNotPerform);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
+    if (doNotPerform != null) {
+      addField('doNotPerform', doNotPerform);
+    }
+
     if (medium != null && medium!.isNotEmpty) {
       json['medium'] = medium!.map((e) => e.toJson()).toList();
     }
@@ -500,8 +515,14 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
-    addField('authoredOn', authoredOn);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
+    if (authoredOn != null) {
+      addField('authoredOn', authoredOn);
+    }
+
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -650,12 +671,10 @@ class CommunicationRequestPayload extends BackboneElement {
               'value': json['contentString'],
               '_value': json['_contentString'],
             })
-          : json['contentAttachment'] != null ||
-                  json['_contentAttachment'] != null
-              ? Attachment.fromJson({
-                  'value': json['contentAttachment'],
-                  '_value': json['_contentAttachment'],
-                })
+          : json['contentAttachment'] != null
+              ? Attachment.fromJson(
+                  json['contentAttachment'] as Map<String, dynamic>,
+                )
               : Reference.fromJson(
                   json['contentReference'] as Map<String, dynamic>,
                 ),
@@ -720,7 +739,10 @@ class CommunicationRequestPayload extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

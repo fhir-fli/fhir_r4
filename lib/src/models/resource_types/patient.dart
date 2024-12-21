@@ -364,13 +364,22 @@ class Patient extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -392,7 +401,10 @@ class Patient extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('active', active);
+    if (active != null) {
+      addField('active', active);
+    }
+
     if (name != null && name!.isNotEmpty) {
       json['name'] = name!.map((e) => e.toJson()).toList();
     }
@@ -401,9 +413,18 @@ class Patient extends DomainResource {
       json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }
 
-    addField('gender', gender);
-    addField('birthDate', birthDate);
-    addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
+    if (gender != null) {
+      addField('gender', gender);
+    }
+
+    if (birthDate != null) {
+      addField('birthDate', birthDate);
+    }
+
+    if (deceasedX != null) {
+      addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
+    }
+
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -412,8 +433,11 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    addField('multipleBirth${multipleBirthX!.fhirType.capitalize()}',
-        multipleBirthX);
+    if (multipleBirthX != null) {
+      addField('multipleBirth${multipleBirthX!.fhirType.capitalize()}',
+          multipleBirthX);
+    }
+
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -683,7 +707,10 @@ class PatientContact extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -709,7 +736,10 @@ class PatientContact extends BackboneElement {
       json['address'] = address!.toJson();
     }
 
-    addField('gender', gender);
+    if (gender != null) {
+      addField('gender', gender);
+    }
+
     if (organization != null) {
       json['organization'] = organization!.toJson();
     }
@@ -874,7 +904,10 @@ class PatientCommunication extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -886,7 +919,10 @@ class PatientCommunication extends BackboneElement {
 
     json['language'] = language.toJson();
 
-    addField('preferred', preferred);
+    if (preferred != null) {
+      addField('preferred', preferred);
+    }
+
     return json;
   }
 
@@ -1027,7 +1063,10 @@ class PatientLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

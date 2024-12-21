@@ -129,12 +129,10 @@ class MedicationDispense extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      statusReasonX: json['statusReasonCodeableConcept'] != null ||
-              json['_statusReasonCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['statusReasonCodeableConcept'],
-              '_value': json['_statusReasonCodeableConcept'],
-            })
+      statusReasonX: json['statusReasonCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['statusReasonCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['statusReasonReference'] != null
               ? Reference.fromJson(
                   json['statusReasonReference'] as Map<String, dynamic>,
@@ -145,12 +143,10 @@ class MedicationDispense extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationX: json['medicationCodeableConcept'] != null ||
-              json['_medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['medicationCodeableConcept'],
-              '_value': json['_medicationCodeableConcept'],
-            })
+      medicationX: json['medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['medicationReference'] as Map<String, dynamic>,
             ),
@@ -460,13 +456,22 @@ class MedicationDispense extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -544,8 +549,14 @@ class MedicationDispense extends DomainResource {
       json['daysSupply'] = daysSupply!.toJson();
     }
 
-    addField('whenPrepared', whenPrepared);
-    addField('whenHandedOver', whenHandedOver);
+    if (whenPrepared != null) {
+      addField('whenPrepared', whenPrepared);
+    }
+
+    if (whenHandedOver != null) {
+      addField('whenHandedOver', whenHandedOver);
+    }
+
     if (destination != null) {
       json['destination'] = destination!.toJson();
     }
@@ -773,7 +784,10 @@ class MedicationDispensePerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -966,7 +980,10 @@ class MedicationDispenseSubstitution extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

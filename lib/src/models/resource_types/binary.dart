@@ -143,19 +143,31 @@ class Binary extends Resource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     addField('contentType', contentType);
     if (securityContext != null) {
       json['securityContext'] = securityContext!.toJson();
     }
 
-    addField('data', data);
+    if (data != null) {
+      addField('data', data);
+    }
+
     return json;
   }
 

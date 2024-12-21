@@ -210,13 +210,22 @@ class SpecimenDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -247,7 +256,10 @@ class SpecimenDefinition extends DomainResource {
           patientPreparation!.map((e) => e.toJson()).toList();
     }
 
-    addField('timeAspect', timeAspect);
+    if (timeAspect != null) {
+      addField('timeAspect', timeAspect);
+    }
+
     if (collection != null && collection!.isNotEmpty) {
       json['collection'] = collection!.map((e) => e.toJson()).toList();
     }
@@ -490,7 +502,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -500,7 +515,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('isDerived', isDerived);
+    if (isDerived != null) {
+      addField('isDerived', isDerived);
+    }
+
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -510,7 +528,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       json['container'] = container!.toJson();
     }
 
-    addField('requirement', requirement);
+    if (requirement != null) {
+      addField('requirement', requirement);
+    }
+
     if (retentionTime != null) {
       json['retentionTime'] = retentionTime!.toJson();
     }
@@ -636,12 +657,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
               json['capacity'] as Map<String, dynamic>,
             )
           : null,
-      minimumVolumeX: json['minimumVolumeQuantity'] != null ||
-              json['_minimumVolumeQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['minimumVolumeQuantity'],
-              '_value': json['_minimumVolumeQuantity'],
-            })
+      minimumVolumeX: json['minimumVolumeQuantity'] != null
+          ? Quantity.fromJson(
+              json['minimumVolumeQuantity'] as Map<String, dynamic>,
+            )
           : json['minimumVolumeString'] != null ||
                   json['_minimumVolumeString'] != null
               ? FhirString.fromJson({
@@ -754,7 +773,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -776,7 +798,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['cap'] = cap!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (capacity != null) {
       json['capacity'] = capacity!.toJson();
     }
@@ -790,7 +815,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['additive'] = additive!.map((e) => e.toJson()).toList();
     }
 
-    addField('preparation', preparation);
+    if (preparation != null) {
+      addField('preparation', preparation);
+    }
+
     return json;
   }
 
@@ -871,12 +899,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
               )
               .toList()
           : null,
-      additiveX: json['additiveCodeableConcept'] != null ||
-              json['_additiveCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['additiveCodeableConcept'],
-              '_value': json['_additiveCodeableConcept'],
-            })
+      additiveX: json['additiveCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['additiveCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['additiveReference'] as Map<String, dynamic>,
             ),
@@ -941,7 +967,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1119,7 +1148,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1141,7 +1173,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
       json['maxDuration'] = maxDuration!.toJson();
     }
 
-    addField('instruction', instruction);
+    if (instruction != null) {
+      addField('instruction', instruction);
+    }
+
     return json;
   }
 

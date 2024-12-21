@@ -340,13 +340,22 @@ class RiskAssessment extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -391,7 +400,10 @@ class RiskAssessment extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
     if (condition != null) {
       json['condition'] = condition!.toJson();
     }
@@ -417,7 +429,10 @@ class RiskAssessment extends DomainResource {
       json['prediction'] = prediction!.map((e) => e.toJson()).toList();
     }
 
-    addField('mitigation', mitigation);
+    if (mitigation != null) {
+      addField('mitigation', mitigation);
+    }
+
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -562,11 +577,10 @@ class RiskAssessmentPrediction extends BackboneElement {
                   '_value': json['_relativeRisk'],
                 })
               : null,
-      whenX: json['whenPeriod'] != null || json['_whenPeriod'] != null
-          ? Period.fromJson({
-              'value': json['whenPeriod'],
-              '_value': json['_whenPeriod'],
-            })
+      whenX: json['whenPeriod'] != null
+          ? Period.fromJson(
+              json['whenPeriod'] as Map<String, dynamic>,
+            )
           : json['whenRange'] != null
               ? Range.fromJson(
                   json['whenRange'] as Map<String, dynamic>,
@@ -664,7 +678,10 @@ class RiskAssessmentPrediction extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -678,17 +695,27 @@ class RiskAssessmentPrediction extends BackboneElement {
       json['outcome'] = outcome!.toJson();
     }
 
-    addField('probability${probabilityX!.fhirType.capitalize()}', probabilityX);
+    if (probabilityX != null) {
+      addField(
+          'probability${probabilityX!.fhirType.capitalize()}', probabilityX);
+    }
+
     if (qualitativeRisk != null) {
       json['qualitativeRisk'] = qualitativeRisk!.toJson();
     }
 
-    addField('relativeRisk', relativeRisk);
+    if (relativeRisk != null) {
+      addField('relativeRisk', relativeRisk);
+    }
+
     if (whenX != null) {
       json['when${whenX!.fhirType.capitalize()}'] = whenX!.toJson();
     }
 
-    addField('rationale', rationale);
+    if (rationale != null) {
+      addField('rationale', rationale);
+    }
+
     return json;
   }
 

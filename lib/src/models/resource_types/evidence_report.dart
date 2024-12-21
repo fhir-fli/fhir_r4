@@ -137,12 +137,10 @@ class EvidenceReport extends DomainResource {
               )
               .toList()
           : null,
-      citeAsX: json['citeAsReference'] != null ||
-              json['_citeAsReference'] != null
-          ? Reference.fromJson({
-              'value': json['citeAsReference'],
-              '_value': json['_citeAsReference'],
-            })
+      citeAsX: json['citeAsReference'] != null
+          ? Reference.fromJson(
+              json['citeAsReference'] as Map<String, dynamic>,
+            )
           : json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null
               ? FhirMarkdown.fromJson({
                   'value': json['citeAsMarkdown'],
@@ -396,13 +394,22 @@ class EvidenceReport extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -420,7 +427,10 @@ class EvidenceReport extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('url', url);
+    if (url != null) {
+      addField('url', url);
+    }
+
     addField('status', status);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
@@ -454,7 +464,10 @@ class EvidenceReport extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('publisher', publisher);
+    if (publisher != null) {
+      addField('publisher', publisher);
+    }
+
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
@@ -676,7 +689,10 @@ class EvidenceReportSubject extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -767,28 +783,23 @@ class EvidenceReportCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueX: json['valueReference'] != null || json['_valueReference'] != null
-          ? Reference.fromJson({
-              'value': json['valueReference'],
-              '_value': json['_valueReference'],
-            })
-          : json['valueCodeableConcept'] != null ||
-                  json['_valueCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['valueCodeableConcept'],
-                  '_value': json['_valueCodeableConcept'],
-                })
+      valueX: json['valueReference'] != null
+          ? Reference.fromJson(
+              json['valueReference'] as Map<String, dynamic>,
+            )
+          : json['valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueCodeableConcept'] as Map<String, dynamic>,
+                )
               : json['valueBoolean'] != null || json['_valueBoolean'] != null
                   ? FhirBoolean.fromJson({
                       'value': json['valueBoolean'],
                       '_value': json['_valueBoolean'],
                     })
-                  : json['valueQuantity'] != null ||
-                          json['_valueQuantity'] != null
-                      ? Quantity.fromJson({
-                          'value': json['valueQuantity'],
-                          '_value': json['_valueQuantity'],
-                        })
+                  : json['valueQuantity'] != null
+                      ? Quantity.fromJson(
+                          json['valueQuantity'] as Map<String, dynamic>,
+                        )
                       : Range.fromJson(
                           json['valueRange'] as Map<String, dynamic>,
                         ),
@@ -875,7 +886,10 @@ class EvidenceReportCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -889,7 +903,10 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
     json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
-    addField('exclude', exclude);
+    if (exclude != null) {
+      addField('exclude', exclude);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -971,15 +988,13 @@ class EvidenceReportRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetX:
-          json['targetIdentifier'] != null || json['_targetIdentifier'] != null
-              ? Identifier.fromJson({
-                  'value': json['targetIdentifier'],
-                  '_value': json['_targetIdentifier'],
-                })
-              : Reference.fromJson(
-                  json['targetReference'] as Map<String, dynamic>,
-                ),
+      targetX: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>,
+            )
+          : Reference.fromJson(
+              json['targetReference'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -1045,7 +1060,10 @@ class EvidenceReportRelatesTo extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1336,7 +1354,10 @@ class EvidenceReportSection extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1346,7 +1367,10 @@ class EvidenceReportSection extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('title', title);
+    if (title != null) {
+      addField('title', title);
+    }
+
     if (focus != null) {
       json['focus'] = focus!.toJson();
     }
@@ -1363,7 +1387,10 @@ class EvidenceReportSection extends BackboneElement {
       json['text'] = text!.toJson();
     }
 
-    addField('mode', mode);
+    if (mode != null) {
+      addField('mode', mode);
+    }
+
     if (orderedBy != null) {
       json['orderedBy'] = orderedBy!.toJson();
     }

@@ -301,13 +301,22 @@ class PaymentReconciliation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -347,8 +356,14 @@ class PaymentReconciliation extends DomainResource {
       json['requestor'] = requestor!.toJson();
     }
 
-    addField('outcome', outcome);
-    addField('disposition', disposition);
+    if (outcome != null) {
+      addField('outcome', outcome);
+    }
+
+    if (disposition != null) {
+      addField('disposition', disposition);
+    }
+
     addField('paymentDate', paymentDate);
     json['paymentAmount'] = paymentAmount.toJson();
 
@@ -631,7 +646,10 @@ class PaymentReconciliationDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -663,7 +681,10 @@ class PaymentReconciliationDetail extends BackboneElement {
       json['response'] = response!.toJson();
     }
 
-    addField('date', date);
+    if (date != null) {
+      addField('date', date);
+    }
+
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
     }
@@ -837,7 +858,10 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -847,8 +871,14 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('type', type);
-    addField('text', text);
+    if (type != null) {
+      addField('type', type);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     return json;
   }
 

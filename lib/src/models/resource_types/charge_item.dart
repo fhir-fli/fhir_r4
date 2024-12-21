@@ -159,12 +159,10 @@ class ChargeItem extends DomainResource {
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
-          : json['occurrencePeriod'] != null ||
-                  json['_occurrencePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['occurrencePeriod'],
-                  '_value': json['_occurrencePeriod'],
-                })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : json['occurrenceTiming'] != null
                   ? Timing.fromJson(
                       json['occurrenceTiming'] as Map<String, dynamic>,
@@ -256,17 +254,15 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      productX:
-          json['productReference'] != null || json['_productReference'] != null
-              ? Reference.fromJson({
-                  'value': json['productReference'],
-                  '_value': json['_productReference'],
-                })
-              : json['productCodeableConcept'] != null
-                  ? CodeableConcept.fromJson(
-                      json['productCodeableConcept'] as Map<String, dynamic>,
-                    )
-                  : null,
+      productX: json['productReference'] != null
+          ? Reference.fromJson(
+              json['productReference'] as Map<String, dynamic>,
+            )
+          : json['productCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['productCodeableConcept'] as Map<String, dynamic>,
+                )
+              : null,
       account: json['account'] != null
           ? (json['account'] as List<dynamic>)
               .map<Reference>(
@@ -466,13 +462,22 @@ class ChargeItem extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -524,7 +529,10 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    if (occurrenceX != null) {
+      addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    }
+
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -549,17 +557,26 @@ class ChargeItem extends DomainResource {
       json['bodysite'] = bodysite!.map((e) => e.toJson()).toList();
     }
 
-    addField('factorOverride', factorOverride);
+    if (factorOverride != null) {
+      addField('factorOverride', factorOverride);
+    }
+
     if (priceOverride != null) {
       json['priceOverride'] = priceOverride!.toJson();
     }
 
-    addField('overrideReason', overrideReason);
+    if (overrideReason != null) {
+      addField('overrideReason', overrideReason);
+    }
+
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
     }
 
-    addField('enteredDate', enteredDate);
+    if (enteredDate != null) {
+      addField('enteredDate', enteredDate);
+    }
+
     if (reason != null && reason!.isNotEmpty) {
       json['reason'] = reason!.map((e) => e.toJson()).toList();
     }
@@ -788,7 +805,10 @@ class ChargeItemPerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

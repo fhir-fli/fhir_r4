@@ -210,19 +210,46 @@ class Attachment extends DataType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentType', contentType);
-    addField('language', language);
-    addField('data', data);
-    addField('url', url);
-    addField('size', size);
-    addField('hash', hash);
-    addField('title', title);
-    addField('creation', creation);
+    if (contentType != null) {
+      addField('contentType', contentType);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
+    if (data != null) {
+      addField('data', data);
+    }
+
+    if (url != null) {
+      addField('url', url);
+    }
+
+    if (size != null) {
+      addField('size', size);
+    }
+
+    if (hash != null) {
+      addField('hash', hash);
+    }
+
+    if (title != null) {
+      addField('title', title);
+    }
+
+    if (creation != null) {
+      addField('creation', creation);
+    }
+
     return json;
   }
 

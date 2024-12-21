@@ -262,7 +262,10 @@ class Dosage extends BackboneType
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -272,19 +275,31 @@ class Dosage extends BackboneType
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('sequence', sequence);
-    addField('text', text);
+    if (sequence != null) {
+      addField('sequence', sequence);
+    }
+
+    if (text != null) {
+      addField('text', text);
+    }
+
     if (additionalInstruction != null && additionalInstruction!.isNotEmpty) {
       json['additionalInstruction'] =
           additionalInstruction!.map((e) => e.toJson()).toList();
     }
 
-    addField('patientInstruction', patientInstruction);
+    if (patientInstruction != null) {
+      addField('patientInstruction', patientInstruction);
+    }
+
     if (timing != null) {
       json['timing'] = timing!.toJson();
     }
 
-    addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
+    if (asNeededX != null) {
+      addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
+    }
+
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -401,26 +416,23 @@ class DosageDoseAndRate extends Element {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      doseX: json['doseRange'] != null || json['_doseRange'] != null
-          ? Range.fromJson({
-              'value': json['doseRange'],
-              '_value': json['_doseRange'],
-            })
+      doseX: json['doseRange'] != null
+          ? Range.fromJson(
+              json['doseRange'] as Map<String, dynamic>,
+            )
           : json['doseQuantity'] != null
               ? Quantity.fromJson(
                   json['doseQuantity'] as Map<String, dynamic>,
                 )
               : null,
-      rateX: json['rateRatio'] != null || json['_rateRatio'] != null
-          ? Ratio.fromJson({
-              'value': json['rateRatio'],
-              '_value': json['_rateRatio'],
-            })
-          : json['rateRange'] != null || json['_rateRange'] != null
-              ? Range.fromJson({
-                  'value': json['rateRange'],
-                  '_value': json['_rateRange'],
-                })
+      rateX: json['rateRatio'] != null
+          ? Ratio.fromJson(
+              json['rateRatio'] as Map<String, dynamic>,
+            )
+          : json['rateRange'] != null
+              ? Range.fromJson(
+                  json['rateRange'] as Map<String, dynamic>,
+                )
               : json['rateQuantity'] != null
                   ? Quantity.fromJson(
                       json['rateQuantity'] as Map<String, dynamic>,
@@ -494,7 +506,10 @@ class DosageDoseAndRate extends Element {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

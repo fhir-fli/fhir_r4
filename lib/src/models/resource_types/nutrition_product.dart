@@ -268,13 +268,22 @@ class NutritionProduct extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -504,7 +513,10 @@ class NutritionProductNutrient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -666,7 +678,10 @@ class NutritionProductIngredient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -753,34 +768,29 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueX: json['valueCodeableConcept'] != null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
+      valueX: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
           : json['valueString'] != null || json['_valueString'] != null
               ? FhirString.fromJson({
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? Quantity.fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
-                    })
+              : json['valueQuantity'] != null
+                  ? Quantity.fromJson(
+                      json['valueQuantity'] as Map<String, dynamic>,
+                    )
                   : json['valueBase64Binary'] != null ||
                           json['_valueBase64Binary'] != null
                       ? FhirBase64Binary.fromJson({
                           'value': json['valueBase64Binary'],
                           '_value': json['_valueBase64Binary'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? Attachment.fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
-                            })
+                      : json['valueAttachment'] != null
+                          ? Attachment.fromJson(
+                              json['valueAttachment'] as Map<String, dynamic>,
+                            )
                           : FhirBoolean.fromJson({
                               'value': json['valueBoolean'],
                               '_value': json['_valueBoolean'],
@@ -850,7 +860,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1047,7 +1060,10 @@ class NutritionProductInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1065,9 +1081,18 @@ class NutritionProductInstance extends BackboneElement {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('lotNumber', lotNumber);
-    addField('expiry', expiry);
-    addField('useBy', useBy);
+    if (lotNumber != null) {
+      addField('lotNumber', lotNumber);
+    }
+
+    if (expiry != null) {
+      addField('expiry', expiry);
+    }
+
+    if (useBy != null) {
+      addField('useBy', useBy);
+    }
+
     return json;
   }
 

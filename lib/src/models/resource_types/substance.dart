@@ -225,13 +225,22 @@ class Substance extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -253,14 +262,20 @@ class Substance extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('status', status);
+    if (status != null) {
+      addField('status', status);
+    }
+
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
     json['code'] = code.toJson();
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (instance != null && instance!.isNotEmpty) {
       json['instance'] = instance!.map((e) => e.toJson()).toList();
     }
@@ -445,7 +460,10 @@ class SubstanceInstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -459,7 +477,10 @@ class SubstanceInstance extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    addField('expiry', expiry);
+    if (expiry != null) {
+      addField('expiry', expiry);
+    }
+
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -539,12 +560,10 @@ class SubstanceIngredient extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      substanceX: json['substanceCodeableConcept'] != null ||
-              json['_substanceCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['substanceCodeableConcept'],
-              '_value': json['_substanceCodeableConcept'],
-            })
+      substanceX: json['substanceCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['substanceCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['substanceReference'] as Map<String, dynamic>,
             ),
@@ -612,7 +631,10 @@ class SubstanceIngredient extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

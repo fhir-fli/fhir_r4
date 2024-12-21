@@ -273,13 +273,22 @@ class Account extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -306,7 +315,10 @@ class Account extends DomainResource {
       json['type'] = type!.toJson();
     }
 
-    addField('name', name);
+    if (name != null) {
+      addField('name', name);
+    }
+
     if (subject != null && subject!.isNotEmpty) {
       json['subject'] = subject!.map((e) => e.toJson()).toList();
     }
@@ -323,7 +335,10 @@ class Account extends DomainResource {
       json['owner'] = owner!.toJson();
     }
 
-    addField('description', description);
+    if (description != null) {
+      addField('description', description);
+    }
+
     if (guarantor != null && guarantor!.isNotEmpty) {
       json['guarantor'] = guarantor!.map((e) => e.toJson()).toList();
     }
@@ -507,7 +522,10 @@ class AccountCoverage extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -519,7 +537,10 @@ class AccountCoverage extends BackboneElement {
 
     json['coverage'] = coverage.toJson();
 
-    addField('priority', priority);
+    if (priority != null) {
+      addField('priority', priority);
+    }
+
     return json;
   }
 
@@ -674,7 +695,10 @@ class AccountGuarantor extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -686,7 +710,10 @@ class AccountGuarantor extends BackboneElement {
 
     json['party'] = party.toJson();
 
-    addField('onHold', onHold);
+    if (onHold != null) {
+      addField('onHold', onHold);
+    }
+
     if (period != null) {
       json['period'] = period!.toJson();
     }

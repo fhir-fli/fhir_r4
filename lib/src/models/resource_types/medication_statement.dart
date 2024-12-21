@@ -164,12 +164,10 @@ class MedicationStatement extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationX: json['medicationCodeableConcept'] != null ||
-              json['_medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson({
-              'value': json['medicationCodeableConcept'],
-              '_value': json['_medicationCodeableConcept'],
-            })
+      medicationX: json['medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>,
+            )
           : Reference.fromJson(
               json['medicationReference'] as Map<String, dynamic>,
             ),
@@ -397,13 +395,22 @@ class MedicationStatement extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -451,8 +458,14 @@ class MedicationStatement extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
-    addField('dateAsserted', dateAsserted);
+    if (effectiveX != null) {
+      addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
+    }
+
+    if (dateAsserted != null) {
+      addField('dateAsserted', dateAsserted);
+    }
+
     if (informationSource != null) {
       json['informationSource'] = informationSource!.toJson();
     }

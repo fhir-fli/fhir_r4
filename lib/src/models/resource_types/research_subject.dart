@@ -221,13 +221,22 @@ class ResearchSubject extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -258,8 +267,14 @@ class ResearchSubject extends DomainResource {
 
     json['individual'] = individual.toJson();
 
-    addField('assignedArm', assignedArm);
-    addField('actualArm', actualArm);
+    if (assignedArm != null) {
+      addField('assignedArm', assignedArm);
+    }
+
+    if (actualArm != null) {
+      addField('actualArm', actualArm);
+    }
+
     if (consent != null) {
       json['consent'] = consent!.toJson();
     }

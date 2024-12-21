@@ -136,12 +136,10 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startX: json['startGoalStartEvent'] != null ||
-              json['_startGoalStartEvent'] != null
-          ? GoalStartEvent.fromJson({
-              'value': json['startGoalStartEvent'],
-              '_value': json['_startGoalStartEvent'],
-            })
+      startX: json['startGoalStartEvent'] != null
+          ? GoalStartEvent.fromJson(
+              json['startGoalStartEvent'] as Map<String, dynamic>,
+            )
           : json['startCodeableConcept'] != null
               ? CodeableConcept.fromJson(
                   json['startCodeableConcept'] as Map<String, dynamic>,
@@ -341,13 +339,22 @@ class Goal extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -386,13 +393,22 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('start${startX!.fhirType.capitalize()}', startX);
+    if (startX != null) {
+      addField('start${startX!.fhirType.capitalize()}', startX);
+    }
+
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
 
-    addField('statusDate', statusDate);
-    addField('statusReason', statusReason);
+    if (statusDate != null) {
+      addField('statusDate', statusDate);
+    }
+
+    if (statusReason != null) {
+      addField('statusReason', statusReason);
+    }
+
     if (expressedBy != null) {
       json['expressedBy'] = expressedBy!.toJson();
     }
@@ -526,22 +542,18 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailX: json['detailQuantity'] != null || json['_detailQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['detailQuantity'],
-              '_value': json['_detailQuantity'],
-            })
-          : json['detailRange'] != null || json['_detailRange'] != null
-              ? Range.fromJson({
-                  'value': json['detailRange'],
-                  '_value': json['_detailRange'],
-                })
-              : json['detailCodeableConcept'] != null ||
-                      json['_detailCodeableConcept'] != null
-                  ? CodeableConcept.fromJson({
-                      'value': json['detailCodeableConcept'],
-                      '_value': json['_detailCodeableConcept'],
-                    })
+      detailX: json['detailQuantity'] != null
+          ? Quantity.fromJson(
+              json['detailQuantity'] as Map<String, dynamic>,
+            )
+          : json['detailRange'] != null
+              ? Range.fromJson(
+                  json['detailRange'] as Map<String, dynamic>,
+                )
+              : json['detailCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['detailCodeableConcept'] as Map<String, dynamic>,
+                    )
                   : json['detailString'] != null ||
                           json['_detailString'] != null
                       ? FhirString.fromJson({
@@ -651,7 +663,10 @@ class GoalTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -669,7 +684,10 @@ class GoalTarget extends BackboneElement {
       json['detail${detailX!.fhirType.capitalize()}'] = detailX!.toJson();
     }
 
-    addField('due${dueX!.fhirType.capitalize()}', dueX);
+    if (dueX != null) {
+      addField('due${dueX!.fhirType.capitalize()}', dueX);
+    }
+
     return json;
   }
 

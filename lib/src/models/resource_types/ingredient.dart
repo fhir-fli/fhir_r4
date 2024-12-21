@@ -239,13 +239,22 @@ class Ingredient extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    addField('implicitRules', implicitRules);
-    addField('language', language);
+    if (implicitRules != null) {
+      addField('implicitRules', implicitRules);
+    }
+
+    if (language != null) {
+      addField('language', language);
+    }
+
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -278,7 +287,10 @@ class Ingredient extends DomainResource {
       json['function'] = function_!.map((e) => e.toJson()).toList();
     }
 
-    addField('allergenicIndicator', allergenicIndicator);
+    if (allergenicIndicator != null) {
+      addField('allergenicIndicator', allergenicIndicator);
+    }
+
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] = manufacturer!.map((e) => e.toJson()).toList();
     }
@@ -456,7 +468,10 @@ class IngredientManufacturer extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -466,7 +481,10 @@ class IngredientManufacturer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('role', role);
+    if (role != null) {
+      addField('role', role);
+    }
+
     json['manufacturer'] = manufacturer.toJson();
 
     return json;
@@ -617,7 +635,10 @@ class IngredientSubstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -710,12 +731,10 @@ class IngredientStrength extends BackboneElement {
               )
               .toList()
           : null,
-      presentationX: json['presentationRatio'] != null ||
-              json['_presentationRatio'] != null
-          ? Ratio.fromJson({
-              'value': json['presentationRatio'],
-              '_value': json['_presentationRatio'],
-            })
+      presentationX: json['presentationRatio'] != null
+          ? Ratio.fromJson(
+              json['presentationRatio'] as Map<String, dynamic>,
+            )
           : json['presentationRatioRange'] != null
               ? RatioRange.fromJson(
                   json['presentationRatioRange'] as Map<String, dynamic>,
@@ -728,12 +747,10 @@ class IngredientStrength extends BackboneElement {
               '_value': json['_textPresentation'],
             })
           : null,
-      concentrationX: json['concentrationRatio'] != null ||
-              json['_concentrationRatio'] != null
-          ? Ratio.fromJson({
-              'value': json['concentrationRatio'],
-              '_value': json['_concentrationRatio'],
-            })
+      concentrationX: json['concentrationRatio'] != null
+          ? Ratio.fromJson(
+              json['concentrationRatio'] as Map<String, dynamic>,
+            )
           : json['concentrationRatioRange'] != null
               ? RatioRange.fromJson(
                   json['concentrationRatioRange'] as Map<String, dynamic>,
@@ -873,7 +890,10 @@ class IngredientStrength extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -888,14 +908,23 @@ class IngredientStrength extends BackboneElement {
           presentationX!.toJson();
     }
 
-    addField('textPresentation', textPresentation);
+    if (textPresentation != null) {
+      addField('textPresentation', textPresentation);
+    }
+
     if (concentrationX != null) {
       json['concentration${concentrationX!.fhirType.capitalize()}'] =
           concentrationX!.toJson();
     }
 
-    addField('textConcentration', textConcentration);
-    addField('measurementPoint', measurementPoint);
+    if (textConcentration != null) {
+      addField('textConcentration', textConcentration);
+    }
+
+    if (measurementPoint != null) {
+      addField('measurementPoint', measurementPoint);
+    }
+
     if (country != null && country!.isNotEmpty) {
       json['country'] = country!.map((e) => e.toJson()).toList();
     }
@@ -996,11 +1025,10 @@ class IngredientReferenceStrength extends BackboneElement {
               json['substance'] as Map<String, dynamic>,
             )
           : null,
-      strengthX: json['strengthRatio'] != null || json['_strengthRatio'] != null
-          ? Ratio.fromJson({
-              'value': json['strengthRatio'],
-              '_value': json['_strengthRatio'],
-            })
+      strengthX: json['strengthRatio'] != null
+          ? Ratio.fromJson(
+              json['strengthRatio'] as Map<String, dynamic>,
+            )
           : RatioRange.fromJson(
               json['strengthRatioRange'] as Map<String, dynamic>,
             ),
@@ -1092,7 +1120,10 @@ class IngredientReferenceStrength extends BackboneElement {
       }
     }
 
-    addField('id', id);
+    if (id != null) {
+      addField('id', id);
+    }
+
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1108,7 +1139,10 @@ class IngredientReferenceStrength extends BackboneElement {
 
     json['strength${strengthX.fhirType.capitalize()}'] = strengthX.toJson();
 
-    addField('measurementPoint', measurementPoint);
+    if (measurementPoint != null) {
+      addField('measurementPoint', measurementPoint);
+    }
+
     if (country != null && country!.isNotEmpty) {
       json['country'] = country!.map((e) => e.toJson()).toList();
     }
