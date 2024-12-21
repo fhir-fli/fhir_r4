@@ -22,7 +22,7 @@ class Annotation extends DataType
   const Annotation({
     super.id,
     super.extension_,
-    this.authorXAnnotation,
+    this.authorX,
     this.time,
     required this.text,
     super.disallowExtensions,
@@ -45,7 +45,7 @@ class Annotation extends DataType
               )
               .toList()
           : null,
-      authorXAnnotation:
+      authorX:
           json['authorReference'] != null || json['_authorReference'] != null
               ? Reference.fromJson({
                   'value': json['authorReference'],
@@ -112,9 +112,9 @@ class Annotation extends DataType
   @override
   String get fhirType => 'Annotation';
 
-  /// [authorXAnnotation]
+  /// [authorX]
   /// The individual responsible for making the annotation.
-  final AuthorXAnnotation? authorXAnnotation;
+  final AuthorXAnnotation? authorX;
 
   /// [time]
   /// Indicates when this particular annotation was made.
@@ -140,8 +140,8 @@ class Annotation extends DataType
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (authorXAnnotation != null) {
-      json['authorXAnnotation'] = authorXAnnotation!.toJson();
+    if (authorX != null) {
+      json['authorX'] = authorX!.toJson();
     }
 
     addField('time', time);
@@ -155,7 +155,7 @@ class Annotation extends DataType
   Annotation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    AuthorXAnnotation? authorXAnnotation,
+    AuthorXAnnotation? authorX,
     FhirDateTime? time,
     FhirMarkdown? text,
     Map<String, Object?>? userData,
@@ -166,7 +166,7 @@ class Annotation extends DataType
     return Annotation(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-      authorXAnnotation: authorXAnnotation ?? this.authorXAnnotation,
+      authorX: authorX ?? this.authorX,
       time: time ?? this.time,
       text: text ?? this.text,
     );

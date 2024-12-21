@@ -927,7 +927,7 @@ class TaskInput extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueXTaskInput,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -960,7 +960,7 @@ class TaskInput extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXTaskInput: json['valueBase64Binary'] != null ||
+      valueX: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
@@ -1295,9 +1295,9 @@ class TaskInput extends BackboneElement {
   /// as part of the task execution.
   final CodeableConcept type;
 
-  /// [valueXTaskInput]
+  /// [valueX]
   /// The value of the input parameter as a basic type.
-  final ValueXTaskInput valueXTaskInput;
+  final ValueXTaskInput valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1322,7 +1322,7 @@ class TaskInput extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('valueXTaskInput', valueXTaskInput);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1334,7 +1334,7 @@ class TaskInput extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXTaskInput? valueXTaskInput,
+    ValueXTaskInput? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1345,7 +1345,7 @@ class TaskInput extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXTaskInput: valueXTaskInput ?? this.valueXTaskInput,
+      valueX: valueX ?? this.valueX,
     );
   }
 }
@@ -1361,7 +1361,7 @@ class TaskOutput extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueXTaskOutput,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -1394,7 +1394,7 @@ class TaskOutput extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXTaskOutput: json['valueBase64Binary'] != null ||
+      valueX: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
@@ -1728,9 +1728,9 @@ class TaskOutput extends BackboneElement {
   /// The name of the Output parameter.
   final CodeableConcept type;
 
-  /// [valueXTaskOutput]
+  /// [valueX]
   /// The value of the Output parameter as a basic type.
-  final ValueXTaskOutput valueXTaskOutput;
+  final ValueXTaskOutput valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1755,7 +1755,7 @@ class TaskOutput extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('valueXTaskOutput', valueXTaskOutput);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1767,7 +1767,7 @@ class TaskOutput extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXTaskOutput? valueXTaskOutput,
+    ValueXTaskOutput? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1778,7 +1778,7 @@ class TaskOutput extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXTaskOutput: valueXTaskOutput ?? this.valueXTaskOutput,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

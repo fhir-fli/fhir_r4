@@ -30,7 +30,7 @@ class PlanDefinition extends CanonicalResource {
     this.type,
     required super.status,
     super.experimental,
-    this.subjectXPlanDefinition,
+    this.subjectX,
     super.date,
     super.publisher,
     super.contact,
@@ -169,7 +169,7 @@ class PlanDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXPlanDefinition: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -416,7 +416,7 @@ class PlanDefinition extends CanonicalResource {
   /// kinds of systems that would be interested in the plan definition.
   final CodeableConcept? type;
 
-  /// [subjectXPlanDefinition]
+  /// [subjectX]
   /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the plan definition. Canonical
   /// references are allowed to support the definition of protocols for drug
@@ -424,7 +424,7 @@ class PlanDefinition extends CanonicalResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectXPlanDefinition? subjectXPlanDefinition;
+  final SubjectXPlanDefinition? subjectX;
 
   /// [purpose]
   /// Explanation of why this plan definition is needed and why it has been
@@ -562,8 +562,8 @@ class PlanDefinition extends CanonicalResource {
 
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXPlanDefinition != null) {
-      json['subjectXPlanDefinition'] = subjectXPlanDefinition!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -655,7 +655,7 @@ class PlanDefinition extends CanonicalResource {
     CodeableConcept? type,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXPlanDefinition? subjectXPlanDefinition,
+    SubjectXPlanDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -700,8 +700,7 @@ class PlanDefinition extends CanonicalResource {
       type: type ?? this.type,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXPlanDefinition:
-          subjectXPlanDefinition ?? this.subjectXPlanDefinition,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -997,7 +996,7 @@ class PlanDefinitionTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailXPlanDefinitionTarget,
+    this.detailX,
     this.due,
     super.disallowExtensions,
   });
@@ -1033,22 +1032,21 @@ class PlanDefinitionTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailXPlanDefinitionTarget:
-          json['detailQuantity'] != null || json['_detailQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['detailQuantity'],
-                  '_value': json['_detailQuantity'],
+      detailX: json['detailQuantity'] != null || json['_detailQuantity'] != null
+          ? Quantity.fromJson({
+              'value': json['detailQuantity'],
+              '_value': json['_detailQuantity'],
+            })
+          : json['detailRange'] != null || json['_detailRange'] != null
+              ? Range.fromJson({
+                  'value': json['detailRange'],
+                  '_value': json['_detailRange'],
                 })
-              : json['detailRange'] != null || json['_detailRange'] != null
-                  ? Range.fromJson({
-                      'value': json['detailRange'],
-                      '_value': json['_detailRange'],
-                    })
-                  : json['detailCodeableConcept'] != null
-                      ? CodeableConcept.fromJson(
-                          json['detailCodeableConcept'] as Map<String, dynamic>,
-                        )
-                      : null,
+              : json['detailCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['detailCodeableConcept'] as Map<String, dynamic>,
+                    )
+                  : null,
       due: json['due'] != null
           ? FhirDuration.fromJson(
               json['due'] as Map<String, dynamic>,
@@ -1104,7 +1102,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// pressure, or hemoglobin A1c level.
   final CodeableConcept? measure;
 
-  /// [detailXPlanDefinitionTarget]
+  /// [detailX]
   /// The target value of the measure to be achieved to signify fulfillment
   /// of the goal, e.g. 150 pounds or 7.0%, or in the case of pharmaceutical
   /// quality - NMT 0.6%, Clear solution, etc. Either the high or low or both
@@ -1112,7 +1110,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// indicates that the goal is achieved at any value at or below the high
   /// value. Similarly, if the high value is missing, it indicates that the
   /// goal is achieved at any value at or above the low value.
-  final DetailXPlanDefinitionTarget? detailXPlanDefinitionTarget;
+  final DetailXPlanDefinitionTarget? detailX;
 
   /// [due]
   /// Indicates the timeframe after the start of the goal in which the goal
@@ -1144,9 +1142,8 @@ class PlanDefinitionTarget extends BackboneElement {
       json['measure'] = measure!.toJson();
     }
 
-    if (detailXPlanDefinitionTarget != null) {
-      json['detailXPlanDefinitionTarget'] =
-          detailXPlanDefinitionTarget!.toJson();
+    if (detailX != null) {
+      json['detailX'] = detailX!.toJson();
     }
 
     if (due != null) {
@@ -1164,7 +1161,7 @@ class PlanDefinitionTarget extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? measure,
-    DetailXPlanDefinitionTarget? detailXPlanDefinitionTarget,
+    DetailXPlanDefinitionTarget? detailX,
     FhirDuration? due,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1176,8 +1173,7 @@ class PlanDefinitionTarget extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       measure: measure ?? this.measure,
-      detailXPlanDefinitionTarget:
-          detailXPlanDefinitionTarget ?? this.detailXPlanDefinitionTarget,
+      detailX: detailX ?? this.detailX,
       due: due ?? this.due,
     );
   }
@@ -1206,13 +1202,13 @@ class PlanDefinitionAction extends BackboneElement {
     this.reason,
     this.documentation,
     this.goalId,
-    this.subjectXPlanDefinitionAction,
+    this.subjectX,
     this.trigger,
     this.condition,
     this.input,
     this.output,
     this.relatedAction,
-    this.timingXPlanDefinitionAction,
+    this.timingX,
     this.participant,
     this.type,
     this.groupingBehavior,
@@ -1220,7 +1216,7 @@ class PlanDefinitionAction extends BackboneElement {
     this.requiredBehavior,
     this.precheckBehavior,
     this.cardinalityBehavior,
-    this.definitionXPlanDefinitionAction,
+    this.definitionX,
     this.transform,
     this.dynamicValue,
     this.action,
@@ -1316,7 +1312,7 @@ class PlanDefinitionAction extends BackboneElement {
         json['_goalId'] as List<dynamic>?,
         fromJson: FhirId.fromJson,
       ),
-      subjectXPlanDefinitionAction: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -1378,8 +1374,7 @@ class PlanDefinitionAction extends BackboneElement {
               )
               .toList()
           : null,
-      timingXPlanDefinitionAction: json['timingDateTime'] != null ||
-              json['_timingDateTime'] != null
+      timingX: json['timingDateTime'] != null || json['_timingDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['timingDateTime'],
               '_value': json['_timingDateTime'],
@@ -1460,7 +1455,7 @@ class PlanDefinitionAction extends BackboneElement {
               '_value': json['_cardinalityBehavior'],
             })
           : null,
-      definitionXPlanDefinitionAction: json['definitionCanonical'] != null ||
+      definitionX: json['definitionCanonical'] != null ||
               json['_definitionCanonical'] != null
           ? FhirCanonical.fromJson({
               'value': json['definitionCanonical'],
@@ -1593,7 +1588,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// element establishing the acceptance criteria for the action.
   final List<FhirId>? goalId;
 
-  /// [subjectXPlanDefinitionAction]
+  /// [subjectX]
   /// A code, group definition, or canonical reference that describes the
   /// intended subject of the action and its children, if any. Canonical
   /// references are allowed to support the definition of protocols for drug
@@ -1601,7 +1596,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectXPlanDefinitionAction? subjectXPlanDefinitionAction;
+  final SubjectXPlanDefinitionAction? subjectX;
 
   /// [trigger]
   /// A description of when the action should be triggered.
@@ -1625,9 +1620,9 @@ class PlanDefinitionAction extends BackboneElement {
   /// after start of".
   final List<PlanDefinitionRelatedAction>? relatedAction;
 
-  /// [timingXPlanDefinitionAction]
+  /// [timingX]
   /// An optional value describing when the action should be performed.
-  final TimingXPlanDefinitionAction? timingXPlanDefinitionAction;
+  final TimingXPlanDefinitionAction? timingX;
 
   /// [participant]
   /// Indicates who should participate in performing the action described.
@@ -1657,11 +1652,11 @@ class PlanDefinitionAction extends BackboneElement {
   /// Defines whether the action can be selected multiple times.
   final ActionCardinalityBehavior? cardinalityBehavior;
 
-  /// [definitionXPlanDefinitionAction]
+  /// [definitionX]
   /// A reference to an ActivityDefinition that describes the action to be
   /// taken in detail, or a PlanDefinition that describes a series of actions
   /// to be taken.
-  final DefinitionXPlanDefinitionAction? definitionXPlanDefinitionAction;
+  final DefinitionXPlanDefinitionAction? definitionX;
 
   /// [transform]
   /// A reference to a StructureMap resource that defines a transform that
@@ -1730,9 +1725,8 @@ class PlanDefinitionAction extends BackboneElement {
       }
     }
 
-    if (subjectXPlanDefinitionAction != null) {
-      json['subjectXPlanDefinitionAction'] =
-          subjectXPlanDefinitionAction!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     if (trigger != null && trigger!.isNotEmpty) {
@@ -1755,7 +1749,7 @@ class PlanDefinitionAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    addField('timingXPlanDefinitionAction', timingXPlanDefinitionAction);
+    addField('timingX', timingX);
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -1769,8 +1763,7 @@ class PlanDefinitionAction extends BackboneElement {
     addField('requiredBehavior', requiredBehavior);
     addField('precheckBehavior', precheckBehavior);
     addField('cardinalityBehavior', cardinalityBehavior);
-    addField(
-        'definitionXPlanDefinitionAction', definitionXPlanDefinitionAction);
+    addField('definitionX', definitionX);
     addField('transform', transform);
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!.map((e) => e.toJson()).toList();
@@ -1799,13 +1792,13 @@ class PlanDefinitionAction extends BackboneElement {
     List<CodeableConcept>? reason,
     List<RelatedArtifact>? documentation,
     List<FhirId>? goalId,
-    SubjectXPlanDefinitionAction? subjectXPlanDefinitionAction,
+    SubjectXPlanDefinitionAction? subjectX,
     List<TriggerDefinition>? trigger,
     List<PlanDefinitionCondition>? condition,
     List<DataRequirement>? input,
     List<DataRequirement>? output,
     List<PlanDefinitionRelatedAction>? relatedAction,
-    TimingXPlanDefinitionAction? timingXPlanDefinitionAction,
+    TimingXPlanDefinitionAction? timingX,
     List<PlanDefinitionParticipant>? participant,
     CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
@@ -1813,7 +1806,7 @@ class PlanDefinitionAction extends BackboneElement {
     ActionRequiredBehavior? requiredBehavior,
     ActionPrecheckBehavior? precheckBehavior,
     ActionCardinalityBehavior? cardinalityBehavior,
-    DefinitionXPlanDefinitionAction? definitionXPlanDefinitionAction,
+    DefinitionXPlanDefinitionAction? definitionX,
     FhirCanonical? transform,
     List<PlanDefinitionDynamicValue>? dynamicValue,
     List<PlanDefinitionAction>? action,
@@ -1835,15 +1828,13 @@ class PlanDefinitionAction extends BackboneElement {
       reason: reason ?? this.reason,
       documentation: documentation ?? this.documentation,
       goalId: goalId ?? this.goalId,
-      subjectXPlanDefinitionAction:
-          subjectXPlanDefinitionAction ?? this.subjectXPlanDefinitionAction,
+      subjectX: subjectX ?? this.subjectX,
       trigger: trigger ?? this.trigger,
       condition: condition ?? this.condition,
       input: input ?? this.input,
       output: output ?? this.output,
       relatedAction: relatedAction ?? this.relatedAction,
-      timingXPlanDefinitionAction:
-          timingXPlanDefinitionAction ?? this.timingXPlanDefinitionAction,
+      timingX: timingX ?? this.timingX,
       participant: participant ?? this.participant,
       type: type ?? this.type,
       groupingBehavior: groupingBehavior ?? this.groupingBehavior,
@@ -1851,8 +1842,7 @@ class PlanDefinitionAction extends BackboneElement {
       requiredBehavior: requiredBehavior ?? this.requiredBehavior,
       precheckBehavior: precheckBehavior ?? this.precheckBehavior,
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
-      definitionXPlanDefinitionAction: definitionXPlanDefinitionAction ??
-          this.definitionXPlanDefinitionAction,
+      definitionX: definitionX ?? this.definitionX,
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       action: action ?? this.action,
@@ -2031,7 +2021,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.modifierExtension,
     required this.actionId,
     required this.relationship,
-    this.offsetXPlanDefinitionRelatedAction,
+    this.offsetX,
     super.disallowExtensions,
   });
 
@@ -2069,17 +2059,16 @@ class PlanDefinitionRelatedAction extends BackboneElement {
         'value': json['relationship'],
         '_value': json['_relationship'],
       }),
-      offsetXPlanDefinitionRelatedAction:
-          json['offsetDuration'] != null || json['_offsetDuration'] != null
-              ? FhirDuration.fromJson({
-                  'value': json['offsetDuration'],
-                  '_value': json['_offsetDuration'],
-                })
-              : json['offsetRange'] != null
-                  ? Range.fromJson(
-                      json['offsetRange'] as Map<String, dynamic>,
-                    )
-                  : null,
+      offsetX: json['offsetDuration'] != null || json['_offsetDuration'] != null
+          ? FhirDuration.fromJson({
+              'value': json['offsetDuration'],
+              '_value': json['_offsetDuration'],
+            })
+          : json['offsetRange'] != null
+              ? Range.fromJson(
+                  json['offsetRange'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -2133,10 +2122,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// The relationship of this action to the related action.
   final ActionRelationshipType relationship;
 
-  /// [offsetXPlanDefinitionRelatedAction]
+  /// [offsetX]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final OffsetXPlanDefinitionRelatedAction? offsetXPlanDefinitionRelatedAction;
+  final OffsetXPlanDefinitionRelatedAction? offsetX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2161,9 +2150,8 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
     addField('actionId', actionId);
     addField('relationship', relationship);
-    if (offsetXPlanDefinitionRelatedAction != null) {
-      json['offsetXPlanDefinitionRelatedAction'] =
-          offsetXPlanDefinitionRelatedAction!.toJson();
+    if (offsetX != null) {
+      json['offsetX'] = offsetX!.toJson();
     }
 
     return json;
@@ -2178,7 +2166,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
     ActionRelationshipType? relationship,
-    OffsetXPlanDefinitionRelatedAction? offsetXPlanDefinitionRelatedAction,
+    OffsetXPlanDefinitionRelatedAction? offsetX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2190,8 +2178,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       actionId: actionId ?? this.actionId,
       relationship: relationship ?? this.relationship,
-      offsetXPlanDefinitionRelatedAction: offsetXPlanDefinitionRelatedAction ??
-          this.offsetXPlanDefinitionRelatedAction,
+      offsetX: offsetX ?? this.offsetX,
     );
   }
 }

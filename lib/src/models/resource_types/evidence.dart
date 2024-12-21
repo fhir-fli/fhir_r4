@@ -25,7 +25,7 @@ class Evidence extends DomainResource {
     this.identifier,
     this.version,
     this.title,
-    this.citeAsXEvidence,
+    this.citeAsX,
     required this.status,
     this.date,
     this.useContext,
@@ -135,7 +135,7 @@ class Evidence extends DomainResource {
               '_value': json['_title'],
             })
           : null,
-      citeAsXEvidence: json['citeAsReference'] != null ||
+      citeAsX: json['citeAsReference'] != null ||
               json['_citeAsReference'] != null
           ? Reference.fromJson({
               'value': json['citeAsReference'],
@@ -372,9 +372,9 @@ class Evidence extends DomainResource {
   /// A short, descriptive, user-friendly title for the summary.
   final FhirString? title;
 
-  /// [citeAsXEvidence]
+  /// [citeAsX]
   /// Citation Resource or display of suggested citation for this evidence.
-  final CiteAsXEvidence? citeAsXEvidence;
+  final CiteAsXEvidence? citeAsX;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
@@ -518,8 +518,8 @@ class Evidence extends DomainResource {
 
     addField('version', version);
     addField('title', title);
-    if (citeAsXEvidence != null) {
-      json['citeAsXEvidence'] = citeAsXEvidence!.toJson();
+    if (citeAsX != null) {
+      json['citeAsX'] = citeAsX!.toJson();
     }
 
     addField('status', status);
@@ -602,7 +602,7 @@ class Evidence extends DomainResource {
     List<Identifier>? identifier,
     FhirString? version,
     FhirString? title,
-    CiteAsXEvidence? citeAsXEvidence,
+    CiteAsXEvidence? citeAsX,
     PublicationStatus? status,
     FhirDateTime? date,
     List<UsageContext>? useContext,
@@ -641,7 +641,7 @@ class Evidence extends DomainResource {
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
       title: title ?? this.title,
-      citeAsXEvidence: citeAsXEvidence ?? this.citeAsXEvidence,
+      citeAsX: citeAsX ?? this.citeAsX,
       status: status ?? this.status,
       date: date ?? this.date,
       useContext: useContext ?? this.useContext,

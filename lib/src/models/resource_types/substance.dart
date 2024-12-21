@@ -504,7 +504,7 @@ class SubstanceIngredient extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    required this.substanceXSubstanceIngredient,
+    required this.substanceX,
     super.disallowExtensions,
   });
 
@@ -539,7 +539,7 @@ class SubstanceIngredient extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      substanceXSubstanceIngredient: json['substanceCodeableConcept'] != null ||
+      substanceX: json['substanceCodeableConcept'] != null ||
               json['_substanceCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['substanceCodeableConcept'],
@@ -597,9 +597,9 @@ class SubstanceIngredient extends BackboneElement {
   /// The amount of the ingredient in the substance - a concentration ratio.
   final Ratio? quantity;
 
-  /// [substanceXSubstanceIngredient]
+  /// [substanceX]
   /// Another substance that is a component of this substance.
-  final SubstanceXSubstanceIngredient substanceXSubstanceIngredient;
+  final SubstanceXSubstanceIngredient substanceX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -626,8 +626,7 @@ class SubstanceIngredient extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    json['substanceXSubstanceIngredient'] =
-        substanceXSubstanceIngredient.toJson();
+    json['substanceX'] = substanceX.toJson();
 
     return json;
   }
@@ -640,7 +639,7 @@ class SubstanceIngredient extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Ratio? quantity,
-    SubstanceXSubstanceIngredient? substanceXSubstanceIngredient,
+    SubstanceXSubstanceIngredient? substanceX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -651,8 +650,7 @@ class SubstanceIngredient extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      substanceXSubstanceIngredient:
-          substanceXSubstanceIngredient ?? this.substanceXSubstanceIngredient,
+      substanceX: substanceX ?? this.substanceX,
     );
   }
 }

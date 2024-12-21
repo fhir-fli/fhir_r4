@@ -973,7 +973,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.periodXPackagedProductDefinitionShelfLifeStorage,
+    this.periodX,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
   });
@@ -1009,18 +1009,17 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      periodXPackagedProductDefinitionShelfLifeStorage:
-          json['periodDuration'] != null || json['_periodDuration'] != null
-              ? FhirDuration.fromJson({
-                  'value': json['periodDuration'],
-                  '_value': json['_periodDuration'],
+      periodX: json['periodDuration'] != null || json['_periodDuration'] != null
+          ? FhirDuration.fromJson({
+              'value': json['periodDuration'],
+              '_value': json['_periodDuration'],
+            })
+          : json['periodString'] != null || json['_periodString'] != null
+              ? FhirString.fromJson({
+                  'value': json['periodString'],
+                  '_value': json['_periodString'],
                 })
-              : json['periodString'] != null || json['_periodString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['periodString'],
-                      '_value': json['_periodString'],
-                    })
-                  : null,
+              : null,
       specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
           ? (json['specialPrecautionsForStorage'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -1084,14 +1083,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// controlled term identifier shall be specified.
   final CodeableConcept? type;
 
-  /// [periodXPackagedProductDefinitionShelfLifeStorage]
+  /// [periodX]
   /// The shelf life time period can be specified using a numerical value for
   /// the period of time and its unit of time measurement The unit of
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final PeriodXPackagedProductDefinitionShelfLifeStorage?
-      periodXPackagedProductDefinitionShelfLifeStorage;
+  final PeriodXPackagedProductDefinitionShelfLifeStorage? periodX;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
@@ -1124,9 +1122,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (periodXPackagedProductDefinitionShelfLifeStorage != null) {
-      json['periodXPackagedProductDefinitionShelfLifeStorage'] =
-          periodXPackagedProductDefinitionShelfLifeStorage!.toJson();
+    if (periodX != null) {
+      json['periodX'] = periodX!.toJson();
     }
 
     if (specialPrecautionsForStorage != null &&
@@ -1147,8 +1144,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    PeriodXPackagedProductDefinitionShelfLifeStorage?
-        periodXPackagedProductDefinitionShelfLifeStorage,
+    PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
     List<CodeableConcept>? specialPrecautionsForStorage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1160,9 +1156,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      periodXPackagedProductDefinitionShelfLifeStorage:
-          periodXPackagedProductDefinitionShelfLifeStorage ??
-              this.periodXPackagedProductDefinitionShelfLifeStorage,
+      periodX: periodX ?? this.periodX,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
     );
@@ -1180,7 +1174,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueXPackagedProductDefinitionProperty,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -1213,8 +1207,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXPackagedProductDefinitionProperty: json['valueCodeableConcept'] !=
-                  null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -1290,10 +1283,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueXPackagedProductDefinitionProperty]
+  /// [valueX]
   /// A value for the characteristic.
-  final ValueXPackagedProductDefinitionProperty?
-      valueXPackagedProductDefinitionProperty;
+  final ValueXPackagedProductDefinitionProperty? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1318,9 +1310,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueXPackagedProductDefinitionProperty != null) {
-      json['valueXPackagedProductDefinitionProperty'] =
-          valueXPackagedProductDefinitionProperty!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     return json;
@@ -1334,8 +1325,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXPackagedProductDefinitionProperty?
-        valueXPackagedProductDefinitionProperty,
+    ValueXPackagedProductDefinitionProperty? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1346,9 +1336,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXPackagedProductDefinitionProperty:
-          valueXPackagedProductDefinitionProperty ??
-              this.valueXPackagedProductDefinitionProperty,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

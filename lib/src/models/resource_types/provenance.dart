@@ -28,7 +28,7 @@ class Provenance extends DomainResource {
     super.extension_,
     super.modifierExtension,
     required this.target,
-    this.occurredXProvenance,
+    this.occurredX,
     required this.recorded,
     this.policy,
     this.location,
@@ -108,7 +108,7 @@ class Provenance extends DomainResource {
             )
             .toList(),
       ),
-      occurredXProvenance:
+      occurredX:
           json['occurredPeriod'] != null || json['_occurredPeriod'] != null
               ? Period.fromJson({
                   'value': json['occurredPeriod'],
@@ -227,9 +227,9 @@ class Provenance extends DomainResource {
   /// target if multiple resources were created/updated by the same activity.
   final List<Reference> target;
 
-  /// [occurredXProvenance]
+  /// [occurredX]
   /// The period during which the activity occurred.
-  final OccurredXProvenance? occurredXProvenance;
+  final OccurredXProvenance? occurredX;
 
   /// [recorded]
   /// The instant of time at which the activity was recorded.
@@ -309,8 +309,8 @@ class Provenance extends DomainResource {
       json['target'] = target.map((e) => e.toJson()).toList();
     }
 
-    if (occurredXProvenance != null) {
-      json['occurredXProvenance'] = occurredXProvenance!.toJson();
+    if (occurredX != null) {
+      json['occurredX'] = occurredX!.toJson();
     }
 
     addField('recorded', recorded);
@@ -362,7 +362,7 @@ class Provenance extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Reference>? target,
-    OccurredXProvenance? occurredXProvenance,
+    OccurredXProvenance? occurredX,
     FhirInstant? recorded,
     List<FhirUri>? policy,
     Reference? location,
@@ -386,7 +386,7 @@ class Provenance extends DomainResource {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
-      occurredXProvenance: occurredXProvenance ?? this.occurredXProvenance,
+      occurredX: occurredX ?? this.occurredX,
       recorded: recorded ?? this.recorded,
       policy: policy ?? this.policy,
       location: location ?? this.location,

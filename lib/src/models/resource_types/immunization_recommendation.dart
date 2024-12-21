@@ -293,8 +293,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.dateCriterion,
     this.description,
     this.series,
-    this.doseNumberXImmunizationRecommendationRecommendation,
-    this.seriesDosesXImmunizationRecommendationRecommendation,
+    this.doseNumberX,
+    this.seriesDosesX,
     this.supportingImmunization,
     this.supportingPatientInformation,
     super.disallowExtensions,
@@ -382,34 +382,32 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
               '_value': json['_series'],
             })
           : null,
-      doseNumberXImmunizationRecommendationRecommendation:
-          json['doseNumberPositiveInt'] != null ||
-                  json['_doseNumberPositiveInt'] != null
-              ? FhirPositiveInt.fromJson({
-                  'value': json['doseNumberPositiveInt'],
-                  '_value': json['_doseNumberPositiveInt'],
+      doseNumberX: json['doseNumberPositiveInt'] != null ||
+              json['_doseNumberPositiveInt'] != null
+          ? FhirPositiveInt.fromJson({
+              'value': json['doseNumberPositiveInt'],
+              '_value': json['_doseNumberPositiveInt'],
+            })
+          : json['doseNumberString'] != null ||
+                  json['_doseNumberString'] != null
+              ? FhirString.fromJson({
+                  'value': json['doseNumberString'],
+                  '_value': json['_doseNumberString'],
                 })
-              : json['doseNumberString'] != null ||
-                      json['_doseNumberString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['doseNumberString'],
-                      '_value': json['_doseNumberString'],
-                    })
-                  : null,
-      seriesDosesXImmunizationRecommendationRecommendation:
-          json['seriesDosesPositiveInt'] != null ||
-                  json['_seriesDosesPositiveInt'] != null
-              ? FhirPositiveInt.fromJson({
-                  'value': json['seriesDosesPositiveInt'],
-                  '_value': json['_seriesDosesPositiveInt'],
+              : null,
+      seriesDosesX: json['seriesDosesPositiveInt'] != null ||
+              json['_seriesDosesPositiveInt'] != null
+          ? FhirPositiveInt.fromJson({
+              'value': json['seriesDosesPositiveInt'],
+              '_value': json['_seriesDosesPositiveInt'],
+            })
+          : json['seriesDosesString'] != null ||
+                  json['_seriesDosesString'] != null
+              ? FhirString.fromJson({
+                  'value': json['seriesDosesString'],
+                  '_value': json['_seriesDosesString'],
                 })
-              : json['seriesDosesString'] != null ||
-                      json['_seriesDosesString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['seriesDosesString'],
-                      '_value': json['_seriesDosesString'],
-                    })
-                  : null,
+              : null,
       supportingImmunization: json['supportingImmunization'] != null
           ? (json['supportingImmunization'] as List<dynamic>)
               .map<Reference>(
@@ -509,16 +507,14 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// within the context of an authority.
   final FhirString? series;
 
-  /// [doseNumberXImmunizationRecommendationRecommendation]
+  /// [doseNumberX]
   /// Nominal position of the recommended dose in a series (e.g. dose 2 is
   /// the next recommended dose).
-  final DoseNumberXImmunizationRecommendationRecommendation?
-      doseNumberXImmunizationRecommendationRecommendation;
+  final DoseNumberXImmunizationRecommendationRecommendation? doseNumberX;
 
-  /// [seriesDosesXImmunizationRecommendationRecommendation]
+  /// [seriesDosesX]
   /// The recommended number of doses to achieve immunity.
-  final SeriesDosesXImmunizationRecommendationRecommendation?
-      seriesDosesXImmunizationRecommendationRecommendation;
+  final SeriesDosesXImmunizationRecommendationRecommendation? seriesDosesX;
 
   /// [supportingImmunization]
   /// Immunization event history and/or evaluation that supports the status
@@ -578,10 +574,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
     addField('description', description);
     addField('series', series);
-    addField('doseNumberXImmunizationRecommendationRecommendation',
-        doseNumberXImmunizationRecommendationRecommendation);
-    addField('seriesDosesXImmunizationRecommendationRecommendation',
-        seriesDosesXImmunizationRecommendationRecommendation);
+    addField('doseNumberX', doseNumberX);
+    addField('seriesDosesX', seriesDosesX);
     if (supportingImmunization != null && supportingImmunization!.isNotEmpty) {
       json['supportingImmunization'] =
           supportingImmunization!.map((e) => e.toJson()).toList();
@@ -612,10 +606,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     List<ImmunizationRecommendationDateCriterion>? dateCriterion,
     FhirString? description,
     FhirString? series,
-    DoseNumberXImmunizationRecommendationRecommendation?
-        doseNumberXImmunizationRecommendationRecommendation,
-    SeriesDosesXImmunizationRecommendationRecommendation?
-        seriesDosesXImmunizationRecommendationRecommendation,
+    DoseNumberXImmunizationRecommendationRecommendation? doseNumberX,
+    SeriesDosesXImmunizationRecommendationRecommendation? seriesDosesX,
     List<Reference>? supportingImmunization,
     List<Reference>? supportingPatientInformation,
     Map<String, Object?>? userData,
@@ -636,12 +628,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       dateCriterion: dateCriterion ?? this.dateCriterion,
       description: description ?? this.description,
       series: series ?? this.series,
-      doseNumberXImmunizationRecommendationRecommendation:
-          doseNumberXImmunizationRecommendationRecommendation ??
-              this.doseNumberXImmunizationRecommendationRecommendation,
-      seriesDosesXImmunizationRecommendationRecommendation:
-          seriesDosesXImmunizationRecommendationRecommendation ??
-              this.seriesDosesXImmunizationRecommendationRecommendation,
+      doseNumberX: doseNumberX ?? this.doseNumberX,
+      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
       supportingImmunization:
           supportingImmunization ?? this.supportingImmunization,
       supportingPatientInformation:

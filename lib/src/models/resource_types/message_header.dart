@@ -21,7 +21,7 @@ class MessageHeader extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.eventXMessageHeader,
+    required this.eventX,
     this.destination,
     this.sender,
     this.enterer,
@@ -94,16 +94,15 @@ class MessageHeader extends DomainResource {
               )
               .toList()
           : null,
-      eventXMessageHeader:
-          json['eventCoding'] != null || json['_eventCoding'] != null
-              ? Coding.fromJson({
-                  'value': json['eventCoding'],
-                  '_value': json['_eventCoding'],
-                })
-              : FhirUri.fromJson({
-                  'value': json['eventUri'],
-                  '_value': json['_eventUri'],
-                }),
+      eventX: json['eventCoding'] != null || json['_eventCoding'] != null
+          ? Coding.fromJson({
+              'value': json['eventCoding'],
+              '_value': json['_eventCoding'],
+            })
+          : FhirUri.fromJson({
+              'value': json['eventUri'],
+              '_value': json['_eventUri'],
+            }),
       destination: json['destination'] != null
           ? (json['destination'] as List<dynamic>)
               .map<MessageHeaderDestination>(
@@ -206,13 +205,13 @@ class MessageHeader extends DomainResource {
   @override
   String get fhirType => 'MessageHeader';
 
-  /// [eventXMessageHeader]
+  /// [eventX]
   /// Code that identifies the event this message represents and connects it
   /// with its definition. Events defined as part of the FHIR specification
   /// have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
-  final EventXMessageHeader eventXMessageHeader;
+  final EventXMessageHeader eventX;
 
   /// [destination]
   /// The destination application which the message is intended for.
@@ -300,7 +299,7 @@ class MessageHeader extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['eventXMessageHeader'] = eventXMessageHeader.toJson();
+    json['eventX'] = eventX.toJson();
 
     if (destination != null && destination!.isNotEmpty) {
       json['destination'] = destination!.map((e) => e.toJson()).toList();
@@ -352,7 +351,7 @@ class MessageHeader extends DomainResource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    EventXMessageHeader? eventXMessageHeader,
+    EventXMessageHeader? eventX,
     List<MessageHeaderDestination>? destination,
     Reference? sender,
     Reference? enterer,
@@ -377,7 +376,7 @@ class MessageHeader extends DomainResource {
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      eventXMessageHeader: eventXMessageHeader ?? this.eventXMessageHeader,
+      eventX: eventX ?? this.eventX,
       destination: destination ?? this.destination,
       sender: sender ?? this.sender,
       enterer: enterer ?? this.enterer,

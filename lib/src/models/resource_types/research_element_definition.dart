@@ -27,7 +27,7 @@ class ResearchElementDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectXResearchElementDefinition,
+    this.subjectX,
     this.date,
     this.publisher,
     this.contact,
@@ -169,18 +169,17 @@ class ResearchElementDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXResearchElementDefinition:
-          json['subjectCodeableConcept'] != null ||
-                  json['_subjectCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['subjectCodeableConcept'],
-                  '_value': json['_subjectCodeableConcept'],
-                })
-              : json['subjectReference'] != null
-                  ? Reference.fromJson(
-                      json['subjectReference'] as Map<String, dynamic>,
-                    )
-                  : null,
+      subjectX: json['subjectCodeableConcept'] != null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -456,11 +455,11 @@ class ResearchElementDefinition extends DomainResource {
   /// is not intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// [subjectXResearchElementDefinition]
+  /// [subjectX]
   /// The intended subjects for the ResearchElementDefinition. If this
   /// element is not provided, a Patient subject is assumed, but the subject
   /// of the ResearchElementDefinition can be anything.
-  final SubjectXResearchElementDefinition? subjectXResearchElementDefinition;
+  final SubjectXResearchElementDefinition? subjectX;
 
   /// [date]
   /// The date (and optionally time) when the research element definition was
@@ -635,9 +634,8 @@ class ResearchElementDefinition extends DomainResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXResearchElementDefinition != null) {
-      json['subjectXResearchElementDefinition'] =
-          subjectXResearchElementDefinition!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -735,7 +733,7 @@ class ResearchElementDefinition extends DomainResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXResearchElementDefinition? subjectXResearchElementDefinition,
+    SubjectXResearchElementDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -782,8 +780,7 @@ class ResearchElementDefinition extends DomainResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXResearchElementDefinition: subjectXResearchElementDefinition ??
-          this.subjectXResearchElementDefinition,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -822,16 +819,16 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.definitionXResearchElementDefinitionCharacteristic,
+    required this.definitionX,
     this.usageContext,
     this.exclude,
     this.unitOfMeasure,
     this.studyEffectiveDescription,
-    this.studyEffectiveXResearchElementDefinitionCharacteristic,
+    this.studyEffectiveX,
     this.studyEffectiveTimeFromStart,
     this.studyEffectiveGroupMeasure,
     this.participantEffectiveDescription,
-    this.participantEffectiveXResearchElementDefinitionCharacteristic,
+    this.participantEffectiveX,
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
     super.disallowExtensions,
@@ -863,29 +860,27 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               )
               .toList()
           : null,
-      definitionXResearchElementDefinitionCharacteristic:
-          json['definitionCodeableConcept'] != null ||
-                  json['_definitionCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['definitionCodeableConcept'],
-                  '_value': json['_definitionCodeableConcept'],
+      definitionX: json['definitionCodeableConcept'] != null ||
+              json['_definitionCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['definitionCodeableConcept'],
+              '_value': json['_definitionCodeableConcept'],
+            })
+          : json['definitionCanonical'] != null ||
+                  json['_definitionCanonical'] != null
+              ? FhirCanonical.fromJson({
+                  'value': json['definitionCanonical'],
+                  '_value': json['_definitionCanonical'],
                 })
-              : json['definitionCanonical'] != null ||
-                      json['_definitionCanonical'] != null
-                  ? FhirCanonical.fromJson({
-                      'value': json['definitionCanonical'],
-                      '_value': json['_definitionCanonical'],
+              : json['definitionExpression'] != null ||
+                      json['_definitionExpression'] != null
+                  ? FhirExpression.fromJson({
+                      'value': json['definitionExpression'],
+                      '_value': json['_definitionExpression'],
                     })
-                  : json['definitionExpression'] != null ||
-                          json['_definitionExpression'] != null
-                      ? FhirExpression.fromJson({
-                          'value': json['definitionExpression'],
-                          '_value': json['_definitionExpression'],
-                        })
-                      : DataRequirement.fromJson(
-                          json['definitionDataRequirement']
-                              as Map<String, dynamic>,
-                        ),
+                  : DataRequirement.fromJson(
+                      json['definitionDataRequirement'] as Map<String, dynamic>,
+                    ),
       usageContext: json['usageContext'] != null
           ? (json['usageContext'] as List<dynamic>)
               .map<UsageContext>(
@@ -913,31 +908,29 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               '_value': json['_studyEffectiveDescription'],
             })
           : null,
-      studyEffectiveXResearchElementDefinitionCharacteristic:
-          json['studyEffectiveDateTime'] != null ||
-                  json['_studyEffectiveDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['studyEffectiveDateTime'],
-                  '_value': json['_studyEffectiveDateTime'],
+      studyEffectiveX: json['studyEffectiveDateTime'] != null ||
+              json['_studyEffectiveDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['studyEffectiveDateTime'],
+              '_value': json['_studyEffectiveDateTime'],
+            })
+          : json['studyEffectivePeriod'] != null ||
+                  json['_studyEffectivePeriod'] != null
+              ? Period.fromJson({
+                  'value': json['studyEffectivePeriod'],
+                  '_value': json['_studyEffectivePeriod'],
                 })
-              : json['studyEffectivePeriod'] != null ||
-                      json['_studyEffectivePeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['studyEffectivePeriod'],
-                      '_value': json['_studyEffectivePeriod'],
+              : json['studyEffectiveDuration'] != null ||
+                      json['_studyEffectiveDuration'] != null
+                  ? FhirDuration.fromJson({
+                      'value': json['studyEffectiveDuration'],
+                      '_value': json['_studyEffectiveDuration'],
                     })
-                  : json['studyEffectiveDuration'] != null ||
-                          json['_studyEffectiveDuration'] != null
-                      ? FhirDuration.fromJson({
-                          'value': json['studyEffectiveDuration'],
-                          '_value': json['_studyEffectiveDuration'],
-                        })
-                      : json['studyEffectiveTiming'] != null
-                          ? Timing.fromJson(
-                              json['studyEffectiveTiming']
-                                  as Map<String, dynamic>,
-                            )
-                          : null,
+                  : json['studyEffectiveTiming'] != null
+                      ? Timing.fromJson(
+                          json['studyEffectiveTiming'] as Map<String, dynamic>,
+                        )
+                      : null,
       studyEffectiveTimeFromStart: json['studyEffectiveTimeFromStart'] != null
           ? FhirDuration.fromJson(
               json['studyEffectiveTimeFromStart'] as Map<String, dynamic>,
@@ -958,31 +951,30 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                   '_value': json['_participantEffectiveDescription'],
                 })
               : null,
-      participantEffectiveXResearchElementDefinitionCharacteristic:
-          json['participantEffectiveDateTime'] != null ||
-                  json['_participantEffectiveDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['participantEffectiveDateTime'],
-                  '_value': json['_participantEffectiveDateTime'],
+      participantEffectiveX: json['participantEffectiveDateTime'] != null ||
+              json['_participantEffectiveDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['participantEffectiveDateTime'],
+              '_value': json['_participantEffectiveDateTime'],
+            })
+          : json['participantEffectivePeriod'] != null ||
+                  json['_participantEffectivePeriod'] != null
+              ? Period.fromJson({
+                  'value': json['participantEffectivePeriod'],
+                  '_value': json['_participantEffectivePeriod'],
                 })
-              : json['participantEffectivePeriod'] != null ||
-                      json['_participantEffectivePeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['participantEffectivePeriod'],
-                      '_value': json['_participantEffectivePeriod'],
+              : json['participantEffectiveDuration'] != null ||
+                      json['_participantEffectiveDuration'] != null
+                  ? FhirDuration.fromJson({
+                      'value': json['participantEffectiveDuration'],
+                      '_value': json['_participantEffectiveDuration'],
                     })
-                  : json['participantEffectiveDuration'] != null ||
-                          json['_participantEffectiveDuration'] != null
-                      ? FhirDuration.fromJson({
-                          'value': json['participantEffectiveDuration'],
-                          '_value': json['_participantEffectiveDuration'],
-                        })
-                      : json['participantEffectiveTiming'] != null
-                          ? Timing.fromJson(
-                              json['participantEffectiveTiming']
-                                  as Map<String, dynamic>,
-                            )
-                          : null,
+                  : json['participantEffectiveTiming'] != null
+                      ? Timing.fromJson(
+                          json['participantEffectiveTiming']
+                              as Map<String, dynamic>,
+                        )
+                      : null,
       participantEffectiveTimeFromStart:
           json['participantEffectiveTimeFromStart'] != null
               ? FhirDuration.fromJson(
@@ -1043,13 +1035,12 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';
 
-  /// [definitionXResearchElementDefinitionCharacteristic]
+  /// [definitionX]
   /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
   /// diagnosis onset in the last year).
-  final DefinitionXResearchElementDefinitionCharacteristic
-      definitionXResearchElementDefinitionCharacteristic;
+  final DefinitionXResearchElementDefinitionCharacteristic definitionX;
 
   /// [usageContext]
   /// Use UsageContext to define the members of the population, such as Age
@@ -1069,10 +1060,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// A narrative description of the time period the study covers.
   final FhirString? studyEffectiveDescription;
 
-  /// [studyEffectiveXResearchElementDefinitionCharacteristic]
+  /// [studyEffectiveX]
   /// Indicates what effective period the study covers.
-  final StudyEffectiveXResearchElementDefinitionCharacteristic?
-      studyEffectiveXResearchElementDefinitionCharacteristic;
+  final StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX;
 
   /// [studyEffectiveTimeFromStart]
   /// Indicates duration from the study initiation.
@@ -1087,10 +1077,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// A narrative description of the time period the study covers.
   final FhirString? participantEffectiveDescription;
 
-  /// [participantEffectiveXResearchElementDefinitionCharacteristic]
+  /// [participantEffectiveX]
   /// Indicates what effective period the study covers.
   final ParticipantEffectiveXResearchElementDefinitionCharacteristic?
-      participantEffectiveXResearchElementDefinitionCharacteristic;
+      participantEffectiveX;
 
   /// [participantEffectiveTimeFromStart]
   /// Indicates duration from the participant's study entry.
@@ -1122,8 +1112,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['definitionXResearchElementDefinitionCharacteristic'] =
-        definitionXResearchElementDefinitionCharacteristic.toJson();
+    json['definitionX'] = definitionX.toJson();
 
     if (usageContext != null && usageContext!.isNotEmpty) {
       json['usageContext'] = usageContext!.map((e) => e.toJson()).toList();
@@ -1135,8 +1124,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
 
     addField('studyEffectiveDescription', studyEffectiveDescription);
-    addField('studyEffectiveXResearchElementDefinitionCharacteristic',
-        studyEffectiveXResearchElementDefinitionCharacteristic);
+    addField('studyEffectiveX', studyEffectiveX);
     if (studyEffectiveTimeFromStart != null) {
       json['studyEffectiveTimeFromStart'] =
           studyEffectiveTimeFromStart!.toJson();
@@ -1145,8 +1133,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
         'participantEffectiveDescription', participantEffectiveDescription);
-    addField('participantEffectiveXResearchElementDefinitionCharacteristic',
-        participantEffectiveXResearchElementDefinitionCharacteristic);
+    addField('participantEffectiveX', participantEffectiveX);
     if (participantEffectiveTimeFromStart != null) {
       json['participantEffectiveTimeFromStart'] =
           participantEffectiveTimeFromStart!.toJson();
@@ -1164,19 +1151,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    DefinitionXResearchElementDefinitionCharacteristic?
-        definitionXResearchElementDefinitionCharacteristic,
+    DefinitionXResearchElementDefinitionCharacteristic? definitionX,
     List<UsageContext>? usageContext,
     FhirBoolean? exclude,
     CodeableConcept? unitOfMeasure,
     FhirString? studyEffectiveDescription,
-    StudyEffectiveXResearchElementDefinitionCharacteristic?
-        studyEffectiveXResearchElementDefinitionCharacteristic,
+    StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX,
     FhirDuration? studyEffectiveTimeFromStart,
     GroupMeasure? studyEffectiveGroupMeasure,
     FhirString? participantEffectiveDescription,
     ParticipantEffectiveXResearchElementDefinitionCharacteristic?
-        participantEffectiveXResearchElementDefinitionCharacteristic,
+        participantEffectiveX,
     FhirDuration? participantEffectiveTimeFromStart,
     GroupMeasure? participantEffectiveGroupMeasure,
     Map<String, Object?>? userData,
@@ -1188,26 +1173,21 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      definitionXResearchElementDefinitionCharacteristic:
-          definitionXResearchElementDefinitionCharacteristic ??
-              this.definitionXResearchElementDefinitionCharacteristic,
+      definitionX: definitionX ?? this.definitionX,
       usageContext: usageContext ?? this.usageContext,
       exclude: exclude ?? this.exclude,
       unitOfMeasure: unitOfMeasure ?? this.unitOfMeasure,
       studyEffectiveDescription:
           studyEffectiveDescription ?? this.studyEffectiveDescription,
-      studyEffectiveXResearchElementDefinitionCharacteristic:
-          studyEffectiveXResearchElementDefinitionCharacteristic ??
-              this.studyEffectiveXResearchElementDefinitionCharacteristic,
+      studyEffectiveX: studyEffectiveX ?? this.studyEffectiveX,
       studyEffectiveTimeFromStart:
           studyEffectiveTimeFromStart ?? this.studyEffectiveTimeFromStart,
       studyEffectiveGroupMeasure:
           studyEffectiveGroupMeasure ?? this.studyEffectiveGroupMeasure,
       participantEffectiveDescription: participantEffectiveDescription ??
           this.participantEffectiveDescription,
-      participantEffectiveXResearchElementDefinitionCharacteristic:
-          participantEffectiveXResearchElementDefinitionCharacteristic ??
-              this.participantEffectiveXResearchElementDefinitionCharacteristic,
+      participantEffectiveX:
+          participantEffectiveX ?? this.participantEffectiveX,
       participantEffectiveTimeFromStart: participantEffectiveTimeFromStart ??
           this.participantEffectiveTimeFromStart,
       participantEffectiveGroupMeasure: participantEffectiveGroupMeasure ??

@@ -27,7 +27,7 @@ class AllergyIntolerance extends DomainResource {
     this.code,
     required this.patient,
     this.encounter,
-    this.onsetXAllergyIntolerance,
+    this.onsetX,
     this.recordedDate,
     this.recorder,
     this.asserter,
@@ -145,8 +145,7 @@ class AllergyIntolerance extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetXAllergyIntolerance: json['onsetDateTime'] != null ||
-              json['_onsetDateTime'] != null
+      onsetX: json['onsetDateTime'] != null || json['_onsetDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
@@ -317,10 +316,10 @@ class AllergyIntolerance extends DomainResource {
   /// The encounter when the allergy or intolerance was asserted.
   final Reference? encounter;
 
-  /// [onsetXAllergyIntolerance]
+  /// [onsetX]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final OnsetXAllergyIntolerance? onsetXAllergyIntolerance;
+  final OnsetXAllergyIntolerance? onsetX;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
@@ -420,7 +419,7 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetXAllergyIntolerance', onsetXAllergyIntolerance);
+    addField('onsetX', onsetX);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -463,7 +462,7 @@ class AllergyIntolerance extends DomainResource {
     CodeableConcept? code,
     Reference? patient,
     Reference? encounter,
-    OnsetXAllergyIntolerance? onsetXAllergyIntolerance,
+    OnsetXAllergyIntolerance? onsetX,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,
@@ -493,8 +492,7 @@ class AllergyIntolerance extends DomainResource {
       code: code ?? this.code,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
-      onsetXAllergyIntolerance:
-          onsetXAllergyIntolerance ?? this.onsetXAllergyIntolerance,
+      onsetX: onsetX ?? this.onsetX,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

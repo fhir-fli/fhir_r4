@@ -28,11 +28,11 @@ class DeviceRequest extends DomainResource {
     this.status,
     required this.intent,
     this.priority,
-    required this.codeXDeviceRequest,
+    required this.codeX,
     this.parameter,
     required this.subject,
     this.encounter,
-    this.occurrenceXDeviceRequest,
+    this.occurrenceX,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -163,15 +163,14 @@ class DeviceRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      codeXDeviceRequest:
-          json['codeReference'] != null || json['_codeReference'] != null
-              ? Reference.fromJson({
-                  'value': json['codeReference'],
-                  '_value': json['_codeReference'],
-                })
-              : CodeableConcept.fromJson(
-                  json['codeCodeableConcept'] as Map<String, dynamic>,
-                ),
+      codeX: json['codeReference'] != null || json['_codeReference'] != null
+          ? Reference.fromJson({
+              'value': json['codeReference'],
+              '_value': json['_codeReference'],
+            })
+          : CodeableConcept.fromJson(
+              json['codeCodeableConcept'] as Map<String, dynamic>,
+            ),
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<DeviceRequestParameter>(
@@ -189,7 +188,7 @@ class DeviceRequest extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXDeviceRequest: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -369,9 +368,9 @@ class DeviceRequest extends DomainResource {
   /// other requests.
   final RequestPriority? priority;
 
-  /// [codeXDeviceRequest]
+  /// [codeX]
   /// The details of the device to be used.
-  final CodeXDeviceRequest codeXDeviceRequest;
+  final CodeXDeviceRequest codeX;
 
   /// [parameter]
   /// Specific parameters for the ordered item. For example, the prism value
@@ -387,12 +386,12 @@ class DeviceRequest extends DomainResource {
   /// made.
   final Reference? encounter;
 
-  /// [occurrenceXDeviceRequest]
+  /// [occurrenceX]
   /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  final OccurrenceXDeviceRequest? occurrenceXDeviceRequest;
+  final OccurrenceXDeviceRequest? occurrenceX;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -515,7 +514,7 @@ class DeviceRequest extends DomainResource {
     addField('status', status);
     addField('intent', intent);
     addField('priority', priority);
-    json['codeXDeviceRequest'] = codeXDeviceRequest.toJson();
+    json['codeX'] = codeX.toJson();
 
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
@@ -527,7 +526,7 @@ class DeviceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceXDeviceRequest', occurrenceXDeviceRequest);
+    addField('occurrenceX', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -591,11 +590,11 @@ class DeviceRequest extends DomainResource {
     RequestStatus? status,
     RequestIntent? intent,
     RequestPriority? priority,
-    CodeXDeviceRequest? codeXDeviceRequest,
+    CodeXDeviceRequest? codeX,
     List<DeviceRequestParameter>? parameter,
     Reference? subject,
     Reference? encounter,
-    OccurrenceXDeviceRequest? occurrenceXDeviceRequest,
+    OccurrenceXDeviceRequest? occurrenceX,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,
@@ -630,12 +629,11 @@ class DeviceRequest extends DomainResource {
       status: status ?? this.status,
       intent: intent ?? this.intent,
       priority: priority ?? this.priority,
-      codeXDeviceRequest: codeXDeviceRequest ?? this.codeXDeviceRequest,
+      codeX: codeX ?? this.codeX,
       parameter: parameter ?? this.parameter,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceXDeviceRequest:
-          occurrenceXDeviceRequest ?? this.occurrenceXDeviceRequest,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,
@@ -662,7 +660,7 @@ class DeviceRequestParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueXDeviceRequestParameter,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -697,7 +695,7 @@ class DeviceRequestParameter extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      valueXDeviceRequestParameter: json['valueCodeableConcept'] != null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -769,9 +767,9 @@ class DeviceRequestParameter extends BackboneElement {
   /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;
 
-  /// [valueXDeviceRequestParameter]
+  /// [valueX]
   /// The value of the device detail.
-  final ValueXDeviceRequestParameter? valueXDeviceRequestParameter;
+  final ValueXDeviceRequestParameter? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -798,9 +796,8 @@ class DeviceRequestParameter extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    if (valueXDeviceRequestParameter != null) {
-      json['valueXDeviceRequestParameter'] =
-          valueXDeviceRequestParameter!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     return json;
@@ -814,7 +811,7 @@ class DeviceRequestParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    ValueXDeviceRequestParameter? valueXDeviceRequestParameter,
+    ValueXDeviceRequestParameter? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -825,8 +822,7 @@ class DeviceRequestParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueXDeviceRequestParameter:
-          valueXDeviceRequestParameter ?? this.valueXDeviceRequestParameter,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

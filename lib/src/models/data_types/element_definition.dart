@@ -30,14 +30,14 @@ class ElementDefinition extends BackboneType {
     this.base,
     this.contentReference,
     this.type,
-    this.defaultValueXElementDefinition,
+    this.defaultValueX,
     this.meaningWhenMissing,
     this.orderMeaning,
-    this.fixedXElementDefinition,
-    this.patternXElementDefinition,
+    this.fixedX,
+    this.patternX,
     this.example,
-    this.minValueXElementDefinition,
-    this.maxValueXElementDefinition,
+    this.minValueX,
+    this.maxValueX,
     this.maxLength,
     this.condition,
     this.constraint,
@@ -181,7 +181,7 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      defaultValueXElementDefinition: json['defaultValueBase64Binary'] != null ||
+      defaultValueX: json['defaultValueBase64Binary'] != null ||
               json['_defaultValueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['defaultValueBase64Binary'],
@@ -279,7 +279,8 @@ class ElementDefinition extends BackboneType {
                                                             })
                                                           : json['defaultValueString'] !=
                                                                       null ||
-                                                                  json['_defaultValueString'] != null
+                                                                  json['_defaultValueString'] !=
+                                                                      null
                                                               ? FhirString.fromJson({
                                                                   'value': json[
                                                                       'defaultValueString'],
@@ -490,7 +491,7 @@ class ElementDefinition extends BackboneType {
                   '_value': json['_orderMeaning'],
                 })
               : null,
-      fixedXElementDefinition: json['fixedBase64Binary'] != null ||
+      fixedX: json['fixedBase64Binary'] != null ||
               json['_fixedBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['fixedBase64Binary'],
@@ -782,7 +783,7 @@ class ElementDefinition extends BackboneType {
                                                                                                                                                                                                                       json['fixedDosage'] as Map<String, dynamic>,
                                                                                                                                                                                                                     )
                                                                                                                                                                                                                   : null,
-      patternXElementDefinition: json['patternBase64Binary'] != null ||
+      patternX: json['patternBase64Binary'] != null ||
               json['_patternBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['patternBase64Binary'],
@@ -1084,8 +1085,7 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      minValueXElementDefinition: json['minValueDate'] != null ||
-              json['_minValueDate'] != null
+      minValueX: json['minValueDate'] != null || json['_minValueDate'] != null
           ? FhirDate.fromJson({
               'value': json['minValueDate'],
               '_value': json['_minValueDate'],
@@ -1139,8 +1139,7 @@ class ElementDefinition extends BackboneType {
                                                   as Map<String, dynamic>,
                                             )
                                           : null,
-      maxValueXElementDefinition: json['maxValueDate'] != null ||
-              json['_maxValueDate'] != null
+      maxValueX: json['maxValueDate'] != null || json['_maxValueDate'] != null
           ? FhirDate.fromJson({
               'value': json['maxValueDate'],
               '_value': json['_maxValueDate'],
@@ -1410,10 +1409,10 @@ class ElementDefinition extends BackboneType {
   /// to be.
   final List<ElementDefinitionType>? type;
 
-  /// [defaultValueXElementDefinition]
+  /// [defaultValueX]
   /// The value that should be used if there is no value stated in the
   /// instance (e.g. 'if not otherwise specified, the abstract is false').
-  final DefaultValueXElementDefinition? defaultValueXElementDefinition;
+  final DefaultValueXElementDefinition? defaultValueX;
 
   /// [meaningWhenMissing]
   /// The Implicit meaning that is to be understood when this element is
@@ -1426,14 +1425,14 @@ class ElementDefinition extends BackboneType {
   /// the order of the element has no meaning.
   final FhirString? orderMeaning;
 
-  /// [fixedXElementDefinition]
+  /// [fixedX]
   /// Specifies a value that SHALL be exactly the value for this element in
   /// the instance. For purposes of comparison, non-significant whitespace is
   /// ignored, and all values must be an exact match (case and accent
   /// sensitive). Missing elements/attributes must also be missing.
-  final FixedXElementDefinition? fixedXElementDefinition;
+  final FixedXElementDefinition? fixedX;
 
-  /// [patternXElementDefinition]
+  /// [patternX]
   /// Specifies a value that the value in the instance SHALL follow - that
   /// is, any value in the pattern must be found in the instance. Other
   /// additional values may be found too. This is effectively constraint by
@@ -1453,24 +1452,24 @@ class ElementDefinition extends BackboneType {
   /// 1. If primitive: it must match exactly the pattern value
   /// 2. If a complex object: it must match (recursively) the pattern value
   /// 3. If an array: it must match (recursively) the pattern value.
-  final PatternXElementDefinition? patternXElementDefinition;
+  final PatternXElementDefinition? patternX;
 
   /// [example]
   /// A sample value for this element demonstrating the type of information
   /// that would typically be found in the element.
   final List<ElementDefinitionExample>? example;
 
-  /// [minValueXElementDefinition]
+  /// [minValueX]
   /// The minimum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final MinValueXElementDefinition? minValueXElementDefinition;
+  final MinValueXElementDefinition? minValueX;
 
-  /// [maxValueXElementDefinition]
+  /// [maxValueX]
   /// The maximum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final MaxValueXElementDefinition? maxValueXElementDefinition;
+  final MaxValueXElementDefinition? maxValueX;
 
   /// [maxLength]
   /// Indicates the maximum length in characters that is permitted to be
@@ -1590,17 +1589,17 @@ class ElementDefinition extends BackboneType {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    addField('defaultValueXElementDefinition', defaultValueXElementDefinition);
+    addField('defaultValueX', defaultValueX);
     addField('meaningWhenMissing', meaningWhenMissing);
     addField('orderMeaning', orderMeaning);
-    addField('fixedXElementDefinition', fixedXElementDefinition);
-    addField('patternXElementDefinition', patternXElementDefinition);
+    addField('fixedX', fixedX);
+    addField('patternX', patternX);
     if (example != null && example!.isNotEmpty) {
       json['example'] = example!.map((e) => e.toJson()).toList();
     }
 
-    addField('minValueXElementDefinition', minValueXElementDefinition);
-    addField('maxValueXElementDefinition', maxValueXElementDefinition);
+    addField('minValueX', minValueX);
+    addField('maxValueX', maxValueX);
     addField('maxLength', maxLength);
     if (condition != null && condition!.isNotEmpty) {
       final fieldJson2 = condition!.map((e) => e.toJson()).toList();
@@ -1653,14 +1652,14 @@ class ElementDefinition extends BackboneType {
     ElementDefinitionBase? base,
     FhirUri? contentReference,
     List<ElementDefinitionType>? type,
-    DefaultValueXElementDefinition? defaultValueXElementDefinition,
+    DefaultValueXElementDefinition? defaultValueX,
     FhirMarkdown? meaningWhenMissing,
     FhirString? orderMeaning,
-    FixedXElementDefinition? fixedXElementDefinition,
-    PatternXElementDefinition? patternXElementDefinition,
+    FixedXElementDefinition? fixedX,
+    PatternXElementDefinition? patternX,
     List<ElementDefinitionExample>? example,
-    MinValueXElementDefinition? minValueXElementDefinition,
-    MaxValueXElementDefinition? maxValueXElementDefinition,
+    MinValueXElementDefinition? minValueX,
+    MaxValueXElementDefinition? maxValueX,
     FhirInteger? maxLength,
     List<FhirId>? condition,
     List<ElementDefinitionConstraint>? constraint,
@@ -1696,19 +1695,14 @@ class ElementDefinition extends BackboneType {
       base: base ?? this.base,
       contentReference: contentReference ?? this.contentReference,
       type: type ?? this.type,
-      defaultValueXElementDefinition:
-          defaultValueXElementDefinition ?? this.defaultValueXElementDefinition,
+      defaultValueX: defaultValueX ?? this.defaultValueX,
       meaningWhenMissing: meaningWhenMissing ?? this.meaningWhenMissing,
       orderMeaning: orderMeaning ?? this.orderMeaning,
-      fixedXElementDefinition:
-          fixedXElementDefinition ?? this.fixedXElementDefinition,
-      patternXElementDefinition:
-          patternXElementDefinition ?? this.patternXElementDefinition,
+      fixedX: fixedX ?? this.fixedX,
+      patternX: patternX ?? this.patternX,
       example: example ?? this.example,
-      minValueXElementDefinition:
-          minValueXElementDefinition ?? this.minValueXElementDefinition,
-      maxValueXElementDefinition:
-          maxValueXElementDefinition ?? this.maxValueXElementDefinition,
+      minValueX: minValueX ?? this.minValueX,
+      maxValueX: maxValueX ?? this.maxValueX,
       maxLength: maxLength ?? this.maxLength,
       condition: condition ?? this.condition,
       constraint: constraint ?? this.constraint,
@@ -2437,7 +2431,7 @@ class ElementDefinitionExample extends Element {
     super.id,
     super.extension_,
     required this.label,
-    required this.valueXElementDefinitionExample,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -2462,7 +2456,7 @@ class ElementDefinitionExample extends Element {
         'value': json['label'],
         '_value': json['_label'],
       }),
-      valueXElementDefinitionExample: json['valueBase64Binary'] != null ||
+      valueX: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
@@ -2801,10 +2795,10 @@ class ElementDefinitionExample extends Element {
   /// Describes the purpose of this example amoung the set of examples.
   final FhirString label;
 
-  /// [valueXElementDefinitionExample]
+  /// [valueX]
   /// The actual value for the element, which must be one of the types
   /// allowed for this element.
-  final ValueXElementDefinitionExample valueXElementDefinitionExample;
+  final ValueXElementDefinitionExample valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2823,7 +2817,7 @@ class ElementDefinitionExample extends Element {
     }
 
     addField('label', label);
-    addField('valueXElementDefinitionExample', valueXElementDefinitionExample);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -2834,7 +2828,7 @@ class ElementDefinitionExample extends Element {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? label,
-    ValueXElementDefinitionExample? valueXElementDefinitionExample,
+    ValueXElementDefinitionExample? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2844,8 +2838,7 @@ class ElementDefinitionExample extends Element {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       label: label ?? this.label,
-      valueXElementDefinitionExample:
-          valueXElementDefinitionExample ?? this.valueXElementDefinitionExample,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

@@ -407,7 +407,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     super.modifierExtension,
     this.collector,
     this.source,
-    this.collectedXBiologicallyDerivedProductCollection,
+    this.collectedX,
     super.disallowExtensions,
   });
 
@@ -447,18 +447,17 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
               json['source'] as Map<String, dynamic>,
             )
           : null,
-      collectedXBiologicallyDerivedProductCollection:
-          json['collectedDateTime'] != null ||
-                  json['_collectedDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['collectedDateTime'],
-                  '_value': json['_collectedDateTime'],
-                })
-              : json['collectedPeriod'] != null
-                  ? Period.fromJson(
-                      json['collectedPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
+      collectedX: json['collectedDateTime'] != null ||
+              json['_collectedDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['collectedDateTime'],
+              '_value': json['_collectedDateTime'],
+            })
+          : json['collectedPeriod'] != null
+              ? Period.fromJson(
+                  json['collectedPeriod'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -513,10 +512,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// processed/manipulated/manufactured product, providing the product.
   final Reference? source;
 
-  /// [collectedXBiologicallyDerivedProductCollection]
+  /// [collectedX]
   /// Time of product collection.
-  final CollectedXBiologicallyDerivedProductCollection?
-      collectedXBiologicallyDerivedProductCollection;
+  final CollectedXBiologicallyDerivedProductCollection? collectedX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -547,8 +545,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       json['source'] = source!.toJson();
     }
 
-    addField('collectedXBiologicallyDerivedProductCollection',
-        collectedXBiologicallyDerivedProductCollection);
+    addField('collectedX', collectedX);
     return json;
   }
 
@@ -561,8 +558,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? collector,
     Reference? source,
-    CollectedXBiologicallyDerivedProductCollection?
-        collectedXBiologicallyDerivedProductCollection,
+    CollectedXBiologicallyDerivedProductCollection? collectedX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -574,9 +570,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       collector: collector ?? this.collector,
       source: source ?? this.source,
-      collectedXBiologicallyDerivedProductCollection:
-          collectedXBiologicallyDerivedProductCollection ??
-              this.collectedXBiologicallyDerivedProductCollection,
+      collectedX: collectedX ?? this.collectedX,
     );
   }
 }
@@ -596,7 +590,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.description,
     this.procedure,
     this.additive,
-    this.timeXBiologicallyDerivedProductProcessing,
+    this.timeX,
     super.disallowExtensions,
   });
 
@@ -642,17 +636,16 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
               json['additive'] as Map<String, dynamic>,
             )
           : null,
-      timeXBiologicallyDerivedProductProcessing:
-          json['timeDateTime'] != null || json['_timeDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['timeDateTime'],
-                  '_value': json['_timeDateTime'],
-                })
-              : json['timePeriod'] != null
-                  ? Period.fromJson(
-                      json['timePeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
+      timeX: json['timeDateTime'] != null || json['_timeDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['timeDateTime'],
+              '_value': json['_timeDateTime'],
+            })
+          : json['timePeriod'] != null
+              ? Period.fromJson(
+                  json['timePeriod'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -710,10 +703,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Substance added during processing.
   final Reference? additive;
 
-  /// [timeXBiologicallyDerivedProductProcessing]
+  /// [timeX]
   /// Time of processing.
-  final TimeXBiologicallyDerivedProductProcessing?
-      timeXBiologicallyDerivedProductProcessing;
+  final TimeXBiologicallyDerivedProductProcessing? timeX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -745,8 +737,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       json['additive'] = additive!.toJson();
     }
 
-    addField('timeXBiologicallyDerivedProductProcessing',
-        timeXBiologicallyDerivedProductProcessing);
+    addField('timeX', timeX);
     return json;
   }
 
@@ -760,8 +751,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     FhirString? description,
     CodeableConcept? procedure,
     Reference? additive,
-    TimeXBiologicallyDerivedProductProcessing?
-        timeXBiologicallyDerivedProductProcessing,
+    TimeXBiologicallyDerivedProductProcessing? timeX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -774,9 +764,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       description: description ?? this.description,
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
-      timeXBiologicallyDerivedProductProcessing:
-          timeXBiologicallyDerivedProductProcessing ??
-              this.timeXBiologicallyDerivedProductProcessing,
+      timeX: timeX ?? this.timeX,
     );
   }
 }
@@ -794,7 +782,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.timeXBiologicallyDerivedProductManipulation,
+    this.timeX,
     super.disallowExtensions,
   });
 
@@ -830,17 +818,16 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      timeXBiologicallyDerivedProductManipulation:
-          json['timeDateTime'] != null || json['_timeDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['timeDateTime'],
-                  '_value': json['_timeDateTime'],
-                })
-              : json['timePeriod'] != null
-                  ? Period.fromJson(
-                      json['timePeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
+      timeX: json['timeDateTime'] != null || json['_timeDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['timeDateTime'],
+              '_value': json['_timeDateTime'],
+            })
+          : json['timePeriod'] != null
+              ? Period.fromJson(
+                  json['timePeriod'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -890,10 +877,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Description of manipulation.
   final FhirString? description;
 
-  /// [timeXBiologicallyDerivedProductManipulation]
+  /// [timeX]
   /// Time of manipulation.
-  final TimeXBiologicallyDerivedProductManipulation?
-      timeXBiologicallyDerivedProductManipulation;
+  final TimeXBiologicallyDerivedProductManipulation? timeX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -917,8 +903,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
 
     addField('description', description);
-    addField('timeXBiologicallyDerivedProductManipulation',
-        timeXBiologicallyDerivedProductManipulation);
+    addField('timeX', timeX);
     return json;
   }
 
@@ -930,8 +915,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    TimeXBiologicallyDerivedProductManipulation?
-        timeXBiologicallyDerivedProductManipulation,
+    TimeXBiologicallyDerivedProductManipulation? timeX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -942,9 +926,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      timeXBiologicallyDerivedProductManipulation:
-          timeXBiologicallyDerivedProductManipulation ??
-              this.timeXBiologicallyDerivedProductManipulation,
+      timeX: timeX ?? this.timeX,
     );
   }
 }

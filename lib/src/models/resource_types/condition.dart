@@ -27,8 +27,8 @@ class Condition extends DomainResource {
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetXCondition,
-    this.abatementXCondition,
+    this.onsetX,
+    this.abatementX,
     this.recordedDate,
     this.recorder,
     this.asserter,
@@ -152,8 +152,7 @@ class Condition extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetXCondition: json['onsetDateTime'] != null ||
-              json['_onsetDateTime'] != null
+      onsetX: json['onsetDateTime'] != null || json['_onsetDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
@@ -180,7 +179,7 @@ class Condition extends DomainResource {
                               '_value': json['_onsetString'],
                             })
                           : null,
-      abatementXCondition: json['abatementDateTime'] != null ||
+      abatementX: json['abatementDateTime'] != null ||
               json['_abatementDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['abatementDateTime'],
@@ -341,17 +340,17 @@ class Condition extends DomainResource {
   /// creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [onsetXCondition]
+  /// [onsetX]
   /// Estimated or actual date or date-time the condition began, in the
   /// opinion of the clinician.
-  final OnsetXCondition? onsetXCondition;
+  final OnsetXCondition? onsetX;
 
-  /// [abatementXCondition]
+  /// [abatementX]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
-  final AbatementXCondition? abatementXCondition;
+  final AbatementXCondition? abatementX;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was
@@ -454,8 +453,8 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetXCondition', onsetXCondition);
-    addField('abatementXCondition', abatementXCondition);
+    addField('onsetX', onsetX);
+    addField('abatementX', abatementX);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -501,8 +500,8 @@ class Condition extends DomainResource {
     List<CodeableConcept>? bodySite,
     Reference? subject,
     Reference? encounter,
-    OnsetXCondition? onsetXCondition,
-    AbatementXCondition? abatementXCondition,
+    OnsetXCondition? onsetX,
+    AbatementXCondition? abatementX,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,
@@ -532,8 +531,8 @@ class Condition extends DomainResource {
       bodySite: bodySite ?? this.bodySite,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      onsetXCondition: onsetXCondition ?? this.onsetXCondition,
-      abatementXCondition: abatementXCondition ?? this.abatementXCondition,
+      onsetX: onsetX ?? this.onsetX,
+      abatementX: abatementX ?? this.abatementX,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

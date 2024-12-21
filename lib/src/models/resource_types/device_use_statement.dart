@@ -23,7 +23,7 @@ class DeviceUseStatement extends DomainResource {
     required this.status,
     required this.subject,
     this.derivedFrom,
-    this.timingXDeviceUseStatement,
+    this.timingX,
     this.recordedOn,
     this.source,
     required this.device,
@@ -127,24 +127,23 @@ class DeviceUseStatement extends DomainResource {
               )
               .toList()
           : null,
-      timingXDeviceUseStatement:
-          json['timingTiming'] != null || json['_timingTiming'] != null
-              ? Timing.fromJson({
-                  'value': json['timingTiming'],
-                  '_value': json['_timingTiming'],
+      timingX: json['timingTiming'] != null || json['_timingTiming'] != null
+          ? Timing.fromJson({
+              'value': json['timingTiming'],
+              '_value': json['_timingTiming'],
+            })
+          : json['timingPeriod'] != null || json['_timingPeriod'] != null
+              ? Period.fromJson({
+                  'value': json['timingPeriod'],
+                  '_value': json['_timingPeriod'],
                 })
-              : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['timingPeriod'],
-                      '_value': json['_timingPeriod'],
+              : json['timingDateTime'] != null ||
+                      json['_timingDateTime'] != null
+                  ? FhirDateTime.fromJson({
+                      'value': json['timingDateTime'],
+                      '_value': json['_timingDateTime'],
                     })
-                  : json['timingDateTime'] != null ||
-                          json['_timingDateTime'] != null
-                      ? FhirDateTime.fromJson({
-                          'value': json['timingDateTime'],
-                          '_value': json['_timingDateTime'],
-                        })
-                      : null,
+                  : null,
       recordedOn: (json['recordedOn'] != null || json['_recordedOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['recordedOn'],
@@ -261,9 +260,9 @@ class DeviceUseStatement extends DomainResource {
   /// DeviceUseStatement.
   final List<Reference>? derivedFrom;
 
-  /// [timingXDeviceUseStatement]
+  /// [timingX]
   /// How often the device was used.
-  final TimingXDeviceUseStatement? timingXDeviceUseStatement;
+  final TimingXDeviceUseStatement? timingX;
 
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
@@ -349,8 +348,8 @@ class DeviceUseStatement extends DomainResource {
       json['derivedFrom'] = derivedFrom!.map((e) => e.toJson()).toList();
     }
 
-    if (timingXDeviceUseStatement != null) {
-      json['timingXDeviceUseStatement'] = timingXDeviceUseStatement!.toJson();
+    if (timingX != null) {
+      json['timingX'] = timingX!.toJson();
     }
 
     addField('recordedOn', recordedOn);
@@ -397,7 +396,7 @@ class DeviceUseStatement extends DomainResource {
     DeviceUseStatementStatus? status,
     Reference? subject,
     List<Reference>? derivedFrom,
-    TimingXDeviceUseStatement? timingXDeviceUseStatement,
+    TimingXDeviceUseStatement? timingX,
     FhirDateTime? recordedOn,
     Reference? source,
     Reference? device,
@@ -424,8 +423,7 @@ class DeviceUseStatement extends DomainResource {
       status: status ?? this.status,
       subject: subject ?? this.subject,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      timingXDeviceUseStatement:
-          timingXDeviceUseStatement ?? this.timingXDeviceUseStatement,
+      timingX: timingX ?? this.timingX,
       recordedOn: recordedOn ?? this.recordedOn,
       source: source ?? this.source,
       device: device ?? this.device,

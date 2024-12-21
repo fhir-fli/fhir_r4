@@ -959,7 +959,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     super.modifierExtension,
     required this.question,
     required this.operator_,
-    required this.answerXQuestionnaireEnableWhen,
+    required this.answerX,
     super.disallowExtensions,
   });
 
@@ -997,8 +997,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
         'value': json['operator'],
         '_value': json['_operator'],
       }),
-      answerXQuestionnaireEnableWhen: json['answerBoolean'] != null ||
-              json['_answerBoolean'] != null
+      answerX: json['answerBoolean'] != null || json['_answerBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['answerBoolean'],
               '_value': json['_answerBoolean'],
@@ -1106,10 +1105,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Specifies the criteria by which the question is enabled.
   final QuestionnaireItemOperator operator_;
 
-  /// [answerXQuestionnaireEnableWhen]
+  /// [answerX]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final AnswerXQuestionnaireEnableWhen answerXQuestionnaireEnableWhen;
+  final AnswerXQuestionnaireEnableWhen answerX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1134,7 +1133,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
     addField('question', question);
     addField('operator', operator_);
-    addField('answerXQuestionnaireEnableWhen', answerXQuestionnaireEnableWhen);
+    addField('answerX', answerX);
     return json;
   }
 
@@ -1147,7 +1146,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? question,
     QuestionnaireItemOperator? operator_,
-    AnswerXQuestionnaireEnableWhen? answerXQuestionnaireEnableWhen,
+    AnswerXQuestionnaireEnableWhen? answerX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1159,8 +1158,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       question: question ?? this.question,
       operator_: operator_ ?? this.operator_,
-      answerXQuestionnaireEnableWhen:
-          answerXQuestionnaireEnableWhen ?? this.answerXQuestionnaireEnableWhen,
+      answerX: answerX ?? this.answerX,
     );
   }
 }
@@ -1175,7 +1173,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueXQuestionnaireAnswerOption,
+    required this.valueX,
     this.initialSelected,
     super.disallowExtensions,
   });
@@ -1206,8 +1204,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
               )
               .toList()
           : null,
-      valueXQuestionnaireAnswerOption: json['valueInteger'] != null ||
-              json['_valueInteger'] != null
+      valueX: json['valueInteger'] != null || json['_valueInteger'] != null
           ? FhirInteger.fromJson({
               'value': json['valueInteger'],
               '_value': json['_valueInteger'],
@@ -1288,9 +1285,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
 
-  /// [valueXQuestionnaireAnswerOption]
+  /// [valueX]
   /// A potential answer that's allowed as the answer to this question.
-  final ValueXQuestionnaireAnswerOption valueXQuestionnaireAnswerOption;
+  final ValueXQuestionnaireAnswerOption valueX;
 
   /// [initialSelected]
   /// Indicates whether the answer value is selected when the list of
@@ -1318,8 +1315,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField(
-        'valueXQuestionnaireAnswerOption', valueXQuestionnaireAnswerOption);
+    addField('valueX', valueX);
     addField('initialSelected', initialSelected);
     return json;
   }
@@ -1331,7 +1327,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ValueXQuestionnaireAnswerOption? valueXQuestionnaireAnswerOption,
+    ValueXQuestionnaireAnswerOption? valueX,
     FhirBoolean? initialSelected,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1342,8 +1338,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueXQuestionnaireAnswerOption: valueXQuestionnaireAnswerOption ??
-          this.valueXQuestionnaireAnswerOption,
+      valueX: valueX ?? this.valueX,
       initialSelected: initialSelected ?? this.initialSelected,
     );
   }
@@ -1360,7 +1355,7 @@ class QuestionnaireInitial extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueXQuestionnaireInitial,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -1390,8 +1385,7 @@ class QuestionnaireInitial extends BackboneElement {
               )
               .toList()
           : null,
-      valueXQuestionnaireInitial: json['valueBoolean'] != null ||
-              json['_valueBoolean'] != null
+      valueX: json['valueBoolean'] != null || json['_valueBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
@@ -1508,9 +1502,9 @@ class QuestionnaireInitial extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireInitial';
 
-  /// [valueXQuestionnaireInitial]
+  /// [valueX]
   /// The actual value to for an initial answer.
-  final ValueXQuestionnaireInitial valueXQuestionnaireInitial;
+  final ValueXQuestionnaireInitial valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1533,7 +1527,7 @@ class QuestionnaireInitial extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueXQuestionnaireInitial', valueXQuestionnaireInitial);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1544,7 +1538,7 @@ class QuestionnaireInitial extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ValueXQuestionnaireInitial? valueXQuestionnaireInitial,
+    ValueXQuestionnaireInitial? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1554,8 +1548,7 @@ class QuestionnaireInitial extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueXQuestionnaireInitial:
-          valueXQuestionnaireInitial ?? this.valueXQuestionnaireInitial,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

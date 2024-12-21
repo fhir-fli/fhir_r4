@@ -25,7 +25,7 @@ class DetectedIssue extends DomainResource {
     this.code,
     this.severity,
     this.patient,
-    this.identifiedXDetectedIssue,
+    this.identifiedX,
     this.author,
     this.implicated,
     this.evidence,
@@ -123,7 +123,7 @@ class DetectedIssue extends DomainResource {
               json['patient'] as Map<String, dynamic>,
             )
           : null,
-      identifiedXDetectedIssue: json['identifiedDateTime'] != null ||
+      identifiedX: json['identifiedDateTime'] != null ||
               json['_identifiedDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['identifiedDateTime'],
@@ -245,9 +245,9 @@ class DetectedIssue extends DomainResource {
   /// with.
   final Reference? patient;
 
-  /// [identifiedXDetectedIssue]
+  /// [identifiedX]
   /// The date or period when the detected issue was initially identified.
-  final IdentifiedXDetectedIssue? identifiedXDetectedIssue;
+  final IdentifiedXDetectedIssue? identifiedX;
 
   /// [author]
   /// Individual or device responsible for the issue being raised. For
@@ -332,7 +332,7 @@ class DetectedIssue extends DomainResource {
       json['patient'] = patient!.toJson();
     }
 
-    addField('identifiedXDetectedIssue', identifiedXDetectedIssue);
+    addField('identifiedX', identifiedX);
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -371,7 +371,7 @@ class DetectedIssue extends DomainResource {
     CodeableConcept? code,
     DetectedIssueSeverity? severity,
     Reference? patient,
-    IdentifiedXDetectedIssue? identifiedXDetectedIssue,
+    IdentifiedXDetectedIssue? identifiedX,
     Reference? author,
     List<Reference>? implicated,
     List<DetectedIssueEvidence>? evidence,
@@ -397,8 +397,7 @@ class DetectedIssue extends DomainResource {
       code: code ?? this.code,
       severity: severity ?? this.severity,
       patient: patient ?? this.patient,
-      identifiedXDetectedIssue:
-          identifiedXDetectedIssue ?? this.identifiedXDetectedIssue,
+      identifiedX: identifiedX ?? this.identifiedX,
       author: author ?? this.author,
       implicated: implicated ?? this.implicated,
       evidence: evidence ?? this.evidence,

@@ -24,7 +24,7 @@ class TriggerDefinition extends DataType
     super.extension_,
     required this.type,
     this.name,
-    this.timingXTriggerDefinition,
+    this.timingX,
     this.data,
     this.condition,
     super.disallowExtensions,
@@ -57,8 +57,7 @@ class TriggerDefinition extends DataType
               '_value': json['_name'],
             })
           : null,
-      timingXTriggerDefinition: json['timingTiming'] != null ||
-              json['_timingTiming'] != null
+      timingX: json['timingTiming'] != null || json['_timingTiming'] != null
           ? Timing.fromJson({
               'value': json['timingTiming'],
               '_value': json['_timingTiming'],
@@ -149,9 +148,9 @@ class TriggerDefinition extends DataType
   /// simple relative URI that identifies the event in a local context.
   final FhirString? name;
 
-  /// [timingXTriggerDefinition]
+  /// [timingX]
   /// The timing of the event (if this is a periodic trigger).
-  final TimingXTriggerDefinition? timingXTriggerDefinition;
+  final TimingXTriggerDefinition? timingX;
 
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
@@ -183,8 +182,8 @@ class TriggerDefinition extends DataType
 
     addField('type', type);
     addField('name', name);
-    if (timingXTriggerDefinition != null) {
-      json['timingXTriggerDefinition'] = timingXTriggerDefinition!.toJson();
+    if (timingX != null) {
+      json['timingX'] = timingX!.toJson();
     }
 
     if (data != null && data!.isNotEmpty) {
@@ -206,7 +205,7 @@ class TriggerDefinition extends DataType
     List<FhirExtension>? extension_,
     TriggerType? type,
     FhirString? name,
-    TimingXTriggerDefinition? timingXTriggerDefinition,
+    TimingXTriggerDefinition? timingX,
     List<DataRequirement>? data,
     FhirExpression? condition,
     Map<String, Object?>? userData,
@@ -219,8 +218,7 @@ class TriggerDefinition extends DataType
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       name: name ?? this.name,
-      timingXTriggerDefinition:
-          timingXTriggerDefinition ?? this.timingXTriggerDefinition,
+      timingX: timingX ?? this.timingX,
       data: data ?? this.data,
       condition: condition ?? this.condition,
     );

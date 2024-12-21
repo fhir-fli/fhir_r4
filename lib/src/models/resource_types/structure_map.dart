@@ -1292,7 +1292,7 @@ class StructureMapSource extends BackboneElement {
     this.min,
     this.max,
     this.type,
-    this.defaultValueXStructureMapSource,
+    this.defaultValueX,
     this.element,
     this.listMode,
     this.variable,
@@ -1350,7 +1350,7 @@ class StructureMapSource extends BackboneElement {
               '_value': json['_type'],
             })
           : null,
-      defaultValueXStructureMapSource: json['defaultValueBase64Binary'] != null ||
+      defaultValueX: json['defaultValueBase64Binary'] != null ||
               json['_defaultValueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['defaultValueBase64Binary'],
@@ -1448,7 +1448,8 @@ class StructureMapSource extends BackboneElement {
                                                             })
                                                           : json['defaultValueString'] !=
                                                                       null ||
-                                                                  json['_defaultValueString'] != null
+                                                                  json['_defaultValueString'] !=
+                                                                      null
                                                               ? FhirString.fromJson({
                                                                   'value': json[
                                                                       'defaultValueString'],
@@ -1741,9 +1742,9 @@ class StructureMapSource extends BackboneElement {
   /// mapping - use for polymorphic elements.
   final FhirString? type;
 
-  /// [defaultValueXStructureMapSource]
+  /// [defaultValueX]
   /// A value to use if there is no existing value in the source object.
-  final DefaultValueXStructureMapSource? defaultValueXStructureMapSource;
+  final DefaultValueXStructureMapSource? defaultValueX;
 
   /// [element]
   /// Optional field for this source.
@@ -1796,8 +1797,7 @@ class StructureMapSource extends BackboneElement {
     addField('min', min);
     addField('max', max);
     addField('type', type);
-    addField(
-        'defaultValueXStructureMapSource', defaultValueXStructureMapSource);
+    addField('defaultValueX', defaultValueX);
     addField('element', element);
     addField('listMode', listMode);
     addField('variable', variable);
@@ -1818,7 +1818,7 @@ class StructureMapSource extends BackboneElement {
     FhirInteger? min,
     FhirString? max,
     FhirString? type,
-    DefaultValueXStructureMapSource? defaultValueXStructureMapSource,
+    DefaultValueXStructureMapSource? defaultValueX,
     FhirString? element,
     StructureMapSourceListMode? listMode,
     FhirId? variable,
@@ -1838,8 +1838,7 @@ class StructureMapSource extends BackboneElement {
       min: min ?? this.min,
       max: max ?? this.max,
       type: type ?? this.type,
-      defaultValueXStructureMapSource: defaultValueXStructureMapSource ??
-          this.defaultValueXStructureMapSource,
+      defaultValueX: defaultValueX ?? this.defaultValueX,
       element: element ?? this.element,
       listMode: listMode ?? this.listMode,
       variable: variable ?? this.variable,
@@ -2112,7 +2111,7 @@ class StructureMapParameter extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueXStructureMapParameter,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -2142,8 +2141,7 @@ class StructureMapParameter extends BackboneElement {
               )
               .toList()
           : null,
-      valueXStructureMapParameter: json['valueId'] != null ||
-              json['_valueId'] != null
+      valueX: json['valueId'] != null || json['_valueId'] != null
           ? FhirId.fromJson({
               'value': json['valueId'],
               '_value': json['_valueId'],
@@ -2213,9 +2211,9 @@ class StructureMapParameter extends BackboneElement {
   @override
   String get fhirType => 'StructureMapParameter';
 
-  /// [valueXStructureMapParameter]
+  /// [valueX]
   /// Parameter value - variable or literal.
-  final ValueXStructureMapParameter valueXStructureMapParameter;
+  final ValueXStructureMapParameter valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2238,7 +2236,7 @@ class StructureMapParameter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueXStructureMapParameter', valueXStructureMapParameter);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -2249,7 +2247,7 @@ class StructureMapParameter extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ValueXStructureMapParameter? valueXStructureMapParameter,
+    ValueXStructureMapParameter? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2259,8 +2257,7 @@ class StructureMapParameter extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueXStructureMapParameter:
-          valueXStructureMapParameter ?? this.valueXStructureMapParameter,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

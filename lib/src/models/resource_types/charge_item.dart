@@ -30,7 +30,7 @@ class ChargeItem extends DomainResource {
     required this.code,
     required this.subject,
     this.context,
-    this.occurrenceXChargeItem,
+    this.occurrenceX,
     this.performer,
     this.performingOrganization,
     this.requestingOrganization,
@@ -44,7 +44,7 @@ class ChargeItem extends DomainResource {
     this.enteredDate,
     this.reason,
     this.service,
-    this.productXChargeItem,
+    this.productX,
     this.account,
     this.note,
     this.supportingInformation,
@@ -153,7 +153,7 @@ class ChargeItem extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXChargeItem: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -256,7 +256,7 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      productXChargeItem:
+      productX:
           json['productReference'] != null || json['_productReference'] != null
               ? Reference.fromJson({
                   'value': json['productReference'],
@@ -376,9 +376,9 @@ class ChargeItem extends DomainResource {
   /// event.
   final Reference? context;
 
-  /// [occurrenceXChargeItem]
+  /// [occurrenceX]
   /// Date/time(s) or duration when the charged service was applied.
-  final OccurrenceXChargeItem? occurrenceXChargeItem;
+  final OccurrenceXChargeItem? occurrenceX;
 
   /// [performer]
   /// Indicates who or what performed or participated in the charged service.
@@ -436,10 +436,10 @@ class ChargeItem extends DomainResource {
   /// Indicated the rendered service that caused this charge.
   final List<Reference>? service;
 
-  /// [productXChargeItem]
+  /// [productX]
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
-  final ProductXChargeItem? productXChargeItem;
+  final ProductXChargeItem? productX;
 
   /// [account]
   /// Account into which this ChargeItems belongs.
@@ -524,7 +524,7 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('occurrenceXChargeItem', occurrenceXChargeItem);
+    addField('occurrenceX', occurrenceX);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -568,8 +568,8 @@ class ChargeItem extends DomainResource {
       json['service'] = service!.map((e) => e.toJson()).toList();
     }
 
-    if (productXChargeItem != null) {
-      json['productXChargeItem'] = productXChargeItem!.toJson();
+    if (productX != null) {
+      json['productX'] = productX!.toJson();
     }
 
     if (account != null && account!.isNotEmpty) {
@@ -608,7 +608,7 @@ class ChargeItem extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? context,
-    OccurrenceXChargeItem? occurrenceXChargeItem,
+    OccurrenceXChargeItem? occurrenceX,
     List<ChargeItemPerformer>? performer,
     Reference? performingOrganization,
     Reference? requestingOrganization,
@@ -622,7 +622,7 @@ class ChargeItem extends DomainResource {
     FhirDateTime? enteredDate,
     List<CodeableConcept>? reason,
     List<Reference>? service,
-    ProductXChargeItem? productXChargeItem,
+    ProductXChargeItem? productX,
     List<Reference>? account,
     List<Annotation>? note,
     List<Reference>? supportingInformation,
@@ -648,8 +648,7 @@ class ChargeItem extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       context: context ?? this.context,
-      occurrenceXChargeItem:
-          occurrenceXChargeItem ?? this.occurrenceXChargeItem,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       performer: performer ?? this.performer,
       performingOrganization:
           performingOrganization ?? this.performingOrganization,
@@ -665,7 +664,7 @@ class ChargeItem extends DomainResource {
       enteredDate: enteredDate ?? this.enteredDate,
       reason: reason ?? this.reason,
       service: service ?? this.service,
-      productXChargeItem: productXChargeItem ?? this.productXChargeItem,
+      productX: productX ?? this.productX,
       account: account ?? this.account,
       note: note ?? this.note,
       supportingInformation:

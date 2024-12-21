@@ -12,7 +12,7 @@ class Population extends BackboneType {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.ageXPopulation,
+    this.ageX,
     this.gender,
     this.race,
     this.physiologicalCondition,
@@ -45,7 +45,7 @@ class Population extends BackboneType {
               )
               .toList()
           : null,
-      ageXPopulation: json['ageRange'] != null || json['_ageRange'] != null
+      ageX: json['ageRange'] != null || json['_ageRange'] != null
           ? Range.fromJson({
               'value': json['ageRange'],
               '_value': json['_ageRange'],
@@ -115,9 +115,9 @@ class Population extends BackboneType {
   @override
   String get fhirType => 'Population';
 
-  /// [ageXPopulation]
+  /// [ageX]
   /// The age of the specific population.
-  final AgeXPopulation? ageXPopulation;
+  final AgeXPopulation? ageX;
 
   /// [gender]
   /// The gender of the specific population.
@@ -153,8 +153,8 @@ class Population extends BackboneType {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (ageXPopulation != null) {
-      json['ageXPopulation'] = ageXPopulation!.toJson();
+    if (ageX != null) {
+      json['ageX'] = ageX!.toJson();
     }
 
     if (gender != null) {
@@ -179,7 +179,7 @@ class Population extends BackboneType {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AgeXPopulation? ageXPopulation,
+    AgeXPopulation? ageX,
     CodeableConcept? gender,
     CodeableConcept? race,
     CodeableConcept? physiologicalCondition,
@@ -192,7 +192,7 @@ class Population extends BackboneType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      ageXPopulation: ageXPopulation ?? this.ageXPopulation,
+      ageX: ageX ?? this.ageX,
       gender: gender ?? this.gender,
       race: race ?? this.race,
       physiologicalCondition:

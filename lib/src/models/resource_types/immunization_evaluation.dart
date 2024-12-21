@@ -30,8 +30,8 @@ class ImmunizationEvaluation extends DomainResource {
     this.doseStatusReason,
     this.description,
     this.series,
-    this.doseNumberXImmunizationEvaluation,
-    this.seriesDosesXImmunizationEvaluation,
+    this.doseNumberX,
+    this.seriesDosesX,
   }) : super(
           resourceType: R4ResourceType.ImmunizationEvaluation,
         );
@@ -151,34 +151,32 @@ class ImmunizationEvaluation extends DomainResource {
               '_value': json['_series'],
             })
           : null,
-      doseNumberXImmunizationEvaluation:
-          json['doseNumberPositiveInt'] != null ||
-                  json['_doseNumberPositiveInt'] != null
-              ? FhirPositiveInt.fromJson({
-                  'value': json['doseNumberPositiveInt'],
-                  '_value': json['_doseNumberPositiveInt'],
+      doseNumberX: json['doseNumberPositiveInt'] != null ||
+              json['_doseNumberPositiveInt'] != null
+          ? FhirPositiveInt.fromJson({
+              'value': json['doseNumberPositiveInt'],
+              '_value': json['_doseNumberPositiveInt'],
+            })
+          : json['doseNumberString'] != null ||
+                  json['_doseNumberString'] != null
+              ? FhirString.fromJson({
+                  'value': json['doseNumberString'],
+                  '_value': json['_doseNumberString'],
                 })
-              : json['doseNumberString'] != null ||
-                      json['_doseNumberString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['doseNumberString'],
-                      '_value': json['_doseNumberString'],
-                    })
-                  : null,
-      seriesDosesXImmunizationEvaluation:
-          json['seriesDosesPositiveInt'] != null ||
-                  json['_seriesDosesPositiveInt'] != null
-              ? FhirPositiveInt.fromJson({
-                  'value': json['seriesDosesPositiveInt'],
-                  '_value': json['_seriesDosesPositiveInt'],
+              : null,
+      seriesDosesX: json['seriesDosesPositiveInt'] != null ||
+              json['_seriesDosesPositiveInt'] != null
+          ? FhirPositiveInt.fromJson({
+              'value': json['seriesDosesPositiveInt'],
+              '_value': json['_seriesDosesPositiveInt'],
+            })
+          : json['seriesDosesString'] != null ||
+                  json['_seriesDosesString'] != null
+              ? FhirString.fromJson({
+                  'value': json['seriesDosesString'],
+                  '_value': json['_seriesDosesString'],
                 })
-              : json['seriesDosesString'] != null ||
-                      json['_seriesDosesString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['seriesDosesString'],
-                      '_value': json['_seriesDosesString'],
-                    })
-                  : null,
+              : null,
     );
   }
 
@@ -273,13 +271,13 @@ class ImmunizationEvaluation extends DomainResource {
   /// within the context of an authority.
   final FhirString? series;
 
-  /// [doseNumberXImmunizationEvaluation]
+  /// [doseNumberX]
   /// Nominal position in a series.
-  final DoseNumberXImmunizationEvaluation? doseNumberXImmunizationEvaluation;
+  final DoseNumberXImmunizationEvaluation? doseNumberX;
 
-  /// [seriesDosesXImmunizationEvaluation]
+  /// [seriesDosesX]
   /// The recommended number of doses to achieve immunity.
-  final SeriesDosesXImmunizationEvaluation? seriesDosesXImmunizationEvaluation;
+  final SeriesDosesXImmunizationEvaluation? seriesDosesX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -342,10 +340,8 @@ class ImmunizationEvaluation extends DomainResource {
 
     addField('description', description);
     addField('series', series);
-    addField(
-        'doseNumberXImmunizationEvaluation', doseNumberXImmunizationEvaluation);
-    addField('seriesDosesXImmunizationEvaluation',
-        seriesDosesXImmunizationEvaluation);
+    addField('doseNumberX', doseNumberX);
+    addField('seriesDosesX', seriesDosesX);
     return json;
   }
 
@@ -372,8 +368,8 @@ class ImmunizationEvaluation extends DomainResource {
     List<CodeableConcept>? doseStatusReason,
     FhirString? description,
     FhirString? series,
-    DoseNumberXImmunizationEvaluation? doseNumberXImmunizationEvaluation,
-    SeriesDosesXImmunizationEvaluation? seriesDosesXImmunizationEvaluation,
+    DoseNumberXImmunizationEvaluation? doseNumberX,
+    SeriesDosesXImmunizationEvaluation? seriesDosesX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -399,10 +395,8 @@ class ImmunizationEvaluation extends DomainResource {
       doseStatusReason: doseStatusReason ?? this.doseStatusReason,
       description: description ?? this.description,
       series: series ?? this.series,
-      doseNumberXImmunizationEvaluation: doseNumberXImmunizationEvaluation ??
-          this.doseNumberXImmunizationEvaluation,
-      seriesDosesXImmunizationEvaluation: seriesDosesXImmunizationEvaluation ??
-          this.seriesDosesXImmunizationEvaluation,
+      doseNumberX: doseNumberX ?? this.doseNumberX,
+      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
     );
   }
 }

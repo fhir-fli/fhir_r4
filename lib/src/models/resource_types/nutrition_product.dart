@@ -720,7 +720,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueXNutritionProductProductCharacteristic,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -753,40 +753,38 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXNutritionProductProductCharacteristic:
-          json['valueCodeableConcept'] != null ||
-                  json['_valueCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['valueCodeableConcept'],
-                  '_value': json['_valueCodeableConcept'],
+      valueX: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueString'] != null || json['_valueString'] != null
+              ? FhirString.fromJson({
+                  'value': json['valueString'],
+                  '_value': json['_valueString'],
                 })
-              : json['valueString'] != null || json['_valueString'] != null
-                  ? FhirString.fromJson({
-                      'value': json['valueString'],
-                      '_value': json['_valueString'],
+              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                  ? Quantity.fromJson({
+                      'value': json['valueQuantity'],
+                      '_value': json['_valueQuantity'],
                     })
-                  : json['valueQuantity'] != null ||
-                          json['_valueQuantity'] != null
-                      ? Quantity.fromJson({
-                          'value': json['valueQuantity'],
-                          '_value': json['_valueQuantity'],
+                  : json['valueBase64Binary'] != null ||
+                          json['_valueBase64Binary'] != null
+                      ? FhirBase64Binary.fromJson({
+                          'value': json['valueBase64Binary'],
+                          '_value': json['_valueBase64Binary'],
                         })
-                      : json['valueBase64Binary'] != null ||
-                              json['_valueBase64Binary'] != null
-                          ? FhirBase64Binary.fromJson({
-                              'value': json['valueBase64Binary'],
-                              '_value': json['_valueBase64Binary'],
+                      : json['valueAttachment'] != null ||
+                              json['_valueAttachment'] != null
+                          ? Attachment.fromJson({
+                              'value': json['valueAttachment'],
+                              '_value': json['_valueAttachment'],
                             })
-                          : json['valueAttachment'] != null ||
-                                  json['_valueAttachment'] != null
-                              ? Attachment.fromJson({
-                                  'value': json['valueAttachment'],
-                                  '_value': json['_valueAttachment'],
-                                })
-                              : FhirBoolean.fromJson({
-                                  'value': json['valueBoolean'],
-                                  '_value': json['_valueBoolean'],
-                                }),
+                          : FhirBoolean.fromJson({
+                              'value': json['valueBoolean'],
+                              '_value': json['_valueBoolean'],
+                            }),
     );
   }
 
@@ -837,10 +835,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// described (for example, colour, shape).
   final CodeableConcept type;
 
-  /// [valueXNutritionProductProductCharacteristic]
+  /// [valueX]
   /// The actual characteristic value corresponding to the type.
-  final ValueXNutritionProductProductCharacteristic
-      valueXNutritionProductProductCharacteristic;
+  final ValueXNutritionProductProductCharacteristic valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -865,8 +862,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    json['valueXNutritionProductProductCharacteristic'] =
-        valueXNutritionProductProductCharacteristic.toJson();
+    json['valueX'] = valueX.toJson();
 
     return json;
   }
@@ -879,8 +875,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXNutritionProductProductCharacteristic?
-        valueXNutritionProductProductCharacteristic,
+    ValueXNutritionProductProductCharacteristic? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -891,9 +886,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXNutritionProductProductCharacteristic:
-          valueXNutritionProductProductCharacteristic ??
-              this.valueXNutritionProductProductCharacteristic,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

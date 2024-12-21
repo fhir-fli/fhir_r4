@@ -42,23 +42,23 @@ void testPaths() {
     test('Patient Address Period', () {
       expect(
           walkPath('address.period'),
-          '[{extension: [{valueCount: {unit: Mg}}, {valueCount: {unit: mL}}]},'
-          ' {extension: [{valueCount: {unit: Kg}}, {valueCount: {unit: Km}}]}, '
-          '{extension: [{valueCount: {unit: Feet}}, {valueCount: {unit: inches}}]}]');
+          '[{extension: [{valueX: {unit: Mg}}, {valueX: {unit: mL}}]},'
+          ' {extension: [{valueX: {unit: Kg}}, {valueX: {unit: Km}}]}, '
+          '{extension: [{valueX: {unit: Feet}}, {valueX: {unit: inches}}]}]');
     });
     test('Patient Address Period Extension', () {
       expect(
           walkPath('address.period.extension'),
-          '[{valueCount: {unit: Mg}}, '
-          '{valueCount: {unit: mL}}, '
-          '{valueCount: {unit: Kg}}, '
-          '{valueCount: {unit: Km}}, '
-          '{valueCount: {unit: Feet}}, '
-          '{valueCount: {unit: inches}}]');
+          '[{valueX: {unit: Mg}}, '
+          '{valueX: {unit: mL}}, '
+          '{valueX: {unit: Kg}}, '
+          '{valueX: {unit: Km}}, '
+          '{valueX: {unit: Feet}}, '
+          '{valueX: {unit: inches}}]');
     });
     test('Patient Address Period Extension ValueCount', () {
       expect(
-          walkPath('address.period.extension.valueCount'),
+          walkPath('address.period.extension.valueX'),
           '[{unit: Mg}, '
           '{unit: mL}, '
           '{unit: Kg}, '
@@ -68,7 +68,7 @@ void testPaths() {
     });
     test('Patient Address Period Extension ValueCount Unit', () {
       expect(
-        walkPath('address.period.extension.valueCount.unit'),
+        walkPath('address.period.extension.valueX.unit'),
         '[Mg, mL, Kg, Km, Feet, inches]',
       );
     });
@@ -245,25 +245,11 @@ final resource = Patient(
         extension_: [
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Mg'.toFhirString),
+            valueX: Count(unit: 'Mg'.toFhirString),
           ),
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'mL'.toFhirString),
-          ),
-        ],
-      ),
-    ),
-    Address(
-      period: Period(
-        extension_: [
-          FhirExtension(
-            url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Kg'.toFhirString),
-          ),
-          FhirExtension(
-            url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Km'.toFhirString),
+            valueX: Count(unit: 'mL'.toFhirString),
           ),
         ],
       ),
@@ -273,17 +259,31 @@ final resource = Patient(
         extension_: [
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Feet'.toFhirString),
+            valueX: Count(unit: 'Kg'.toFhirString),
           ),
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'inches'.toFhirString),
+            valueX: Count(unit: 'Km'.toFhirString),
+          ),
+        ],
+      ),
+    ),
+    Address(
+      period: Period(
+        extension_: [
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'Feet'.toFhirString),
+          ),
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'inches'.toFhirString),
           ),
         ],
       ),
     ),
   ],
-  deceasedBoolean: FhirBoolean(false),
+  deceasedX: FhirBoolean(false),
   name: [
     HumanName(
       family: 'Faulkenberry'.toFhirString,

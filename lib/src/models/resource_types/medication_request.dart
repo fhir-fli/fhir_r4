@@ -29,8 +29,8 @@ class MedicationRequest extends DomainResource {
     this.category,
     this.priority,
     this.doNotPerform,
-    this.reportedXMedicationRequest,
-    required this.medicationXMedicationRequest,
+    this.reportedX,
+    required this.medicationX,
     required this.subject,
     this.encounter,
     this.supportingInformation,
@@ -160,7 +160,7 @@ class MedicationRequest extends DomainResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      reportedXMedicationRequest:
+      reportedX:
           json['reportedBoolean'] != null || json['_reportedBoolean'] != null
               ? FhirBoolean.fromJson({
                   'value': json['reportedBoolean'],
@@ -171,7 +171,7 @@ class MedicationRequest extends DomainResource {
                       json['reportedReference'] as Map<String, dynamic>,
                     )
                   : null,
-      medicationXMedicationRequest: json['medicationCodeableConcept'] != null ||
+      medicationX: json['medicationCodeableConcept'] != null ||
               json['_medicationCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['medicationCodeableConcept'],
@@ -413,18 +413,18 @@ class MedicationRequest extends DomainResource {
   /// request not to occur.
   final FhirBoolean? doNotPerform;
 
-  /// [reportedXMedicationRequest]
+  /// [reportedX]
   /// Indicates if this record was captured as a secondary 'reported' record
   /// rather than as an original primary source-of-truth record. It may also
   /// indicate the source of the report.
-  final ReportedXMedicationRequest? reportedXMedicationRequest;
+  final ReportedXMedicationRequest? reportedX;
 
-  /// [medicationXMedicationRequest]
+  /// [medicationX]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
-  final MedicationXMedicationRequest medicationXMedicationRequest;
+  final MedicationXMedicationRequest medicationX;
 
   /// [subject]
   /// A link to a resource representing the person or set of individuals to
@@ -604,9 +604,8 @@ class MedicationRequest extends DomainResource {
 
     addField('priority', priority);
     addField('doNotPerform', doNotPerform);
-    addField('reportedXMedicationRequest', reportedXMedicationRequest);
-    json['medicationXMedicationRequest'] =
-        medicationXMedicationRequest.toJson();
+    addField('reportedX', reportedX);
+    json['medicationX'] = medicationX.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -730,8 +729,8 @@ class MedicationRequest extends DomainResource {
     List<CodeableConcept>? category,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    ReportedXMedicationRequest? reportedXMedicationRequest,
-    MedicationXMedicationRequest? medicationXMedicationRequest,
+    ReportedXMedicationRequest? reportedX,
+    MedicationXMedicationRequest? medicationX,
     Reference? subject,
     Reference? encounter,
     List<Reference>? supportingInformation,
@@ -776,10 +775,8 @@ class MedicationRequest extends DomainResource {
       category: category ?? this.category,
       priority: priority ?? this.priority,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      reportedXMedicationRequest:
-          reportedXMedicationRequest ?? this.reportedXMedicationRequest,
-      medicationXMedicationRequest:
-          medicationXMedicationRequest ?? this.medicationXMedicationRequest,
+      reportedX: reportedX ?? this.reportedX,
+      medicationX: medicationX ?? this.medicationX,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       supportingInformation:
@@ -1241,7 +1238,7 @@ class MedicationRequestSubstitution extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.allowedXMedicationRequestSubstitution,
+    required this.allowedX,
     this.reason,
     super.disallowExtensions,
   });
@@ -1272,7 +1269,7 @@ class MedicationRequestSubstitution extends BackboneElement {
               )
               .toList()
           : null,
-      allowedXMedicationRequestSubstitution:
+      allowedX:
           json['allowedBoolean'] != null || json['_allowedBoolean'] != null
               ? FhirBoolean.fromJson({
                   'value': json['allowedBoolean'],
@@ -1331,11 +1328,10 @@ class MedicationRequestSubstitution extends BackboneElement {
   @override
   String get fhirType => 'MedicationRequestSubstitution';
 
-  /// [allowedXMedicationRequestSubstitution]
+  /// [allowedX]
   /// True if the prescriber allows a different drug to be dispensed from
   /// what was prescribed.
-  final AllowedXMedicationRequestSubstitution
-      allowedXMedicationRequestSubstitution;
+  final AllowedXMedicationRequestSubstitution allowedX;
 
   /// [reason]
   /// Indicates the reason for the substitution, or why substitution must or
@@ -1363,8 +1359,7 @@ class MedicationRequestSubstitution extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('allowedXMedicationRequestSubstitution',
-        allowedXMedicationRequestSubstitution);
+    addField('allowedX', allowedX);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1379,8 +1374,7 @@ class MedicationRequestSubstitution extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AllowedXMedicationRequestSubstitution?
-        allowedXMedicationRequestSubstitution,
+    AllowedXMedicationRequestSubstitution? allowedX,
     CodeableConcept? reason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1391,9 +1385,7 @@ class MedicationRequestSubstitution extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      allowedXMedicationRequestSubstitution:
-          allowedXMedicationRequestSubstitution ??
-              this.allowedXMedicationRequestSubstitution,
+      allowedX: allowedX ?? this.allowedX,
       reason: reason ?? this.reason,
     );
   }

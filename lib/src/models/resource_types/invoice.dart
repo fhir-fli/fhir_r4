@@ -647,7 +647,7 @@ class InvoiceLineItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    required this.chargeItemXInvoiceLineItem,
+    required this.chargeItemX,
     this.priceComponent,
     super.disallowExtensions,
   });
@@ -684,7 +684,7 @@ class InvoiceLineItem extends BackboneElement {
               '_value': json['_sequence'],
             })
           : null,
-      chargeItemXInvoiceLineItem: json['chargeItemReference'] != null ||
+      chargeItemX: json['chargeItemReference'] != null ||
               json['_chargeItemReference'] != null
           ? Reference.fromJson({
               'value': json['chargeItemReference'],
@@ -751,12 +751,12 @@ class InvoiceLineItem extends BackboneElement {
   /// Sequence in which the items appear on the invoice.
   final FhirPositiveInt? sequence;
 
-  /// [chargeItemXInvoiceLineItem]
+  /// [chargeItemX]
   /// The ChargeItem contains information such as the billing code, date,
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final ChargeItemXInvoiceLineItem chargeItemXInvoiceLineItem;
+  final ChargeItemXInvoiceLineItem chargeItemX;
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -789,7 +789,7 @@ class InvoiceLineItem extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    json['chargeItemXInvoiceLineItem'] = chargeItemXInvoiceLineItem.toJson();
+    json['chargeItemX'] = chargeItemX.toJson();
 
     if (priceComponent != null && priceComponent!.isNotEmpty) {
       json['priceComponent'] = priceComponent!.map((e) => e.toJson()).toList();
@@ -806,7 +806,7 @@ class InvoiceLineItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    ChargeItemXInvoiceLineItem? chargeItemXInvoiceLineItem,
+    ChargeItemXInvoiceLineItem? chargeItemX,
     List<InvoicePriceComponent>? priceComponent,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -818,8 +818,7 @@ class InvoiceLineItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      chargeItemXInvoiceLineItem:
-          chargeItemXInvoiceLineItem ?? this.chargeItemXInvoiceLineItem,
+      chargeItemX: chargeItemX ?? this.chargeItemX,
       priceComponent: priceComponent ?? this.priceComponent,
     );
   }

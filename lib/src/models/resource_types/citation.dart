@@ -1225,7 +1225,7 @@ class CitationRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetXCitationRelatesTo,
+    required this.targetX,
     super.disallowExtensions,
   });
 
@@ -1267,27 +1267,26 @@ class CitationRelatesTo extends BackboneElement {
               )
               .toList()
           : null,
-      targetXCitationRelatesTo:
-          json['targetUri'] != null || json['_targetUri'] != null
-              ? FhirUri.fromJson({
-                  'value': json['targetUri'],
-                  '_value': json['_targetUri'],
+      targetX: json['targetUri'] != null || json['_targetUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['targetUri'],
+              '_value': json['_targetUri'],
+            })
+          : json['targetIdentifier'] != null ||
+                  json['_targetIdentifier'] != null
+              ? Identifier.fromJson({
+                  'value': json['targetIdentifier'],
+                  '_value': json['_targetIdentifier'],
                 })
-              : json['targetIdentifier'] != null ||
-                      json['_targetIdentifier'] != null
-                  ? Identifier.fromJson({
-                      'value': json['targetIdentifier'],
-                      '_value': json['_targetIdentifier'],
+              : json['targetReference'] != null ||
+                      json['_targetReference'] != null
+                  ? Reference.fromJson({
+                      'value': json['targetReference'],
+                      '_value': json['_targetReference'],
                     })
-                  : json['targetReference'] != null ||
-                          json['_targetReference'] != null
-                      ? Reference.fromJson({
-                          'value': json['targetReference'],
-                          '_value': json['_targetReference'],
-                        })
-                      : Attachment.fromJson(
-                          json['targetAttachment'] as Map<String, dynamic>,
-                        ),
+                  : Attachment.fromJson(
+                      json['targetAttachment'] as Map<String, dynamic>,
+                    ),
     );
   }
 
@@ -1341,9 +1340,9 @@ class CitationRelatesTo extends BackboneElement {
   /// The clasification of the related artifact.
   final List<CodeableConcept>? targetClassifier;
 
-  /// [targetXCitationRelatesTo]
+  /// [targetX]
   /// The article or artifact that the Citation Resource is related to.
-  final TargetXCitationRelatesTo targetXCitationRelatesTo;
+  final TargetXCitationRelatesTo targetX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1373,7 +1372,7 @@ class CitationRelatesTo extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('targetXCitationRelatesTo', targetXCitationRelatesTo);
+    addField('targetX', targetX);
     return json;
   }
 
@@ -1386,7 +1385,7 @@ class CitationRelatesTo extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    TargetXCitationRelatesTo? targetXCitationRelatesTo,
+    TargetXCitationRelatesTo? targetX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1398,8 +1397,7 @@ class CitationRelatesTo extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetXCitationRelatesTo:
-          targetXCitationRelatesTo ?? this.targetXCitationRelatesTo,
+      targetX: targetX ?? this.targetX,
     );
   }
 }
@@ -2692,7 +2690,7 @@ class CitationRelatesTo1 extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetXCitationRelatesTo1,
+    required this.targetX,
     super.disallowExtensions,
   });
 
@@ -2734,27 +2732,26 @@ class CitationRelatesTo1 extends BackboneElement {
               )
               .toList()
           : null,
-      targetXCitationRelatesTo1:
-          json['targetUri'] != null || json['_targetUri'] != null
-              ? FhirUri.fromJson({
-                  'value': json['targetUri'],
-                  '_value': json['_targetUri'],
+      targetX: json['targetUri'] != null || json['_targetUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['targetUri'],
+              '_value': json['_targetUri'],
+            })
+          : json['targetIdentifier'] != null ||
+                  json['_targetIdentifier'] != null
+              ? Identifier.fromJson({
+                  'value': json['targetIdentifier'],
+                  '_value': json['_targetIdentifier'],
                 })
-              : json['targetIdentifier'] != null ||
-                      json['_targetIdentifier'] != null
-                  ? Identifier.fromJson({
-                      'value': json['targetIdentifier'],
-                      '_value': json['_targetIdentifier'],
+              : json['targetReference'] != null ||
+                      json['_targetReference'] != null
+                  ? Reference.fromJson({
+                      'value': json['targetReference'],
+                      '_value': json['_targetReference'],
                     })
-                  : json['targetReference'] != null ||
-                          json['_targetReference'] != null
-                      ? Reference.fromJson({
-                          'value': json['targetReference'],
-                          '_value': json['_targetReference'],
-                        })
-                      : Attachment.fromJson(
-                          json['targetAttachment'] as Map<String, dynamic>,
-                        ),
+                  : Attachment.fromJson(
+                      json['targetAttachment'] as Map<String, dynamic>,
+                    ),
     );
   }
 
@@ -2808,9 +2805,9 @@ class CitationRelatesTo1 extends BackboneElement {
   /// The clasification of the related artifact.
   final List<CodeableConcept>? targetClassifier;
 
-  /// [targetXCitationRelatesTo1]
+  /// [targetX]
   /// The article or artifact that the cited artifact is related to.
-  final TargetXCitationRelatesTo1 targetXCitationRelatesTo1;
+  final TargetXCitationRelatesTo1 targetX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2840,7 +2837,7 @@ class CitationRelatesTo1 extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('targetXCitationRelatesTo1', targetXCitationRelatesTo1);
+    addField('targetX', targetX);
     return json;
   }
 
@@ -2853,7 +2850,7 @@ class CitationRelatesTo1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    TargetXCitationRelatesTo1? targetXCitationRelatesTo1,
+    TargetXCitationRelatesTo1? targetX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2865,8 +2862,7 @@ class CitationRelatesTo1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetXCitationRelatesTo1:
-          targetXCitationRelatesTo1 ?? this.targetXCitationRelatesTo1,
+      targetX: targetX ?? this.targetX,
     );
   }
 }

@@ -28,7 +28,7 @@ class Consent extends DomainResource {
     this.dateTime,
     this.performer,
     this.organization,
-    this.sourceXConsent,
+    this.sourceX,
     this.policy,
     this.policyRule,
     this.verification,
@@ -149,7 +149,7 @@ class Consent extends DomainResource {
               )
               .toList()
           : null,
-      sourceXConsent:
+      sourceX:
           json['sourceAttachment'] != null || json['_sourceAttachment'] != null
               ? Attachment.fromJson({
                   'value': json['sourceAttachment'],
@@ -272,12 +272,12 @@ class Consent extends DomainResource {
   /// which it is executed.
   final List<Reference>? organization;
 
-  /// [sourceXConsent]
+  /// [sourceX]
   /// The source on which this consent statement is based. The source might
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final SourceXConsent? sourceXConsent;
+  final SourceXConsent? sourceX;
 
   /// [policy]
   /// The references to the policies that are included in this consent scope.
@@ -360,8 +360,8 @@ class Consent extends DomainResource {
       json['organization'] = organization!.map((e) => e.toJson()).toList();
     }
 
-    if (sourceXConsent != null) {
-      json['sourceXConsent'] = sourceXConsent!.toJson();
+    if (sourceX != null) {
+      json['sourceX'] = sourceX!.toJson();
     }
 
     if (policy != null && policy!.isNotEmpty) {
@@ -403,7 +403,7 @@ class Consent extends DomainResource {
     FhirDateTime? dateTime,
     List<Reference>? performer,
     List<Reference>? organization,
-    SourceXConsent? sourceXConsent,
+    SourceXConsent? sourceX,
     List<ConsentPolicy>? policy,
     CodeableConcept? policyRule,
     List<ConsentVerification>? verification,
@@ -430,7 +430,7 @@ class Consent extends DomainResource {
       dateTime: dateTime ?? this.dateTime,
       performer: performer ?? this.performer,
       organization: organization ?? this.organization,
-      sourceXConsent: sourceXConsent ?? this.sourceXConsent,
+      sourceX: sourceX ?? this.sourceX,
       policy: policy ?? this.policy,
       policyRule: policyRule ?? this.policyRule,
       verification: verification ?? this.verification,

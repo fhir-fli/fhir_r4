@@ -31,7 +31,7 @@ class ClinicalImpression extends DomainResource {
     this.description,
     required this.subject,
     this.encounter,
-    this.effectiveXClinicalImpression,
+    this.effectiveX,
     this.date,
     this.assessor,
     this.previous,
@@ -143,7 +143,7 @@ class ClinicalImpression extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXClinicalImpression: json['effectiveDateTime'] != null ||
+      effectiveX: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
@@ -321,9 +321,9 @@ class ClinicalImpression extends DomainResource {
   /// which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [effectiveXClinicalImpression]
+  /// [effectiveX]
   /// The point in time or period over which the subject was assessed.
-  final EffectiveXClinicalImpression? effectiveXClinicalImpression;
+  final EffectiveXClinicalImpression? effectiveX;
 
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
@@ -441,7 +441,7 @@ class ClinicalImpression extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveXClinicalImpression', effectiveXClinicalImpression);
+    addField('effectiveX', effectiveX);
     addField('date', date);
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
@@ -513,7 +513,7 @@ class ClinicalImpression extends DomainResource {
     FhirString? description,
     Reference? subject,
     Reference? encounter,
-    EffectiveXClinicalImpression? effectiveXClinicalImpression,
+    EffectiveXClinicalImpression? effectiveX,
     FhirDateTime? date,
     Reference? assessor,
     Reference? previous,
@@ -547,8 +547,7 @@ class ClinicalImpression extends DomainResource {
       description: description ?? this.description,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveXClinicalImpression:
-          effectiveXClinicalImpression ?? this.effectiveXClinicalImpression,
+      effectiveX: effectiveX ?? this.effectiveX,
       date: date ?? this.date,
       assessor: assessor ?? this.assessor,
       previous: previous ?? this.previous,

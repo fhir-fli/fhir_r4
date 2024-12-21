@@ -21,7 +21,7 @@ class GuidanceResponse extends DomainResource {
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
-    required this.moduleXGuidanceResponse,
+    required this.moduleX,
     required this.status,
     this.subject,
     this.encounter,
@@ -110,8 +110,7 @@ class GuidanceResponse extends DomainResource {
               )
               .toList()
           : null,
-      moduleXGuidanceResponse: json['moduleUri'] != null ||
-              json['_moduleUri'] != null
+      moduleX: json['moduleUri'] != null || json['_moduleUri'] != null
           ? FhirUri.fromJson({
               'value': json['moduleUri'],
               '_value': json['_moduleUri'],
@@ -262,10 +261,10 @@ class GuidanceResponse extends DomainResource {
   /// response.
   final List<Identifier>? identifier;
 
-  /// [moduleXGuidanceResponse]
+  /// [moduleX]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final ModuleXGuidanceResponse moduleXGuidanceResponse;
+  final ModuleXGuidanceResponse moduleX;
 
   /// [status]
   /// The status of the response. If the evaluation is completed
@@ -384,7 +383,7 @@ class GuidanceResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('moduleXGuidanceResponse', moduleXGuidanceResponse);
+    addField('moduleX', moduleX);
     addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();
@@ -447,7 +446,7 @@ class GuidanceResponse extends DomainResource {
     List<FhirExtension>? modifierExtension,
     Identifier? requestIdentifier,
     List<Identifier>? identifier,
-    ModuleXGuidanceResponse? moduleXGuidanceResponse,
+    ModuleXGuidanceResponse? moduleX,
     GuidanceResponseStatus? status,
     Reference? subject,
     Reference? encounter,
@@ -476,8 +475,7 @@ class GuidanceResponse extends DomainResource {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       requestIdentifier: requestIdentifier ?? this.requestIdentifier,
       identifier: identifier ?? this.identifier,
-      moduleXGuidanceResponse:
-          moduleXGuidanceResponse ?? this.moduleXGuidanceResponse,
+      moduleX: moduleX ?? this.moduleX,
       status: status ?? this.status,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,

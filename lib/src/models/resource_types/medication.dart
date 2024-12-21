@@ -350,7 +350,7 @@ class MedicationIngredient extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.itemXMedicationIngredient,
+    required this.itemX,
     this.isActive,
     this.strength,
     super.disallowExtensions,
@@ -382,7 +382,7 @@ class MedicationIngredient extends BackboneElement {
               )
               .toList()
           : null,
-      itemXMedicationIngredient: json['itemCodeableConcept'] != null ||
+      itemX: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
@@ -447,10 +447,10 @@ class MedicationIngredient extends BackboneElement {
   @override
   String get fhirType => 'MedicationIngredient';
 
-  /// [itemXMedicationIngredient]
+  /// [itemX]
   /// The actual ingredient - either a substance (simple ingredient) or
   /// another medication of a medication.
-  final ItemXMedicationIngredient itemXMedicationIngredient;
+  final ItemXMedicationIngredient itemX;
 
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
@@ -484,7 +484,7 @@ class MedicationIngredient extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['itemXMedicationIngredient'] = itemXMedicationIngredient.toJson();
+    json['itemX'] = itemX.toJson();
 
     addField('isActive', isActive);
     if (strength != null) {
@@ -501,7 +501,7 @@ class MedicationIngredient extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ItemXMedicationIngredient? itemXMedicationIngredient,
+    ItemXMedicationIngredient? itemX,
     FhirBoolean? isActive,
     Ratio? strength,
     Map<String, Object?>? userData,
@@ -513,8 +513,7 @@ class MedicationIngredient extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemXMedicationIngredient:
-          itemXMedicationIngredient ?? this.itemXMedicationIngredient,
+      itemX: itemX ?? this.itemX,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
     );

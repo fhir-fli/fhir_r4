@@ -25,7 +25,7 @@ class UsageContext extends DataType
     super.id,
     super.extension_,
     required this.code,
-    required this.valueXUsageContext,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -49,7 +49,7 @@ class UsageContext extends DataType
       code: Coding.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXUsageContext: json['valueCodeableConcept'] != null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -118,10 +118,10 @@ class UsageContext extends DataType
   /// usage context.
   final Coding code;
 
-  /// [valueXUsageContext]
+  /// [valueX]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final ValueXUsageContext valueXUsageContext;
+  final ValueXUsageContext valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -141,7 +141,7 @@ class UsageContext extends DataType
 
     json['code'] = code.toJson();
 
-    json['valueXUsageContext'] = valueXUsageContext.toJson();
+    json['valueX'] = valueX.toJson();
 
     return json;
   }
@@ -153,7 +153,7 @@ class UsageContext extends DataType
     FhirString? id,
     List<FhirExtension>? extension_,
     Coding? code,
-    ValueXUsageContext? valueXUsageContext,
+    ValueXUsageContext? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -163,7 +163,7 @@ class UsageContext extends DataType
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       code: code ?? this.code,
-      valueXUsageContext: valueXUsageContext ?? this.valueXUsageContext,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

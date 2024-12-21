@@ -611,7 +611,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueXQuestionnaireResponseAnswer,
+    this.valueX,
     this.item,
     super.disallowExtensions,
   });
@@ -642,8 +642,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueXQuestionnaireResponseAnswer: json['valueBoolean'] != null ||
-              json['_valueBoolean'] != null
+      valueX: json['valueBoolean'] != null || json['_valueBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
@@ -772,10 +771,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';
 
-  /// [valueXQuestionnaireResponseAnswer]
+  /// [valueX]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final ValueXQuestionnaireResponseAnswer? valueXQuestionnaireResponseAnswer;
+  final ValueXQuestionnaireResponseAnswer? valueX;
 
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
@@ -802,8 +801,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField(
-        'valueXQuestionnaireResponseAnswer', valueXQuestionnaireResponseAnswer);
+    addField('valueX', valueX);
     if (item != null && item!.isNotEmpty) {
       json['item'] = item!.map((e) => e.toJson()).toList();
     }
@@ -818,7 +816,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ValueXQuestionnaireResponseAnswer? valueXQuestionnaireResponseAnswer,
+    ValueXQuestionnaireResponseAnswer? valueX,
     List<QuestionnaireResponseItem>? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -829,8 +827,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueXQuestionnaireResponseAnswer: valueXQuestionnaireResponseAnswer ??
-          this.valueXQuestionnaireResponseAnswer,
+      valueX: valueX ?? this.valueX,
       item: item ?? this.item,
     );
   }

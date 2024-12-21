@@ -1202,8 +1202,8 @@ class ClaimSupportingInfo extends BackboneElement {
     required this.sequence,
     required this.category,
     this.code,
-    this.timingXClaimSupportingInfo,
-    this.valueXClaimSupportingInfo,
+    this.timingX,
+    this.valueX,
     this.reason,
     super.disallowExtensions,
   });
@@ -1246,19 +1246,17 @@ class ClaimSupportingInfo extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      timingXClaimSupportingInfo:
-          json['timingDate'] != null || json['_timingDate'] != null
-              ? FhirDate.fromJson({
-                  'value': json['timingDate'],
-                  '_value': json['_timingDate'],
-                })
-              : json['timingPeriod'] != null
-                  ? Period.fromJson(
-                      json['timingPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
-      valueXClaimSupportingInfo: json['valueBoolean'] != null ||
-              json['_valueBoolean'] != null
+      timingX: json['timingDate'] != null || json['_timingDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['timingDate'],
+              '_value': json['_timingDate'],
+            })
+          : json['timingPeriod'] != null
+              ? Period.fromJson(
+                  json['timingPeriod'] as Map<String, dynamic>,
+                )
+              : null,
+      valueX: json['valueBoolean'] != null || json['_valueBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
@@ -1349,15 +1347,15 @@ class ClaimSupportingInfo extends BackboneElement {
   /// which care is sought.
   final CodeableConcept? code;
 
-  /// [timingXClaimSupportingInfo]
+  /// [timingX]
   /// The date when or period to which this information refers.
-  final TimingXClaimSupportingInfo? timingXClaimSupportingInfo;
+  final TimingXClaimSupportingInfo? timingX;
 
-  /// [valueXClaimSupportingInfo]
+  /// [valueX]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final ValueXClaimSupportingInfo? valueXClaimSupportingInfo;
+  final ValueXClaimSupportingInfo? valueX;
 
   /// [reason]
   /// Provides the reason in the situation where a reason code is required in
@@ -1392,8 +1390,8 @@ class ClaimSupportingInfo extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('timingXClaimSupportingInfo', timingXClaimSupportingInfo);
-    addField('valueXClaimSupportingInfo', valueXClaimSupportingInfo);
+    addField('timingX', timingX);
+    addField('valueX', valueX);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1411,8 +1409,8 @@ class ClaimSupportingInfo extends BackboneElement {
     FhirPositiveInt? sequence,
     CodeableConcept? category,
     CodeableConcept? code,
-    TimingXClaimSupportingInfo? timingXClaimSupportingInfo,
-    ValueXClaimSupportingInfo? valueXClaimSupportingInfo,
+    TimingXClaimSupportingInfo? timingX,
+    ValueXClaimSupportingInfo? valueX,
     CodeableConcept? reason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1426,10 +1424,8 @@ class ClaimSupportingInfo extends BackboneElement {
       sequence: sequence ?? this.sequence,
       category: category ?? this.category,
       code: code ?? this.code,
-      timingXClaimSupportingInfo:
-          timingXClaimSupportingInfo ?? this.timingXClaimSupportingInfo,
-      valueXClaimSupportingInfo:
-          valueXClaimSupportingInfo ?? this.valueXClaimSupportingInfo,
+      timingX: timingX ?? this.timingX,
+      valueX: valueX ?? this.valueX,
       reason: reason ?? this.reason,
     );
   }
@@ -1446,7 +1442,7 @@ class ClaimDiagnosis extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-    required this.diagnosisXClaimDiagnosis,
+    required this.diagnosisX,
     this.type,
     this.onAdmission,
     this.packageCode,
@@ -1483,7 +1479,7 @@ class ClaimDiagnosis extends BackboneElement {
         'value': json['sequence'],
         '_value': json['_sequence'],
       }),
-      diagnosisXClaimDiagnosis: json['diagnosisCodeableConcept'] != null ||
+      diagnosisX: json['diagnosisCodeableConcept'] != null ||
               json['_diagnosisCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['diagnosisCodeableConcept'],
@@ -1560,10 +1556,10 @@ class ClaimDiagnosis extends BackboneElement {
   /// A number to uniquely identify diagnosis entries.
   final FhirPositiveInt sequence;
 
-  /// [diagnosisXClaimDiagnosis]
+  /// [diagnosisX]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final DiagnosisXClaimDiagnosis diagnosisXClaimDiagnosis;
+  final DiagnosisXClaimDiagnosis diagnosisX;
 
   /// [type]
   /// When the condition was observed or the relative ranking.
@@ -1602,7 +1598,7 @@ class ClaimDiagnosis extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    json['diagnosisXClaimDiagnosis'] = diagnosisXClaimDiagnosis.toJson();
+    json['diagnosisX'] = diagnosisX.toJson();
 
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
@@ -1627,7 +1623,7 @@ class ClaimDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    DiagnosisXClaimDiagnosis? diagnosisXClaimDiagnosis,
+    DiagnosisXClaimDiagnosis? diagnosisX,
     List<CodeableConcept>? type,
     CodeableConcept? onAdmission,
     CodeableConcept? packageCode,
@@ -1641,8 +1637,7 @@ class ClaimDiagnosis extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      diagnosisXClaimDiagnosis:
-          diagnosisXClaimDiagnosis ?? this.diagnosisXClaimDiagnosis,
+      diagnosisX: diagnosisX ?? this.diagnosisX,
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
@@ -1664,7 +1659,7 @@ class ClaimProcedure extends BackboneElement {
     required this.sequence,
     this.type,
     this.date,
-    required this.procedureXClaimProcedure,
+    required this.procedureX,
     this.udi,
     super.disallowExtensions,
   });
@@ -1714,7 +1709,7 @@ class ClaimProcedure extends BackboneElement {
               '_value': json['_date'],
             })
           : null,
-      procedureXClaimProcedure: json['procedureCodeableConcept'] != null ||
+      procedureX: json['procedureCodeableConcept'] != null ||
               json['_procedureCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['procedureCodeableConcept'],
@@ -1789,10 +1784,10 @@ class ClaimProcedure extends BackboneElement {
   /// Date and optionally time the procedure was performed.
   final FhirDateTime? date;
 
-  /// [procedureXClaimProcedure]
+  /// [procedureX]
   /// The code or reference to a Procedure resource which identifies the
   /// clinical intervention performed.
-  final ProcedureXClaimProcedure procedureXClaimProcedure;
+  final ProcedureXClaimProcedure procedureX;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
@@ -1825,7 +1820,7 @@ class ClaimProcedure extends BackboneElement {
     }
 
     addField('date', date);
-    json['procedureXClaimProcedure'] = procedureXClaimProcedure.toJson();
+    json['procedureX'] = procedureX.toJson();
 
     if (udi != null && udi!.isNotEmpty) {
       json['udi'] = udi!.map((e) => e.toJson()).toList();
@@ -1844,7 +1839,7 @@ class ClaimProcedure extends BackboneElement {
     FhirPositiveInt? sequence,
     List<CodeableConcept>? type,
     FhirDateTime? date,
-    ProcedureXClaimProcedure? procedureXClaimProcedure,
+    ProcedureXClaimProcedure? procedureX,
     List<Reference>? udi,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1858,8 +1853,7 @@ class ClaimProcedure extends BackboneElement {
       sequence: sequence ?? this.sequence,
       type: type ?? this.type,
       date: date ?? this.date,
-      procedureXClaimProcedure:
-          procedureXClaimProcedure ?? this.procedureXClaimProcedure,
+      procedureX: procedureX ?? this.procedureX,
       udi: udi ?? this.udi,
     );
   }
@@ -2120,7 +2114,7 @@ class ClaimAccident extends BackboneElement {
     super.modifierExtension,
     required this.date,
     this.type,
-    this.locationXClaimAccident,
+    this.locationX,
     super.disallowExtensions,
   });
 
@@ -2159,7 +2153,7 @@ class ClaimAccident extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      locationXClaimAccident:
+      locationX:
           json['locationAddress'] != null || json['_locationAddress'] != null
               ? Address.fromJson({
                   'value': json['locationAddress'],
@@ -2226,9 +2220,9 @@ class ClaimAccident extends BackboneElement {
   /// between insurers.
   final CodeableConcept? type;
 
-  /// [locationXClaimAccident]
+  /// [locationX]
   /// The physical location of the accident event.
-  final LocationXClaimAccident? locationXClaimAccident;
+  final LocationXClaimAccident? locationX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2256,8 +2250,8 @@ class ClaimAccident extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (locationXClaimAccident != null) {
-      json['locationXClaimAccident'] = locationXClaimAccident!.toJson();
+    if (locationX != null) {
+      json['locationX'] = locationX!.toJson();
     }
 
     return json;
@@ -2272,7 +2266,7 @@ class ClaimAccident extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
     CodeableConcept? type,
-    LocationXClaimAccident? locationXClaimAccident,
+    LocationXClaimAccident? locationX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2284,8 +2278,7 @@ class ClaimAccident extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       date: date ?? this.date,
       type: type ?? this.type,
-      locationXClaimAccident:
-          locationXClaimAccident ?? this.locationXClaimAccident,
+      locationX: locationX ?? this.locationX,
     );
   }
 }
@@ -2311,8 +2304,8 @@ class ClaimItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedXClaimItem,
-    this.locationXClaimItem,
+    this.servicedX,
+    this.locationX,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -2406,18 +2399,17 @@ class ClaimItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXClaimItem:
-          json['servicedDate'] != null || json['_servicedDate'] != null
-              ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
-                })
-              : json['servicedPeriod'] != null
-                  ? Period.fromJson(
-                      json['servicedPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
-      locationXClaimItem: json['locationCodeableConcept'] != null ||
+      servicedX: json['servicedDate'] != null || json['_servicedDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
+          : json['servicedPeriod'] != null
+              ? Period.fromJson(
+                  json['servicedPeriod'] as Map<String, dynamic>,
+                )
+              : null,
+      locationX: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
@@ -2586,14 +2578,14 @@ class ClaimItem extends BackboneElement {
   /// Identifies the program under which this may be recovered.
   final List<CodeableConcept>? programCode;
 
-  /// [servicedXClaimItem]
+  /// [servicedX]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final ServicedXClaimItem? servicedXClaimItem;
+  final ServicedXClaimItem? servicedX;
 
-  /// [locationXClaimItem]
+  /// [locationX]
   /// Where the product or service was provided.
-  final LocationXClaimItem? locationXClaimItem;
+  final LocationXClaimItem? locationX;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -2715,9 +2707,9 @@ class ClaimItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedXClaimItem', servicedXClaimItem);
-    if (locationXClaimItem != null) {
-      json['locationXClaimItem'] = locationXClaimItem!.toJson();
+    addField('servicedX', servicedX);
+    if (locationX != null) {
+      json['locationX'] = locationX!.toJson();
     }
 
     if (quantity != null) {
@@ -2773,8 +2765,8 @@ class ClaimItem extends BackboneElement {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    ServicedXClaimItem? servicedXClaimItem,
-    LocationXClaimItem? locationXClaimItem,
+    ServicedXClaimItem? servicedX,
+    LocationXClaimItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -2803,8 +2795,8 @@ class ClaimItem extends BackboneElement {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedXClaimItem: servicedXClaimItem ?? this.servicedXClaimItem,
-      locationXClaimItem: locationXClaimItem ?? this.locationXClaimItem,
+      servicedX: servicedX ?? this.servicedX,
+      locationX: locationX ?? this.locationX,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,

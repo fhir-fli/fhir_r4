@@ -20,7 +20,7 @@ class DeviceDefinition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerXDeviceDefinition,
+    this.manufacturerX,
     this.deviceName,
     this.modelNumber,
     this.type,
@@ -120,7 +120,7 @@ class DeviceDefinition extends DomainResource {
               )
               .toList()
           : null,
-      manufacturerXDeviceDefinition: json['manufacturerString'] != null ||
+      manufacturerX: json['manufacturerString'] != null ||
               json['_manufacturerString'] != null
           ? FhirString.fromJson({
               'value': json['manufacturerString'],
@@ -327,9 +327,9 @@ class DeviceDefinition extends DomainResource {
   /// multiple jurisdictions it could have been sold.
   final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
 
-  /// [manufacturerXDeviceDefinition]
+  /// [manufacturerX]
   /// A name of the manufacturer.
-  final ManufacturerXDeviceDefinition? manufacturerXDeviceDefinition;
+  final ManufacturerXDeviceDefinition? manufacturerX;
 
   /// [deviceName]
   /// A name given to the device to identify it.
@@ -461,7 +461,7 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('manufacturerXDeviceDefinition', manufacturerXDeviceDefinition);
+    addField('manufacturerX', manufacturerX);
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
@@ -551,7 +551,7 @@ class DeviceDefinition extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    ManufacturerXDeviceDefinition? manufacturerXDeviceDefinition,
+    ManufacturerXDeviceDefinition? manufacturerX,
     List<DeviceDefinitionDeviceName>? deviceName,
     FhirString? modelNumber,
     CodeableConcept? type,
@@ -587,8 +587,7 @@ class DeviceDefinition extends DomainResource {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
-      manufacturerXDeviceDefinition:
-          manufacturerXDeviceDefinition ?? this.manufacturerXDeviceDefinition,
+      manufacturerX: manufacturerX ?? this.manufacturerX,
       deviceName: deviceName ?? this.deviceName,
       modelNumber: modelNumber ?? this.modelNumber,
       type: type ?? this.type,

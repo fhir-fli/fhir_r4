@@ -669,7 +669,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    required this.valueXCoverageCostToBeneficiary,
+    required this.valueX,
     this.exception,
     super.disallowExtensions,
   });
@@ -705,15 +705,14 @@ class CoverageCostToBeneficiary extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueXCoverageCostToBeneficiary:
-          json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
-                })
-              : Money.fromJson(
-                  json['valueMoney'] as Map<String, dynamic>,
-                ),
+      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
+          ? Quantity.fromJson({
+              'value': json['valueQuantity'],
+              '_value': json['_valueQuantity'],
+            })
+          : Money.fromJson(
+              json['valueMoney'] as Map<String, dynamic>,
+            ),
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(
@@ -772,9 +771,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
   /// The category of patient centric costs associated with treatment.
   final CodeableConcept? type;
 
-  /// [valueXCoverageCostToBeneficiary]
+  /// [valueX]
   /// The amount due from the patient for the cost category.
-  final ValueXCoverageCostToBeneficiary valueXCoverageCostToBeneficiary;
+  final ValueXCoverageCostToBeneficiary valueX;
 
   /// [exception]
   /// A suite of codes indicating exceptions or reductions to patient costs
@@ -806,8 +805,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    json['valueXCoverageCostToBeneficiary'] =
-        valueXCoverageCostToBeneficiary.toJson();
+    json['valueX'] = valueX.toJson();
 
     if (exception != null && exception!.isNotEmpty) {
       json['exception'] = exception!.map((e) => e.toJson()).toList();
@@ -824,7 +822,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXCoverageCostToBeneficiary? valueXCoverageCostToBeneficiary,
+    ValueXCoverageCostToBeneficiary? valueX,
     List<CoverageException>? exception,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -836,8 +834,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXCoverageCostToBeneficiary: valueXCoverageCostToBeneficiary ??
-          this.valueXCoverageCostToBeneficiary,
+      valueX: valueX ?? this.valueX,
       exception: exception ?? this.exception,
     );
   }

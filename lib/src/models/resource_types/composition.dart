@@ -648,7 +648,7 @@ class CompositionRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    required this.targetXCompositionRelatesTo,
+    required this.targetX,
     super.disallowExtensions,
   });
 
@@ -682,7 +682,7 @@ class CompositionRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetXCompositionRelatesTo:
+      targetX:
           json['targetIdentifier'] != null || json['_targetIdentifier'] != null
               ? Identifier.fromJson({
                   'value': json['targetIdentifier'],
@@ -741,9 +741,9 @@ class CompositionRelatesTo extends BackboneElement {
   /// composition or document.
   final DocumentRelationshipType code;
 
-  /// [targetXCompositionRelatesTo]
+  /// [targetX]
   /// The target composition/document of this relationship.
-  final TargetXCompositionRelatesTo targetXCompositionRelatesTo;
+  final TargetXCompositionRelatesTo targetX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -767,7 +767,7 @@ class CompositionRelatesTo extends BackboneElement {
     }
 
     addField('code', code);
-    json['targetXCompositionRelatesTo'] = targetXCompositionRelatesTo.toJson();
+    json['targetX'] = targetX.toJson();
 
     return json;
   }
@@ -780,7 +780,7 @@ class CompositionRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    TargetXCompositionRelatesTo? targetXCompositionRelatesTo,
+    TargetXCompositionRelatesTo? targetX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -791,8 +791,7 @@ class CompositionRelatesTo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      targetXCompositionRelatesTo:
-          targetXCompositionRelatesTo ?? this.targetXCompositionRelatesTo,
+      targetX: targetX ?? this.targetX,
     );
   }
 }

@@ -1827,7 +1827,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueXMedicinalProductDefinitionCharacteristic,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -1860,35 +1860,33 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXMedicinalProductDefinitionCharacteristic:
-          json['valueCodeableConcept'] != null ||
-                  json['_valueCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['valueCodeableConcept'],
-                  '_value': json['_valueCodeableConcept'],
+      valueX: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? Quantity.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? Quantity.fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
+              : json['valueDate'] != null || json['_valueDate'] != null
+                  ? FhirDate.fromJson({
+                      'value': json['valueDate'],
+                      '_value': json['_valueDate'],
                     })
-                  : json['valueDate'] != null || json['_valueDate'] != null
-                      ? FhirDate.fromJson({
-                          'value': json['valueDate'],
-                          '_value': json['_valueDate'],
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? FhirBoolean.fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
                         })
-                      : json['valueBoolean'] != null ||
-                              json['_valueBoolean'] != null
-                          ? FhirBoolean.fromJson({
-                              'value': json['valueBoolean'],
-                              '_value': json['_valueBoolean'],
-                            })
-                          : json['valueAttachment'] != null
-                              ? Attachment.fromJson(
-                                  json['valueAttachment']
-                                      as Map<String, dynamic>,
-                                )
-                              : null,
+                      : json['valueAttachment'] != null
+                          ? Attachment.fromJson(
+                              json['valueAttachment'] as Map<String, dynamic>,
+                            )
+                          : null,
     );
   }
 
@@ -1938,10 +1936,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueXMedicinalProductDefinitionCharacteristic]
+  /// [valueX]
   /// A value for the characteristic.
-  final ValueXMedicinalProductDefinitionCharacteristic?
-      valueXMedicinalProductDefinitionCharacteristic;
+  final ValueXMedicinalProductDefinitionCharacteristic? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1966,9 +1963,8 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueXMedicinalProductDefinitionCharacteristic != null) {
-      json['valueXMedicinalProductDefinitionCharacteristic'] =
-          valueXMedicinalProductDefinitionCharacteristic!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     return json;
@@ -1983,8 +1979,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXMedicinalProductDefinitionCharacteristic?
-        valueXMedicinalProductDefinitionCharacteristic,
+    ValueXMedicinalProductDefinitionCharacteristic? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1995,9 +1990,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXMedicinalProductDefinitionCharacteristic:
-          valueXMedicinalProductDefinitionCharacteristic ??
-              this.valueXMedicinalProductDefinitionCharacteristic,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

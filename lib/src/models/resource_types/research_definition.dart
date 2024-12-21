@@ -29,7 +29,7 @@ class ResearchDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectXResearchDefinition,
+    this.subjectX,
     this.date,
     this.publisher,
     this.contact,
@@ -172,7 +172,7 @@ class ResearchDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXResearchDefinition: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -453,11 +453,11 @@ class ResearchDefinition extends DomainResource {
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// [subjectXResearchDefinition]
+  /// [subjectX]
   /// The intended subjects for the ResearchDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
-  final SubjectXResearchDefinition? subjectXResearchDefinition;
+  final SubjectXResearchDefinition? subjectX;
 
   /// [date]
   /// The date (and optionally time) when the research definition was
@@ -636,8 +636,8 @@ class ResearchDefinition extends DomainResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXResearchDefinition != null) {
-      json['subjectXResearchDefinition'] = subjectXResearchDefinition!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -743,7 +743,7 @@ class ResearchDefinition extends DomainResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXResearchDefinition? subjectXResearchDefinition,
+    SubjectXResearchDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -791,8 +791,7 @@ class ResearchDefinition extends DomainResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXResearchDefinition:
-          subjectXResearchDefinition ?? this.subjectXResearchDefinition,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

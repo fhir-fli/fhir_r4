@@ -27,7 +27,7 @@ class Media extends DomainResource {
     this.view,
     this.subject,
     this.encounter,
-    this.createdXMedia,
+    this.createdX,
     this.issued,
     this.operator_,
     this.reasonCode,
@@ -158,7 +158,7 @@ class Media extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      createdXMedia:
+      createdX:
           json['createdDateTime'] != null || json['_createdDateTime'] != null
               ? FhirDateTime.fromJson({
                   'value': json['createdDateTime'],
@@ -329,9 +329,9 @@ class Media extends DomainResource {
   /// The encounter that establishes the context for this media.
   final Reference? encounter;
 
-  /// [createdXMedia]
+  /// [createdX]
   /// The date and time(s) at which the media was collected.
-  final CreatedXMedia? createdXMedia;
+  final CreatedXMedia? createdX;
 
   /// [issued]
   /// The date and time this version of the media was made available to
@@ -459,7 +459,7 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('createdXMedia', createdXMedia);
+    addField('createdX', createdX);
     addField('issued', issued);
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
@@ -512,7 +512,7 @@ class Media extends DomainResource {
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,
-    CreatedXMedia? createdXMedia,
+    CreatedXMedia? createdX,
     FhirInstant? issued,
     Reference? operator_,
     List<CodeableConcept>? reasonCode,
@@ -548,7 +548,7 @@ class Media extends DomainResource {
       view: view ?? this.view,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      createdXMedia: createdXMedia ?? this.createdXMedia,
+      createdX: createdX ?? this.createdX,
       issued: issued ?? this.issued,
       operator_: operator_ ?? this.operator_,
       reasonCode: reasonCode ?? this.reasonCode,

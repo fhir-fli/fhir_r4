@@ -33,7 +33,7 @@ class CommunicationRequest extends DomainResource {
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceXCommunicationRequest,
+    this.occurrenceX,
     this.authoredOn,
     this.requester,
     this.recipient,
@@ -203,7 +203,7 @@ class CommunicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceXCommunicationRequest: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -379,9 +379,9 @@ class CommunicationRequest extends DomainResource {
   /// recipient.
   final List<CommunicationRequestPayload>? payload;
 
-  /// [occurrenceXCommunicationRequest]
+  /// [occurrenceX]
   /// The time when this communication is to occur.
-  final OccurrenceXCommunicationRequest? occurrenceXCommunicationRequest;
+  final OccurrenceXCommunicationRequest? occurrenceX;
 
   /// [authoredOn]
   /// For draft requests, indicates the date of initial creation. For
@@ -500,8 +500,7 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    addField(
-        'occurrenceXCommunicationRequest', occurrenceXCommunicationRequest);
+    addField('occurrenceX', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -557,7 +556,7 @@ class CommunicationRequest extends DomainResource {
     List<Reference>? about,
     Reference? encounter,
     List<CommunicationRequestPayload>? payload,
-    OccurrenceXCommunicationRequest? occurrenceXCommunicationRequest,
+    OccurrenceXCommunicationRequest? occurrenceX,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? recipient,
@@ -593,8 +592,7 @@ class CommunicationRequest extends DomainResource {
       about: about ?? this.about,
       encounter: encounter ?? this.encounter,
       payload: payload ?? this.payload,
-      occurrenceXCommunicationRequest: occurrenceXCommunicationRequest ??
-          this.occurrenceXCommunicationRequest,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       recipient: recipient ?? this.recipient,
@@ -617,7 +615,7 @@ class CommunicationRequestPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentXCommunicationRequestPayload,
+    required this.contentX,
     super.disallowExtensions,
   });
 
@@ -647,21 +645,20 @@ class CommunicationRequestPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentXCommunicationRequestPayload:
-          json['contentString'] != null || json['_contentString'] != null
-              ? FhirString.fromJson({
-                  'value': json['contentString'],
-                  '_value': json['_contentString'],
+      contentX: json['contentString'] != null || json['_contentString'] != null
+          ? FhirString.fromJson({
+              'value': json['contentString'],
+              '_value': json['_contentString'],
+            })
+          : json['contentAttachment'] != null ||
+                  json['_contentAttachment'] != null
+              ? Attachment.fromJson({
+                  'value': json['contentAttachment'],
+                  '_value': json['_contentAttachment'],
                 })
-              : json['contentAttachment'] != null ||
-                      json['_contentAttachment'] != null
-                  ? Attachment.fromJson({
-                      'value': json['contentAttachment'],
-                      '_value': json['_contentAttachment'],
-                    })
-                  : Reference.fromJson(
-                      json['contentReference'] as Map<String, dynamic>,
-                    ),
+              : Reference.fromJson(
+                  json['contentReference'] as Map<String, dynamic>,
+                ),
     );
   }
 
@@ -707,10 +704,10 @@ class CommunicationRequestPayload extends BackboneElement {
   @override
   String get fhirType => 'CommunicationRequestPayload';
 
-  /// [contentXCommunicationRequestPayload]
+  /// [contentX]
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final ContentXCommunicationRequestPayload contentXCommunicationRequestPayload;
+  final ContentXCommunicationRequestPayload contentX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -733,8 +730,7 @@ class CommunicationRequestPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentXCommunicationRequestPayload',
-        contentXCommunicationRequestPayload);
+    addField('contentX', contentX);
     return json;
   }
 
@@ -745,7 +741,7 @@ class CommunicationRequestPayload extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContentXCommunicationRequestPayload? contentXCommunicationRequestPayload,
+    ContentXCommunicationRequestPayload? contentX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -755,9 +751,7 @@ class CommunicationRequestPayload extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentXCommunicationRequestPayload:
-          contentXCommunicationRequestPayload ??
-              this.contentXCommunicationRequestPayload,
+      contentX: contentX ?? this.contentX,
     );
   }
 }

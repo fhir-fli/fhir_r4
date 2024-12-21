@@ -25,7 +25,7 @@ class Measure extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectXMeasure,
+    this.subjectX,
     super.date,
     super.publisher,
     super.contact,
@@ -170,7 +170,7 @@ class Measure extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXMeasure: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -475,11 +475,11 @@ class Measure extends CanonicalResource {
   /// information about its content.
   final FhirString? subtitle;
 
-  /// [subjectXMeasure]
+  /// [subjectX]
   /// The intended subjects for the measure. If this element is not provided,
   /// a Patient subject is assumed, but the subject of the measure can be
   /// anything.
-  final SubjectXMeasure? subjectXMeasure;
+  final SubjectXMeasure? subjectX;
 
   /// [purpose]
   /// Explanation of why this measure is needed and why it has been designed
@@ -667,8 +667,8 @@ class Measure extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXMeasure != null) {
-      json['subjectXMeasure'] = subjectXMeasure!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -791,7 +791,7 @@ class Measure extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXMeasure? subjectXMeasure,
+    SubjectXMeasure? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -846,7 +846,7 @@ class Measure extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXMeasure: subjectXMeasure ?? this.subjectXMeasure,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

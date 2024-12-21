@@ -24,10 +24,10 @@ class Patient extends DomainResource {
     this.telecom,
     this.gender,
     this.birthDate,
-    this.deceasedXPatient,
+    this.deceasedX,
     this.address,
     this.maritalStatus,
-    this.multipleBirthXPatient,
+    this.multipleBirthX,
     this.photo,
     this.contact,
     this.communication,
@@ -141,7 +141,7 @@ class Patient extends DomainResource {
               '_value': json['_birthDate'],
             })
           : null,
-      deceasedXPatient:
+      deceasedX:
           json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null
               ? FhirBoolean.fromJson({
                   'value': json['deceasedBoolean'],
@@ -168,7 +168,7 @@ class Patient extends DomainResource {
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthXPatient: json['multipleBirthBoolean'] != null ||
+      multipleBirthX: json['multipleBirthBoolean'] != null ||
               json['_multipleBirthBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['multipleBirthBoolean'],
@@ -310,9 +310,9 @@ class Patient extends DomainResource {
   /// The date of birth for the individual.
   final FhirDate? birthDate;
 
-  /// [deceasedXPatient]
+  /// [deceasedX]
   /// Indicates if the individual is deceased or not.
-  final DeceasedXPatient? deceasedXPatient;
+  final DeceasedXPatient? deceasedX;
 
   /// [address]
   /// An address for the individual.
@@ -322,10 +322,10 @@ class Patient extends DomainResource {
   /// This field contains a patient's most recent marital (civil) status.
   final CodeableConcept? maritalStatus;
 
-  /// [multipleBirthXPatient]
+  /// [multipleBirthX]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final MultipleBirthXPatient? multipleBirthXPatient;
+  final MultipleBirthXPatient? multipleBirthX;
 
   /// [photo]
   /// Image of the patient.
@@ -403,7 +403,7 @@ class Patient extends DomainResource {
 
     addField('gender', gender);
     addField('birthDate', birthDate);
-    addField('deceasedXPatient', deceasedXPatient);
+    addField('deceasedX', deceasedX);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -412,7 +412,7 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    addField('multipleBirthXPatient', multipleBirthXPatient);
+    addField('multipleBirthX', multipleBirthX);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -459,10 +459,10 @@ class Patient extends DomainResource {
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
     FhirDate? birthDate,
-    DeceasedXPatient? deceasedXPatient,
+    DeceasedXPatient? deceasedX,
     List<Address>? address,
     CodeableConcept? maritalStatus,
-    MultipleBirthXPatient? multipleBirthXPatient,
+    MultipleBirthXPatient? multipleBirthX,
     List<Attachment>? photo,
     List<PatientContact>? contact,
     List<PatientCommunication>? communication,
@@ -489,11 +489,10 @@ class Patient extends DomainResource {
       telecom: telecom ?? this.telecom,
       gender: gender ?? this.gender,
       birthDate: birthDate ?? this.birthDate,
-      deceasedXPatient: deceasedXPatient ?? this.deceasedXPatient,
+      deceasedX: deceasedX ?? this.deceasedX,
       address: address ?? this.address,
       maritalStatus: maritalStatus ?? this.maritalStatus,
-      multipleBirthXPatient:
-          multipleBirthXPatient ?? this.multipleBirthXPatient,
+      multipleBirthX: multipleBirthX ?? this.multipleBirthX,
       photo: photo ?? this.photo,
       contact: contact ?? this.contact,
       communication: communication ?? this.communication,

@@ -1380,7 +1380,7 @@ class CodeSystemProperty1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    required this.valueXCodeSystemProperty,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -1414,44 +1414,43 @@ class CodeSystemProperty1 extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      valueXCodeSystemProperty:
-          json['valueCode'] != null || json['_valueCode'] != null
-              ? FhirCode.fromJson({
-                  'value': json['valueCode'],
-                  '_value': json['_valueCode'],
+      valueX: json['valueCode'] != null || json['_valueCode'] != null
+          ? FhirCode.fromJson({
+              'value': json['valueCode'],
+              '_value': json['_valueCode'],
+            })
+          : json['valueCoding'] != null || json['_valueCoding'] != null
+              ? Coding.fromJson({
+                  'value': json['valueCoding'],
+                  '_value': json['_valueCoding'],
                 })
-              : json['valueCoding'] != null || json['_valueCoding'] != null
-                  ? Coding.fromJson({
-                      'value': json['valueCoding'],
-                      '_value': json['_valueCoding'],
+              : json['valueString'] != null || json['_valueString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['valueString'],
+                      '_value': json['_valueString'],
                     })
-                  : json['valueString'] != null || json['_valueString'] != null
-                      ? FhirString.fromJson({
-                          'value': json['valueString'],
-                          '_value': json['_valueString'],
+                  : json['valueInteger'] != null ||
+                          json['_valueInteger'] != null
+                      ? FhirInteger.fromJson({
+                          'value': json['valueInteger'],
+                          '_value': json['_valueInteger'],
                         })
-                      : json['valueInteger'] != null ||
-                              json['_valueInteger'] != null
-                          ? FhirInteger.fromJson({
-                              'value': json['valueInteger'],
-                              '_value': json['_valueInteger'],
+                      : json['valueBoolean'] != null ||
+                              json['_valueBoolean'] != null
+                          ? FhirBoolean.fromJson({
+                              'value': json['valueBoolean'],
+                              '_value': json['_valueBoolean'],
                             })
-                          : json['valueBoolean'] != null ||
-                                  json['_valueBoolean'] != null
-                              ? FhirBoolean.fromJson({
-                                  'value': json['valueBoolean'],
-                                  '_value': json['_valueBoolean'],
+                          : json['valueDateTime'] != null ||
+                                  json['_valueDateTime'] != null
+                              ? FhirDateTime.fromJson({
+                                  'value': json['valueDateTime'],
+                                  '_value': json['_valueDateTime'],
                                 })
-                              : json['valueDateTime'] != null ||
-                                      json['_valueDateTime'] != null
-                                  ? FhirDateTime.fromJson({
-                                      'value': json['valueDateTime'],
-                                      '_value': json['_valueDateTime'],
-                                    })
-                                  : FhirDecimal.fromJson({
-                                      'value': json['valueDecimal'],
-                                      '_value': json['_valueDecimal'],
-                                    }),
+                              : FhirDecimal.fromJson({
+                                  'value': json['valueDecimal'],
+                                  '_value': json['_valueDecimal'],
+                                }),
     );
   }
 
@@ -1501,9 +1500,9 @@ class CodeSystemProperty1 extends BackboneElement {
   /// A code that is a reference to CodeSystem.property.code.
   final FhirCode code;
 
-  /// [valueXCodeSystemProperty]
+  /// [valueX]
   /// The value of this property.
-  final ValueXCodeSystemProperty valueXCodeSystemProperty;
+  final ValueXCodeSystemProperty valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1527,7 +1526,7 @@ class CodeSystemProperty1 extends BackboneElement {
     }
 
     addField('code', code);
-    addField('valueXCodeSystemProperty', valueXCodeSystemProperty);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1539,7 +1538,7 @@ class CodeSystemProperty1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    ValueXCodeSystemProperty? valueXCodeSystemProperty,
+    ValueXCodeSystemProperty? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1550,8 +1549,7 @@ class CodeSystemProperty1 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueXCodeSystemProperty:
-          valueXCodeSystemProperty ?? this.valueXCodeSystemProperty,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

@@ -165,7 +165,7 @@ class ParametersParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.valueXParametersParameter,
+    this.valueX,
     this.resource,
     this.part_,
     super.disallowExtensions,
@@ -201,7 +201,7 @@ class ParametersParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      valueXParametersParameter: json['valueBase64Binary'] != null ||
+      valueX: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
@@ -551,9 +551,9 @@ class ParametersParameter extends BackboneElement {
   /// The name of the parameter (reference to the operation definition).
   final FhirString name;
 
-  /// [valueXParametersParameter]
+  /// [valueX]
   /// Conveys the content if the parameter is a data type.
-  final ValueXParametersParameter? valueXParametersParameter;
+  final ValueXParametersParameter? valueX;
 
   /// [resource]
   /// If the parameter is a whole resource.
@@ -585,7 +585,7 @@ class ParametersParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('valueXParametersParameter', valueXParametersParameter);
+    addField('valueX', valueX);
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -605,7 +605,7 @@ class ParametersParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    ValueXParametersParameter? valueXParametersParameter,
+    ValueXParametersParameter? valueX,
     Resource? resource,
     List<ParametersParameter>? part_,
     Map<String, Object?>? userData,
@@ -618,8 +618,7 @@ class ParametersParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueXParametersParameter:
-          valueXParametersParameter ?? this.valueXParametersParameter,
+      valueX: valueX ?? this.valueX,
       resource: resource ?? this.resource,
       part_: part_ ?? this.part_,
     );

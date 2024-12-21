@@ -12,7 +12,7 @@ class FhirExtension extends DataType {
     super.id,
     super.extension_,
     required this.url,
-    this.valueXExtension,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -37,7 +37,7 @@ class FhirExtension extends DataType {
         'value': json['url'],
         '_value': json['_url'],
       }),
-      valueXExtension: json['valueBase64Binary'] != null ||
+      valueX: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
@@ -379,10 +379,10 @@ class FhirExtension extends DataType {
   /// URL.
   final FhirString url;
 
-  /// [valueXExtension]
+  /// [valueX]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final ValueXExtension? valueXExtension;
+  final ValueXExtension? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -401,7 +401,7 @@ class FhirExtension extends DataType {
     }
 
     addField('url', url);
-    addField('valueXExtension', valueXExtension);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -412,7 +412,7 @@ class FhirExtension extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? url,
-    ValueXExtension? valueXExtension,
+    ValueXExtension? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -422,7 +422,7 @@ class FhirExtension extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       url: url ?? this.url,
-      valueXExtension: valueXExtension ?? this.valueXExtension,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

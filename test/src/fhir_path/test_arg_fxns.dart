@@ -439,10 +439,10 @@ void testArgFxns() {
           ),
           [
             {
-              'valueCount': {'unit': 'Kg'},
+              'valueX': {'unit': 'Kg'},
             },
             {
-              'valueCount': {'unit': 'Km'},
+              'valueX': {'unit': 'Km'},
             }
           ]);
       expect(
@@ -455,19 +455,19 @@ void testArgFxns() {
             {
               "extension": [
                 {
-                  "valueCount": {"unit": "Kg"},
+                  "valueX": {"unit": "Kg"},
                 },
                 {
-                  "valueCount": {"unit": "Km"},
+                  "valueX": {"unit": "Km"},
                 }
               ],
-              "valueCount": {"unit": "Kg"},
+              "valueX": {"unit": "Kg"},
             },
             {
-              "valueCount": {"unit": "Km"},
+              "valueX": {"unit": "Km"},
             },
             {
-              "valueCount": {"unit": "Kg"},
+              "valueX": {"unit": "Kg"},
             }
           ]);
       expect(
@@ -482,36 +482,36 @@ void testArgFxns() {
                 {
                   "extension": [
                     {
-                      "valueCount": {"unit": "Kg"},
+                      "valueX": {"unit": "Kg"},
                     },
                     {
-                      "valueCount": {"unit": "Km"},
+                      "valueX": {"unit": "Km"},
                     }
                   ],
-                  "valueCount": {"unit": "Kg"},
+                  "valueX": {"unit": "Kg"},
                 },
                 {
-                  "valueCount": {"unit": "Km"},
+                  "valueX": {"unit": "Km"},
                 }
               ],
-              "valueCount": {"unit": "Kg"},
+              "valueX": {"unit": "Kg"},
             },
             {
-              "valueCount": {"unit": "Km"},
+              "valueX": {"unit": "Km"},
             },
             {
               "extension": [
                 {
-                  "valueCount": {"unit": "Kg"},
+                  "valueX": {"unit": "Kg"},
                 },
                 {
-                  "valueCount": {"unit": "Km"},
+                  "valueX": {"unit": "Km"},
                 }
               ],
-              "valueCount": {"unit": "Kg"},
+              "valueX": {"unit": "Kg"},
             },
             {
-              "valueCount": {"unit": "Kg"},
+              "valueX": {"unit": "Kg"},
             },
           ]);
     });
@@ -1284,11 +1284,11 @@ final resource = Patient(
         extension_: [
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Mg'.toFhirString),
+            valueX: Count(unit: 'Mg'.toFhirString),
           ),
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'mL'.toFhirString),
+            valueX: Count(unit: 'mL'.toFhirString),
           ),
         ],
       ),
@@ -1307,32 +1307,32 @@ final resource = Patient(
                     extension_: [
                       FhirExtension(
                         url: 'www.mayjuun.com'.toFhirString,
-                        valueCount: Count(unit: 'Kg'.toFhirString),
+                        valueX: Count(unit: 'Kg'.toFhirString),
                       ),
                       FhirExtension(
                         url: 'www.mayjuun.com'.toFhirString,
-                        valueCount: Count(unit: 'Km'.toFhirString),
+                        valueX: Count(unit: 'Km'.toFhirString),
                       ),
                     ],
-                    valueCount: Count(unit: 'Kg'.toFhirString),
+                    valueX: Count(unit: 'Kg'.toFhirString),
                   ),
                   FhirExtension(
                     url: 'www.mayjuun.com'.toFhirString,
-                    valueCount: Count(unit: 'Km'.toFhirString),
+                    valueX: Count(unit: 'Km'.toFhirString),
                   ),
                 ],
-                valueCount: Count(unit: 'Kg'.toFhirString),
+                valueX: Count(unit: 'Kg'.toFhirString),
               ),
               FhirExtension(
                 url: 'www.mayjuun.com'.toFhirString,
-                valueCount: Count(unit: 'Km'.toFhirString),
+                valueX: Count(unit: 'Km'.toFhirString),
               ),
             ],
-            valueCount: Count(unit: 'Kg'.toFhirString),
+            valueX: Count(unit: 'Kg'.toFhirString),
           ),
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Km'.toFhirString),
+            valueX: Count(unit: 'Km'.toFhirString),
           ),
         ],
       ),
@@ -1342,17 +1342,17 @@ final resource = Patient(
         extension_: [
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'Feet'.toFhirString),
+            valueX: Count(unit: 'Feet'.toFhirString),
           ),
           FhirExtension(
             url: 'www.mayjuun.com'.toFhirString,
-            valueCount: Count(unit: 'inches'.toFhirString),
+            valueX: Count(unit: 'inches'.toFhirString),
           ),
         ],
       ),
     ),
   ],
-  deceasedBoolean: FhirBoolean(false),
+  deceasedX: FhirBoolean(false),
   name: [
     HumanName(
       use: NameUse.official,

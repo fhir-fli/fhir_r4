@@ -25,7 +25,7 @@ class DataRequirement extends DataType
     super.extension_,
     required this.type,
     this.profile,
-    this.subjectXDataRequirement,
+    this.subjectX,
     this.mustSupport,
     this.codeFilter,
     this.dateFilter,
@@ -60,7 +60,7 @@ class DataRequirement extends DataType
         json['_profile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      subjectXDataRequirement: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -165,10 +165,10 @@ class DataRequirement extends DataType
   /// definition.
   final List<FhirCanonical>? profile;
 
-  /// [subjectXDataRequirement]
+  /// [subjectX]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final SubjectXDataRequirement? subjectXDataRequirement;
+  final SubjectXDataRequirement? subjectX;
 
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
@@ -232,8 +232,8 @@ class DataRequirement extends DataType
       }
     }
 
-    if (subjectXDataRequirement != null) {
-      json['subjectXDataRequirement'] = subjectXDataRequirement!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     if (mustSupport != null && mustSupport!.isNotEmpty) {
@@ -268,7 +268,7 @@ class DataRequirement extends DataType
     List<FhirExtension>? extension_,
     FHIRAllTypes? type,
     List<FhirCanonical>? profile,
-    SubjectXDataRequirement? subjectXDataRequirement,
+    SubjectXDataRequirement? subjectX,
     List<FhirString>? mustSupport,
     List<DataRequirementCodeFilter>? codeFilter,
     List<DataRequirementDateFilter>? dateFilter,
@@ -284,8 +284,7 @@ class DataRequirement extends DataType
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      subjectXDataRequirement:
-          subjectXDataRequirement ?? this.subjectXDataRequirement,
+      subjectX: subjectX ?? this.subjectX,
       mustSupport: mustSupport ?? this.mustSupport,
       codeFilter: codeFilter ?? this.codeFilter,
       dateFilter: dateFilter ?? this.dateFilter,
@@ -501,7 +500,7 @@ class DataRequirementDateFilter extends Element {
     super.extension_,
     this.path,
     this.searchParam,
-    this.valueXDataRequirementDateFilter,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -534,22 +533,21 @@ class DataRequirementDateFilter extends Element {
               '_value': json['_searchParam'],
             })
           : null,
-      valueXDataRequirementDateFilter:
-          json['valueDateTime'] != null || json['_valueDateTime'] != null
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
+      valueX: json['valueDateTime'] != null || json['_valueDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
+          : json['valuePeriod'] != null || json['_valuePeriod'] != null
+              ? Period.fromJson({
+                  'value': json['valuePeriod'],
+                  '_value': json['_valuePeriod'],
                 })
-              : json['valuePeriod'] != null || json['_valuePeriod'] != null
-                  ? Period.fromJson({
-                      'value': json['valuePeriod'],
-                      '_value': json['_valuePeriod'],
-                    })
-                  : json['valueDuration'] != null
-                      ? FhirDuration.fromJson(
-                          json['valueDuration'] as Map<String, dynamic>,
-                        )
-                      : null,
+              : json['valueDuration'] != null
+                  ? FhirDuration.fromJson(
+                      json['valueDuration'] as Map<String, dynamic>,
+                    )
+                  : null,
     );
   }
 
@@ -613,14 +611,14 @@ class DataRequirementDateFilter extends Element {
   /// of type date, dateTime, Period, Schedule, or Timing.
   final FhirString? searchParam;
 
-  /// [valueXDataRequirementDateFilter]
+  /// [valueX]
   /// The value of the filter. If period is specified, the filter will return
   /// only those data items that fall within the bounds determined by the
   /// Period, inclusive of the period boundaries. If dateTime is specified,
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final ValueXDataRequirementDateFilter? valueXDataRequirementDateFilter;
+  final ValueXDataRequirementDateFilter? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -640,8 +638,7 @@ class DataRequirementDateFilter extends Element {
 
     addField('path', path);
     addField('searchParam', searchParam);
-    addField(
-        'valueXDataRequirementDateFilter', valueXDataRequirementDateFilter);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -653,7 +650,7 @@ class DataRequirementDateFilter extends Element {
     List<FhirExtension>? extension_,
     FhirString? path,
     FhirString? searchParam,
-    ValueXDataRequirementDateFilter? valueXDataRequirementDateFilter,
+    ValueXDataRequirementDateFilter? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -664,8 +661,7 @@ class DataRequirementDateFilter extends Element {
       extension_: extension_ ?? this.extension_,
       path: path ?? this.path,
       searchParam: searchParam ?? this.searchParam,
-      valueXDataRequirementDateFilter: valueXDataRequirementDateFilter ??
-          this.valueXDataRequirementDateFilter,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

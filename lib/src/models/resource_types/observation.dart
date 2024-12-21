@@ -27,10 +27,10 @@ class Observation extends DomainResource {
     this.subject,
     this.focus,
     this.encounter,
-    this.effectiveXObservation,
+    this.effectiveX,
     this.issued,
     this.performer,
-    this.valueXObservation,
+    this.valueX,
     this.dataAbsentReason,
     this.interpretation,
     this.note,
@@ -166,7 +166,7 @@ class Observation extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXObservation: json['effectiveDateTime'] != null ||
+      effectiveX: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
@@ -205,8 +205,7 @@ class Observation extends DomainResource {
               )
               .toList()
           : null,
-      valueXObservation: json['valueQuantity'] != null ||
-              json['_valueQuantity'] != null
+      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
           ? Quantity.fromJson({
               'value': json['valueQuantity'],
               '_value': json['_valueQuantity'],
@@ -451,13 +450,13 @@ class Observation extends DomainResource {
   /// interaction) during which this observation is made.
   final Reference? encounter;
 
-  /// [effectiveXObservation]
+  /// [effectiveX]
   /// The time or time-period the observed value is asserted as being true.
   /// For biological subjects - e.g. human patients - this is usually called
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final EffectiveXObservation? effectiveXObservation;
+  final EffectiveXObservation? effectiveX;
 
   /// [issued]
   /// The date and time this version of the observation was made available to
@@ -468,10 +467,10 @@ class Observation extends DomainResource {
   /// Who was responsible for asserting the observed value as "true".
   final List<Reference>? performer;
 
-  /// [valueXObservation]
+  /// [valueX]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final ValueXObservation? valueXObservation;
+  final ValueXObservation? valueX;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
@@ -598,14 +597,14 @@ class Observation extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveXObservation', effectiveXObservation);
+    addField('effectiveX', effectiveX);
     addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
 
-    if (valueXObservation != null) {
-      json['valueXObservation'] = valueXObservation!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     if (dataAbsentReason != null) {
@@ -676,10 +675,10 @@ class Observation extends DomainResource {
     Reference? subject,
     List<Reference>? focus,
     Reference? encounter,
-    EffectiveXObservation? effectiveXObservation,
+    EffectiveXObservation? effectiveX,
     FhirInstant? issued,
     List<Reference>? performer,
-    ValueXObservation? valueXObservation,
+    ValueXObservation? valueX,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<Annotation>? note,
@@ -714,11 +713,10 @@ class Observation extends DomainResource {
       subject: subject ?? this.subject,
       focus: focus ?? this.focus,
       encounter: encounter ?? this.encounter,
-      effectiveXObservation:
-          effectiveXObservation ?? this.effectiveXObservation,
+      effectiveX: effectiveX ?? this.effectiveX,
       issued: issued ?? this.issued,
       performer: performer ?? this.performer,
-      valueXObservation: valueXObservation ?? this.valueXObservation,
+      valueX: valueX ?? this.valueX,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       note: note ?? this.note,
@@ -994,7 +992,7 @@ class ObservationComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueXObservationComponent,
+    this.valueX,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
@@ -1030,8 +1028,7 @@ class ObservationComponent extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXObservationComponent: json['valueQuantity'] != null ||
-              json['_valueQuantity'] != null
+      valueX: json['valueQuantity'] != null || json['_valueQuantity'] != null
           ? Quantity.fromJson({
               'value': json['valueQuantity'],
               '_value': json['_valueQuantity'],
@@ -1171,10 +1168,10 @@ class ObservationComponent extends BackboneElement {
   /// "code".
   final CodeableConcept code;
 
-  /// [valueXObservationComponent]
+  /// [valueX]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final ValueXObservationComponent? valueXObservationComponent;
+  final ValueXObservationComponent? valueX;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
@@ -1214,8 +1211,8 @@ class ObservationComponent extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    if (valueXObservationComponent != null) {
-      json['valueXObservationComponent'] = valueXObservationComponent!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     if (dataAbsentReason != null) {
@@ -1241,7 +1238,7 @@ class ObservationComponent extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    ValueXObservationComponent? valueXObservationComponent,
+    ValueXObservationComponent? valueX,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<ObservationReferenceRange>? referenceRange,
@@ -1255,8 +1252,7 @@ class ObservationComponent extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueXObservationComponent:
-          valueXObservationComponent ?? this.valueXObservationComponent,
+      valueX: valueX ?? this.valueX,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       referenceRange: referenceRange ?? this.referenceRange,

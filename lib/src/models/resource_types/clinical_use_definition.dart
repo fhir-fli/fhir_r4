@@ -783,7 +783,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.diseaseStatus,
     this.comorbidity,
     this.intendedEffect,
-    this.durationXClinicalUseDefinitionIndication,
+    this.durationX,
     this.undesirableEffect,
     this.otherTherapy,
     super.disallowExtensions,
@@ -839,8 +839,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
               json['intendedEffect'] as Map<String, dynamic>,
             )
           : null,
-      durationXClinicalUseDefinitionIndication: json['durationRange'] != null ||
-              json['_durationRange'] != null
+      durationX: json['durationRange'] != null || json['_durationRange'] != null
           ? Range.fromJson({
               'value': json['durationRange'],
               '_value': json['_durationRange'],
@@ -932,13 +931,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// The intended effect, aim or strategy to be achieved.
   final CodeableReference? intendedEffect;
 
-  /// [durationXClinicalUseDefinitionIndication]
+  /// [durationX]
   /// Timing or duration information, that may be associated with use with
   /// the indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  final DurationXClinicalUseDefinitionIndication?
-      durationXClinicalUseDefinitionIndication;
+  final DurationXClinicalUseDefinitionIndication? durationX;
 
   /// [undesirableEffect]
   /// An unwanted side effect or negative outcome that may happen if you use
@@ -987,9 +985,8 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       json['intendedEffect'] = intendedEffect!.toJson();
     }
 
-    if (durationXClinicalUseDefinitionIndication != null) {
-      json['durationXClinicalUseDefinitionIndication'] =
-          durationXClinicalUseDefinitionIndication!.toJson();
+    if (durationX != null) {
+      json['durationX'] = durationX!.toJson();
     }
 
     if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
@@ -1015,8 +1012,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     CodeableReference? diseaseStatus,
     List<CodeableReference>? comorbidity,
     CodeableReference? intendedEffect,
-    DurationXClinicalUseDefinitionIndication?
-        durationXClinicalUseDefinitionIndication,
+    DurationXClinicalUseDefinitionIndication? durationX,
     List<Reference>? undesirableEffect,
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
     Map<String, Object?>? userData,
@@ -1033,9 +1029,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       diseaseStatus: diseaseStatus ?? this.diseaseStatus,
       comorbidity: comorbidity ?? this.comorbidity,
       intendedEffect: intendedEffect ?? this.intendedEffect,
-      durationXClinicalUseDefinitionIndication:
-          durationXClinicalUseDefinitionIndication ??
-              this.durationXClinicalUseDefinitionIndication,
+      durationX: durationX ?? this.durationX,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       otherTherapy: otherTherapy ?? this.otherTherapy,
     );
@@ -1272,7 +1266,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.itemXClinicalUseDefinitionInteractant,
+    required this.itemX,
     super.disallowExtensions,
   });
 
@@ -1302,15 +1296,14 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
               )
               .toList()
           : null,
-      itemXClinicalUseDefinitionInteractant:
-          json['itemReference'] != null || json['_itemReference'] != null
-              ? Reference.fromJson({
-                  'value': json['itemReference'],
-                  '_value': json['_itemReference'],
-                })
-              : CodeableConcept.fromJson(
-                  json['itemCodeableConcept'] as Map<String, dynamic>,
-                ),
+      itemX: json['itemReference'] != null || json['_itemReference'] != null
+          ? Reference.fromJson({
+              'value': json['itemReference'],
+              '_value': json['_itemReference'],
+            })
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -1356,10 +1349,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
 
-  /// [itemXClinicalUseDefinitionInteractant]
+  /// [itemX]
   /// The specific medication, food or laboratory test that interacts.
-  final ItemXClinicalUseDefinitionInteractant
-      itemXClinicalUseDefinitionInteractant;
+  final ItemXClinicalUseDefinitionInteractant itemX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1382,8 +1374,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['itemXClinicalUseDefinitionInteractant'] =
-        itemXClinicalUseDefinitionInteractant.toJson();
+    json['itemX'] = itemX.toJson();
 
     return json;
   }
@@ -1395,8 +1386,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ItemXClinicalUseDefinitionInteractant?
-        itemXClinicalUseDefinitionInteractant,
+    ItemXClinicalUseDefinitionInteractant? itemX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1406,9 +1396,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemXClinicalUseDefinitionInteractant:
-          itemXClinicalUseDefinitionInteractant ??
-              this.itemXClinicalUseDefinitionInteractant,
+      itemX: itemX ?? this.itemX,
     );
   }
 }

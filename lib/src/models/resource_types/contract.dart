@@ -39,7 +39,7 @@ class Contract extends DomainResource {
     this.alias,
     this.author,
     this.scope,
-    this.topicXContract,
+    this.topicX,
     this.type,
     this.subType,
     this.contentDefinition,
@@ -50,7 +50,7 @@ class Contract extends DomainResource {
     this.friendly,
     this.legal,
     this.rule,
-    this.legallyBindingXContract,
+    this.legallyBindingX,
   }) : super(
           resourceType: R4ResourceType.Contract,
         );
@@ -247,7 +247,7 @@ class Contract extends DomainResource {
               json['scope'] as Map<String, dynamic>,
             )
           : null,
-      topicXContract: json['topicCodeableConcept'] != null ||
+      topicX: json['topicCodeableConcept'] != null ||
               json['_topicCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['topicCodeableConcept'],
@@ -340,7 +340,7 @@ class Contract extends DomainResource {
               )
               .toList()
           : null,
-      legallyBindingXContract: json['legallyBindingAttachment'] != null ||
+      legallyBindingX: json['legallyBindingAttachment'] != null ||
               json['_legallyBindingAttachment'] != null
           ? Attachment.fromJson({
               'value': json['legallyBindingAttachment'],
@@ -510,10 +510,10 @@ class Contract extends DomainResource {
   /// or instance in any legal state.
   final CodeableConcept? scope;
 
-  /// [topicXContract]
+  /// [topicX]
   /// Narrows the range of legal concerns to focus on the achievement of
   /// specific contractual objectives.
-  final TopicXContract? topicXContract;
+  final TopicXContract? topicX;
 
   /// [type]
   /// A high-level category for the legal instrument, whether constructed as
@@ -580,12 +580,12 @@ class Contract extends DomainResource {
   /// Contract.
   final List<ContractRule>? rule;
 
-  /// [legallyBindingXContract]
+  /// [legallyBindingX]
   /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
-  final LegallyBindingXContract? legallyBindingXContract;
+  final LegallyBindingXContract? legallyBindingX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -687,8 +687,8 @@ class Contract extends DomainResource {
       json['scope'] = scope!.toJson();
     }
 
-    if (topicXContract != null) {
-      json['topicXContract'] = topicXContract!.toJson();
+    if (topicX != null) {
+      json['topicX'] = topicX!.toJson();
     }
 
     if (type != null) {
@@ -732,8 +732,8 @@ class Contract extends DomainResource {
       json['rule'] = rule!.map((e) => e.toJson()).toList();
     }
 
-    if (legallyBindingXContract != null) {
-      json['legallyBindingXContract'] = legallyBindingXContract!.toJson();
+    if (legallyBindingX != null) {
+      json['legallyBindingX'] = legallyBindingX!.toJson();
     }
 
     return json;
@@ -772,7 +772,7 @@ class Contract extends DomainResource {
     List<FhirString>? alias,
     Reference? author,
     CodeableConcept? scope,
-    TopicXContract? topicXContract,
+    TopicXContract? topicX,
     CodeableConcept? type,
     List<CodeableConcept>? subType,
     ContractContentDefinition? contentDefinition,
@@ -783,7 +783,7 @@ class Contract extends DomainResource {
     List<ContractFriendly>? friendly,
     List<ContractLegal>? legal,
     List<ContractRule>? rule,
-    LegallyBindingXContract? legallyBindingXContract,
+    LegallyBindingXContract? legallyBindingX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -820,7 +820,7 @@ class Contract extends DomainResource {
       alias: alias ?? this.alias,
       author: author ?? this.author,
       scope: scope ?? this.scope,
-      topicXContract: topicXContract ?? this.topicXContract,
+      topicX: topicX ?? this.topicX,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       contentDefinition: contentDefinition ?? this.contentDefinition,
@@ -831,8 +831,7 @@ class Contract extends DomainResource {
       friendly: friendly ?? this.friendly,
       legal: legal ?? this.legal,
       rule: rule ?? this.rule,
-      legallyBindingXContract:
-          legallyBindingXContract ?? this.legallyBindingXContract,
+      legallyBindingX: legallyBindingX ?? this.legallyBindingX,
     );
   }
 }
@@ -1076,7 +1075,7 @@ class ContractTerm extends BackboneElement {
     this.identifier,
     this.issued,
     this.applies,
-    this.topicXContractTerm,
+    this.topicX,
     this.type,
     this.subType,
     this.text,
@@ -1130,7 +1129,7 @@ class ContractTerm extends BackboneElement {
               json['applies'] as Map<String, dynamic>,
             )
           : null,
-      topicXContractTerm: json['topicCodeableConcept'] != null ||
+      topicX: json['topicCodeableConcept'] != null ||
               json['_topicCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['topicCodeableConcept'],
@@ -1254,9 +1253,9 @@ class ContractTerm extends BackboneElement {
   /// applicable.
   final Period? applies;
 
-  /// [topicXContractTerm]
+  /// [topicX]
   /// The entity that the term applies to.
-  final TopicXContractTerm? topicXContractTerm;
+  final TopicXContractTerm? topicX;
 
   /// [type]
   /// A legal clause or condition contained within a contract that requires
@@ -1326,8 +1325,8 @@ class ContractTerm extends BackboneElement {
       json['applies'] = applies!.toJson();
     }
 
-    if (topicXContractTerm != null) {
-      json['topicXContractTerm'] = topicXContractTerm!.toJson();
+    if (topicX != null) {
+      json['topicX'] = topicX!.toJson();
     }
 
     if (type != null) {
@@ -1370,7 +1369,7 @@ class ContractTerm extends BackboneElement {
     Identifier? identifier,
     FhirDateTime? issued,
     Period? applies,
-    TopicXContractTerm? topicXContractTerm,
+    TopicXContractTerm? topicX,
     CodeableConcept? type,
     CodeableConcept? subType,
     FhirString? text,
@@ -1391,7 +1390,7 @@ class ContractTerm extends BackboneElement {
       identifier: identifier ?? this.identifier,
       issued: issued ?? this.issued,
       applies: applies ?? this.applies,
-      topicXContractTerm: topicXContractTerm ?? this.topicXContractTerm,
+      topicX: topicX ?? this.topicX,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       text: text ?? this.text,
@@ -2095,7 +2094,7 @@ class ContractAnswer extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueXContractAnswer,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -2125,8 +2124,7 @@ class ContractAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueXContractAnswer: json['valueBoolean'] != null ||
-              json['_valueBoolean'] != null
+      valueX: json['valueBoolean'] != null || json['_valueBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
@@ -2243,12 +2241,12 @@ class ContractAnswer extends BackboneElement {
   @override
   String get fhirType => 'ContractAnswer';
 
-  /// [valueXContractAnswer]
+  /// [valueX]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final ValueXContractAnswer valueXContractAnswer;
+  final ValueXContractAnswer valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2271,7 +2269,7 @@ class ContractAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueXContractAnswer', valueXContractAnswer);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -2282,7 +2280,7 @@ class ContractAnswer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ValueXContractAnswer? valueXContractAnswer,
+    ValueXContractAnswer? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2292,7 +2290,7 @@ class ContractAnswer extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueXContractAnswer: valueXContractAnswer ?? this.valueXContractAnswer,
+      valueX: valueX ?? this.valueX,
     );
   }
 }
@@ -2903,7 +2901,7 @@ class ContractValuedItem extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.entityXContractValuedItem,
+    this.entityX,
     this.identifier,
     this.effectiveTime,
     this.quantity,
@@ -2946,7 +2944,7 @@ class ContractValuedItem extends BackboneElement {
               )
               .toList()
           : null,
-      entityXContractValuedItem: json['entityCodeableConcept'] != null ||
+      entityX: json['entityCodeableConcept'] != null ||
               json['_entityCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['entityCodeableConcept'],
@@ -3073,9 +3071,9 @@ class ContractValuedItem extends BackboneElement {
   @override
   String get fhirType => 'ContractValuedItem';
 
-  /// [entityXContractValuedItem]
+  /// [entityX]
   /// Specific type of Contract Valued Item that may be priced.
-  final EntityXContractValuedItem? entityXContractValuedItem;
+  final EntityXContractValuedItem? entityX;
 
   /// [identifier]
   /// Identifies a Contract Valued Item instance.
@@ -3165,8 +3163,8 @@ class ContractValuedItem extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (entityXContractValuedItem != null) {
-      json['entityXContractValuedItem'] = entityXContractValuedItem!.toJson();
+    if (entityX != null) {
+      json['entityX'] = entityX!.toJson();
     }
 
     if (identifier != null) {
@@ -3225,7 +3223,7 @@ class ContractValuedItem extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    EntityXContractValuedItem? entityXContractValuedItem,
+    EntityXContractValuedItem? entityX,
     Identifier? identifier,
     FhirDateTime? effectiveTime,
     Quantity? quantity,
@@ -3248,8 +3246,7 @@ class ContractValuedItem extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      entityXContractValuedItem:
-          entityXContractValuedItem ?? this.entityXContractValuedItem,
+      entityX: entityX ?? this.entityX,
       identifier: identifier ?? this.identifier,
       effectiveTime: effectiveTime ?? this.effectiveTime,
       quantity: quantity ?? this.quantity,
@@ -3286,7 +3283,7 @@ class ContractAction extends BackboneElement {
     required this.status,
     this.context,
     this.contextLinkId,
-    this.occurrenceXContractAction,
+    this.occurrenceX,
     this.requester,
     this.requesterLinkId,
     this.performerType,
@@ -3368,7 +3365,7 @@ class ContractAction extends BackboneElement {
         json['_contextLinkId'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      occurrenceXContractAction: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -3547,9 +3544,9 @@ class ContractAction extends BackboneElement {
   /// QuestionnaireResponse.
   final List<FhirString>? contextLinkId;
 
-  /// [occurrenceXContractAction]
+  /// [occurrenceX]
   /// When action happens.
-  final OccurrenceXContractAction? occurrenceXContractAction;
+  final OccurrenceXContractAction? occurrenceX;
 
   /// [requester]
   /// Who or what initiated the action and has responsibility for its
@@ -3665,7 +3662,7 @@ class ContractAction extends BackboneElement {
       }
     }
 
-    addField('occurrenceXContractAction', occurrenceXContractAction);
+    addField('occurrenceX', occurrenceX);
     if (requester != null && requester!.isNotEmpty) {
       json['requester'] = requester!.map((e) => e.toJson()).toList();
     }
@@ -3754,7 +3751,7 @@ class ContractAction extends BackboneElement {
     CodeableConcept? status,
     Reference? context,
     List<FhirString>? contextLinkId,
-    OccurrenceXContractAction? occurrenceXContractAction,
+    OccurrenceXContractAction? occurrenceX,
     List<Reference>? requester,
     List<FhirString>? requesterLinkId,
     List<CodeableConcept>? performerType,
@@ -3784,8 +3781,7 @@ class ContractAction extends BackboneElement {
       status: status ?? this.status,
       context: context ?? this.context,
       contextLinkId: contextLinkId ?? this.contextLinkId,
-      occurrenceXContractAction:
-          occurrenceXContractAction ?? this.occurrenceXContractAction,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       requester: requester ?? this.requester,
       requesterLinkId: requesterLinkId ?? this.requesterLinkId,
       performerType: performerType ?? this.performerType,
@@ -4157,7 +4153,7 @@ class ContractFriendly extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentXContractFriendly,
+    required this.contentX,
     super.disallowExtensions,
   });
 
@@ -4187,7 +4183,7 @@ class ContractFriendly extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractFriendly: json['contentAttachment'] != null ||
+      contentX: json['contentAttachment'] != null ||
               json['_contentAttachment'] != null
           ? Attachment.fromJson({
               'value': json['contentAttachment'],
@@ -4241,11 +4237,11 @@ class ContractFriendly extends BackboneElement {
   @override
   String get fhirType => 'ContractFriendly';
 
-  /// [contentXContractFriendly]
+  /// [contentX]
   /// Human readable rendering of this Contract in a format and
   /// representation intended to enhance comprehension and ensure
   /// understandability.
-  final ContentXContractFriendly contentXContractFriendly;
+  final ContentXContractFriendly contentX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4268,7 +4264,7 @@ class ContractFriendly extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentXContractFriendly'] = contentXContractFriendly.toJson();
+    json['contentX'] = contentX.toJson();
 
     return json;
   }
@@ -4280,7 +4276,7 @@ class ContractFriendly extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContentXContractFriendly? contentXContractFriendly,
+    ContentXContractFriendly? contentX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4290,8 +4286,7 @@ class ContractFriendly extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentXContractFriendly:
-          contentXContractFriendly ?? this.contentXContractFriendly,
+      contentX: contentX ?? this.contentX,
     );
   }
 }
@@ -4306,7 +4301,7 @@ class ContractLegal extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentXContractLegal,
+    required this.contentX,
     super.disallowExtensions,
   });
 
@@ -4336,7 +4331,7 @@ class ContractLegal extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractLegal: json['contentAttachment'] != null ||
+      contentX: json['contentAttachment'] != null ||
               json['_contentAttachment'] != null
           ? Attachment.fromJson({
               'value': json['contentAttachment'],
@@ -4390,9 +4385,9 @@ class ContractLegal extends BackboneElement {
   @override
   String get fhirType => 'ContractLegal';
 
-  /// [contentXContractLegal]
+  /// [contentX]
   /// Contract legal text in human renderable form.
-  final ContentXContractLegal contentXContractLegal;
+  final ContentXContractLegal contentX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4415,7 +4410,7 @@ class ContractLegal extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentXContractLegal'] = contentXContractLegal.toJson();
+    json['contentX'] = contentX.toJson();
 
     return json;
   }
@@ -4427,7 +4422,7 @@ class ContractLegal extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContentXContractLegal? contentXContractLegal,
+    ContentXContractLegal? contentX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4437,8 +4432,7 @@ class ContractLegal extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentXContractLegal:
-          contentXContractLegal ?? this.contentXContractLegal,
+      contentX: contentX ?? this.contentX,
     );
   }
 }
@@ -4454,7 +4448,7 @@ class ContractRule extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentXContractRule,
+    required this.contentX,
     super.disallowExtensions,
   });
 
@@ -4484,7 +4478,7 @@ class ContractRule extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractRule: json['contentAttachment'] != null ||
+      contentX: json['contentAttachment'] != null ||
               json['_contentAttachment'] != null
           ? Attachment.fromJson({
               'value': json['contentAttachment'],
@@ -4538,10 +4532,10 @@ class ContractRule extends BackboneElement {
   @override
   String get fhirType => 'ContractRule';
 
-  /// [contentXContractRule]
+  /// [contentX]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  final ContentXContractRule contentXContractRule;
+  final ContentXContractRule contentX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4564,7 +4558,7 @@ class ContractRule extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentXContractRule'] = contentXContractRule.toJson();
+    json['contentX'] = contentX.toJson();
 
     return json;
   }
@@ -4576,7 +4570,7 @@ class ContractRule extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContentXContractRule? contentXContractRule,
+    ContentXContractRule? contentX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4586,7 +4580,7 @@ class ContractRule extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentXContractRule: contentXContractRule ?? this.contentXContractRule,
+      contentX: contentX ?? this.contentX,
     );
   }
 }

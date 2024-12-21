@@ -332,7 +332,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueXManufacturedItemDefinitionProperty,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -365,8 +365,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXManufacturedItemDefinitionProperty: json['valueCodeableConcept'] !=
-                  null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -442,10 +441,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueXManufacturedItemDefinitionProperty]
+  /// [valueX]
   /// A value for the characteristic.
-  final ValueXManufacturedItemDefinitionProperty?
-      valueXManufacturedItemDefinitionProperty;
+  final ValueXManufacturedItemDefinitionProperty? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -470,9 +468,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueXManufacturedItemDefinitionProperty != null) {
-      json['valueXManufacturedItemDefinitionProperty'] =
-          valueXManufacturedItemDefinitionProperty!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     return json;
@@ -486,8 +483,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    ValueXManufacturedItemDefinitionProperty?
-        valueXManufacturedItemDefinitionProperty,
+    ValueXManufacturedItemDefinitionProperty? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -498,9 +494,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXManufacturedItemDefinitionProperty:
-          valueXManufacturedItemDefinitionProperty ??
-              this.valueXManufacturedItemDefinitionProperty,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

@@ -885,10 +885,10 @@ class CarePlanDetail extends BackboneElement {
     required this.status,
     this.statusReason,
     this.doNotPerform,
-    this.scheduledXCarePlanDetail,
+    this.scheduledX,
     this.location,
     this.performer,
-    this.productXCarePlanDetail,
+    this.productX,
     this.dailyAmount,
     this.quantity,
     this.description,
@@ -985,7 +985,7 @@ class CarePlanDetail extends BackboneElement {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      scheduledXCarePlanDetail: json['scheduledTiming'] != null ||
+      scheduledX: json['scheduledTiming'] != null ||
               json['_scheduledTiming'] != null
           ? Timing.fromJson({
               'value': json['scheduledTiming'],
@@ -1017,7 +1017,7 @@ class CarePlanDetail extends BackboneElement {
               )
               .toList()
           : null,
-      productXCarePlanDetail: json['productCodeableConcept'] != null ||
+      productX: json['productCodeableConcept'] != null ||
               json['_productCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['productCodeableConcept'],
@@ -1147,10 +1147,10 @@ class CarePlanDetail extends BackboneElement {
   /// following the plan.
   final FhirBoolean? doNotPerform;
 
-  /// [scheduledXCarePlanDetail]
+  /// [scheduledX]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final ScheduledXCarePlanDetail? scheduledXCarePlanDetail;
+  final ScheduledXCarePlanDetail? scheduledX;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -1161,10 +1161,10 @@ class CarePlanDetail extends BackboneElement {
   /// Identifies who's expected to be involved in the activity.
   final List<Reference>? performer;
 
-  /// [productXCarePlanDetail]
+  /// [productX]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final ProductXCarePlanDetail? productXCarePlanDetail;
+  final ProductXCarePlanDetail? productX;
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.
@@ -1246,8 +1246,8 @@ class CarePlanDetail extends BackboneElement {
     }
 
     addField('doNotPerform', doNotPerform);
-    if (scheduledXCarePlanDetail != null) {
-      json['scheduledXCarePlanDetail'] = scheduledXCarePlanDetail!.toJson();
+    if (scheduledX != null) {
+      json['scheduledX'] = scheduledX!.toJson();
     }
 
     if (location != null) {
@@ -1258,8 +1258,8 @@ class CarePlanDetail extends BackboneElement {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
 
-    if (productXCarePlanDetail != null) {
-      json['productXCarePlanDetail'] = productXCarePlanDetail!.toJson();
+    if (productX != null) {
+      json['productX'] = productX!.toJson();
     }
 
     if (dailyAmount != null) {
@@ -1291,10 +1291,10 @@ class CarePlanDetail extends BackboneElement {
     CarePlanActivityStatus? status,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,
-    ScheduledXCarePlanDetail? scheduledXCarePlanDetail,
+    ScheduledXCarePlanDetail? scheduledX,
     Reference? location,
     List<Reference>? performer,
-    ProductXCarePlanDetail? productXCarePlanDetail,
+    ProductXCarePlanDetail? productX,
     Quantity? dailyAmount,
     Quantity? quantity,
     FhirString? description,
@@ -1318,12 +1318,10 @@ class CarePlanDetail extends BackboneElement {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      scheduledXCarePlanDetail:
-          scheduledXCarePlanDetail ?? this.scheduledXCarePlanDetail,
+      scheduledX: scheduledX ?? this.scheduledX,
       location: location ?? this.location,
       performer: performer ?? this.performer,
-      productXCarePlanDetail:
-          productXCarePlanDetail ?? this.productXCarePlanDetail,
+      productX: productX ?? this.productX,
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,

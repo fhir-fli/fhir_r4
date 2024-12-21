@@ -28,10 +28,10 @@ class FamilyMemberHistory extends DomainResource {
     this.name,
     required this.relationship,
     this.sex,
-    this.bornXFamilyMemberHistory,
-    this.ageXFamilyMemberHistory,
+    this.bornX,
+    this.ageX,
     this.estimatedAge,
-    this.deceasedXFamilyMemberHistory,
+    this.deceasedX,
     this.reasonCode,
     this.reasonReference,
     this.note,
@@ -149,24 +149,23 @@ class FamilyMemberHistory extends DomainResource {
               json['sex'] as Map<String, dynamic>,
             )
           : null,
-      bornXFamilyMemberHistory:
-          json['bornPeriod'] != null || json['_bornPeriod'] != null
-              ? Period.fromJson({
-                  'value': json['bornPeriod'],
-                  '_value': json['_bornPeriod'],
+      bornX: json['bornPeriod'] != null || json['_bornPeriod'] != null
+          ? Period.fromJson({
+              'value': json['bornPeriod'],
+              '_value': json['_bornPeriod'],
+            })
+          : json['bornDate'] != null || json['_bornDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['bornDate'],
+                  '_value': json['_bornDate'],
                 })
-              : json['bornDate'] != null || json['_bornDate'] != null
-                  ? FhirDate.fromJson({
-                      'value': json['bornDate'],
-                      '_value': json['_bornDate'],
+              : json['bornString'] != null || json['_bornString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['bornString'],
+                      '_value': json['_bornString'],
                     })
-                  : json['bornString'] != null || json['_bornString'] != null
-                      ? FhirString.fromJson({
-                          'value': json['bornString'],
-                          '_value': json['_bornString'],
-                        })
-                      : null,
-      ageXFamilyMemberHistory: json['ageAge'] != null || json['_ageAge'] != null
+                  : null,
+      ageX: json['ageAge'] != null || json['_ageAge'] != null
           ? Age.fromJson({
               'value': json['ageAge'],
               '_value': json['_ageAge'],
@@ -189,7 +188,7 @@ class FamilyMemberHistory extends DomainResource {
                   '_value': json['_estimatedAge'],
                 })
               : null,
-      deceasedXFamilyMemberHistory: json['deceasedBoolean'] != null ||
+      deceasedX: json['deceasedBoolean'] != null ||
               json['_deceasedBoolean'] != null
           ? FhirBoolean.fromJson({
               'value': json['deceasedBoolean'],
@@ -349,23 +348,23 @@ class FamilyMemberHistory extends DomainResource {
   /// The birth sex of the family member.
   final CodeableConcept? sex;
 
-  /// [bornXFamilyMemberHistory]
+  /// [bornX]
   /// The actual or approximate date of birth of the relative.
-  final BornXFamilyMemberHistory? bornXFamilyMemberHistory;
+  final BornXFamilyMemberHistory? bornX;
 
-  /// [ageXFamilyMemberHistory]
+  /// [ageX]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final AgeXFamilyMemberHistory? ageXFamilyMemberHistory;
+  final AgeXFamilyMemberHistory? ageX;
 
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
   final FhirBoolean? estimatedAge;
 
-  /// [deceasedXFamilyMemberHistory]
+  /// [deceasedX]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final DeceasedXFamilyMemberHistory? deceasedXFamilyMemberHistory;
+  final DeceasedXFamilyMemberHistory? deceasedX;
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
@@ -463,16 +462,16 @@ class FamilyMemberHistory extends DomainResource {
       json['sex'] = sex!.toJson();
     }
 
-    if (bornXFamilyMemberHistory != null) {
-      json['bornXFamilyMemberHistory'] = bornXFamilyMemberHistory!.toJson();
+    if (bornX != null) {
+      json['bornX'] = bornX!.toJson();
     }
 
-    if (ageXFamilyMemberHistory != null) {
-      json['ageXFamilyMemberHistory'] = ageXFamilyMemberHistory!.toJson();
+    if (ageX != null) {
+      json['ageX'] = ageX!.toJson();
     }
 
     addField('estimatedAge', estimatedAge);
-    addField('deceasedXFamilyMemberHistory', deceasedXFamilyMemberHistory);
+    addField('deceasedX', deceasedX);
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
@@ -515,10 +514,10 @@ class FamilyMemberHistory extends DomainResource {
     FhirString? name,
     CodeableConcept? relationship,
     CodeableConcept? sex,
-    BornXFamilyMemberHistory? bornXFamilyMemberHistory,
-    AgeXFamilyMemberHistory? ageXFamilyMemberHistory,
+    BornXFamilyMemberHistory? bornX,
+    AgeXFamilyMemberHistory? ageX,
     FhirBoolean? estimatedAge,
-    DeceasedXFamilyMemberHistory? deceasedXFamilyMemberHistory,
+    DeceasedXFamilyMemberHistory? deceasedX,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
@@ -548,13 +547,10 @@ class FamilyMemberHistory extends DomainResource {
       name: name ?? this.name,
       relationship: relationship ?? this.relationship,
       sex: sex ?? this.sex,
-      bornXFamilyMemberHistory:
-          bornXFamilyMemberHistory ?? this.bornXFamilyMemberHistory,
-      ageXFamilyMemberHistory:
-          ageXFamilyMemberHistory ?? this.ageXFamilyMemberHistory,
+      bornX: bornX ?? this.bornX,
+      ageX: ageX ?? this.ageX,
       estimatedAge: estimatedAge ?? this.estimatedAge,
-      deceasedXFamilyMemberHistory:
-          deceasedXFamilyMemberHistory ?? this.deceasedXFamilyMemberHistory,
+      deceasedX: deceasedX ?? this.deceasedX,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
@@ -579,7 +575,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     required this.code,
     this.outcome,
     this.contributedToDeath,
-    this.onsetXFamilyMemberHistoryCondition,
+    this.onsetX,
     this.note,
     super.disallowExtensions,
   });
@@ -625,8 +621,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
               '_value': json['_contributedToDeath'],
             })
           : null,
-      onsetXFamilyMemberHistoryCondition: json['onsetAge'] != null ||
-              json['_onsetAge'] != null
+      onsetX: json['onsetAge'] != null || json['_onsetAge'] != null
           ? Age.fromJson({
               'value': json['onsetAge'],
               '_value': json['_onsetAge'],
@@ -718,11 +713,11 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// If contributedToDeath is not populated, then it is unknown.
   final FhirBoolean? contributedToDeath;
 
-  /// [onsetXFamilyMemberHistoryCondition]
+  /// [onsetX]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final OnsetXFamilyMemberHistoryCondition? onsetXFamilyMemberHistoryCondition;
+  final OnsetXFamilyMemberHistoryCondition? onsetX;
 
   /// [note]
   /// An area where general notes can be placed about this specific
@@ -757,9 +752,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     }
 
     addField('contributedToDeath', contributedToDeath);
-    if (onsetXFamilyMemberHistoryCondition != null) {
-      json['onsetXFamilyMemberHistoryCondition'] =
-          onsetXFamilyMemberHistoryCondition!.toJson();
+    if (onsetX != null) {
+      json['onsetX'] = onsetX!.toJson();
     }
 
     if (note != null && note!.isNotEmpty) {
@@ -779,7 +773,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     CodeableConcept? code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
-    OnsetXFamilyMemberHistoryCondition? onsetXFamilyMemberHistoryCondition,
+    OnsetXFamilyMemberHistoryCondition? onsetX,
     List<Annotation>? note,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -793,8 +787,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       code: code ?? this.code,
       outcome: outcome ?? this.outcome,
       contributedToDeath: contributedToDeath ?? this.contributedToDeath,
-      onsetXFamilyMemberHistoryCondition: onsetXFamilyMemberHistoryCondition ??
-          this.onsetXFamilyMemberHistoryCondition,
+      onsetX: onsetX ?? this.onsetX,
       note: note ?? this.note,
     );
   }

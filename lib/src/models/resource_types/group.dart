@@ -373,7 +373,7 @@ class GroupCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    required this.valueXGroupCharacteristic,
+    required this.valueX,
     required this.exclude,
     this.period,
     super.disallowExtensions,
@@ -408,7 +408,7 @@ class GroupCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXGroupCharacteristic: json['valueCodeableConcept'] != null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -490,10 +490,10 @@ class GroupCharacteristic extends BackboneElement {
   /// A code that identifies the kind of trait being asserted.
   final CodeableConcept code;
 
-  /// [valueXGroupCharacteristic]
+  /// [valueX]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final ValueXGroupCharacteristic valueXGroupCharacteristic;
+  final ValueXGroupCharacteristic valueX;
 
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
@@ -528,7 +528,7 @@ class GroupCharacteristic extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    json['valueXGroupCharacteristic'] = valueXGroupCharacteristic.toJson();
+    json['valueX'] = valueX.toJson();
 
     addField('exclude', exclude);
     if (period != null) {
@@ -546,7 +546,7 @@ class GroupCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    ValueXGroupCharacteristic? valueXGroupCharacteristic,
+    ValueXGroupCharacteristic? valueX,
     FhirBoolean? exclude,
     Period? period,
     Map<String, Object?>? userData,
@@ -559,8 +559,7 @@ class GroupCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueXGroupCharacteristic:
-          valueXGroupCharacteristic ?? this.valueXGroupCharacteristic,
+      valueX: valueX ?? this.valueX,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
     );

@@ -26,7 +26,7 @@ class EventDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectXEventDefinition,
+    this.subjectX,
     super.date,
     super.publisher,
     super.contact,
@@ -158,7 +158,7 @@ class EventDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXEventDefinition: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -380,10 +380,10 @@ class EventDefinition extends CanonicalResource {
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// [subjectXEventDefinition]
+  /// [subjectX]
   /// A code or group definition that describes the intended subject of the
   /// event definition.
-  final SubjectXEventDefinition? subjectXEventDefinition;
+  final SubjectXEventDefinition? subjectX;
 
   /// [purpose]
   /// Explanation of why this event definition is needed and why it has been
@@ -502,8 +502,8 @@ class EventDefinition extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXEventDefinition != null) {
-      json['subjectXEventDefinition'] = subjectXEventDefinition!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -582,7 +582,7 @@ class EventDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXEventDefinition? subjectXEventDefinition,
+    SubjectXEventDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -624,8 +624,7 @@ class EventDefinition extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXEventDefinition:
-          subjectXEventDefinition ?? this.subjectXEventDefinition,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

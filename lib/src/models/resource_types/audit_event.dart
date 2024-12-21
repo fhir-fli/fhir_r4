@@ -1318,7 +1318,7 @@ class AuditEventDetail extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueXAuditEventDetail,
+    required this.valueX,
     super.disallowExtensions,
   });
 
@@ -1352,16 +1352,15 @@ class AuditEventDetail extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      valueXAuditEventDetail:
-          json['valueString'] != null || json['_valueString'] != null
-              ? FhirString.fromJson({
-                  'value': json['valueString'],
-                  '_value': json['_valueString'],
-                })
-              : FhirBase64Binary.fromJson({
-                  'value': json['valueBase64Binary'],
-                  '_value': json['_valueBase64Binary'],
-                }),
+      valueX: json['valueString'] != null || json['_valueString'] != null
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
+          : FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            }),
     );
   }
 
@@ -1411,9 +1410,9 @@ class AuditEventDetail extends BackboneElement {
   /// The type of extra detail provided in the value.
   final FhirString type;
 
-  /// [valueXAuditEventDetail]
+  /// [valueX]
   /// The value of the extra detail.
-  final ValueXAuditEventDetail valueXAuditEventDetail;
+  final ValueXAuditEventDetail valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1437,7 +1436,7 @@ class AuditEventDetail extends BackboneElement {
     }
 
     addField('type', type);
-    addField('valueXAuditEventDetail', valueXAuditEventDetail);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1449,7 +1448,7 @@ class AuditEventDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? type,
-    ValueXAuditEventDetail? valueXAuditEventDetail,
+    ValueXAuditEventDetail? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1460,8 +1459,7 @@ class AuditEventDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueXAuditEventDetail:
-          valueXAuditEventDetail ?? this.valueXAuditEventDetail,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

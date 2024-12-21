@@ -31,11 +31,11 @@ class ServiceRequest extends DomainResource {
     this.doNotPerform,
     this.code,
     this.orderDetail,
-    this.quantityXServiceRequest,
+    this.quantityX,
     required this.subject,
     this.encounter,
-    this.occurrenceXServiceRequest,
-    this.asNeededXServiceRequest,
+    this.occurrenceX,
+    this.asNeededX,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -199,7 +199,7 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      quantityXServiceRequest:
+      quantityX:
           json['quantityQuantity'] != null || json['_quantityQuantity'] != null
               ? Quantity.fromJson({
                   'value': json['quantityQuantity'],
@@ -223,7 +223,7 @@ class ServiceRequest extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXServiceRequest: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -240,7 +240,7 @@ class ServiceRequest extends DomainResource {
                       json['occurrenceTiming'] as Map<String, dynamic>,
                     )
                   : null,
-      asNeededXServiceRequest:
+      asNeededX:
           json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null
               ? FhirBoolean.fromJson({
                   'value': json['asNeededBoolean'],
@@ -488,11 +488,11 @@ class ServiceRequest extends DomainResource {
   /// should be applied.
   final List<CodeableConcept>? orderDetail;
 
-  /// [quantityXServiceRequest]
+  /// [quantityX]
   /// An amount of service being requested which can be a quantity ( for
   /// example $1,500 home modification), a ratio ( for example, 20 half day
   /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final QuantityXServiceRequest? quantityXServiceRequest;
+  final QuantityXServiceRequest? quantityX;
 
   /// [subject]
   /// On whom or what the service is to be performed. This is usually a human
@@ -506,14 +506,14 @@ class ServiceRequest extends DomainResource {
   /// context in which this request is made.
   final Reference? encounter;
 
-  /// [occurrenceXServiceRequest]
+  /// [occurrenceX]
   /// The date/time at which the requested service should occur.
-  final OccurrenceXServiceRequest? occurrenceXServiceRequest;
+  final OccurrenceXServiceRequest? occurrenceX;
 
-  /// [asNeededXServiceRequest]
+  /// [asNeededX]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
-  final AsNeededXServiceRequest? asNeededXServiceRequest;
+  final AsNeededXServiceRequest? asNeededX;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -680,8 +680,8 @@ class ServiceRequest extends DomainResource {
       json['orderDetail'] = orderDetail!.map((e) => e.toJson()).toList();
     }
 
-    if (quantityXServiceRequest != null) {
-      json['quantityXServiceRequest'] = quantityXServiceRequest!.toJson();
+    if (quantityX != null) {
+      json['quantityX'] = quantityX!.toJson();
     }
 
     json['subject'] = subject.toJson();
@@ -690,8 +690,8 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceXServiceRequest', occurrenceXServiceRequest);
-    addField('asNeededXServiceRequest', asNeededXServiceRequest);
+    addField('occurrenceX', occurrenceX);
+    addField('asNeededX', asNeededX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -777,11 +777,11 @@ class ServiceRequest extends DomainResource {
     FhirBoolean? doNotPerform,
     CodeableConcept? code,
     List<CodeableConcept>? orderDetail,
-    QuantityXServiceRequest? quantityXServiceRequest,
+    QuantityXServiceRequest? quantityX,
     Reference? subject,
     Reference? encounter,
-    OccurrenceXServiceRequest? occurrenceXServiceRequest,
-    AsNeededXServiceRequest? asNeededXServiceRequest,
+    OccurrenceXServiceRequest? occurrenceX,
+    AsNeededXServiceRequest? asNeededX,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,
@@ -825,14 +825,11 @@ class ServiceRequest extends DomainResource {
       doNotPerform: doNotPerform ?? this.doNotPerform,
       code: code ?? this.code,
       orderDetail: orderDetail ?? this.orderDetail,
-      quantityXServiceRequest:
-          quantityXServiceRequest ?? this.quantityXServiceRequest,
+      quantityX: quantityX ?? this.quantityX,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceXServiceRequest:
-          occurrenceXServiceRequest ?? this.occurrenceXServiceRequest,
-      asNeededXServiceRequest:
-          asNeededXServiceRequest ?? this.asNeededXServiceRequest,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      asNeededX: asNeededX ?? this.asNeededX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,

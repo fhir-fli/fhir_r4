@@ -468,7 +468,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.identifier,
     this.type,
     this.status,
-    this.dateXRegulatedAuthorizationCase,
+    this.dateX,
     this.application,
     super.disallowExtensions,
   });
@@ -514,18 +514,17 @@ class RegulatedAuthorizationCase extends BackboneElement {
               json['status'] as Map<String, dynamic>,
             )
           : null,
-      dateXRegulatedAuthorizationCase:
-          json['datePeriod'] != null || json['_datePeriod'] != null
-              ? Period.fromJson({
-                  'value': json['datePeriod'],
-                  '_value': json['_datePeriod'],
+      dateX: json['datePeriod'] != null || json['_datePeriod'] != null
+          ? Period.fromJson({
+              'value': json['datePeriod'],
+              '_value': json['_datePeriod'],
+            })
+          : json['dateDateTime'] != null || json['_dateDateTime'] != null
+              ? FhirDateTime.fromJson({
+                  'value': json['dateDateTime'],
+                  '_value': json['_dateDateTime'],
                 })
-              : json['dateDateTime'] != null || json['_dateDateTime'] != null
-                  ? FhirDateTime.fromJson({
-                      'value': json['dateDateTime'],
-                      '_value': json['_dateDateTime'],
-                    })
-                  : null,
+              : null,
       application: json['application'] != null
           ? (json['application'] as List<dynamic>)
               .map<RegulatedAuthorizationCase>(
@@ -592,9 +591,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// The status associated with the case.
   final CodeableConcept? status;
 
-  /// [dateXRegulatedAuthorizationCase]
+  /// [dateX]
   /// Relevant date for this case.
-  final DateXRegulatedAuthorizationCase? dateXRegulatedAuthorizationCase;
+  final DateXRegulatedAuthorizationCase? dateX;
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -637,9 +636,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
       json['status'] = status!.toJson();
     }
 
-    if (dateXRegulatedAuthorizationCase != null) {
-      json['dateXRegulatedAuthorizationCase'] =
-          dateXRegulatedAuthorizationCase!.toJson();
+    if (dateX != null) {
+      json['dateX'] = dateX!.toJson();
     }
 
     if (application != null && application!.isNotEmpty) {
@@ -659,7 +657,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     Identifier? identifier,
     CodeableConcept? type,
     CodeableConcept? status,
-    DateXRegulatedAuthorizationCase? dateXRegulatedAuthorizationCase,
+    DateXRegulatedAuthorizationCase? dateX,
     List<RegulatedAuthorizationCase>? application,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -673,8 +671,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
       status: status ?? this.status,
-      dateXRegulatedAuthorizationCase: dateXRegulatedAuthorizationCase ??
-          this.dateXRegulatedAuthorizationCase,
+      dateX: dateX ?? this.dateX,
       application: application ?? this.application,
     );
   }

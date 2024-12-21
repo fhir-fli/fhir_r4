@@ -22,10 +22,10 @@ class SupplyRequest extends DomainResource {
     this.status,
     this.category,
     this.priority,
-    required this.itemXSupplyRequest,
+    required this.itemX,
     required this.quantity,
     this.parameter,
-    this.occurrenceXSupplyRequest,
+    this.occurrenceX,
     this.authoredOn,
     this.requester,
     this.supplier,
@@ -121,7 +121,7 @@ class SupplyRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      itemXSupplyRequest: json['itemCodeableConcept'] != null ||
+      itemX: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
@@ -142,7 +142,7 @@ class SupplyRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceXSupplyRequest: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -272,11 +272,11 @@ class SupplyRequest extends DomainResource {
   /// respect to other requests.
   final RequestPriority? priority;
 
-  /// [itemXSupplyRequest]
+  /// [itemX]
   /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies
   /// the item from a known list.
-  final ItemXSupplyRequest itemXSupplyRequest;
+  final ItemXSupplyRequest itemX;
 
   /// [quantity]
   /// The amount that is being ordered of the indicated item.
@@ -287,9 +287,9 @@ class SupplyRequest extends DomainResource {
   /// indicated item.
   final List<SupplyRequestParameter>? parameter;
 
-  /// [occurrenceXSupplyRequest]
+  /// [occurrenceX]
   /// When the request should be fulfilled.
-  final OccurrenceXSupplyRequest? occurrenceXSupplyRequest;
+  final OccurrenceXSupplyRequest? occurrenceX;
 
   /// [authoredOn]
   /// When the request was made.
@@ -365,7 +365,7 @@ class SupplyRequest extends DomainResource {
     }
 
     addField('priority', priority);
-    json['itemXSupplyRequest'] = itemXSupplyRequest.toJson();
+    json['itemX'] = itemX.toJson();
 
     json['quantity'] = quantity.toJson();
 
@@ -373,7 +373,7 @@ class SupplyRequest extends DomainResource {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceXSupplyRequest', occurrenceXSupplyRequest);
+    addField('occurrenceX', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -419,10 +419,10 @@ class SupplyRequest extends DomainResource {
     SupplyRequestStatus? status,
     CodeableConcept? category,
     RequestPriority? priority,
-    ItemXSupplyRequest? itemXSupplyRequest,
+    ItemXSupplyRequest? itemX,
     Quantity? quantity,
     List<SupplyRequestParameter>? parameter,
-    OccurrenceXSupplyRequest? occurrenceXSupplyRequest,
+    OccurrenceXSupplyRequest? occurrenceX,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? supplier,
@@ -448,11 +448,10 @@ class SupplyRequest extends DomainResource {
       status: status ?? this.status,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      itemXSupplyRequest: itemXSupplyRequest ?? this.itemXSupplyRequest,
+      itemX: itemX ?? this.itemX,
       quantity: quantity ?? this.quantity,
       parameter: parameter ?? this.parameter,
-      occurrenceXSupplyRequest:
-          occurrenceXSupplyRequest ?? this.occurrenceXSupplyRequest,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       supplier: supplier ?? this.supplier,
@@ -476,7 +475,7 @@ class SupplyRequestParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueXSupplyRequestParameter,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -511,7 +510,7 @@ class SupplyRequestParameter extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      valueXSupplyRequestParameter: json['valueCodeableConcept'] != null ||
+      valueX: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
@@ -583,9 +582,9 @@ class SupplyRequestParameter extends BackboneElement {
   /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;
 
-  /// [valueXSupplyRequestParameter]
+  /// [valueX]
   /// The value of the device detail.
-  final ValueXSupplyRequestParameter? valueXSupplyRequestParameter;
+  final ValueXSupplyRequestParameter? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -612,9 +611,8 @@ class SupplyRequestParameter extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    if (valueXSupplyRequestParameter != null) {
-      json['valueXSupplyRequestParameter'] =
-          valueXSupplyRequestParameter!.toJson();
+    if (valueX != null) {
+      json['valueX'] = valueX!.toJson();
     }
 
     return json;
@@ -628,7 +626,7 @@ class SupplyRequestParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    ValueXSupplyRequestParameter? valueXSupplyRequestParameter,
+    ValueXSupplyRequestParameter? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -639,8 +637,7 @@ class SupplyRequestParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueXSupplyRequestParameter:
-          valueXSupplyRequestParameter ?? this.valueXSupplyRequestParameter,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

@@ -46,10 +46,10 @@ class MedicationStatement extends DomainResource {
     required this.status,
     this.statusReason,
     this.category,
-    required this.medicationXMedicationStatement,
+    required this.medicationX,
     required this.subject,
     this.context,
-    this.effectiveXMedicationStatement,
+    this.effectiveX,
     this.dateAsserted,
     this.informationSource,
     this.derivedFrom,
@@ -164,16 +164,15 @@ class MedicationStatement extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationXMedicationStatement:
-          json['medicationCodeableConcept'] != null ||
-                  json['_medicationCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['medicationCodeableConcept'],
-                  '_value': json['_medicationCodeableConcept'],
-                })
-              : Reference.fromJson(
-                  json['medicationReference'] as Map<String, dynamic>,
-                ),
+      medicationX: json['medicationCodeableConcept'] != null ||
+              json['_medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['medicationCodeableConcept'],
+              '_value': json['_medicationCodeableConcept'],
+            })
+          : Reference.fromJson(
+              json['medicationReference'] as Map<String, dynamic>,
+            ),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -182,7 +181,7 @@ class MedicationStatement extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXMedicationStatement: json['effectiveDateTime'] != null ||
+      effectiveX: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
@@ -328,12 +327,12 @@ class MedicationStatement extends DomainResource {
   /// administered.
   final CodeableConcept? category;
 
-  /// [medicationXMedicationStatement]
+  /// [medicationX]
   /// Identifies the medication being administered. This is either a link to
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final MedicationXMedicationStatement medicationXMedicationStatement;
+  final MedicationXMedicationStatement medicationX;
 
   /// [subject]
   /// The person, animal or group who is/was taking the medication.
@@ -344,11 +343,11 @@ class MedicationStatement extends DomainResource {
   /// MedicationStatement.
   final Reference? context;
 
-  /// [effectiveXMedicationStatement]
+  /// [effectiveX]
   /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  final EffectiveXMedicationStatement? effectiveXMedicationStatement;
+  final EffectiveXMedicationStatement? effectiveX;
 
   /// [dateAsserted]
   /// The date when the medication statement was asserted by the information
@@ -443,8 +442,7 @@ class MedicationStatement extends DomainResource {
       json['category'] = category!.toJson();
     }
 
-    json['medicationXMedicationStatement'] =
-        medicationXMedicationStatement.toJson();
+    json['medicationX'] = medicationX.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -452,7 +450,7 @@ class MedicationStatement extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('effectiveXMedicationStatement', effectiveXMedicationStatement);
+    addField('effectiveX', effectiveX);
     addField('dateAsserted', dateAsserted);
     if (informationSource != null) {
       json['informationSource'] = informationSource!.toJson();
@@ -500,10 +498,10 @@ class MedicationStatement extends DomainResource {
     MedicationStatementStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    MedicationXMedicationStatement? medicationXMedicationStatement,
+    MedicationXMedicationStatement? medicationX,
     Reference? subject,
     Reference? context,
-    EffectiveXMedicationStatement? effectiveXMedicationStatement,
+    EffectiveXMedicationStatement? effectiveX,
     FhirDateTime? dateAsserted,
     Reference? informationSource,
     List<Reference>? derivedFrom,
@@ -531,12 +529,10 @@ class MedicationStatement extends DomainResource {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
-      medicationXMedicationStatement:
-          medicationXMedicationStatement ?? this.medicationXMedicationStatement,
+      medicationX: medicationX ?? this.medicationX,
       subject: subject ?? this.subject,
       context: context ?? this.context,
-      effectiveXMedicationStatement:
-          effectiveXMedicationStatement ?? this.effectiveXMedicationStatement,
+      effectiveX: effectiveX ?? this.effectiveX,
       dateAsserted: dateAsserted ?? this.dateAsserted,
       informationSource: informationSource ?? this.informationSource,
       derivedFrom: derivedFrom ?? this.derivedFrom,

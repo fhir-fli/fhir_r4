@@ -30,7 +30,7 @@ class Procedure extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.performedXProcedure,
+    this.performedX,
     this.recorder,
     this.asserter,
     this.performer,
@@ -173,7 +173,7 @@ class Procedure extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      performedXProcedure: json['performedDateTime'] != null ||
+      performedX: json['performedDateTime'] != null ||
               json['_performedDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['performedDateTime'],
@@ -430,12 +430,12 @@ class Procedure extends DomainResource {
   /// to which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [performedXProcedure]
+  /// [performedX]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final PerformedXProcedure? performedXProcedure;
+  final PerformedXProcedure? performedX;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
@@ -601,7 +601,7 @@ class Procedure extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('performedXProcedure', performedXProcedure);
+    addField('performedX', performedX);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -694,7 +694,7 @@ class Procedure extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    PerformedXProcedure? performedXProcedure,
+    PerformedXProcedure? performedX,
     Reference? recorder,
     Reference? asserter,
     List<ProcedurePerformer>? performer,
@@ -737,7 +737,7 @@ class Procedure extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      performedXProcedure: performedXProcedure ?? this.performedXProcedure,
+      performedX: performedX ?? this.performedX,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,
       performer: performer ?? this.performer,

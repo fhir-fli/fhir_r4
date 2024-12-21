@@ -1451,8 +1451,8 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedXClaimResponseAddItem,
-    this.locationXClaimResponseAddItem,
+    this.servicedX,
+    this.locationX,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -1536,18 +1536,17 @@ class ClaimResponseAddItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXClaimResponseAddItem:
-          json['servicedDate'] != null || json['_servicedDate'] != null
-              ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
-                })
-              : json['servicedPeriod'] != null
-                  ? Period.fromJson(
-                      json['servicedPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
-      locationXClaimResponseAddItem: json['locationCodeableConcept'] != null ||
+      servicedX: json['servicedDate'] != null || json['_servicedDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
+          : json['servicedPeriod'] != null
+              ? Period.fromJson(
+                  json['servicedPeriod'] as Map<String, dynamic>,
+                )
+              : null,
+      locationX: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
@@ -1700,14 +1699,14 @@ class ClaimResponseAddItem extends BackboneElement {
   /// Identifies the program under which this may be recovered.
   final List<CodeableConcept>? programCode;
 
-  /// [servicedXClaimResponseAddItem]
+  /// [servicedX]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final ServicedXClaimResponseAddItem? servicedXClaimResponseAddItem;
+  final ServicedXClaimResponseAddItem? servicedX;
 
-  /// [locationXClaimResponseAddItem]
+  /// [locationX]
   /// Where the product or service was provided.
-  final LocationXClaimResponseAddItem? locationXClaimResponseAddItem;
+  final LocationXClaimResponseAddItem? locationX;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -1813,10 +1812,9 @@ class ClaimResponseAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedXClaimResponseAddItem', servicedXClaimResponseAddItem);
-    if (locationXClaimResponseAddItem != null) {
-      json['locationXClaimResponseAddItem'] =
-          locationXClaimResponseAddItem!.toJson();
+    addField('servicedX', servicedX);
+    if (locationX != null) {
+      json['locationX'] = locationX!.toJson();
     }
 
     if (quantity != null) {
@@ -1873,8 +1871,8 @@ class ClaimResponseAddItem extends BackboneElement {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    ServicedXClaimResponseAddItem? servicedXClaimResponseAddItem,
-    LocationXClaimResponseAddItem? locationXClaimResponseAddItem,
+    ServicedXClaimResponseAddItem? servicedX,
+    LocationXClaimResponseAddItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1900,10 +1898,8 @@ class ClaimResponseAddItem extends BackboneElement {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedXClaimResponseAddItem:
-          servicedXClaimResponseAddItem ?? this.servicedXClaimResponseAddItem,
-      locationXClaimResponseAddItem:
-          locationXClaimResponseAddItem ?? this.locationXClaimResponseAddItem,
+      servicedX: servicedX ?? this.servicedX,
+      locationX: locationX ?? this.locationX,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,

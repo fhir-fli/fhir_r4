@@ -26,7 +26,7 @@ class CoverageEligibilityRequest extends DomainResource {
     this.priority,
     required this.purpose,
     required this.patient,
-    this.servicedXCoverageEligibilityRequest,
+    this.servicedX,
     required this.created,
     this.enterer,
     this.provider,
@@ -125,17 +125,16 @@ class CoverageEligibilityRequest extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedXCoverageEligibilityRequest:
-          json['servicedDate'] != null || json['_servicedDate'] != null
-              ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
-                })
-              : json['servicedPeriod'] != null
-                  ? Period.fromJson(
-                      json['servicedPeriod'] as Map<String, dynamic>,
-                    )
-                  : null,
+      servicedX: json['servicedDate'] != null || json['_servicedDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
+          : json['servicedPeriod'] != null
+              ? Period.fromJson(
+                  json['servicedPeriod'] as Map<String, dynamic>,
+                )
+              : null,
       created: FhirDateTime.fromJson({
         'value': json['created'],
         '_value': json['_created'],
@@ -255,11 +254,10 @@ class CoverageEligibilityRequest extends DomainResource {
   /// eligibility is sought.
   final Reference patient;
 
-  /// [servicedXCoverageEligibilityRequest]
+  /// [servicedX]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final ServicedXCoverageEligibilityRequest?
-      servicedXCoverageEligibilityRequest;
+  final ServicedXCoverageEligibilityRequest? servicedX;
 
   /// [created]
   /// The date when this resource was created.
@@ -353,8 +351,7 @@ class CoverageEligibilityRequest extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('servicedXCoverageEligibilityRequest',
-        servicedXCoverageEligibilityRequest);
+    addField('servicedX', servicedX);
     addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
@@ -402,7 +399,7 @@ class CoverageEligibilityRequest extends DomainResource {
     CodeableConcept? priority,
     List<EligibilityRequestPurpose>? purpose,
     Reference? patient,
-    ServicedXCoverageEligibilityRequest? servicedXCoverageEligibilityRequest,
+    ServicedXCoverageEligibilityRequest? servicedX,
     FhirDateTime? created,
     Reference? enterer,
     Reference? provider,
@@ -430,9 +427,7 @@ class CoverageEligibilityRequest extends DomainResource {
       priority: priority ?? this.priority,
       purpose: purpose ?? this.purpose,
       patient: patient ?? this.patient,
-      servicedXCoverageEligibilityRequest:
-          servicedXCoverageEligibilityRequest ??
-              this.servicedXCoverageEligibilityRequest,
+      servicedX: servicedX ?? this.servicedX,
       created: created ?? this.created,
       enterer: enterer ?? this.enterer,
       provider: provider ?? this.provider,
@@ -1117,7 +1112,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.diagnosisXCoverageEligibilityRequestDiagnosis,
+    this.diagnosisX,
     super.disallowExtensions,
   });
 
@@ -1147,18 +1142,17 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
               )
               .toList()
           : null,
-      diagnosisXCoverageEligibilityRequestDiagnosis:
-          json['diagnosisCodeableConcept'] != null ||
-                  json['_diagnosisCodeableConcept'] != null
-              ? CodeableConcept.fromJson({
-                  'value': json['diagnosisCodeableConcept'],
-                  '_value': json['_diagnosisCodeableConcept'],
-                })
-              : json['diagnosisReference'] != null
-                  ? Reference.fromJson(
-                      json['diagnosisReference'] as Map<String, dynamic>,
-                    )
-                  : null,
+      diagnosisX: json['diagnosisCodeableConcept'] != null ||
+              json['_diagnosisCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['diagnosisCodeableConcept'],
+              '_value': json['_diagnosisCodeableConcept'],
+            })
+          : json['diagnosisReference'] != null
+              ? Reference.fromJson(
+                  json['diagnosisReference'] as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -1204,11 +1198,10 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   @override
   String get fhirType => 'CoverageEligibilityRequestDiagnosis';
 
-  /// [diagnosisXCoverageEligibilityRequestDiagnosis]
+  /// [diagnosisX]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final DiagnosisXCoverageEligibilityRequestDiagnosis?
-      diagnosisXCoverageEligibilityRequestDiagnosis;
+  final DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1231,9 +1224,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (diagnosisXCoverageEligibilityRequestDiagnosis != null) {
-      json['diagnosisXCoverageEligibilityRequestDiagnosis'] =
-          diagnosisXCoverageEligibilityRequestDiagnosis!.toJson();
+    if (diagnosisX != null) {
+      json['diagnosisX'] = diagnosisX!.toJson();
     }
 
     return json;
@@ -1246,8 +1238,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    DiagnosisXCoverageEligibilityRequestDiagnosis?
-        diagnosisXCoverageEligibilityRequestDiagnosis,
+    DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1257,9 +1248,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      diagnosisXCoverageEligibilityRequestDiagnosis:
-          diagnosisXCoverageEligibilityRequestDiagnosis ??
-              this.diagnosisXCoverageEligibilityRequestDiagnosis,
+      diagnosisX: diagnosisX ?? this.diagnosisX,
     );
   }
 }

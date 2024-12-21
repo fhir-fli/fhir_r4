@@ -27,7 +27,7 @@ class Goal extends DomainResource {
     this.priority,
     required this.description,
     required this.subject,
-    this.startXGoal,
+    this.startX,
     this.target,
     this.statusDate,
     this.statusReason,
@@ -136,7 +136,7 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startXGoal: json['startGoalStartEvent'] != null ||
+      startX: json['startGoalStartEvent'] != null ||
               json['_startGoalStartEvent'] != null
           ? GoalStartEvent.fromJson({
               'value': json['startGoalStartEvent'],
@@ -290,9 +290,9 @@ class Goal extends DomainResource {
   /// being established.
   final Reference subject;
 
-  /// [startXGoal]
+  /// [startX]
   /// The date or event after which the goal should begin being pursued.
-  final StartXGoal? startXGoal;
+  final StartXGoal? startX;
 
   /// [target]
   /// Indicates what should be done by when.
@@ -386,7 +386,7 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('startXGoal', startXGoal);
+    addField('startX', startX);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -436,7 +436,7 @@ class Goal extends DomainResource {
     CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
-    StartXGoal? startXGoal,
+    StartXGoal? startX,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     FhirString? statusReason,
@@ -466,7 +466,7 @@ class Goal extends DomainResource {
       priority: priority ?? this.priority,
       description: description ?? this.description,
       subject: subject ?? this.subject,
-      startXGoal: startXGoal ?? this.startXGoal,
+      startX: startX ?? this.startX,
       target: target ?? this.target,
       statusDate: statusDate ?? this.statusDate,
       statusReason: statusReason ?? this.statusReason,
@@ -490,8 +490,8 @@ class GoalTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailXGoalTarget,
-    this.dueXGoalTarget,
+    this.detailX,
+    this.dueX,
     super.disallowExtensions,
   });
 
@@ -526,48 +526,47 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailXGoalTarget:
-          json['detailQuantity'] != null || json['_detailQuantity'] != null
-              ? Quantity.fromJson({
-                  'value': json['detailQuantity'],
-                  '_value': json['_detailQuantity'],
+      detailX: json['detailQuantity'] != null || json['_detailQuantity'] != null
+          ? Quantity.fromJson({
+              'value': json['detailQuantity'],
+              '_value': json['_detailQuantity'],
+            })
+          : json['detailRange'] != null || json['_detailRange'] != null
+              ? Range.fromJson({
+                  'value': json['detailRange'],
+                  '_value': json['_detailRange'],
                 })
-              : json['detailRange'] != null || json['_detailRange'] != null
-                  ? Range.fromJson({
-                      'value': json['detailRange'],
-                      '_value': json['_detailRange'],
+              : json['detailCodeableConcept'] != null ||
+                      json['_detailCodeableConcept'] != null
+                  ? CodeableConcept.fromJson({
+                      'value': json['detailCodeableConcept'],
+                      '_value': json['_detailCodeableConcept'],
                     })
-                  : json['detailCodeableConcept'] != null ||
-                          json['_detailCodeableConcept'] != null
-                      ? CodeableConcept.fromJson({
-                          'value': json['detailCodeableConcept'],
-                          '_value': json['_detailCodeableConcept'],
+                  : json['detailString'] != null ||
+                          json['_detailString'] != null
+                      ? FhirString.fromJson({
+                          'value': json['detailString'],
+                          '_value': json['_detailString'],
                         })
-                      : json['detailString'] != null ||
-                              json['_detailString'] != null
-                          ? FhirString.fromJson({
-                              'value': json['detailString'],
-                              '_value': json['_detailString'],
+                      : json['detailBoolean'] != null ||
+                              json['_detailBoolean'] != null
+                          ? FhirBoolean.fromJson({
+                              'value': json['detailBoolean'],
+                              '_value': json['_detailBoolean'],
                             })
-                          : json['detailBoolean'] != null ||
-                                  json['_detailBoolean'] != null
-                              ? FhirBoolean.fromJson({
-                                  'value': json['detailBoolean'],
-                                  '_value': json['_detailBoolean'],
+                          : json['detailInteger'] != null ||
+                                  json['_detailInteger'] != null
+                              ? FhirInteger.fromJson({
+                                  'value': json['detailInteger'],
+                                  '_value': json['_detailInteger'],
                                 })
-                              : json['detailInteger'] != null ||
-                                      json['_detailInteger'] != null
-                                  ? FhirInteger.fromJson({
-                                      'value': json['detailInteger'],
-                                      '_value': json['_detailInteger'],
-                                    })
-                                  : json['detailRatio'] != null
-                                      ? Ratio.fromJson(
-                                          json['detailRatio']
-                                              as Map<String, dynamic>,
-                                        )
-                                      : null,
-      dueXGoalTarget: json['dueDate'] != null || json['_dueDate'] != null
+                              : json['detailRatio'] != null
+                                  ? Ratio.fromJson(
+                                      json['detailRatio']
+                                          as Map<String, dynamic>,
+                                    )
+                                  : null,
+      dueX: json['dueDate'] != null || json['_dueDate'] != null
           ? FhirDate.fromJson({
               'value': json['dueDate'],
               '_value': json['_dueDate'],
@@ -627,19 +626,19 @@ class GoalTarget extends BackboneElement {
   /// pressure, or hemoglobin A1c level.
   final CodeableConcept? measure;
 
-  /// [detailXGoalTarget]
+  /// [detailX]
   /// The target value of the focus to be achieved to signify the fulfillment
   /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
   /// values of the range can be specified. When a low value is missing, it
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final DetailXGoalTarget? detailXGoalTarget;
+  final DetailXGoalTarget? detailX;
 
-  /// [dueXGoalTarget]
+  /// [dueX]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final DueXGoalTarget? dueXGoalTarget;
+  final DueXGoalTarget? dueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -666,11 +665,11 @@ class GoalTarget extends BackboneElement {
       json['measure'] = measure!.toJson();
     }
 
-    if (detailXGoalTarget != null) {
-      json['detailXGoalTarget'] = detailXGoalTarget!.toJson();
+    if (detailX != null) {
+      json['detailX'] = detailX!.toJson();
     }
 
-    addField('dueXGoalTarget', dueXGoalTarget);
+    addField('dueX', dueX);
     return json;
   }
 
@@ -682,8 +681,8 @@ class GoalTarget extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? measure,
-    DetailXGoalTarget? detailXGoalTarget,
-    DueXGoalTarget? dueXGoalTarget,
+    DetailXGoalTarget? detailX,
+    DueXGoalTarget? dueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -694,8 +693,8 @@ class GoalTarget extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       measure: measure ?? this.measure,
-      detailXGoalTarget: detailXGoalTarget ?? this.detailXGoalTarget,
-      dueXGoalTarget: dueXGoalTarget ?? this.dueXGoalTarget,
+      detailX: detailX ?? this.detailX,
+      dueX: dueX ?? this.dueX,
     );
   }
 }

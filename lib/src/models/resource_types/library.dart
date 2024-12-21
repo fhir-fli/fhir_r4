@@ -29,7 +29,7 @@ class Library extends CanonicalResource {
     required super.status,
     super.experimental,
     required this.type,
-    this.subjectXLibrary,
+    this.subjectX,
     super.date,
     super.publisher,
     super.contact,
@@ -166,7 +166,7 @@ class Library extends CanonicalResource {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      subjectXLibrary: json['subjectCodeableConcept'] != null ||
+      subjectX: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
@@ -413,10 +413,10 @@ class Library extends CanonicalResource {
   /// Definition, Asset Collection, or Module Definition.
   final CodeableConcept type;
 
-  /// [subjectXLibrary]
+  /// [subjectX]
   /// A code or group definition that describes the intended subject of the
   /// contents of the library.
-  final SubjectXLibrary? subjectXLibrary;
+  final SubjectXLibrary? subjectX;
 
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed
@@ -547,8 +547,8 @@ class Library extends CanonicalResource {
     addField('experimental', experimental);
     json['type'] = type.toJson();
 
-    if (subjectXLibrary != null) {
-      json['subjectXLibrary'] = subjectXLibrary!.toJson();
+    if (subjectX != null) {
+      json['subjectX'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -637,7 +637,7 @@ class Library extends CanonicalResource {
     PublicationStatus? status,
     FhirBoolean? experimental,
     CodeableConcept? type,
-    SubjectXLibrary? subjectXLibrary,
+    SubjectXLibrary? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -682,7 +682,7 @@ class Library extends CanonicalResource {
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
       type: type ?? this.type,
-      subjectXLibrary: subjectXLibrary ?? this.subjectXLibrary,
+      subjectX: subjectX ?? this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

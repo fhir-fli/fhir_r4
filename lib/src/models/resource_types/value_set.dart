@@ -1651,7 +1651,7 @@ class ValueSetParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.valueXValueSetParameter,
+    this.valueX,
     super.disallowExtensions,
   });
 
@@ -1685,8 +1685,7 @@ class ValueSetParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      valueXValueSetParameter: json['valueString'] != null ||
-              json['_valueString'] != null
+      valueX: json['valueString'] != null || json['_valueString'] != null
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
@@ -1776,9 +1775,9 @@ class ValueSetParameter extends BackboneElement {
   /// parameters used to control the expansion process.
   final FhirString name;
 
-  /// [valueXValueSetParameter]
+  /// [valueX]
   /// The value of the parameter.
-  final ValueXValueSetParameter? valueXValueSetParameter;
+  final ValueXValueSetParameter? valueX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1802,7 +1801,7 @@ class ValueSetParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('valueXValueSetParameter', valueXValueSetParameter);
+    addField('valueX', valueX);
     return json;
   }
 
@@ -1814,7 +1813,7 @@ class ValueSetParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    ValueXValueSetParameter? valueXValueSetParameter,
+    ValueXValueSetParameter? valueX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1825,8 +1824,7 @@ class ValueSetParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueXValueSetParameter:
-          valueXValueSetParameter ?? this.valueXValueSetParameter,
+      valueX: valueX ?? this.valueX,
     );
   }
 }

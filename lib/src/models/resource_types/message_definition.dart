@@ -37,7 +37,7 @@ class MessageDefinition extends CanonicalResource {
     this.copyright,
     this.base,
     this.parent,
-    required this.eventXMessageDefinition,
+    required this.eventX,
     this.category,
     this.focus,
     this.responseRequired,
@@ -220,16 +220,15 @@ class MessageDefinition extends CanonicalResource {
         json['_parent'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      eventXMessageDefinition:
-          json['eventCoding'] != null || json['_eventCoding'] != null
-              ? Coding.fromJson({
-                  'value': json['eventCoding'],
-                  '_value': json['_eventCoding'],
-                })
-              : FhirUri.fromJson({
-                  'value': json['eventUri'],
-                  '_value': json['_eventUri'],
-                }),
+      eventX: json['eventCoding'] != null || json['_eventCoding'] != null
+          ? Coding.fromJson({
+              'value': json['eventCoding'],
+              '_value': json['_eventCoding'],
+            })
+          : FhirUri.fromJson({
+              'value': json['eventUri'],
+              '_value': json['_eventUri'],
+            }),
       category: (json['category'] != null || json['_category'] != null)
           ? MessageSignificanceCategory.fromJson({
               'value': json['category'],
@@ -352,9 +351,9 @@ class MessageDefinition extends CanonicalResource {
   /// represents a step in.
   final List<FhirCanonical>? parent;
 
-  /// [eventXMessageDefinition]
+  /// [eventX]
   /// Event code or link to the EventDefinition.
-  final EventXMessageDefinition eventXMessageDefinition;
+  final EventXMessageDefinition eventX;
 
   /// [category]
   /// The impact of the content of the message.
@@ -464,7 +463,7 @@ class MessageDefinition extends CanonicalResource {
       }
     }
 
-    json['eventXMessageDefinition'] = eventXMessageDefinition.toJson();
+    json['eventX'] = eventX.toJson();
 
     addField('category', category);
     if (focus != null && focus!.isNotEmpty) {
@@ -518,7 +517,7 @@ class MessageDefinition extends CanonicalResource {
     FhirMarkdown? copyright,
     FhirCanonical? base,
     List<FhirCanonical>? parent,
-    EventXMessageDefinition? eventXMessageDefinition,
+    EventXMessageDefinition? eventX,
     MessageSignificanceCategory? category,
     List<MessageDefinitionFocus>? focus,
     MessageheaderResponseRequest? responseRequired,
@@ -556,8 +555,7 @@ class MessageDefinition extends CanonicalResource {
       copyright: copyright ?? this.copyright,
       base: base ?? this.base,
       parent: parent ?? this.parent,
-      eventXMessageDefinition:
-          eventXMessageDefinition ?? this.eventXMessageDefinition,
+      eventX: eventX ?? this.eventX,
       category: category ?? this.category,
       focus: focus ?? this.focus,
       responseRequired: responseRequired ?? this.responseRequired,

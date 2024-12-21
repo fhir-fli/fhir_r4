@@ -24,7 +24,7 @@ class SupplyDelivery extends DomainResource {
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceXSupplyDelivery,
+    this.occurrenceX,
     this.supplier,
     this.destination,
     this.receiver,
@@ -138,7 +138,7 @@ class SupplyDelivery extends DomainResource {
               json['suppliedItem'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXSupplyDelivery: json['occurrenceDateTime'] != null ||
+      occurrenceX: json['occurrenceDateTime'] != null ||
               json['_occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -252,9 +252,9 @@ class SupplyDelivery extends DomainResource {
   /// The item that is being delivered or has been supplied.
   final SupplyDeliverySuppliedItem? suppliedItem;
 
-  /// [occurrenceXSupplyDelivery]
+  /// [occurrenceX]
   /// The date or time(s) the activity occurred.
-  final OccurrenceXSupplyDelivery? occurrenceXSupplyDelivery;
+  final OccurrenceXSupplyDelivery? occurrenceX;
 
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
@@ -331,7 +331,7 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
 
-    addField('occurrenceXSupplyDelivery', occurrenceXSupplyDelivery);
+    addField('occurrenceX', occurrenceX);
     if (supplier != null) {
       json['supplier'] = supplier!.toJson();
     }
@@ -366,7 +366,7 @@ class SupplyDelivery extends DomainResource {
     Reference? patient,
     CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
-    OccurrenceXSupplyDelivery? occurrenceXSupplyDelivery,
+    OccurrenceXSupplyDelivery? occurrenceX,
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
@@ -391,8 +391,7 @@ class SupplyDelivery extends DomainResource {
       patient: patient ?? this.patient,
       type: type ?? this.type,
       suppliedItem: suppliedItem ?? this.suppliedItem,
-      occurrenceXSupplyDelivery:
-          occurrenceXSupplyDelivery ?? this.occurrenceXSupplyDelivery,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
@@ -411,7 +410,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.itemXSupplyDeliverySuppliedItem,
+    this.itemX,
     super.disallowExtensions,
   });
 
@@ -446,7 +445,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      itemXSupplyDeliverySuppliedItem: json['itemCodeableConcept'] != null ||
+      itemX: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
           ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
@@ -506,11 +505,11 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// The amount of supply that has been dispensed. Includes unit of measure.
   final Quantity? quantity;
 
-  /// [itemXSupplyDeliverySuppliedItem]
+  /// [itemX]
   /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a
   /// code that identifies the item from a known list.
-  final ItemXSupplyDeliverySuppliedItem? itemXSupplyDeliverySuppliedItem;
+  final ItemXSupplyDeliverySuppliedItem? itemX;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -537,9 +536,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    if (itemXSupplyDeliverySuppliedItem != null) {
-      json['itemXSupplyDeliverySuppliedItem'] =
-          itemXSupplyDeliverySuppliedItem!.toJson();
+    if (itemX != null) {
+      json['itemX'] = itemX!.toJson();
     }
 
     return json;
@@ -553,7 +551,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
-    ItemXSupplyDeliverySuppliedItem? itemXSupplyDeliverySuppliedItem,
+    ItemXSupplyDeliverySuppliedItem? itemX,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -564,8 +562,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      itemXSupplyDeliverySuppliedItem: itemXSupplyDeliverySuppliedItem ??
-          this.itemXSupplyDeliverySuppliedItem,
+      itemX: itemX ?? this.itemX,
     );
   }
 }
