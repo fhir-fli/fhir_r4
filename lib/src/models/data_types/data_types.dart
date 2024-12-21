@@ -24,6 +24,7 @@ export 'money.dart';
 export 'narrative.dart';
 export 'parameter_definition.dart';
 export 'period.dart';
+export 'polymorphic_types.dart';
 export 'population.dart';
 export 'prod_characteristic.dart';
 export 'product_shelf_life.dart';

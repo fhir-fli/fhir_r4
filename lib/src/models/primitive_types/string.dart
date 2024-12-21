@@ -120,23 +120,111 @@ class FhirString extends PrimitiveType<String> {
     );
   }
 
-  /// Returns the length of the string.
-  int? get length => value?.length;
+  // ----------------- Overriding String Methods -----------------
 
-  /// Checks if the string is empty.
-  bool get isEmptyString => value?.isEmpty ?? true;
+  /// The length of the string.
+  int get length => value?.length ?? 0;
 
   /// Checks if the string is not empty.
   bool get isNotEmpty => value?.isNotEmpty ?? false;
 
-  /// Concatenates two strings, treating null as an empty string.
+  /// Returns the character at the specified index.
+  String operator [](int index) => value![index];
+
+  /// Returns the character at the specified index.
+  int codeUnitAt(int index) => value!.codeUnitAt(index);
+
+  /// Returns the character (Unicode code point) at the specified index.
+  Runes get runes => value!.runes;
+
+  /// Returns the Unicode code units of the string.
+  List<int> get codeUnits => value!.codeUnits;
+
+  /// Returns the first character of the string.
+  String substring(int start, [int? end]) => value!.substring(start, end);
+
+  /// Returns the first character of the string.
+  String trim() => value!.trim();
+
+  /// Returns the first character of the string.
+  String trimLeft() => value!.trimLeft();
+
+  /// Returns the first character of the string.
+  String trimRight() => value!.trimRight();
+
+  /// Returns the first character of the string.
+  bool contains(Pattern other, [int startIndex = 0]) =>
+      value!.contains(other, startIndex);
+
+  /// Returns the first character of the string.
+  String padLeft(int width, [String padding = ' ']) =>
+      value!.padLeft(width, padding);
+
+  /// Returns the first character of the string.
+  String padRight(int width, [String padding = ' ']) =>
+      value!.padRight(width, padding);
+
+  /// Returns the first character of the string.
+  String toUpperCase() => value!.toUpperCase();
+
+  /// Returns the first character of the string.
+  String toLowerCase() => value!.toLowerCase();
+
+  /// Returns the first character of the string.
+  bool startsWith(Pattern pattern, [int index = 0]) =>
+      value!.startsWith(pattern, index);
+
+  /// Returns the first character of the string.
+  bool endsWith(String other) => value!.endsWith(other);
+
+  /// Returns the first character of the string.
+  int indexOf(Pattern pattern, [int start = 0]) =>
+      value!.indexOf(pattern, start);
+
+  /// Returns the first character of the string.
+  int lastIndexOf(Pattern pattern, [int? start]) =>
+      value!.lastIndexOf(pattern, start);
+
+  /// Returns the first character of the string.
   String operator +(String other) => (value ?? '') + other;
 
-  /// Extracts a substring.
-  String? substring(int start, [int? end]) => value?.substring(start, end);
+  /// Returns the first character of the string.
+  List<String> split(Pattern pattern) => value!.split(pattern);
 
-  /// Trims leading and trailing whitespace from the string.
-  String? trim() => value?.trim();
+  /// Returns the first character of the string.
+  String replaceFirst(Pattern from, String to, [int startIndex = 0]) =>
+      value!.replaceFirst(from, to, startIndex);
+
+  /// Returns the first character of the string.
+  String replaceAll(Pattern from, String replace) =>
+      value!.replaceAll(from, replace);
+
+  /// Returns the first character of the string.
+  String replaceFirstMapped(
+    Pattern from,
+    String Function(Match) replace, [
+    int startIndex = 0,
+  ]) =>
+      value!.replaceFirstMapped(from, replace, startIndex);
+
+  /// Returns the first character of the string.
+  String replaceAllMapped(Pattern from, String Function(Match) replace) =>
+      value!.replaceAllMapped(from, replace);
+
+  /// Returns the first character of the string.
+  String replaceRange(int start, int? end, String replacement) =>
+      value!.replaceRange(start, end, replacement);
+
+  /// Returns the first character of the string.
+  String splitMapJoin(
+    Pattern pattern, {
+    String Function(Match)? onMatch,
+    String Function(String)? onNonMatch,
+  }) =>
+      value!.splitMapJoin(pattern, onMatch: onMatch, onNonMatch: onNonMatch);
+
+  /// Checks if the string is empty.
+  bool get isEmptyString => value?.isEmpty ?? true;
 
   /// Converts a list of JSON values to a list of [FhirString] instances.
   static List<FhirString> fromJsonList(
