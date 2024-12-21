@@ -3,7 +3,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies types of events that might trigger the start of a goal.
-class GoalStartEvent extends PrimitiveType<String> {
+class GoalStartEvent extends PrimitiveType<String> implements StartXGoal {
   // Private constructor for internal use (like enum)
   GoalStartEvent._(
     super.value, {

@@ -3,7 +3,11 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Possible types of subjects.
-class SubjectType extends PrimitiveType<String> {
+class SubjectType extends PrimitiveType<String>
+    implements
+        SubjectXActivityDefinition,
+        SubjectXPlanDefinition,
+        SubjectXPlanDefinitionAction {
   // Private constructor for internal use (like enum)
   SubjectType._(
     super.value, {
