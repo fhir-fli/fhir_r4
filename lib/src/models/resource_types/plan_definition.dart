@@ -182,7 +182,9 @@ class PlanDefinition extends CanonicalResource {
                   '_value': json['_subjectReference'],
                 })
               : json['subjectSubjectType'] != null
-                  ? SubjectType.fromJson(json: json['subjectSubjectType'])
+                  ? SubjectType.fromJson(
+                      json['subjectSubjectType'] as Map<String, dynamic>,
+                    )
                   : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -1044,7 +1046,8 @@ class PlanDefinitionTarget extends BackboneElement {
                     })
                   : json['detailCodeableConcept'] != null
                       ? CodeableConcept.fromJson(
-                          json: json['detailCodeableConcept'])
+                          json['detailCodeableConcept'] as Map<String, dynamic>,
+                        )
                       : null,
       due: json['due'] != null
           ? FhirDuration.fromJson(
@@ -1326,7 +1329,9 @@ class PlanDefinitionAction extends BackboneElement {
                   '_value': json['_subjectReference'],
                 })
               : json['subjectSubjectType'] != null
-                  ? SubjectType.fromJson(json: json['subjectSubjectType'])
+                  ? SubjectType.fromJson(
+                      json['subjectSubjectType'] as Map<String, dynamic>,
+                    )
                   : null,
       trigger: json['trigger'] != null
           ? (json['trigger'] as List<dynamic>)
@@ -1402,7 +1407,9 @@ class PlanDefinitionAction extends BackboneElement {
                               '_value': json['_timingRange'],
                             })
                           : json['timingTiming'] != null
-                              ? Timing.fromJson(json: json['timingTiming'])
+                              ? Timing.fromJson(
+                                  json['timingTiming'] as Map<String, dynamic>,
+                                )
                               : null,
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
@@ -2069,7 +2076,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
                   '_value': json['_offsetDuration'],
                 })
               : json['offsetRange'] != null
-                  ? Range.fromJson(json: json['offsetRange'])
+                  ? Range.fromJson(
+                      json['offsetRange'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

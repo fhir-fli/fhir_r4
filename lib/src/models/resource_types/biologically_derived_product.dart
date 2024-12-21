@@ -455,7 +455,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
                   '_value': json['_collectedDateTime'],
                 })
               : json['collectedPeriod'] != null
-                  ? Period.fromJson(json: json['collectedPeriod'])
+                  ? Period.fromJson(
+                      json['collectedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -647,7 +649,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
                   '_value': json['_timeDateTime'],
                 })
               : json['timePeriod'] != null
-                  ? Period.fromJson(json: json['timePeriod'])
+                  ? Period.fromJson(
+                      json['timePeriod'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -833,7 +837,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
                   '_value': json['_timeDateTime'],
                 })
               : json['timePeriod'] != null
-                  ? Period.fromJson(json: json['timePeriod'])
+                  ? Period.fromJson(
+                      json['timePeriod'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

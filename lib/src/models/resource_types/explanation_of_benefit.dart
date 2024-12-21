@@ -1547,7 +1547,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
                   '_value': json['_timingDate'],
                 })
               : json['timingPeriod'] != null
-                  ? Period.fromJson(json: json['timingPeriod'])
+                  ? Period.fromJson(
+                      json['timingPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       valueXExplanationOfBenefitSupportingInfo: json['valueBoolean'] != null ||
               json['_valueBoolean'] != null
@@ -1572,7 +1574,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
                           '_value': json['_valueAttachment'],
                         })
                       : json['valueReference'] != null
-                          ? Reference.fromJson(json: json['valueReference'])
+                          ? Reference.fromJson(
+                              json['valueReference'] as Map<String, dynamic>,
+                            )
                           : null,
       reason: json['reason'] != null
           ? Coding.fromJson(
@@ -1788,7 +1792,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
                   'value': json['diagnosisCodeableConcept'],
                   '_value': json['_diagnosisCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['diagnosisReference']),
+              : Reference.fromJson(
+                  json['diagnosisReference'] as Map<String, dynamic>,
+                ),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -2022,7 +2028,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
                   'value': json['procedureCodeableConcept'],
                   '_value': json['_procedureCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['procedureReference']),
+              : Reference.fromJson(
+                  json['procedureReference'] as Map<String, dynamic>,
+                ),
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
@@ -2409,7 +2417,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -2660,7 +2670,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
                   '_value': json['_servicedDate'],
                 })
               : json['servicedPeriod'] != null
-                  ? Period.fromJson(json: json['servicedPeriod'])
+                  ? Period.fromJson(
+                      json['servicedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       locationXExplanationOfBenefitItem: json['locationCodeableConcept'] !=
                   null ||
@@ -2675,7 +2687,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -4148,7 +4162,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
                   '_value': json['_servicedDate'],
                 })
               : json['servicedPeriod'] != null
-                  ? Period.fromJson(json: json['servicedPeriod'])
+                  ? Period.fromJson(
+                      json['servicedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       locationXExplanationOfBenefitAddItem: json['locationCodeableConcept'] !=
                   null ||
@@ -4163,7 +4179,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -5969,7 +5987,9 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
                       '_value': json['_allowedString'],
                     })
                   : json['allowedMoney'] != null
-                      ? Money.fromJson(json: json['allowedMoney'])
+                      ? Money.fromJson(
+                          json['allowedMoney'] as Map<String, dynamic>,
+                        )
                       : null,
       usedXExplanationOfBenefitFinancial:
           json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null
@@ -5978,7 +5998,9 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
                   '_value': json['_usedUnsignedInt'],
                 })
               : json['usedMoney'] != null
-                  ? Money.fromJson(json: json['usedMoney'])
+                  ? Money.fromJson(
+                      json['usedMoney'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

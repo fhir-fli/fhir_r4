@@ -1253,7 +1253,9 @@ class ClaimSupportingInfo extends BackboneElement {
                   '_value': json['_timingDate'],
                 })
               : json['timingPeriod'] != null
-                  ? Period.fromJson(json: json['timingPeriod'])
+                  ? Period.fromJson(
+                      json['timingPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       valueXClaimSupportingInfo: json['valueBoolean'] != null ||
               json['_valueBoolean'] != null
@@ -1278,7 +1280,9 @@ class ClaimSupportingInfo extends BackboneElement {
                           '_value': json['_valueAttachment'],
                         })
                       : json['valueReference'] != null
-                          ? Reference.fromJson(json: json['valueReference'])
+                          ? Reference.fromJson(
+                              json['valueReference'] as Map<String, dynamic>,
+                            )
                           : null,
       reason: json['reason'] != null
           ? CodeableConcept.fromJson(
@@ -1485,7 +1489,9 @@ class ClaimDiagnosis extends BackboneElement {
               'value': json['diagnosisCodeableConcept'],
               '_value': json['_diagnosisCodeableConcept'],
             })
-          : Reference.fromJson(json: json['diagnosisReference']),
+          : Reference.fromJson(
+              json['diagnosisReference'] as Map<String, dynamic>,
+            ),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -1714,7 +1720,9 @@ class ClaimProcedure extends BackboneElement {
               'value': json['procedureCodeableConcept'],
               '_value': json['_procedureCodeableConcept'],
             })
-          : Reference.fromJson(json: json['procedureReference']),
+          : Reference.fromJson(
+              json['procedureReference'] as Map<String, dynamic>,
+            ),
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
@@ -2158,7 +2166,9 @@ class ClaimAccident extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -2403,7 +2413,9 @@ class ClaimItem extends BackboneElement {
                   '_value': json['_servicedDate'],
                 })
               : json['servicedPeriod'] != null
-                  ? Period.fromJson(json: json['servicedPeriod'])
+                  ? Period.fromJson(
+                      json['servicedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       locationXClaimItem: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
@@ -2417,7 +2429,9 @@ class ClaimItem extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(

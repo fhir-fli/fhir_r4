@@ -125,7 +125,9 @@ class CoverageEligibilityResponse extends DomainResource {
                   '_value': json['_servicedDate'],
                 })
               : json['servicedPeriod'] != null
-                  ? Period.fromJson(json: json['servicedPeriod'])
+                  ? Period.fromJson(
+                      json['servicedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       created: FhirDateTime.fromJson({
         'value': json['created'],
@@ -1065,7 +1067,9 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
                       '_value': json['_allowedString'],
                     })
                   : json['allowedMoney'] != null
-                      ? Money.fromJson(json: json['allowedMoney'])
+                      ? Money.fromJson(
+                          json['allowedMoney'] as Map<String, dynamic>,
+                        )
                       : null,
       usedXCoverageEligibilityResponseBenefit:
           json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null
@@ -1079,7 +1083,9 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
                       '_value': json['_usedString'],
                     })
                   : json['usedMoney'] != null
-                      ? Money.fromJson(json: json['usedMoney'])
+                      ? Money.fromJson(
+                          json['usedMoney'] as Map<String, dynamic>,
+                        )
                       : null,
     );
   }

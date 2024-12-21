@@ -388,7 +388,9 @@ class MedicationIngredient extends BackboneElement {
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : Reference.fromJson(json: json['itemReference']),
+          : Reference.fromJson(
+              json['itemReference'] as Map<String, dynamic>,
+            ),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],

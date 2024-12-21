@@ -4,7 +4,47 @@ import 'package:yaml/yaml.dart';
 
 /// [Range]
 /// A set of ordered Quantities defined by a low and high limit.
-class Range extends DataType {
+class Range extends DataType
+    implements
+        TimingXActivityDefinition,
+        OnsetXAllergyIntolerance,
+        DurationXClinicalUseDefinitionIndication,
+        OnsetXCondition,
+        AbatementXCondition,
+        ValueXDeviceRequestParameter,
+        ValueXEvidenceReportCharacteristic,
+        ValueXEvidenceVariableCategory,
+        AgeXFamilyMemberHistory,
+        DeceasedXFamilyMemberHistory,
+        OnsetXFamilyMemberHistoryCondition,
+        DetailXGoalTarget,
+        ValueXGroupCharacteristic,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXParametersParameter,
+        DetailXPlanDefinitionTarget,
+        TimingXPlanDefinitionAction,
+        OffsetXPlanDefinitionRelatedAction,
+        PerformedXProcedure,
+        TimingXRequestGroupAction,
+        OffsetXRequestGroupRelatedAction,
+        ProbabilityXRiskAssessmentPrediction,
+        WhenXRiskAssessmentPrediction,
+        QuantityXServiceRequest,
+        DefaultValueXStructureMapSource,
+        ValueXSupplyRequestParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DoseXDosageDoseAndRate,
+        RateXDosageDoseAndRate,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension,
+        AgeXPopulation,
+        BoundsXTimingRepeat,
+        ValueXUsageContext {
   /// Primary constructor for
   /// [Range]
 

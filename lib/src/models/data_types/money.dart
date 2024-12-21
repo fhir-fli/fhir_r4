@@ -4,7 +4,22 @@ import 'package:yaml/yaml.dart';
 
 /// [Money]
 /// An amount of economic utility in some recognized currency.
-class Money extends DataType {
+class Money extends DataType
+    implements
+        ValueXCoverageCostToBeneficiary,
+        AllowedXCoverageEligibilityResponseBenefit,
+        UsedXCoverageEligibilityResponseBenefit,
+        AllowedXExplanationOfBenefitFinancial,
+        UsedXExplanationOfBenefitFinancial,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Money]
 

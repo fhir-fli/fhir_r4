@@ -165,7 +165,9 @@ class EventDefinition extends CanonicalResource {
               '_value': json['_subjectCodeableConcept'],
             })
           : json['subjectReference'] != null
-              ? Reference.fromJson(json: json['subjectReference'])
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
               : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({

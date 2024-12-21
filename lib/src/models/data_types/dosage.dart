@@ -5,7 +5,17 @@ import 'package:yaml/yaml.dart';
 /// [Dosage]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
-class Dosage extends BackboneType {
+class Dosage extends BackboneType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Dosage]
 
@@ -88,15 +98,17 @@ class Dosage extends BackboneType {
               json['timing'] as Map<String, dynamic>,
             )
           : null,
-      asNeededXDosage: json['asNeededBoolean'] != null ||
-              json['_asNeededBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['asNeededBoolean'],
-              '_value': json['_asNeededBoolean'],
-            })
-          : json['asNeededCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['asNeededCodeableConcept'])
-              : null,
+      asNeededXDosage:
+          json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null
+              ? FhirBoolean.fromJson({
+                  'value': json['asNeededBoolean'],
+                  '_value': json['_asNeededBoolean'],
+                })
+              : json['asNeededCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['asNeededCodeableConcept'] as Map<String, dynamic>,
+                    )
+                  : null,
       site: json['site'] != null
           ? CodeableConcept.fromJson(
               json['site'] as Map<String, dynamic>,
@@ -396,7 +408,9 @@ class DosageDoseAndRate extends Element {
                   '_value': json['_doseRange'],
                 })
               : json['doseQuantity'] != null
-                  ? Quantity.fromJson(json: json['doseQuantity'])
+                  ? Quantity.fromJson(
+                      json['doseQuantity'] as Map<String, dynamic>,
+                    )
                   : null,
       rateXDosageDoseAndRate:
           json['rateRatio'] != null || json['_rateRatio'] != null
@@ -410,7 +424,9 @@ class DosageDoseAndRate extends Element {
                       '_value': json['_rateRange'],
                     })
                   : json['rateQuantity'] != null
-                      ? Quantity.fromJson(json: json['rateQuantity'])
+                      ? Quantity.fromJson(
+                          json['rateQuantity'] as Map<String, dynamic>,
+                        )
                       : null,
     );
   }

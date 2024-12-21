@@ -1049,7 +1049,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
                                               '_value': json['_answerQuantity'],
                                             })
                                           : Reference.fromJson(
-                                              json: json['answerReference']),
+                                              json['answerReference']
+                                                  as Map<String, dynamic>,
+                                            ),
     );
   }
 
@@ -1231,7 +1233,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
                               'value': json['valueCoding'],
                               '_value': json['_valueCoding'],
                             })
-                          : Reference.fromJson(json: json['valueReference']),
+                          : Reference.fromJson(
+                              json['valueReference'] as Map<String, dynamic>,
+                            ),
       initialSelected:
           (json['initialSelected'] != null || json['_initialSelected'] != null)
               ? FhirBoolean.fromJson({
@@ -1455,8 +1459,10 @@ class QuestionnaireInitial extends BackboneElement {
                                                           '_valueQuantity'],
                                                     })
                                                   : Reference.fromJson(
-                                                      json: json[
-                                                          'valueReference']),
+                                                      json['valueReference']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    ),
     );
   }
 

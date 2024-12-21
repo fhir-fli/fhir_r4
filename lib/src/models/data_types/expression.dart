@@ -7,7 +7,19 @@ import 'package:yaml/yaml.dart';
 /// value. The context of use of the expression must specify the context in
 /// which the expression is evaluated, and how the result of the expression
 /// is used.
-class FhirExpression extends DataType {
+class FhirExpression extends DataType
+    implements
+        DefinitionXEvidenceVariableCharacteristic,
+        ValueXParametersParameter,
+        DefinitionXResearchElementDefinitionCharacteristic,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [FhirExpression]
 

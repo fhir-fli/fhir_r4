@@ -1011,7 +1011,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : Reference.fromJson(json: json['itemReference']),
+          : Reference.fromJson(
+              json['itemReference'] as Map<String, dynamic>,
+            ),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],
@@ -1527,7 +1529,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
                   '_value': json['_indicationCodeableConcept'],
                 })
               : json['indicationReference'] != null
-                  ? Reference.fromJson(json: json['indicationReference'])
+                  ? Reference.fromJson(
+                      json['indicationReference'] as Map<String, dynamic>,
+                    )
                   : null,
       patientCharacteristics: json['patientCharacteristics'] != null
           ? (json['patientCharacteristics'] as List<dynamic>)
@@ -1877,7 +1881,9 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
                   'value': json['characteristicCodeableConcept'],
                   '_value': json['_characteristicCodeableConcept'],
                 })
-              : Quantity.fromJson(json: json['characteristicQuantity']),
+              : Quantity.fromJson(
+                  json['characteristicQuantity'] as Map<String, dynamic>,
+                ),
       value: parsePrimitiveList<FhirString>(
         json['value'] as List<dynamic>?,
         json['_value'] as List<dynamic>?,

@@ -1636,7 +1636,9 @@ class StructureMapSource extends BackboneElement {
                                                                                                                                                                                                               '_value': json['_defaultValueDosage'],
                                                                                                                                                                                                             })
                                                                                                                                                                                                           : json['defaultValueMeta'] != null
-                                                                                                                                                                                                              ? FhirMeta.fromJson(json: json['defaultValueMeta'])
+                                                                                                                                                                                                              ? FhirMeta.fromJson(
+                                                                                                                                                                                                                  json['defaultValueMeta'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : null,
       element: (json['element'] != null || json['_element'] != null)
           ? FhirString.fromJson({

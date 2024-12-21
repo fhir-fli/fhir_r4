@@ -169,7 +169,9 @@ class DeviceRequest extends DomainResource {
                   'value': json['codeReference'],
                   '_value': json['_codeReference'],
                 })
-              : CodeableConcept.fromJson(json: json['codeCodeableConcept']),
+              : CodeableConcept.fromJson(
+                  json['codeCodeableConcept'] as Map<String, dynamic>,
+                ),
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<DeviceRequestParameter>(
@@ -200,7 +202,9 @@ class DeviceRequest extends DomainResource {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({

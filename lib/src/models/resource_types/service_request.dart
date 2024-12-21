@@ -211,7 +211,9 @@ class ServiceRequest extends DomainResource {
                       '_value': json['_quantityRatio'],
                     })
                   : json['quantityRange'] != null
-                      ? Range.fromJson(json: json['quantityRange'])
+                      ? Range.fromJson(
+                          json['quantityRange'] as Map<String, dynamic>,
+                        )
                       : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
@@ -234,17 +236,21 @@ class ServiceRequest extends DomainResource {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
-      asNeededXServiceRequest: json['asNeededBoolean'] != null ||
-              json['_asNeededBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['asNeededBoolean'],
-              '_value': json['_asNeededBoolean'],
-            })
-          : json['asNeededCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['asNeededCodeableConcept'])
-              : null,
+      asNeededXServiceRequest:
+          json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null
+              ? FhirBoolean.fromJson({
+                  'value': json['asNeededBoolean'],
+                  '_value': json['_asNeededBoolean'],
+                })
+              : json['asNeededCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['asNeededCodeableConcept'] as Map<String, dynamic>,
+                    )
+                  : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],

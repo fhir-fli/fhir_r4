@@ -1543,7 +1543,9 @@ class ClaimResponseAddItem extends BackboneElement {
                   '_value': json['_servicedDate'],
                 })
               : json['servicedPeriod'] != null
-                  ? Period.fromJson(json: json['servicedPeriod'])
+                  ? Period.fromJson(
+                      json['servicedPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       locationXClaimResponseAddItem: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
@@ -1557,7 +1559,9 @@ class ClaimResponseAddItem extends BackboneElement {
                   '_value': json['_locationAddress'],
                 })
               : json['locationReference'] != null
-                  ? Reference.fromJson(json: json['locationReference'])
+                  ? Reference.fromJson(
+                      json['locationReference'] as Map<String, dynamic>,
+                    )
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(

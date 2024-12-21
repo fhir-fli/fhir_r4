@@ -9,7 +9,48 @@ extension FhirBooleanExtension on bool {
 }
 
 /// [FhirBoolean] class representing the FHIR primitive type `boolean`
-class FhirBoolean extends PrimitiveType<bool> {
+class FhirBoolean extends PrimitiveType<bool>
+    implements
+        ValueXAdministrableProductDefinitionProperty,
+        ValueXClaimSupportingInfo,
+        ValueXCodeSystemProperty,
+        ValueXContractAnswer,
+        ValueXDeviceRequestParameter,
+        ValueXEvidenceReportCharacteristic,
+        ValueXExplanationOfBenefitSupportingInfo,
+        DeceasedXFamilyMemberHistory,
+        DetailXGoalTarget,
+        ValueXGroupCharacteristic,
+        ExampleXImplementationGuideResource,
+        ExampleXImplementationGuideResource1,
+        ValueXManufacturedItemDefinitionProperty,
+        ReportedXMedicationRequest,
+        AllowedXMedicationRequestSubstitution,
+        ValueXMedicinalProductDefinitionCharacteristic,
+        ValueXNutritionProductProductCharacteristic,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXPackagedProductDefinitionProperty,
+        ValueXParametersParameter,
+        DeceasedXPatient,
+        MultipleBirthXPatient,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        AsNeededXServiceRequest,
+        DefaultValueXStructureMapSource,
+        ValueXStructureMapParameter,
+        ValueXSubstanceDefinitionProperty,
+        ValueXSupplyRequestParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXValueSetParameter,
+        AsNeededXDosage,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor with original input
   FhirBoolean(
     // ignore: avoid_positional_boolean_parameters

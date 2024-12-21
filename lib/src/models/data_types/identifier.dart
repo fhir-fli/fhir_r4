@@ -5,7 +5,21 @@ import 'package:yaml/yaml.dart';
 /// [Identifier]
 /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
-class Identifier extends DataType {
+class Identifier extends DataType
+    implements
+        TargetXCitationRelatesTo,
+        TargetXCitationRelatesTo1,
+        TargetXCompositionRelatesTo,
+        TargetXEvidenceReportRelatesTo,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Identifier]
 

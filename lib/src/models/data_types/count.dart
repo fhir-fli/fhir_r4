@@ -7,7 +7,17 @@ import 'package:yaml/yaml.dart';
 /// that measured amounts include amounts that are not precisely
 /// quantified, including amounts involving arbitrary units and floating
 /// currencies.
-class Count extends Quantity {
+class Count extends Quantity
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Count]
 

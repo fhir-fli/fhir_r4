@@ -254,7 +254,9 @@ class Contract extends DomainResource {
               '_value': json['_topicCodeableConcept'],
             })
           : json['topicReference'] != null
-              ? Reference.fromJson(json: json['topicReference'])
+              ? Reference.fromJson(
+                  json['topicReference'] as Map<String, dynamic>,
+                )
               : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -345,7 +347,9 @@ class Contract extends DomainResource {
               '_value': json['_legallyBindingAttachment'],
             })
           : json['legallyBindingReference'] != null
-              ? Reference.fromJson(json: json['legallyBindingReference'])
+              ? Reference.fromJson(
+                  json['legallyBindingReference'] as Map<String, dynamic>,
+                )
               : null,
     );
   }
@@ -1133,7 +1137,9 @@ class ContractTerm extends BackboneElement {
               '_value': json['_topicCodeableConcept'],
             })
           : json['topicReference'] != null
-              ? Reference.fromJson(json: json['topicReference'])
+              ? Reference.fromJson(
+                  json['topicReference'] as Map<String, dynamic>,
+                )
               : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -2188,8 +2194,10 @@ class ContractAnswer extends BackboneElement {
                                                           '_valueQuantity'],
                                                     })
                                                   : Reference.fromJson(
-                                                      json: json[
-                                                          'valueReference']),
+                                                      json['valueReference']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    ),
     );
   }
 
@@ -2945,7 +2953,9 @@ class ContractValuedItem extends BackboneElement {
               '_value': json['_entityCodeableConcept'],
             })
           : json['entityReference'] != null
-              ? Reference.fromJson(json: json['entityReference'])
+              ? Reference.fromJson(
+                  json['entityReference'] as Map<String, dynamic>,
+                )
               : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
@@ -3371,7 +3381,9 @@ class ContractAction extends BackboneElement {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
       requester: json['requester'] != null
           ? (json['requester'] as List<dynamic>)
@@ -4181,7 +4193,9 @@ class ContractFriendly extends BackboneElement {
               'value': json['contentAttachment'],
               '_value': json['_contentAttachment'],
             })
-          : Reference.fromJson(json: json['contentReference']),
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -4328,7 +4342,9 @@ class ContractLegal extends BackboneElement {
               'value': json['contentAttachment'],
               '_value': json['_contentAttachment'],
             })
-          : Reference.fromJson(json: json['contentReference']),
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -4474,7 +4490,9 @@ class ContractRule extends BackboneElement {
               'value': json['contentAttachment'],
               '_value': json['_contentAttachment'],
             })
-          : Reference.fromJson(json: json['contentReference']),
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>,
+            ),
     );
   }
 

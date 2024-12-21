@@ -165,7 +165,9 @@ class Media extends DomainResource {
                   '_value': json['_createdDateTime'],
                 })
               : json['createdPeriod'] != null
-                  ? Period.fromJson(json: json['createdPeriod'])
+                  ? Period.fromJson(
+                      json['createdPeriod'] as Map<String, dynamic>,
+                    )
                   : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({

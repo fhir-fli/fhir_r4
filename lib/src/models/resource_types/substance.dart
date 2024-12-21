@@ -545,7 +545,9 @@ class SubstanceIngredient extends BackboneElement {
               'value': json['substanceCodeableConcept'],
               '_value': json['_substanceCodeableConcept'],
             })
-          : Reference.fromJson(json: json['substanceReference']),
+          : Reference.fromJson(
+              json['substanceReference'] as Map<String, dynamic>,
+            ),
     );
   }
 

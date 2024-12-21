@@ -16,7 +16,17 @@ extension FhirUuidValueExtension on UuidValue {
 }
 
 /// [FhirUuid] represents a validated UUID value in the FHIR standard.
-class FhirUuid extends PrimitiveType<UuidValue?> {
+class FhirUuid extends PrimitiveType<UuidValue?>
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
   FhirUuid(
     String? input, {

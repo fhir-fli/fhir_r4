@@ -717,7 +717,9 @@ class IngredientStrength extends BackboneElement {
               '_value': json['_presentationRatio'],
             })
           : json['presentationRatioRange'] != null
-              ? RatioRange.fromJson(json: json['presentationRatioRange'])
+              ? RatioRange.fromJson(
+                  json['presentationRatioRange'] as Map<String, dynamic>,
+                )
               : null,
       textPresentation: (json['textPresentation'] != null ||
               json['_textPresentation'] != null)
@@ -733,7 +735,9 @@ class IngredientStrength extends BackboneElement {
               '_value': json['_concentrationRatio'],
             })
           : json['concentrationRatioRange'] != null
-              ? RatioRange.fromJson(json: json['concentrationRatioRange'])
+              ? RatioRange.fromJson(
+                  json['concentrationRatioRange'] as Map<String, dynamic>,
+                )
               : null,
       textConcentration: (json['textConcentration'] != null ||
               json['_textConcentration'] != null)
@@ -1000,7 +1004,9 @@ class IngredientReferenceStrength extends BackboneElement {
                   'value': json['strengthRatio'],
                   '_value': json['_strengthRatio'],
                 })
-              : RatioRange.fromJson(json: json['strengthRatioRange']),
+              : RatioRange.fromJson(
+                  json['strengthRatioRange'] as Map<String, dynamic>,
+                ),
       measurementPoint: (json['measurementPoint'] != null ||
               json['_measurementPoint'] != null)
           ? FhirString.fromJson({

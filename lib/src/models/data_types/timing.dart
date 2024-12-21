@@ -9,7 +9,32 @@ import 'package:yaml/yaml.dart';
 /// are also used when planning care of various kinds, and may be used for
 /// reporting the schedule to which past regular activities were carried
 /// out.
-class Timing extends BackboneType {
+class Timing extends BackboneType
+    implements
+        TimingXActivityDefinition,
+        ScheduledXCarePlanDetail,
+        OccurrenceXChargeItem,
+        OccurrenceXContractAction,
+        OccurrenceXDeviceRequest,
+        TimingXDeviceUseStatement,
+        EffectiveXObservation,
+        ValueXParametersParameter,
+        TimingXPlanDefinitionAction,
+        TimingXRequestGroupAction,
+        StudyEffectiveXResearchElementDefinitionCharacteristic,
+        ParticipantEffectiveXResearchElementDefinitionCharacteristic,
+        OccurrenceXServiceRequest,
+        DefaultValueXStructureMapSource,
+        OccurrenceXSupplyDelivery,
+        OccurrenceXSupplyRequest,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension,
+        TimingXTriggerDefinition {
   /// Primary constructor for
   /// [Timing]
 
@@ -249,7 +274,9 @@ class TimingRepeat extends Element {
                       '_value': json['_boundsRange'],
                     })
                   : json['boundsPeriod'] != null
-                      ? Period.fromJson(json: json['boundsPeriod'])
+                      ? Period.fromJson(
+                          json['boundsPeriod'] as Map<String, dynamic>,
+                        )
                       : null,
       count: (json['count'] != null || json['_count'] != null)
           ? FhirPositiveInt.fromJson({

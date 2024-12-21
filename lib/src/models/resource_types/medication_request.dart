@@ -167,7 +167,9 @@ class MedicationRequest extends DomainResource {
                   '_value': json['_reportedBoolean'],
                 })
               : json['reportedReference'] != null
-                  ? Reference.fromJson(json: json['reportedReference'])
+                  ? Reference.fromJson(
+                      json['reportedReference'] as Map<String, dynamic>,
+                    )
                   : null,
       medicationXMedicationRequest: json['medicationCodeableConcept'] != null ||
               json['_medicationCodeableConcept'] != null
@@ -175,7 +177,9 @@ class MedicationRequest extends DomainResource {
               'value': json['medicationCodeableConcept'],
               '_value': json['_medicationCodeableConcept'],
             })
-          : Reference.fromJson(json: json['medicationReference']),
+          : Reference.fromJson(
+              json['medicationReference'] as Map<String, dynamic>,
+            ),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -1274,7 +1278,9 @@ class MedicationRequestSubstitution extends BackboneElement {
                   'value': json['allowedBoolean'],
                   '_value': json['_allowedBoolean'],
                 })
-              : CodeableConcept.fromJson(json: json['allowedCodeableConcept']),
+              : CodeableConcept.fromJson(
+                  json['allowedCodeableConcept'] as Map<String, dynamic>,
+                ),
       reason: json['reason'] != null
           ? CodeableConcept.fromJson(
               json['reason'] as Map<String, dynamic>,

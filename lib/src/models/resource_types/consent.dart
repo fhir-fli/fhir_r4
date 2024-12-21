@@ -156,7 +156,9 @@ class Consent extends DomainResource {
                   '_value': json['_sourceAttachment'],
                 })
               : json['sourceReference'] != null
-                  ? Reference.fromJson(json: json['sourceReference'])
+                  ? Reference.fromJson(
+                      json['sourceReference'] as Map<String, dynamic>,
+                    )
                   : null,
       policy: json['policy'] != null
           ? (json['policy'] as List<dynamic>)

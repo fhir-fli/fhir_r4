@@ -20,12 +20,12 @@ extension FhirInteger64BigIntExtension on BigInt {
   FhirInteger64 get toFhirInteger64 => FhirInteger64.fromBigInt(this);
 }
 
-/// Represents a 64-bit integer in the FHIR spec.
+/// Represents a 64-bit integer in the FHIR specification.
 class FhirInteger64 extends PrimitiveType<BigInt?>
     implements Comparable<FhirInteger64> {
-  /// Constructor that allows nullable BigInt input.
+  /// Constructor that ensures valid input.
   FhirInteger64(
-    BigInt? input, {
+    this.input, {
     super.element,
     super.id,
     super.extension_,
@@ -35,28 +35,30 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     }
   }
 
-  /// Named constructor to create a [FhirInteger64] from a [num].
-  FhirInteger64.fromNum(num input, {super.element}) : super(BigInt.from(input));
-
-  /// Named constructor to create a [FhirInteger64] from a [String].
-  FhirInteger64.fromString(String input, {super.element})
-      : super(_validateInteger64(input));
-
-  /// Named constructor to create a [FhirInteger64] from a [BigInt].
-  FhirInteger64.fromBigInt(super.input, {super.element});
-
-  /// Factory constructor to create from JSON.
-  factory FhirInteger64.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as dynamic;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirInteger64.fromString(
-      value?.toString() ?? '',
-      element: element,
-    );
+  /// Factory constructor to create a [FhirInteger64] from a [num].
+  factory FhirInteger64.fromNum(num input, {Element? element}) {
+    return FhirInteger64(BigInt.from(input), element: element);
   }
 
-  /// Factory constructor to create from YAML.
+  /// Factory constructor to create a [FhirInteger64] from a [String].
+  factory FhirInteger64.fromString(String input, {Element? element}) {
+    return FhirInteger64(BigInt.parse(input), element: element);
+  }
+
+  /// Factory constructor to create a [FhirInteger64] from a [BigInt].
+  factory FhirInteger64.fromBigInt(BigInt input, {Element? element}) {
+    return FhirInteger64(input, element: element);
+  }
+
+  /// Factory constructor to create a [FhirInteger64] from JSON input.
+  factory FhirInteger64.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    return FhirInteger64.fromString(value ?? '', element: element);
+  }
+
+  /// Factory constructor to create a [FhirInteger64] from YAML input.
   factory FhirInteger64.fromYaml(dynamic yaml) {
     return yaml is String
         ? FhirInteger64.fromJson(
@@ -74,22 +76,25 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Attempts to parse the input as [FhirInteger64].
   static FhirInteger64? tryParse(dynamic input) {
     try {
-      return FhirInteger64.fromString(input.toString());
+      if (input is BigInt) return FhirInteger64(input);
+      if (input is num) return FhirInteger64.fromNum(input);
+      if (input is String) return FhirInteger64.fromString(input);
+      return null;
     } catch (_) {
       return null;
     }
   }
 
-  /// Validates input to convert to [BigInt].
+  /// Validates that the input is a valid 64-bit integer.
   static BigInt _validateInteger64(dynamic input) {
-    if (input == null) {
-      throw const FormatException('Null value provided for FhirInteger64');
-    }
-    if (input is int) return BigInt.from(input);
     if (input is BigInt) return input;
+    if (input is int) return BigInt.from(input);
     if (input is String) return BigInt.parse(input);
-    throw FormatException('Invalid input for FhirInteger64: $input');
+    throw FormatException('Invalid FhirInteger64 value: $input');
   }
+
+  /// The original input value.
+  final BigInt? input;
 
   /// Returns the FHIR type as 'integer64'.
   @override
@@ -135,6 +140,51 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   @override
   int compareTo(FhirInteger64 other) =>
       value == null || other.value == null ? 0 : value!.compareTo(other.value!);
+
+  /// Checks equality.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FhirInteger64 && other.value == value) ||
+      (other is BigInt && other == value) ||
+      (other is String && BigInt.tryParse(other) == value);
+
+  /// Generates hash code.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Clones the current instance.
+  @override
+  FhirInteger64 clone() =>
+      FhirInteger64.fromBigInt(value!, element: element?.clone() as Element?);
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FhirInteger64 copyWith({
+    BigInt? newValue,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) {
+    return FhirInteger64(
+      newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+      ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+    );
+  }
 
   /// Arithmetic Operators
 
@@ -262,30 +312,5 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     if (other is BigInt) return other;
     if (other is int) return BigInt.from(other);
     return BigInt.tryParse(other.toString());
-  }
-
-  @override
-  FhirInteger64 clone() => FhirInteger64.fromJson(toJson());
-
-  @override
-  FhirInteger64 copyWith({
-    BigInt? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    return FhirInteger64(
-      newValue ?? value,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-      ),
-    );
   }
 }

@@ -5,7 +5,19 @@ import 'package:yaml/yaml.dart';
 /// [SampledData]
 /// A series of measurements taken by a device, with upper and lower
 /// limits. There may be more than one dimension in the data.
-class SampledData extends DataType {
+class SampledData extends DataType
+    implements
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [SampledData]
 

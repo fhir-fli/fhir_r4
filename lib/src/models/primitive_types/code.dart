@@ -9,7 +9,19 @@ extension FhirCodeExtension on String {
 }
 
 /// FHIR primitive type `code`
-class FhirCode extends PrimitiveType<String> {
+class FhirCode extends PrimitiveType<String>
+    implements
+        ValueXCodeSystemProperty,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXValueSetParameter,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor with input validation and storage
   FhirCode(
     this.input, {
@@ -62,7 +74,7 @@ class FhirCode extends PrimitiveType<String> {
     if (regex.hasMatch(input)) {
       return input;
     }
-    throw FormatException('Invalid FHIR Code: "$input"');
+    throw FormatException('Invalid FHIR Code:$input');
   }
 
   /// The original input value (for serialization purposes)

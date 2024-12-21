@@ -190,7 +190,9 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_subjectReference'],
                 })
               : json['subjectSubjectType'] != null
-                  ? SubjectType.fromJson(json: json['subjectSubjectType'])
+                  ? SubjectType.fromJson(
+                      json['subjectSubjectType'] as Map<String, dynamic>,
+                    )
                   : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -399,7 +401,9 @@ class ActivityDefinition extends CanonicalResource {
                             })
                           : json['timingDuration'] != null
                               ? FhirDuration.fromJson(
-                                  json: json['timingDuration'])
+                                  json['timingDuration']
+                                      as Map<String, dynamic>,
+                                )
                               : null,
       location: json['location'] != null
           ? Reference.fromJson(
@@ -415,15 +419,17 @@ class ActivityDefinition extends CanonicalResource {
               )
               .toList()
           : null,
-      productXActivityDefinition: json['productReference'] != null ||
-              json['_productReference'] != null
-          ? Reference.fromJson({
-              'value': json['productReference'],
-              '_value': json['_productReference'],
-            })
-          : json['productCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['productCodeableConcept'])
-              : null,
+      productXActivityDefinition:
+          json['productReference'] != null || json['_productReference'] != null
+              ? Reference.fromJson({
+                  'value': json['productReference'],
+                  '_value': json['_productReference'],
+                })
+              : json['productCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['productCodeableConcept'] as Map<String, dynamic>,
+                    )
+                  : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,

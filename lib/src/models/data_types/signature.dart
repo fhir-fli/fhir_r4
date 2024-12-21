@@ -9,7 +9,17 @@ import 'package:yaml/yaml.dart';
 /// simple as a graphical image representing a hand-written signature, or a
 /// signature ceremony Different signature approaches have different
 /// utilities.
-class Signature extends DataType {
+class Signature extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Signature]
 

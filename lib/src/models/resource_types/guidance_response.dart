@@ -121,7 +121,9 @@ class GuidanceResponse extends DomainResource {
                   'value': json['moduleCanonical'],
                   '_value': json['_moduleCanonical'],
                 })
-              : CodeableConcept.fromJson(json: json['moduleCodeableConcept']),
+              : CodeableConcept.fromJson(
+                  json['moduleCodeableConcept'] as Map<String, dynamic>,
+                ),
       status: GuidanceResponseStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],

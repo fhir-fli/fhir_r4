@@ -127,7 +127,9 @@ class SupplyRequest extends DomainResource {
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : Reference.fromJson(json: json['itemReference']),
+          : Reference.fromJson(
+              json['itemReference'] as Map<String, dynamic>,
+            ),
       quantity: Quantity.fromJson(
         json['quantity'] as Map<String, dynamic>,
       ),
@@ -153,7 +155,9 @@ class SupplyRequest extends DomainResource {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({

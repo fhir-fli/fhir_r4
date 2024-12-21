@@ -10,7 +10,20 @@ extension FhirBase64BinaryExtension on String {
 }
 
 /// FHIR primitive type `Base64Binary`
-class FhirBase64Binary extends PrimitiveType<String?> {
+class FhirBase64Binary extends PrimitiveType<String?>
+    implements
+        ValueXAuditEventDetail,
+        ValueXMedicationKnowledgeDrugCharacteristic,
+        ValueXNutritionProductProductCharacteristic,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor with validation and original input storage
   FhirBase64Binary(
     this.input, {

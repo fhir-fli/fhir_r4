@@ -484,7 +484,9 @@ class ParametersParameter extends BackboneElement {
                                                                                                                                                                                                               '_value': json['_valueDosage'],
                                                                                                                                                                                                             })
                                                                                                                                                                                                           : json['valueMeta'] != null
-                                                                                                                                                                                                              ? FhirMeta.fromJson(json: json['valueMeta'])
+                                                                                                                                                                                                              ? FhirMeta.fromJson(
+                                                                                                                                                                                                                  json['valueMeta'] as Map<String, dynamic>,
+                                                                                                                                                                                                                )
                                                                                                                                                                                                               : null,
       resource: json['resource'] != null
           ? Resource.fromJson(

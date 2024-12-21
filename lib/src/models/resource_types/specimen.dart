@@ -493,7 +493,9 @@ class SpecimenCollection extends BackboneElement {
               '_value': json['_collectedDateTime'],
             })
           : json['collectedPeriod'] != null
-              ? Period.fromJson(json: json['collectedPeriod'])
+              ? Period.fromJson(
+                  json['collectedPeriod'] as Map<String, dynamic>,
+                )
               : null,
       duration: json['duration'] != null
           ? FhirDuration.fromJson(
@@ -523,7 +525,9 @@ class SpecimenCollection extends BackboneElement {
                   '_value': json['_fastingStatusCodeableConcept'],
                 })
               : json['fastingStatusDuration'] != null
-                  ? FhirDuration.fromJson(json: json['fastingStatusDuration'])
+                  ? FhirDuration.fromJson(
+                      json['fastingStatusDuration'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -760,7 +764,9 @@ class SpecimenProcessing extends BackboneElement {
                   '_value': json['_timeDateTime'],
                 })
               : json['timePeriod'] != null
-                  ? Period.fromJson(json: json['timePeriod'])
+                  ? Period.fromJson(
+                      json['timePeriod'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }
@@ -971,7 +977,9 @@ class SpecimenContainer extends BackboneElement {
               '_value': json['_additiveCodeableConcept'],
             })
           : json['additiveReference'] != null
-              ? Reference.fromJson(json: json['additiveReference'])
+              ? Reference.fromJson(
+                  json['additiveReference'] as Map<String, dynamic>,
+                )
               : null,
     );
   }

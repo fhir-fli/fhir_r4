@@ -197,7 +197,9 @@ class Procedure extends DomainResource {
                           '_value': json['_performedAge'],
                         })
                       : json['performedRange'] != null
-                          ? Range.fromJson(json: json['performedRange'])
+                          ? Range.fromJson(
+                              json['performedRange'] as Map<String, dynamic>,
+                            )
                           : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(

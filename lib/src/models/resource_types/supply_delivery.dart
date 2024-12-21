@@ -151,7 +151,9 @@ class SupplyDelivery extends DomainResource {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
       supplier: json['supplier'] != null
           ? Reference.fromJson(
@@ -451,7 +453,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
               '_value': json['_itemCodeableConcept'],
             })
           : json['itemReference'] != null
-              ? Reference.fromJson(json: json['itemReference'])
+              ? Reference.fromJson(
+                  json['itemReference'] as Map<String, dynamic>,
+                )
               : null,
     );
   }

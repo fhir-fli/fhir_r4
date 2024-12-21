@@ -4,7 +4,27 @@ import 'package:yaml/yaml.dart';
 
 /// [Age]
 /// A duration of time during which an organism (or a process) has existed.
-class Age extends Quantity {
+class Age extends Quantity
+    implements
+        TimingXActivityDefinition,
+        OnsetXAllergyIntolerance,
+        OnsetXCondition,
+        AbatementXCondition,
+        AgeXFamilyMemberHistory,
+        DeceasedXFamilyMemberHistory,
+        OnsetXFamilyMemberHistoryCondition,
+        ValueXParametersParameter,
+        TimingXPlanDefinitionAction,
+        PerformedXProcedure,
+        TimingXRequestGroupAction,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Age]
 

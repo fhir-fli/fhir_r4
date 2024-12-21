@@ -5,7 +5,17 @@ import 'package:yaml/yaml.dart';
 /// [Annotation]
 /// A text note which also contains information about who made the
 /// statement and when.
-class Annotation extends DataType {
+class Annotation extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Annotation]
 

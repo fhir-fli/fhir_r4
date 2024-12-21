@@ -325,7 +325,9 @@ class FhirExtension extends DataType {
                                                                                                                                                                                                                   '_value': json['_valueUsageContext'],
                                                                                                                                                                                                                 })
                                                                                                                                                                                                               : json['valueDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(json: json['valueDosage'])
+                                                                                                                                                                                                                  ? Dosage.fromJson(
+                                                                                                                                                                                                                      json['valueDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                                    )
                                                                                                                                                                                                                   : null,
     );
   }

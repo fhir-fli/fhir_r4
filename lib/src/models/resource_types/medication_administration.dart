@@ -150,7 +150,9 @@ class MedicationAdministration extends DomainResource {
                   'value': json['medicationCodeableConcept'],
                   '_value': json['_medicationCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['medicationReference']),
+              : Reference.fromJson(
+                  json['medicationReference'] as Map<String, dynamic>,
+                ),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -174,7 +176,9 @@ class MedicationAdministration extends DomainResource {
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
             })
-          : Period.fromJson(json: json['effectivePeriod']),
+          : Period.fromJson(
+              json['effectivePeriod'] as Map<String, dynamic>,
+            ),
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<MedicationAdministrationPerformer>(
@@ -807,7 +811,9 @@ class MedicationAdministrationDosage extends BackboneElement {
                   '_value': json['_rateRatio'],
                 })
               : json['rateQuantity'] != null
-                  ? Quantity.fromJson(json: json['rateQuantity'])
+                  ? Quantity.fromJson(
+                      json['rateQuantity'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

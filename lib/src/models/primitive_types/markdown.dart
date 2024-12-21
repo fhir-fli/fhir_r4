@@ -9,7 +9,19 @@ extension FhirMarkdownExtension on String {
 }
 
 /// This class represents the FHIR primitive type `markdown`.
-class FhirMarkdown extends PrimitiveType<String> {
+class FhirMarkdown extends PrimitiveType<String>
+    implements
+        CiteAsXEvidence,
+        CiteAsXEvidenceReport,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor enforcing input validation.
   FhirMarkdown(
     String? input, {

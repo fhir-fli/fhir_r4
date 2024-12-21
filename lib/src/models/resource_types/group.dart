@@ -429,7 +429,9 @@ class GroupCharacteristic extends BackboneElement {
                           'value': json['valueRange'],
                           '_value': json['_valueRange'],
                         })
-                      : Reference.fromJson(json: json['valueReference']),
+                      : Reference.fromJson(
+                          json['valueReference'] as Map<String, dynamic>,
+                        ),
       exclude: FhirBoolean.fromJson({
         'value': json['exclude'],
         '_value': json['_exclude'],

@@ -679,7 +679,9 @@ class RequestGroupAction extends BackboneElement {
                               '_value': json['_timingRange'],
                             })
                           : json['timingTiming'] != null
-                              ? Timing.fromJson(json: json['timingTiming'])
+                              ? Timing.fromJson(
+                                  json['timingTiming'] as Map<String, dynamic>,
+                                )
                               : null,
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
@@ -1219,7 +1221,9 @@ class RequestGroupRelatedAction extends BackboneElement {
                   '_value': json['_offsetDuration'],
                 })
               : json['offsetRange'] != null
-                  ? Range.fromJson(json: json['offsetRange'])
+                  ? Range.fromJson(
+                      json['offsetRange'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

@@ -153,7 +153,9 @@ class DiagnosticReport extends DomainResource {
               '_value': json['_effectiveDateTime'],
             })
           : json['effectivePeriod'] != null
-              ? Period.fromJson(json: json['effectivePeriod'])
+              ? Period.fromJson(
+                  json['effectivePeriod'] as Map<String, dynamic>,
+                )
               : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({

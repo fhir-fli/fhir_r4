@@ -13,7 +13,31 @@ extension FhirIntegerExtension on num {
 }
 
 /// Represents the FHIR primitive type `integer`.
-class FhirInteger extends FhirNumber {
+class FhirInteger extends FhirNumber
+    implements
+        ValueXCodeSystemProperty,
+        ValueXContractAnswer,
+        DetailXGoalTarget,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXParametersParameter,
+        MultipleBirthXPatient,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireAnswerOption,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXStructureMapParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXValueSetParameter,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor that ensures valid input.
   FhirInteger(
     super.input, {
@@ -64,17 +88,6 @@ class FhirInteger extends FhirNumber {
     return null;
   }
 
-  /// Returns the FHIR type as a string.
-  @override
-  String get fhirType => 'integer';
-
-  /// Serializes the instance to JSON with standardized keys.
-  @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
-
   /// Converts a list of JSON values to a list of [FhirInteger] instances.
   static List<FhirInteger> fromJsonList(
     List<dynamic> values,
@@ -102,6 +115,17 @@ class FhirInteger extends FhirNumber {
       '_value': integers.map((integer) => integer.element?.toJson()).toList(),
     };
   }
+
+  /// Returns the FHIR type as a string.
+  @override
+  String get fhirType => 'integer';
+
+  /// Serializes the instance to JSON with standardized keys.
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
 
   /// Provides a string representation of the instance.
   @override

@@ -472,7 +472,9 @@ class ElementDefinition extends BackboneType {
                                                                                                                                                                                                                   '_value': json['_defaultValueUsageContext'],
                                                                                                                                                                                                                 })
                                                                                                                                                                                                               : json['defaultValueDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(json: json['defaultValueDosage'])
+                                                                                                                                                                                                                  ? Dosage.fromJson(
+                                                                                                                                                                                                                      json['defaultValueDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                                    )
                                                                                                                                                                                                                   : null,
       meaningWhenMissing: (json['meaningWhenMissing'] != null ||
               json['_meaningWhenMissing'] != null)
@@ -776,7 +778,9 @@ class ElementDefinition extends BackboneType {
                                                                                                                                                                                                                   '_value': json['_fixedUsageContext'],
                                                                                                                                                                                                                 })
                                                                                                                                                                                                               : json['fixedDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(json: json['fixedDosage'])
+                                                                                                                                                                                                                  ? Dosage.fromJson(
+                                                                                                                                                                                                                      json['fixedDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                                    )
                                                                                                                                                                                                                   : null,
       patternXElementDefinition: json['patternBase64Binary'] != null ||
               json['_patternBase64Binary'] != null
@@ -1067,7 +1071,9 @@ class ElementDefinition extends BackboneType {
                                                                                                                                                                                                                   '_value': json['_patternUsageContext'],
                                                                                                                                                                                                                 })
                                                                                                                                                                                                               : json['patternDosage'] != null
-                                                                                                                                                                                                                  ? Dosage.fromJson(json: json['patternDosage'])
+                                                                                                                                                                                                                  ? Dosage.fromJson(
+                                                                                                                                                                                                                      json['patternDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                                    )
                                                                                                                                                                                                                   : null,
       example: json['example'] != null
           ? (json['example'] as List<dynamic>)
@@ -1129,7 +1135,9 @@ class ElementDefinition extends BackboneType {
                                         })
                                       : json['minValueQuantity'] != null
                                           ? Quantity.fromJson(
-                                              json: json['minValueQuantity'])
+                                              json['minValueQuantity']
+                                                  as Map<String, dynamic>,
+                                            )
                                           : null,
       maxValueXElementDefinition: json['maxValueDate'] != null ||
               json['_maxValueDate'] != null
@@ -1182,7 +1190,9 @@ class ElementDefinition extends BackboneType {
                                         })
                                       : json['maxValueQuantity'] != null
                                           ? Quantity.fromJson(
-                                              json: json['maxValueQuantity'])
+                                              json['maxValueQuantity']
+                                                  as Map<String, dynamic>,
+                                            )
                                           : null,
       maxLength: (json['maxLength'] != null || json['_maxLength'] != null)
           ? FhirInteger.fromJson({
@@ -2739,7 +2749,9 @@ class ElementDefinitionExample extends Element {
                                                                                                                                                                                                                   'value': json['valueUsageContext'],
                                                                                                                                                                                                                   '_value': json['_valueUsageContext'],
                                                                                                                                                                                                                 })
-                                                                                                                                                                                                              : Dosage.fromJson(json: json['valueDosage']),
+                                                                                                                                                                                                              : Dosage.fromJson(
+                                                                                                                                                                                                                  json['valueDosage'] as Map<String, dynamic>,
+                                                                                                                                                                                                                ),
     );
   }
 

@@ -9,7 +9,18 @@ extension FhirIdExtension on String {
 }
 
 /// Represents the FHIR primitive type `id`.
-class FhirId extends PrimitiveType<String> {
+class FhirId extends PrimitiveType<String>
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXStructureMapParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Public constructor with input validation.
   FhirId(
     String? input, {
@@ -62,7 +73,7 @@ class FhirId extends PrimitiveType<String> {
   static String _validateId(String input) {
     final regex = RegExp(r'^[A-Za-z0-9\-\.][A-Za-z0-9\-._]{0,63}$');
     if (regex.hasMatch(input)) return input;
-    throw FormatException('Invalid FhirId: "$input"');
+    throw FormatException('Invalid FhirId:$input');
   }
 
   /// Boolean checks for the presence of a value only.

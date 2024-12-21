@@ -5,7 +5,17 @@ import 'package:yaml/yaml.dart';
 /// [ContactPoint]
 /// Details for all kinds of technology mediated contact points for a
 /// person or organization, including telephone, email, etc.
-class ContactPoint extends DataType {
+class ContactPoint extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [ContactPoint]
 

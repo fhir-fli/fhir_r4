@@ -5,7 +5,13 @@ import 'package:yaml/yaml.dart';
 /// [CodeableReference]
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
-class CodeableReference extends DataType {
+class CodeableReference extends DataType
+    implements
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [CodeableReference]
 

@@ -166,7 +166,9 @@ class ChargeItem extends DomainResource {
                   '_value': json['_occurrencePeriod'],
                 })
               : json['occurrenceTiming'] != null
-                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  ? Timing.fromJson(
+                      json['occurrenceTiming'] as Map<String, dynamic>,
+                    )
                   : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
@@ -254,15 +256,17 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      productXChargeItem: json['productReference'] != null ||
-              json['_productReference'] != null
-          ? Reference.fromJson({
-              'value': json['productReference'],
-              '_value': json['_productReference'],
-            })
-          : json['productCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['productCodeableConcept'])
-              : null,
+      productXChargeItem:
+          json['productReference'] != null || json['_productReference'] != null
+              ? Reference.fromJson({
+                  'value': json['productReference'],
+                  '_value': json['_productReference'],
+                })
+              : json['productCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json['productCodeableConcept'] as Map<String, dynamic>,
+                    )
+                  : null,
       account: json['account'] != null
           ? (json['account'] as List<dynamic>)
               .map<Reference>(

@@ -1885,7 +1885,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
                             })
                           : json['valueAttachment'] != null
                               ? Attachment.fromJson(
-                                  json: json['valueAttachment'])
+                                  json['valueAttachment']
+                                      as Map<String, dynamic>,
+                                )
                               : null,
     );
   }

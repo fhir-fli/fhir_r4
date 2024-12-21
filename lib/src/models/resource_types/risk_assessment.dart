@@ -145,7 +145,9 @@ class RiskAssessment extends DomainResource {
               '_value': json['_occurrenceDateTime'],
             })
           : json['occurrencePeriod'] != null
-              ? Period.fromJson(json: json['occurrencePeriod'])
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : null,
       condition: json['condition'] != null
           ? Reference.fromJson(
@@ -546,7 +548,9 @@ class RiskAssessmentPrediction extends BackboneElement {
                   '_value': json['_probabilityDecimal'],
                 })
               : json['probabilityRange'] != null
-                  ? Range.fromJson(json: json['probabilityRange'])
+                  ? Range.fromJson(
+                      json['probabilityRange'] as Map<String, dynamic>,
+                    )
                   : null,
       qualitativeRisk: json['qualitativeRisk'] != null
           ? CodeableConcept.fromJson(
@@ -567,7 +571,9 @@ class RiskAssessmentPrediction extends BackboneElement {
                   '_value': json['_whenPeriod'],
                 })
               : json['whenRange'] != null
-                  ? Range.fromJson(json: json['whenRange'])
+                  ? Range.fromJson(
+                      json['whenRange'] as Map<String, dynamic>,
+                    )
                   : null,
       rationale: (json['rationale'] != null || json['_rationale'] != null)
           ? FhirString.fromJson({

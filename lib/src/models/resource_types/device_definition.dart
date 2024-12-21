@@ -127,7 +127,9 @@ class DeviceDefinition extends DomainResource {
               '_value': json['_manufacturerString'],
             })
           : json['manufacturerReference'] != null
-              ? Reference.fromJson(json: json['manufacturerReference'])
+              ? Reference.fromJson(
+                  json['manufacturerReference'] as Map<String, dynamic>,
+                )
               : null,
       deviceName: json['deviceName'] != null
           ? (json['deviceName'] as List<dynamic>)

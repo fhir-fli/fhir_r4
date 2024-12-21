@@ -883,7 +883,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
                   'value': json['additiveCodeableConcept'],
                   '_value': json['_additiveCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['additiveReference']),
+              : Reference.fromJson(
+                  json['additiveReference'] as Map<String, dynamic>,
+                ),
     );
   }
 

@@ -1664,7 +1664,9 @@ class NutritionOrderAdministration extends BackboneElement {
                   '_value': json['_rateQuantity'],
                 })
               : json['rateRatio'] != null
-                  ? Ratio.fromJson(json: json['rateRatio'])
+                  ? Ratio.fromJson(
+                      json['rateRatio'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

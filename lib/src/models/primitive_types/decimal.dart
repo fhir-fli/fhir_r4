@@ -8,9 +8,29 @@ extension FhirDecimalExtension on num {
   FhirDecimal get toFhirDecimal => FhirDecimal(this);
 }
 
-/// This class represents the FHIR primitive type `decimal`.
-class FhirDecimal extends FhirNumber {
-  /// Public constructor with validation and storage of the original input.
+/// Represents the FHIR primitive type `decimal`.
+class FhirDecimal extends FhirNumber
+    implements
+        ValueXCodeSystemProperty,
+        ValueXContractAnswer,
+        ValueXParametersParameter,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        ProbabilityXRiskAssessmentPrediction,
+        DefaultValueXStructureMapSource,
+        ValueXStructureMapParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXValueSetParameter,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
+  /// Constructor with validation and storage of the original input.
   FhirDecimal(
     this.input, {
     super.element,
@@ -63,7 +83,7 @@ class FhirDecimal extends FhirNumber {
   }
 
   /// Attempts to parse a [dynamic] input as [FhirDecimal], returns `null` if
-  /// it fails.
+  /// parsing fails.
   static FhirDecimal? tryParse(dynamic input) {
     if (input is num) {
       try {
@@ -74,32 +94,6 @@ class FhirDecimal extends FhirNumber {
     }
     return null;
   }
-
-  /// The original input value (stored for serialization purposes).
-  final num? input;
-
-  /// Boolean flag to track if the input was originally an integer.
-  final bool isInt;
-
-  /// Boolean getter to determine if only a value is present.
-  bool get valueOnly => value != null && element == null;
-
-  /// Boolean getter to determine if only an element is present.
-  bool get elementOnly => value == null && element != null;
-
-  /// Boolean getter to determine if both value and element are present.
-  bool get valueAndElement => value != null && element != null;
-
-  /// Returns the FHIR type as 'decimal'.
-  @override
-  String get fhirType => 'decimal';
-
-  /// Serializes the instance to JSON with standardized keys.
-  @override
-  Map<String, dynamic> toJson() => {
-        if (input != null) 'value': isInt ? input!.toInt() : input,
-        if (element != null) '_value': element?.toJson(),
-      };
 
   /// Converts a list of JSON values to a list of [FhirDecimal] instances.
   static List<FhirDecimal> fromJsonList(
@@ -131,7 +125,24 @@ class FhirDecimal extends FhirNumber {
         '_value': decimals.map((decimal) => decimal.element?.toJson()).toList(),
       };
 
-  /// Returns a string representation of the instance.
+  /// The original input value (stored for serialization purposes).
+  final num? input;
+
+  /// Boolean flag to track if the input was originally an integer.
+  final bool isInt;
+
+  /// Returns the FHIR type as 'decimal'.
+  @override
+  String get fhirType => 'decimal';
+
+  /// Serializes the instance to JSON with standardized keys.
+  @override
+  Map<String, dynamic> toJson() => {
+        if (input != null) 'value': isInt ? input!.toInt() : input,
+        if (element != null) '_value': element?.toJson(),
+      };
+
+  /// Provides a string representation of the instance.
   @override
   String toString() =>
       isInt ? value?.toInt().toString() ?? '' : value.toString();

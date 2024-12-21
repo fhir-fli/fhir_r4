@@ -1081,7 +1081,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'relationshipType': const FhirField(false, 'CodeableConcept'),
     'targetClassifier': const FhirField(true, 'CodeableConcept'),
-    'targetXCitationRelatesTo': const FhirField(false, 'FhirUri'),
+    'targetXCitationRelatesTo1': const FhirField(false, 'FhirUri'),
   },
   'CitationPublicationForm': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -4365,7 +4365,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'reference': const FhirField(false, 'Reference'),
-    'exampleXImplementationGuideResource':
+    'exampleXImplementationGuideResource1':
         const FhirField(false, 'FhirBoolean'),
     'relativePath': const FhirField(false, 'FhirUrl'),
   },

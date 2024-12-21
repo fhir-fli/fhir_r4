@@ -12,15 +12,32 @@ extension FhirUnsignedIntExtension on num {
           : throw FormatException('Invalid input for FhirUnsignedInt: $this');
 }
 
-/// Represents the FHIR primitive type `integer`.
-class FhirUnsignedInt extends FhirNumber {
+/// Represents the FHIR primitive type `positiveInt`.
+class FhirUnsignedInt extends FhirNumber
+    implements
+        AllowedXCoverageEligibilityResponseBenefit,
+        UsedXCoverageEligibilityResponseBenefit,
+        AllowedXExplanationOfBenefitFinancial,
+        UsedXExplanationOfBenefitFinancial,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor that ensures valid input.
   FhirUnsignedInt(
-    super.input, {
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) {
+    super.disallowExtensions,
+  }) : super(input != null ? _validateUnsignedInt(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -53,7 +70,7 @@ class FhirUnsignedInt extends FhirNumber {
   /// Static method to try parsing input as [FhirUnsignedInt], returns `null`
   /// if unsuccessful.
   static FhirUnsignedInt? tryParse(dynamic input) {
-    if (input is int) {
+    if (input is int && input > 0) {
       try {
         return FhirUnsignedInt(input);
       } catch (_) {
@@ -63,16 +80,14 @@ class FhirUnsignedInt extends FhirNumber {
     return null;
   }
 
-  /// Returns the FHIR type as a string.
-  @override
-  String get fhirType => 'integer';
-
-  /// Serializes the instance to JSON with standardized keys.
-  @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  /// Validates that the input is a positive integer.
+  static int _validateUnsignedInt(num? input) {
+    if (input == null || input < 0 || input is! int) {
+      throw FormatException('Invalid FhirUnsignedInt value: $input. '
+          'Must be an integer greater than zero.');
+    }
+    return input;
+  }
 
   /// Converts a list of JSON values to a list of [FhirUnsignedInt] instances.
   static List<FhirUnsignedInt> fromJsonList(
@@ -102,6 +117,20 @@ class FhirUnsignedInt extends FhirNumber {
     };
   }
 
+  /// The original input value (for serialization purposes)
+  final num? input;
+
+  /// Returns the FHIR type as a string.
+  @override
+  String get fhirType => 'positiveInt';
+
+  /// Serializes the instance to JSON with standardized keys.
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// Provides a string representation of the instance.
   @override
   String toString() => value?.toString() ?? '';
@@ -126,6 +155,9 @@ class FhirUnsignedInt extends FhirNumber {
         element: element?.clone() as Element?,
       );
 
+  /// Sets disallowExtensions to true.
+  FhirUnsignedInt noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties.
   @override
   FhirUnsignedInt copyWith({
@@ -137,12 +169,10 @@ class FhirUnsignedInt extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirUnsignedInt: $newValue');
-    }
     return FhirUnsignedInt(
-      (newValue ?? value) as int?,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -152,6 +182,7 @@ class FhirUnsignedInt extends FhirNumber {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

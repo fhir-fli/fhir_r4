@@ -12,15 +12,34 @@ extension FhirPositiveIntExtension on num {
           : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
-/// Represents the FHIR primitive type `integer`.
-class FhirPositiveInt extends FhirNumber {
+/// Represents the FHIR primitive type `positiveInt`.
+class FhirPositiveInt extends FhirNumber
+    implements
+        DoseNumberXImmunizationProtocolApplied,
+        SeriesDosesXImmunizationProtocolApplied,
+        DoseNumberXImmunizationEvaluation,
+        SeriesDosesXImmunizationEvaluation,
+        DoseNumberXImmunizationRecommendationRecommendation,
+        SeriesDosesXImmunizationRecommendationRecommendation,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor that ensures valid input.
   FhirPositiveInt(
-    super.input, {
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) {
+    super.disallowExtensions,
+  }) : super(input != null ? _validatePositiveInt(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -53,7 +72,7 @@ class FhirPositiveInt extends FhirNumber {
   /// Static method to try parsing input as [FhirPositiveInt], returns `null`
   /// if unsuccessful.
   static FhirPositiveInt? tryParse(dynamic input) {
-    if (input is int) {
+    if (input is int && input > 0) {
       try {
         return FhirPositiveInt(input);
       } catch (_) {
@@ -63,16 +82,14 @@ class FhirPositiveInt extends FhirNumber {
     return null;
   }
 
-  /// Returns the FHIR type as a string.
-  @override
-  String get fhirType => 'integer';
-
-  /// Serializes the instance to JSON with standardized keys.
-  @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  /// Validates that the input is a positive integer.
+  static int _validatePositiveInt(num? input) {
+    if (input == null || input <= 0 || input is! int) {
+      throw FormatException('Invalid FhirPositiveInt value: $input. '
+          'Must be an integer greater than zero.');
+    }
+    return input;
+  }
 
   /// Converts a list of JSON values to a list of [FhirPositiveInt] instances.
   static List<FhirPositiveInt> fromJsonList(
@@ -102,6 +119,20 @@ class FhirPositiveInt extends FhirNumber {
     };
   }
 
+  /// The original input value (for serialization purposes)
+  final num? input;
+
+  /// Returns the FHIR type as a string.
+  @override
+  String get fhirType => 'positiveInt';
+
+  /// Serializes the instance to JSON with standardized keys.
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// Provides a string representation of the instance.
   @override
   String toString() => value?.toString() ?? '';
@@ -126,6 +157,9 @@ class FhirPositiveInt extends FhirNumber {
         element: element?.clone() as Element?,
       );
 
+  /// Sets disallowExtensions to true.
+  FhirPositiveInt noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties.
   @override
   FhirPositiveInt copyWith({
@@ -137,12 +171,10 @@ class FhirPositiveInt extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');
-    }
     return FhirPositiveInt(
-      (newValue ?? value) as int?,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -152,6 +184,7 @@ class FhirPositiveInt extends FhirNumber {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

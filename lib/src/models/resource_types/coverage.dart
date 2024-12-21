@@ -711,7 +711,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
-              : Money.fromJson(json: json['valueMoney']),
+              : Money.fromJson(
+                  json['valueMoney'] as Map<String, dynamic>,
+                ),
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(

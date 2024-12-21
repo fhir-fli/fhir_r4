@@ -7,7 +7,52 @@ import 'package:yaml/yaml.dart';
 /// that measured amounts include amounts that are not precisely
 /// quantified, including amounts involving arbitrary units and floating
 /// currencies.
-class Quantity extends DataType {
+class Quantity extends DataType
+    implements
+        ValueXAdministrableProductDefinitionProperty,
+        ValueXClaimSupportingInfo,
+        ValueXContractAnswer,
+        ValueXCoverageCostToBeneficiary,
+        ValueXDeviceRequestParameter,
+        ValueXEvidenceReportCharacteristic,
+        ValueXEvidenceVariableCategory,
+        ValueXExplanationOfBenefitSupportingInfo,
+        DetailXGoalTarget,
+        ValueXGroupCharacteristic,
+        ValueXManufacturedItemDefinitionProperty,
+        RateXMedicationAdministrationDosage,
+        CharacteristicXMedicationKnowledgePatientCharacteristics,
+        ValueXMedicationKnowledgeDrugCharacteristic,
+        ValueXMedicinalProductDefinitionCharacteristic,
+        RateXNutritionOrderAdministration,
+        ValueXNutritionProductProductCharacteristic,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXPackagedProductDefinitionProperty,
+        ValueXParametersParameter,
+        DetailXPlanDefinitionTarget,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        QuantityXServiceRequest,
+        MinimumVolumeXSpecimenDefinitionContainer,
+        DefaultValueXStructureMapSource,
+        AmountXSubstanceDefinitionMoiety,
+        ValueXSubstanceDefinitionProperty,
+        AmountXSubstanceDefinitionRelationship,
+        ValueXSupplyRequestParameter,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DoseXDosageDoseAndRate,
+        RateXDosageDoseAndRate,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension,
+        ValueXUsageContext {
   /// Primary constructor for
   /// [Quantity]
 

@@ -688,7 +688,9 @@ class CommunicationPayload extends BackboneElement {
                       'value': json['contentAttachment'],
                       '_value': json['_contentAttachment'],
                     })
-                  : Reference.fromJson(json: json['contentReference']),
+                  : Reference.fromJson(
+                      json['contentReference'] as Map<String, dynamic>,
+                    ),
     );
   }
 

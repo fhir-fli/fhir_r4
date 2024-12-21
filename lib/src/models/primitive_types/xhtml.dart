@@ -9,7 +9,7 @@ extension FhirXhtmlExtension on String {
   FhirXhtml get toFhirXhtml => FhirXhtml(this);
 }
 
-/// This class represents the FHIR primitive type `xhtml`.
+/// Represents the FHIR primitive type `xhtml`.
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
   FhirXhtml(
@@ -44,12 +44,11 @@ class FhirXhtml extends PrimitiveType<String?> {
         jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
       );
 
-  /// Static method to try parsing the input
+  /// Attempts to parse the input as [FhirXhtml].
   static FhirXhtml? tryParse(dynamic input) {
     if (input is String) {
       try {
-        final validatedString = _validateXhtml(input);
-        return FhirXhtml(validatedString);
+        return FhirXhtml(_validateXhtml(input));
       } catch (_) {
         return null;
       }
@@ -57,71 +56,64 @@ class FhirXhtml extends PrimitiveType<String?> {
     return null;
   }
 
+  /// Validates an XHTML string against FHIR rules.
   static String _validateXhtml(String xhtml) {
     try {
       final document = XmlDocument.parse(xhtml);
       final rootElement = document.rootElement;
 
-      // Relax the root element requirement: allow more than just <div>
       if (!_allowedElements.contains(rootElement.name.local)) {
         throw FormatException(
-            'Root element must be one of the allowed elements: '
-            '${_allowedElements.join(', ')}');
-      }
-
-      // Check for the correct XHTML namespace, but allow flexibility
-      final xmlns = rootElement.getAttribute('xmlns');
-      if (xmlns != 'http://www.w3.org/1999/xhtml') {
-        throw FormatException(
-            'Invalid XHTML namespace, expected "http://www.w3.org/1999/xhtml", '
-            'but found "$xmlns"');
-      }
-
-      // Recursively validate elements
-      if (!_validateElement(rootElement, isRoot: true)) {
-        throw FormatException(
-          'Invalid XHTML element structure ${rootElement.name.local}',
+          'Invalid root element: ${rootElement.name.local}. '
+          'Allowed elements are: ${_allowedElements.join(', ')}.',
         );
       }
 
-      return xhtml; // Return the valid XHTML string
+      final xmlns = rootElement.getAttribute('xmlns');
+      if (xmlns != 'http://www.w3.org/1999/xhtml') {
+        throw FormatException(
+          'Invalid XHTML namespace. Expected "http://www.w3.org/1999/xhtml", '
+          'but found "$xmlns".',
+        );
+      }
+
+      if (!_validateElement(rootElement)) {
+        throw const FormatException('Invalid structure in root element.');
+      }
+
+      return xhtml; // Return the valid XHTML string.
     } catch (e) {
       throw FormatException('Invalid XHTML: $e');
     }
   }
 
-  static bool _isValidAttribute(
-    XmlAttribute attribute,
-    String elementName,
-    bool isRoot,
-  ) {
-    final attributeName = attribute.name.local;
-
-    // Allow `cellpadding` and `cellspacing` for `table` & any related elements
-    if ((elementName == 'table' ||
-            elementName == 'th' ||
-            elementName == 'td') &&
-        (attributeName == 'cellpadding' || attributeName == 'cellspacing')) {
-      return true;
+  /// Validates an element and its attributes recursively.
+  static bool _validateElement(XmlElement element, {bool isRoot = false}) {
+    if (!_allowedElements.contains(element.name.local)) {
+      throw FormatException('Element ${element.name.local} is not allowed.');
     }
 
-    // Check against the allowed attributes list
-    if (_allowedAttributes.contains(attributeName)) {
-      return true;
+    for (final attribute in element.attributes) {
+      if (!_allowedAttributes.contains(attribute.name.local) &&
+          !(isRoot && attribute.name.local == 'xmlns')) {
+        throw FormatException(
+          'Invalid attribute "${attribute.name.local}" in element '
+          '"${element.name.local}".',
+        );
+      }
     }
 
-    // Allow `xmlns` for root elements
-    if (isRoot &&
-        attributeName == 'xmlns' &&
-        attribute.value == 'http://www.w3.org/1999/xhtml') {
-      return true;
+    for (final child in element.children) {
+      if (child is XmlElement && !_validateElement(child)) {
+        throw FormatException('Invalid child element: ${child.name.local}');
+      }
     }
 
-    // If the attribute is not recognized, skip the validation for it
-    return true; // Make this permissive
+    return true;
   }
 
-  static final List<String> _allowedElements = <String>[
+  /// Allowed elements for XHTML.
+  static final List<String> _allowedElements = [
     'div',
     'p',
     'b',
@@ -169,7 +161,8 @@ class FhirXhtml extends PrimitiveType<String?> {
     'acronym',
   ];
 
-  static final List<String> _allowedAttributes = <String>[
+  /// Allowed attributes for XHTML elements.
+  static final List<String> _allowedAttributes = [
     'style',
     'class',
     'src',
@@ -190,48 +183,19 @@ class FhirXhtml extends PrimitiveType<String?> {
     'cellpadding',
     'cellspacing',
     'span',
-    'background-color',
   ];
-
-  static bool _validateElement(XmlElement element, {bool isRoot = false}) {
-    final elementName = element.name.local;
-
-    // Allow any element if it's in the allowed elements list
-    if (!_allowedElements.contains(elementName)) {
-      // Make permissive, skip invalid elements instead of throwing error
-      return true;
-    }
-
-    // Validate attributes (make this check more permissive)
-    for (final attribute in element.attributes) {
-      if (!_isValidAttribute(attribute, elementName, isRoot)) {
-        continue; // Skip invalid attributes instead of returning false
-      }
-    }
-
-    // Recursively validate child elements (make permissive)
-    for (final child in element.children) {
-      if (child is XmlElement) {
-        if (!_validateElement(child)) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
 
   @override
   String get fhirType => 'xhtml';
 
-  /// Serializes the instance to JSON with standardized keys
+  /// Serializes the instance to JSON with standardized keys.
   @override
   Map<String, dynamic> toJson() => {
         if (value != null) 'value': value,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Returns the stored XHTML as a string.
+  /// Returns the XHTML content as a string.
   @override
   String toString() => value ?? 'null';
 

@@ -4,7 +4,17 @@ import 'package:yaml/yaml.dart';
 
 /// [HumanName]
 /// A human's name with the ability to identify parts and usage.
-class HumanName extends DataType {
+class HumanName extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [HumanName]
 

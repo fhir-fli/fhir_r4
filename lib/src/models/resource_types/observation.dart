@@ -268,7 +268,10 @@ class Observation extends DomainResource {
                                                 })
                                               : json['valuePeriod'] != null
                                                   ? Period.fromJson(
-                                                      json: json['valuePeriod'])
+                                                      json['valuePeriod']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    )
                                                   : null,
       dataAbsentReason: json['dataAbsentReason'] != null
           ? CodeableConcept.fromJson(
@@ -1090,7 +1093,10 @@ class ObservationComponent extends BackboneElement {
                                                 })
                                               : json['valuePeriod'] != null
                                                   ? Period.fromJson(
-                                                      json: json['valuePeriod'])
+                                                      json['valuePeriod']
+                                                          as Map<String,
+                                                              dynamic>,
+                                                    )
                                                   : null,
       dataAbsentReason: json['dataAbsentReason'] != null
           ? CodeableConcept.fromJson(

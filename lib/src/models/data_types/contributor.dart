@@ -5,7 +5,17 @@ import 'package:yaml/yaml.dart';
 /// [Contributor]
 /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.
-class Contributor extends DataType {
+class Contributor extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Contributor]
 

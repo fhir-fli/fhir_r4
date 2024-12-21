@@ -4,7 +4,17 @@ import 'package:yaml/yaml.dart';
 
 /// [Distance]
 /// A length - a value with a unit that is a physical distance.
-class Distance extends Quantity {
+class Distance extends Quantity
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Distance]
 

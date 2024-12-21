@@ -51,7 +51,9 @@ class Population extends BackboneType {
               '_value': json['_ageRange'],
             })
           : json['ageCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['ageCodeableConcept'])
+              ? CodeableConcept.fromJson(
+                  json['ageCodeableConcept'] as Map<String, dynamic>,
+                )
               : null,
       gender: json['gender'] != null
           ? CodeableConcept.fromJson(

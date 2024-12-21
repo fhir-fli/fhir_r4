@@ -1308,7 +1308,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
                   'value': json['itemReference'],
                   '_value': json['_itemReference'],
                 })
-              : CodeableConcept.fromJson(json: json['itemCodeableConcept']),
+              : CodeableConcept.fromJson(
+                  json['itemCodeableConcept'] as Map<String, dynamic>,
+                ),
     );
   }
 

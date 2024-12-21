@@ -10,7 +10,27 @@ extension FhirTimeExtension on String {
 
 /// Class to handle FHIR time values.
 /// Inherits from [PrimitiveType] and implements [Comparable].
-class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
+class FhirTime extends PrimitiveType<String>
+    implements
+        Comparable<FhirTime>,
+        ValueXContractAnswer,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXParametersParameter,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireAnswerOption,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
   FhirTime(

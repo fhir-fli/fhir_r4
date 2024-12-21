@@ -389,7 +389,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
                           '_value': json['_valueBoolean'],
                         })
                       : json['valueAttachment'] != null
-                          ? Attachment.fromJson(json: json['valueAttachment'])
+                          ? Attachment.fromJson(
+                              json['valueAttachment'] as Map<String, dynamic>,
+                            )
                           : null,
     );
   }

@@ -4,7 +4,29 @@ import 'package:yaml/yaml.dart';
 
 /// [FhirDuration]
 /// A length of time.
-class FhirDuration extends Quantity {
+class FhirDuration extends Quantity
+    implements
+        TimingXActivityDefinition,
+        DueXGoalTarget,
+        PeriodXPackagedProductDefinitionShelfLifeStorage,
+        ValueXParametersParameter,
+        TimingXPlanDefinitionAction,
+        OffsetXPlanDefinitionRelatedAction,
+        TimingXRequestGroupAction,
+        OffsetXRequestGroupRelatedAction,
+        StudyEffectiveXResearchElementDefinitionCharacteristic,
+        ParticipantEffectiveXResearchElementDefinitionCharacteristic,
+        FastingStatusXSpecimenCollection,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXDataRequirementDateFilter,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension,
+        BoundsXTimingRepeat {
   /// Primary constructor for
   /// [FhirDuration]
 

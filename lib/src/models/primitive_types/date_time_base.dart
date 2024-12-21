@@ -3,8 +3,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
 abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     implements Comparable<FhirDateTimeBase> {
-  /// Constructor
-  /// Constructor
+  /// Constructor with validation logic
   FhirDateTimeBase({
     required this.year,
     required this.isUtc,
@@ -19,7 +18,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     super.element,
     super.id,
     super.extension_,
-  }) : super(null);
+  }) : super(null) {
+    _validateDateTimeComponents();
+  }
 
   /// Year
   final int? year;
@@ -643,6 +644,99 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
             'Argument 1: $value (${value.runtimeType})\n'
             'Argument 2: $o (${o.runtimeType})',
       );
+
+  /// Validates the components of a date-time.
+  void _validateDateTimeComponents() {
+    // Validate year
+    if (year == null || year! < 1 || year! > 9999) {
+      throw ArgumentError('Invalid year: $year. Must be between 1 and 9999.');
+    }
+
+    // Validate month
+    if (month != null && (month! < 1 || month! > 12)) {
+      throw ArgumentError('Invalid month: $month. Must be between 1 and 12.');
+    }
+
+    // Validate day
+    if (day != null) {
+      if (month == null) {
+        throw ArgumentError('Day cannot be provided without a month.');
+      }
+      final daysInMonth = _daysInMonth(year!, month!);
+      if (day! < 1 || day! > daysInMonth) {
+        throw ArgumentError(
+          'Invalid day: $day. Must be between 1 and $daysInMonth for '
+          'year $year and month $month.',
+        );
+      }
+    }
+
+    // Validate hour
+    if (hour != null && (hour! < 0 || hour! > 23)) {
+      throw ArgumentError('Invalid hour: $hour. Must be between 0 and 23.');
+    }
+
+    // Validate minute
+    if (minute != null && (minute! < 0 || minute! > 59)) {
+      throw ArgumentError('Invalid minute: $minute. Must be between 0 and 59.');
+    }
+
+    // Validate second
+    if (second != null && (second! < 0 || second! > 59)) {
+      throw ArgumentError('Invalid second: $second. Must be between 0 and 59.');
+    }
+
+    // Validate millisecond
+    if (millisecond != null && (millisecond! < 0 || millisecond! > 999)) {
+      throw ArgumentError(
+        'Invalid millisecond: $millisecond. Must be between 0 and 999.',
+      );
+    }
+
+    // Validate microsecond
+    if (microsecond != null &&
+        (microsecond!.length > 6 || int.tryParse(microsecond!) == null)) {
+      throw ArgumentError(
+        'Invalid microsecond: $microsecond. Must be a valid integer string '
+        'with at most 6 digits.',
+      );
+    }
+
+    // Validate time zone offset
+    if (timeZoneOffset != null && (timeZoneOffset!.abs() > 14)) {
+      throw ArgumentError(
+        'Invalid time zone offset: $timeZoneOffset. '
+        'Must be between -14 and 14.',
+      );
+    }
+  }
+
+  /// Returns the number of days in a given month for a specific year.
+  int _daysInMonth(int year, int month) {
+    const daysPerMonth = <int>[
+      31,
+      28,
+      31,
+      30,
+      31,
+      30,
+      31,
+      31,
+      30,
+      31,
+      30,
+      31,
+    ];
+    if (month != 2) return daysPerMonth[month - 1];
+    return _isLeapYear(year) ? 29 : 28;
+  }
+
+  /// Determines if a year is a leap year.
+  bool _isLeapYear(int year) {
+    if (year % 4 != 0) return false;
+    if (year % 100 == 0 && year % 400 != 0) return false;
+    return true;
+  }
 
   /// Returns the difference between this and another FhirDateTimeBase.
   Duration difference(dynamic other) {

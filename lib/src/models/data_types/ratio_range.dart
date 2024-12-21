@@ -5,7 +5,16 @@ import 'package:yaml/yaml.dart';
 /// [RatioRange]
 /// A range of ratios expressed as a low and high numerator and a
 /// denominator.
-class RatioRange extends DataType {
+class RatioRange extends DataType
+    implements
+        PresentationXIngredientStrength,
+        ConcentrationXIngredientStrength,
+        StrengthXIngredientReferenceStrength,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [RatioRange]
 

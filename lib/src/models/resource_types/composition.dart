@@ -688,7 +688,9 @@ class CompositionRelatesTo extends BackboneElement {
                   'value': json['targetIdentifier'],
                   '_value': json['_targetIdentifier'],
                 })
-              : Reference.fromJson(json: json['targetReference']),
+              : Reference.fromJson(
+                  json['targetReference'] as Map<String, dynamic>,
+                ),
     );
   }
 

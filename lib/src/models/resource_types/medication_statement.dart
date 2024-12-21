@@ -171,7 +171,9 @@ class MedicationStatement extends DomainResource {
                   'value': json['medicationCodeableConcept'],
                   '_value': json['_medicationCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['medicationReference']),
+              : Reference.fromJson(
+                  json['medicationReference'] as Map<String, dynamic>,
+                ),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -187,7 +189,9 @@ class MedicationStatement extends DomainResource {
               '_value': json['_effectiveDateTime'],
             })
           : json['effectivePeriod'] != null
-              ? Period.fromJson(json: json['effectivePeriod'])
+              ? Period.fromJson(
+                  json['effectivePeriod'] as Map<String, dynamic>,
+                )
               : null,
       dateAsserted:
           (json['dateAsserted'] != null || json['_dateAsserted'] != null)

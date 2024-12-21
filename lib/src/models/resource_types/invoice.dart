@@ -690,7 +690,9 @@ class InvoiceLineItem extends BackboneElement {
               'value': json['chargeItemReference'],
               '_value': json['_chargeItemReference'],
             })
-          : CodeableConcept.fromJson(json: json['chargeItemCodeableConcept']),
+          : CodeableConcept.fromJson(
+              json['chargeItemCodeableConcept'] as Map<String, dynamic>,
+            ),
       priceComponent: json['priceComponent'] != null
           ? (json['priceComponent'] as List<dynamic>)
               .map<InvoicePriceComponent>(

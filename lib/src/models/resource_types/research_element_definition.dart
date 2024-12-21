@@ -177,7 +177,9 @@ class ResearchElementDefinition extends DomainResource {
                   '_value': json['_subjectCodeableConcept'],
                 })
               : json['subjectReference'] != null
-                  ? Reference.fromJson(json: json['subjectReference'])
+                  ? Reference.fromJson(
+                      json['subjectReference'] as Map<String, dynamic>,
+                    )
                   : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -881,7 +883,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                           '_value': json['_definitionExpression'],
                         })
                       : DataRequirement.fromJson(
-                          json: json['definitionDataRequirement']),
+                          json['definitionDataRequirement']
+                              as Map<String, dynamic>,
+                        ),
       usageContext: json['usageContext'] != null
           ? (json['usageContext'] as List<dynamic>)
               .map<UsageContext>(
@@ -929,7 +933,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                           '_value': json['_studyEffectiveDuration'],
                         })
                       : json['studyEffectiveTiming'] != null
-                          ? Timing.fromJson(json: json['studyEffectiveTiming'])
+                          ? Timing.fromJson(
+                              json['studyEffectiveTiming']
+                                  as Map<String, dynamic>,
+                            )
                           : null,
       studyEffectiveTimeFromStart: json['studyEffectiveTimeFromStart'] != null
           ? FhirDuration.fromJson(
@@ -972,7 +979,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                         })
                       : json['participantEffectiveTiming'] != null
                           ? Timing.fromJson(
-                              json: json['participantEffectiveTiming'])
+                              json['participantEffectiveTiming']
+                                  as Map<String, dynamic>,
+                            )
                           : null,
       participantEffectiveTimeFromStart:
           json['participantEffectiveTimeFromStart'] != null

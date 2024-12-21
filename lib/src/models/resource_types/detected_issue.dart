@@ -130,7 +130,9 @@ class DetectedIssue extends DomainResource {
               '_value': json['_identifiedDateTime'],
             })
           : json['identifiedPeriod'] != null
-              ? Period.fromJson(json: json['identifiedPeriod'])
+              ? Period.fromJson(
+                  json['identifiedPeriod'] as Map<String, dynamic>,
+                )
               : null,
       author: json['author'] != null
           ? Reference.fromJson(

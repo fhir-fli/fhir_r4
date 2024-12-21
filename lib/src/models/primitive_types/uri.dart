@@ -15,7 +15,29 @@ extension FhirUriUriExtension on Uri {
 }
 
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
-class FhirUri extends PrimitiveType<Uri> {
+class FhirUri extends PrimitiveType<Uri>
+    implements
+        TargetXCitationRelatesTo,
+        TargetXCitationRelatesTo1,
+        SourceXConceptMap,
+        TargetXConceptMap,
+        ValueXContractAnswer,
+        ModuleXGuidanceResponse,
+        EventXMessageDefinition,
+        EventXMessageHeader,
+        ValueXParametersParameter,
+        DefinitionXPlanDefinitionAction,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        ValueXValueSetParameter,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructor with validation and original input storage
   FhirUri(
     this.input, {

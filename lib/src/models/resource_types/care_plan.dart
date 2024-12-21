@@ -1024,7 +1024,9 @@ class CarePlanDetail extends BackboneElement {
               '_value': json['_productCodeableConcept'],
             })
           : json['productReference'] != null
-              ? Reference.fromJson(json: json['productReference'])
+              ? Reference.fromJson(
+                  json['productReference'] as Map<String, dynamic>,
+                )
               : null,
       dailyAmount: json['dailyAmount'] != null
           ? Quantity.fromJson(

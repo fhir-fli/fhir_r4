@@ -4,7 +4,37 @@ import 'package:yaml/yaml.dart';
 
 /// [Attachment]
 /// For referring to data content defined in other formats.
-class Attachment extends DataType {
+class Attachment extends DataType
+    implements
+        ValueXAdministrableProductDefinitionProperty,
+        TargetXCitationRelatesTo,
+        TargetXCitationRelatesTo1,
+        ValueXClaimSupportingInfo,
+        ContentXCommunicationPayload,
+        ContentXCommunicationRequestPayload,
+        SourceXConsent,
+        LegallyBindingXContract,
+        ValueXContractAnswer,
+        ContentXContractFriendly,
+        ContentXContractLegal,
+        ContentXContractRule,
+        ValueXExplanationOfBenefitSupportingInfo,
+        ValueXManufacturedItemDefinitionProperty,
+        ValueXMedicinalProductDefinitionCharacteristic,
+        ValueXNutritionProductProductCharacteristic,
+        ValueXPackagedProductDefinitionProperty,
+        ValueXParametersParameter,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXSubstanceDefinitionProperty,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Attachment]
 

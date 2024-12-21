@@ -210,7 +210,9 @@ class CommunicationRequest extends DomainResource {
               '_value': json['_occurrenceDateTime'],
             })
           : json['occurrencePeriod'] != null
-              ? Period.fromJson(json: json['occurrencePeriod'])
+              ? Period.fromJson(
+                  json['occurrencePeriod'] as Map<String, dynamic>,
+                )
               : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
@@ -657,7 +659,9 @@ class CommunicationRequestPayload extends BackboneElement {
                       'value': json['contentAttachment'],
                       '_value': json['_contentAttachment'],
                     })
-                  : Reference.fromJson(json: json['contentReference']),
+                  : Reference.fromJson(
+                      json['contentReference'] as Map<String, dynamic>,
+                    ),
     );
   }
 

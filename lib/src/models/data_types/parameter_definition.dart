@@ -7,7 +7,17 @@ import 'package:yaml/yaml.dart';
 /// and output parameters. Input parameters are provided by the caller as
 /// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
-class ParameterDefinition extends DataType {
+class ParameterDefinition extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [ParameterDefinition]
 

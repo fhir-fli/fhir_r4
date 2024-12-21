@@ -890,7 +890,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
                           '_value': json['_valueBoolean'],
                         })
                       : json['valueAttachment'] != null
-                          ? Attachment.fromJson(json: json['valueAttachment'])
+                          ? Attachment.fromJson(
+                              json['valueAttachment'] as Map<String, dynamic>,
+                            )
                           : null,
     );
   }
@@ -2419,7 +2421,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
                 })
               : json['substanceDefinitionCodeableConcept'] != null
                   ? CodeableConcept.fromJson(
-                      json: json['substanceDefinitionCodeableConcept'])
+                      json['substanceDefinitionCodeableConcept']
+                          as Map<String, dynamic>,
+                    )
                   : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,

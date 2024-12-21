@@ -7,7 +7,17 @@ import 'package:yaml/yaml.dart';
 /// index and/or categorize an artifact. This metadata can either be
 /// specific to the applicable population (e.g., age category, DRG) or the
 /// specific context of care (e.g., venue, care setting, provider of care).
-class UsageContext extends DataType {
+class UsageContext extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [UsageContext]
 
@@ -55,7 +65,9 @@ class UsageContext extends DataType {
                       'value': json['valueRange'],
                       '_value': json['_valueRange'],
                     })
-                  : Reference.fromJson(json: json['valueReference']),
+                  : Reference.fromJson(
+                      json['valueReference'] as Map<String, dynamic>,
+                    ),
     );
   }
 

@@ -5,7 +5,18 @@ import 'package:yaml/yaml.dart';
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
-class DataRequirement extends DataType {
+class DataRequirement extends DataType
+    implements
+        ValueXParametersParameter,
+        DefinitionXResearchElementDefinitionCharacteristic,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [DataRequirement]
 
@@ -56,7 +67,9 @@ class DataRequirement extends DataType {
               '_value': json['_subjectCodeableConcept'],
             })
           : json['subjectReference'] != null
-              ? Reference.fromJson(json: json['subjectReference'])
+              ? Reference.fromJson(
+                  json['subjectReference'] as Map<String, dynamic>,
+                )
               : null,
       mustSupport: parsePrimitiveList<FhirString>(
         json['mustSupport'] as List<dynamic>?,
@@ -533,7 +546,9 @@ class DataRequirementDateFilter extends Element {
                       '_value': json['_valuePeriod'],
                     })
                   : json['valueDuration'] != null
-                      ? FhirDuration.fromJson(json: json['valueDuration'])
+                      ? FhirDuration.fromJson(
+                          json['valueDuration'] as Map<String, dynamic>,
+                        )
                       : null,
     );
   }

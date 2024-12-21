@@ -15,7 +15,41 @@ extension FhirDateStringExtension on String {
 }
 
 /// [FhirDate] represents FHIR-compliant dates, extending [FhirDateTimeBase].
-class FhirDate extends FhirDateTimeBase {
+class FhirDate extends FhirDateTimeBase
+    implements
+        ValueXAdministrableProductDefinitionProperty,
+        TimingXClaimSupportingInfo,
+        ServicedXClaimItem,
+        ServicedXClaimResponseAddItem,
+        ValueXContractAnswer,
+        ServicedXCoverageEligibilityRequest,
+        ServicedXCoverageEligibilityResponse,
+        TimingXExplanationOfBenefitSupportingInfo,
+        ServicedXExplanationOfBenefitItem,
+        ServicedXExplanationOfBenefitAddItem,
+        BornXFamilyMemberHistory,
+        DeceasedXFamilyMemberHistory,
+        DueXGoalTarget,
+        ValueXManufacturedItemDefinitionProperty,
+        ValueXMedicinalProductDefinitionCharacteristic,
+        ValueXPackagedProductDefinitionProperty,
+        ValueXParametersParameter,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireAnswerOption,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXSubstanceDefinitionProperty,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension,
+        TimingXTriggerDefinition {
   /// Factory constructor to create a [FhirDate] from individual units.
   ///
   /// Requires [year], while [month], [day], and [isUtc] are optional.

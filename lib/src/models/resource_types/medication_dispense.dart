@@ -137,7 +137,9 @@ class MedicationDispense extends DomainResource {
                   '_value': json['_statusReasonCodeableConcept'],
                 })
               : json['statusReasonReference'] != null
-                  ? Reference.fromJson(json: json['statusReasonReference'])
+                  ? Reference.fromJson(
+                      json['statusReasonReference'] as Map<String, dynamic>,
+                    )
                   : null,
       category: json['category'] != null
           ? CodeableConcept.fromJson(
@@ -151,7 +153,9 @@ class MedicationDispense extends DomainResource {
                   'value': json['medicationCodeableConcept'],
                   '_value': json['_medicationCodeableConcept'],
                 })
-              : Reference.fromJson(json: json['medicationReference']),
+              : Reference.fromJson(
+                  json['medicationReference'] as Map<String, dynamic>,
+                ),
       subject: json['subject'] != null
           ? Reference.fromJson(
               json['subject'] as Map<String, dynamic>,

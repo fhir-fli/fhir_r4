@@ -4,7 +4,17 @@ import 'package:yaml/yaml.dart';
 
 /// [ContactDetail]
 /// Specifies contact information for a person or organization.
-class ContactDetail extends DataType {
+class ContactDetail extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [ContactDetail]
 

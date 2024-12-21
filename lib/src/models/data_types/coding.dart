@@ -4,7 +4,25 @@ import 'package:yaml/yaml.dart';
 
 /// [Coding]
 /// A reference to a code defined by a terminology system.
-class Coding extends DataType {
+class Coding extends DataType
+    implements
+        ValueXCodeSystemProperty,
+        ValueXContractAnswer,
+        EventXMessageDefinition,
+        EventXMessageHeader,
+        ValueXParametersParameter,
+        AnswerXQuestionnaireEnableWhen,
+        ValueXQuestionnaireAnswerOption,
+        ValueXQuestionnaireInitial,
+        ValueXQuestionnaireResponseAnswer,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Coding]
 

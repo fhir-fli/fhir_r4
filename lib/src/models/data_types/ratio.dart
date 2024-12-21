@@ -5,7 +5,28 @@ import 'package:yaml/yaml.dart';
 /// [Ratio]
 /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
-class Ratio extends DataType {
+class Ratio extends DataType
+    implements
+        DetailXGoalTarget,
+        PresentationXIngredientStrength,
+        ConcentrationXIngredientStrength,
+        StrengthXIngredientReferenceStrength,
+        RateXMedicationAdministrationDosage,
+        RateXNutritionOrderAdministration,
+        ValueXObservation,
+        ValueXObservationComponent,
+        ValueXParametersParameter,
+        QuantityXServiceRequest,
+        DefaultValueXStructureMapSource,
+        AmountXSubstanceDefinitionRelationship,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        RateXDosageDoseAndRate,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [Ratio]
 

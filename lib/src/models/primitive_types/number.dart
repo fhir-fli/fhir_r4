@@ -248,10 +248,12 @@ abstract class FhirNumber extends PrimitiveType<num?>
     throw ArgumentError('Expected FhirNumber or num, but got: $other.');
   }
 
+  /// Clones this instance.
   @override
   FhirNumber clone() =>
       FhirNumber.fromNum(value: value!, element: element?.clone() as Element?);
 
+  /// Creates a modified copy with updated properties.
   @override
   FhirNumber copyWith({
     num? newValue,

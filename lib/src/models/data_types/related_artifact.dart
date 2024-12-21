@@ -5,7 +5,17 @@ import 'package:yaml/yaml.dart';
 /// [RelatedArtifact]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
-class RelatedArtifact extends DataType {
+class RelatedArtifact extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Primary constructor for
   /// [RelatedArtifact]
 

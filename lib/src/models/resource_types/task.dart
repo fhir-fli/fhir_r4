@@ -1242,7 +1242,9 @@ class TaskInput extends BackboneElement {
                                                                                                                                                                                                               'value': json['valueDosage'],
                                                                                                                                                                                                               '_value': json['_valueDosage'],
                                                                                                                                                                                                             })
-                                                                                                                                                                                                          : FhirMeta.fromJson(json: json['valueMeta']),
+                                                                                                                                                                                                          : FhirMeta.fromJson(
+                                                                                                                                                                                                              json['valueMeta'] as Map<String, dynamic>,
+                                                                                                                                                                                                            ),
     );
   }
 
@@ -1674,7 +1676,9 @@ class TaskOutput extends BackboneElement {
                                                                                                                                                                                                               'value': json['valueDosage'],
                                                                                                                                                                                                               '_value': json['_valueDosage'],
                                                                                                                                                                                                             })
-                                                                                                                                                                                                          : FhirMeta.fromJson(json: json['valueMeta']),
+                                                                                                                                                                                                          : FhirMeta.fromJson(
+                                                                                                                                                                                                              json['valueMeta'] as Map<String, dynamic>,
+                                                                                                                                                                                                            ),
     );
   }
 

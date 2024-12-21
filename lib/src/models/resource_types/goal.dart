@@ -143,7 +143,9 @@ class Goal extends DomainResource {
               '_value': json['_startGoalStartEvent'],
             })
           : json['startCodeableConcept'] != null
-              ? CodeableConcept.fromJson(json: json['startCodeableConcept'])
+              ? CodeableConcept.fromJson(
+                  json['startCodeableConcept'] as Map<String, dynamic>,
+                )
               : null,
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
@@ -524,51 +526,56 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailXGoalTarget: json['detailQuantity'] != null ||
-              json['_detailQuantity'] != null
-          ? Quantity.fromJson({
-              'value': json['detailQuantity'],
-              '_value': json['_detailQuantity'],
-            })
-          : json['detailRange'] != null || json['_detailRange'] != null
-              ? Range.fromJson({
-                  'value': json['detailRange'],
-                  '_value': json['_detailRange'],
+      detailXGoalTarget:
+          json['detailQuantity'] != null || json['_detailQuantity'] != null
+              ? Quantity.fromJson({
+                  'value': json['detailQuantity'],
+                  '_value': json['_detailQuantity'],
                 })
-              : json['detailCodeableConcept'] != null ||
-                      json['_detailCodeableConcept'] != null
-                  ? CodeableConcept.fromJson({
-                      'value': json['detailCodeableConcept'],
-                      '_value': json['_detailCodeableConcept'],
+              : json['detailRange'] != null || json['_detailRange'] != null
+                  ? Range.fromJson({
+                      'value': json['detailRange'],
+                      '_value': json['_detailRange'],
                     })
-                  : json['detailString'] != null ||
-                          json['_detailString'] != null
-                      ? FhirString.fromJson({
-                          'value': json['detailString'],
-                          '_value': json['_detailString'],
+                  : json['detailCodeableConcept'] != null ||
+                          json['_detailCodeableConcept'] != null
+                      ? CodeableConcept.fromJson({
+                          'value': json['detailCodeableConcept'],
+                          '_value': json['_detailCodeableConcept'],
                         })
-                      : json['detailBoolean'] != null ||
-                              json['_detailBoolean'] != null
-                          ? FhirBoolean.fromJson({
-                              'value': json['detailBoolean'],
-                              '_value': json['_detailBoolean'],
+                      : json['detailString'] != null ||
+                              json['_detailString'] != null
+                          ? FhirString.fromJson({
+                              'value': json['detailString'],
+                              '_value': json['_detailString'],
                             })
-                          : json['detailInteger'] != null ||
-                                  json['_detailInteger'] != null
-                              ? FhirInteger.fromJson({
-                                  'value': json['detailInteger'],
-                                  '_value': json['_detailInteger'],
+                          : json['detailBoolean'] != null ||
+                                  json['_detailBoolean'] != null
+                              ? FhirBoolean.fromJson({
+                                  'value': json['detailBoolean'],
+                                  '_value': json['_detailBoolean'],
                                 })
-                              : json['detailRatio'] != null
-                                  ? Ratio.fromJson(json: json['detailRatio'])
-                                  : null,
+                              : json['detailInteger'] != null ||
+                                      json['_detailInteger'] != null
+                                  ? FhirInteger.fromJson({
+                                      'value': json['detailInteger'],
+                                      '_value': json['_detailInteger'],
+                                    })
+                                  : json['detailRatio'] != null
+                                      ? Ratio.fromJson(
+                                          json['detailRatio']
+                                              as Map<String, dynamic>,
+                                        )
+                                      : null,
       dueXGoalTarget: json['dueDate'] != null || json['_dueDate'] != null
           ? FhirDate.fromJson({
               'value': json['dueDate'],
               '_value': json['_dueDate'],
             })
           : json['dueDuration'] != null
-              ? FhirDuration.fromJson(json: json['dueDuration'])
+              ? FhirDuration.fromJson(
+                  json['dueDuration'] as Map<String, dynamic>,
+                )
               : null,
     );
   }

@@ -713,8 +713,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
                                                   : json['valueReference'] !=
                                                           null
                                                       ? Reference.fromJson(
-                                                          json: json[
-                                                              'valueReference'])
+                                                          json['valueReference']
+                                                              as Map<String,
+                                                                  dynamic>,
+                                                        )
                                                       : null,
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)

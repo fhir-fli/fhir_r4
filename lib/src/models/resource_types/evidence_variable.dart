@@ -693,26 +693,28 @@ class EvidenceVariableCharacteristic extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      definitionXEvidenceVariableCharacteristic: json['definitionReference'] !=
-                  null ||
-              json['_definitionReference'] != null
-          ? Reference.fromJson({
-              'value': json['definitionReference'],
-              '_value': json['_definitionReference'],
-            })
-          : json['definitionCanonical'] != null ||
-                  json['_definitionCanonical'] != null
-              ? FhirCanonical.fromJson({
-                  'value': json['definitionCanonical'],
-                  '_value': json['_definitionCanonical'],
+      definitionXEvidenceVariableCharacteristic:
+          json['definitionReference'] != null ||
+                  json['_definitionReference'] != null
+              ? Reference.fromJson({
+                  'value': json['definitionReference'],
+                  '_value': json['_definitionReference'],
                 })
-              : json['definitionCodeableConcept'] != null ||
-                      json['_definitionCodeableConcept'] != null
-                  ? CodeableConcept.fromJson({
-                      'value': json['definitionCodeableConcept'],
-                      '_value': json['_definitionCodeableConcept'],
+              : json['definitionCanonical'] != null ||
+                      json['_definitionCanonical'] != null
+                  ? FhirCanonical.fromJson({
+                      'value': json['definitionCanonical'],
+                      '_value': json['_definitionCanonical'],
                     })
-                  : FhirExpression.fromJson(json: json['definitionExpression']),
+                  : json['definitionCodeableConcept'] != null ||
+                          json['_definitionCodeableConcept'] != null
+                      ? CodeableConcept.fromJson({
+                          'value': json['definitionCodeableConcept'],
+                          '_value': json['_definitionCodeableConcept'],
+                        })
+                      : FhirExpression.fromJson(
+                          json['definitionExpression'] as Map<String, dynamic>,
+                        ),
       method: json['method'] != null
           ? CodeableConcept.fromJson(
               json['method'] as Map<String, dynamic>,
@@ -1158,7 +1160,9 @@ class EvidenceVariableCategory extends BackboneElement {
                   '_value': json['_valueQuantity'],
                 })
               : json['valueRange'] != null
-                  ? Range.fromJson(json: json['valueRange'])
+                  ? Range.fromJson(
+                      json['valueRange'] as Map<String, dynamic>,
+                    )
                   : null,
     );
   }

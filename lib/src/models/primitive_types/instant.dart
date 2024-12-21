@@ -15,7 +15,20 @@ extension FhirInstantStringExtension on String {
 }
 
 /// [FhirInstant] represents an instant in time as defined by the FHIR spec.
-class FhirInstant extends FhirDateTimeBase {
+class FhirInstant extends FhirDateTimeBase
+    implements
+        EffectiveXObservation,
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        MinValueXElementDefinition,
+        MaxValueXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Factory constructor to create a [FhirInstant] from individual units.
   factory FhirInstant.fromUnits({
     required int year,

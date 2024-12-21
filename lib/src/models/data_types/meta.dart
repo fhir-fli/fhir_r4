@@ -6,7 +6,12 @@ import 'package:yaml/yaml.dart';
 /// The metadata about a resource. This is content in the resource that is
 /// maintained by the infrastructure. Changes to the content might not
 /// always be associated with version changes to the resource.
-class FhirMeta extends DataType {
+class FhirMeta extends DataType
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput {
   /// Primary constructor for
   /// [FhirMeta]
 

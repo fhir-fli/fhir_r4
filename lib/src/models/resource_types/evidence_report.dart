@@ -791,7 +791,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
                           'value': json['valueQuantity'],
                           '_value': json['_valueQuantity'],
                         })
-                      : Range.fromJson(json: json['valueRange']),
+                      : Range.fromJson(
+                          json['valueRange'] as Map<String, dynamic>,
+                        ),
       exclude: (json['exclude'] != null || json['_exclude'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exclude'],
@@ -979,7 +981,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
                   'value': json['targetIdentifier'],
                   '_value': json['_targetIdentifier'],
                 })
-              : Reference.fromJson(json: json['targetReference']),
+              : Reference.fromJson(
+                  json['targetReference'] as Map<String, dynamic>,
+                ),
     );
   }
 

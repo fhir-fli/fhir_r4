@@ -9,7 +9,17 @@ extension FhirOidExtension on String {
 }
 
 /// [FhirOid] represents a validated OID value in the FHIR standard.
-class FhirOid extends PrimitiveType<String> {
+class FhirOid extends PrimitiveType<String>
+    implements
+        ValueXParametersParameter,
+        DefaultValueXStructureMapSource,
+        ValueXTaskInput,
+        ValueXTaskOutput,
+        DefaultValueXElementDefinition,
+        FixedXElementDefinition,
+        PatternXElementDefinition,
+        ValueXElementDefinitionExample,
+        ValueXExtension {
   /// Constructs a [FhirOid] from a String input with validation.
   FhirOid(
     String? input, {
