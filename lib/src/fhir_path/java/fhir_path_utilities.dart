@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 bool isWhitespace(dynamic value) {
   if (value is String) {
@@ -159,32 +159,44 @@ class ExpressionNodeWithOffset {
 }
 
 class ExecutionContext {
-  ExecutionContext(
+  ExecutionContext({
     this.appInfo,
     this.focusResource,
     this.rootResource,
     this.context,
     this.thisItem,
-  ) {
-    index = 0;
+  }) : index = 0;
+
+  ExecutionContext copyWith({
+    Object? appInfo,
+    FhirBase? focusResource,
+    FhirBase? rootResource,
+    FhirBase? context,
+    FhirBase? thisItem,
+    List<FhirBase>? total,
+    int? index,
+    Map<String, List<FhirBase>>? definedVariables,
+  }) {
+    return ExecutionContext(
+      appInfo: appInfo ?? this.appInfo,
+      focusResource: focusResource ?? this.focusResource,
+      rootResource: rootResource ?? this.rootResource,
+      context: context ?? this.context,
+      thisItem: thisItem ?? this.thisItem,
+    )
+      ..total = total ?? this.total
+      ..index = index ?? this.index
+      ..definedVariables = definedVariables ?? this.definedVariables;
   }
 
-  final Object appInfo;
-  final FhirBase focusResource;
-  final FhirBase rootResource;
-  final FhirBase context;
-  final FhirBase thisItem;
+  final Object? appInfo;
+  final FhirBase? focusResource;
+  final FhirBase? rootResource;
+  final FhirBase? context;
+  final FhirBase? thisItem;
   List<FhirBase>? total;
   int index = 0;
   Map<String, List<FhirBase>>? definedVariables;
-
-  FhirBase getFocusResource() => focusResource;
-
-  FhirBase getRootResource() => rootResource;
-
-  FhirBase getThisItem() => thisItem;
-
-  List<FhirBase>? getTotal() => total;
 
   void next() {
     index++;

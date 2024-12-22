@@ -7,6 +7,19 @@ class ValidationMessage {
     this.location,
   });
 
+  /// Create a copy of the message with new values
+  ValidationMessage copyWith({
+    Severity? severity,
+    String? message,
+    String? location,
+  }) {
+    return ValidationMessage(
+      severity: severity ?? this.severity,
+      message: message ?? this.message,
+      location: location ?? this.location,
+    );
+  }
+
   /// Severity of the message
   final Severity severity;
 

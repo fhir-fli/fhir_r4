@@ -43,12 +43,12 @@ class FhirInstanceValidator {
   /// Validate a FHIR resource against a profile
   Future<List<ValidationMessage>> _validateResourceWithProfile(
     Map<String, dynamic> resource,
-    Map<String, Object> profile,
+    Map<String, dynamic> profile,
   ) async {
     final messages = <ValidationMessage>[];
 
     final elements = profile['elements'];
-    if (elements is List<Map<String, Object>>) {
+    if (elements is List<Map<String, dynamic>>) {
       messages.addAll(await _validateElements(resource, elements));
     }
 
@@ -57,31 +57,47 @@ class FhirInstanceValidator {
 
   Future<List<ValidationMessage>> _validateElements(
     Map<String, dynamic> resource,
-    List<Map<String, Object>> elements,
-  ) async {
+    List<Map<String, dynamic>> elements, [
+    String? parentPath,
+  ]) async {
     final messages = <ValidationMessage>[];
 
     for (final element in elements) {
       final fieldName = element['name'] as String?;
       final childElements = element['children'] as List<Map<String, dynamic>>?;
+      final currentPath = parentPath != null && fieldName != null
+          ? '$parentPath.$fieldName'
+          : fieldName;
 
-      // Validate the current field
       if (fieldName != null) {
         final fieldValue = resource[fieldName];
 
-        // Handle nested elements recursively
-        if (childElements != null && fieldValue is Map<String, Object>) {
-          messages.addAll(await _validateElements(fieldValue, childElements));
+        if (childElements != null && fieldValue is Map<String, dynamic>) {
+          messages.addAll(
+            await _validateElements(fieldValue, childElements, currentPath),
+          );
         } else if (childElements != null && fieldValue is List) {
-          for (final nestedResource in fieldValue) {
-            if (nestedResource is Map<String, Object>) {
+          for (var i = 0; i < fieldValue.length; i++) {
+            final nestedResource = fieldValue[i];
+            if (nestedResource is Map<String, dynamic>) {
               messages.addAll(
-                  await _validateElements(nestedResource, childElements),);
+                await _validateElements(
+                  nestedResource,
+                  childElements,
+                  '$currentPath[$i]',
+                ),
+              );
             }
           }
         } else {
-          // Perform regular validation (e.g., type and terminology checks)
-          messages.addAll(await _validateElement(resource, fieldName, element));
+          messages.addAll(
+            await _validateElement(
+              resource,
+              fieldName,
+              element,
+              currentPath,
+            ),
+          ); // Pass path for precise error localization
         }
       }
     }
@@ -90,33 +106,36 @@ class FhirInstanceValidator {
   }
 
   Future<List<ValidationMessage>> _validateElement(
-    Map<String, Object> resource,
+    Map<String, dynamic> resource,
     String fieldName,
-    Map<String, Object> element,
+    Map<String, dynamic> element,
+    String? path, // Full path for error localization
   ) async {
     final messages = <ValidationMessage>[];
 
     // Type validation
     final expectedType = element['type'] as String?;
     if (expectedType != null && resource[fieldName] != null) {
-      final fieldValue = resource[fieldName]!;
-      if (!_validateFieldType(fieldValue, expectedType)) {
-        messages.add(ValidationMessage(
-          severity: Severity.error,
-          message:
-              'Field $fieldName has an invalid type. Expected $expectedType.',
-          location: fieldName,
-        ),);
+      final fieldValue = resource[fieldName];
+      if (fieldValue is Object &&
+          !_validateFieldType(fieldValue, expectedType)) {
+        messages.add(
+          ValidationMessage(
+            severity: Severity.error,
+            message:
+                'Field $fieldName has an invalid type. Expected $expectedType.',
+            location: path ?? fieldName,
+          ),
+        );
       }
     }
 
     // Terminology validation
-    final binding = element['binding'] as Map<String, Object>?;
+    final binding = element['binding'] as Map<String, dynamic>?;
     if (binding != null) {
       final valueSetUrl = binding['valueSet'] as String?;
       final code = resource[fieldName] as String?;
-      final system =
-          resource['system'] as String?; // Assuming system is provided
+      final system = resource['system'] as String?;
 
       if (valueSetUrl != null && code != null && system != null) {
         final message = await terminologyValidator.validateCodeAgainstValueSet(
@@ -126,7 +145,7 @@ class FhirInstanceValidator {
         );
 
         if (message != null) {
-          messages.add(message);
+          messages.add(message.copyWith(location: path ?? fieldName));
         }
       }
     }

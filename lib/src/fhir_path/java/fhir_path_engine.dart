@@ -1,8 +1,9 @@
-// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters, avoid_print
+// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
+// ignore_for_file: avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 class FHIRPathEngine {
   // Constructor
@@ -52,6 +53,81 @@ class FHIRPathEngine {
       doNotEnforceAsCaseSensitive = true;
       doNotEnforceAsSingletonRule = true;
     }
+  }
+
+  // Core method to execute evaluation logic
+  List<dynamic> execute(
+    ExecutionContext context,
+    List<dynamic> baseList,
+    ExpressionNode node,
+  ) {
+    // Placeholder for the actual evaluation logic.
+    // Implement the core logic based on the Java equivalent.
+    // This will handle walking the path, applying functions, etc.
+    return [];
+  }
+
+  // Evaluation with base and ExpressionNode
+  List<dynamic> evaluate(FhirBase? base, ExpressionNode node) {
+    final list = <dynamic>[];
+    if (base != null) {
+      list.add(base);
+    }
+    log.clear();
+    final context = ExecutionContext(
+      focusResource: base != null && base is Resource ? base : null,
+      rootResource: base != null && base is Resource ? base : null,
+      context: base,
+      thisItem: base,
+    );
+    return execute(context, list, node);
+  }
+
+  // Evaluation with base and FHIRPath expression (String)
+  List<dynamic> evaluateFromPath(FhirBase? base, String path) {
+    final node = parse(path); // Assume `parse` is implemented
+    return evaluate(base, node);
+  }
+
+  // Evaluation with appContext and additional parameters
+  List<dynamic> evaluateWithContext(
+    Object? appContext,
+    Resource? focusResource,
+    Resource? rootResource,
+    FhirBase? base,
+    ExpressionNode node,
+  ) {
+    final list = <dynamic>[];
+    if (base != null) {
+      list.add(base);
+    }
+    log.clear();
+    final context = ExecutionContext(
+      appInfo: appContext,
+      focusResource: focusResource,
+      rootResource: rootResource,
+      context: base,
+      thisItem: base,
+    );
+    return execute(context, list, node);
+  }
+
+  // Evaluation with appContext and path (String)
+  List<dynamic> evaluateWithPath(
+    Object? appContext,
+    Resource? focusResource,
+    Resource? rootResource,
+    FhirBase? base,
+    String path,
+  ) {
+    final node = parse(path); // Assume `parse` is implemented
+    return evaluateWithContext(
+      appContext,
+      focusResource,
+      rootResource,
+      base,
+      node,
+    );
   }
 
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
@@ -607,15 +683,8 @@ class FHIRPathEngine {
   }
 
   ExecutionContext contextForParameter(ExecutionContext context) {
-    final newContext = ExecutionContext(
-      context.appInfo,
-      context.focusResource,
-      context.rootResource,
-      context.context,
-      context.thisItem,
-    )
-      ..total = context.total
-      ..index = context.index;
+    final newContext =
+        context.copyWith(total: context.total, index: context.index);
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
@@ -970,7 +1039,6 @@ class FHIRPathEngine {
       FpOperation.LessOrEqual,
       FpOperation.GreaterOrEqual,
     });
-    node = gatherPrecedence(lexer, node, {FpOperation.Is});
     node = gatherPrecedence(lexer, node, {
       FpOperation.Equals,
       FpOperation.Equivalent,
@@ -979,232 +1047,155 @@ class FHIRPathEngine {
     });
     node = gatherPrecedence(lexer, node, {FpOperation.And});
     node = gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
-    // last: implies
+    node = gatherPrecedence(
+      lexer,
+      node,
+      {FpOperation.Implies},
+    ); // Lowest precedence
     return node;
   }
 
+  /// As closely as possible, a Dart version of the Java gatherPrecedence logic.
   ExpressionNode gatherPrecedence(
     FHIRLexer lexer,
-    ExpressionNode oldStart,
+    ExpressionNode start,
     Set<FpOperation> ops,
   ) {
-    print('\n--- Entering gatherPrecedence ---');
-    print('Initial start node:');
-    oldStart.printExpressionTree();
+    // The Java code does: assert(start.isProximal());
+    assert(start.proximal, 'start must be proximal');
 
-    print('Target operations to process: $ops');
-
-    // Copy the initial start node for processing
-    var start = oldStart;
-    print('Copied start node:');
-    start.printExpressionTree();
-
-    // Determine if there's work to do
-    var work = false;
-    var focus = start.opNext;
-    print('Initial focus node: }');
-    focus?.printExpressionTree();
-
-    print('Ops: $ops');
-    print('Start operation: ${start.operation}');
-
-    if (ops.contains(start.operation)) {
-      work = true;
-      focus = focus?.opNext;
-      print(
-          'Start node operation is in the target ops set: ${start.operation}');
-      while (focus != null && focus.operation != null) {
-        print('Examining focus node operation: ${focus.operation}');
-        print('Ops: $ops');
-        print('Focus operation: ${focus.operation}');
-        if (!ops.contains(focus.operation)) {
-          work = true;
-          print('Non-target operation found, work needed: ${focus.operation}');
-        }
-        focus = focus.opNext;
-        print('Moved to next focus node: ');
-        focus?.printExpressionTree();
+    // (1) Count how many times we see an operator in `ops` so we can decide if grouping is needed.
+    var opCount = 0;
+    ExpressionNode? temp = start;
+    while (temp != null) {
+      if (temp.operation != null && ops.contains(temp.operation)) {
+        opCount++;
       }
-    } else {
-      print(
-          'Start node operation is NOT in the target ops set: ${start.operation}');
-      focus = start.opNext;
-      focus?.printExpressionTree();
-      while (focus != null && focus.operation != null) {
-        print('Examining focus node operation: ${focus.operation}');
-        print('Ops: $ops');
-        print('Focus operation: ${focus.operation}');
-        if (ops.contains(focus.operation)) {
-          work = true;
-          print('Target operation found, work needed: ${focus.operation}');
-        }
-        focus = focus.opNext;
-        print('Moved to next focus node: ');
-        focus?.printExpressionTree();
-      }
+      temp = temp.opNext;
     }
 
-    print('Work to do: $work');
-    if (!work) {
-      print('No work to do, returning start node.');
+    // If there's 0 or 1 operator in this chain at this precedence, skip grouping entirely:
+    if (opCount <= 1) {
       return start;
     }
 
-    print('Work identified, proceeding with grouping.');
-
-    // Start grouping logic
-    ExpressionNode group;
-    print('Ops: $ops');
-    print('Start operation: ${start.operation}');
+    // (2) The official Java logic checks whether "we have any real mix of operators" (the `work` variable).
+    var work = false;
+    var focus = start.opNext;
     if (ops.contains(start.operation)) {
-      print('Start node operation matches target ops. Creating new group.');
-      group = newGroup(lexer, start)..proximal = true;
-      print('Created group:');
-      group.printExpressionTree();
-      focus = start;
-      start = group;
-      print('Updated start to group.');
-      start.printExpressionTree();
-      print('Updated focus to start.');
-      focus.printExpressionTree();
-    } else {
-      print(
-          'Start node operation does not match target ops. Finding entry point.');
-      ExpressionNode? node = start;
-      print('Initial node:');
-      node.printExpressionTree();
-
-      focus = node.opNext;
-      print('Initial focus node:');
-      focus?.printExpressionTree();
-      print('Ops: $ops');
-      print('Focus operation: ${focus?.operation}');
-      while (focus != null && !ops.contains(focus.operation)) {
-        print('Skipping operation: ${focus.operation}');
-        node = focus;
+      // If start's operator is in `ops`, we look for any operator that is *not* in `ops`
+      // to decide if there's something to do
+      while (focus != null && focus.operation != null) {
+        if (!ops.contains(focus.operation)) {
+          work = true;
+        }
         focus = focus.opNext;
-        print('Moved to next focus node: ');
-        focus?.printExpressionTree();
-        print('Next node');
-        node.printExpressionTree();
       }
-      if (focus == null) {
-        print('No matching operation found in the sequence.');
-        start.printExpressionTree();
-        return start; // Should not happen if `work` is true
+    } else {
+      // Otherwise, if the start node’s operator is *not* in `ops`,
+      // we look for an operator that *is* in `ops`.
+      while (focus != null && focus.operation != null) {
+        if (ops.contains(focus.operation)) {
+          work = true;
+        }
+        focus = focus.opNext;
       }
-      print(
-          'Matching operation found: ${focus.operation}. Creating new group.');
-      group = newGroup(lexer, focus);
-      print('Created group:');
-      group.printExpressionTree();
-      node?.opNext = group;
-      print('Linked new group to previous node.');
-      node?.printExpressionTree();
     }
 
-    print('Initial group created:');
-    group.printExpressionTree();
+    if (!work) {
+      // No operator from `ops` is actually forcing grouping
+      return start;
+    }
 
-    // Continue processing the sequence
-    while (focus != null && focus.operation != null) {
-      print('Processing focus node:');
-      focus.printExpressionTree();
+    // (3) "entry point: tricky" - create the first group if needed
+    ExpressionNode group;
+    focus = null; // We'll set `focus` fresh below
 
-      print('Ops: $ops');
-      print('Focus operation: ${focus.operation}');
-      while (ops.contains(focus?.operation)) {
-        print('Focus operation matches target ops: ${focus!.operation}');
+    if (ops.contains(start.operation)) {
+      // The top node's operator is in `ops`, so we create a group at the top
+      group = newGroup(lexer, start);
+      group.proximal = true;
+      // Now `focus = start` in the Java code
+      focus = start;
+      start = group;
+    } else {
+      // Otherwise, walk down until we find the first operator in `ops`
+      var node = start;
+      focus = node.opNext;
+      while (focus != null &&
+          focus.operation != null &&
+          !ops.contains(focus.operation)) {
+        node = focus;
         focus = focus.opNext;
-        print('Moved to next focus node: ');
-        focus?.printExpressionTree();
+      }
+      group = newGroup(lexer, focus);
+      node.opNext = group;
+    }
+
+    // (4) The main grouping loop
+    // Java code:
+    // do {
+    //   while (ops.contains(focus.getOperation())) { focus = focus.getOpNext(); }
+    //   if (focus.getOperation() != null) {
+    //     group.setOperation(focus.getOperation());
+    //     group.setOpNext(focus.getOpNext());
+    //     focus.setOperation(null);
+    //     focus.setOpNext(null);
+    //     ...
+    //   }
+    // } while (focus != null && focus.getOperation() != null);
+
+    do {
+      // Skip consecutive operators in `ops`.
+      while (focus != null &&
+          focus.operation != null &&
+          ops.contains(focus.operation)) {
+        focus = focus.opNext;
       }
 
       if (focus != null && focus.operation != null) {
-        print('Creating a new group for operation: ${focus.operation}');
-        group
-          ..operation = focus.operation
-          ..opNext = focus.opNext;
-        print('Updated group with operation: ');
-        group.printExpressionTree();
-        focus
-          ..operation = null
-          ..opNext = null;
+        // Lift the operator from `focus` onto the group
+        group.operation = focus.operation;
+        group.opNext = focus.opNext;
 
-        print('Updated focus with operation: ');
-        focus.printExpressionTree();
+        // Null out that operator from the child
+        focus.operation = null;
+        focus.opNext = null;
 
-        // Start a new group if required
+        // Now see if there's another operator we need to group
         var node = group;
-        print('New node:');
-        node.printExpressionTree();
         focus = group.opNext;
-        print('New focus node:');
-        focus?.printExpressionTree();
         if (focus != null) {
-          print('Ops: $ops');
-          print('Focus operation: ${focus.operation}');
-          while (focus != null && !ops.contains(focus.operation)) {
-            print('Skipping operation: ${focus.operation}');
+          // Skip nodes that do *not* have an operator in `ops`
+          while (focus != null &&
+              focus.operation != null &&
+              !ops.contains(focus.operation)) {
             node = focus;
-            print('New node');
-            node.printExpressionTree();
             focus = focus.opNext;
-            print('Moved to next focus node:');
-            focus?.printExpressionTree();
           }
-          print('Ops: $ops');
-          print('Focus operation: ${focus?.operation}');
-          if (focus != null && ops.contains(focus.operation)) {
-            print(
-                'Matching operation found: ${focus.operation}. Creating new group.');
+          if (focus != null &&
+              focus.operation != null &&
+              ops.contains(focus.operation)) {
+            // We have another operator in `ops`, so we create another group
             group = newGroup(lexer, focus);
-            print('Created group:');
-            group.printExpressionTree();
-
-            // Link new group to the previous node
             node.opNext = group;
-            print('Linked new group to previous node.');
-            node.printExpressionTree();
-
-            // Update `start` to point to the new group if it's a root-level operation
-            if (focus == start.opNext) {
-              start = group;
-              print('Updated start to new root group.');
-              start.printExpressionTree();
-            }
           }
         }
       }
-    }
-
-    print('Final start node after processing:');
-    start.printExpressionTree();
+    } while (focus != null && focus.operation != null);
 
     return start;
   }
 
+// Same as in Java. `newGroup` just sets a new node of `kind=group` with `.group = next`.
   ExpressionNode newGroup(FHIRLexer lexer, ExpressionNode? next) {
-    print('Creating a new group for node: $next');
-
-    // Create the new group node
-    final group = ExpressionNode(lexer.nextId().toString())
+    final result = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
-      ..operation = next?.operation
-      ..proximal = true
-
-      // Attach the entire left-hand side (next) as the group's Inner
-      ..group = next
-      ..group!.operation = null // Clear the operation from the original node
-
-      // Attach the right-hand side (next.opNext) as the group's Next
-      ..opNext = next?.opNext;
-    next?.opNext = null; // Detach Next from the original node
-
-    print('New group created:');
-    group.printExpressionTree();
-
-    return group;
+      ..group = next;
+    if (next != null) {
+      next.proximal = true;
+    }
+    return result;
   }
 
   FhirBase? processConstant(FHIRLexer lexer) {
@@ -2213,13 +2204,7 @@ class FHIRPathEngine {
     ExecutionContext context,
     FhirBase newThis,
   ) {
-    final newContext = ExecutionContext(
-      context.appInfo,
-      context.focusResource,
-      context.rootResource,
-      context.context,
-      newThis,
-    );
+    final newContext = context.copyWith(thisItem: newThis);
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
@@ -2256,6 +2241,7 @@ class FHIRPathEngine {
 
   void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
     if (focus.collectionStatus != CollectionStatus.singleton) {
+// ignore: lines_longer_than_80_chars
 // typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
     }
   }

@@ -12,21 +12,21 @@ class LocalValidationSupport implements ValidationSupport {
   final Map<String, String> localProfiles;
 
   @override
-  Future<Map<String, Object>?> fetchStructureDefinition(String url) async {
+  Future<Map<String, dynamic>?> fetchStructureDefinition(String url) async {
     if (localProfiles.containsKey(url)) {
-      return jsonDecode(localProfiles[url]!) as Map<String, Object>;
+      return jsonDecode(localProfiles[url]!) as Map<String, dynamic>;
     }
     return null;
   }
 
   @override
-  Future<Map<String, Object>?> fetchValueSet(String url) async {
+  Future<Map<String, dynamic>?> fetchValueSet(String url) async {
     // Placeholder for value set fetching
     return null;
   }
 
   @override
-  Future<Map<String, Object>?> fetchCodeSystem(String url) async {
+  Future<Map<String, dynamic>?> fetchCodeSystem(String url) async {
     // Placeholder for code system fetching
     return null;
   }
