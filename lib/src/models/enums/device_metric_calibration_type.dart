@@ -26,7 +26,10 @@ class DeviceMetricCalibrationType extends PrimitiveType<String> {
         'DeviceMetricCalibrationType cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricCalibrationType._(value, element: element);
+    return DeviceMetricCalibrationType._(
+      value,
+      element: element,
+    );
   }
 
   /// unspecified

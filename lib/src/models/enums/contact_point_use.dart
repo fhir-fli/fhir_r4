@@ -26,7 +26,10 @@ class ContactPointUse extends PrimitiveType<String> {
         'ContactPointUse cannot be constructed from JSON.',
       );
     }
-    return ContactPointUse._(value, element: element);
+    return ContactPointUse._(
+      value,
+      element: element,
+    );
   }
 
   /// home

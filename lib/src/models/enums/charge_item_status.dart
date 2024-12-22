@@ -26,7 +26,10 @@ class ChargeItemStatus extends PrimitiveType<String> {
         'ChargeItemStatus cannot be constructed from JSON.',
       );
     }
-    return ChargeItemStatus._(value, element: element);
+    return ChargeItemStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// planned

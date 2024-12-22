@@ -26,7 +26,10 @@ class DaysOfWeek extends PrimitiveType<String> {
         'DaysOfWeek cannot be constructed from JSON.',
       );
     }
-    return DaysOfWeek._(value, element: element);
+    return DaysOfWeek._(
+      value,
+      element: element,
+    );
   }
 
   /// mon

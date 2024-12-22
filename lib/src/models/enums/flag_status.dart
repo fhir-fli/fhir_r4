@@ -26,7 +26,10 @@ class FlagStatus extends PrimitiveType<String> {
         'FlagStatus cannot be constructed from JSON.',
       );
     }
-    return FlagStatus._(value, element: element);
+    return FlagStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

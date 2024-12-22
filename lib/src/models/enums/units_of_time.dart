@@ -26,7 +26,10 @@ class UnitsOfTime extends PrimitiveType<String> {
         'UnitsOfTime cannot be constructed from JSON.',
       );
     }
-    return UnitsOfTime._(value, element: element);
+    return UnitsOfTime._(
+      value,
+      element: element,
+    );
   }
 
   /// s

@@ -26,7 +26,10 @@ class RequestResourceType extends PrimitiveType<String> {
         'RequestResourceType cannot be constructed from JSON.',
       );
     }
-    return RequestResourceType._(value, element: element);
+    return RequestResourceType._(
+      value,
+      element: element,
+    );
   }
 
   /// Appointment

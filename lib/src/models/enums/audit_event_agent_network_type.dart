@@ -26,7 +26,10 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
         'AuditEventAgentNetworkType cannot be constructed from JSON.',
       );
     }
-    return AuditEventAgentNetworkType._(value, element: element);
+    return AuditEventAgentNetworkType._(
+      value,
+      element: element,
+    );
   }
 
   /// value1

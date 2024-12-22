@@ -26,7 +26,10 @@ class QuestionnaireItemType extends PrimitiveType<String> {
         'QuestionnaireItemType cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireItemType._(value, element: element);
+    return QuestionnaireItemType._(
+      value,
+      element: element,
+    );
   }
 
   /// group

@@ -26,7 +26,10 @@ class InteractionTrigger extends PrimitiveType<String> {
         'InteractionTrigger cannot be constructed from JSON.',
       );
     }
-    return InteractionTrigger._(value, element: element);
+    return InteractionTrigger._(
+      value,
+      element: element,
+    );
   }
 
   /// read

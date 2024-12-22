@@ -26,7 +26,10 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
         'QuestionnaireItemOperator cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireItemOperator._(value, element: element);
+    return QuestionnaireItemOperator._(
+      value,
+      element: element,
+    );
   }
 
   /// exists

@@ -26,7 +26,10 @@ class AssertionResponseTypes extends PrimitiveType<String> {
         'AssertionResponseTypes cannot be constructed from JSON.',
       );
     }
-    return AssertionResponseTypes._(value, element: element);
+    return AssertionResponseTypes._(
+      value,
+      element: element,
+    );
   }
 
   /// okay

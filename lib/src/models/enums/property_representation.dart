@@ -26,7 +26,10 @@ class PropertyRepresentation extends PrimitiveType<String> {
         'PropertyRepresentation cannot be constructed from JSON.',
       );
     }
-    return PropertyRepresentation._(value, element: element);
+    return PropertyRepresentation._(
+      value,
+      element: element,
+    );
   }
 
   /// xmlAttr

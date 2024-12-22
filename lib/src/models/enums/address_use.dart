@@ -26,7 +26,10 @@ class AddressUse extends PrimitiveType<String> {
         'AddressUse cannot be constructed from JSON.',
       );
     }
-    return AddressUse._(value, element: element);
+    return AddressUse._(
+      value,
+      element: element,
+    );
   }
 
   /// home

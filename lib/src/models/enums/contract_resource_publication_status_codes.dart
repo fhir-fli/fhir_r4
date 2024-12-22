@@ -27,7 +27,10 @@ class ContractResourcePublicationStatusCodes extends PrimitiveType<String> {
         'ContractResourcePublicationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourcePublicationStatusCodes._(value, element: element);
+    return ContractResourcePublicationStatusCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// amended

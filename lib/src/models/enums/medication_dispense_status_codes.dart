@@ -26,7 +26,10 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
         'MedicationDispenseStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationDispenseStatusCodes._(value, element: element);
+    return MedicationDispenseStatusCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// preparation

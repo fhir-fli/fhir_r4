@@ -26,7 +26,10 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
         'SubscriptionNotificationType cannot be constructed from JSON.',
       );
     }
-    return SubscriptionNotificationType._(value, element: element);
+    return SubscriptionNotificationType._(
+      value,
+      element: element,
+    );
   }
 
   /// handshake

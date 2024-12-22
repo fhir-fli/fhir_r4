@@ -26,7 +26,10 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
         'RestfulCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return RestfulCapabilityMode._(value, element: element);
+    return RestfulCapabilityMode._(
+      value,
+      element: element,
+    );
   }
 
   /// client

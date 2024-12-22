@@ -26,7 +26,10 @@ class LocationMode extends PrimitiveType<String> {
         'LocationMode cannot be constructed from JSON.',
       );
     }
-    return LocationMode._(value, element: element);
+    return LocationMode._(
+      value,
+      element: element,
+    );
   }
 
   /// instance

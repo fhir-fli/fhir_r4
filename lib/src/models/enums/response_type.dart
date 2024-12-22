@@ -26,7 +26,10 @@ class ResponseType extends PrimitiveType<String> {
         'ResponseType cannot be constructed from JSON.',
       );
     }
-    return ResponseType._(value, element: element);
+    return ResponseType._(
+      value,
+      element: element,
+    );
   }
 
   /// ok

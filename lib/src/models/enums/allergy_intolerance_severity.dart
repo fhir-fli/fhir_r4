@@ -26,7 +26,10 @@ class AllergyIntoleranceSeverity extends PrimitiveType<String> {
         'AllergyIntoleranceSeverity cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceSeverity._(value, element: element);
+    return AllergyIntoleranceSeverity._(
+      value,
+      element: element,
+    );
   }
 
   /// mild

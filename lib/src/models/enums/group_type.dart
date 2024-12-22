@@ -26,7 +26,10 @@ class GroupType extends PrimitiveType<String> {
         'GroupType cannot be constructed from JSON.',
       );
     }
-    return GroupType._(value, element: element);
+    return GroupType._(
+      value,
+      element: element,
+    );
   }
 
   /// person

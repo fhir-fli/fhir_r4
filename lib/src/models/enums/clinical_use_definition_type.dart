@@ -26,7 +26,10 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
         'ClinicalUseDefinitionType cannot be constructed from JSON.',
       );
     }
-    return ClinicalUseDefinitionType._(value, element: element);
+    return ClinicalUseDefinitionType._(
+      value,
+      element: element,
+    );
   }
 
   /// indication

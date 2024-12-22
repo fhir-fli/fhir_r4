@@ -26,7 +26,10 @@ class AssertionOperatorType extends PrimitiveType<String> {
         'AssertionOperatorType cannot be constructed from JSON.',
       );
     }
-    return AssertionOperatorType._(value, element: element);
+    return AssertionOperatorType._(
+      value,
+      element: element,
+    );
   }
 
   /// equals

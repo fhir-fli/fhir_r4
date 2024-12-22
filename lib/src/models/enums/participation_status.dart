@@ -26,7 +26,10 @@ class ParticipationStatus extends PrimitiveType<String> {
         'ParticipationStatus cannot be constructed from JSON.',
       );
     }
-    return ParticipationStatus._(value, element: element);
+    return ParticipationStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// accepted

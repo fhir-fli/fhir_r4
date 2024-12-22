@@ -26,7 +26,10 @@ class NameUse extends PrimitiveType<String> {
         'NameUse cannot be constructed from JSON.',
       );
     }
-    return NameUse._(value, element: element);
+    return NameUse._(
+      value,
+      element: element,
+    );
   }
 
   /// usual

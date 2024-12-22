@@ -26,7 +26,10 @@ class SpecimenStatus extends PrimitiveType<String> {
         'SpecimenStatus cannot be constructed from JSON.',
       );
     }
-    return SpecimenStatus._(value, element: element);
+    return SpecimenStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// available

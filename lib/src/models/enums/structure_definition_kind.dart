@@ -26,7 +26,10 @@ class StructureDefinitionKind extends PrimitiveType<String> {
         'StructureDefinitionKind cannot be constructed from JSON.',
       );
     }
-    return StructureDefinitionKind._(value, element: element);
+    return StructureDefinitionKind._(
+      value,
+      element: element,
+    );
   }
 
   /// primitive_type

@@ -26,7 +26,10 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
         'SystemRestfulInteraction cannot be constructed from JSON.',
       );
     }
-    return SystemRestfulInteraction._(value, element: element);
+    return SystemRestfulInteraction._(
+      value,
+      element: element,
+    );
   }
 
   /// read

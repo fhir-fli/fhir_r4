@@ -26,7 +26,10 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
         'MessageSignificanceCategory cannot be constructed from JSON.',
       );
     }
-    return MessageSignificanceCategory._(value, element: element);
+    return MessageSignificanceCategory._(
+      value,
+      element: element,
+    );
   }
 
   /// consequence

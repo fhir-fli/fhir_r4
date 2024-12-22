@@ -26,7 +26,10 @@ class EpisodeOfCareStatus extends PrimitiveType<String> {
         'EpisodeOfCareStatus cannot be constructed from JSON.',
       );
     }
-    return EpisodeOfCareStatus._(value, element: element);
+    return EpisodeOfCareStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// planned

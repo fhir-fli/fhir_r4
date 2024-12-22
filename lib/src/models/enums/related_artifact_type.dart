@@ -26,7 +26,10 @@ class RelatedArtifactType extends PrimitiveType<String> {
         'RelatedArtifactType cannot be constructed from JSON.',
       );
     }
-    return RelatedArtifactType._(value, element: element);
+    return RelatedArtifactType._(
+      value,
+      element: element,
+    );
   }
 
   /// documentation

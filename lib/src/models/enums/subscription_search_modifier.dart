@@ -26,7 +26,10 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
         'SubscriptionSearchModifier cannot be constructed from JSON.',
       );
     }
-    return SubscriptionSearchModifier._(value, element: element);
+    return SubscriptionSearchModifier._(
+      value,
+      element: element,
+    );
   }
 
   /// eq

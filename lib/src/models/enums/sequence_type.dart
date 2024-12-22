@@ -26,7 +26,10 @@ class SequenceType extends PrimitiveType<String> {
         'SequenceType cannot be constructed from JSON.',
       );
     }
-    return SequenceType._(value, element: element);
+    return SequenceType._(
+      value,
+      element: element,
+    );
   }
 
   /// aa

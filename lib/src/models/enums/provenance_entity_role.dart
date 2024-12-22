@@ -26,7 +26,10 @@ class ProvenanceEntityRole extends PrimitiveType<String> {
         'ProvenanceEntityRole cannot be constructed from JSON.',
       );
     }
-    return ProvenanceEntityRole._(value, element: element);
+    return ProvenanceEntityRole._(
+      value,
+      element: element,
+    );
   }
 
   /// derivation

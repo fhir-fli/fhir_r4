@@ -26,7 +26,10 @@ class ActionParticipantType extends PrimitiveType<String> {
         'ActionParticipantType cannot be constructed from JSON.',
       );
     }
-    return ActionParticipantType._(value, element: element);
+    return ActionParticipantType._(
+      value,
+      element: element,
+    );
   }
 
   /// patient

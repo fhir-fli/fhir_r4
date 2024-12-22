@@ -26,7 +26,10 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
         'QuestionnaireResponseStatus cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireResponseStatus._(value, element: element);
+    return QuestionnaireResponseStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// in_progress

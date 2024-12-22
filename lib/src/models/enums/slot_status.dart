@@ -26,7 +26,10 @@ class SlotStatus extends PrimitiveType<String> {
         'SlotStatus cannot be constructed from JSON.',
       );
     }
-    return SlotStatus._(value, element: element);
+    return SlotStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// busy

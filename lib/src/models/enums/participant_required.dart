@@ -26,7 +26,10 @@ class ParticipantRequired extends PrimitiveType<String> {
         'ParticipantRequired cannot be constructed from JSON.',
       );
     }
-    return ParticipantRequired._(value, element: element);
+    return ParticipantRequired._(
+      value,
+      element: element,
+    );
   }
 
   /// required_

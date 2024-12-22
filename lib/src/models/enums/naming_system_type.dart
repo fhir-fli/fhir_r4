@@ -26,7 +26,10 @@ class NamingSystemType extends PrimitiveType<String> {
         'NamingSystemType cannot be constructed from JSON.',
       );
     }
-    return NamingSystemType._(value, element: element);
+    return NamingSystemType._(
+      value,
+      element: element,
+    );
   }
 
   /// codesystem

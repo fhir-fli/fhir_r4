@@ -26,7 +26,10 @@ class TaskIntent extends PrimitiveType<String> {
         'TaskIntent cannot be constructed from JSON.',
       );
     }
-    return TaskIntent._(value, element: element);
+    return TaskIntent._(
+      value,
+      element: element,
+    );
   }
 
   /// unknown

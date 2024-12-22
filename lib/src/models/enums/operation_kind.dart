@@ -26,7 +26,10 @@ class OperationKind extends PrimitiveType<String> {
         'OperationKind cannot be constructed from JSON.',
       );
     }
-    return OperationKind._(value, element: element);
+    return OperationKind._(
+      value,
+      element: element,
+    );
   }
 
   /// operation

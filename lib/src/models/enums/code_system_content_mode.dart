@@ -26,7 +26,10 @@ class CodeSystemContentMode extends PrimitiveType<String> {
         'CodeSystemContentMode cannot be constructed from JSON.',
       );
     }
-    return CodeSystemContentMode._(value, element: element);
+    return CodeSystemContentMode._(
+      value,
+      element: element,
+    );
   }
 
   /// not_present

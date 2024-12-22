@@ -26,7 +26,10 @@ class SlicingRules extends PrimitiveType<String> {
         'SlicingRules cannot be constructed from JSON.',
       );
     }
-    return SlicingRules._(value, element: element);
+    return SlicingRules._(
+      value,
+      element: element,
+    );
   }
 
   /// closed

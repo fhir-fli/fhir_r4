@@ -26,7 +26,10 @@ class SearchEntryMode extends PrimitiveType<String> {
         'SearchEntryMode cannot be constructed from JSON.',
       );
     }
-    return SearchEntryMode._(value, element: element);
+    return SearchEntryMode._(
+      value,
+      element: element,
+    );
   }
 
   /// match

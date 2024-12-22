@@ -26,7 +26,10 @@ class RequestIntent extends PrimitiveType<String> {
         'RequestIntent cannot be constructed from JSON.',
       );
     }
-    return RequestIntent._(value, element: element);
+    return RequestIntent._(
+      value,
+      element: element,
+    );
   }
 
   /// proposal

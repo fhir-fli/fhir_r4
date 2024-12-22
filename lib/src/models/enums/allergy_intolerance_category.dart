@@ -26,7 +26,10 @@ class AllergyIntoleranceCategory extends PrimitiveType<String> {
         'AllergyIntoleranceCategory cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceCategory._(value, element: element);
+    return AllergyIntoleranceCategory._(
+      value,
+      element: element,
+    );
   }
 
   /// food

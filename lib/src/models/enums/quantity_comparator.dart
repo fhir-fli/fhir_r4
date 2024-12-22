@@ -26,7 +26,10 @@ class QuantityComparator extends PrimitiveType<String> {
         'QuantityComparator cannot be constructed from JSON.',
       );
     }
-    return QuantityComparator._(value, element: element);
+    return QuantityComparator._(
+      value,
+      element: element,
+    );
   }
 
   /// lt

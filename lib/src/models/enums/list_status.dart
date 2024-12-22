@@ -26,7 +26,10 @@ class ListStatus extends PrimitiveType<String> {
         'ListStatus cannot be constructed from JSON.',
       );
     }
-    return ListStatus._(value, element: element);
+    return ListStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// current

@@ -26,7 +26,10 @@ class MedicationRequestIntent extends PrimitiveType<String> {
         'MedicationRequestIntent cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestIntent._(value, element: element);
+    return MedicationRequestIntent._(
+      value,
+      element: element,
+    );
   }
 
   /// proposal

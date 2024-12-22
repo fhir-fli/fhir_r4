@@ -26,7 +26,10 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
         'DetectedIssueSeverity cannot be constructed from JSON.',
       );
     }
-    return DetectedIssueSeverity._(value, element: element);
+    return DetectedIssueSeverity._(
+      value,
+      element: element,
+    );
   }
 
   /// high

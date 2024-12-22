@@ -26,7 +26,10 @@ class ConditionalReadStatus extends PrimitiveType<String> {
         'ConditionalReadStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionalReadStatus._(value, element: element);
+    return ConditionalReadStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// not_supported

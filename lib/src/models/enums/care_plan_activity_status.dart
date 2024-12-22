@@ -26,7 +26,10 @@ class CarePlanActivityStatus extends PrimitiveType<String> {
         'CarePlanActivityStatus cannot be constructed from JSON.',
       );
     }
-    return CarePlanActivityStatus._(value, element: element);
+    return CarePlanActivityStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// not_started

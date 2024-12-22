@@ -26,7 +26,10 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
         'IngredientManufacturerRole cannot be constructed from JSON.',
       );
     }
-    return IngredientManufacturerRole._(value, element: element);
+    return IngredientManufacturerRole._(
+      value,
+      element: element,
+    );
   }
 
   /// allowed

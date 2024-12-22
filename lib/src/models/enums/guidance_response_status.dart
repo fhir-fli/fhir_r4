@@ -26,7 +26,10 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
         'GuidanceResponseStatus cannot be constructed from JSON.',
       );
     }
-    return GuidanceResponseStatus._(value, element: element);
+    return GuidanceResponseStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// success

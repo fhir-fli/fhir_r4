@@ -26,7 +26,10 @@ class ConsentProvisionType extends PrimitiveType<String> {
         'ConsentProvisionType cannot be constructed from JSON.',
       );
     }
-    return ConsentProvisionType._(value, element: element);
+    return ConsentProvisionType._(
+      value,
+      element: element,
+    );
   }
 
   /// deny

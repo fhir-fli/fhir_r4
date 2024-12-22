@@ -26,7 +26,10 @@ class TestReportParticipantType extends PrimitiveType<String> {
         'TestReportParticipantType cannot be constructed from JSON.',
       );
     }
-    return TestReportParticipantType._(value, element: element);
+    return TestReportParticipantType._(
+      value,
+      element: element,
+    );
   }
 
   /// test_engine

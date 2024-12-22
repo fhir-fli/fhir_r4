@@ -26,7 +26,10 @@ class EventStatus extends PrimitiveType<String> {
         'EventStatus cannot be constructed from JSON.',
       );
     }
-    return EventStatus._(value, element: element);
+    return EventStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// preparation

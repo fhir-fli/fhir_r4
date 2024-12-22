@@ -26,7 +26,10 @@ class StructureMapInputMode extends PrimitiveType<String> {
         'StructureMapInputMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapInputMode._(value, element: element);
+    return StructureMapInputMode._(
+      value,
+      element: element,
+    );
   }
 
   /// source

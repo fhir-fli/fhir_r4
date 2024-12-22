@@ -26,7 +26,10 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
         'NamingSystemIdentifierType cannot be constructed from JSON.',
       );
     }
-    return NamingSystemIdentifierType._(value, element: element);
+    return NamingSystemIdentifierType._(
+      value,
+      element: element,
+    );
   }
 
   /// oid

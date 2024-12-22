@@ -26,7 +26,10 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
         'ActionGroupingBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionGroupingBehavior._(value, element: element);
+    return ActionGroupingBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// visual_group

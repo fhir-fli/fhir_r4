@@ -26,7 +26,10 @@ class RequestStatus extends PrimitiveType<String> {
         'RequestStatus cannot be constructed from JSON.',
       );
     }
-    return RequestStatus._(value, element: element);
+    return RequestStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

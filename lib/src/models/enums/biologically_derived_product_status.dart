@@ -26,7 +26,10 @@ class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
         'BiologicallyDerivedProductStatus cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductStatus._(value, element: element);
+    return BiologicallyDerivedProductStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// available

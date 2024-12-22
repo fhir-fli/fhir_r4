@@ -26,7 +26,10 @@ class LinkType extends PrimitiveType<String> {
         'LinkType cannot be constructed from JSON.',
       );
     }
-    return LinkType._(value, element: element);
+    return LinkType._(
+      value,
+      element: element,
+    );
   }
 
   /// replaced_by

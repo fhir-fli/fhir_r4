@@ -26,7 +26,10 @@ class VisionEyes extends PrimitiveType<String> {
         'VisionEyes cannot be constructed from JSON.',
       );
     }
-    return VisionEyes._(value, element: element);
+    return VisionEyes._(
+      value,
+      element: element,
+    );
   }
 
   /// right

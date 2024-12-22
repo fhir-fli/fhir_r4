@@ -26,7 +26,10 @@ class CareTeamStatus extends PrimitiveType<String> {
         'CareTeamStatus cannot be constructed from JSON.',
       );
     }
-    return CareTeamStatus._(value, element: element);
+    return CareTeamStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// proposed

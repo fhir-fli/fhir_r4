@@ -26,7 +26,10 @@ class DiscriminatorType extends PrimitiveType<String> {
         'DiscriminatorType cannot be constructed from JSON.',
       );
     }
-    return DiscriminatorType._(value, element: element);
+    return DiscriminatorType._(
+      value,
+      element: element,
+    );
   }
 
   /// value

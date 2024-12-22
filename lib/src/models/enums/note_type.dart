@@ -26,7 +26,10 @@ class NoteType extends PrimitiveType<String> {
         'NoteType cannot be constructed from JSON.',
       );
     }
-    return NoteType._(value, element: element);
+    return NoteType._(
+      value,
+      element: element,
+    );
   }
 
   /// display

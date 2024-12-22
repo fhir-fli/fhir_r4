@@ -26,7 +26,10 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
         'FHIRSubstanceStatus cannot be constructed from JSON.',
       );
     }
-    return FHIRSubstanceStatus._(value, element: element);
+    return FHIRSubstanceStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

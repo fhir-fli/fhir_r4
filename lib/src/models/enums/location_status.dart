@@ -26,7 +26,10 @@ class LocationStatus extends PrimitiveType<String> {
         'LocationStatus cannot be constructed from JSON.',
       );
     }
-    return LocationStatus._(value, element: element);
+    return LocationStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

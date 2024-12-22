@@ -26,7 +26,10 @@ class StrandType extends PrimitiveType<String> {
         'StrandType cannot be constructed from JSON.',
       );
     }
-    return StrandType._(value, element: element);
+    return StrandType._(
+      value,
+      element: element,
+    );
   }
 
   /// watson

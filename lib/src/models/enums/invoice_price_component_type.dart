@@ -26,7 +26,10 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
         'InvoicePriceComponentType cannot be constructed from JSON.',
       );
     }
-    return InvoicePriceComponentType._(value, element: element);
+    return InvoicePriceComponentType._(
+      value,
+      element: element,
+    );
   }
 
   /// base

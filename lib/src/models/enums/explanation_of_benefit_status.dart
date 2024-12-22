@@ -26,7 +26,10 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
         'ExplanationOfBenefitStatus cannot be constructed from JSON.',
       );
     }
-    return ExplanationOfBenefitStatus._(value, element: element);
+    return ExplanationOfBenefitStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

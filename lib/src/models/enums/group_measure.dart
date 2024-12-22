@@ -26,7 +26,10 @@ class GroupMeasure extends PrimitiveType<String> {
         'GroupMeasure cannot be constructed from JSON.',
       );
     }
-    return GroupMeasure._(value, element: element);
+    return GroupMeasure._(
+      value,
+      element: element,
+    );
   }
 
   /// mean

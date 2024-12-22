@@ -26,7 +26,10 @@ class TestReportStatus extends PrimitiveType<String> {
         'TestReportStatus cannot be constructed from JSON.',
       );
     }
-    return TestReportStatus._(value, element: element);
+    return TestReportStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// completed

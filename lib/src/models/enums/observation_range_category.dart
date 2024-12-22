@@ -26,7 +26,10 @@ class ObservationRangeCategory extends PrimitiveType<String> {
         'ObservationRangeCategory cannot be constructed from JSON.',
       );
     }
-    return ObservationRangeCategory._(value, element: element);
+    return ObservationRangeCategory._(
+      value,
+      element: element,
+    );
   }
 
   /// reference

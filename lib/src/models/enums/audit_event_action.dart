@@ -26,7 +26,10 @@ class AuditEventAction extends PrimitiveType<String> {
         'AuditEventAction cannot be constructed from JSON.',
       );
     }
-    return AuditEventAction._(value, element: element);
+    return AuditEventAction._(
+      value,
+      element: element,
+    );
   }
 
   /// C

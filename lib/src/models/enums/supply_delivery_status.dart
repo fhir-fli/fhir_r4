@@ -26,7 +26,10 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
         'SupplyDeliveryStatus cannot be constructed from JSON.',
       );
     }
-    return SupplyDeliveryStatus._(value, element: element);
+    return SupplyDeliveryStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// in_progress

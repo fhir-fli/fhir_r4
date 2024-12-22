@@ -26,7 +26,10 @@ class BundleType extends PrimitiveType<String> {
         'BundleType cannot be constructed from JSON.',
       );
     }
-    return BundleType._(value, element: element);
+    return BundleType._(
+      value,
+      element: element,
+    );
   }
 
   /// document

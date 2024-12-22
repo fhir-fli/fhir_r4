@@ -26,7 +26,10 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
         'ClinicalImpressionStatus cannot be constructed from JSON.',
       );
     }
-    return ClinicalImpressionStatus._(value, element: element);
+    return ClinicalImpressionStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// preparation

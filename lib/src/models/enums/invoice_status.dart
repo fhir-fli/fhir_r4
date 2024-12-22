@@ -26,7 +26,10 @@ class InvoiceStatus extends PrimitiveType<String> {
         'InvoiceStatus cannot be constructed from JSON.',
       );
     }
-    return InvoiceStatus._(value, element: element);
+    return InvoiceStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

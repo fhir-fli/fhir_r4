@@ -26,7 +26,10 @@ class SortDirection extends PrimitiveType<String> {
         'SortDirection cannot be constructed from JSON.',
       );
     }
-    return SortDirection._(value, element: element);
+    return SortDirection._(
+      value,
+      element: element,
+    );
   }
 
   /// ascending

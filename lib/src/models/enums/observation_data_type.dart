@@ -26,7 +26,10 @@ class ObservationDataType extends PrimitiveType<String> {
         'ObservationDataType cannot be constructed from JSON.',
       );
     }
-    return ObservationDataType._(value, element: element);
+    return ObservationDataType._(
+      value,
+      element: element,
+    );
   }
 
   /// Quantity

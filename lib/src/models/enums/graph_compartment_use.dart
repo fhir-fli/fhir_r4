@@ -26,7 +26,10 @@ class GraphCompartmentUse extends PrimitiveType<String> {
         'GraphCompartmentUse cannot be constructed from JSON.',
       );
     }
-    return GraphCompartmentUse._(value, element: element);
+    return GraphCompartmentUse._(
+      value,
+      element: element,
+    );
   }
 
   /// condition

@@ -26,7 +26,10 @@ class ImagingStudyStatus extends PrimitiveType<String> {
         'ImagingStudyStatus cannot be constructed from JSON.',
       );
     }
-    return ImagingStudyStatus._(value, element: element);
+    return ImagingStudyStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// registered

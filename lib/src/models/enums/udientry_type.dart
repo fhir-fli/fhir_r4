@@ -26,7 +26,10 @@ class UDIEntryType extends PrimitiveType<String> {
         'UDIEntryType cannot be constructed from JSON.',
       );
     }
-    return UDIEntryType._(value, element: element);
+    return UDIEntryType._(
+      value,
+      element: element,
+    );
   }
 
   /// barcode

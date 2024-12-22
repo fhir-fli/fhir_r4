@@ -26,7 +26,10 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
         'DocumentReferenceStatus cannot be constructed from JSON.',
       );
     }
-    return DocumentReferenceStatus._(value, element: element);
+    return DocumentReferenceStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// current

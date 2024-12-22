@@ -26,7 +26,10 @@ class ConsentState extends PrimitiveType<String> {
         'ConsentState cannot be constructed from JSON.',
       );
     }
-    return ConsentState._(value, element: element);
+    return ConsentState._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

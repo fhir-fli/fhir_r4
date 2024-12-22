@@ -26,7 +26,10 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
         'ResearchSubjectStatus cannot be constructed from JSON.',
       );
     }
-    return ResearchSubjectStatus._(value, element: element);
+    return ResearchSubjectStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// candidate

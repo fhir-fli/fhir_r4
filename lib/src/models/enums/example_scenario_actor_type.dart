@@ -26,7 +26,10 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
         'ExampleScenarioActorType cannot be constructed from JSON.',
       );
     }
-    return ExampleScenarioActorType._(value, element: element);
+    return ExampleScenarioActorType._(
+      value,
+      element: element,
+    );
   }
 
   /// person

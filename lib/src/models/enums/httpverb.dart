@@ -26,7 +26,10 @@ class HTTPVerb extends PrimitiveType<String> {
         'HTTPVerb cannot be constructed from JSON.',
       );
     }
-    return HTTPVerb._(value, element: element);
+    return HTTPVerb._(
+      value,
+      element: element,
+    );
   }
 
   /// GET

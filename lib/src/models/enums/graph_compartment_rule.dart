@@ -26,7 +26,10 @@ class GraphCompartmentRule extends PrimitiveType<String> {
         'GraphCompartmentRule cannot be constructed from JSON.',
       );
     }
-    return GraphCompartmentRule._(value, element: element);
+    return GraphCompartmentRule._(
+      value,
+      element: element,
+    );
   }
 
   /// identical

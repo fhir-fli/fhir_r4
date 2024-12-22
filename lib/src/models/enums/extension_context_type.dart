@@ -26,7 +26,10 @@ class ExtensionContextType extends PrimitiveType<String> {
         'ExtensionContextType cannot be constructed from JSON.',
       );
     }
-    return ExtensionContextType._(value, element: element);
+    return ExtensionContextType._(
+      value,
+      element: element,
+    );
   }
 
   /// fhirpath

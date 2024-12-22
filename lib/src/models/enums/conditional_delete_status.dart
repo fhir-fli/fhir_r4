@@ -26,7 +26,10 @@ class ConditionalDeleteStatus extends PrimitiveType<String> {
         'ConditionalDeleteStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionalDeleteStatus._(value, element: element);
+    return ConditionalDeleteStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// not_supported

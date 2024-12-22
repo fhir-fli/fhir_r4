@@ -27,7 +27,10 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
         'BiologicallyDerivedProductCategory cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductCategory._(value, element: element);
+    return BiologicallyDerivedProductCategory._(
+      value,
+      element: element,
+    );
   }
 
   /// organ

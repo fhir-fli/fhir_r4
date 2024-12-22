@@ -26,7 +26,10 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
         'StructureMapGroupTypeMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapGroupTypeMode._(value, element: element);
+    return StructureMapGroupTypeMode._(
+      value,
+      element: element,
+    );
   }
 
   /// none

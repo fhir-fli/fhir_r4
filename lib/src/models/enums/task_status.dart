@@ -26,7 +26,10 @@ class TaskStatus extends PrimitiveType<String> {
         'TaskStatus cannot be constructed from JSON.',
       );
     }
-    return TaskStatus._(value, element: element);
+    return TaskStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

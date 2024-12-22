@@ -26,7 +26,10 @@ class BindingStrength extends PrimitiveType<String> {
         'BindingStrength cannot be constructed from JSON.',
       );
     }
-    return BindingStrength._(value, element: element);
+    return BindingStrength._(
+      value,
+      element: element,
+    );
   }
 
   /// required_

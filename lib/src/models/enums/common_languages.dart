@@ -26,7 +26,10 @@ class CommonLanguages extends PrimitiveType<String> {
         'CommonLanguages cannot be constructed from JSON.',
       );
     }
-    return CommonLanguages._(value, element: element);
+    return CommonLanguages._(
+      value,
+      element: element,
+    );
   }
 
   /// ar

@@ -26,7 +26,10 @@ class ListMode extends PrimitiveType<String> {
         'ListMode cannot be constructed from JSON.',
       );
     }
-    return ListMode._(value, element: element);
+    return ListMode._(
+      value,
+      element: element,
+    );
   }
 
   /// working

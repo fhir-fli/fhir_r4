@@ -26,7 +26,10 @@ class VariableType extends PrimitiveType<String> {
         'VariableType cannot be constructed from JSON.',
       );
     }
-    return VariableType._(value, element: element);
+    return VariableType._(
+      value,
+      element: element,
+    );
   }
 
   /// dichotomous

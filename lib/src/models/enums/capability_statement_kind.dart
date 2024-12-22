@@ -26,7 +26,10 @@ class CapabilityStatementKind extends PrimitiveType<String> {
         'CapabilityStatementKind cannot be constructed from JSON.',
       );
     }
-    return CapabilityStatementKind._(value, element: element);
+    return CapabilityStatementKind._(
+      value,
+      element: element,
+    );
   }
 
   /// instance

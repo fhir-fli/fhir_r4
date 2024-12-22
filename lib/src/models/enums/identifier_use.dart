@@ -26,7 +26,10 @@ class IdentifierUse extends PrimitiveType<String> {
         'IdentifierUse cannot be constructed from JSON.',
       );
     }
-    return IdentifierUse._(value, element: element);
+    return IdentifierUse._(
+      value,
+      element: element,
+    );
   }
 
   /// usual

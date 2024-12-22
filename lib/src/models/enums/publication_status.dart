@@ -26,7 +26,10 @@ class PublicationStatus extends PrimitiveType<String> {
         'PublicationStatus cannot be constructed from JSON.',
       );
     }
-    return PublicationStatus._(value, element: element);
+    return PublicationStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

@@ -26,7 +26,10 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
         'ResourceVersionPolicy cannot be constructed from JSON.',
       );
     }
-    return ResourceVersionPolicy._(value, element: element);
+    return ResourceVersionPolicy._(
+      value,
+      element: element,
+    );
   }
 
   /// no_version

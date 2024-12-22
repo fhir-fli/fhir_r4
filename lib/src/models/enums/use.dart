@@ -26,7 +26,10 @@ class Use extends PrimitiveType<String> {
         'Use cannot be constructed from JSON.',
       );
     }
-    return Use._(value, element: element);
+    return Use._(
+      value,
+      element: element,
+    );
   }
 
   /// claim

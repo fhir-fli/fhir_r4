@@ -26,7 +26,10 @@ class ActionRelationshipType extends PrimitiveType<String> {
         'ActionRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ActionRelationshipType._(value, element: element);
+    return ActionRelationshipType._(
+      value,
+      element: element,
+    );
   }
 
   /// before_start

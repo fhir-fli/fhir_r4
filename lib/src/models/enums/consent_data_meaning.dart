@@ -26,7 +26,10 @@ class ConsentDataMeaning extends PrimitiveType<String> {
         'ConsentDataMeaning cannot be constructed from JSON.',
       );
     }
-    return ConsentDataMeaning._(value, element: element);
+    return ConsentDataMeaning._(
+      value,
+      element: element,
+    );
   }
 
   /// instance

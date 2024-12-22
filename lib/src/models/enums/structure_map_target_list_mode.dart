@@ -26,7 +26,10 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
         'StructureMapTargetListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapTargetListMode._(value, element: element);
+    return StructureMapTargetListMode._(
+      value,
+      element: element,
+    );
   }
 
   /// first

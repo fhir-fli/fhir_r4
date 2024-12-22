@@ -26,7 +26,10 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
         'DiagnosticReportStatus cannot be constructed from JSON.',
       );
     }
-    return DiagnosticReportStatus._(value, element: element);
+    return DiagnosticReportStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// registered

@@ -26,7 +26,10 @@ class CompositionStatus extends PrimitiveType<String> {
         'CompositionStatus cannot be constructed from JSON.',
       );
     }
-    return CompositionStatus._(value, element: element);
+    return CompositionStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// preliminary

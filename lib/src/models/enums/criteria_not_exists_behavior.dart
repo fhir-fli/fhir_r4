@@ -26,7 +26,10 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
         'CriteriaNotExistsBehavior cannot be constructed from JSON.',
       );
     }
-    return CriteriaNotExistsBehavior._(value, element: element);
+    return CriteriaNotExistsBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// test_passes

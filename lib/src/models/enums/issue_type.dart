@@ -26,7 +26,10 @@ class IssueType extends PrimitiveType<String> {
         'IssueType cannot be constructed from JSON.',
       );
     }
-    return IssueType._(value, element: element);
+    return IssueType._(
+      value,
+      element: element,
+    );
   }
 
   /// invalid

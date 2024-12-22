@@ -26,7 +26,10 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
         'ActionRequiredBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionRequiredBehavior._(value, element: element);
+    return ActionRequiredBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// must

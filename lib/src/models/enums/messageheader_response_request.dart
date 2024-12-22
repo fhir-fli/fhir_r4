@@ -26,7 +26,10 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
         'MessageheaderResponseRequest cannot be constructed from JSON.',
       );
     }
-    return MessageheaderResponseRequest._(value, element: element);
+    return MessageheaderResponseRequest._(
+      value,
+      element: element,
+    );
   }
 
   /// always

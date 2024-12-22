@@ -26,7 +26,10 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
         'FHIRDeviceStatus cannot be constructed from JSON.',
       );
     }
-    return FHIRDeviceStatus._(value, element: element);
+    return FHIRDeviceStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

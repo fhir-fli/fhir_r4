@@ -26,7 +26,10 @@ class AdministrativeGender extends PrimitiveType<String> {
         'AdministrativeGender cannot be constructed from JSON.',
       );
     }
-    return AdministrativeGender._(value, element: element);
+    return AdministrativeGender._(
+      value,
+      element: element,
+    );
   }
 
   /// male

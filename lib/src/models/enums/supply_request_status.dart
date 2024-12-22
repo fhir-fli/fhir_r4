@@ -26,7 +26,10 @@ class SupplyRequestStatus extends PrimitiveType<String> {
         'SupplyRequestStatus cannot be constructed from JSON.',
       );
     }
-    return SupplyRequestStatus._(value, element: element);
+    return SupplyRequestStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// draft

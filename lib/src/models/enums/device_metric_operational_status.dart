@@ -26,7 +26,10 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
         'DeviceMetricOperationalStatus cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricOperationalStatus._(value, element: element);
+    return DeviceMetricOperationalStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// on_

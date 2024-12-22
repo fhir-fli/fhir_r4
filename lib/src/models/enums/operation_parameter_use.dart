@@ -26,7 +26,10 @@ class OperationParameterUse extends PrimitiveType<String> {
         'OperationParameterUse cannot be constructed from JSON.',
       );
     }
-    return OperationParameterUse._(value, element: element);
+    return OperationParameterUse._(
+      value,
+      element: element,
+    );
   }
 
   /// in_

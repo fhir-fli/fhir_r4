@@ -26,7 +26,10 @@ class TriggerType extends PrimitiveType<String> {
         'TriggerType cannot be constructed from JSON.',
       );
     }
-    return TriggerType._(value, element: element);
+    return TriggerType._(
+      value,
+      element: element,
+    );
   }
 
   /// named_event

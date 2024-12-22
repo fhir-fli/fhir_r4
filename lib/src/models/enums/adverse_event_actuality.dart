@@ -26,7 +26,10 @@ class AdverseEventActuality extends PrimitiveType<String> {
         'AdverseEventActuality cannot be constructed from JSON.',
       );
     }
-    return AdverseEventActuality._(value, element: element);
+    return AdverseEventActuality._(
+      value,
+      element: element,
+    );
   }
 
   /// actual

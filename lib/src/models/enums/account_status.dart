@@ -26,7 +26,10 @@ class AccountStatus extends PrimitiveType<String> {
         'AccountStatus cannot be constructed from JSON.',
       );
     }
-    return AccountStatus._(value, element: element);
+    return AccountStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

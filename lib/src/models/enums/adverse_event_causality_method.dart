@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// TODO.
+/// How the causality was assessed - questionnaire, Bayesian, checklist.
 class AdverseEventCausalityMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
   AdverseEventCausalityMethod._(

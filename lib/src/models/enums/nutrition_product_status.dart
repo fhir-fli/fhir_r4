@@ -26,7 +26,10 @@ class NutritionProductStatus extends PrimitiveType<String> {
         'NutritionProductStatus cannot be constructed from JSON.',
       );
     }
-    return NutritionProductStatus._(value, element: element);
+    return NutritionProductStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

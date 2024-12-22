@@ -26,7 +26,10 @@ class ActionCardinalityBehavior extends PrimitiveType<String> {
         'ActionCardinalityBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionCardinalityBehavior._(value, element: element);
+    return ActionCardinalityBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// single

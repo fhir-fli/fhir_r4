@@ -26,7 +26,10 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
         'SpecimenContainedPreference cannot be constructed from JSON.',
       );
     }
-    return SpecimenContainedPreference._(value, element: element);
+    return SpecimenContainedPreference._(
+      value,
+      element: element,
+    );
   }
 
   /// preferred

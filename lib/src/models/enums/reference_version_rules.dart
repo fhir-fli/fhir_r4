@@ -26,7 +26,10 @@ class ReferenceVersionRules extends PrimitiveType<String> {
         'ReferenceVersionRules cannot be constructed from JSON.',
       );
     }
-    return ReferenceVersionRules._(value, element: element);
+    return ReferenceVersionRules._(
+      value,
+      element: element,
+    );
   }
 
   /// either

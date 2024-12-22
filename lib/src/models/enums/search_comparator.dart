@@ -26,7 +26,10 @@ class SearchComparator extends PrimitiveType<String> {
         'SearchComparator cannot be constructed from JSON.',
       );
     }
-    return SearchComparator._(value, element: element);
+    return SearchComparator._(
+      value,
+      element: element,
+    );
   }
 
   /// eq

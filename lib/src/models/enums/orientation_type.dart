@@ -26,7 +26,10 @@ class OrientationType extends PrimitiveType<String> {
         'OrientationType cannot be constructed from JSON.',
       );
     }
-    return OrientationType._(value, element: element);
+    return OrientationType._(
+      value,
+      element: element,
+    );
   }
 
   /// sense

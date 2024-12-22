@@ -26,7 +26,10 @@ class FHIRAllTypes extends PrimitiveType<String> {
         'FHIRAllTypes cannot be constructed from JSON.',
       );
     }
-    return FHIRAllTypes._(value, element: element);
+    return FHIRAllTypes._(
+      value,
+      element: element,
+    );
   }
 
   /// Address

@@ -26,7 +26,10 @@ class AssertionDirectionType extends PrimitiveType<String> {
         'AssertionDirectionType cannot be constructed from JSON.',
       );
     }
-    return AssertionDirectionType._(value, element: element);
+    return AssertionDirectionType._(
+      value,
+      element: element,
+    );
   }
 
   /// response

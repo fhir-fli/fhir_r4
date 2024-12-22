@@ -26,7 +26,10 @@ class ReportRelationshipType extends PrimitiveType<String> {
         'ReportRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ReportRelationshipType._(value, element: element);
+    return ReportRelationshipType._(
+      value,
+      element: element,
+    );
   }
 
   /// replaces

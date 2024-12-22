@@ -26,7 +26,10 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
         'TypeRestfulInteraction cannot be constructed from JSON.',
       );
     }
-    return TypeRestfulInteraction._(value, element: element);
+    return TypeRestfulInteraction._(
+      value,
+      element: element,
+    );
   }
 
   /// read

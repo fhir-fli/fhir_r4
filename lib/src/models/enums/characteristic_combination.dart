@@ -26,7 +26,10 @@ class CharacteristicCombination extends PrimitiveType<String> {
         'CharacteristicCombination cannot be constructed from JSON.',
       );
     }
-    return CharacteristicCombination._(value, element: element);
+    return CharacteristicCombination._(
+      value,
+      element: element,
+    );
   }
 
   /// intersection

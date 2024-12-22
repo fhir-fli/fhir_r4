@@ -26,7 +26,10 @@ class Status extends PrimitiveType<String> {
         'Status cannot be constructed from JSON.',
       );
     }
-    return Status._(value, element: element);
+    return Status._(
+      value,
+      element: element,
+    );
   }
 
   /// attested

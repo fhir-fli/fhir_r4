@@ -26,7 +26,10 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
         'CatalogEntryRelationType cannot be constructed from JSON.',
       );
     }
-    return CatalogEntryRelationType._(value, element: element);
+    return CatalogEntryRelationType._(
+      value,
+      element: element,
+    );
   }
 
   /// triggers

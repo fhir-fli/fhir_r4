@@ -26,7 +26,10 @@ class VisionBase extends PrimitiveType<String> {
         'VisionBase cannot be constructed from JSON.',
       );
     }
-    return VisionBase._(value, element: element);
+    return VisionBase._(
+      value,
+      element: element,
+    );
   }
 
   /// up

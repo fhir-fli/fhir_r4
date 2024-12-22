@@ -26,7 +26,10 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
         'DeviceUseStatementStatus cannot be constructed from JSON.',
       );
     }
-    return DeviceUseStatementStatus._(value, element: element);
+    return DeviceUseStatementStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

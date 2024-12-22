@@ -28,8 +28,10 @@ class CoverageEligibilityResponseAuthSupportCodes
         'CoverageEligibilityResponseAuthSupportCodes cannot be constructed from JSON.',
       );
     }
-    return CoverageEligibilityResponseAuthSupportCodes._(value,
-        element: element);
+    return CoverageEligibilityResponseAuthSupportCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// laborder

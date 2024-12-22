@@ -26,7 +26,10 @@ class ObservationStatus extends PrimitiveType<String> {
         'ObservationStatus cannot be constructed from JSON.',
       );
     }
-    return ObservationStatus._(value, element: element);
+    return ObservationStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// registered

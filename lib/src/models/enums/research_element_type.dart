@@ -26,7 +26,10 @@ class ResearchElementType extends PrimitiveType<String> {
         'ResearchElementType cannot be constructed from JSON.',
       );
     }
-    return ResearchElementType._(value, element: element);
+    return ResearchElementType._(
+      value,
+      element: element,
+    );
   }
 
   /// population

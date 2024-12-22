@@ -26,7 +26,10 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
         'GoalLifecycleStatus cannot be constructed from JSON.',
       );
     }
-    return GoalLifecycleStatus._(value, element: element);
+    return GoalLifecycleStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// proposed

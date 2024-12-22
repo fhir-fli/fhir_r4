@@ -26,7 +26,10 @@ class AuditEventOutcome extends PrimitiveType<String> {
         'AuditEventOutcome cannot be constructed from JSON.',
       );
     }
-    return AuditEventOutcome._(value, element: element);
+    return AuditEventOutcome._(
+      value,
+      element: element,
+    );
   }
 
   /// value0

@@ -26,7 +26,10 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
         'TestScriptRequestMethodCode cannot be constructed from JSON.',
       );
     }
-    return TestScriptRequestMethodCode._(value, element: element);
+    return TestScriptRequestMethodCode._(
+      value,
+      element: element,
+    );
   }
 
   /// delete

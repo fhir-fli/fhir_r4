@@ -26,7 +26,10 @@ class DocumentRelationshipType extends PrimitiveType<String> {
         'DocumentRelationshipType cannot be constructed from JSON.',
       );
     }
-    return DocumentRelationshipType._(value, element: element);
+    return DocumentRelationshipType._(
+      value,
+      element: element,
+    );
   }
 
   /// replaces

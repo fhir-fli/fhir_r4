@@ -26,7 +26,10 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
         'ActionSelectionBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionSelectionBehavior._(value, element: element);
+    return ActionSelectionBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// any

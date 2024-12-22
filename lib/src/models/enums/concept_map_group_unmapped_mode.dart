@@ -26,7 +26,10 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
         'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',
       );
     }
-    return ConceptMapGroupUnmappedMode._(value, element: element);
+    return ConceptMapGroupUnmappedMode._(
+      value,
+      element: element,
+    );
   }
 
   /// provided

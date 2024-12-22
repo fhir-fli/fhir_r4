@@ -26,7 +26,10 @@ class DocumentMode extends PrimitiveType<String> {
         'DocumentMode cannot be constructed from JSON.',
       );
     }
-    return DocumentMode._(value, element: element);
+    return DocumentMode._(
+      value,
+      element: element,
+    );
   }
 
   /// producer

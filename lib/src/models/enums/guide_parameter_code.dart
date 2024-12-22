@@ -26,7 +26,10 @@ class GuideParameterCode extends PrimitiveType<String> {
         'GuideParameterCode cannot be constructed from JSON.',
       );
     }
-    return GuideParameterCode._(value, element: element);
+    return GuideParameterCode._(
+      value,
+      element: element,
+    );
   }
 
   /// apply

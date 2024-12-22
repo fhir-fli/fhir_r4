@@ -26,7 +26,10 @@ class CarePlanActivityKind extends PrimitiveType<String> {
         'CarePlanActivityKind cannot be constructed from JSON.',
       );
     }
-    return CarePlanActivityKind._(value, element: element);
+    return CarePlanActivityKind._(
+      value,
+      element: element,
+    );
   }
 
   /// Resource

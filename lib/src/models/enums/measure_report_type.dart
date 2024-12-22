@@ -26,7 +26,10 @@ class MeasureReportType extends PrimitiveType<String> {
         'MeasureReportType cannot be constructed from JSON.',
       );
     }
-    return MeasureReportType._(value, element: element);
+    return MeasureReportType._(
+      value,
+      element: element,
+    );
   }
 
   /// individual

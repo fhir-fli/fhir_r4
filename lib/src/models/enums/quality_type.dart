@@ -26,7 +26,10 @@ class QualityType extends PrimitiveType<String> {
         'QualityType cannot be constructed from JSON.',
       );
     }
-    return QualityType._(value, element: element);
+    return QualityType._(
+      value,
+      element: element,
+    );
   }
 
   /// indel

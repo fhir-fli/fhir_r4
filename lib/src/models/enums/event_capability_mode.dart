@@ -26,7 +26,10 @@ class EventCapabilityMode extends PrimitiveType<String> {
         'EventCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return EventCapabilityMode._(value, element: element);
+    return EventCapabilityMode._(
+      value,
+      element: element,
+    );
   }
 
   /// sender

@@ -26,7 +26,10 @@ class NarrativeStatus extends PrimitiveType<String> {
         'NarrativeStatus cannot be constructed from JSON.',
       );
     }
-    return NarrativeStatus._(value, element: element);
+    return NarrativeStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// generated

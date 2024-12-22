@@ -26,7 +26,10 @@ class ContactPointSystem extends PrimitiveType<String> {
         'ContactPointSystem cannot be constructed from JSON.',
       );
     }
-    return ContactPointSystem._(value, element: element);
+    return ContactPointSystem._(
+      value,
+      element: element,
+    );
   }
 
   /// phone

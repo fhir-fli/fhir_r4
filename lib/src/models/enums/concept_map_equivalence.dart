@@ -26,7 +26,10 @@ class ConceptMapEquivalence extends PrimitiveType<String> {
         'ConceptMapEquivalence cannot be constructed from JSON.',
       );
     }
-    return ConceptMapEquivalence._(value, element: element);
+    return ConceptMapEquivalence._(
+      value,
+      element: element,
+    );
   }
 
   /// relatedto

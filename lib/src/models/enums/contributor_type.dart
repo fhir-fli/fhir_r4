@@ -26,7 +26,10 @@ class ContributorType extends PrimitiveType<String> {
         'ContributorType cannot be constructed from JSON.',
       );
     }
-    return ContributorType._(value, element: element);
+    return ContributorType._(
+      value,
+      element: element,
+    );
   }
 
   /// author

@@ -26,7 +26,10 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
         'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
       );
     }
-    return CodeSystemHierarchyMeaning._(value, element: element);
+    return CodeSystemHierarchyMeaning._(
+      value,
+      element: element,
+    );
   }
 
   /// grouped_by

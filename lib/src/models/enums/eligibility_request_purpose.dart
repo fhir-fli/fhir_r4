@@ -26,7 +26,10 @@ class EligibilityRequestPurpose extends PrimitiveType<String> {
         'EligibilityRequestPurpose cannot be constructed from JSON.',
       );
     }
-    return EligibilityRequestPurpose._(value, element: element);
+    return EligibilityRequestPurpose._(
+      value,
+      element: element,
+    );
   }
 
   /// auth_requirements

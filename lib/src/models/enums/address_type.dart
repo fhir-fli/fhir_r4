@@ -26,7 +26,10 @@ class AddressType extends PrimitiveType<String> {
         'AddressType cannot be constructed from JSON.',
       );
     }
-    return AddressType._(value, element: element);
+    return AddressType._(
+      value,
+      element: element,
+    );
   }
 
   /// postal

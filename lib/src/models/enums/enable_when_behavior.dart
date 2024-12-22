@@ -26,7 +26,10 @@ class EnableWhenBehavior extends PrimitiveType<String> {
         'EnableWhenBehavior cannot be constructed from JSON.',
       );
     }
-    return EnableWhenBehavior._(value, element: element);
+    return EnableWhenBehavior._(
+      value,
+      element: element,
+    );
   }
 
   /// all

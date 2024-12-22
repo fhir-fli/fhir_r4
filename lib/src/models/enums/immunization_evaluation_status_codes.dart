@@ -26,7 +26,10 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
         'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationStatusCodes._(value, element: element);
+    return ImmunizationEvaluationStatusCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// in_progress

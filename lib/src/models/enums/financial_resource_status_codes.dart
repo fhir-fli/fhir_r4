@@ -26,7 +26,10 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
         'FinancialResourceStatusCodes cannot be constructed from JSON.',
       );
     }
-    return FinancialResourceStatusCodes._(value, element: element);
+    return FinancialResourceStatusCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// active

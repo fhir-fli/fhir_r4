@@ -26,7 +26,10 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
         'StructureMapSourceListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapSourceListMode._(value, element: element);
+    return StructureMapSourceListMode._(
+      value,
+      element: element,
+    );
   }
 
   /// first

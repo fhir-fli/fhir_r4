@@ -26,7 +26,10 @@ class CodeSearchSupport extends PrimitiveType<String> {
         'CodeSearchSupport cannot be constructed from JSON.',
       );
     }
-    return CodeSearchSupport._(value, element: element);
+    return CodeSearchSupport._(
+      value,
+      element: element,
+    );
   }
 
   /// explicit

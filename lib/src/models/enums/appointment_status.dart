@@ -26,7 +26,10 @@ class AppointmentStatus extends PrimitiveType<String> {
         'AppointmentStatus cannot be constructed from JSON.',
       );
     }
-    return AppointmentStatus._(value, element: element);
+    return AppointmentStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// proposed

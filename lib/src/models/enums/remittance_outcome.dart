@@ -26,7 +26,10 @@ class RemittanceOutcome extends PrimitiveType<String> {
         'RemittanceOutcome cannot be constructed from JSON.',
       );
     }
-    return RemittanceOutcome._(value, element: element);
+    return RemittanceOutcome._(
+      value,
+      element: element,
+    );
   }
 
   /// queued

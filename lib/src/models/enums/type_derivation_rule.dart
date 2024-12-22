@@ -26,7 +26,10 @@ class TypeDerivationRule extends PrimitiveType<String> {
         'TypeDerivationRule cannot be constructed from JSON.',
       );
     }
-    return TypeDerivationRule._(value, element: element);
+    return TypeDerivationRule._(
+      value,
+      element: element,
+    );
   }
 
   /// specialization

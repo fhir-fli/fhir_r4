@@ -26,7 +26,10 @@ class FHIRVersion extends PrimitiveType<String> {
         'FHIRVersion cannot be constructed from JSON.',
       );
     }
-    return FHIRVersion._(value, element: element);
+    return FHIRVersion._(
+      value,
+      element: element,
+    );
   }
 
   /// value0_01

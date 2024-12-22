@@ -26,7 +26,10 @@ class RequestPriority extends PrimitiveType<String> {
         'RequestPriority cannot be constructed from JSON.',
       );
     }
-    return RequestPriority._(value, element: element);
+    return RequestPriority._(
+      value,
+      element: element,
+    );
   }
 
   /// routine

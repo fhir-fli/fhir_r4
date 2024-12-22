@@ -26,7 +26,10 @@ class FilterOperator extends PrimitiveType<String> {
         'FilterOperator cannot be constructed from JSON.',
       );
     }
-    return FilterOperator._(value, element: element);
+    return FilterOperator._(
+      value,
+      element: element,
+    );
   }
 
   /// eq

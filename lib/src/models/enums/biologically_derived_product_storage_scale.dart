@@ -27,7 +27,10 @@ class BiologicallyDerivedProductStorageScale extends PrimitiveType<String> {
         'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductStorageScale._(value, element: element);
+    return BiologicallyDerivedProductStorageScale._(
+      value,
+      element: element,
+    );
   }
 
   /// farenheit

@@ -26,7 +26,10 @@ class TestReportActionResult extends PrimitiveType<String> {
         'TestReportActionResult cannot be constructed from JSON.',
       );
     }
-    return TestReportActionResult._(value, element: element);
+    return TestReportActionResult._(
+      value,
+      element: element,
+    );
   }
 
   /// pass

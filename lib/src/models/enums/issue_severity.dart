@@ -26,7 +26,10 @@ class IssueSeverity extends PrimitiveType<String> {
         'IssueSeverity cannot be constructed from JSON.',
       );
     }
-    return IssueSeverity._(value, element: element);
+    return IssueSeverity._(
+      value,
+      element: element,
+    );
   }
 
   /// fatal

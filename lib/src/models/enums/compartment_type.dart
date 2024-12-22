@@ -26,7 +26,10 @@ class CompartmentType extends PrimitiveType<String> {
         'CompartmentType cannot be constructed from JSON.',
       );
     }
-    return CompartmentType._(value, element: element);
+    return CompartmentType._(
+      value,
+      element: element,
+    );
   }
 
   /// Patient

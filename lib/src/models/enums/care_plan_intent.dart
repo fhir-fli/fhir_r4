@@ -26,7 +26,10 @@ class CarePlanIntent extends PrimitiveType<String> {
         'CarePlanIntent cannot be constructed from JSON.',
       );
     }
-    return CarePlanIntent._(value, element: element);
+    return CarePlanIntent._(
+      value,
+      element: element,
+    );
   }
 
   /// proposal

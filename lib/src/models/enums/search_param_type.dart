@@ -26,7 +26,10 @@ class SearchParamType extends PrimitiveType<String> {
         'SearchParamType cannot be constructed from JSON.',
       );
     }
-    return SearchParamType._(value, element: element);
+    return SearchParamType._(
+      value,
+      element: element,
+    );
   }
 
   /// number

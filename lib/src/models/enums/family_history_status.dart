@@ -26,7 +26,10 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
         'FamilyHistoryStatus cannot be constructed from JSON.',
       );
     }
-    return FamilyHistoryStatus._(value, element: element);
+    return FamilyHistoryStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// partial

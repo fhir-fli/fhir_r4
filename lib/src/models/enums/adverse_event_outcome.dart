@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// TODO (and should this be required?).
+/// [AdverseEventOutcome]
 class AdverseEventOutcome extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
   AdverseEventOutcome._(

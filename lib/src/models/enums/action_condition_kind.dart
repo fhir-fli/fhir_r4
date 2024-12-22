@@ -26,7 +26,10 @@ class ActionConditionKind extends PrimitiveType<String> {
         'ActionConditionKind cannot be constructed from JSON.',
       );
     }
-    return ActionConditionKind._(value, element: element);
+    return ActionConditionKind._(
+      value,
+      element: element,
+    );
   }
 
   /// applicability

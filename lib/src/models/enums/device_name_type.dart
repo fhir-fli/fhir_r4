@@ -26,7 +26,10 @@ class DeviceNameType extends PrimitiveType<String> {
         'DeviceNameType cannot be constructed from JSON.',
       );
     }
-    return DeviceNameType._(value, element: element);
+    return DeviceNameType._(
+      value,
+      element: element,
+    );
   }
 
   /// udi_label_name

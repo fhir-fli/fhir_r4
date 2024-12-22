@@ -26,7 +26,10 @@ class EndpointStatus extends PrimitiveType<String> {
         'EndpointStatus cannot be constructed from JSON.',
       );
     }
-    return EndpointStatus._(value, element: element);
+    return EndpointStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// active

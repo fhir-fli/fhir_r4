@@ -26,7 +26,10 @@ class SearchModifierCode extends PrimitiveType<String> {
         'SearchModifierCode cannot be constructed from JSON.',
       );
     }
-    return SearchModifierCode._(value, element: element);
+    return SearchModifierCode._(
+      value,
+      element: element,
+    );
   }
 
   /// missing

@@ -26,7 +26,10 @@ class SubscriptionStatusCodes extends PrimitiveType<String> {
         'SubscriptionStatusCodes cannot be constructed from JSON.',
       );
     }
-    return SubscriptionStatusCodes._(value, element: element);
+    return SubscriptionStatusCodes._(
+      value,
+      element: element,
+    );
   }
 
   /// requested

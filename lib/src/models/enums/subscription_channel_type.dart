@@ -26,7 +26,10 @@ class SubscriptionChannelType extends PrimitiveType<String> {
         'SubscriptionChannelType cannot be constructed from JSON.',
       );
     }
-    return SubscriptionChannelType._(value, element: element);
+    return SubscriptionChannelType._(
+      value,
+      element: element,
+    );
   }
 
   /// rest_hook

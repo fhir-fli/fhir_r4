@@ -26,7 +26,10 @@ class AggregationMode extends PrimitiveType<String> {
         'AggregationMode cannot be constructed from JSON.',
       );
     }
-    return AggregationMode._(value, element: element);
+    return AggregationMode._(
+      value,
+      element: element,
+    );
   }
 
   /// contained

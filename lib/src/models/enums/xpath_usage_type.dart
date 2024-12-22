@@ -26,7 +26,10 @@ class XPathUsageType extends PrimitiveType<String> {
         'XPathUsageType cannot be constructed from JSON.',
       );
     }
-    return XPathUsageType._(value, element: element);
+    return XPathUsageType._(
+      value,
+      element: element,
+    );
   }
 
   /// normal

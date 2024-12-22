@@ -26,7 +26,10 @@ class SPDXLicense extends PrimitiveType<String> {
         'SPDXLicense cannot be constructed from JSON.',
       );
     }
-    return SPDXLicense._(value, element: element);
+    return SPDXLicense._(
+      value,
+      element: element,
+    );
   }
 
   /// not_open_source

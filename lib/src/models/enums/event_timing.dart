@@ -26,7 +26,10 @@ class EventTiming extends PrimitiveType<String> {
         'EventTiming cannot be constructed from JSON.',
       );
     }
-    return EventTiming._(value, element: element);
+    return EventTiming._(
+      value,
+      element: element,
+    );
   }
 
   /// MORN

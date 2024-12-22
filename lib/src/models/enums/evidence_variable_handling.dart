@@ -26,7 +26,10 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
         'EvidenceVariableHandling cannot be constructed from JSON.',
       );
     }
-    return EvidenceVariableHandling._(value, element: element);
+    return EvidenceVariableHandling._(
+      value,
+      element: element,
+    );
   }
 
   /// continuous

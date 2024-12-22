@@ -26,7 +26,10 @@ class ExpressionLanguage extends PrimitiveType<String> {
         'ExpressionLanguage cannot be constructed from JSON.',
       );
     }
-    return ExpressionLanguage._(value, element: element);
+    return ExpressionLanguage._(
+      value,
+      element: element,
+    );
   }
 
   /// text_cql

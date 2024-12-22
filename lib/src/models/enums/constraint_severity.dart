@@ -26,7 +26,10 @@ class ConstraintSeverity extends PrimitiveType<String> {
         'ConstraintSeverity cannot be constructed from JSON.',
       );
     }
-    return ConstraintSeverity._(value, element: element);
+    return ConstraintSeverity._(
+      value,
+      element: element,
+    );
   }
 
   /// error

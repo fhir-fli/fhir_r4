@@ -26,7 +26,10 @@ class DeviceMetricColor extends PrimitiveType<String> {
         'DeviceMetricColor cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricColor._(value, element: element);
+    return DeviceMetricColor._(
+      value,
+      element: element,
+    );
   }
 
   /// black

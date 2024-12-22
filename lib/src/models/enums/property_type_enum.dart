@@ -26,7 +26,10 @@ class PropertyTypeEnum extends PrimitiveType<String> {
         'PropertyTypeEnum cannot be constructed from JSON.',
       );
     }
-    return PropertyTypeEnum._(value, element: element);
+    return PropertyTypeEnum._(
+      value,
+      element: element,
+    );
   }
 
   /// code

@@ -26,7 +26,10 @@ class EncounterStatus extends PrimitiveType<String> {
         'EncounterStatus cannot be constructed from JSON.',
       );
     }
-    return EncounterStatus._(value, element: element);
+    return EncounterStatus._(
+      value,
+      element: element,
+    );
   }
 
   /// planned

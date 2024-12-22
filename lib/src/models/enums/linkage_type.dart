@@ -26,7 +26,10 @@ class LinkageType extends PrimitiveType<String> {
         'LinkageType cannot be constructed from JSON.',
       );
     }
-    return LinkageType._(value, element: element);
+    return LinkageType._(
+      value,
+      element: element,
+    );
   }
 
   /// source

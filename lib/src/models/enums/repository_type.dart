@@ -26,7 +26,10 @@ class RepositoryType extends PrimitiveType<String> {
         'RepositoryType cannot be constructed from JSON.',
       );
     }
-    return RepositoryType._(value, element: element);
+    return RepositoryType._(
+      value,
+      element: element,
+    );
   }
 
   /// directlink

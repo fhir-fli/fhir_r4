@@ -26,7 +26,10 @@ class GuidePageGeneration extends PrimitiveType<String> {
         'GuidePageGeneration cannot be constructed from JSON.',
       );
     }
-    return GuidePageGeneration._(value, element: element);
+    return GuidePageGeneration._(
+      value,
+      element: element,
+    );
   }
 
   /// html
