@@ -3854,7 +3854,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'priority': const FhirField(false, 'CodeableConcept'),
     'description': const FhirField(false, 'CodeableConcept'),
     'subject': const FhirField(false, 'Reference'),
-    'startXGoal': const FhirField(false, 'GoalStartEvent'),
+    'startXGoal': const FhirField(false, 'FhirDate'),
     'target': const FhirField(true, 'GoalTarget'),
     'statusDate': const FhirField(false, 'FhirDate'),
     'statusReason': const FhirField(false, 'FhirString'),

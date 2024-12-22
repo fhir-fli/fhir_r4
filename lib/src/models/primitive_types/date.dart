@@ -49,7 +49,8 @@ class FhirDate extends FhirDateTimeBase
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension,
-        TimingXTriggerDefinition {
+        TimingXTriggerDefinition,
+        StartXGoal {
   /// Factory constructor to create a [FhirDate] from individual units.
   ///
   /// Requires [year], while [month], [day], and [isUtc] are optional.

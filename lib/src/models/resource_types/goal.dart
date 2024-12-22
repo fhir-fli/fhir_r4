@@ -131,7 +131,7 @@ class Goal extends DomainResource {
         Reference.fromJson,
       )!,
       startX: JsonParser.parsePolymorphic<StartXGoal>(json, {
-        'startGoalStartEvent': GoalStartEvent.fromJson,
+        'startDate': FhirDate.fromJson,
         'startCodeableConcept': CodeableConcept.fromJson,
       }),
       target: (json['target'] as List<dynamic>?)

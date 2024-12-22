@@ -33,7 +33,10 @@ class FhirCanonical extends PrimitiveType<Uri>
         FixedXElementDefinition,
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXExtension,
+        SubjectXActivityDefinition,
+        SubjectXPlanDefinitionAction,
+        SubjectXPlanDefinition {
   /// Constructor with validation and original input storage
   FhirCanonical(
     this.input, {

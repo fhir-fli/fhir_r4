@@ -165,7 +165,7 @@ class ActivityDefinition extends CanonicalResource {
       subjectX: JsonParser.parsePolymorphic<SubjectXActivityDefinition>(json, {
         'subjectCodeableConcept': CodeableConcept.fromJson,
         'subjectReference': Reference.fromJson,
-        'subjectSubjectType': SubjectType.fromJson,
+        'subjectCanonical': FhirCanonical.fromJson,
       }),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,

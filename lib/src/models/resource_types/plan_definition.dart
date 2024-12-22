@@ -157,7 +157,7 @@ class PlanDefinition extends CanonicalResource {
       subjectX: JsonParser.parsePolymorphic<SubjectXPlanDefinition>(json, {
         'subjectCodeableConcept': CodeableConcept.fromJson,
         'subjectReference': Reference.fromJson,
-        'subjectSubjectType': SubjectType.fromJson,
+        'subjectCanonical': FhirCanonical.fromJson,
       }),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
@@ -1173,7 +1173,7 @@ class PlanDefinitionAction extends BackboneElement {
           JsonParser.parsePolymorphic<SubjectXPlanDefinitionAction>(json, {
         'subjectCodeableConcept': CodeableConcept.fromJson,
         'subjectReference': Reference.fromJson,
-        'subjectSubjectType': SubjectType.fromJson,
+        'subjectCanonical': FhirCanonical.fromJson,
       }),
       trigger: (json['trigger'] as List<dynamic>?)
           ?.map<TriggerDefinition>(
