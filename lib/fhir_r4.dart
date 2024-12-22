@@ -9,3 +9,4 @@ export 'src/fhir_path/r4.dart';
 export 'src/models/models.dart';
 export 'src/rest/rest.dart';
 export 'src/utils/utils.dart';
+export 'src/validation/validation.dart';
