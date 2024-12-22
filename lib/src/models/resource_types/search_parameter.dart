@@ -103,7 +103,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
@@ -123,7 +123,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -150,7 +150,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(

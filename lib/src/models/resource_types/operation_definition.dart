@@ -123,7 +123,7 @@ class OperationDefinition extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       kind: JsonParser.parsePrimitive<OperationKind>(
         json,
         'kind',

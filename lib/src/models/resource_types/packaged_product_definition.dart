@@ -781,7 +781,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// [package]
   /// Allows containers (and parts of containers) parwithin containers, still
   /// a single packaged product. See also
-  /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
+  /// PackagedProductDefinition.package.containedItem.item
+  /// (PackagedProductDefinition).
   final List<PackagedProductDefinitionPackage>? package;
   @override
   Map<String, dynamic> toJson() {

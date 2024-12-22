@@ -149,7 +149,7 @@ class Measure extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -631,7 +631,9 @@ class Measure extends CanonicalResource {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement);
+      'clinicalRecommendationStatement',
+      clinicalRecommendationStatement,
+    );
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);

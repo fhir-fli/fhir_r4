@@ -125,7 +125,7 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -135,7 +135,7 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
@@ -1989,7 +1989,8 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// An absolute URI that is a formal reference to where this parameter was
   /// first defined, so that a client can be confident of the meaning of the
   /// search parameter (a reference to
-  /// [SearchParameter.url](searchparameter-definitions.html#SearchParameter.url)).
+  /// [SearchParameter.url]
+  /// (searchparameter-definitions.html#SearchParameter.url)).
   /// This element SHALL be populated if the search parameter refers to a
   /// SearchParameter defined by the FHIR core specification or externally
   /// defined IGs.

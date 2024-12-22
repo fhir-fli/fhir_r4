@@ -1869,8 +1869,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     addField('extension', extension_);
     addField('modifierExtension', modifierExtension);
     final characteristicXFhirType = characteristicX.fhirType;
-    addField('characteristic${characteristicXFhirType.capitalize()}',
-        characteristicX);
+    addField(
+      'characteristic${characteristicXFhirType.capitalize()}',
+      characteristicX,
+    );
 
     addField('value', value);
     return json;

@@ -1,3 +1,5 @@
+/// This file contains a list of prefixes that are used in FHIRPath to indicate 
+/// that a path is polymorphic.
 bool startsWithAPolymorphicPrefix(String value) {
   for (final prefix in polymorphicPrefixes) {
     if (value.startsWith(prefix)) {
@@ -7,6 +9,8 @@ bool startsWithAPolymorphicPrefix(String value) {
   return false;
 }
 
+/// A set of prefixes that are used in FHIRPath to indicate that a path is
+/// polymorphic.
 const Set<String> polymorphicPrefixes = <String>{
   'abatement',
   'additive',

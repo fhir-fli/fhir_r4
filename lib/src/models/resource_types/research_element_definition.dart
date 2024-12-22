@@ -971,17 +971,25 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
+      'participantEffectiveDescription',
+      participantEffectiveDescription,
+    );
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX);
+      addField(
+        'participantEffective${fhirType.capitalize()}',
+        participantEffectiveX,
+      );
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+      'participantEffectiveTimeFromStart',
+      participantEffectiveTimeFromStart,
+    );
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+      'participantEffectiveGroupMeasure',
+      participantEffectiveGroupMeasure,
+    );
     return json;
   }
 

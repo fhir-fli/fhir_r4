@@ -132,6 +132,7 @@ class JsonParser {
     if (field != null) {
       final fieldType = field.fhirType;
       if (polymorphicTypeMap.containsKey(fieldType)) {
+        // ignore: avoid_dynamic_calls
         json[key] = polymorphicTypeMap[fieldType]!();
       }
     }
