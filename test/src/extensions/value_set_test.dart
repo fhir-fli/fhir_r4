@@ -32,5 +32,6 @@ void main() {
   // Validate the code
   final result = context.validateCode(ValidationOptions(), coding, valueSet);
 
+  // ignore: avoid_print
   print(result.message);
 }
