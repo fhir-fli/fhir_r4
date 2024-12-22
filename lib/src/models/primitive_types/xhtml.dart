@@ -159,6 +159,8 @@ class FhirXhtml extends PrimitiveType<String?> {
     'cite',
     'abbr',
     'acronym',
+    'samp',
+    'sup',
   ];
 
   /// Allowed attributes for XHTML elements.

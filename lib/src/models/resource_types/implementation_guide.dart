@@ -100,7 +100,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
@@ -120,7 +120,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -1968,15 +1968,15 @@ class ImplementationGuideManifest extends BackboneElement {
         FhirUrl.fromJson,
       ),
       resource: (json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>(
-            (v) => ImplementationGuideResource.fromJson(
+          .map<ImplementationGuideResource1>(
+            (v) => ImplementationGuideResource1.fromJson(
               v as Map<String, dynamic>,
             ),
           )
           .toList(),
       page: (json['page'] as List<dynamic>?)
-          ?.map<ImplementationGuidePage>(
-            (v) => ImplementationGuidePage.fromJson(
+          ?.map<ImplementationGuidePage1>(
+            (v) => ImplementationGuidePage1.fromJson(
               v as Map<String, dynamic>,
             ),
           )
@@ -2046,11 +2046,11 @@ class ImplementationGuideManifest extends BackboneElement {
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource> resource;
+  final List<ImplementationGuideResource1> resource;
 
   /// [page]
   /// Information about a page within the IG.
-  final List<ImplementationGuidePage>? page;
+  final List<ImplementationGuidePage1>? page;
 
   /// [image]
   /// Indicates a relative path to an image that exists within the IG.
@@ -2109,8 +2109,8 @@ class ImplementationGuideManifest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? rendering,
-    List<ImplementationGuideResource>? resource,
-    List<ImplementationGuidePage>? page,
+    List<ImplementationGuideResource1>? resource,
+    List<ImplementationGuidePage1>? page,
     List<FhirString>? image,
     List<FhirString>? other,
     Map<String, Object?>? userData,

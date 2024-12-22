@@ -12,7 +12,7 @@ extension FhirUnsignedIntExtension on num {
           : throw FormatException('Invalid input for FhirUnsignedInt: $this');
 }
 
-/// Represents the FHIR primitive type `positiveInt`.
+/// Represents the FHIR primitive type `unsignedInt`.
 class FhirUnsignedInt extends FhirNumber
     implements
         AllowedXCoverageEligibilityResponseBenefit,
@@ -80,7 +80,7 @@ class FhirUnsignedInt extends FhirNumber
     return null;
   }
 
-  /// Validates that the input is a positive integer.
+  /// Validates that the input is a unsigned integer.
   static int _validateUnsignedInt(num? input) {
     if (input == null || input < 0 || input is! int) {
       throw FormatException('Invalid FhirUnsignedInt value: $input. '
@@ -122,7 +122,7 @@ class FhirUnsignedInt extends FhirNumber
 
   /// Returns the FHIR type as a string.
   @override
-  String get fhirType => 'positiveInt';
+  String get fhirType => 'unsignedInt';
 
   /// Serializes the instance to JSON with standardized keys.
   @override
