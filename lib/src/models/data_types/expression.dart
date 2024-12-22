@@ -119,7 +119,7 @@ class FhirExpression extends DataType
   }
 
   @override
-  String get fhirType => 'FhirExpression';
+  String get fhirType => 'Expression';
 
   /// [description]
   /// A brief, natural language description of the condition that effectively

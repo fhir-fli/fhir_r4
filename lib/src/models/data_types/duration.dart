@@ -126,7 +126,7 @@ class FhirDuration extends Quantity
   }
 
   @override
-  String get fhirType => 'FhirDuration';
+  String get fhirType => 'Duration';
 
   @override
   Map<String, dynamic> toJson() {

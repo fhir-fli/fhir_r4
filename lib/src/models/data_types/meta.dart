@@ -121,7 +121,7 @@ class FhirMeta extends DataType
   }
 
   @override
-  String get fhirType => 'FhirMeta';
+  String get fhirType => 'Meta';
 
   /// [versionId]
   /// The version specific identifier, as it appears in the version portion

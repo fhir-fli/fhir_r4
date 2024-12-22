@@ -199,7 +199,7 @@ class FhirList extends DomainResource {
   }
 
   @override
-  String get fhirType => 'FhirList';
+  String get fhirType => 'List';
 
   /// [identifier]
   /// Identifier for the List assigned for business purposes outside the

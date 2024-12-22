@@ -648,7 +648,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   /// Validates the components of a date-time.
   void _validateDateTimeComponents() {
     // Validate year
-    if (year == null || year! < 1 || year! > 9999) {
+    if ((year == null || year! < 1 || year! > 9999) && element == null) {
       throw ArgumentError('Invalid year: $year. Must be between 1 and 9999.');
     }
 

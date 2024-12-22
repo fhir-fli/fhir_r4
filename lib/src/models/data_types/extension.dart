@@ -134,7 +134,7 @@ class FhirExtension extends DataType {
   }
 
   @override
-  String get fhirType => 'FhirExtension';
+  String get fhirType => 'Extension';
 
   /// [url]
   /// Source of the definition for the extension code - a logical name or a

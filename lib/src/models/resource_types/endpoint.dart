@@ -190,7 +190,7 @@ class FhirEndpoint extends DomainResource {
   }
 
   @override
-  String get fhirType => 'FhirEndpoint';
+  String get fhirType => 'Endpoint';
 
   /// [identifier]
   /// Identifier for the organization that is used to identify the endpoint

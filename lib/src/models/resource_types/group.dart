@@ -184,7 +184,7 @@ class FhirGroup extends DomainResource {
   }
 
   @override
-  String get fhirType => 'FhirGroup';
+  String get fhirType => 'Group';
 
   /// [identifier]
   /// A unique business identifier for this group.
