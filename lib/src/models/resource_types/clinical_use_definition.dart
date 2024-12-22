@@ -248,94 +248,52 @@ class ClinicalUseDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (meta != null) {
-      json['meta'] = meta!.toJson();
-    }
-
-    if (implicitRules != null) {
-      addField('implicitRules', implicitRules);
-    }
-
-    if (language != null) {
-      addField('language', language);
-    }
-
-    if (text != null) {
-      json['text'] = text!.toJson();
-    }
-
-    if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((e) => e.toJson()).toList();
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
     addField('type', type);
-    if (category != null && category!.isNotEmpty) {
-      json['category'] = category!.map((e) => e.toJson()).toList();
-    }
-
-    if (subject != null && subject!.isNotEmpty) {
-      json['subject'] = subject!.map((e) => e.toJson()).toList();
-    }
-
-    if (status != null) {
-      json['status'] = status!.toJson();
-    }
-
-    if (contraindication != null) {
-      json['contraindication'] = contraindication!.toJson();
-    }
-
-    if (indication != null) {
-      json['indication'] = indication!.toJson();
-    }
-
-    if (interaction != null) {
-      json['interaction'] = interaction!.toJson();
-    }
-
-    if (population != null && population!.isNotEmpty) {
-      json['population'] = population!.map((e) => e.toJson()).toList();
-    }
-
-    if (undesirableEffect != null) {
-      json['undesirableEffect'] = undesirableEffect!.toJson();
-    }
-
-    if (warning != null) {
-      json['warning'] = warning!.toJson();
-    }
-
+    addField('category', category);
+    addField('subject', subject);
+    addField('status', status);
+    addField('contraindication', contraindication);
+    addField('indication', indication);
+    addField('interaction', interaction);
+    addField('population', population);
+    addField('undesirableEffect', undesirableEffect);
+    addField('warning', warning);
     return json;
   }
 
@@ -534,52 +492,40 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (diseaseSymptomProcedure != null) {
-      json['diseaseSymptomProcedure'] = diseaseSymptomProcedure!.toJson();
-    }
-
-    if (diseaseStatus != null) {
-      json['diseaseStatus'] = diseaseStatus!.toJson();
-    }
-
-    if (comorbidity != null && comorbidity!.isNotEmpty) {
-      json['comorbidity'] = comorbidity!.map((e) => e.toJson()).toList();
-    }
-
-    if (indication != null && indication!.isNotEmpty) {
-      json['indication'] = indication!.map((e) => e.toJson()).toList();
-    }
-
-    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
-      json['otherTherapy'] = otherTherapy!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('diseaseSymptomProcedure', diseaseSymptomProcedure);
+    addField('diseaseStatus', diseaseStatus);
+    addField('comorbidity', comorbidity);
+    addField('indication', indication);
+    addField('otherTherapy', otherTherapy);
     return json;
   }
 
@@ -721,36 +667,37 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    json['relationshipType'] = relationshipType.toJson();
-
-    json['therapy'] = therapy.toJson();
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('relationshipType', relationshipType);
+    addField('therapy', therapy);
     return json;
   }
 
@@ -946,61 +893,46 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (diseaseSymptomProcedure != null) {
-      json['diseaseSymptomProcedure'] = diseaseSymptomProcedure!.toJson();
-    }
-
-    if (diseaseStatus != null) {
-      json['diseaseStatus'] = diseaseStatus!.toJson();
-    }
-
-    if (comorbidity != null && comorbidity!.isNotEmpty) {
-      json['comorbidity'] = comorbidity!.map((e) => e.toJson()).toList();
-    }
-
-    if (intendedEffect != null) {
-      json['intendedEffect'] = intendedEffect!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('diseaseSymptomProcedure', diseaseSymptomProcedure);
+    addField('diseaseStatus', diseaseStatus);
+    addField('comorbidity', comorbidity);
+    addField('intendedEffect', intendedEffect);
     if (durationX != null) {
-      json['duration${durationX!.fhirType.capitalize()}'] = durationX!.toJson();
+      final fhirType = durationX!.fhirType;
+      addField('duration${fhirType.capitalize()}', durationX);
     }
 
-    if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
-      json['undesirableEffect'] =
-          undesirableEffect!.map((e) => e.toJson()).toList();
-    }
-
-    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
-      json['otherTherapy'] = otherTherapy!.map((e) => e.toJson()).toList();
-    }
-
+    addField('undesirableEffect', undesirableEffect);
+    addField('otherTherapy', otherTherapy);
     return json;
   }
 
@@ -1180,52 +1112,40 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (interactant != null && interactant!.isNotEmpty) {
-      json['interactant'] = interactant!.map((e) => e.toJson()).toList();
-    }
-
-    if (type != null) {
-      json['type'] = type!.toJson();
-    }
-
-    if (effect != null) {
-      json['effect'] = effect!.toJson();
-    }
-
-    if (incidence != null) {
-      json['incidence'] = incidence!.toJson();
-    }
-
-    if (management != null && management!.isNotEmpty) {
-      json['management'] = management!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('interactant', interactant);
+    addField('type', type);
+    addField('effect', effect);
+    addField('incidence', incidence);
+    addField('management', management);
     return json;
   }
 
@@ -1354,33 +1274,37 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    final itemXFhirType = itemX.fhirType;
+    addField('item${itemXFhirType.capitalize()}', itemX);
 
     return json;
   }
@@ -1522,44 +1446,38 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (symptomConditionEffect != null) {
-      json['symptomConditionEffect'] = symptomConditionEffect!.toJson();
-    }
-
-    if (classification != null) {
-      json['classification'] = classification!.toJson();
-    }
-
-    if (frequencyOfOccurrence != null) {
-      json['frequencyOfOccurrence'] = frequencyOfOccurrence!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('symptomConditionEffect', symptomConditionEffect);
+    addField('classification', classification);
+    addField('frequencyOfOccurrence', frequencyOfOccurrence);
     return json;
   }
 
@@ -1698,40 +1616,37 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (description != null) {
-      addField('description', description);
-    }
-
-    if (code != null) {
-      json['code'] = code!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('description', description);
+    addField('code', code);
     return json;
   }
 

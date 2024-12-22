@@ -225,84 +225,46 @@ class ProdCharacteristic extends BackboneType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (height != null) {
-      json['height'] = height!.toJson();
-    }
-
-    if (width != null) {
-      json['width'] = width!.toJson();
-    }
-
-    if (depth != null) {
-      json['depth'] = depth!.toJson();
-    }
-
-    if (weight != null) {
-      json['weight'] = weight!.toJson();
-    }
-
-    if (nominalVolume != null) {
-      json['nominalVolume'] = nominalVolume!.toJson();
-    }
-
-    if (externalDiameter != null) {
-      json['externalDiameter'] = externalDiameter!.toJson();
-    }
-
-    if (shape != null) {
-      addField('shape', shape);
-    }
-
-    if (color != null && color!.isNotEmpty) {
-      final fieldJson0 = color!.map((e) => e.toJson()).toList();
-      json['color'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_color'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (imprint != null && imprint!.isNotEmpty) {
-      final fieldJson1 = imprint!.map((e) => e.toJson()).toList();
-      json['imprint'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_imprint'] = fieldJson1.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (image != null && image!.isNotEmpty) {
-      json['image'] = image!.map((e) => e.toJson()).toList();
-    }
-
-    if (scoring != null) {
-      json['scoring'] = scoring!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('height', height);
+    addField('width', width);
+    addField('depth', depth);
+    addField('weight', weight);
+    addField('nominalVolume', nominalVolume);
+    addField('externalDiameter', externalDiameter);
+    addField('shape', shape);
+    addField('color', color);
+    addField('imprint', imprint);
+    addField('image', image);
+    addField('scoring', scoring);
     return json;
   }
 

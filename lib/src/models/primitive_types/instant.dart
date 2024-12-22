@@ -210,6 +210,12 @@ class FhirInstant extends FhirDateTimeBase
   @override
   FhirInstant clone() => FhirInstant.fromJson(toJson());
 
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString.isNotEmpty) 'value': valueString,
+        if (element != null) '_value': element?.toJson(),
+      };
+
   /// Creates a copy of the [FhirInstant], allowing modifications to properties.
   @override
   FhirInstant copyWith({

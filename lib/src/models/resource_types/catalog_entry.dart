@@ -268,105 +268,54 @@ class CatalogEntry extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (meta != null) {
-      json['meta'] = meta!.toJson();
-    }
-
-    if (implicitRules != null) {
-      addField('implicitRules', implicitRules);
-    }
-
-    if (language != null) {
-      addField('language', language);
-    }
-
-    if (text != null) {
-      json['text'] = text!.toJson();
-    }
-
-    if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((e) => e.toJson()).toList();
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
-    }
-
-    if (type != null) {
-      json['type'] = type!.toJson();
-    }
-
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
     addField('orderable', orderable);
-    json['referencedItem'] = referencedItem.toJson();
-
-    if (additionalIdentifier != null && additionalIdentifier!.isNotEmpty) {
-      json['additionalIdentifier'] =
-          additionalIdentifier!.map((e) => e.toJson()).toList();
-    }
-
-    if (classification != null && classification!.isNotEmpty) {
-      json['classification'] = classification!.map((e) => e.toJson()).toList();
-    }
-
-    if (status != null) {
-      addField('status', status);
-    }
-
-    if (validityPeriod != null) {
-      json['validityPeriod'] = validityPeriod!.toJson();
-    }
-
-    if (validTo != null) {
-      addField('validTo', validTo);
-    }
-
-    if (lastUpdated != null) {
-      addField('lastUpdated', lastUpdated);
-    }
-
-    if (additionalCharacteristic != null &&
-        additionalCharacteristic!.isNotEmpty) {
-      json['additionalCharacteristic'] =
-          additionalCharacteristic!.map((e) => e.toJson()).toList();
-    }
-
-    if (additionalClassification != null &&
-        additionalClassification!.isNotEmpty) {
-      json['additionalClassification'] =
-          additionalClassification!.map((e) => e.toJson()).toList();
-    }
-
-    if (relatedEntry != null && relatedEntry!.isNotEmpty) {
-      json['relatedEntry'] = relatedEntry!.map((e) => e.toJson()).toList();
-    }
-
+    addField('referencedItem', referencedItem);
+    addField('additionalIdentifier', additionalIdentifier);
+    addField('classification', classification);
+    addField('status', status);
+    addField('validityPeriod', validityPeriod);
+    addField('validTo', validTo);
+    addField('lastUpdated', lastUpdated);
+    addField('additionalCharacteristic', additionalCharacteristic);
+    addField('additionalClassification', additionalClassification);
+    addField('relatedEntry', relatedEntry);
     return json;
   }
 
@@ -534,35 +483,37 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     addField('relationtype', relationtype);
-    json['item'] = item.toJson();
-
+    addField('item', item);
     return json;
   }
 

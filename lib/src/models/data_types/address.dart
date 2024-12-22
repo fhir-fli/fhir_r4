@@ -207,71 +207,44 @@ class Address extends DataType
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (use != null) {
-      addField('use', use);
-    }
-
-    if (type != null) {
-      addField('type', type);
-    }
-
-    if (text != null) {
-      addField('text', text);
-    }
-
-    if (line != null && line!.isNotEmpty) {
-      final fieldJson0 = line!.map((e) => e.toJson()).toList();
-      json['line'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_line'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (city != null) {
-      addField('city', city);
-    }
-
-    if (district != null) {
-      addField('district', district);
-    }
-
-    if (state != null) {
-      addField('state', state);
-    }
-
-    if (postalCode != null) {
-      addField('postalCode', postalCode);
-    }
-
-    if (country != null) {
-      addField('country', country);
-    }
-
-    if (period != null) {
-      json['period'] = period!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('use', use);
+    addField('type', type);
+    addField('text', text);
+    addField('line', line);
+    addField('city', city);
+    addField('district', district);
+    addField('state', state);
+    addField('postalCode', postalCode);
+    addField('country', country);
+    addField('period', period);
     return json;
   }
 

@@ -365,136 +365,67 @@ class Media extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (meta != null) {
-      json['meta'] = meta!.toJson();
-    }
-
-    if (implicitRules != null) {
-      addField('implicitRules', implicitRules);
-    }
-
-    if (language != null) {
-      addField('language', language);
-    }
-
-    if (text != null) {
-      json['text'] = text!.toJson();
-    }
-
-    if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((e) => e.toJson()).toList();
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
-    }
-
-    if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
-    }
-
-    if (partOf != null && partOf!.isNotEmpty) {
-      json['partOf'] = partOf!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('partOf', partOf);
     addField('status', status);
-    if (type != null) {
-      json['type'] = type!.toJson();
-    }
-
-    if (modality != null) {
-      json['modality'] = modality!.toJson();
-    }
-
-    if (view != null) {
-      json['view'] = view!.toJson();
-    }
-
-    if (subject != null) {
-      json['subject'] = subject!.toJson();
-    }
-
-    if (encounter != null) {
-      json['encounter'] = encounter!.toJson();
-    }
-
+    addField('type', type);
+    addField('modality', modality);
+    addField('view', view);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (createdX != null) {
-      addField('created${createdX!.fhirType.capitalize()}', createdX);
+      final fhirType = createdX!.fhirType;
+      addField('created${fhirType.capitalize()}', createdX);
     }
 
-    if (issued != null) {
-      addField('issued', issued);
-    }
-
-    if (operator_ != null) {
-      json['operator'] = operator_!.toJson();
-    }
-
-    if (reasonCode != null && reasonCode!.isNotEmpty) {
-      json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
-    }
-
-    if (bodySite != null) {
-      json['bodySite'] = bodySite!.toJson();
-    }
-
-    if (deviceName != null) {
-      addField('deviceName', deviceName);
-    }
-
-    if (device != null) {
-      json['device'] = device!.toJson();
-    }
-
-    if (height != null) {
-      addField('height', height);
-    }
-
-    if (width != null) {
-      addField('width', width);
-    }
-
-    if (frames != null) {
-      addField('frames', frames);
-    }
-
-    if (duration != null) {
-      addField('duration', duration);
-    }
-
-    json['content'] = content.toJson();
-
-    if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map((e) => e.toJson()).toList();
-    }
-
+    addField('issued', issued);
+    addField('operator', operator_);
+    addField('reasonCode', reasonCode);
+    addField('bodySite', bodySite);
+    addField('deviceName', deviceName);
+    addField('device', device);
+    addField('height', height);
+    addField('width', width);
+    addField('frames', frames);
+    addField('duration', duration);
+    addField('content', content);
+    addField('note', note);
     return json;
   }
 

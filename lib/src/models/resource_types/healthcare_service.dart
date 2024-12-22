@@ -415,150 +415,65 @@ class HealthcareService extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (meta != null) {
-      json['meta'] = meta!.toJson();
-    }
-
-    if (implicitRules != null) {
-      addField('implicitRules', implicitRules);
-    }
-
-    if (language != null) {
-      addField('language', language);
-    }
-
-    if (text != null) {
-      json['text'] = text!.toJson();
-    }
-
-    if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((e) => e.toJson()).toList();
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
-    }
-
-    if (active != null) {
-      addField('active', active);
-    }
-
-    if (providedBy != null) {
-      json['providedBy'] = providedBy!.toJson();
-    }
-
-    if (category != null && category!.isNotEmpty) {
-      json['category'] = category!.map((e) => e.toJson()).toList();
-    }
-
-    if (type != null && type!.isNotEmpty) {
-      json['type'] = type!.map((e) => e.toJson()).toList();
-    }
-
-    if (specialty != null && specialty!.isNotEmpty) {
-      json['specialty'] = specialty!.map((e) => e.toJson()).toList();
-    }
-
-    if (location != null && location!.isNotEmpty) {
-      json['location'] = location!.map((e) => e.toJson()).toList();
-    }
-
-    if (name != null) {
-      addField('name', name);
-    }
-
-    if (comment != null) {
-      addField('comment', comment);
-    }
-
-    if (extraDetails != null) {
-      addField('extraDetails', extraDetails);
-    }
-
-    if (photo != null) {
-      json['photo'] = photo!.toJson();
-    }
-
-    if (telecom != null && telecom!.isNotEmpty) {
-      json['telecom'] = telecom!.map((e) => e.toJson()).toList();
-    }
-
-    if (coverageArea != null && coverageArea!.isNotEmpty) {
-      json['coverageArea'] = coverageArea!.map((e) => e.toJson()).toList();
-    }
-
-    if (serviceProvisionCode != null && serviceProvisionCode!.isNotEmpty) {
-      json['serviceProvisionCode'] =
-          serviceProvisionCode!.map((e) => e.toJson()).toList();
-    }
-
-    if (eligibility != null && eligibility!.isNotEmpty) {
-      json['eligibility'] = eligibility!.map((e) => e.toJson()).toList();
-    }
-
-    if (program != null && program!.isNotEmpty) {
-      json['program'] = program!.map((e) => e.toJson()).toList();
-    }
-
-    if (characteristic != null && characteristic!.isNotEmpty) {
-      json['characteristic'] = characteristic!.map((e) => e.toJson()).toList();
-    }
-
-    if (communication != null && communication!.isNotEmpty) {
-      json['communication'] = communication!.map((e) => e.toJson()).toList();
-    }
-
-    if (referralMethod != null && referralMethod!.isNotEmpty) {
-      json['referralMethod'] = referralMethod!.map((e) => e.toJson()).toList();
-    }
-
-    if (appointmentRequired != null) {
-      addField('appointmentRequired', appointmentRequired);
-    }
-
-    if (availableTime != null && availableTime!.isNotEmpty) {
-      json['availableTime'] = availableTime!.map((e) => e.toJson()).toList();
-    }
-
-    if (notAvailable != null && notAvailable!.isNotEmpty) {
-      json['notAvailable'] = notAvailable!.map((e) => e.toJson()).toList();
-    }
-
-    if (availabilityExceptions != null) {
-      addField('availabilityExceptions', availabilityExceptions);
-    }
-
-    if (endpoint != null && endpoint!.isNotEmpty) {
-      json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('providedBy', providedBy);
+    addField('category', category);
+    addField('type', type);
+    addField('specialty', specialty);
+    addField('location', location);
+    addField('name', name);
+    addField('comment', comment);
+    addField('extraDetails', extraDetails);
+    addField('photo', photo);
+    addField('telecom', telecom);
+    addField('coverageArea', coverageArea);
+    addField('serviceProvisionCode', serviceProvisionCode);
+    addField('eligibility', eligibility);
+    addField('program', program);
+    addField('characteristic', characteristic);
+    addField('communication', communication);
+    addField('referralMethod', referralMethod);
+    addField('appointmentRequired', appointmentRequired);
+    addField('availableTime', availableTime);
+    addField('notAvailable', notAvailable);
+    addField('availabilityExceptions', availabilityExceptions);
+    addField('endpoint', endpoint);
     return json;
   }
 
@@ -746,40 +661,37 @@ class HealthcareServiceEligibility extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (code != null) {
-      json['code'] = code!.toJson();
-    }
-
-    if (comment != null) {
-      addField('comment', comment);
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('comment', comment);
     return json;
   }
 
@@ -935,52 +847,39 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (daysOfWeek != null && daysOfWeek!.isNotEmpty) {
-      final fieldJson0 = daysOfWeek!.map((e) => e.toJson()).toList();
-      json['daysOfWeek'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_daysOfWeek'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (allDay != null) {
-      addField('allDay', allDay);
-    }
-
-    if (availableStartTime != null) {
-      addField('availableStartTime', availableStartTime);
-    }
-
-    if (availableEndTime != null) {
-      addField('availableEndTime', availableEndTime);
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('daysOfWeek', daysOfWeek);
+    addField('allDay', allDay);
+    addField('availableStartTime', availableStartTime);
+    addField('availableEndTime', availableEndTime);
     return json;
   }
 
@@ -1119,37 +1018,37 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     addField('description', description);
-    if (during != null) {
-      json['during'] = during!.toJson();
-    }
-
+    addField('during', during);
     return json;
   }
 

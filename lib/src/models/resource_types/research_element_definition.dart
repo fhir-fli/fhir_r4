@@ -535,188 +535,78 @@ class ResearchElementDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (meta != null) {
-      json['meta'] = meta!.toJson();
-    }
-
-    if (implicitRules != null) {
-      addField('implicitRules', implicitRules);
-    }
-
-    if (language != null) {
-      addField('language', language);
-    }
-
-    if (text != null) {
-      json['text'] = text!.toJson();
-    }
-
-    if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((e) => e.toJson()).toList();
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (url != null) {
-      addField('url', url);
-    }
-
-    if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
-    }
-
-    if (version != null) {
-      addField('version', version);
-    }
-
-    if (name != null) {
-      addField('name', name);
-    }
-
-    if (title != null) {
-      addField('title', title);
-    }
-
-    if (shortTitle != null) {
-      addField('shortTitle', shortTitle);
-    }
-
-    if (subtitle != null) {
-      addField('subtitle', subtitle);
-    }
-
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('shortTitle', shortTitle);
+    addField('subtitle', subtitle);
     addField('status', status);
-    if (experimental != null) {
-      addField('experimental', experimental);
-    }
-
+    addField('experimental', experimental);
     if (subjectX != null) {
-      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
+      final fhirType = subjectX!.fhirType;
+      addField('subject${fhirType.capitalize()}', subjectX);
     }
 
-    if (date != null) {
-      addField('date', date);
-    }
-
-    if (publisher != null) {
-      addField('publisher', publisher);
-    }
-
-    if (contact != null && contact!.isNotEmpty) {
-      json['contact'] = contact!.map((e) => e.toJson()).toList();
-    }
-
-    if (description != null) {
-      addField('description', description);
-    }
-
-    if (comment != null && comment!.isNotEmpty) {
-      final fieldJson0 = comment!.map((e) => e.toJson()).toList();
-      json['comment'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_comment'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (useContext != null && useContext!.isNotEmpty) {
-      json['useContext'] = useContext!.map((e) => e.toJson()).toList();
-    }
-
-    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
-      json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
-    }
-
-    if (purpose != null) {
-      addField('purpose', purpose);
-    }
-
-    if (usage != null) {
-      addField('usage', usage);
-    }
-
-    if (copyright != null) {
-      addField('copyright', copyright);
-    }
-
-    if (approvalDate != null) {
-      addField('approvalDate', approvalDate);
-    }
-
-    if (lastReviewDate != null) {
-      addField('lastReviewDate', lastReviewDate);
-    }
-
-    if (effectivePeriod != null) {
-      json['effectivePeriod'] = effectivePeriod!.toJson();
-    }
-
-    if (topic != null && topic!.isNotEmpty) {
-      json['topic'] = topic!.map((e) => e.toJson()).toList();
-    }
-
-    if (author != null && author!.isNotEmpty) {
-      json['author'] = author!.map((e) => e.toJson()).toList();
-    }
-
-    if (editor != null && editor!.isNotEmpty) {
-      json['editor'] = editor!.map((e) => e.toJson()).toList();
-    }
-
-    if (reviewer != null && reviewer!.isNotEmpty) {
-      json['reviewer'] = reviewer!.map((e) => e.toJson()).toList();
-    }
-
-    if (endorser != null && endorser!.isNotEmpty) {
-      json['endorser'] = endorser!.map((e) => e.toJson()).toList();
-    }
-
-    if (relatedArtifact != null && relatedArtifact!.isNotEmpty) {
-      json['relatedArtifact'] =
-          relatedArtifact!.map((e) => e.toJson()).toList();
-    }
-
-    if (library_ != null && library_!.isNotEmpty) {
-      final fieldJson1 = library_!.map((e) => e.toJson()).toList();
-      json['library'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_library'] = fieldJson1.map((e) => e['_value']).toList();
-      }
-    }
-
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('comment', comment);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('usage', usage);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
+    addField('effectivePeriod', effectivePeriod);
+    addField('topic', topic);
+    addField('author', author);
+    addField('editor', editor);
+    addField('reviewer', reviewer);
+    addField('endorser', endorser);
+    addField('relatedArtifact', relatedArtifact);
+    addField('library', library_);
     addField('type', type);
-    if (variableType != null) {
-      addField('variableType', variableType);
-    }
-
-    if (characteristic.isNotEmpty) {
-      json['characteristic'] = characteristic.map((e) => e.toJson()).toList();
-    }
-
+    addField('variableType', variableType);
+    addField('characteristic', characteristic);
     return json;
   }
 
@@ -1037,86 +927,61 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    final definitionXFhirType = definitionX.fhirType;
+    addField('definition${definitionXFhirType.capitalize()}', definitionX);
 
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    json['definition${definitionX.fhirType.capitalize()}'] =
-        definitionX.toJson();
-
-    if (usageContext != null && usageContext!.isNotEmpty) {
-      json['usageContext'] = usageContext!.map((e) => e.toJson()).toList();
-    }
-
-    if (exclude != null) {
-      addField('exclude', exclude);
-    }
-
-    if (unitOfMeasure != null) {
-      json['unitOfMeasure'] = unitOfMeasure!.toJson();
-    }
-
-    if (studyEffectiveDescription != null) {
-      addField('studyEffectiveDescription', studyEffectiveDescription);
-    }
-
+    addField('usageContext', usageContext);
+    addField('exclude', exclude);
+    addField('unitOfMeasure', unitOfMeasure);
+    addField('studyEffectiveDescription', studyEffectiveDescription);
     if (studyEffectiveX != null) {
-      addField('studyEffective${studyEffectiveX!.fhirType.capitalize()}',
-          studyEffectiveX);
+      final fhirType = studyEffectiveX!.fhirType;
+      addField('studyEffective${fhirType.capitalize()}', studyEffectiveX);
     }
 
-    if (studyEffectiveTimeFromStart != null) {
-      json['studyEffectiveTimeFromStart'] =
-          studyEffectiveTimeFromStart!.toJson();
-    }
-
-    if (studyEffectiveGroupMeasure != null) {
-      addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
-    }
-
-    if (participantEffectiveDescription != null) {
-      addField(
-          'participantEffectiveDescription', participantEffectiveDescription);
-    }
-
+    addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
+    addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
+    addField(
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
-      addField(
-          'participantEffective${participantEffectiveX!.fhirType.capitalize()}',
+      final fhirType = participantEffectiveX!.fhirType;
+      addField('participantEffective${fhirType.capitalize()}',
           participantEffectiveX);
     }
 
-    if (participantEffectiveTimeFromStart != null) {
-      json['participantEffectiveTimeFromStart'] =
-          participantEffectiveTimeFromStart!.toJson();
-    }
-
-    if (participantEffectiveGroupMeasure != null) {
-      addField(
-          'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
-    }
-
+    addField(
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+    addField(
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 

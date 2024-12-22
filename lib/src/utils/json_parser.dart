@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A utility class to parse JSON fields.
 class JsonParser {
   /// Parse a single primitive or enum field.
@@ -66,5 +68,72 @@ class JsonParser {
       }
     }
     return null;
+  }
+
+  /// Add a single primitive or enum field to a JSON map.
+  static void addPrimitive<T extends DataType>(
+    Map<String, dynamic> json,
+    String key,
+    PrimitiveType<dynamic>? field,
+  ) {
+    if (field != null) {
+      final fieldJson = field.toJson();
+      json[key] = fieldJson['value'];
+      if (fieldJson['_value'] != null) {
+        json['_$key'] = fieldJson['_value'];
+      }
+    }
+  }
+
+  /// Add a list of primitives or enums to a JSON map.
+  static void addPrimitiveList<T extends DataType>(
+    Map<String, dynamic> json,
+    String key,
+    List<PrimitiveType<dynamic>>? field,
+  ) {
+    if (field != null && field.isNotEmpty) {
+      final fieldJson = field.map((e) => e.toJson()).toList();
+      json[key] = fieldJson.map((e) => e['value']).toList();
+      if (fieldJson.any((e) => e['_value'] != null)) {
+        json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+      }
+    }
+  }
+
+  /// Add a single complex object to a JSON map.
+  static void addObject<T extends DataType>(
+    Map<String, dynamic> json,
+    String key,
+    T? field,
+  ) {
+    if (field != null) {
+      json[key] = field.toJson();
+    }
+  }
+
+  /// Add a list of complex objects to a JSON map.
+  static void addList<T extends FhirBase>(
+    Map<String, dynamic> json,
+    String key,
+    List<T>? field,
+  ) {
+    if (field != null && field.isNotEmpty) {
+      json[key] = field.map((e) => e.toJson()).toList();
+    }
+  }
+
+  /// Add polymorphic fields to a JSON map.
+  static void addPolymorphic(
+    Map<String, dynamic> json,
+    String key,
+    FhirBase? field,
+    Map<String, Function> polymorphicTypeMap,
+  ) {
+    if (field != null) {
+      final fieldType = field.fhirType;
+      if (polymorphicTypeMap.containsKey(fieldType)) {
+        json[key] = polymorphicTypeMap[fieldType]!();
+      }
+    }
   }
 }

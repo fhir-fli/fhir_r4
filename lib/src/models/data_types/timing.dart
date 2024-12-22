@@ -152,48 +152,38 @@ class Timing extends BackboneType
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((e) => e.toJson()).toList();
-    }
-
-    if (event != null && event!.isNotEmpty) {
-      final fieldJson0 = event!.map((e) => e.toJson()).toList();
-      json['event'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_event'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (repeat != null) {
-      json['repeat'] = repeat!.toJson();
-    }
-
-    if (code != null) {
-      json['code'] = code!.toJson();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('event', event);
+    addField('repeat', repeat);
+    addField('code', code);
     return json;
   }
 
@@ -470,99 +460,53 @@ class TimingRepeat extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    void addField(String key, FhirBase? field) {
-      if (field != null) {
-        if (field is PrimitiveType) {
-          json[key] = field.toJson()['value'];
-          if (field.toJson()['_value'] != null) {
-            json['_$key'] = field.toJson()['_value'];
+    void addField(String key, dynamic field) {
+      if (!(field is FhirBase? || field is List<FhirBase>?)) {
+        throw ArgumentError('"field" must be a FhirBase type');
+      }
+      if (field == null) return;
+      if (field is PrimitiveType) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      } else if (field is List<FhirBase>) {
+        if (field.isEmpty) return;
+        if (field.first is PrimitiveType) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = field.toJson();
+          json[key] = field.map((e) => e.toJson()).toList();
         }
+      } else if (field is FhirBase) {
+        json[key] = field.toJson();
       }
     }
 
-    if (id != null) {
-      addField('id', id);
-    }
-
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] = extension_!.map((e) => e.toJson()).toList();
-    }
-
+    addField('id', id);
+    addField('extension', extension_);
     if (boundsX != null) {
-      json['bounds${boundsX!.fhirType.capitalize()}'] = boundsX!.toJson();
+      final fhirType = boundsX!.fhirType;
+      addField('bounds${fhirType.capitalize()}', boundsX);
     }
 
-    if (count != null) {
-      addField('count', count);
-    }
-
-    if (countMax != null) {
-      addField('countMax', countMax);
-    }
-
-    if (duration != null) {
-      addField('duration', duration);
-    }
-
-    if (durationMax != null) {
-      addField('durationMax', durationMax);
-    }
-
-    if (durationUnit != null) {
-      addField('durationUnit', durationUnit);
-    }
-
-    if (frequency != null) {
-      addField('frequency', frequency);
-    }
-
-    if (frequencyMax != null) {
-      addField('frequencyMax', frequencyMax);
-    }
-
-    if (period != null) {
-      addField('period', period);
-    }
-
-    if (periodMax != null) {
-      addField('periodMax', periodMax);
-    }
-
-    if (periodUnit != null) {
-      addField('periodUnit', periodUnit);
-    }
-
-    if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
-      final fieldJson0 = dayOfWeek!.map((e) => e.toJson()).toList();
-      json['dayOfWeek'] = fieldJson0.map((e) => e['value']).toList();
-      if (fieldJson0.any((e) => e['_value'] != null)) {
-        json['_dayOfWeek'] = fieldJson0.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (timeOfDay != null && timeOfDay!.isNotEmpty) {
-      final fieldJson1 = timeOfDay!.map((e) => e.toJson()).toList();
-      json['timeOfDay'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_timeOfDay'] = fieldJson1.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (when != null && when!.isNotEmpty) {
-      final fieldJson2 = when!.map((e) => e.toJson()).toList();
-      json['when'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_when'] = fieldJson2.map((e) => e['_value']).toList();
-      }
-    }
-
-    if (offset != null) {
-      addField('offset', offset);
-    }
-
+    addField('count', count);
+    addField('countMax', countMax);
+    addField('duration', duration);
+    addField('durationMax', durationMax);
+    addField('durationUnit', durationUnit);
+    addField('frequency', frequency);
+    addField('frequencyMax', frequencyMax);
+    addField('period', period);
+    addField('periodMax', periodMax);
+    addField('periodUnit', periodUnit);
+    addField('dayOfWeek', dayOfWeek);
+    addField('timeOfDay', timeOfDay);
+    addField('when', when);
+    addField('offset', offset);
     return json;
   }
 

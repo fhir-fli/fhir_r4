@@ -217,6 +217,12 @@ class FhirDate extends FhirDateTimeBase
   @override
   FhirDate clone() => FhirDate.fromJson(toJson());
 
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString.isNotEmpty) 'value': valueString,
+        if (element != null) '_value': element?.toJson(),
+      };
+
   /// Copies the current [FhirDate], allowing for changes to its properties.
   ///
   /// Supports changing the [value] and associated [element], as well as other
