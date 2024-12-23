@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationStatement Status Codes
-class MedicationStatementStatusCodes extends PrimitiveType<String> {
+class MedicationStatementStatusCodes extends FhirCode {
   // Private constructor for internal use (like enum)
   MedicationStatementStatusCodes._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [MedicationStatementStatusCodes] from JSON.
@@ -134,6 +135,7 @@ class MedicationStatementStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -147,6 +149,7 @@ class MedicationStatementStatusCodes extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

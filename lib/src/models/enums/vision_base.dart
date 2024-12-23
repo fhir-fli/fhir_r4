@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded concept listing the base codes.
-class VisionBase extends PrimitiveType<String> {
+class VisionBase extends FhirCode {
   // Private constructor for internal use (like enum)
   VisionBase._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [VisionBase] from JSON.
@@ -101,6 +102,7 @@ class VisionBase extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -114,6 +116,7 @@ class VisionBase extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that convey the current status of the research study.
-class ResearchStudyStatus extends PrimitiveType<String> {
+class ResearchStudyStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   ResearchStudyStatus._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ResearchStudyStatus] from JSON.
@@ -147,6 +148,7 @@ class ResearchStudyStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -160,6 +162,7 @@ class ResearchStudyStatus extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

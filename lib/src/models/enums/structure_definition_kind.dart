@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines the type of structure that a definition is describing.
-class StructureDefinitionKind extends PrimitiveType<String> {
+class StructureDefinitionKind extends FhirCode {
   // Private constructor for internal use (like enum)
   StructureDefinitionKind._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [StructureDefinitionKind] from JSON.
@@ -103,6 +104,7 @@ class StructureDefinitionKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -116,6 +118,7 @@ class StructureDefinitionKind extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

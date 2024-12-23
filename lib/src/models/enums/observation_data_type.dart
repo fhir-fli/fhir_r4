@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Permitted data type for observation value.
-class ObservationDataType extends PrimitiveType<String> {
+class ObservationDataType extends FhirCode {
   // Private constructor for internal use (like enum)
   ObservationDataType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ObservationDataType] from JSON.
@@ -143,6 +144,7 @@ class ObservationDataType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -156,6 +158,7 @@ class ObservationDataType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

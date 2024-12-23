@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
-class CommonLanguages extends PrimitiveType<String> {
+class CommonLanguages extends FhirCode {
   // Private constructor for internal use (like enum)
   CommonLanguages._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CommonLanguages] from JSON.
@@ -413,6 +414,7 @@ class CommonLanguages extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -426,6 +428,7 @@ class CommonLanguages extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

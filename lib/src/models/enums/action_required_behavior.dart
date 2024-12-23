@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines expectations around whether an action or action group is required.
-class ActionRequiredBehavior extends PrimitiveType<String> {
+class ActionRequiredBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   ActionRequiredBehavior._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ActionRequiredBehavior] from JSON.
@@ -97,6 +98,7 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -110,6 +112,7 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

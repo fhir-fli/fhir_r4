@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Controls how multiple enableWhen values are interpreted - whether all or any must be true.
-class EnableWhenBehavior extends PrimitiveType<String> {
+class EnableWhenBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   EnableWhenBehavior._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [EnableWhenBehavior] from JSON.
@@ -89,6 +90,7 @@ class EnableWhenBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -102,6 +104,7 @@ class EnableWhenBehavior extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

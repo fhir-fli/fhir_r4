@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a capability statement is intended to be used.
-class CapabilityStatementKind extends PrimitiveType<String> {
+class CapabilityStatementKind extends FhirCode {
   // Private constructor for internal use (like enum)
   CapabilityStatementKind._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
@@ -96,6 +97,7 @@ class CapabilityStatementKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -109,6 +111,7 @@ class CapabilityStatementKind extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

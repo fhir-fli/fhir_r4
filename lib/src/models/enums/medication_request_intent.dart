@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Intent Codes
-class MedicationRequestIntent extends PrimitiveType<String> {
+class MedicationRequestIntent extends FhirCode {
   // Private constructor for internal use (like enum)
   MedicationRequestIntent._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
@@ -128,6 +129,7 @@ class MedicationRequestIntent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -141,6 +143,7 @@ class MedicationRequestIntent extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

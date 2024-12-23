@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Degree of preference of a type of conditioned specimen.
-class SpecimenContainedPreference extends PrimitiveType<String> {
+class SpecimenContainedPreference extends FhirCode {
   // Private constructor for internal use (like enum)
   SpecimenContainedPreference._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [SpecimenContainedPreference] from JSON.
@@ -92,6 +93,7 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -105,6 +107,7 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

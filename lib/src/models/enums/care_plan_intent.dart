@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the degree of authority/intentionality associated with a care plan.
-class CarePlanIntent extends PrimitiveType<String> {
+class CarePlanIntent extends FhirCode {
   // Private constructor for internal use (like enum)
   CarePlanIntent._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CarePlanIntent] from JSON.
@@ -131,6 +132,7 @@ class CarePlanIntent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -144,6 +146,7 @@ class CarePlanIntent extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

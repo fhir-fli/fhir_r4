@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Overall nature of the adverse event, e.g. real or potential.
-class AdverseEventActuality extends PrimitiveType<String> {
+class AdverseEventActuality extends FhirCode {
   // Private constructor for internal use (like enum)
   AdverseEventActuality._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [AdverseEventActuality] from JSON.
@@ -89,6 +90,7 @@ class AdverseEventActuality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -102,6 +104,7 @@ class AdverseEventActuality extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

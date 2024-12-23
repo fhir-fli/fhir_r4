@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of actor - system or human.
-class ExampleScenarioActorType extends PrimitiveType<String> {
+class ExampleScenarioActorType extends FhirCode {
   // Private constructor for internal use (like enum)
   ExampleScenarioActorType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ExampleScenarioActorType] from JSON.
@@ -90,6 +91,7 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -103,6 +105,7 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

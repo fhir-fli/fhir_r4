@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// If field is a list, how to manage the source.
-class StructureMapSourceListMode extends PrimitiveType<String> {
+class StructureMapSourceListMode extends FhirCode {
   // Private constructor for internal use (like enum)
   StructureMapSourceListMode._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [StructureMapSourceListMode] from JSON.
@@ -111,6 +112,7 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -124,6 +126,7 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

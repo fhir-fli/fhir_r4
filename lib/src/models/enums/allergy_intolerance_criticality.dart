@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
-class AllergyIntoleranceCriticality extends PrimitiveType<String> {
+class AllergyIntoleranceCriticality extends FhirCode {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceCriticality._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
@@ -99,6 +100,7 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -112,6 +114,7 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

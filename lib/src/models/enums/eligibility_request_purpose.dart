@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code specifying the types of information being requested.
-class EligibilityRequestPurpose extends PrimitiveType<String> {
+class EligibilityRequestPurpose extends FhirCode {
   // Private constructor for internal use (like enum)
   EligibilityRequestPurpose._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
@@ -105,6 +106,7 @@ class EligibilityRequestPurpose extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -118,6 +120,7 @@ class EligibilityRequestPurpose extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The allowable request method or HTTP operation codes.
-class TestScriptRequestMethodCode extends PrimitiveType<String> {
+class TestScriptRequestMethodCode extends FhirCode {
   // Private constructor for internal use (like enum)
   TestScriptRequestMethodCode._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [TestScriptRequestMethodCode] from JSON.
@@ -123,6 +124,7 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -136,6 +138,7 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

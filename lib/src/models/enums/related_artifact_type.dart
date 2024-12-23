@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relationship to the related artifact.
-class RelatedArtifactType extends PrimitiveType<String> {
+class RelatedArtifactType extends FhirCode {
   // Private constructor for internal use (like enum)
   RelatedArtifactType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [RelatedArtifactType] from JSON.
@@ -125,6 +126,7 @@ class RelatedArtifactType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -138,6 +140,7 @@ class RelatedArtifactType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

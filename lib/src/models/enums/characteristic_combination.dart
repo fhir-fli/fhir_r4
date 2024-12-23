@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Logical grouping of characteristics.
-class CharacteristicCombination extends PrimitiveType<String> {
+class CharacteristicCombination extends FhirCode {
   // Private constructor for internal use (like enum)
   CharacteristicCombination._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CharacteristicCombination] from JSON.
@@ -91,6 +92,7 @@ class CharacteristicCombination extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -104,6 +106,7 @@ class CharacteristicCombination extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code to indicate if the substance is actively used.
-class FHIRSubstanceStatus extends PrimitiveType<String> {
+class FHIRSubstanceStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   FHIRSubstanceStatus._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
@@ -95,6 +96,7 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -108,6 +110,7 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a clinical impression within its overall lifecycle.
-class ClinicalImpressionStatus extends PrimitiveType<String> {
+class ClinicalImpressionStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   ClinicalImpressionStatus._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ClinicalImpressionStatus] from JSON.
@@ -129,6 +130,7 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -142,6 +144,7 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

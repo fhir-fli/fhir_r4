@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR RESTful interaction codes used for SubscriptionTopic trigger.
-class InteractionTrigger extends PrimitiveType<String> {
+class InteractionTrigger extends FhirCode {
   // Private constructor for internal use (like enum)
   InteractionTrigger._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [InteractionTrigger] from JSON.
@@ -179,6 +180,7 @@ class InteractionTrigger extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -192,6 +194,7 @@ class InteractionTrigger extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

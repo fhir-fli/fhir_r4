@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
-class MessageheaderResponseRequest extends PrimitiveType<String> {
+class MessageheaderResponseRequest extends FhirCode {
   // Private constructor for internal use (like enum)
   MessageheaderResponseRequest._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
@@ -106,6 +107,7 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -119,6 +121,7 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

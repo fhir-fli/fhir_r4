@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relations between entries.
-class CatalogEntryRelationType extends PrimitiveType<String> {
+class CatalogEntryRelationType extends FhirCode {
   // Private constructor for internal use (like enum)
   CatalogEntryRelationType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CatalogEntryRelationType] from JSON.
@@ -91,6 +92,7 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -104,6 +106,7 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

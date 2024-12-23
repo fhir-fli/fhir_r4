@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
-class SubscriptionSearchModifier extends PrimitiveType<String> {
+class SubscriptionSearchModifier extends FhirCode {
   // Private constructor for internal use (like enum)
   SubscriptionSearchModifier._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
@@ -163,6 +164,7 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -176,6 +178,7 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
-class AllergyIntoleranceSeverity extends PrimitiveType<String> {
+class AllergyIntoleranceSeverity extends FhirCode {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceSeverity._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
@@ -97,6 +98,7 @@ class AllergyIntoleranceSeverity extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -110,6 +112,7 @@ class AllergyIntoleranceSeverity extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

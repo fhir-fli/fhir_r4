@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a resource reference is interpreted when testing consent restrictions.
-class ConsentDataMeaning extends PrimitiveType<String> {
+class ConsentDataMeaning extends FhirCode {
   // Private constructor for internal use (like enum)
   ConsentDataMeaning._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ConsentDataMeaning] from JSON.
@@ -101,6 +102,7 @@ class ConsentDataMeaning extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -114,6 +116,7 @@ class ConsentDataMeaning extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

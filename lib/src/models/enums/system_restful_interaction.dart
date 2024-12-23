@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Operations supported by REST at the system level.
-class SystemRestfulInteraction extends PrimitiveType<String> {
+class SystemRestfulInteraction extends FhirCode {
   // Private constructor for internal use (like enum)
   SystemRestfulInteraction._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [SystemRestfulInteraction] from JSON.
@@ -187,6 +188,7 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -200,6 +202,7 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

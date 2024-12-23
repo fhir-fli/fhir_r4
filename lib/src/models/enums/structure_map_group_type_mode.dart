@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// If this is the default rule set to apply for the source type, or this combination of types.
-class StructureMapGroupTypeMode extends PrimitiveType<String> {
+class StructureMapGroupTypeMode extends FhirCode {
   // Private constructor for internal use (like enum)
   StructureMapGroupTypeMode._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
@@ -97,6 +98,7 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -110,6 +112,7 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

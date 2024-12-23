@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
-class CarePlanActivityKind extends PrimitiveType<String> {
+class CarePlanActivityKind extends FhirCode {
   // Private constructor for internal use (like enum)
   CarePlanActivityKind._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
@@ -966,6 +967,7 @@ class CarePlanActivityKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -979,6 +981,7 @@ class CarePlanActivityKind extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

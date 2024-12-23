@@ -443,30 +443,31 @@ class TypeConvertor {
     if (b == null) {
       return null;
     }
-    
-    if (b is Coding) {return b;}
-    else if (b is Element) {
-      final c = ICoding(b);
-      return const Coding().setCode(c.getCode()).setSystem(
-   c.getSystem(),).setVersion(c.getVersion())
-          .setDisplay(c.getDisplay());
-        } else if (b is ICoding) {
-      const ICoding c = ICoding b;
-      return const Coding().setCode(c.getCode()).setSystem(
-     c.getSystem(),).setVersion(c.getVersion())
-          .setDisplay(c.getDisplay());
-    } else if (b is PrimitiveType) {
-      PrimitiveType<?> p = (PrimitiveType<?>) b;
-      const cc = Coding();
-      cc.setCode(b.primitiveValue).setId(
-     p.getId(),).getExtension().addAll(p.getExtension());
-      return cc;
-    } else if (b.isPrimitive()) {
-      return const Coding().setCode(b.primitiveValue);
-    } else {
-      throw FHIRException(message:
-    'Unable to convert a ${b.fhirType}  to a Coding',);
-    }
+    return null;
+
+    //   if (b is Coding) {return b;}
+    //   else if (b is Element) {
+    //     final c = ICoding(b);
+    //     return const Coding().setCode(c.getCode()).setSystem(
+    //  c.getSystem(),).setVersion(c.getVersion())
+    //         .setDisplay(c.getDisplay());
+    //       } else if (b is ICoding) {
+    //     const ICoding c = ICoding b;
+    //     return const Coding().setCode(c.getCode()).setSystem(
+    //    c.getSystem(),).setVersion(c.getVersion())
+    //         .setDisplay(c.getDisplay());
+    //   } else if (b is PrimitiveType) {
+    //     // PrimitiveType<?> p = (PrimitiveType<?>) b;
+    //     const cc = Coding();
+    //     cc.setCode(b.primitiveValue).setId(
+    //    p.getId(),).getExtension().addAll(p.getExtension());
+    //     return cc;
+    //   } else if (b.isPrimitive()) {
+    //     return const Coding().setCode(b.primitiveValue);
+    //   } else {
+    //     throw FHIRException(message:
+    //   'Unable to convert a ${b.fhirType}  to a Coding',);
+    //   }
   }
 
   /// Converts a [FhirBase] to [Quantity], if possible

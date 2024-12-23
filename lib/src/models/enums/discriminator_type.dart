@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an element value is interpreted when discrimination is evaluated.
-class DiscriminatorType extends PrimitiveType<String> {
+class DiscriminatorType extends FhirCode {
   // Private constructor for internal use (like enum)
   DiscriminatorType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [DiscriminatorType] from JSON.
@@ -107,6 +108,7 @@ class DiscriminatorType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -120,6 +122,7 @@ class DiscriminatorType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

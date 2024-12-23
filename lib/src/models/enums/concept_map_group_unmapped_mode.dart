@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines which action to take if there is no match in the group.
-class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
+class ConceptMapGroupUnmappedMode extends FhirCode {
   // Private constructor for internal use (like enum)
   ConceptMapGroupUnmappedMode._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
@@ -99,6 +100,7 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -112,6 +114,7 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

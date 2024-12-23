@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the style of unique identifier used to identify a namespace.
-class NamingSystemIdentifierType extends PrimitiveType<String> {
+class NamingSystemIdentifierType extends FhirCode {
   // Private constructor for internal use (like enum)
   NamingSystemIdentifierType._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [NamingSystemIdentifierType] from JSON.
@@ -102,6 +103,7 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -115,6 +117,7 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A list of all the concrete types defined in this version of the FHIR specification - Abstract Types, Data Types and Resource Types.
-class FHIRAllTypes extends PrimitiveType<String> {
+class FHIRAllTypes extends FhirCode {
   // Private constructor for internal use (like enum)
   FHIRAllTypes._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [FHIRAllTypes] from JSON.
@@ -1331,6 +1332,7 @@ class FHIRAllTypes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -1344,6 +1346,7 @@ class FHIRAllTypes extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

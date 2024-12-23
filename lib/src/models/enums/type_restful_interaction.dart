@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Operations supported by REST at the type or instance level.
-class TypeRestfulInteraction extends PrimitiveType<String> {
+class TypeRestfulInteraction extends FhirCode {
   // Private constructor for internal use (like enum)
   TypeRestfulInteraction._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [TypeRestfulInteraction] from JSON.
@@ -181,6 +182,7 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -194,6 +196,7 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

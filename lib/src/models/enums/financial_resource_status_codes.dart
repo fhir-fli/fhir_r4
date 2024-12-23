@@ -3,13 +3,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes Status codes.
-class FinancialResourceStatusCodes extends PrimitiveType<String> {
+class FinancialResourceStatusCodes extends FhirCode {
   // Private constructor for internal use (like enum)
   FinancialResourceStatusCodes._(
     super.value, {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
@@ -106,6 +107,7 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -119,6 +121,7 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }
