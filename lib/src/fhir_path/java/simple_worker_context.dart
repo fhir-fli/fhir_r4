@@ -12,6 +12,7 @@ class SimpleWorkerContext extends IWorkerContext {
 
   @override
   List<StructureDefinition> getStructures() {
+    print('SDs ${_structures.keys.toList()}');
     return _structures.values.toList();
   }
 
@@ -37,7 +38,11 @@ class SimpleWorkerContext extends IWorkerContext {
   }
 
   @override
-  T? fetchResource<T extends Resource>(String? uri) {
+  T? fetchResource<T extends Resource>({
+    String? uri,
+    String? version,
+    CanonicalResource? canonicalForSource,
+  }) {
     if (uri == null) {
       return null;
     }
@@ -74,16 +79,16 @@ class SimpleWorkerContext extends IWorkerContext {
   @override
   ValidationResult validateCode(
     ValidationOptions options,
-    Coding code,
+    Coding? code,
     ValueSet vs,
   ) {
-    if (vs.containsConcept(code.code?.value ?? '')) {
+    if (vs.containsConcept(code?.code?.value ?? '')) {
       return ValidationResult(
         definition: CodeSystemConcept(
-          code: FhirCode(code.code?.value ?? ''), // Mandatory field
-          display: code.display,
+          code: FhirCode(code?.code?.value ?? ''), // Mandatory field
+          display: code?.display,
         ),
-        system: code.system?.toString(),
+        system: code?.system?.toString(),
         severity: IssueSeverity.information,
         message: 'Code is valid',
       );
@@ -105,6 +110,10 @@ class SimpleWorkerContext extends IWorkerContext {
     if (sd.name.value != null) {
       _structures[sd.name.value!] = sd;
     }
+  }
+
+  void loadStructureDefinitions(List<StructureDefinition> sds) {
+    sds.forEach(loadStructureDefinition);
   }
 
   void loadResource(Resource resource) {

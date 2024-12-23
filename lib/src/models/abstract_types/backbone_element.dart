@@ -15,6 +15,7 @@ abstract class BackboneElement extends DataType {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'BackboneElement',
   });
 
   /// FromJson Factory Constructor for [BackboneElement]

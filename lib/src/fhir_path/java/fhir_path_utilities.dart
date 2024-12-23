@@ -78,7 +78,7 @@ abstract class IEvaluationContext {
   /// @param argument
   /// @param focus
   /// @return
-  bool log(String argument, List<FhirBase> focus);
+  bool fpLog(String argument, List<FhirBase> focus);
 
   // extensibility for functions
   ///
@@ -106,9 +106,9 @@ abstract class IEvaluationContext {
   /// @return
   List<FhirBase> executeFunction(
     FHIRPathEngine engine,
-    Object appContext,
+    Object? appContext,
     List<FhirBase> focus,
-    String functionName,
+    String? functionName,
     List<List<FhirBase>> parameters,
   );
 
@@ -234,6 +234,27 @@ class ExecutionContext {
 
     definedVariables![name] = value;
   }
+
+  ExecutionContext changeThis(FhirBase newThis, IWorkerContext worker) {
+    final newContext = ExecutionContext(
+      appInfo: appInfo,
+      focusResource: focusResource,
+      rootResource: rootResource,
+      context: context,
+      thisItem: newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (definedVariables != null) {
+      for (final s in definedVariables?.keys ?? <String>[]) {
+        newContext.setDefinedVariable(
+          s,
+          definedVariables![s] ?? <FhirBase>[],
+          worker,
+        );
+      }
+    }
+    return newContext;
+  }
 }
 
 class ExecutionTypeContext {
@@ -259,7 +280,12 @@ class ExecutionTypeContext {
     return definedVariables?[name];
   }
 
-  void setDefinedVariable(String name, TypeDetails value) {
+  void setDefinedVariable(String name, TypeDetails? value) {
+    if (value == null) {
+      throw PathEngineException(
+        'Redefine of variable $name: FHIRPATH_REDEFINE_VARIABLE',
+      );
+    }
     if (isSystemVariable(name)) {
       throw PathEngineException(
         'Redefine of variable $name: FHIRPATH_REDEFINE_VARIABLE',
@@ -274,6 +300,24 @@ class ExecutionTypeContext {
     }
 
     definedVariables![name] = value;
+  }
+
+  ExecutionTypeContext changeThis(
+    TypeDetails newThis,
+  ) {
+    final newContext = ExecutionTypeContext(
+      appInfo,
+      resource,
+      context,
+      newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (definedVariables != null) {
+      for (final s in definedVariables?.keys ?? <String>[]) {
+        newContext.setDefinedVariable(s, definedVariables![s]);
+      }
+    }
+    return newContext;
   }
 }
 
@@ -296,5 +340,70 @@ extension ElementDefinitionExtension on ElementDefinition {
   bool hasContentReference() {
     return contentReference != null &&
         (contentReference!.value?.toString().isNotEmpty ?? false);
+  }
+}
+
+class ClassTypeInfo extends FhirBase {
+  ClassTypeInfo(this.instance);
+
+  final FhirBase instance;
+  final String? idBase = null;
+
+  @override
+  String get fhirType => 'ClassInfo';
+
+  List<FhirBase> getProperty(String name, bool checkValid) {
+    if (name == 'name') {
+      return [FhirString(getName())];
+    } else if (name == 'namespace') {
+      return [FhirString(getNamespace())];
+    } else {
+      throw PathEngineException('Unknown property $name');
+      // return super.getProperty(hash, name, checkValid);
+    }
+  }
+
+  String getNamespace() {
+    if (instance is Resource) {
+      return 'FHIR';
+    } else if (instance is! Element ||
+        ((instance as Element).disallowExtensions ?? false)) {
+      return 'System';
+    } else {
+      return 'FHIR';
+    }
+  }
+
+  String getName() {
+    if (instance is Resource) {
+      return instance.fhirType;
+    } else if (instance is! Element ||
+        ((instance as Element).disallowExtensions ?? false)) {
+      return instance.fhirType.capitalize()!;
+    } else {
+      return instance.fhirType;
+    }
+  }
+
+  @override
+  FhirBase copy() {
+    throw UnsupportedError('Not Implemented');
+  }
+
+  @override
+  FhirBase clone() {
+    // TODO: implement clone
+    throw UnimplementedError();
+  }
+
+  @override
+  FhirBase copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List? annotations,
+  }) {
+    // TODO: implement copyWith
+    throw UnimplementedError();
   }
 }

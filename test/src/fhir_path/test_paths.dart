@@ -11,7 +11,7 @@ import 'package:test/test.dart';
 
 import 'test_data.dart';
 
-final worker = SimpleWorkerContext();
+final worker = SimpleWorkerContext()..loadStructureDefinitions(getStructureDefinitions());
 final engine = FHIRPathEngine(worker);
 
 List<dynamic> parseAndEvaluate(String expression, [FhirBase? context]) {

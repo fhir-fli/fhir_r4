@@ -16,7 +16,11 @@ abstract class IWorkerContext {
 
   StructureDefinition? fetchTypeDefinition(String typeName);
 
-  T? fetchResource<T extends Resource>(String? uri);
+  T? fetchResource<T extends Resource>({
+    String? uri,
+    String? version,
+    CanonicalResource? canonicalForSource,
+  });
 
   String formatMessagePlural(
     int pl,
@@ -30,7 +34,7 @@ abstract class IWorkerContext {
 
   ValidationResult validateCode(
     ValidationOptions options,
-    Coding code,
+    Coding? code,
     ValueSet vs,
   );
 

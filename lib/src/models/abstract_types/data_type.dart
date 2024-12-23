@@ -14,6 +14,7 @@ abstract class DataType extends Element {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'DataType',
   });
 
   /// FromJson Factory Constructor for [DataType]

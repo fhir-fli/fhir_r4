@@ -1,4 +1,17 @@
+import 'dart:io';
+
 import 'package:fhir_r4/fhir_r4.dart';
+
+List<StructureDefinition> getStructureDefinitions() {
+  final sdListStrings =
+      File('test/src/fhir_path/sds.ndjson').readAsStringSync().split('\n');
+  final sds = <StructureDefinition>[];
+  for(final sd in sdListStrings) {
+    if(sd.isNotEmpty){
+    sds.add(StructureDefinition.fromJsonString(sd));
+  }}
+  return sds;
+}
 
 final patient = Patient.fromJson({
   'resourceType': 'Patient',

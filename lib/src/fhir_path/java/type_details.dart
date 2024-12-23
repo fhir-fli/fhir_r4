@@ -4,7 +4,7 @@ import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {
@@ -154,7 +154,7 @@ class TypeDetails {
         tail = tail.substring(tail.indexOf('.'));
       }
       final t = ProfiledType.ns(n);
-      var sd = context.fetchResource<StructureDefinition>(t);
+      var sd = context.fetchResource<StructureDefinition>(uri: t);
       while (sd?.url != null) {
         if (tail == null && typesContains(sd!.url!.toString())) {
           return true;
@@ -170,11 +170,11 @@ class TypeDetails {
         if (sd!.baseDefinition != null) {
           if (sd.type.toString() == 'uri') {
             sd = context.fetchResource<StructureDefinition>(
-              'http://hl7.org/fhir/StructureDefinition/string',
+              uri: 'http://hl7.org/fhir/StructureDefinition/string',
             );
           } else {
             sd = context.fetchResource<StructureDefinition>(
-              sd.baseDefinition!.toString(),
+              uri: sd.baseDefinition!.toString(),
             );
           }
         } else {

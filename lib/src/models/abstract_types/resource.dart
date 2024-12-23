@@ -16,6 +16,7 @@ abstract class Resource extends FhirBase {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'Resource',
   });
 
   /// Acts like a constructor, returns a [Resource], accepts a

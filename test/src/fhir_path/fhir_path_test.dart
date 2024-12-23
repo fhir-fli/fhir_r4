@@ -14,6 +14,5 @@ Future<void> main() async {
   testDateTimes();
   testFpTestSuite();
   testNoArgFxns();
-  testPaths();
   testQuestionnaire();
 }

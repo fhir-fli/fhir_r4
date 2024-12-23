@@ -20,6 +20,7 @@ abstract class DomainResource extends Resource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'DomainResource',
   });
 
   /// Factory constructor for [DomainResource] that takes in a

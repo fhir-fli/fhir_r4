@@ -30,6 +30,7 @@ abstract class CanonicalResource extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'CanonicalResource',
   });
 
   /// Factory constructor for [CanonicalResource] that takes in a

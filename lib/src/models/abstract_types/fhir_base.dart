@@ -11,6 +11,7 @@ abstract class FhirBase {
     this.formatCommentsPre,
     this.formatCommentsPost,
     this.annotations,
+    this.objectPath,
   });
 
   /// User data map for storing additional information.
@@ -28,6 +29,9 @@ abstract class FhirBase {
   /// Returns the FHIR type of the object.
   String get fhirType => 'FhirBase';
 
+  /// Path to the object in the FHIR tree.
+  final String? objectPath;
+
   /// Checks if the object is primitive.
   bool get isPrimitive => false;
 
@@ -39,6 +43,15 @@ abstract class FhirBase {
 
   /// All [FhirBase]s and [Resource]s are NOT metadata based
   bool get isMetadataBased => false;
+
+  /// Checks if the object has a given type.
+  bool hasType(List<String> names) {
+    final t = fhirType;
+    for (final n in names) {
+      if (n.equalsIgnoreCase(t)) return true;
+    }
+    return false;
+  }
 
   /// Checks if the object is empty.
   bool isEmpty() =>

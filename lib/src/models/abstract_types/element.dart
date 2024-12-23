@@ -14,6 +14,7 @@ class Element extends FhirBase {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
+    super.objectPath = 'Element',
   });
 
   /// Factory constructor for [Element] that takes in a [YamlMap] and returns

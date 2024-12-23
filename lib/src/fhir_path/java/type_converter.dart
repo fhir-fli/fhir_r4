@@ -443,35 +443,51 @@ class TypeConvertor {
     if (b == null) {
       return null;
     }
-    return null;
 
-    //   if (b is Coding) {return b;}
-    //   else if (b is Element) {
-    //     final c = ICoding(b);
-    //     return const Coding().setCode(c.getCode()).setSystem(
-    //  c.getSystem(),).setVersion(c.getVersion())
-    //         .setDisplay(c.getDisplay());
-    //       } else if (b is ICoding) {
-    //     const ICoding c = ICoding b;
-    //     return const Coding().setCode(c.getCode()).setSystem(
-    //    c.getSystem(),).setVersion(c.getVersion())
-    //         .setDisplay(c.getDisplay());
-    //   } else if (b is PrimitiveType) {
-    //     // PrimitiveType<?> p = (PrimitiveType<?>) b;
-    //     const cc = Coding();
-    //     cc.setCode(b.primitiveValue).setId(
-    //    p.getId(),).getExtension().addAll(p.getExtension());
-    //     return cc;
-    //   } else if (b.isPrimitive()) {
-    //     return const Coding().setCode(b.primitiveValue);
-    //   } else {
-    //     throw FHIRException(message:
-    //   'Unable to convert a ${b.fhirType}  to a Coding',);
-    //   }
+    if (b is Coding) {
+      return b;
+    } else if (b is Element) {
+      final c = ICoding.getAsICoding(b);
+      if (c != null) {
+        return Coding(
+          code: c.code?.toFhirCode,
+          system: c.system?.toFhirUri,
+          version: c.version?.toFhirString,
+          display: c.display?.toFhirString,
+        );
+      } else if (b is PrimitiveType) {
+        return Coding(
+          code: b.primitiveValue?.toFhirCode,
+          id: b.id,
+          extension_: b.extension_,
+        );
+      } else {
+        throw FHIRException(
+          message: 'Unable to convert a ${b.fhirType}  to a Coding',
+        );
+      }
+    } else if (b is ICoding) {
+      return Coding(
+        code: (b as ICoding).code?.toFhirCode,
+        system: (b as ICoding).system?.toFhirUri,
+        version: (b as ICoding).version?.toFhirString,
+        display: (b as ICoding).display?.toFhirString,
+      );
+    } else if (b is PrimitiveType) {
+      return Coding(
+        code: b.primitiveValue?.toFhirCode,
+        id: b.id,
+        extension_: b.extension_,
+      );
+    } else {
+      throw FHIRException(
+        message: 'Unable to convert a ${b.fhirType}  to a Coding',
+      );
+    }
   }
 
   /// Converts a [FhirBase] to [Quantity], if possible
-  static Quantity? castToQuantity(FhirBase? b) {
+  Quantity? castToQuantity(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -486,7 +502,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Money], if possible
-  static Money? castToMoney(FhirBase? b) {
+  Money? castToMoney(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -501,7 +517,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [FhirDuration], if possible
-  static FhirDuration? castToDuration(FhirBase? b) {
+  FhirDuration? castToDuration(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -535,7 +551,7 @@ class TypeConvertor {
   // }
 
   /// Converts a [FhirBase] to [Range], if possible
-  static Range? castToRange(FhirBase? b) {
+  Range? castToRange(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -550,7 +566,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Period], if possible
-  static Period? castToPeriod(FhirBase? b) {
+  Period? castToPeriod(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -565,7 +581,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Ratio], if possible
-  static Ratio? castToRatio(FhirBase? b) {
+  Ratio? castToRatio(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -580,7 +596,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [SampledData], if possible
-  static SampledData? castToSampledData(FhirBase? b) {
+  SampledData? castToSampledData(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -595,7 +611,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Signature], if possible
-  static Signature? castToSignature(FhirBase? b) {
+  Signature? castToSignature(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -609,7 +625,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [HumanName], if possible
-  static HumanName? castToHumanName(FhirBase? b) {
+  HumanName? castToHumanName(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -623,7 +639,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Address], if possible
-  static Address? castToAddress(FhirBase? b) {
+  Address? castToAddress(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -637,7 +653,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ContactPoint], if possible
-  static ContactDetail? castToContactDetail(FhirBase? b) {
+  ContactDetail? castToContactDetail(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -651,7 +667,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Contributor], if possible
-  static Contributor? castToContributor(FhirBase? b) {
+  Contributor? castToContributor(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -665,7 +681,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [UsageContext], if possible
-  static UsageContext? castToUsageContext(FhirBase? b) {
+  UsageContext? castToUsageContext(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -679,7 +695,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [DataRequirement], if possible
-  static RelatedArtifact? castToRelatedArtifact(FhirBase? b) {
+  RelatedArtifact? castToRelatedArtifact(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -693,7 +709,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [TriggerDefinition], if possible
-  static ContactPoint? castToContactPoint(FhirBase? b) {
+  ContactPoint? castToContactPoint(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -707,7 +723,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [TriggerDefinition], if possible
-  static Timing? castToTiming(FhirBase? b) {
+  Timing? castToTiming(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -721,7 +737,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [TriggerDefinition], if possible
-  static Reference? castToReference(FhirBase? b) {
+  Reference? castToReference(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -740,7 +756,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Expression], if possible
-  static FhirMeta? castToMeta(FhirBase? b) {
+  FhirMeta? castToMeta(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -754,7 +770,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ParameterDefinition], if possible
-  static MarketingStatus? castToMarketingStatus(FhirBase? b) {
+  MarketingStatus? castToMarketingStatus(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -786,7 +802,7 @@ class TypeConvertor {
   // }
 
   /// Converts a [FhirBase] to [Population], if possible
-  static ProductShelfLife? castToProductShelfLife(FhirBase? b) {
+  ProductShelfLife? castToProductShelfLife(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -800,7 +816,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ProductShelfLife], if possible
-  static ProdCharacteristic? castToProdCharacteristic(FhirBase? b) {
+  ProdCharacteristic? castToProdCharacteristic(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -823,7 +839,7 @@ class TypeConvertor {
   // }
 
   /// Converts a [FhirBase] to [FhirExtension], if possible
-  static FhirExtension? castToExtension(FhirBase? b) {
+  FhirExtension? castToExtension(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -837,7 +853,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Resource], if possible
-  static Resource? castToResource(FhirBase? b) {
+  Resource? castToResource(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -851,7 +867,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [Narrative], if possible
-  static Narrative? castToNarrative(FhirBase? b) {
+  Narrative? castToNarrative(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -865,7 +881,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ElementDefinition], if possible
-  static ElementDefinition? castToElementDefinition(FhirBase? b) {
+  ElementDefinition? castToElementDefinition(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -879,7 +895,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [DataRequirement], if possible
-  static DataRequirement? castToDataRequirement(FhirBase? b) {
+  DataRequirement? castToDataRequirement(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -893,7 +909,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ParameterDefinition], if possible
-  static FhirExpression? castToExpression(FhirBase? b) {
+  FhirExpression? castToExpression(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -907,7 +923,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [ParameterDefinition], if possible
-  static ParameterDefinition? castToParameterDefinition(FhirBase? b) {
+  ParameterDefinition? castToParameterDefinition(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -921,7 +937,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [TriggerDefinition], if possible
-  static TriggerDefinition? castToTriggerDefinition(FhirBase? b) {
+  TriggerDefinition? castToTriggerDefinition(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -935,7 +951,7 @@ class TypeConvertor {
   }
 
   /// Converts a [FhirBase] to [UsageContext], if possible
-  static FhirXhtml? castToXhtml(FhirBase? b) {
+  FhirXhtml? castToXhtml(FhirBase? b) {
     if (b == null) {
       return null;
     }
@@ -953,7 +969,7 @@ class TypeConvertor {
     // } else {throw  FHIRException(message: 'Unable to convert a ${b.fhirType}  to XHtml'); }
   }
 
-  static String? castToXhtmlString(FhirBase? b) {
+  String? castToXhtmlString(FhirBase? b) {
     if (b == null) {
       return null;
     }
