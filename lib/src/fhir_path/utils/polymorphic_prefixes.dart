@@ -1,4 +1,4 @@
-/// This file contains a list of prefixes that are used in FHIRPath to indicate 
+/// This file contains a list of prefixes that are used in FHIRPath to indicate
 /// that a path is polymorphic.
 bool startsWithAPolymorphicPrefix(String value) {
   for (final prefix in polymorphicPrefixes) {

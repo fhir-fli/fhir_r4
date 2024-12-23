@@ -28,6 +28,7 @@ class FhirMarkdown extends PrimitiveType<String>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(_validateMarkdown(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -126,6 +127,7 @@ class FhirMarkdown extends PrimitiveType<String>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirMarkdown(
       newValue ?? value,
@@ -138,8 +140,12 @@ class FhirMarkdown extends PrimitiveType<String>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirMarkdown] with extensions disallowed.
+  FhirMarkdown noExtensions() => copyWith(disallowExtensions: true);
 
   /// Converts a list of JSON values to a list of [FhirMarkdown] instances.
   static List<FhirMarkdown> fromJsonList(

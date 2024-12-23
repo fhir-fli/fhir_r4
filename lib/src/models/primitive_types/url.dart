@@ -33,6 +33,7 @@ class FhirUrl extends PrimitiveType<Uri>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -172,6 +173,7 @@ class FhirUrl extends PrimitiveType<Uri>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirUrl(
       newValue?.toString() ?? input,
@@ -184,8 +186,12 @@ class FhirUrl extends PrimitiveType<Uri>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirUrl] with extensions disallowed.
+  FhirUrl noExtensions() => copyWith(disallowExtensions: true);
 
   /// Compares this object for equality with another object
   @override

@@ -4,6 +4,7 @@ export 'fhir_lexer.dart';
 export 'fhir_path_engine.dart';
 export 'fhir_path_utilities.dart';
 export 'fhir_publication.dart';
+export 'iid_type.dart';
 export 'iworker_context.dart';
 export 'simple_worker_context.dart';
 export 'source_location.dart';

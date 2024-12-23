@@ -29,6 +29,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateInteger64(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -171,6 +172,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirInteger64(
       newValue ?? value,
@@ -183,8 +185,12 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirInteger64] with extensions disallowed.
+  FhirInteger64 noExtensions() => copyWith(disallowExtensions: true);
 
   /// Arithmetic Operators
 

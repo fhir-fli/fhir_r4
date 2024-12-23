@@ -17,6 +17,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateXhtml(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -29,6 +30,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [FhirXhtml] from JSON.
@@ -238,6 +240,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirXhtml.fromValidatedXhtml(
       newValue ?? value,
@@ -250,6 +253,10 @@ class FhirXhtml extends PrimitiveType<String?> {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirXhtml] with extensions disallowed.
+  FhirXhtml noExtensions() => copyWith(disallowExtensions: true);
 }

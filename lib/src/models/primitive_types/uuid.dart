@@ -33,6 +33,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateUuid(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -45,6 +46,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create [FhirUuid] from JSON.
@@ -275,6 +277,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirUuid.fromUuid(
       newValue ?? value,
@@ -287,6 +290,10 @@ class FhirUuid extends PrimitiveType<UuidValue?>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirUuid] with extensions disallowed.
+  FhirUuid noExtensions() => copyWith(disallowExtensions: true);
 }

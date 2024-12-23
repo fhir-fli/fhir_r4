@@ -59,9 +59,9 @@ abstract class IEvaluationContext {
   /// @return the value of the reference (or null, if it's not valid, though can
   ///         throw an exception if desired)
   List<FhirBase> resolveConstant(
-    FHIRPathEngine engine,
-    Object appContext,
-    String name,
+    FHIRPathEngine? engine,
+    Object? appContext,
+    String? name,
     bool beforeContext,
     bool explicitConstant,
   );
@@ -165,7 +165,7 @@ class ExecutionContext {
     this.rootResource,
     this.context,
     this.thisItem,
-  }) : index = 0;
+  }) : index = 0.toFhirInteger;
 
   ExecutionContext copyWith({
     Object? appInfo,
@@ -174,7 +174,7 @@ class ExecutionContext {
     FhirBase? context,
     FhirBase? thisItem,
     List<FhirBase>? total,
-    int? index,
+    FhirInteger? index,
     Map<String, List<FhirBase>>? definedVariables,
   }) {
     return ExecutionContext(
@@ -195,14 +195,12 @@ class ExecutionContext {
   final FhirBase? context;
   final FhirBase? thisItem;
   List<FhirBase>? total;
-  int index = 0;
+  FhirInteger index = 0.toFhirInteger;
   Map<String, List<FhirBase>>? definedVariables;
 
   void next() {
-    index++;
+    index = (index + 1)! as FhirInteger;
   }
-
-  FhirInteger getIndex() => FhirInteger(index);
 
   bool hasDefinedVariable(String name) {
     return definedVariables != null && definedVariables!.containsKey(name);

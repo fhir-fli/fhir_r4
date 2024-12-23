@@ -38,6 +38,7 @@ class FhirTime extends PrimitiveType<String>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(_validateTime(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -349,6 +350,7 @@ class FhirTime extends PrimitiveType<String>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirTime(
       newValue ?? value,
@@ -361,8 +363,12 @@ class FhirTime extends PrimitiveType<String>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirTime] with extensions disallowed.
+  FhirTime noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a clone of the current [FhirTime].
   @override

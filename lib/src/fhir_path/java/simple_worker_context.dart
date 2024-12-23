@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:ucum/ucum.dart';
-
-import 'java.dart';
 
 class SimpleWorkerContext extends IWorkerContext {
   // Fields to store resources
@@ -38,7 +37,10 @@ class SimpleWorkerContext extends IWorkerContext {
   }
 
   @override
-  T? fetchResource<T extends Resource>(String uri) {
+  T? fetchResource<T extends Resource>(String? uri) {
+    if (uri == null) {
+      return null;
+    }
     final resource = _resources[uri];
     if (resource is T) {
       return resource;
@@ -67,9 +69,7 @@ class SimpleWorkerContext extends IWorkerContext {
   }
 
   @override
-  UcumService getUcumService() {
-    return _ucumService;
-  }
+  UcumService get ucumService => _ucumService;
 
   @override
   ValidationResult validateCode(

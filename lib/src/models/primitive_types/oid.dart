@@ -26,6 +26,7 @@ class FhirOid extends PrimitiveType<String>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(_validateOid(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -121,6 +122,7 @@ class FhirOid extends PrimitiveType<String>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirOid(
       newValue ?? value,
@@ -133,8 +135,12 @@ class FhirOid extends PrimitiveType<String>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirOid] with extensions disallowed.
+  FhirOid noExtensions() => copyWith(disallowExtensions: true);
 
   /// Converts a list of JSON values to a list of [FhirOid] instances.
   static List<FhirOid> fromJsonList(

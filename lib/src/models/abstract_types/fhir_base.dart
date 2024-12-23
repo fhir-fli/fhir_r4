@@ -152,9 +152,10 @@ abstract class FhirBase {
   /// Compares two [FhirBase] objects deeply.
   static bool compareDeep(
     FhirBase? e1,
-    FhirBase? e2, {
+    FhirBase? e2, [
+    // ignore: avoid_positional_boolean_parameters
     bool allowNull = false,
-  }) {
+  ]) {
     if (allowNull) {
       final noLeft = e1 == null || e1.isEmpty();
       final noRight = e2 == null || e2.isEmpty();
@@ -171,9 +172,10 @@ abstract class FhirBase {
   /// Compares two lists of [FhirBase] objects deeply.
   static bool compareDeepLists<T extends FhirBase>(
     List<T>? list1,
-    List<T>? list2, {
+    List<T>? list2, [
+    // ignore: avoid_positional_boolean_parameters
     bool allowNull = false,
-  }) {
+  ]) {
     if (allowNull) {
       final noLeft = list1 == null || list1.isEmpty;
       final noRight = list2 == null || list2.isEmpty;
@@ -185,7 +187,7 @@ abstract class FhirBase {
       return false;
     }
     for (var i = 0; i < list1.length; i++) {
-      if (!compareDeep(list1[i], list2[i], allowNull: allowNull)) {
+      if (!compareDeep(list1[i], list2[i], allowNull)) {
         return false;
       }
     }

@@ -27,6 +27,7 @@ class FhirId extends PrimitiveType<String>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateId(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -161,6 +162,7 @@ class FhirId extends PrimitiveType<String>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirId(
       newValue ?? value,
@@ -173,6 +175,10 @@ class FhirId extends PrimitiveType<String>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirId] with extensions disallowed.
+  FhirId noExtensions() => copyWith(disallowExtensions: true);
 }

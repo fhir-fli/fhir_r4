@@ -72,6 +72,7 @@ class FhirInstant extends FhirDateTimeBase
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create a [FhirInstant] from a [String].
@@ -227,6 +228,7 @@ class FhirInstant extends FhirDateTimeBase
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirDateTimeBase.constructor<FhirInstant>(
       input: value ?? value,
@@ -243,6 +245,10 @@ class FhirInstant extends FhirDateTimeBase
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     ) as FhirInstant;
   }
+
+  /// Returns a new [FhirInstant] with extensions disallowed.
+  FhirInstant noExtensions() => copyWith(disallowExtensions: true);
 }

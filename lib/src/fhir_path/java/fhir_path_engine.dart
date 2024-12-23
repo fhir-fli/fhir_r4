@@ -4,6 +4,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
+import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
   // Constructor
@@ -27,6 +28,20 @@ class FHIRPathEngine {
   // Constants
   // ignore: constant_identifier_names
   static const NS_SYSTEM_TYPE = 'http://hl7.org/fhirpath/System.';
+  // ignore: constant_identifier_names
+  static const FHIR_TYPES_STRING = {
+    'string',
+    'uri',
+    'code',
+    'oid',
+    'id',
+    'uuid',
+    'sid',
+    'markdown',
+    'base64Binary',
+    'canonical',
+    'url',
+  };
 
   // Fields
   final IWorkerContext worker;
@@ -56,20 +71,82 @@ class FHIRPathEngine {
   }
 
   // Core method to execute evaluation logic
-  List<dynamic> execute(
-    ExecutionContext context,
-    List<dynamic> baseList,
-    ExpressionNode node,
+  List<FhirBase> execute(
+    ExecutionContext inContext,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+    bool atEntry,
   ) {
-    // Placeholder for the actual evaluation logic.
-    // Implement the core logic based on the Java equivalent.
-    // This will handle walking the path, applying functions, etc.
-    return [];
+    var context = contextForParameter(inContext);
+    var work = <FhirBase>[];
+
+    switch (exp.kind) {
+      case ExpressionNodeKind.unary:
+        work.add(0.toFhirInteger);
+      case ExpressionNodeKind.name:
+        if (atEntry && exp.name == r'$this') {
+          if (context.thisItem == null) {
+            throw makeException(exp, 'FHIRPATH_NO_THIS', ['']);
+          }
+          work.add(context.thisItem!);
+        } else if (atEntry && exp.name == r'$total') {
+          work.addAll(context.total ?? []);
+        } else if (atEntry && exp.name == r'$index') {
+          work.add(context.index);
+        } else {
+          for (final item in focus) {
+            final outcome = executeForItem(context, item, exp, atEntry: true);
+            for (final base in outcome) {
+              work.add(base);
+            }
+          }
+        }
+
+      case ExpressionNodeKind.function:
+        final work2 = evaluateFunction(context, focus, exp);
+        work.addAll(work2);
+
+      case ExpressionNodeKind.constant:
+        work.addAll(
+          resolveConstantWithBase(context, exp.constant, false, exp, true),
+        );
+
+      case ExpressionNodeKind.group:
+        final work2 = execute(context, focus, exp.group!, false);
+        work.addAll(work2);
+
+      case null:
+    }
+
+    // Inner evaluation
+    if (exp.inner != null) {
+      work = execute(context, work, exp.inner!, false);
+    }
+
+    // Proximal operations
+    if (exp.proximal && exp.operation != null) {
+      var next = exp.opNext;
+      var last = exp;
+      while (next != null) {
+        context = contextForParameter(inContext);
+        var work2 = preOperate(work, last.operation, exp);
+        if (work2 != null) {
+          work = work2;
+        } else {
+          work2 = execute(context, focus, next, true);
+          work = operate(context, work, last.operation, work2, last);
+        }
+        last = next;
+        next = next.opNext;
+      }
+    }
+
+    return work;
   }
 
   // Evaluation with base and ExpressionNode
-  List<dynamic> evaluate(FhirBase? base, ExpressionNode node) {
-    final list = <dynamic>[];
+  List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
+    final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
     }
@@ -80,24 +157,74 @@ class FHIRPathEngine {
       context: base,
       thisItem: base,
     );
-    return execute(context, list, node);
+    print('Evaluating: ');
+    node.printExpressionTree();
+    return execute(context, list, node, true);
+  }
+
+  List<FhirBase> executeForItem(
+    ExecutionContext context,
+    FhirBase item,
+    ExpressionNode exp, {
+    required bool atEntry,
+  }) {
+    final result = <FhirBase>[];
+
+    if (atEntry && context.appInfo != null && hostServices != null) {
+      final temp = hostServices!
+          .resolveConstant(this, context.appInfo, exp.name, true, false);
+      if (temp.isNotEmpty) {
+        result.addAll(temp);
+        return result;
+      }
+    }
+
+    if (atEntry &&
+        exp.name != null &&
+        exp.name!.isNotEmpty &&
+        exp.name![0].toUpperCase() == exp.name![0]) {
+      // Special case for type checks
+      var sd = worker.fetchTypeDefinition(item.fhirType);
+      while (sd != null) {
+        if (sd.type.toString() == exp.name) {
+          result.add(item);
+          break;
+        }
+        sd = worker.fetchResource(sd.baseDefinition.toString())
+            as StructureDefinition?;
+      }
+    } else {
+      getChildrenByName(item, exp.name!, result);
+    }
+
+    if (atEntry &&
+        context.appInfo != null &&
+        hostServices != null &&
+        result.isEmpty) {
+      result.addAll(
+        hostServices!
+            .resolveConstant(this, context.appInfo, exp.name, false, false),
+      );
+    }
+
+    return result;
   }
 
   // Evaluation with base and FHIRPath expression (String)
-  List<dynamic> evaluateFromPath(FhirBase? base, String path) {
+  List<FhirBase> evaluateFromPath(FhirBase? base, String path) {
     final node = parse(path); // Assume `parse` is implemented
     return evaluate(base, node);
   }
 
   // Evaluation with appContext and additional parameters
-  List<dynamic> evaluateWithContext(
+  List<FhirBase> evaluateWithContext(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
     FhirBase? base,
     ExpressionNode node,
   ) {
-    final list = <dynamic>[];
+    final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
     }
@@ -109,11 +236,11 @@ class FHIRPathEngine {
       context: base,
       thisItem: base,
     );
-    return execute(context, list, node);
+    return execute(context, list, node, true);
   }
 
   // Evaluation with appContext and path (String)
-  List<dynamic> evaluateWithPath(
+  List<FhirBase> evaluateWithPath(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
@@ -1058,13 +1185,15 @@ class FHIRPathEngine {
   /// As closely as possible, a Dart version of the Java gatherPrecedence logic.
   ExpressionNode gatherPrecedence(
     FHIRLexer lexer,
-    ExpressionNode start,
+    ExpressionNode oldStart,
     Set<FpOperation> ops,
   ) {
     // The Java code does: assert(start.isProximal());
-    assert(start.proximal, 'start must be proximal');
+    assert(oldStart.proximal, 'start must be proximal');
+    var start = oldStart;
 
-    // (1) Count how many times we see an operator in `ops` so we can decide if grouping is needed.
+    // (1) Count how many times we see an operator in `ops` so we can decide
+    //if grouping is needed.
     var opCount = 0;
     ExpressionNode? temp = start;
     while (temp != null) {
@@ -1074,16 +1203,19 @@ class FHIRPathEngine {
       temp = temp.opNext;
     }
 
-    // If there's 0 or 1 operator in this chain at this precedence, skip grouping entirely:
+    // If there's 0 or 1 operator in this chain at this precedence, skip
+    //grouping entirely:
     if (opCount <= 1) {
       return start;
     }
 
-    // (2) The official Java logic checks whether "we have any real mix of operators" (the `work` variable).
+    // (2) The official Java logic checks whether "we have any real mix of
+    //operators" (the `work` variable).
     var work = false;
     var focus = start.opNext;
     if (ops.contains(start.operation)) {
-      // If start's operator is in `ops`, we look for any operator that is *not* in `ops`
+      // If start's operator is in `ops`, we look for any operator that is
+      //*not* in `ops`
       // to decide if there's something to do
       while (focus != null && focus.operation != null) {
         if (!ops.contains(focus.operation)) {
@@ -1113,8 +1245,7 @@ class FHIRPathEngine {
 
     if (ops.contains(start.operation)) {
       // The top node's operator is in `ops`, so we create a group at the top
-      group = newGroup(lexer, start);
-      group.proximal = true;
+      group = newGroup(lexer, start)..proximal = true;
       // Now `focus = start` in the Java code
       focus = start;
       start = group;
@@ -1133,18 +1264,6 @@ class FHIRPathEngine {
     }
 
     // (4) The main grouping loop
-    // Java code:
-    // do {
-    //   while (ops.contains(focus.getOperation())) { focus = focus.getOpNext(); }
-    //   if (focus.getOperation() != null) {
-    //     group.setOperation(focus.getOperation());
-    //     group.setOpNext(focus.getOpNext());
-    //     focus.setOperation(null);
-    //     focus.setOpNext(null);
-    //     ...
-    //   }
-    // } while (focus != null && focus.getOperation() != null);
-
     do {
       // Skip consecutive operators in `ops`.
       while (focus != null &&
@@ -1155,12 +1274,14 @@ class FHIRPathEngine {
 
       if (focus != null && focus.operation != null) {
         // Lift the operator from `focus` onto the group
-        group.operation = focus.operation;
-        group.opNext = focus.opNext;
+        group
+          ..operation = focus.operation
+          ..opNext = focus.opNext;
 
         // Null out that operator from the child
-        focus.operation = null;
-        focus.opNext = null;
+        focus
+          ..operation = null
+          ..opNext = null;
 
         // Now see if there's another operator we need to group
         var node = group;
@@ -1187,7 +1308,8 @@ class FHIRPathEngine {
     return start;
   }
 
-// Same as in Java. `newGroup` just sets a new node of `kind=group` with `.group = next`.
+  // Same as in Java. `newGroup` just sets a new node of `kind=group` with
+  //`.group = next`.
   ExpressionNode newGroup(FHIRLexer lexer, ExpressionNode? next) {
     final result = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
@@ -2337,5 +2459,1729 @@ class FHIRPathEngine {
         [name, focus.describe()],
       );
     }
+  }
+
+  List<FhirBase>? preOperate(
+    List<FhirBase> left,
+    FpOperation? operation,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty) {
+      return null;
+    }
+    switch (operation) {
+      case FpOperation.And:
+        return isBoolean(left, false) ? makeBoolean(false) : null;
+      case FpOperation.Or:
+        return isBoolean(left, true) ? makeBoolean(true) : null;
+      case FpOperation.Implies:
+        final v = asBoolFromList(left, expr);
+        return v == Equality.false_ ? makeBoolean(true) : null;
+      // ignore: no_default_cases
+      default:
+        return null;
+    }
+  }
+
+  List<FhirBase> makeBoolean(bool b) {
+    return <FhirBase>[FhirBoolean(b).noExtensions()];
+  }
+
+  bool isBoolean(List<FhirBase> list, bool b) {
+    return list.length == 1 &&
+        list.first is FhirBoolean &&
+        (list.first as FhirBoolean).value == b;
+  }
+
+  Equality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
+    if (items.isEmpty) {
+      return Equality.null_;
+    } else if (items.length == 1 && items.first is FhirBoolean) {
+      return asBool(items.first, true);
+    } else if (items.length == 1) {
+      return Equality.true_;
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_UNABLE_BOOLEAN',
+        items.map((e) => e.toString()).toList(),
+      );
+    }
+  }
+
+  Equality asBool(FhirBase item, bool narrow) {
+    if (item is FhirBoolean && item.value != null) {
+      return boolToTriState(item.value!);
+    } else if (narrow) {
+      return Equality.false_;
+    } else if (item is FhirNumber && item.value != null) {
+      if (item is FhirInteger ||
+          item is FhirUnsignedInt ||
+          item is FhirPositiveInt) {
+        return asBoolFromInt(item.value.toString());
+      } else if (item is FhirDecimal) {
+        return asBoolFromDec(item.value.toString());
+      } else if (item is FhirString) {
+        if (['true', 't', 'yes', 'y'].contains((item as FhirString).value)) {
+          return Equality.true_;
+        } else if (['false', 'f', 'no', 'n']
+            .contains((item as FhirString).value)) {
+          return Equality.false_;
+        } else {
+          return Equality.null_;
+        }
+      }
+    }
+    return Equality.null_;
+  }
+
+  Equality asBoolList(List<FhirBase> items, ExpressionNode expr) {
+    if (items.isEmpty) {
+      return Equality.null_;
+    } else if (items.length == 1 && items.first is FhirBoolean) {
+      return asBool(items.first, true);
+    } else if (items.length == 1) {
+      return Equality.true_;
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_UNABLE_BOOLEAN',
+        [convertToStringList(items)],
+      );
+    }
+  }
+
+  Equality boolToTriState(bool b) {
+    return b ? Equality.true_ : Equality.false_;
+  }
+
+  Equality asBoolFromInt(String s) {
+    try {
+      final i = int.tryParse(s);
+      switch (i) {
+        case 0:
+          return Equality.false_;
+        case 1:
+          return Equality.true_;
+        default:
+          return Equality.null_;
+      }
+    } catch (e) {
+      return Equality.null_;
+    }
+  }
+
+  Equality asBoolFromDec(String s) {
+    try {
+      final d =
+          BigInt.parse(s); // Use BigInt for arbitrary precision numbers in Dart
+      if (d == BigInt.zero) {
+        return Equality.false_;
+      } else if (d == BigInt.one) {
+        return Equality.true_;
+      } else {
+        return Equality.null_;
+      }
+    } catch (e) {
+      return Equality.null_;
+    }
+  }
+
+  List<FhirBase> operate(
+    ExecutionContext context,
+    List<FhirBase> left,
+    FpOperation? operation,
+    List<FhirBase> right,
+    ExpressionNode holder,
+  ) {
+    switch (operation) {
+      case FpOperation.Equals:
+        return opEquals(left, right, holder);
+      case FpOperation.Equivalent:
+        return opEquivalent(left, right, holder);
+      case FpOperation.NotEquals:
+        return opNotEquals(left, right, holder);
+      case FpOperation.NotEquivalent:
+        return opNotEquivalent(left, right, holder);
+      case FpOperation.LessThan:
+        return opLessThan(left, right, holder);
+      case FpOperation.Greater:
+        return opGreater(left, right, holder);
+      case FpOperation.LessOrEqual:
+        return opLessOrEqual(left, right, holder);
+      case FpOperation.GreaterOrEqual:
+        return opGreaterOrEqual(left, right, holder);
+      case FpOperation.Union:
+        return opUnion(left, right, holder);
+      case FpOperation.In:
+        return opIn(left, right, holder);
+      case FpOperation.MemberOf:
+        return opMemberOf(context, left, right, holder);
+      case FpOperation.Contains:
+        return opContains(left, right, holder);
+      case FpOperation.Or:
+        return opOr(left, right, holder);
+      case FpOperation.And:
+        return opAnd(left, right, holder);
+      case FpOperation.Xor:
+        return opXor(left, right, holder);
+      case FpOperation.Implies:
+        return opImplies(left, right, holder);
+      case FpOperation.Plus:
+        return opPlus(left, right, holder);
+      case FpOperation.Times:
+        return opTimes(left, right, holder);
+      case FpOperation.Minus:
+        return opMinus(left, right, holder);
+      case FpOperation.Concatenate:
+        return opConcatenate(left, right, holder);
+      case FpOperation.DivideBy:
+        return opDivideBy(left, right, holder);
+      case FpOperation.Div:
+        return opDiv(left, right, holder);
+      case FpOperation.Mod:
+        return opMod(left, right, holder);
+      case FpOperation.Is:
+        return opIs(left, right, holder);
+      case FpOperation.As:
+        return opAs(left, right, holder);
+      case null:
+        throw UnimplementedError();
+    }
+  }
+
+  List<FhirBase> evaluateFunction(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    switch (exp.function) {
+      case FpFunction.Empty:
+        return funcEmpty(context, focus, exp);
+      case FpFunction.Not:
+        return funcNot(context, focus, exp);
+      case FpFunction.Exists:
+        return funcExists(context, focus, exp);
+      case FpFunction.SubsetOf:
+        return funcSubsetOf(context, focus, exp);
+      case FpFunction.SupersetOf:
+        return funcSupersetOf(context, focus, exp);
+      case FpFunction.IsDistinct:
+        return funcIsDistinct(context, focus, exp);
+      case FpFunction.Distinct:
+        return funcDistinct(context, focus, exp);
+      case FpFunction.Count:
+        return funcCount(context, focus, exp);
+      case FpFunction.Where:
+        return funcWhere(context, focus, exp);
+      case FpFunction.Select:
+        return funcSelect(context, focus, exp);
+      case FpFunction.All:
+        return funcAll(context, focus, exp);
+      case FpFunction.Repeat:
+        return funcRepeat(context, focus, exp);
+      case FpFunction.Aggregate:
+        return funcAggregate(context, focus, exp);
+      case FpFunction.Item:
+        return funcItem(context, focus, exp);
+      case FpFunction.As:
+        return funcAs(context, focus, exp);
+      case FpFunction.OfType:
+        return funcOfType(context, focus, exp);
+      case FpFunction.Type:
+        return funcType(context, focus, exp);
+      case FpFunction.Is:
+        return funcIs(context, focus, exp);
+      case FpFunction.Single:
+        return funcSingle(context, focus, exp);
+      case FpFunction.First:
+        return funcFirst(context, focus, exp);
+      case FpFunction.Last:
+        return funcLast(context, focus, exp);
+      case FpFunction.Tail:
+        return funcTail(context, focus, exp);
+      case FpFunction.Skip:
+        return funcSkip(context, focus, exp);
+      case FpFunction.Take:
+        return funcTake(context, focus, exp);
+      case FpFunction.Union:
+        return funcUnion(context, focus, exp);
+      case FpFunction.Combine:
+        return funcCombine(context, focus, exp);
+      case FpFunction.Intersect:
+        return funcIntersect(context, focus, exp);
+      case FpFunction.Exclude:
+        return funcExclude(context, focus, exp);
+      case FpFunction.Iif:
+        return funcIif(context, focus, exp);
+      case FpFunction.Lower:
+        return funcLower(context, focus, exp);
+      case FpFunction.Upper:
+        return funcUpper(context, focus, exp);
+      case FpFunction.ToChars:
+        return funcToChars(context, focus, exp);
+      case FpFunction.IndexOf:
+        return funcIndexOf(context, focus, exp);
+      case FpFunction.Substring:
+        return funcSubstring(context, focus, exp);
+      case FpFunction.StartsWith:
+        return funcStartsWith(context, focus, exp);
+      case FpFunction.EndsWith:
+        return funcEndsWith(context, focus, exp);
+      case FpFunction.Matches:
+        return funcMatches(context, focus, exp);
+      case FpFunction.MatchesFull:
+        return funcMatchesFull(context, focus, exp);
+      case FpFunction.ReplaceMatches:
+        return funcReplaceMatches(context, focus, exp);
+      case FpFunction.Contains:
+        return funcContains(context, focus, exp);
+      case FpFunction.Replace:
+        return funcReplace(context, focus, exp);
+      case FpFunction.Length:
+        return funcLength(context, focus, exp);
+      case FpFunction.Children:
+        return funcChildren(context, focus, exp);
+      case FpFunction.Descendants:
+        return funcDescendants(context, focus, exp);
+      case FpFunction.MemberOf:
+        return funcMemberOf(context, focus, exp);
+      case FpFunction.Trace:
+        return funcTrace(context, focus, exp);
+      case FpFunction.DefineVariable:
+        return funcDefineVariable(context, focus, exp);
+      case FpFunction.Check:
+        return funcCheck(context, focus, exp);
+      case FpFunction.Today:
+        return funcToday(context, focus, exp);
+      case FpFunction.Now:
+        return funcNow(context, focus, exp);
+      case FpFunction.Resolve:
+        return funcResolve(context, focus, exp);
+      case FpFunction.Extension:
+        return funcExtension(context, focus, exp);
+      case FpFunction.AnyFalse:
+        return funcAnyFalse(context, focus, exp);
+      case FpFunction.AllFalse:
+        return funcAllFalse(context, focus, exp);
+      case FpFunction.AnyTrue:
+        return funcAnyTrue(context, focus, exp);
+      case FpFunction.AllTrue:
+        return funcAllTrue(context, focus, exp);
+      case FpFunction.HasValue:
+        return funcHasValue(context, focus, exp);
+      case FpFunction.Encode:
+        return funcEncode(context, focus, exp);
+      case FpFunction.Decode:
+        return funcDecode(context, focus, exp);
+      case FpFunction.Escape:
+        return funcEscape(context, focus, exp);
+      case FpFunction.Unescape:
+        return funcUnescape(context, focus, exp);
+      case FpFunction.Trim:
+        return funcTrim(context, focus, exp);
+      case FpFunction.Split:
+        return funcSplit(context, focus, exp);
+      case FpFunction.Join:
+        return funcJoin(context, focus, exp);
+      case FpFunction.HtmlChecks1:
+        return funcHtmlChecks1(context, focus, exp);
+      case FpFunction.HtmlChecks2:
+        return funcHtmlChecks2(context, focus, exp);
+      case FpFunction.Comparable:
+        return funcComparable(context, focus, exp);
+      case FpFunction.ToInteger:
+        return funcToInteger(context, focus, exp);
+      case FpFunction.ToDecimal:
+        return funcToDecimal(context, focus, exp);
+      case FpFunction.ToString:
+        return funcToString(context, focus, exp);
+      case FpFunction.ToBoolean:
+        return funcToBoolean(context, focus, exp);
+      case FpFunction.ToQuantity:
+        return funcToQuantity(context, focus, exp);
+      case FpFunction.ToDateTime:
+        return funcToDateTime(context, focus, exp);
+      case FpFunction.ToTime:
+        return funcToTime(context, focus, exp);
+      case FpFunction.ConvertsToInteger:
+        return funcIsInteger(context, focus, exp);
+      case FpFunction.ConvertsToDecimal:
+        return funcIsDecimal(context, focus, exp);
+      case FpFunction.ConvertsToString:
+        return funcIsString(context, focus, exp);
+      case FpFunction.ConvertsToBoolean:
+        return funcIsBoolean(context, focus, exp);
+      case FpFunction.ConvertsToQuantity:
+        return funcIsQuantity(context, focus, exp);
+      case FpFunction.ConvertsToDateTime:
+        return funcIsDateTime(context, focus, exp);
+      case FpFunction.ConvertsToDate:
+        return funcIsDate(context, focus, exp);
+      case FpFunction.ConvertsToTime:
+        return funcIsTime(context, focus, exp);
+      case FpFunction.ConformsTo:
+        return funcConformsTo(context, focus, exp);
+      case FpFunction.Round:
+        return funcRound(context, focus, exp);
+      case FpFunction.Sqrt:
+        return funcSqrt(context, focus, exp);
+      case FpFunction.Abs:
+        return funcAbs(context, focus, exp);
+      case FpFunction.Ceiling:
+        return funcCeiling(context, focus, exp);
+      case FpFunction.Exp:
+        return funcExp(context, focus, exp);
+      case FpFunction.Floor:
+        return funcFloor(context, focus, exp);
+      case FpFunction.Ln:
+        return funcLn(context, focus, exp);
+      case FpFunction.Log:
+        return funcLog(context, focus, exp);
+      case FpFunction.Power:
+        return funcPower(context, focus, exp);
+      case FpFunction.Truncate:
+        return funcTruncate(context, focus, exp);
+      case FpFunction.LowBoundary:
+        return funcLowBoundary(context, focus, exp);
+      case FpFunction.HighBoundary:
+        return funcHighBoundary(context, focus, exp);
+      case FpFunction.Precision:
+        return funcPrecision(context, focus, exp);
+      case FpFunction.Custom:
+        {
+          final params = <List<FhirBase>>[];
+          for (final p in exp.parameters) {
+            params.add(execute(context, focus, p, true));
+          }
+          return hostServices.executeFunction(
+            this,
+            context.appInfo,
+            focus,
+            exp.name,
+            params,
+          );
+        }
+      case null:
+      case FpFunction.HasTemplateIdOf:
+        throw UnimplementedError();
+    }
+  }
+
+  List<FhirBase> resolveConstantWithBase(
+    ExecutionContext context,
+    FhirBase? constant,
+    bool beforeContext,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    if (constant == null) {
+      return [];
+    }
+
+    if (constant is! FHIRConstant) {
+      return [constant];
+    }
+
+    final c = constant;
+    if (c.value.startsWith('%')) {
+      final varName = c.value.substring(1);
+      if (context.hasDefinedVariable(varName)) {
+        return context.getDefinedVariable(varName);
+      }
+      return resolveConstantWithString(
+        context,
+        c.value,
+        beforeContext,
+        expr,
+        explicitConstant,
+      );
+    } else if (c.value.startsWith('@')) {
+      return [
+        processDateConstant(context.appInfo, c.value.substring(1), expr),
+      ];
+    } else {
+      throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', [c.value]);
+    }
+  }
+
+  List<FhirBase> resolveConstantWithString(
+    ExecutionContext context,
+    String s,
+    bool beforeContext,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    switch (s) {
+      case '%sct':
+        return [FhirString('http://snomed.info/sct')..noExtensions()];
+      case '%loinc':
+        return [FhirString('http://loinc.org')..noExtensions()];
+      case '%ucum':
+        return [FhirString('http://unitsofmeasure.org')..noExtensions()];
+      case '%resource':
+        if (context.focusResource == null) {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANNOT_USE',
+            ['%resource', 'no focus resource'],
+          );
+        }
+        return [context.focusResource!];
+      case '%rootResource':
+        if (context.rootResource == null) {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANNOT_USE',
+            ['%rootResource', 'no focus resource'],
+          );
+        }
+        return [context.rootResource!];
+      case '%context':
+        return context.context == null ? [] : [context.context!];
+      case '%us-zip':
+        return [FhirString('[0-9]{5}(-[0-9]{4}){0,1}')..noExtensions()];
+      default:
+        if (s.startsWith('%`vs-')) {
+          return [
+            FhirString(
+              'http://hl7.org/fhir/ValueSet/${s.substring(5, s.length - 1)}',
+            )..noExtensions(),
+          ];
+        } else if (s.startsWith('%`cs-')) {
+          return [
+            FhirString('http://hl7.org/fhir/${s.substring(5, s.length - 1)}')
+              ..noExtensions(),
+          ];
+        } else if (s.startsWith('%`ext-')) {
+          return [
+            FhirString(
+              'http://hl7.org/fhir/StructureDefinition/${s.substring(6, s.length - 1)}',
+            )..noExtensions(),
+          ];
+        } else if (hostServices == null) {
+          throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', [s]);
+        } else {
+          return hostServices!.resolveConstant(
+            this,
+            context.appInfo,
+            s.substring(1),
+            beforeContext,
+            explicitConstant,
+          );
+        }
+    }
+  }
+
+  FhirBase processDateConstant(
+    Object? appInfo,
+    String value,
+    ExpressionNode expr,
+  ) {
+    String? date;
+    String? time;
+    String? tz;
+
+    TemporalPrecisionEnum? temp;
+
+    // Determine date and time components
+    if (value.startsWith('T')) {
+      time = value.substring(1);
+    } else if (!value.contains('T')) {
+      date = value;
+    } else {
+      final parts = value.split('T');
+      date = parts[0];
+      if (parts.length > 1) {
+        time = parts[1];
+      }
+    }
+
+    // Process the time component
+    if (time != null) {
+      var i = time.indexOf('-');
+      if (i == -1) {
+        i = time.indexOf('+');
+      }
+      if (i == -1) {
+        i = time.indexOf('Z');
+      }
+      if (i > -1) {
+        tz = time.substring(i);
+        time = time.substring(0, i);
+      }
+
+      if (time.length == 2) {
+        time += ':00:00';
+        temp = TemporalPrecisionEnum.minute;
+      } else if (time.length == 5) {
+        temp = TemporalPrecisionEnum.minute;
+        time += ':00';
+      } else if (time.contains('.')) {
+        temp = TemporalPrecisionEnum.millisecond;
+      } else {
+        temp = TemporalPrecisionEnum.second;
+      }
+    }
+
+    // Handle cases based on the presence of date and time
+    if (date == null) {
+      if (tz != null) {
+        throw makeException(
+          expr,
+          'FHIRPATH_UNKNOWN_CONTEXT',
+          [value],
+        );
+      } else {
+        var tt = FhirTime(time);
+        if (temp != null) {
+          tt = tt.adjustToPrecision(temp);
+        }
+        return tt.noExtensions();
+      }
+    } else if (time != null) {
+      var dt = FhirDateTime.fromString("${date}T$time${tz ?? ""}");
+      if (temp != null) {
+        dt = dt.adjustToPrecision(temp) as FhirDateTime;
+      }
+      return dt.noExtensions();
+    } else {
+      return FhirDate.fromString(date).noExtensions();
+    }
+  }
+
+  List<FhirBase> opIs(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    if (left.isEmpty || right.isEmpty) {
+      // No operation needed for empty lists
+    } else if (left.length != 1 || right.length != 1) {
+      result.add(FhirBoolean(false).noExtensions());
+    } else {
+      final tn = convertToStringList(right);
+      if (left.first is Element) {
+        final element = left.first as Element;
+        if (element.disallowExtensions ?? false) {
+          result.add(
+            FhirBoolean(
+              element.fhirType.capitalize() == tn ||
+                  'System.${element.fhirType.capitalize()}' == tn,
+            ).noExtensions(),
+          );
+        } else {
+          final currentType = element.fhirType;
+          var sd = worker.fetchTypeDefinition(currentType);
+          while (sd != null) {
+            if (tn == sd.type.toString()) {
+              return makeBoolean(true);
+            }
+            sd = worker.fetchResource<StructureDefinition>(
+              sd.baseDefinition?.toString(),
+            );
+          }
+          return makeBoolean(false);
+        }
+      } else if (left.first.fhirType == tn) {
+        result.add(FhirBoolean(true).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> opEquals(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length != right.length) {
+      return makeBoolean(false);
+    }
+
+    var res = true;
+    var nil = false;
+
+    for (var i = 0; i < left.length; i++) {
+      final eq = doEquals(left[i], right[i]);
+      if (eq == null) {
+        nil = true;
+      } else if (!eq) {
+        res = false;
+        break;
+      }
+    }
+
+    if (!res) {
+      return makeBoolean(false);
+    } else if (nil) {
+      return [];
+    } else {
+      return makeBoolean(true);
+    }
+  }
+
+  List<FhirBase> opNotEquals(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (!legacyMode && (left.isEmpty || right.isEmpty)) {
+      return [];
+    }
+
+    if (left.length != right.length) {
+      return makeBoolean(true);
+    }
+
+    var res = true;
+    var nil = false;
+    for (var i = 0; i < left.length; i++) {
+      final eq = doEquals(left[i], right[i]);
+      if (eq == null) {
+        nil = true;
+      } else if (eq) {
+        res = false;
+        break;
+      }
+    }
+
+    if (!res) {
+      return makeBoolean(res);
+    } else if (nil) {
+      return [];
+    } else {
+      return makeBoolean(res);
+    }
+  }
+
+  String removeTrailingZeros(String s) {
+    if (s.noString()) {
+      return '';
+    }
+    var i = s.length - 1;
+    var done = false;
+    var dot = false;
+
+    while (i > 0 && !done) {
+      if (s[i] == '.') {
+        i--;
+        dot = true;
+      } else if (!dot && s[i] == '0') {
+        i--;
+      } else {
+        done = true;
+      }
+    }
+
+    return s.substring(0, i + 1);
+  }
+
+  bool decEqual(String left, String right) {
+    return removeTrailingZeros(left) == removeTrailingZeros(right);
+  }
+
+  bool? datesEqual(FhirDateTimeBase left, FhirDateTimeBase right) {
+    return left.equals(right);
+  }
+
+  bool? doEquals(FhirBase left, FhirBase right) {
+    if (left is Quantity && right is Quantity) {
+      return qtyEqual(left, right);
+    } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
+      return datesEqual(left, right);
+    } else if (left is FhirDecimal || right is FhirDecimal) {
+      return decEqual(left.toString(), right.toString());
+    } else if (left.isPrimitive && right.isPrimitive) {
+      return left.primitiveValue == right.primitiveValue;
+    } else {
+      return FhirBase.compareDeep(left, right);
+    }
+  }
+
+  List<FhirBase> opEquivalent(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.length != right.length) {
+      return makeBoolean(false);
+    }
+
+    var res = true;
+
+    for (var i = 0; i < left.length; i++) {
+      var found = false;
+      for (var j = 0; j < right.length; j++) {
+        if (doEquivalent(left[i], right[j]) ?? false) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        res = false;
+        break;
+      }
+    }
+
+    return makeBoolean(res);
+  }
+
+  List<FhirBase> opNotEquivalent(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.length != right.length) {
+      return makeBoolean(true);
+    }
+
+    var res = true;
+
+    for (var i = 0; i < left.length; i++) {
+      var found = false;
+      for (var j = 0; j < right.length; j++) {
+        if (doEquivalent(left[i], right[j]) ?? false) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        res = false;
+        break;
+      }
+    }
+
+    return makeBoolean(!res);
+  }
+
+  bool? qtyEqual(Quantity left, Quantity right) {
+    if (left.value == null && right.value == null) {
+      return true;
+    }
+    if (left.value == null || right.value == null) {
+      return null;
+    }
+    if (worker.ucumService != null) {
+      final dl = qtyToCanonicalPair(left);
+      final dr = qtyToCanonicalPair(right);
+
+      if (dl != null && dr != null) {
+        if (dl.unit == dr.unit) {
+          return doEquals(
+            FhirDecimal(dl.value.asDouble),
+            FhirDecimal(dr.value.asDouble),
+          );
+        } else {
+          return false;
+        }
+      }
+    }
+    if (left.code != null || right.code != null) {
+      if (!(left.code != null && right.code != null) ||
+          left.code != right.code) {
+        return null;
+      }
+    } else if (left.unit == null || right.unit == null) {
+      if (!(left.unit != null && right.unit != null) ||
+          left.unit != right.unit) {
+        return null;
+      }
+    }
+    return doEquals(left, right);
+  }
+
+  Pair? qtyToCanonicalPair(Quantity q) {
+    if (q.system?.toString() != 'http://unitsofmeasure.org') {
+      return null;
+    }
+    try {
+      final p = Pair(
+        value: UcumDecimal.fromNum(q.value!.value!),
+        unit: q.code?.toString() ?? '1',
+      );
+      return worker.ucumService?.getCanonicalForm(p);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  FhirDecimal? qtyToCanonicalDecimal(Quantity q) {
+    if (q.system?.toString() != 'http://unitsofmeasure.org') {
+      return null;
+    }
+    try {
+      final pair = Pair(
+        value: UcumDecimal.fromNum(q.value!.value!),
+        unit: q.code?.toString() ?? '1',
+      );
+      final canonicalPair = worker.ucumService?.getCanonicalForm(pair);
+      return FhirDecimal(canonicalPair?.value.asDouble);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Quantity pairToQty(Pair pair) {
+    return Quantity(
+      value: FhirDecimal(pair.value.asDouble),
+      system: FhirUri('http://unitsofmeasure.org'),
+      code: pair.unit.toFhirCode,
+      disallowExtensions: true,
+    );
+  }
+
+  Pair? qtyToPair(Quantity q) {
+    if (q.system?.toString() != 'http://unitsofmeasure.org') {
+      return null;
+    }
+    try {
+      return Pair(
+        value: UcumDecimal.fromNum(q.value!.value!),
+        unit: q.code?.toString() ?? '1',
+      );
+    } catch (e) {
+      return null;
+    }
+  }
+
+  bool? qtyEquivalent(Quantity left, Quantity right) {
+    if (left.value == null && right.value == null) {
+      return true;
+    }
+    if (left.value == null || right.value == null) {
+      return null;
+    }
+    if (worker.ucumService != null) {
+      final dl = qtyToCanonicalPair(left);
+      final dr = qtyToCanonicalPair(right);
+
+      if (dl != null && dr != null) {
+        if (dl.unit == dr.unit) {
+          return doEquivalent(
+            FhirDecimal(dl.value.asDouble),
+            FhirDecimal(dr.value.asDouble),
+          );
+        } else {
+          return false;
+        }
+      }
+    }
+    if (left.code != null || right.code != null) {
+      if (!(left.code != null && right.code != null) ||
+          left.code != right.code) {
+        return null;
+      }
+    } else if (left.unit == null || right.unit == null) {
+      if (!(left.unit != null && right.unit != null) ||
+          left.unit != right.unit) {
+        return null;
+      }
+    }
+    return doEquivalent(left, right);
+  }
+
+  List<FhirBase> opLessThan(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) < 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l < r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l.compareTo(r);
+          return makeBoolean(comparison < 0);
+        } else {
+          throw makeException(expr, 'FHIRPATH_CANT_COMPARE', [
+            l.fhirType,
+            r.fhirType,
+          ]);
+        }
+      }
+    }
+    return [];
+  }
+
+  String convertToStringList(List<FhirBase> items) {
+    final b = StringBuffer();
+    var first = true;
+    for (final item in items) {
+      if (first) {
+        first = false;
+      } else {
+        b.write(',');
+      }
+
+      b.write(convertToString(item));
+    }
+    return b.toString();
+  }
+
+  String convertToString(FhirBase item) {
+    if (item is IIdType) {
+      return item.getIdPart();
+    } else if (item is PrimitiveType) {
+      return item.value.toString();
+    } else if (item is Quantity) {
+      final q = item.copyWith();
+      if (q.unit != null &&
+          [
+            'year',
+            'years',
+            'month',
+            'months',
+            'week',
+            'weeks',
+            'day',
+            'days',
+            'hour',
+            'hours',
+            'minute',
+            'minutes',
+            'second',
+            'seconds',
+            'millisecond',
+            'milliseconds',
+          ].contains(q.unit?.value) &&
+          (q.system == null ||
+              q.system.toString() == 'http://unitsofmeasure.org')) {
+        return '${q.value} ${q.unit}';
+      }
+      if (q.system.toString() == 'http://unitsofmeasure.org') {
+        final u = "'${q.code}'";
+        return '${q.value} $u';
+      } else {
+        return item.toString();
+      }
+    } else {
+      return item.toString();
+    }
+  }
+
+  List<FhirBase> makeNull() => <FhirBase>[];
+
+  bool? doEquivalent(FhirBase left, FhirBase right) {
+    if (left is Quantity && right is Quantity) {
+      return qtyEquivalent(left, right);
+    }
+    if (left is FhirBoolean && right is FhirBoolean) {
+      return doEquals(left, right);
+    }
+    if (left is FhirNumber && right is FhirNumber) {
+      return equivalentNumber(left.value, right.value);
+    }
+    if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
+      return left.isEquivalentTo(right);
+    }
+    if (FHIR_TYPES_STRING.contains(left.fhirType) &&
+        FHIR_TYPES_STRING.contains(right.fhirType)) {
+      return equivalentString(
+        convertToString(left),
+        convertToString(right),
+      );
+    }
+    if (left is PrimitiveType && right is PrimitiveType) {
+      return equivalentString(
+        left.toString(),
+        right.toString(),
+      );
+    }
+    if (!left.isPrimitive && !right.isPrimitive) {
+      // TODO(Dokotela): Implement this
+      throw UnimplementedError();
+      // final props = MergedList<Property>(
+      //   left.listChildren(),
+      //   right.listChildren(),
+      //   PropertyMatcher(),
+      // );
+      // for (final t in props) {
+      //   if (t.hasLeft && t.hasRight) {
+      //     if (t.left.hasValues() && t.right.hasValues()) {
+      //       final values = MergedList<FhirBase>(
+      //         t.left.values(),
+      //         t.right.values(),
+      //       );
+      //       for (final v in values) {
+      //         if (v.hasLeft && v.hasRight) {
+      //           if (!doEquivalent(v.left, v.right)) {
+      //             return false;
+      //           }
+      //         } else if (v.hasLeft || v.hasRight) {
+      //           return false;
+      //         }
+      //       }
+      //     } else if (t.left.hasValues() || t.right.hasValues()) {
+      //       return false;
+      //     }
+      //   } else {
+      //     return false;
+      //   }
+      // }
+      // return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool equivalentNumber(num? lhsNum, num? rhsNum) {
+    if (lhsNum == null && rhsNum == null) {
+      return true;
+    } else if (lhsNum == null || rhsNum == null) {
+      return false;
+    }
+    final sigDigsLhs = lhsNum
+        .toStringAsExponential()
+        .split('e')
+        .first
+        .replaceAll('.', '')
+        .length;
+    final sigDigsRhs = rhsNum
+        .toStringAsExponential()
+        .split('e')
+        .first
+        .replaceAll('.', '')
+        .length;
+    if (sigDigsLhs < sigDigsRhs) {
+      return lhsNum.toStringAsPrecision(sigDigsLhs) ==
+          rhsNum.toStringAsPrecision(sigDigsLhs);
+    } else {
+      return lhsNum.toStringAsPrecision(sigDigsRhs) ==
+          rhsNum.toStringAsPrecision(sigDigsRhs);
+    }
+  }
+
+  bool equivalentNumberAsString(String? l, String? r) {
+    if ((l == null || l.isEmpty) && (r == null || r.isEmpty)) {
+      return true;
+    }
+    if ((l == null || l.isEmpty) || (r == null || r.isEmpty)) {
+      return false;
+    }
+    if (!l.isDecimal() || !r.isDecimal()) {
+      return false;
+    }
+
+    final dl = double.parse(l);
+    final dr = double.parse(r);
+
+    return dl == dr;
+  }
+
+  bool equivalentString(String l, String r) {
+    if (Utilities.noString(l) && Utilities.noString(r)) return true;
+    if (Utilities.noString(l) || Utilities.noString(r)) return false;
+    return l.toLowerCase() == r.toLowerCase();
+  }
+
+  List<FhirBase> opGreater(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l > r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l.compareTo(r);
+          return makeBoolean(comparison > 0);
+        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
+          final comparison = compareTimeElements(l, r, false);
+          if (comparison == null) {
+            return makeNull();
+          }
+          return makeBoolean(comparison > 0);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        final lUnit = l.listChildrenByName('unit');
+        final rUnit = r.listChildrenByName('unit');
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opGreater(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opGreaterLists(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opGreaterLists(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
+        } else if ([
+              'integer',
+              'decimal',
+              'unsignedInt',
+              'positiveInt',
+            ].contains(l.fhirType) &&
+            [
+              'integer',
+              'decimal',
+              'unsignedInt',
+              'positiveInt',
+            ].contains(r.fhirType)) {
+          return makeBoolean(
+            double.parse(l.primitiveValue.toString()) >
+                double.parse(r.primitiveValue.toString()),
+          );
+        } else if ([
+              'date',
+              'dateTime',
+              'instant',
+            ].contains(l.fhirType) &&
+            [
+              'date',
+              'dateTime',
+              'instant',
+            ].contains(r.fhirType)) {
+          final comparison = compareDateTimeElements(l, r, false);
+          return comparison == null ? makeNull() : makeBoolean(comparison > 0);
+        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
+          final comparison = compareTimeElements(l, r, false);
+          return comparison == null ? makeNull() : makeBoolean(comparison > 0);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        final lUnit = l.listChildrenByName('unit');
+        final rUnit = r.listChildrenByName('unit');
+
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opGreater(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opGreaterLists(dl, dr, expr);
+          }
+        }
+      }
+    }
+
+    return [];
+  }
+
+  List<FhirBase> opLessOrEqual(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) <= 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l <= r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l.compareTo(r);
+          return makeBoolean(comparison <= 0);
+        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
+          final comparison = compareTimeElements(l, r, false);
+          if (comparison == null) {
+            return makeNull();
+          }
+          return makeBoolean(comparison <= 0);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        final lUnits = l.listChildrenByName('unit');
+        final rUnits = r.listChildrenByName('unit');
+        final lUnit = lUnits.isNotEmpty ? lUnits.first.primitiveValue() : null;
+        final rUnit = rUnits.isNotEmpty ? rUnits.first.primitiveValue() : null;
+
+        if ((lUnit == null && rUnit == null) || lUnit == rUnit) {
+          return opLessOrEqual(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opLessOrEqual(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opImplies(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final eq = asBoolList(left, expr);
+    if (eq == Equality.false_) {
+      return makeBoolean(true);
+    } else if (right.isEmpty) {
+      return makeNull();
+    } else {
+      switch (asBoolList(right, expr)) {
+        case Equality.false_:
+          return eq == Equality.null_ ? makeNull() : makeBoolean(false);
+        case Equality.null_:
+          return makeNull();
+        case Equality.true_:
+          return makeBoolean(true);
+      }
+    }
+  }
+
+  List<FhirBase> opMinus(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['-'],
+      );
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        '-',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(
+        right.length,
+        expr,
+        'FHIRPATH_RIGHT_VALUE',
+        ['-'],
+      );
+    }
+    if (right.first is! PrimitiveType &&
+        !(left.first is FhirDateTimeBase ||
+            left.first.toString() == '0' ||
+            left.first.fhirType == 'Quantity')) {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        '-',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirNumber && r is FhirNumber) {
+      result.add((l - r)!);
+    } else if (l is Quantity && r is Quantity) {
+      final qty = r.copyWith(value: r.value?.abs().toFhirDecimal);
+      result.add(qty);
+    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
+      result.add(dateAdd(l as FhirDateTime, r as Quantity, true, expr));
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        '-',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opDivideBy(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['/'],
+      );
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        '/',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        '/',
+      ]);
+    }
+    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        '/',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirNumber && r is FhirNumber) {
+      try {
+        final d1 = FhirDecimal(l.value);
+        final d2 = FhirDecimal(r.value);
+        result.add((d1 / d2)! as FhirDecimal);
+      } catch (e) {
+        return <FhirBase>[];
+      }
+    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
+      final pl = qtyToPair(l);
+      final pr = qtyToPair(r);
+      if (pl != null && pr != null) {
+        final p = worker.ucumService!.divideBy(pl, pr);
+        result.add(pairToQty(p));
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        '/',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opDiv(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+        'div',
+      ]);
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        'div',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        'div',
+      ]);
+    }
+    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        'div',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirInteger && r is FhirInteger) {
+      final divisor = r.primitiveValue as int;
+      if (divisor != 0) {
+        result.add(FhirInteger((l.primitiveValue as int) ~/ divisor));
+      }
+    } else if ((l is FhirDecimal || l is FhirInteger) &&
+        (r is FhirDecimal || r is FhirInteger)) {
+      if ((r as FhirNumber).value != 0) {
+        result.add(((l as FhirNumber) ~/ r)!);
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        'div',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opMod(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+        'mod',
+      ]);
+    }
+    if (!left.first.isPrimitive) {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        'mod',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        'mod',
+      ]);
+    }
+    if (!right.first.isPrimitive) {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        'mod',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l.fhirType == 'integer' && r.fhirType == 'integer') {
+      final modulus = r.primitiveValue as int;
+      if (modulus != 0) {
+        result.add(FhirInteger((l.primitiveValue as int) % modulus));
+      }
+    } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
+        (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
+      try {
+        final d1 = l as FhirNumber;
+        final d2 = r as FhirNumber;
+        if (d2.value != 0) {
+          result.add((d1 % d2)!);
+        }
+      } catch (e) {
+        throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        'mod',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  FhirDateTimeBase dateAdd(
+    FhirDateTimeBase d,
+    Quantity q,
+    bool negate,
+    ExpressionNode holder,
+  ) {
+    final result = d.copy();
+
+    final value = negate ? -q.value!.value!.toInt() : q.value!.value!.toInt();
+    final unit = q.code?.value ?? q.unit?.value;
+
+    switch (unit) {
+      case 'years':
+      case 'year':
+        result.addYears(value);
+      case 'a':
+        throw PathEngineException(
+          'Error in date arithmetic: attempt to add a definite quantity duration time unit $unit',
+        );
+      case 'months':
+      case 'month':
+        result.addMonths(value);
+      case 'mo':
+        throw PathEngineException(
+          'Error in date arithmetic: attempt to add a definite quantity duration time unit $unit',
+          holder.opStart,
+          holder.toString(),
+        );
+      case 'weeks':
+      case 'week':
+      case 'wk':
+        result.addDays(value * 7);
+      case 'days':
+      case 'day':
+      case 'd':
+        result.addDays(value);
+      case 'hours':
+      case 'hour':
+      case 'h':
+        result.addHours(value);
+      case 'minutes':
+      case 'minute':
+      case 'min':
+        result.addMinutes(value);
+      case 'seconds':
+      case 'second':
+      case 's':
+        result.addSeconds(value);
+      case 'milliseconds':
+      case 'millisecond':
+      case 'ms':
+        result.addMilliseconds(value);
+      default:
+        throw PathEngineException(
+          'Error in date arithmetic: unrecognized time unit $unit',
+        );
+    }
+
+    return result;
+  }
+
+  int? compareDateTimeElements(
+    FhirBase theL,
+    FhirBase theR,
+    bool theEquivalenceTest,
+  ) {
+    final left = theL is FhirDateTime
+        ? theL
+        : FhirDateTime(theL.primitiveValue.toString());
+    final right = theR is FhirDateTime
+        ? theR
+        : FhirDateTime(theR.primitiveValue.toString());
+
+    if (theEquivalenceTest) {
+      return left.equalsUsingFhirPathRules(right) ? 0 : 1;
+    }
+
+    if (left.precision.ordinal > TemporalPrecisionEnum.day.ordinal) {
+      left.timeZoneZulu = true;
+    }
+    if (right.precision.ordinal > TemporalPrecisionEnum.day.ordinal) {
+      right.timeZoneZulu = true;
+    }
+
+    return BaseDateTimeType.compareTimes(left, right, null);
+  }
+
+  int? compareTimeElements(
+    FhirBase theL,
+    FhirBase theR,
+    bool theEquivalenceTest,
+  ) {
+    final left =
+        theL is FhirTime ? theL : FhirTime(theL.primitiveValue.toString());
+    final right =
+        theR is FhirTime ? theR : FhirTime(theR.primitiveValue.toString());
+
+    if (left.hour < right.hour) {
+      return -1;
+    } else if (left.hour > right.hour) {
+      return 1;
+    }
+
+    if (left.minute < right.minute) {
+      return -1;
+    } else if (left.minute > right.minute) {
+      return 1;
+    } else if (left.precision == TemporalPrecisionEnum.minute &&
+        right.precision == TemporalPrecisionEnum.minute) {
+      return 0;
+    } else if (left.precision == TemporalPrecisionEnum.minute ||
+        right.precision == TemporalPrecisionEnum.minute) {
+      return null;
+    }
+
+    if (left.second < right.second) {
+      return -1;
+    } else if (left.second > right.second) {
+      return 1;
+    }
+
+    return 0;
   }
 }

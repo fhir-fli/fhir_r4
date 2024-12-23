@@ -79,6 +79,7 @@ class FhirDate extends FhirDateTimeBase
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   /// Factory constructor to create a [FhirDate] from a [String].
@@ -238,6 +239,7 @@ class FhirDate extends FhirDateTimeBase
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirDateTimeBase.constructor<FhirDate>(
       input: value ?? value,
@@ -254,6 +256,10 @@ class FhirDate extends FhirDateTimeBase
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     ) as FhirDate;
   }
+
+  /// Returns a new [FhirDate] with extensions disallowed.
+  FhirDate noExtensions() => copyWith(disallowExtensions: true);
 }

@@ -44,6 +44,7 @@ class FhirUri extends PrimitiveType<Uri>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -183,6 +184,7 @@ class FhirUri extends PrimitiveType<Uri>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirUri(
       newValue?.toString() ?? input,
@@ -195,8 +197,12 @@ class FhirUri extends PrimitiveType<Uri>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirUri] with extensions disallowed.
+  FhirUri noExtensions() => copyWith(disallowExtensions: true);
 
   /// Compares this object for equality with another object
   @override

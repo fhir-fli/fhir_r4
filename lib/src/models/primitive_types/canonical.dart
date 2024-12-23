@@ -43,6 +43,7 @@ class FhirCanonical extends PrimitiveType<Uri>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -183,6 +184,7 @@ class FhirCanonical extends PrimitiveType<Uri>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirCanonical(
       newValue?.toString() ?? input,
@@ -195,8 +197,12 @@ class FhirCanonical extends PrimitiveType<Uri>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirCanonical] with extensions disallowed.
+  FhirCanonical noExtensions() => copyWith(disallowExtensions: true);
 
   /// Compares this object for equality with another object
   @override

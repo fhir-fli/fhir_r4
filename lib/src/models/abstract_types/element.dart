@@ -70,7 +70,7 @@ class Element extends FhirBase {
   /// This is used in the FHIRPath engine to record that no extensions are
   /// allowed for this item in the context in which it is used.
   /// to do: enforce this....
-  final bool disallowExtensions;
+  final bool? disallowExtensions;
 
   /// Method to copy the current Element with modifications
   @override

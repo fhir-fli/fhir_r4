@@ -3,7 +3,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 abstract class IWorkerContext {
   List<StructureDefinition> getStructures();
@@ -16,7 +16,7 @@ abstract class IWorkerContext {
 
   StructureDefinition? fetchTypeDefinition(String typeName);
 
-  T? fetchResource<T extends Resource>(String uri);
+  T? fetchResource<T extends Resource>(String? uri);
 
   String formatMessagePlural(
     int pl,
@@ -26,7 +26,7 @@ abstract class IWorkerContext {
 
   String formatMessage(String theMessage, List<dynamic> theMessageArguments);
 
-  UcumService getUcumService();
+  UcumService? get ucumService;
 
   ValidationResult validateCode(
     ValidationOptions options,

@@ -30,6 +30,7 @@ class FhirBase64Binary extends PrimitiveType<String?>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input != null ? _validateBase64(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -195,6 +196,7 @@ class FhirBase64Binary extends PrimitiveType<String?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirBase64Binary(
       newValue ?? input,
@@ -207,8 +209,12 @@ class FhirBase64Binary extends PrimitiveType<String?>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
+
+  /// Returns a new [FhirBase64Binary] with extensions disallowed.
+  FhirBase64Binary noExtensions() => copyWith(disallowExtensions: true);
 }
 
 /// Enum for the detected file type

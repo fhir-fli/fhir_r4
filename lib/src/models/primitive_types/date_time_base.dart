@@ -18,6 +18,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(null) {
     _validateDateTimeComponents();
   }
@@ -370,6 +371,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     // If input is null, return an instance with only the element
     if (input == null) {
@@ -402,6 +404,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       formatCommentsPre,
       formatCommentsPost,
       annotations,
+      disallowExtensions,
     );
   }
 
@@ -416,6 +419,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   ]) {
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
@@ -432,6 +436,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          disallowExtensions: disallowExtensions,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
