@@ -328,7 +328,11 @@ class FhirTime extends PrimitiveType<String>
 
   /// Converts [FhirTime] to a String.
   @override
-  String toString() => value ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Converts [FhirTime] to a JSON string.
   @override

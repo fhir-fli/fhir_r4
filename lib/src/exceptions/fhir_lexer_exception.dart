@@ -3,7 +3,7 @@ import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 /// Represents an error that occurred during the lexing phase of
 /// FHIRPath parsing.
-class FHIRLexerException extends FhirException {
+class FHIRLexerException extends FHIRException {
   /// Constructor for [FHIRLexerException] with optional [message]
   /// and [location].
   FHIRLexerException({super.message, required this.location});

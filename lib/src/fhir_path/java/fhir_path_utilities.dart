@@ -138,7 +138,7 @@ abstract class IEvaluationContext {
   /// memberOf()
   ValueSet resolveValueSet(
     FHIRPathEngine engine,
-    Object appContext,
+    Object? appContext,
     String url,
   );
 }

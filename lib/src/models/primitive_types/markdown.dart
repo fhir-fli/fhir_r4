@@ -96,7 +96,11 @@ class FhirMarkdown extends PrimitiveType<String>
 
   /// Provides a string representation of the markdown value.
   @override
-  String toString() => value ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Compares this instance for equality with another object.
   @override

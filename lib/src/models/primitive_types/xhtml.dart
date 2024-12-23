@@ -201,7 +201,11 @@ class FhirXhtml extends PrimitiveType<String?> {
 
   /// Returns the XHTML content as a string.
   @override
-  String toString() => value ?? 'null';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Converts the XHTML content to a JSON-encoded string.
   @override

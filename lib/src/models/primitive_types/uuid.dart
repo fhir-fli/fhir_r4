@@ -239,7 +239,11 @@ class FhirUuid extends PrimitiveType<UuidValue?>
 
   /// String representation of the instance.
   @override
-  String toString() => value?.uuid ?? 'null';
+  String toString() => (value?.uuid).toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Hash code for the UUID.
   @override

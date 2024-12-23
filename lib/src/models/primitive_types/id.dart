@@ -81,7 +81,7 @@ class FhirId extends PrimitiveType<String>
   bool get valueOnly => value != null && element == null;
 
   /// Boolean checks for the presence of an element only.
-  bool get elementOnly => value == null && element != null;
+  bool get hasElementOnly => value == null && element != null;
 
   /// Boolean checks for the presence of both value and element.
   bool get valueAndElement => value != null && element != null;
@@ -129,7 +129,11 @@ class FhirId extends PrimitiveType<String>
 
   /// Provides a string representation of the instance.
   @override
-  String toString() => value ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator.
   @override

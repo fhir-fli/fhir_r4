@@ -166,6 +166,10 @@ class FhirBase64Binary extends PrimitiveType<String?>
   @override
   String toString() => value.toString();
 
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
+
   /// Overrides equality operator
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

@@ -135,7 +135,11 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
 
   /// String representation of the instance.
   @override
-  String toString() => value?.toString() ?? 'null';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Compares two [FhirInteger64] values.
   @override

@@ -73,6 +73,10 @@ abstract class PrimitiveType<T> extends DataType {
   String toString() =>
       value != null ? '$runtimeType[$value]' : super.toString();
 
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
+
   /// Clone method to create a deep copy of the instance
   @override
   PrimitiveType<T> clone();

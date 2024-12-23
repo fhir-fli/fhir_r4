@@ -123,7 +123,11 @@ class FhirString extends PrimitiveType<String>
 
   /// Provides a string representation of the value.
   @override
-  String toString() => value ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator.
   @override

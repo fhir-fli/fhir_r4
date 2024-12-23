@@ -95,6 +95,10 @@ class Element extends FhirBase {
   /// Getter for checking if the element has an id
   bool get hasId => id?.value != null && (id!.value!.isNotEmpty);
 
+  /// All [Element]s are metadata based
+  @override
+  bool get isMetadataBased => true;
+
   /// Extension handling methods
   bool hasExtension() => extension_?.isNotEmpty ?? false;
 

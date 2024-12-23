@@ -106,7 +106,7 @@ class FhirBoolean extends PrimitiveType<bool>
   bool get valueOnly => value != null && element == null;
 
   /// Boolean getter to determine if only an element is present
-  bool get elementOnly => value == null && element != null;
+  bool get hasElementOnly => value == null && element != null;
 
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
@@ -150,6 +150,10 @@ class FhirBoolean extends PrimitiveType<bool>
   /// Provides a string representation of the instance
   @override
   String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator
   @override

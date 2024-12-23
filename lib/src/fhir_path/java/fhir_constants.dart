@@ -40,9 +40,7 @@ class FHIRConstant extends FhirBase {
   String get fhirType => '%constant';
 
   @override
-  String primitiveValue() {
-    return value;
-  }
+  String get primitiveValue => value;
 
   FhirBase copy() {
     throw UnimplementedError();

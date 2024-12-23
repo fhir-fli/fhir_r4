@@ -1,7 +1,7 @@
-/// [FhirException] represents an exception in the FHIR library.
-class FhirException implements Exception {
-  /// Constructor for [FhirException] with optional [message] and [cause].
-  FhirException({this.message, this.cause});
+/// [FHIRException] represents an exception in the FHIR library.
+class FHIRException implements Exception {
+  /// Constructor for [FHIRException] with optional [message] and [cause].
+  FHIRException({this.message, this.cause});
 
   /// The message of the exception.
   final String? message;
@@ -12,13 +12,13 @@ class FhirException implements Exception {
   @override
   String toString() {
     if (message != null && cause != null) {
-      return 'FhirException: $message\nCause: $cause';
+      return 'FHIRException: $message\nCause: $cause';
     } else if (message != null) {
-      return 'FhirException: $message';
+      return 'FHIRException: $message';
     } else if (cause != null) {
-      return 'FhirException\nCause: $cause';
+      return 'FHIRException\nCause: $cause';
     } else {
-      return 'FhirException';
+      return 'FHIRException';
     }
   }
 }

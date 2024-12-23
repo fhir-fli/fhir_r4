@@ -133,7 +133,11 @@ class FhirUnsignedInt extends FhirNumber
 
   /// Provides a string representation of the instance.
   @override
-  String toString() => value?.toString() ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator to compare instances.
   @override

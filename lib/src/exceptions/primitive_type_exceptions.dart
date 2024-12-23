@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Exception for primitive type format errors.
-class PrimitiveTypeFormatException extends FhirException {
+class PrimitiveTypeFormatException extends FHIRException {
   /// PrimitiveTypeFormatException constructor.
   PrimitiveTypeFormatException({super.message, super.cause});
 
@@ -27,7 +27,7 @@ class YamlFormatException<T> extends PrimitiveTypeFormatException {
 }
 
 /// Exception for unequal precision errors in FHIR primitives.
-class UnequalPrecision<T> extends FhirException {
+class UnequalPrecision<T> extends FHIRException {
   /// UnequalPrecision constructor.
   UnequalPrecision({super.message, super.cause});
 
@@ -40,7 +40,7 @@ class UnequalPrecision<T> extends FhirException {
 }
 
 /// Exception for invalid type errors in FHIR primitives.
-class InvalidTypes<T> extends FhirException {
+class InvalidTypes<T> extends FHIRException {
   /// InvalidTypes constructor.
   InvalidTypes({super.message, super.cause});
 

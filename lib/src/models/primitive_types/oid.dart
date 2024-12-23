@@ -92,7 +92,11 @@ class FhirOid extends PrimitiveType<String>
 
   /// Provides a string representation of the OID.
   @override
-  String toString() => value ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides the equality operator.
   @override

@@ -3,7 +3,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/source_location.dart';
 
-class PathEngineException extends FhirException {
+class PathEngineException extends FHIRException {
   PathEngineException(
     String message, {
     this.location,

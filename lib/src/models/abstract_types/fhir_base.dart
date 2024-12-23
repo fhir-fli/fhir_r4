@@ -35,7 +35,10 @@ abstract class FhirBase {
   bool get hasPrimitiveValue => isPrimitive;
 
   /// Retrieves the primitive value of the object.
-  String? primitiveValue() => null;
+  String? get primitiveValue => null;
+
+  /// All [FhirBase]s and [Resource]s are NOT metadata based
+  bool get isMetadataBased => false;
 
   /// Checks if the object is empty.
   bool isEmpty() =>

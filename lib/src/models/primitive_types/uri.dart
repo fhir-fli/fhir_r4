@@ -110,7 +110,7 @@ class FhirUri extends PrimitiveType<Uri>
   bool get valueOnly => value != null && element == null;
 
   /// Boolean getter to determine if only an element is present
-  bool get elementOnly => value == null && element != null;
+  bool get hasElementOnly => value == null && element != null;
 
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
@@ -153,7 +153,11 @@ class FhirUri extends PrimitiveType<Uri>
 
   /// Returns the canonical URL as a [String]
   @override
-  String toString() => value?.toString() ?? '';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator
   @override

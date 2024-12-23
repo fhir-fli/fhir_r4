@@ -147,6 +147,10 @@ class FhirDecimal extends FhirNumber
   String toString() =>
       isInt ? value?.toInt().toString() ?? '' : value.toString();
 
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
+
   /// Overrides equality operator for comparing two [FhirDecimal] instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

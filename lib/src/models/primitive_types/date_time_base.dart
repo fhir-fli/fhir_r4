@@ -89,7 +89,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   String get valueString => _formattedString ?? '';
 
   @override
-  String toString() => _formattedString ?? '';
+  String toString() => _formattedString.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Formatting functions
   String? get _formattedString {

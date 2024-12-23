@@ -149,7 +149,11 @@ abstract class FhirNumber extends PrimitiveType<num?>
 
   /// String representation of the instance.
   @override
-  String toString() => value?.toString() ?? 'null';
+  String toString() => value.toString();
+
+  /// Retrieves the primitive value of the object.
+  @override
+  String? get primitiveValue => value?.toString();
 
   /// Overrides equality operator.
   @override
