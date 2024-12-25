@@ -871,45 +871,198 @@ class ElementDefinition extends BackboneType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      path: path ?? this.path,
-      representation: representation ?? this.representation,
-      sliceName: sliceName ?? this.sliceName,
-      sliceIsConstraining: sliceIsConstraining ?? this.sliceIsConstraining,
-      label: label ?? this.label,
-      code: code ?? this.code,
-      slicing: slicing ?? this.slicing,
-      short: short ?? this.short,
-      definition: definition ?? this.definition,
-      comment: comment ?? this.comment,
-      requirements: requirements ?? this.requirements,
-      alias: alias ?? this.alias,
-      min: min ?? this.min,
-      max: max ?? this.max,
-      base: base ?? this.base,
-      contentReference: contentReference ?? this.contentReference,
-      type: type ?? this.type,
-      defaultValueX: defaultValueX ?? this.defaultValueX,
-      meaningWhenMissing: meaningWhenMissing ?? this.meaningWhenMissing,
-      orderMeaning: orderMeaning ?? this.orderMeaning,
-      fixedX: fixedX ?? this.fixedX,
-      patternX: patternX ?? this.patternX,
-      example: example ?? this.example,
-      minValueX: minValueX ?? this.minValueX,
-      maxValueX: maxValueX ?? this.maxValueX,
-      maxLength: maxLength ?? this.maxLength,
-      condition: condition ?? this.condition,
-      constraint: constraint ?? this.constraint,
-      mustSupport: mustSupport ?? this.mustSupport,
-      isModifier: isModifier ?? this.isModifier,
-      isModifierReason: isModifierReason ?? this.isModifierReason,
-      isSummary: isSummary ?? this.isSummary,
-      binding: binding ?? this.binding,
-      mapping: mapping ?? this.mapping,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      representation: representation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.representation',
+                ),
+              )
+              .toList() ??
+          this.representation,
+      sliceName: sliceName?.copyWith(
+            objectPath: '$newObjectPath.sliceName',
+          ) ??
+          this.sliceName,
+      sliceIsConstraining: sliceIsConstraining?.copyWith(
+            objectPath: '$newObjectPath.sliceIsConstraining',
+          ) ??
+          this.sliceIsConstraining,
+      label: label?.copyWith(
+            objectPath: '$newObjectPath.label',
+          ) ??
+          this.label,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      slicing: slicing?.copyWith(
+            objectPath: '$newObjectPath.slicing',
+          ) ??
+          this.slicing,
+      short: short?.copyWith(
+            objectPath: '$newObjectPath.short',
+          ) ??
+          this.short,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
+      requirements: requirements?.copyWith(
+            objectPath: '$newObjectPath.requirements',
+          ) ??
+          this.requirements,
+      alias: alias
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.alias',
+                ),
+              )
+              .toList() ??
+          this.alias,
+      min: min?.copyWith(
+            objectPath: '$newObjectPath.min',
+          ) ??
+          this.min,
+      max: max?.copyWith(
+            objectPath: '$newObjectPath.max',
+          ) ??
+          this.max,
+      base: base?.copyWith(
+            objectPath: '$newObjectPath.base',
+          ) ??
+          this.base,
+      contentReference: contentReference?.copyWith(
+            objectPath: '$newObjectPath.contentReference',
+          ) ??
+          this.contentReference,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      defaultValueX: defaultValueX?.copyWith(
+            objectPath: '$newObjectPath.defaultValueX',
+          ) as DefaultValueXElementDefinition? ??
+          this.defaultValueX,
+      meaningWhenMissing: meaningWhenMissing?.copyWith(
+            objectPath: '$newObjectPath.meaningWhenMissing',
+          ) ??
+          this.meaningWhenMissing,
+      orderMeaning: orderMeaning?.copyWith(
+            objectPath: '$newObjectPath.orderMeaning',
+          ) ??
+          this.orderMeaning,
+      fixedX: fixedX?.copyWith(
+            objectPath: '$newObjectPath.fixedX',
+          ) as FixedXElementDefinition? ??
+          this.fixedX,
+      patternX: patternX?.copyWith(
+            objectPath: '$newObjectPath.patternX',
+          ) as PatternXElementDefinition? ??
+          this.patternX,
+      example: example
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.example',
+                ),
+              )
+              .toList() ??
+          this.example,
+      minValueX: minValueX?.copyWith(
+            objectPath: '$newObjectPath.minValueX',
+          ) as MinValueXElementDefinition? ??
+          this.minValueX,
+      maxValueX: maxValueX?.copyWith(
+            objectPath: '$newObjectPath.maxValueX',
+          ) as MaxValueXElementDefinition? ??
+          this.maxValueX,
+      maxLength: maxLength?.copyWith(
+            objectPath: '$newObjectPath.maxLength',
+          ) ??
+          this.maxLength,
+      condition: condition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.condition',
+                ),
+              )
+              .toList() ??
+          this.condition,
+      constraint: constraint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.constraint',
+                ),
+              )
+              .toList() ??
+          this.constraint,
+      mustSupport: mustSupport?.copyWith(
+            objectPath: '$newObjectPath.mustSupport',
+          ) ??
+          this.mustSupport,
+      isModifier: isModifier?.copyWith(
+            objectPath: '$newObjectPath.isModifier',
+          ) ??
+          this.isModifier,
+      isModifierReason: isModifierReason?.copyWith(
+            objectPath: '$newObjectPath.isModifierReason',
+          ) ??
+          this.isModifierReason,
+      isSummary: isSummary?.copyWith(
+            objectPath: '$newObjectPath.isSummary',
+          ) ??
+          this.isSummary,
+      binding: binding?.copyWith(
+            objectPath: '$newObjectPath.binding',
+          ) ??
+          this.binding,
+      mapping: mapping
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.mapping',
+                ),
+              )
+              .toList() ??
+          this.mapping,
     );
   }
 }
@@ -1106,14 +1259,42 @@ class ElementDefinitionSlicing extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionSlicing(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      discriminator: discriminator ?? this.discriminator,
-      description: description ?? this.description,
-      ordered: ordered ?? this.ordered,
-      rules: rules ?? this.rules,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      discriminator: discriminator
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.discriminator',
+                ),
+              )
+              .toList() ??
+          this.discriminator,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      ordered: ordered?.copyWith(
+            objectPath: '$newObjectPath.ordered',
+          ) ??
+          this.ordered,
+      rules: rules?.copyWith(
+            objectPath: '$newObjectPath.rules',
+          ) ??
+          this.rules,
     );
   }
 }
@@ -1272,12 +1453,30 @@ class ElementDefinitionDiscriminator extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionDiscriminator(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      path: path ?? this.path,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
     );
   }
 }
@@ -1454,13 +1653,34 @@ class ElementDefinitionBase extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionBase(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      path: path ?? this.path,
-      min: min ?? this.min,
-      max: max ?? this.max,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      min: min?.copyWith(
+            objectPath: '$newObjectPath.min',
+          ) ??
+          this.min,
+      max: max?.copyWith(
+            objectPath: '$newObjectPath.max',
+          ) ??
+          this.max,
     );
   }
 }
@@ -1673,15 +1893,54 @@ class ElementDefinitionType extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionType(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      code: code ?? this.code,
-      profile: profile ?? this.profile,
-      targetProfile: targetProfile ?? this.targetProfile,
-      aggregation: aggregation ?? this.aggregation,
-      versioning: versioning ?? this.versioning,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      profile: profile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.profile',
+                ),
+              )
+              .toList() ??
+          this.profile,
+      targetProfile: targetProfile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetProfile',
+                ),
+              )
+              .toList() ??
+          this.targetProfile,
+      aggregation: aggregation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.aggregation',
+                ),
+              )
+              .toList() ??
+          this.aggregation,
+      versioning: versioning?.copyWith(
+            objectPath: '$newObjectPath.versioning',
+          ) ??
+          this.versioning,
     );
   }
 }
@@ -1889,12 +2148,30 @@ class ElementDefinitionExample extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionExample(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      label: label ?? this.label,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      label: label?.copyWith(
+            objectPath: '$newObjectPath.label',
+          ) ??
+          this.label,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXElementDefinitionExample? ??
+          this.valueX,
     );
   }
 }
@@ -2120,17 +2397,50 @@ class ElementDefinitionConstraint extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionConstraint(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      key: key ?? this.key,
-      requirements: requirements ?? this.requirements,
-      severity: severity ?? this.severity,
-      human: human ?? this.human,
-      expression: expression ?? this.expression,
-      xpath: xpath ?? this.xpath,
-      source: source ?? this.source,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      key: key?.copyWith(
+            objectPath: '$newObjectPath.key',
+          ) ??
+          this.key,
+      requirements: requirements?.copyWith(
+            objectPath: '$newObjectPath.requirements',
+          ) ??
+          this.requirements,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      human: human?.copyWith(
+            objectPath: '$newObjectPath.human',
+          ) ??
+          this.human,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
+      xpath: xpath?.copyWith(
+            objectPath: '$newObjectPath.xpath',
+          ) ??
+          this.xpath,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
     );
   }
 }
@@ -2300,13 +2610,34 @@ class ElementDefinitionBinding extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionBinding(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      strength: strength ?? this.strength,
-      description: description ?? this.description,
-      valueSet: valueSet ?? this.valueSet,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      strength: strength?.copyWith(
+            objectPath: '$newObjectPath.strength',
+          ) ??
+          this.strength,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      valueSet: valueSet?.copyWith(
+            objectPath: '$newObjectPath.valueSet',
+          ) ??
+          this.valueSet,
     );
   }
 }
@@ -2487,14 +2818,38 @@ class ElementDefinitionMapping extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ElementDefinitionMapping(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      identity: identity ?? this.identity,
-      language: language ?? this.language,
-      map: map ?? this.map,
-      comment: comment ?? this.comment,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      identity: identity?.copyWith(
+            objectPath: '$newObjectPath.identity',
+          ) ??
+          this.identity,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      map: map?.copyWith(
+            objectPath: '$newObjectPath.map',
+          ) ??
+          this.map,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }

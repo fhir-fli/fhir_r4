@@ -402,29 +402,113 @@ class CompartmentDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return CompartmentDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      purpose: purpose ?? this.purpose,
-      code: code ?? this.code,
-      search: search ?? this.search,
-      resource: resource ?? this.resource,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      search: search?.copyWith(
+            objectPath: '$newObjectPath.search',
+          ) ??
+          this.search,
+      resource: resource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resource',
+                ),
+              )
+              .toList() ??
+          this.resource,
     );
   }
 }
@@ -603,14 +687,46 @@ class CompartmentDefinitionResource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CompartmentDefinitionResource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      param: param ?? this.param,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      param: param
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.param',
+                ),
+              )
+              .toList() ??
+          this.param,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }

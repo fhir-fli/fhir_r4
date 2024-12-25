@@ -180,6 +180,7 @@ class FhirUnsignedInt extends FhirNumber
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirUnsignedInt(
       newValue ?? value,
@@ -193,6 +194,7 @@ class FhirUnsignedInt extends FhirNumber
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

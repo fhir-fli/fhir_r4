@@ -416,30 +416,129 @@ class Composition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Composition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      category: category ?? this.category,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      date: date ?? this.date,
-      author: author ?? this.author,
-      title: title ?? this.title,
-      confidentiality: confidentiality ?? this.confidentiality,
-      attester: attester ?? this.attester,
-      custodian: custodian ?? this.custodian,
-      relatesTo: relatesTo ?? this.relatesTo,
-      event: event ?? this.event,
-      section: section ?? this.section,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      confidentiality: confidentiality?.copyWith(
+            objectPath: '$newObjectPath.confidentiality',
+          ) ??
+          this.confidentiality,
+      attester: attester
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.attester',
+                ),
+              )
+              .toList() ??
+          this.attester,
+      custodian: custodian?.copyWith(
+            objectPath: '$newObjectPath.custodian',
+          ) ??
+          this.custodian,
+      relatesTo: relatesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatesTo',
+                ),
+              )
+              .toList() ??
+          this.relatesTo,
+      event: event
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.event',
+                ),
+              )
+              .toList() ??
+          this.event,
+      section: section
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.section',
+                ),
+              )
+              .toList() ??
+          this.section,
     );
   }
 }
@@ -617,14 +716,42 @@ class CompositionAttester extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CompositionAttester(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      mode: mode ?? this.mode,
-      time: time ?? this.time,
-      party: party ?? this.party,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      time: time?.copyWith(
+            objectPath: '$newObjectPath.time',
+          ) ??
+          this.time,
+      party: party?.copyWith(
+            objectPath: '$newObjectPath.party',
+          ) ??
+          this.party,
     );
   }
 }
@@ -794,13 +921,38 @@ class CompositionRelatesTo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CompositionRelatesTo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      targetX: targetX ?? this.targetX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      targetX: targetX?.copyWith(
+            objectPath: '$newObjectPath.targetX',
+          ) as TargetXCompositionRelatesTo? ??
+          this.targetX,
     );
   }
 }
@@ -990,14 +1142,50 @@ class CompositionEvent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CompositionEvent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      period: period ?? this.period,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -1292,21 +1480,82 @@ class CompositionSection extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CompositionSection(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      title: title ?? this.title,
-      code: code ?? this.code,
-      author: author ?? this.author,
-      focus: focus ?? this.focus,
-      text: text ?? this.text,
-      mode: mode ?? this.mode,
-      orderedBy: orderedBy ?? this.orderedBy,
-      entry: entry ?? this.entry,
-      emptyReason: emptyReason ?? this.emptyReason,
-      section: section ?? this.section,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      focus: focus?.copyWith(
+            objectPath: '$newObjectPath.focus',
+          ) ??
+          this.focus,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      orderedBy: orderedBy?.copyWith(
+            objectPath: '$newObjectPath.orderedBy',
+          ) ??
+          this.orderedBy,
+      entry: entry
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entry',
+                ),
+              )
+              .toList() ??
+          this.entry,
+      emptyReason: emptyReason?.copyWith(
+            objectPath: '$newObjectPath.emptyReason',
+          ) ??
+          this.emptyReason,
+      section: section
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.section',
+                ),
+              )
+              .toList() ??
+          this.section,
     );
   }
 }

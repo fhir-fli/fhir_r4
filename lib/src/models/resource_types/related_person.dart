@@ -361,27 +361,121 @@ class RelatedPerson extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return RelatedPerson(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      patient: patient ?? this.patient,
-      relationship: relationship ?? this.relationship,
-      name: name ?? this.name,
-      telecom: telecom ?? this.telecom,
-      gender: gender ?? this.gender,
-      birthDate: birthDate ?? this.birthDate,
-      address: address ?? this.address,
-      photo: photo ?? this.photo,
-      period: period ?? this.period,
-      communication: communication ?? this.communication,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      relationship: relationship
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relationship',
+                ),
+              )
+              .toList() ??
+          this.relationship,
+      name: name
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.name',
+                ),
+              )
+              .toList() ??
+          this.name,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      gender: gender?.copyWith(
+            objectPath: '$newObjectPath.gender',
+          ) ??
+          this.gender,
+      birthDate: birthDate?.copyWith(
+            objectPath: '$newObjectPath.birthDate',
+          ) ??
+          this.birthDate,
+      address: address
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.address',
+                ),
+              )
+              .toList() ??
+          this.address,
+      photo: photo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.photo',
+                ),
+              )
+              .toList() ??
+          this.photo,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      communication: communication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.communication',
+                ),
+              )
+              .toList() ??
+          this.communication,
     );
   }
 }
@@ -550,13 +644,38 @@ class RelatedPersonCommunication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RelatedPersonCommunication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      language: language ?? this.language,
-      preferred: preferred ?? this.preferred,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      preferred: preferred?.copyWith(
+            objectPath: '$newObjectPath.preferred',
+          ) ??
+          this.preferred,
     );
   }
 }

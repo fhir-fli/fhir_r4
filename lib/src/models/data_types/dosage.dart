@@ -330,26 +330,90 @@ class Dosage extends BackboneType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Dosage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      text: text ?? this.text,
-      additionalInstruction:
-          additionalInstruction ?? this.additionalInstruction,
-      patientInstruction: patientInstruction ?? this.patientInstruction,
-      timing: timing ?? this.timing,
-      asNeededX: asNeededX ?? this.asNeededX,
-      site: site ?? this.site,
-      route: route ?? this.route,
-      method: method ?? this.method,
-      doseAndRate: doseAndRate ?? this.doseAndRate,
-      maxDosePerPeriod: maxDosePerPeriod ?? this.maxDosePerPeriod,
-      maxDosePerAdministration:
-          maxDosePerAdministration ?? this.maxDosePerAdministration,
-      maxDosePerLifetime: maxDosePerLifetime ?? this.maxDosePerLifetime,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      additionalInstruction: additionalInstruction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additionalInstruction',
+                ),
+              )
+              .toList() ??
+          this.additionalInstruction,
+      patientInstruction: patientInstruction?.copyWith(
+            objectPath: '$newObjectPath.patientInstruction',
+          ) ??
+          this.patientInstruction,
+      timing: timing?.copyWith(
+            objectPath: '$newObjectPath.timing',
+          ) ??
+          this.timing,
+      asNeededX: asNeededX?.copyWith(
+            objectPath: '$newObjectPath.asNeededX',
+          ) as AsNeededXDosage? ??
+          this.asNeededX,
+      site: site?.copyWith(
+            objectPath: '$newObjectPath.site',
+          ) ??
+          this.site,
+      route: route?.copyWith(
+            objectPath: '$newObjectPath.route',
+          ) ??
+          this.route,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      doseAndRate: doseAndRate
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.doseAndRate',
+                ),
+              )
+              .toList() ??
+          this.doseAndRate,
+      maxDosePerPeriod: maxDosePerPeriod?.copyWith(
+            objectPath: '$newObjectPath.maxDosePerPeriod',
+          ) ??
+          this.maxDosePerPeriod,
+      maxDosePerAdministration: maxDosePerAdministration?.copyWith(
+            objectPath: '$newObjectPath.maxDosePerAdministration',
+          ) ??
+          this.maxDosePerAdministration,
+      maxDosePerLifetime: maxDosePerLifetime?.copyWith(
+            objectPath: '$newObjectPath.maxDosePerLifetime',
+          ) ??
+          this.maxDosePerLifetime,
     );
   }
 }
@@ -527,13 +591,34 @@ class DosageDoseAndRate extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return DosageDoseAndRate(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      doseX: doseX ?? this.doseX,
-      rateX: rateX ?? this.rateX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      doseX: doseX?.copyWith(
+            objectPath: '$newObjectPath.doseX',
+          ) as DoseXDosageDoseAndRate? ??
+          this.doseX,
+      rateX: rateX?.copyWith(
+            objectPath: '$newObjectPath.rateX',
+          ) as RateXDosageDoseAndRate? ??
+          this.rateX,
     );
   }
 }

@@ -528,41 +528,193 @@ class MedicationKnowledge extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MedicationKnowledge(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      status: status ?? this.status,
-      manufacturer: manufacturer ?? this.manufacturer,
-      doseForm: doseForm ?? this.doseForm,
-      amount: amount ?? this.amount,
-      synonym: synonym ?? this.synonym,
-      relatedMedicationKnowledge:
-          relatedMedicationKnowledge ?? this.relatedMedicationKnowledge,
-      associatedMedication: associatedMedication ?? this.associatedMedication,
-      productType: productType ?? this.productType,
-      monograph: monograph ?? this.monograph,
-      ingredient: ingredient ?? this.ingredient,
-      preparationInstruction:
-          preparationInstruction ?? this.preparationInstruction,
-      intendedRoute: intendedRoute ?? this.intendedRoute,
-      cost: cost ?? this.cost,
-      monitoringProgram: monitoringProgram ?? this.monitoringProgram,
-      administrationGuidelines:
-          administrationGuidelines ?? this.administrationGuidelines,
-      medicineClassification:
-          medicineClassification ?? this.medicineClassification,
-      packaging: packaging ?? this.packaging,
-      drugCharacteristic: drugCharacteristic ?? this.drugCharacteristic,
-      contraindication: contraindication ?? this.contraindication,
-      regulatory: regulatory ?? this.regulatory,
-      kinetics: kinetics ?? this.kinetics,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      manufacturer: manufacturer?.copyWith(
+            objectPath: '$newObjectPath.manufacturer',
+          ) ??
+          this.manufacturer,
+      doseForm: doseForm?.copyWith(
+            objectPath: '$newObjectPath.doseForm',
+          ) ??
+          this.doseForm,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      synonym: synonym
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.synonym',
+                ),
+              )
+              .toList() ??
+          this.synonym,
+      relatedMedicationKnowledge: relatedMedicationKnowledge
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedMedicationKnowledge',
+                ),
+              )
+              .toList() ??
+          this.relatedMedicationKnowledge,
+      associatedMedication: associatedMedication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.associatedMedication',
+                ),
+              )
+              .toList() ??
+          this.associatedMedication,
+      productType: productType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.productType',
+                ),
+              )
+              .toList() ??
+          this.productType,
+      monograph: monograph
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.monograph',
+                ),
+              )
+              .toList() ??
+          this.monograph,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
+      preparationInstruction: preparationInstruction?.copyWith(
+            objectPath: '$newObjectPath.preparationInstruction',
+          ) ??
+          this.preparationInstruction,
+      intendedRoute: intendedRoute
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.intendedRoute',
+                ),
+              )
+              .toList() ??
+          this.intendedRoute,
+      cost: cost
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.cost',
+                ),
+              )
+              .toList() ??
+          this.cost,
+      monitoringProgram: monitoringProgram
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.monitoringProgram',
+                ),
+              )
+              .toList() ??
+          this.monitoringProgram,
+      administrationGuidelines: administrationGuidelines
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.administrationGuidelines',
+                ),
+              )
+              .toList() ??
+          this.administrationGuidelines,
+      medicineClassification: medicineClassification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.medicineClassification',
+                ),
+              )
+              .toList() ??
+          this.medicineClassification,
+      packaging: packaging?.copyWith(
+            objectPath: '$newObjectPath.packaging',
+          ) ??
+          this.packaging,
+      drugCharacteristic: drugCharacteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.drugCharacteristic',
+                ),
+              )
+              .toList() ??
+          this.drugCharacteristic,
+      contraindication: contraindication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contraindication',
+                ),
+              )
+              .toList() ??
+          this.contraindication,
+      regulatory: regulatory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.regulatory',
+                ),
+              )
+              .toList() ??
+          this.regulatory,
+      kinetics: kinetics
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.kinetics',
+                ),
+              )
+              .toList() ??
+          this.kinetics,
     );
   }
 }
@@ -729,13 +881,42 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeRelatedMedicationKnowledge(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      reference: reference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reference',
+                ),
+              )
+              .toList() ??
+          this.reference,
     );
   }
 }
@@ -900,13 +1081,38 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeMonograph(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      source: source ?? this.source,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
     );
   }
 }
@@ -1091,14 +1297,42 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeIngredient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
-      isActive: isActive ?? this.isActive,
-      strength: strength ?? this.strength,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      itemX: itemX?.copyWith(
+            objectPath: '$newObjectPath.itemX',
+          ) as ItemXMedicationKnowledgeIngredient? ??
+          this.itemX,
+      isActive: isActive?.copyWith(
+            objectPath: '$newObjectPath.isActive',
+          ) ??
+          this.isActive,
+      strength: strength?.copyWith(
+            objectPath: '$newObjectPath.strength',
+          ) ??
+          this.strength,
     );
   }
 }
@@ -1276,14 +1510,42 @@ class MedicationKnowledgeCost extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeCost(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      source: source ?? this.source,
-      cost: cost ?? this.cost,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      cost: cost?.copyWith(
+            objectPath: '$newObjectPath.cost',
+          ) ??
+          this.cost,
     );
   }
 }
@@ -1447,13 +1709,38 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeMonitoringProgram(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      name: name ?? this.name,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
     );
   }
 }
@@ -1644,15 +1931,50 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeAdministrationGuidelines(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      dosage: dosage ?? this.dosage,
-      indicationX: indicationX ?? this.indicationX,
-      patientCharacteristics:
-          patientCharacteristics ?? this.patientCharacteristics,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      dosage: dosage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosage',
+                ),
+              )
+              .toList() ??
+          this.dosage,
+      indicationX: indicationX?.copyWith(
+            objectPath: '$newObjectPath.indicationX',
+          ) as IndicationXMedicationKnowledgeAdministrationGuidelines? ??
+          this.indicationX,
+      patientCharacteristics: patientCharacteristics
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.patientCharacteristics',
+                ),
+              )
+              .toList() ??
+          this.patientCharacteristics,
     );
   }
 }
@@ -1819,13 +2141,42 @@ class MedicationKnowledgeDosage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeDosage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      dosage: dosage ?? this.dosage,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      dosage: dosage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosage',
+                ),
+              )
+              .toList() ??
+          this.dosage,
     );
   }
 }
@@ -2001,13 +2352,42 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgePatientCharacteristics(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      characteristicX: characteristicX ?? this.characteristicX,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      characteristicX: characteristicX?.copyWith(
+            objectPath: '$newObjectPath.characteristicX',
+          ) as CharacteristicXMedicationKnowledgePatientCharacteristics? ??
+          this.characteristicX,
+      value: value
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.value',
+                ),
+              )
+              .toList() ??
+          this.value,
     );
   }
 }
@@ -2177,13 +2557,42 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeMedicineClassification(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      classification: classification ?? this.classification,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
     );
   }
 }
@@ -2348,13 +2757,38 @@ class MedicationKnowledgePackaging extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgePackaging(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      quantity: quantity ?? this.quantity,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
     );
   }
 }
@@ -2529,13 +2963,38 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeDrugCharacteristic(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXMedicationKnowledgeDrugCharacteristic? ??
+          this.valueX,
     );
   }
 }
@@ -2731,15 +3190,54 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeRegulatory(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      regulatoryAuthority: regulatoryAuthority ?? this.regulatoryAuthority,
-      substitution: substitution ?? this.substitution,
-      schedule: schedule ?? this.schedule,
-      maxDispense: maxDispense ?? this.maxDispense,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      regulatoryAuthority: regulatoryAuthority?.copyWith(
+            objectPath: '$newObjectPath.regulatoryAuthority',
+          ) ??
+          this.regulatoryAuthority,
+      substitution: substitution
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.substitution',
+                ),
+              )
+              .toList() ??
+          this.substitution,
+      schedule: schedule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.schedule',
+                ),
+              )
+              .toList() ??
+          this.schedule,
+      maxDispense: maxDispense?.copyWith(
+            objectPath: '$newObjectPath.maxDispense',
+          ) ??
+          this.maxDispense,
     );
   }
 }
@@ -2905,13 +3403,38 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeSubstitution(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      allowed: allowed ?? this.allowed,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      allowed: allowed?.copyWith(
+            objectPath: '$newObjectPath.allowed',
+          ) ??
+          this.allowed,
     );
   }
 }
@@ -3062,12 +3585,34 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeSchedule(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      schedule: schedule ?? this.schedule,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      schedule: schedule?.copyWith(
+            objectPath: '$newObjectPath.schedule',
+          ) ??
+          this.schedule,
     );
   }
 }
@@ -3232,13 +3777,38 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeMaxDispense(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      quantity: quantity ?? this.quantity,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -3421,14 +3991,50 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationKnowledgeKinetics(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      areaUnderCurve: areaUnderCurve ?? this.areaUnderCurve,
-      lethalDose50: lethalDose50 ?? this.lethalDose50,
-      halfLifePeriod: halfLifePeriod ?? this.halfLifePeriod,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      areaUnderCurve: areaUnderCurve
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.areaUnderCurve',
+                ),
+              )
+              .toList() ??
+          this.areaUnderCurve,
+      lethalDose50: lethalDose50
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.lethalDose50',
+                ),
+              )
+              .toList() ??
+          this.lethalDose50,
+      halfLifePeriod: halfLifePeriod?.copyWith(
+            objectPath: '$newObjectPath.halfLifePeriod',
+          ) ??
+          this.halfLifePeriod,
     );
   }
 }

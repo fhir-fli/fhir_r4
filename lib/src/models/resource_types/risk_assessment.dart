@@ -429,32 +429,137 @@ class RiskAssessment extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return RiskAssessment(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      parent: parent ?? this.parent,
-      status: status ?? this.status,
-      method: method ?? this.method,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      condition: condition ?? this.condition,
-      performer: performer ?? this.performer,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      basis: basis ?? this.basis,
-      prediction: prediction ?? this.prediction,
-      mitigation: mitigation ?? this.mitigation,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn?.copyWith(
+            objectPath: '$newObjectPath.basedOn',
+          ) ??
+          this.basedOn,
+      parent: parent?.copyWith(
+            objectPath: '$newObjectPath.parent',
+          ) ??
+          this.parent,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXRiskAssessment? ??
+          this.occurrenceX,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      basis: basis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basis',
+                ),
+              )
+              .toList() ??
+          this.basis,
+      prediction: prediction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.prediction',
+                ),
+              )
+              .toList() ??
+          this.prediction,
+      mitigation: mitigation?.copyWith(
+            objectPath: '$newObjectPath.mitigation',
+          ) ??
+          this.mitigation,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -689,17 +794,54 @@ class RiskAssessmentPrediction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RiskAssessmentPrediction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      outcome: outcome ?? this.outcome,
-      probabilityX: probabilityX ?? this.probabilityX,
-      qualitativeRisk: qualitativeRisk ?? this.qualitativeRisk,
-      relativeRisk: relativeRisk ?? this.relativeRisk,
-      whenX: whenX ?? this.whenX,
-      rationale: rationale ?? this.rationale,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      probabilityX: probabilityX?.copyWith(
+            objectPath: '$newObjectPath.probabilityX',
+          ) as ProbabilityXRiskAssessmentPrediction? ??
+          this.probabilityX,
+      qualitativeRisk: qualitativeRisk?.copyWith(
+            objectPath: '$newObjectPath.qualitativeRisk',
+          ) ??
+          this.qualitativeRisk,
+      relativeRisk: relativeRisk?.copyWith(
+            objectPath: '$newObjectPath.relativeRisk',
+          ) ??
+          this.relativeRisk,
+      whenX: whenX?.copyWith(
+            objectPath: '$newObjectPath.whenX',
+          ) as WhenXRiskAssessmentPrediction? ??
+          this.whenX,
+      rationale: rationale?.copyWith(
+            objectPath: '$newObjectPath.rationale',
+          ) ??
+          this.rationale,
     );
   }
 }

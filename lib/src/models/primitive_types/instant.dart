@@ -230,6 +230,7 @@ class FhirInstant extends FhirDateTimeBase
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirDateTimeBase.constructor<FhirInstant>(
       input: value ?? value,
@@ -247,6 +248,7 @@ class FhirInstant extends FhirDateTimeBase
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     ) as FhirInstant;
   }
 

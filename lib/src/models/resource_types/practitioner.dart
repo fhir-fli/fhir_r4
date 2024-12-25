@@ -336,25 +336,113 @@ class Practitioner extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Practitioner(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      name: name ?? this.name,
-      telecom: telecom ?? this.telecom,
-      address: address ?? this.address,
-      gender: gender ?? this.gender,
-      birthDate: birthDate ?? this.birthDate,
-      photo: photo ?? this.photo,
-      qualification: qualification ?? this.qualification,
-      communication: communication ?? this.communication,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      name: name
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.name',
+                ),
+              )
+              .toList() ??
+          this.name,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      address: address
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.address',
+                ),
+              )
+              .toList() ??
+          this.address,
+      gender: gender?.copyWith(
+            objectPath: '$newObjectPath.gender',
+          ) ??
+          this.gender,
+      birthDate: birthDate?.copyWith(
+            objectPath: '$newObjectPath.birthDate',
+          ) ??
+          this.birthDate,
+      photo: photo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.photo',
+                ),
+              )
+              .toList() ??
+          this.photo,
+      qualification: qualification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.qualification',
+                ),
+              )
+              .toList() ??
+          this.qualification,
+      communication: communication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.communication',
+                ),
+              )
+              .toList() ??
+          this.communication,
     );
   }
 }
@@ -549,15 +637,50 @@ class PractitionerQualification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PractitionerQualification(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      code: code ?? this.code,
-      period: period ?? this.period,
-      issuer: issuer ?? this.issuer,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      issuer: issuer?.copyWith(
+            objectPath: '$newObjectPath.issuer',
+          ) ??
+          this.issuer,
     );
   }
 }

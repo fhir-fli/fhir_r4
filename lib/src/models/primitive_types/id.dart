@@ -169,6 +169,7 @@ class FhirId extends PrimitiveType<String>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirId(
       newValue ?? value,
@@ -182,6 +183,7 @@ class FhirId extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

@@ -177,13 +177,38 @@ class Contributor extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Contributor(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      name: name ?? this.name,
-      contact: contact ?? this.contact,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
     );
   }
 }

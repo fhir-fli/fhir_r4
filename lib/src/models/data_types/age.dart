@@ -189,15 +189,42 @@ class Age extends Quantity
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Age(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      value: value ?? this.value,
-      comparator: comparator ?? this.comparator,
-      unit: unit ?? this.unit,
-      system: system ?? this.system,
-      code: code ?? this.code,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      comparator: comparator?.copyWith(
+            objectPath: '$newObjectPath.comparator',
+          ) ??
+          this.comparator,
+      unit: unit?.copyWith(
+            objectPath: '$newObjectPath.unit',
+          ) ??
+          this.unit,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
     );
   }
 }

@@ -553,39 +553,177 @@ class TestScript extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return TestScript(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      origin: origin ?? this.origin,
-      destination: destination ?? this.destination,
-      metadata: metadata ?? this.metadata,
-      fixture: fixture ?? this.fixture,
-      profile: profile ?? this.profile,
-      variable: variable ?? this.variable,
-      setup: setup ?? this.setup,
-      test: test ?? this.test,
-      teardown: teardown ?? this.teardown,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      origin: origin
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.origin',
+                ),
+              )
+              .toList() ??
+          this.origin,
+      destination: destination
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.destination',
+                ),
+              )
+              .toList() ??
+          this.destination,
+      metadata: metadata?.copyWith(
+            objectPath: '$newObjectPath.metadata',
+          ) ??
+          this.metadata,
+      fixture: fixture
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.fixture',
+                ),
+              )
+              .toList() ??
+          this.fixture,
+      profile: profile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.profile',
+                ),
+              )
+              .toList() ??
+          this.profile,
+      variable: variable
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.variable',
+                ),
+              )
+              .toList() ??
+          this.variable,
+      setup: setup?.copyWith(
+            objectPath: '$newObjectPath.setup',
+          ) ??
+          this.setup,
+      test: test
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.test',
+                ),
+              )
+              .toList() ??
+          this.test,
+      teardown: teardown?.copyWith(
+            objectPath: '$newObjectPath.teardown',
+          ) ??
+          this.teardown,
     );
   }
 }
@@ -751,13 +889,38 @@ class TestScriptOrigin extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptOrigin(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      index: index ?? this.index,
-      profile: profile ?? this.profile,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      index: index?.copyWith(
+            objectPath: '$newObjectPath.index',
+          ) ??
+          this.index,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
     );
   }
 }
@@ -923,13 +1086,38 @@ class TestScriptDestination extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptDestination(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      index: index ?? this.index,
-      profile: profile ?? this.profile,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      index: index?.copyWith(
+            objectPath: '$newObjectPath.index',
+          ) ??
+          this.index,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
     );
   }
 }
@@ -1099,13 +1287,46 @@ class TestScriptMetadata extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptMetadata(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      link: link ?? this.link,
-      capability: capability ?? this.capability,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      link: link
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.link',
+                ),
+              )
+              .toList() ??
+          this.link,
+      capability: capability
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.capability',
+                ),
+              )
+              .toList() ??
+          this.capability,
     );
   }
 }
@@ -1270,13 +1491,38 @@ class TestScriptLink extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptLink(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
     );
   }
 }
@@ -1512,18 +1758,66 @@ class TestScriptCapability extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptCapability(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      required_: required_ ?? this.required_,
-      validated: validated ?? this.validated,
-      description: description ?? this.description,
-      origin: origin ?? this.origin,
-      destination: destination ?? this.destination,
-      link: link ?? this.link,
-      capabilities: capabilities ?? this.capabilities,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      required_: required_?.copyWith(
+            objectPath: '$newObjectPath.required',
+          ) ??
+          this.required_,
+      validated: validated?.copyWith(
+            objectPath: '$newObjectPath.validated',
+          ) ??
+          this.validated,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      origin: origin
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.origin',
+                ),
+              )
+              .toList() ??
+          this.origin,
+      destination: destination?.copyWith(
+            objectPath: '$newObjectPath.destination',
+          ) ??
+          this.destination,
+      link: link
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.link',
+                ),
+              )
+              .toList() ??
+          this.link,
+      capabilities: capabilities?.copyWith(
+            objectPath: '$newObjectPath.capabilities',
+          ) ??
+          this.capabilities,
     );
   }
 }
@@ -1708,14 +2002,42 @@ class TestScriptFixture extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptFixture(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      autocreate: autocreate ?? this.autocreate,
-      autodelete: autodelete ?? this.autodelete,
-      resource: resource ?? this.resource,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      autocreate: autocreate?.copyWith(
+            objectPath: '$newObjectPath.autocreate',
+          ) ??
+          this.autocreate,
+      autodelete: autodelete?.copyWith(
+            objectPath: '$newObjectPath.autodelete',
+          ) ??
+          this.autodelete,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
     );
   }
 }
@@ -1966,19 +2288,62 @@ class TestScriptVariable extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptVariable(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      defaultValue: defaultValue ?? this.defaultValue,
-      description: description ?? this.description,
-      expression: expression ?? this.expression,
-      headerField: headerField ?? this.headerField,
-      hint: hint ?? this.hint,
-      path: path ?? this.path,
-      sourceId: sourceId ?? this.sourceId,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      defaultValue: defaultValue?.copyWith(
+            objectPath: '$newObjectPath.defaultValue',
+          ) ??
+          this.defaultValue,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
+      headerField: headerField?.copyWith(
+            objectPath: '$newObjectPath.headerField',
+          ) ??
+          this.headerField,
+      hint: hint?.copyWith(
+            objectPath: '$newObjectPath.hint',
+          ) ??
+          this.hint,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      sourceId: sourceId?.copyWith(
+            objectPath: '$newObjectPath.sourceId',
+          ) ??
+          this.sourceId,
     );
   }
 }
@@ -2131,12 +2496,38 @@ class TestScriptSetup extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptSetup(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      action: action ?? this.action,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
     );
   }
 }
@@ -2301,13 +2692,38 @@ class TestScriptAction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptAction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      operation: operation ?? this.operation,
-      assert_: assert_ ?? this.assert_,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      operation: operation?.copyWith(
+            objectPath: '$newObjectPath.operation',
+          ) ??
+          this.operation,
+      assert_: assert_?.copyWith(
+            objectPath: '$newObjectPath.assert',
+          ) ??
+          this.assert_,
     );
   }
 }
@@ -2678,28 +3094,102 @@ class TestScriptOperation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptOperation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      resource: resource ?? this.resource,
-      label: label ?? this.label,
-      description: description ?? this.description,
-      accept: accept ?? this.accept,
-      contentType: contentType ?? this.contentType,
-      destination: destination ?? this.destination,
-      encodeRequestUrl: encodeRequestUrl ?? this.encodeRequestUrl,
-      method: method ?? this.method,
-      origin: origin ?? this.origin,
-      params: params ?? this.params,
-      requestHeader: requestHeader ?? this.requestHeader,
-      requestId: requestId ?? this.requestId,
-      responseId: responseId ?? this.responseId,
-      sourceId: sourceId ?? this.sourceId,
-      targetId: targetId ?? this.targetId,
-      url: url ?? this.url,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      label: label?.copyWith(
+            objectPath: '$newObjectPath.label',
+          ) ??
+          this.label,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      accept: accept?.copyWith(
+            objectPath: '$newObjectPath.accept',
+          ) ??
+          this.accept,
+      contentType: contentType?.copyWith(
+            objectPath: '$newObjectPath.contentType',
+          ) ??
+          this.contentType,
+      destination: destination?.copyWith(
+            objectPath: '$newObjectPath.destination',
+          ) ??
+          this.destination,
+      encodeRequestUrl: encodeRequestUrl?.copyWith(
+            objectPath: '$newObjectPath.encodeRequestUrl',
+          ) ??
+          this.encodeRequestUrl,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      origin: origin?.copyWith(
+            objectPath: '$newObjectPath.origin',
+          ) ??
+          this.origin,
+      params: params?.copyWith(
+            objectPath: '$newObjectPath.params',
+          ) ??
+          this.params,
+      requestHeader: requestHeader
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.requestHeader',
+                ),
+              )
+              .toList() ??
+          this.requestHeader,
+      requestId: requestId?.copyWith(
+            objectPath: '$newObjectPath.requestId',
+          ) ??
+          this.requestId,
+      responseId: responseId?.copyWith(
+            objectPath: '$newObjectPath.responseId',
+          ) ??
+          this.responseId,
+      sourceId: sourceId?.copyWith(
+            objectPath: '$newObjectPath.sourceId',
+          ) ??
+          this.sourceId,
+      targetId: targetId?.copyWith(
+            objectPath: '$newObjectPath.targetId',
+          ) ??
+          this.targetId,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
     );
   }
 }
@@ -2863,13 +3353,38 @@ class TestScriptRequestHeader extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptRequestHeader(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      field: field ?? this.field,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      field: field?.copyWith(
+            objectPath: '$newObjectPath.field',
+          ) ??
+          this.field,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -3311,34 +3826,118 @@ class TestScriptAssert extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptAssert(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      label: label ?? this.label,
-      description: description ?? this.description,
-      direction: direction ?? this.direction,
-      compareToSourceId: compareToSourceId ?? this.compareToSourceId,
-      compareToSourceExpression:
-          compareToSourceExpression ?? this.compareToSourceExpression,
-      compareToSourcePath: compareToSourcePath ?? this.compareToSourcePath,
-      contentType: contentType ?? this.contentType,
-      expression: expression ?? this.expression,
-      headerField: headerField ?? this.headerField,
-      minimumId: minimumId ?? this.minimumId,
-      navigationLinks: navigationLinks ?? this.navigationLinks,
-      operator_: operator_ ?? this.operator_,
-      path: path ?? this.path,
-      requestMethod: requestMethod ?? this.requestMethod,
-      requestURL: requestURL ?? this.requestURL,
-      resource: resource ?? this.resource,
-      response: response ?? this.response,
-      responseCode: responseCode ?? this.responseCode,
-      sourceId: sourceId ?? this.sourceId,
-      validateProfileId: validateProfileId ?? this.validateProfileId,
-      value: value ?? this.value,
-      warningOnly: warningOnly ?? this.warningOnly,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      label: label?.copyWith(
+            objectPath: '$newObjectPath.label',
+          ) ??
+          this.label,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      direction: direction?.copyWith(
+            objectPath: '$newObjectPath.direction',
+          ) ??
+          this.direction,
+      compareToSourceId: compareToSourceId?.copyWith(
+            objectPath: '$newObjectPath.compareToSourceId',
+          ) ??
+          this.compareToSourceId,
+      compareToSourceExpression: compareToSourceExpression?.copyWith(
+            objectPath: '$newObjectPath.compareToSourceExpression',
+          ) ??
+          this.compareToSourceExpression,
+      compareToSourcePath: compareToSourcePath?.copyWith(
+            objectPath: '$newObjectPath.compareToSourcePath',
+          ) ??
+          this.compareToSourcePath,
+      contentType: contentType?.copyWith(
+            objectPath: '$newObjectPath.contentType',
+          ) ??
+          this.contentType,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
+      headerField: headerField?.copyWith(
+            objectPath: '$newObjectPath.headerField',
+          ) ??
+          this.headerField,
+      minimumId: minimumId?.copyWith(
+            objectPath: '$newObjectPath.minimumId',
+          ) ??
+          this.minimumId,
+      navigationLinks: navigationLinks?.copyWith(
+            objectPath: '$newObjectPath.navigationLinks',
+          ) ??
+          this.navigationLinks,
+      operator_: operator_?.copyWith(
+            objectPath: '$newObjectPath.operator',
+          ) ??
+          this.operator_,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      requestMethod: requestMethod?.copyWith(
+            objectPath: '$newObjectPath.requestMethod',
+          ) ??
+          this.requestMethod,
+      requestURL: requestURL?.copyWith(
+            objectPath: '$newObjectPath.requestURL',
+          ) ??
+          this.requestURL,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      response: response?.copyWith(
+            objectPath: '$newObjectPath.response',
+          ) ??
+          this.response,
+      responseCode: responseCode?.copyWith(
+            objectPath: '$newObjectPath.responseCode',
+          ) ??
+          this.responseCode,
+      sourceId: sourceId?.copyWith(
+            objectPath: '$newObjectPath.sourceId',
+          ) ??
+          this.sourceId,
+      validateProfileId: validateProfileId?.copyWith(
+            objectPath: '$newObjectPath.validateProfileId',
+          ) ??
+          this.validateProfileId,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      warningOnly: warningOnly?.copyWith(
+            objectPath: '$newObjectPath.warningOnly',
+          ) ??
+          this.warningOnly,
     );
   }
 }
@@ -3519,14 +4118,46 @@ class TestScriptTest extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptTest(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      action: action ?? this.action,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
     );
   }
 }
@@ -3691,13 +4322,38 @@ class TestScriptAction1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptAction1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      operation: operation ?? this.operation,
-      assert_: assert_ ?? this.assert_,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      operation: operation?.copyWith(
+            objectPath: '$newObjectPath.operation',
+          ) ??
+          this.operation,
+      assert_: assert_?.copyWith(
+            objectPath: '$newObjectPath.assert',
+          ) ??
+          this.assert_,
     );
   }
 }
@@ -3851,12 +4507,38 @@ class TestScriptTeardown extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptTeardown(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      action: action ?? this.action,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
     );
   }
 }
@@ -4007,12 +4689,34 @@ class TestScriptAction2 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TestScriptAction2(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      operation: operation ?? this.operation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      operation: operation?.copyWith(
+            objectPath: '$newObjectPath.operation',
+          ) ??
+          this.operation,
     );
   }
 }

@@ -509,41 +509,173 @@ class OperationDefinition extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return OperationDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      kind: kind ?? this.kind,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      affectsState: affectsState ?? this.affectsState,
-      code: code ?? this.code,
-      comment: comment ?? this.comment,
-      base: base ?? this.base,
-      resource: resource ?? this.resource,
-      system: system ?? this.system,
-      type: type ?? this.type,
-      instance: instance ?? this.instance,
-      inputProfile: inputProfile ?? this.inputProfile,
-      outputProfile: outputProfile ?? this.outputProfile,
-      parameter: parameter ?? this.parameter,
-      overload: overload ?? this.overload,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      kind: kind?.copyWith(
+            objectPath: '$newObjectPath.kind',
+          ) ??
+          this.kind,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      affectsState: affectsState?.copyWith(
+            objectPath: '$newObjectPath.affectsState',
+          ) ??
+          this.affectsState,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
+      base: base?.copyWith(
+            objectPath: '$newObjectPath.base',
+          ) ??
+          this.base,
+      resource: resource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resource',
+                ),
+              )
+              .toList() ??
+          this.resource,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      instance: instance?.copyWith(
+            objectPath: '$newObjectPath.instance',
+          ) ??
+          this.instance,
+      inputProfile: inputProfile?.copyWith(
+            objectPath: '$newObjectPath.inputProfile',
+          ) ??
+          this.inputProfile,
+      outputProfile: outputProfile?.copyWith(
+            objectPath: '$newObjectPath.outputProfile',
+          ) ??
+          this.outputProfile,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
+      overload: overload
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.overload',
+                ),
+              )
+              .toList() ??
+          this.overload,
     );
   }
 }
@@ -840,22 +972,86 @@ class OperationDefinitionParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return OperationDefinitionParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      use: use ?? this.use,
-      min: min ?? this.min,
-      max: max ?? this.max,
-      documentation: documentation ?? this.documentation,
-      type: type ?? this.type,
-      targetProfile: targetProfile ?? this.targetProfile,
-      searchType: searchType ?? this.searchType,
-      binding: binding ?? this.binding,
-      referencedFrom: referencedFrom ?? this.referencedFrom,
-      part_: part_ ?? this.part_,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      min: min?.copyWith(
+            objectPath: '$newObjectPath.min',
+          ) ??
+          this.min,
+      max: max?.copyWith(
+            objectPath: '$newObjectPath.max',
+          ) ??
+          this.max,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      targetProfile: targetProfile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetProfile',
+                ),
+              )
+              .toList() ??
+          this.targetProfile,
+      searchType: searchType?.copyWith(
+            objectPath: '$newObjectPath.searchType',
+          ) ??
+          this.searchType,
+      binding: binding?.copyWith(
+            objectPath: '$newObjectPath.binding',
+          ) ??
+          this.binding,
+      referencedFrom: referencedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referencedFrom',
+                ),
+              )
+              .toList() ??
+          this.referencedFrom,
+      part_: part_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.part',
+                ),
+              )
+              .toList() ??
+          this.part_,
     );
   }
 }
@@ -1023,13 +1219,38 @@ class OperationDefinitionBinding extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return OperationDefinitionBinding(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      strength: strength ?? this.strength,
-      valueSet: valueSet ?? this.valueSet,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      strength: strength?.copyWith(
+            objectPath: '$newObjectPath.strength',
+          ) ??
+          this.strength,
+      valueSet: valueSet?.copyWith(
+            objectPath: '$newObjectPath.valueSet',
+          ) ??
+          this.valueSet,
     );
   }
 }
@@ -1197,13 +1418,38 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return OperationDefinitionReferencedFrom(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      source: source ?? this.source,
-      sourceId: sourceId ?? this.sourceId,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      sourceId: sourceId?.copyWith(
+            objectPath: '$newObjectPath.sourceId',
+          ) ??
+          this.sourceId,
     );
   }
 }
@@ -1369,13 +1615,42 @@ class OperationDefinitionOverload extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return OperationDefinitionOverload(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      parameterName: parameterName ?? this.parameterName,
-      comment: comment ?? this.comment,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      parameterName: parameterName
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameterName',
+                ),
+              )
+              .toList() ??
+          this.parameterName,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }

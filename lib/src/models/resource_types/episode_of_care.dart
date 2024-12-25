@@ -367,27 +367,121 @@ class EpisodeOfCare extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return EpisodeOfCare(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      statusHistory: statusHistory ?? this.statusHistory,
-      type: type ?? this.type,
-      diagnosis: diagnosis ?? this.diagnosis,
-      patient: patient ?? this.patient,
-      managingOrganization: managingOrganization ?? this.managingOrganization,
-      period: period ?? this.period,
-      referralRequest: referralRequest ?? this.referralRequest,
-      careManager: careManager ?? this.careManager,
-      team: team ?? this.team,
-      account: account ?? this.account,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusHistory: statusHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.statusHistory',
+                ),
+              )
+              .toList() ??
+          this.statusHistory,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      diagnosis: diagnosis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosis',
+                ),
+              )
+              .toList() ??
+          this.diagnosis,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      managingOrganization: managingOrganization?.copyWith(
+            objectPath: '$newObjectPath.managingOrganization',
+          ) ??
+          this.managingOrganization,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      referralRequest: referralRequest
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referralRequest',
+                ),
+              )
+              .toList() ??
+          this.referralRequest,
+      careManager: careManager?.copyWith(
+            objectPath: '$newObjectPath.careManager',
+          ) ??
+          this.careManager,
+      team: team
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.team',
+                ),
+              )
+              .toList() ??
+          this.team,
+      account: account
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.account',
+                ),
+              )
+              .toList() ??
+          this.account,
     );
   }
 }
@@ -552,13 +646,38 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EpisodeOfCareStatusHistory(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      status: status ?? this.status,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -737,14 +856,42 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EpisodeOfCareDiagnosis(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      condition: condition ?? this.condition,
-      role: role ?? this.role,
-      rank: rank ?? this.rank,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      rank: rank?.copyWith(
+            objectPath: '$newObjectPath.rank',
+          ) ??
+          this.rank,
     );
   }
 }

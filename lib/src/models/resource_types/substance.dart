@@ -286,22 +286,89 @@ class Substance extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Substance(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      instance: instance ?? this.instance,
-      ingredient: ingredient ?? this.ingredient,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      instance: instance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instance',
+                ),
+              )
+              .toList() ??
+          this.instance,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
     );
   }
 }
@@ -481,14 +548,42 @@ class SubstanceInstance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceInstance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      expiry: expiry ?? this.expiry,
-      quantity: quantity ?? this.quantity,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      expiry: expiry?.copyWith(
+            objectPath: '$newObjectPath.expiry',
+          ) ??
+          this.expiry,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
     );
   }
 }
@@ -656,13 +751,38 @@ class SubstanceIngredient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceIngredient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      quantity: quantity ?? this.quantity,
-      substanceX: substanceX ?? this.substanceX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      substanceX: substanceX?.copyWith(
+            objectPath: '$newObjectPath.substanceX',
+          ) as SubstanceXSubstanceIngredient? ??
+          this.substanceX,
     );
   }
 }

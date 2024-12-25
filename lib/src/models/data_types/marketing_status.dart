@@ -221,16 +221,50 @@ class MarketingStatus extends BackboneType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return MarketingStatus(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      country: country ?? this.country,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      status: status ?? this.status,
-      dateRange: dateRange ?? this.dateRange,
-      restoreDate: restoreDate ?? this.restoreDate,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      country: country?.copyWith(
+            objectPath: '$newObjectPath.country',
+          ) ??
+          this.country,
+      jurisdiction: jurisdiction?.copyWith(
+            objectPath: '$newObjectPath.jurisdiction',
+          ) ??
+          this.jurisdiction,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      dateRange: dateRange?.copyWith(
+            objectPath: '$newObjectPath.dateRange',
+          ) ??
+          this.dateRange,
+      restoreDate: restoreDate?.copyWith(
+            objectPath: '$newObjectPath.restoreDate',
+          ) ??
+          this.restoreDate,
     );
   }
 }

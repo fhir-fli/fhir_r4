@@ -210,12 +210,30 @@ class Period extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Period(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      start: start ?? this.start,
-      end: end ?? this.end,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
     );
   }
 }

@@ -300,23 +300,89 @@ class BodyStructure extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return BodyStructure(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      morphology: morphology ?? this.morphology,
-      location: location ?? this.location,
-      locationQualifier: locationQualifier ?? this.locationQualifier,
-      description: description ?? this.description,
-      image: image ?? this.image,
-      patient: patient ?? this.patient,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      morphology: morphology?.copyWith(
+            objectPath: '$newObjectPath.morphology',
+          ) ??
+          this.morphology,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      locationQualifier: locationQualifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.locationQualifier',
+                ),
+              )
+              .toList() ??
+          this.locationQualifier,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      image: image
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.image',
+                ),
+              )
+              .toList() ??
+          this.image,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
     );
   }
 }

@@ -366,28 +366,109 @@ class FhirList extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return FhirList(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      mode: mode ?? this.mode,
-      title: title ?? this.title,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      date: date ?? this.date,
-      source: source ?? this.source,
-      orderedBy: orderedBy ?? this.orderedBy,
-      note: note ?? this.note,
-      entry: entry ?? this.entry,
-      emptyReason: emptyReason ?? this.emptyReason,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      orderedBy: orderedBy?.copyWith(
+            objectPath: '$newObjectPath.orderedBy',
+          ) ??
+          this.orderedBy,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      entry: entry
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entry',
+                ),
+              )
+              .toList() ??
+          this.entry,
+      emptyReason: emptyReason?.copyWith(
+            objectPath: '$newObjectPath.emptyReason',
+          ) ??
+          this.emptyReason,
     );
   }
 }
@@ -578,15 +659,46 @@ class ListEntry extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ListEntry(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      flag: flag ?? this.flag,
-      deleted: deleted ?? this.deleted,
-      date: date ?? this.date,
-      item: item ?? this.item,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      flag: flag?.copyWith(
+            objectPath: '$newObjectPath.flag',
+          ) ??
+          this.flag,
+      deleted: deleted?.copyWith(
+            objectPath: '$newObjectPath.deleted',
+          ) ??
+          this.deleted,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      item: item?.copyWith(
+            objectPath: '$newObjectPath.item',
+          ) ??
+          this.item,
     );
   }
 }

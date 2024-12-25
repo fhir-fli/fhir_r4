@@ -433,33 +433,137 @@ class Location extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Location(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      operationalStatus: operationalStatus ?? this.operationalStatus,
-      name: name ?? this.name,
-      alias: alias ?? this.alias,
-      description: description ?? this.description,
-      mode: mode ?? this.mode,
-      type: type ?? this.type,
-      telecom: telecom ?? this.telecom,
-      address: address ?? this.address,
-      physicalType: physicalType ?? this.physicalType,
-      position: position ?? this.position,
-      managingOrganization: managingOrganization ?? this.managingOrganization,
-      partOf: partOf ?? this.partOf,
-      hoursOfOperation: hoursOfOperation ?? this.hoursOfOperation,
-      availabilityExceptions:
-          availabilityExceptions ?? this.availabilityExceptions,
-      endpoint: endpoint ?? this.endpoint,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      operationalStatus: operationalStatus?.copyWith(
+            objectPath: '$newObjectPath.operationalStatus',
+          ) ??
+          this.operationalStatus,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      alias: alias
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.alias',
+                ),
+              )
+              .toList() ??
+          this.alias,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
+      physicalType: physicalType?.copyWith(
+            objectPath: '$newObjectPath.physicalType',
+          ) ??
+          this.physicalType,
+      position: position?.copyWith(
+            objectPath: '$newObjectPath.position',
+          ) ??
+          this.position,
+      managingOrganization: managingOrganization?.copyWith(
+            objectPath: '$newObjectPath.managingOrganization',
+          ) ??
+          this.managingOrganization,
+      partOf: partOf?.copyWith(
+            objectPath: '$newObjectPath.partOf',
+          ) ??
+          this.partOf,
+      hoursOfOperation: hoursOfOperation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.hoursOfOperation',
+                ),
+              )
+              .toList() ??
+          this.hoursOfOperation,
+      availabilityExceptions: availabilityExceptions?.copyWith(
+            objectPath: '$newObjectPath.availabilityExceptions',
+          ) ??
+          this.availabilityExceptions,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
     );
   }
 }
@@ -640,14 +744,42 @@ class LocationPosition extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return LocationPosition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      longitude: longitude ?? this.longitude,
-      latitude: latitude ?? this.latitude,
-      altitude: altitude ?? this.altitude,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      longitude: longitude?.copyWith(
+            objectPath: '$newObjectPath.longitude',
+          ) ??
+          this.longitude,
+      latitude: latitude?.copyWith(
+            objectPath: '$newObjectPath.latitude',
+          ) ??
+          this.latitude,
+      altitude: altitude?.copyWith(
+            objectPath: '$newObjectPath.altitude',
+          ) ??
+          this.altitude,
     );
   }
 }
@@ -838,15 +970,50 @@ class LocationHoursOfOperation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return LocationHoursOfOperation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
-      allDay: allDay ?? this.allDay,
-      openingTime: openingTime ?? this.openingTime,
-      closingTime: closingTime ?? this.closingTime,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      daysOfWeek: daysOfWeek
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.daysOfWeek',
+                ),
+              )
+              .toList() ??
+          this.daysOfWeek,
+      allDay: allDay?.copyWith(
+            objectPath: '$newObjectPath.allDay',
+          ) ??
+          this.allDay,
+      openingTime: openingTime?.copyWith(
+            objectPath: '$newObjectPath.openingTime',
+          ) ??
+          this.openingTime,
+      closingTime: closingTime?.copyWith(
+            objectPath: '$newObjectPath.closingTime',
+          ) ??
+          this.closingTime,
     );
   }
 }

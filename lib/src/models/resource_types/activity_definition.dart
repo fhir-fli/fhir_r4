@@ -857,63 +857,301 @@ class ActivityDefinition extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ActivityDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      subtitle: subtitle ?? this.subtitle,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      usage: usage ?? this.usage,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      topic: topic ?? this.topic,
-      author: author ?? this.author,
-      editor: editor ?? this.editor,
-      reviewer: reviewer ?? this.reviewer,
-      endorser: endorser ?? this.endorser,
-      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
-      library_: library_ ?? this.library_,
-      kind: kind ?? this.kind,
-      profile: profile ?? this.profile,
-      code: code ?? this.code,
-      intent: intent ?? this.intent,
-      priority: priority ?? this.priority,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      timingX: timingX ?? this.timingX,
-      location: location ?? this.location,
-      participant: participant ?? this.participant,
-      productX: productX ?? this.productX,
-      quantity: quantity ?? this.quantity,
-      dosage: dosage ?? this.dosage,
-      bodySite: bodySite ?? this.bodySite,
-      specimenRequirement: specimenRequirement ?? this.specimenRequirement,
-      observationRequirement:
-          observationRequirement ?? this.observationRequirement,
-      observationResultRequirement:
-          observationResultRequirement ?? this.observationResultRequirement,
-      transform: transform ?? this.transform,
-      dynamicValue: dynamicValue ?? this.dynamicValue,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      subtitle: subtitle?.copyWith(
+            objectPath: '$newObjectPath.subtitle',
+          ) ??
+          this.subtitle,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      subjectX: subjectX?.copyWith(
+            objectPath: '$newObjectPath.subjectX',
+          ) as SubjectXActivityDefinition? ??
+          this.subjectX,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      usage: usage?.copyWith(
+            objectPath: '$newObjectPath.usage',
+          ) ??
+          this.usage,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      topic: topic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.topic',
+                ),
+              )
+              .toList() ??
+          this.topic,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      editor: editor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.editor',
+                ),
+              )
+              .toList() ??
+          this.editor,
+      reviewer: reviewer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reviewer',
+                ),
+              )
+              .toList() ??
+          this.reviewer,
+      endorser: endorser
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endorser',
+                ),
+              )
+              .toList() ??
+          this.endorser,
+      relatedArtifact: relatedArtifact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedArtifact',
+                ),
+              )
+              .toList() ??
+          this.relatedArtifact,
+      library_: library_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.library',
+                ),
+              )
+              .toList() ??
+          this.library_,
+      kind: kind?.copyWith(
+            objectPath: '$newObjectPath.kind',
+          ) ??
+          this.kind,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      timingX: timingX?.copyWith(
+            objectPath: '$newObjectPath.timingX',
+          ) as TimingXActivityDefinition? ??
+          this.timingX,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      participant: participant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participant',
+                ),
+              )
+              .toList() ??
+          this.participant,
+      productX: productX?.copyWith(
+            objectPath: '$newObjectPath.productX',
+          ) as ProductXActivityDefinition? ??
+          this.productX,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      dosage: dosage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosage',
+                ),
+              )
+              .toList() ??
+          this.dosage,
+      bodySite: bodySite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.bodySite',
+                ),
+              )
+              .toList() ??
+          this.bodySite,
+      specimenRequirement: specimenRequirement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specimenRequirement',
+                ),
+              )
+              .toList() ??
+          this.specimenRequirement,
+      observationRequirement: observationRequirement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.observationRequirement',
+                ),
+              )
+              .toList() ??
+          this.observationRequirement,
+      observationResultRequirement: observationResultRequirement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.observationResultRequirement',
+                ),
+              )
+              .toList() ??
+          this.observationResultRequirement,
+      transform: transform?.copyWith(
+            objectPath: '$newObjectPath.transform',
+          ) ??
+          this.transform,
+      dynamicValue: dynamicValue
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dynamicValue',
+                ),
+              )
+              .toList() ??
+          this.dynamicValue,
     );
   }
 }
@@ -1078,13 +1316,38 @@ class ActivityDefinitionParticipant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ActivityDefinitionParticipant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      role: role ?? this.role,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
     );
   }
 }
@@ -1260,13 +1523,38 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ActivityDefinitionDynamicValue(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      path: path ?? this.path,
-      expression: expression ?? this.expression,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
     );
   }
 }

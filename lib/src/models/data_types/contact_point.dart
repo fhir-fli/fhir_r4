@@ -203,15 +203,42 @@ class ContactPoint extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ContactPoint(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      system: system ?? this.system,
-      value: value ?? this.value,
-      use: use ?? this.use,
-      rank: rank ?? this.rank,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      rank: rank?.copyWith(
+            objectPath: '$newObjectPath.rank',
+          ) ??
+          this.rank,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

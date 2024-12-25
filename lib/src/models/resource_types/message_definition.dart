@@ -491,39 +491,177 @@ class MessageDefinition extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MessageDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      replaces: replaces ?? this.replaces,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      base: base ?? this.base,
-      parent: parent ?? this.parent,
-      eventX: eventX ?? this.eventX,
-      category: category ?? this.category,
-      focus: focus ?? this.focus,
-      responseRequired: responseRequired ?? this.responseRequired,
-      allowedResponse: allowedResponse ?? this.allowedResponse,
-      graph: graph ?? this.graph,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      base: base?.copyWith(
+            objectPath: '$newObjectPath.base',
+          ) ??
+          this.base,
+      parent: parent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parent',
+                ),
+              )
+              .toList() ??
+          this.parent,
+      eventX: eventX?.copyWith(
+            objectPath: '$newObjectPath.eventX',
+          ) as EventXMessageDefinition? ??
+          this.eventX,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      focus: focus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.focus',
+                ),
+              )
+              .toList() ??
+          this.focus,
+      responseRequired: responseRequired?.copyWith(
+            objectPath: '$newObjectPath.responseRequired',
+          ) ??
+          this.responseRequired,
+      allowedResponse: allowedResponse
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.allowedResponse',
+                ),
+              )
+              .toList() ??
+          this.allowedResponse,
+      graph: graph
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.graph',
+                ),
+              )
+              .toList() ??
+          this.graph,
     );
   }
 }
@@ -720,15 +858,46 @@ class MessageDefinitionFocus extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MessageDefinitionFocus(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      profile: profile ?? this.profile,
-      min: min ?? this.min,
-      max: max ?? this.max,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
+      min: min?.copyWith(
+            objectPath: '$newObjectPath.min',
+          ) ??
+          this.min,
+      max: max?.copyWith(
+            objectPath: '$newObjectPath.max',
+          ) ??
+          this.max,
     );
   }
 }
@@ -895,13 +1064,38 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MessageDefinitionAllowedResponse(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      message: message ?? this.message,
-      situation: situation ?? this.situation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      message: message?.copyWith(
+            objectPath: '$newObjectPath.message',
+          ) ??
+          this.message,
+      situation: situation?.copyWith(
+            objectPath: '$newObjectPath.situation',
+          ) ??
+          this.situation,
     );
   }
 }

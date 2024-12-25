@@ -298,23 +298,85 @@ class VisionPrescription extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return VisionPrescription(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      created: created ?? this.created,
-      patient: patient ?? this.patient,
-      encounter: encounter ?? this.encounter,
-      dateWritten: dateWritten ?? this.dateWritten,
-      prescriber: prescriber ?? this.prescriber,
-      lensSpecification: lensSpecification ?? this.lensSpecification,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      dateWritten: dateWritten?.copyWith(
+            objectPath: '$newObjectPath.dateWritten',
+          ) ??
+          this.dateWritten,
+      prescriber: prescriber?.copyWith(
+            objectPath: '$newObjectPath.prescriber',
+          ) ??
+          this.prescriber,
+      lensSpecification: lensSpecification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.lensSpecification',
+                ),
+              )
+              .toList() ??
+          this.lensSpecification,
     );
   }
 }
@@ -641,25 +703,94 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return VisionPrescriptionLensSpecification(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      product: product ?? this.product,
-      eye: eye ?? this.eye,
-      sphere: sphere ?? this.sphere,
-      cylinder: cylinder ?? this.cylinder,
-      axis: axis ?? this.axis,
-      prism: prism ?? this.prism,
-      add: add ?? this.add,
-      power: power ?? this.power,
-      backCurve: backCurve ?? this.backCurve,
-      diameter: diameter ?? this.diameter,
-      duration: duration ?? this.duration,
-      color: color ?? this.color,
-      brand: brand ?? this.brand,
-      note: note ?? this.note,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      product: product?.copyWith(
+            objectPath: '$newObjectPath.product',
+          ) ??
+          this.product,
+      eye: eye?.copyWith(
+            objectPath: '$newObjectPath.eye',
+          ) ??
+          this.eye,
+      sphere: sphere?.copyWith(
+            objectPath: '$newObjectPath.sphere',
+          ) ??
+          this.sphere,
+      cylinder: cylinder?.copyWith(
+            objectPath: '$newObjectPath.cylinder',
+          ) ??
+          this.cylinder,
+      axis: axis?.copyWith(
+            objectPath: '$newObjectPath.axis',
+          ) ??
+          this.axis,
+      prism: prism
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.prism',
+                ),
+              )
+              .toList() ??
+          this.prism,
+      add: add?.copyWith(
+            objectPath: '$newObjectPath.add',
+          ) ??
+          this.add,
+      power: power?.copyWith(
+            objectPath: '$newObjectPath.power',
+          ) ??
+          this.power,
+      backCurve: backCurve?.copyWith(
+            objectPath: '$newObjectPath.backCurve',
+          ) ??
+          this.backCurve,
+      diameter: diameter?.copyWith(
+            objectPath: '$newObjectPath.diameter',
+          ) ??
+          this.diameter,
+      duration: duration?.copyWith(
+            objectPath: '$newObjectPath.duration',
+          ) ??
+          this.duration,
+      color: color?.copyWith(
+            objectPath: '$newObjectPath.color',
+          ) ??
+          this.color,
+      brand: brand?.copyWith(
+            objectPath: '$newObjectPath.brand',
+          ) ??
+          this.brand,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -823,13 +954,38 @@ class VisionPrescriptionPrism extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return VisionPrescriptionPrism(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      amount: amount ?? this.amount,
-      base: base ?? this.base,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      base: base?.copyWith(
+            objectPath: '$newObjectPath.base',
+          ) ??
+          this.base,
     );
   }
 }

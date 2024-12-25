@@ -363,27 +363,109 @@ class AdministrableProductDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return AdministrableProductDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      formOf: formOf ?? this.formOf,
-      administrableDoseForm:
-          administrableDoseForm ?? this.administrableDoseForm,
-      unitOfPresentation: unitOfPresentation ?? this.unitOfPresentation,
-      producedFrom: producedFrom ?? this.producedFrom,
-      ingredient: ingredient ?? this.ingredient,
-      device: device ?? this.device,
-      property: property ?? this.property,
-      routeOfAdministration:
-          routeOfAdministration ?? this.routeOfAdministration,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      formOf: formOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.formOf',
+                ),
+              )
+              .toList() ??
+          this.formOf,
+      administrableDoseForm: administrableDoseForm?.copyWith(
+            objectPath: '$newObjectPath.administrableDoseForm',
+          ) ??
+          this.administrableDoseForm,
+      unitOfPresentation: unitOfPresentation?.copyWith(
+            objectPath: '$newObjectPath.unitOfPresentation',
+          ) ??
+          this.unitOfPresentation,
+      producedFrom: producedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.producedFrom',
+                ),
+              )
+              .toList() ??
+          this.producedFrom,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      property: property
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.property',
+                ),
+              )
+              .toList() ??
+          this.property,
+      routeOfAdministration: routeOfAdministration
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.routeOfAdministration',
+                ),
+              )
+              .toList() ??
+          this.routeOfAdministration,
     );
   }
 }
@@ -570,14 +652,42 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdministrableProductDefinitionProperty(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
-      status: status ?? this.status,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXAdministrableProductDefinitionProperty? ??
+          this.valueX,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
     );
   }
 }
@@ -817,19 +927,62 @@ class AdministrableProductDefinitionRouteOfAdministration
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdministrableProductDefinitionRouteOfAdministration(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      firstDose: firstDose ?? this.firstDose,
-      maxSingleDose: maxSingleDose ?? this.maxSingleDose,
-      maxDosePerDay: maxDosePerDay ?? this.maxDosePerDay,
-      maxDosePerTreatmentPeriod:
-          maxDosePerTreatmentPeriod ?? this.maxDosePerTreatmentPeriod,
-      maxTreatmentPeriod: maxTreatmentPeriod ?? this.maxTreatmentPeriod,
-      targetSpecies: targetSpecies ?? this.targetSpecies,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      firstDose: firstDose?.copyWith(
+            objectPath: '$newObjectPath.firstDose',
+          ) ??
+          this.firstDose,
+      maxSingleDose: maxSingleDose?.copyWith(
+            objectPath: '$newObjectPath.maxSingleDose',
+          ) ??
+          this.maxSingleDose,
+      maxDosePerDay: maxDosePerDay?.copyWith(
+            objectPath: '$newObjectPath.maxDosePerDay',
+          ) ??
+          this.maxDosePerDay,
+      maxDosePerTreatmentPeriod: maxDosePerTreatmentPeriod?.copyWith(
+            objectPath: '$newObjectPath.maxDosePerTreatmentPeriod',
+          ) ??
+          this.maxDosePerTreatmentPeriod,
+      maxTreatmentPeriod: maxTreatmentPeriod?.copyWith(
+            objectPath: '$newObjectPath.maxTreatmentPeriod',
+          ) ??
+          this.maxTreatmentPeriod,
+      targetSpecies: targetSpecies
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetSpecies',
+                ),
+              )
+              .toList() ??
+          this.targetSpecies,
     );
   }
 }
@@ -999,13 +1152,42 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdministrableProductDefinitionTargetSpecies(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      withdrawalPeriod: withdrawalPeriod ?? this.withdrawalPeriod,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      withdrawalPeriod: withdrawalPeriod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.withdrawalPeriod',
+                ),
+              )
+              .toList() ??
+          this.withdrawalPeriod,
     );
   }
 }
@@ -1187,15 +1369,42 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdministrableProductDefinitionWithdrawalPeriod(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      tissue: tissue ?? this.tissue,
-      value: value ?? this.value,
-      supportingInformation:
-          supportingInformation ?? this.supportingInformation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      tissue: tissue?.copyWith(
+            objectPath: '$newObjectPath.tissue',
+          ) ??
+          this.tissue,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      supportingInformation: supportingInformation?.copyWith(
+            objectPath: '$newObjectPath.supportingInformation',
+          ) ??
+          this.supportingInformation,
     );
   }
 }

@@ -374,30 +374,121 @@ class CatalogEntry extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return CatalogEntry(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      orderable: orderable ?? this.orderable,
-      referencedItem: referencedItem ?? this.referencedItem,
-      additionalIdentifier: additionalIdentifier ?? this.additionalIdentifier,
-      classification: classification ?? this.classification,
-      status: status ?? this.status,
-      validityPeriod: validityPeriod ?? this.validityPeriod,
-      validTo: validTo ?? this.validTo,
-      lastUpdated: lastUpdated ?? this.lastUpdated,
-      additionalCharacteristic:
-          additionalCharacteristic ?? this.additionalCharacteristic,
-      additionalClassification:
-          additionalClassification ?? this.additionalClassification,
-      relatedEntry: relatedEntry ?? this.relatedEntry,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      orderable: orderable?.copyWith(
+            objectPath: '$newObjectPath.orderable',
+          ) ??
+          this.orderable,
+      referencedItem: referencedItem?.copyWith(
+            objectPath: '$newObjectPath.referencedItem',
+          ) ??
+          this.referencedItem,
+      additionalIdentifier: additionalIdentifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additionalIdentifier',
+                ),
+              )
+              .toList() ??
+          this.additionalIdentifier,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      validityPeriod: validityPeriod?.copyWith(
+            objectPath: '$newObjectPath.validityPeriod',
+          ) ??
+          this.validityPeriod,
+      validTo: validTo?.copyWith(
+            objectPath: '$newObjectPath.validTo',
+          ) ??
+          this.validTo,
+      lastUpdated: lastUpdated?.copyWith(
+            objectPath: '$newObjectPath.lastUpdated',
+          ) ??
+          this.lastUpdated,
+      additionalCharacteristic: additionalCharacteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additionalCharacteristic',
+                ),
+              )
+              .toList() ??
+          this.additionalCharacteristic,
+      additionalClassification: additionalClassification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additionalClassification',
+                ),
+              )
+              .toList() ??
+          this.additionalClassification,
+      relatedEntry: relatedEntry
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedEntry',
+                ),
+              )
+              .toList() ??
+          this.relatedEntry,
     );
   }
 }
@@ -563,13 +654,38 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CatalogEntryRelatedEntry(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relationtype: relationtype ?? this.relationtype,
-      item: item ?? this.item,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relationtype: relationtype?.copyWith(
+            objectPath: '$newObjectPath.relationtype',
+          ) ??
+          this.relationtype,
+      item: item?.copyWith(
+            objectPath: '$newObjectPath.item',
+          ) ??
+          this.item,
     );
   }
 }

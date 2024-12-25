@@ -434,32 +434,133 @@ class Coverage extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Coverage(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      policyHolder: policyHolder ?? this.policyHolder,
-      subscriber: subscriber ?? this.subscriber,
-      subscriberId: subscriberId ?? this.subscriberId,
-      beneficiary: beneficiary ?? this.beneficiary,
-      dependent: dependent ?? this.dependent,
-      relationship: relationship ?? this.relationship,
-      period: period ?? this.period,
-      payor: payor ?? this.payor,
-      class_: class_ ?? this.class_,
-      order: order ?? this.order,
-      network: network ?? this.network,
-      costToBeneficiary: costToBeneficiary ?? this.costToBeneficiary,
-      subrogation: subrogation ?? this.subrogation,
-      contract: contract ?? this.contract,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      policyHolder: policyHolder?.copyWith(
+            objectPath: '$newObjectPath.policyHolder',
+          ) ??
+          this.policyHolder,
+      subscriber: subscriber?.copyWith(
+            objectPath: '$newObjectPath.subscriber',
+          ) ??
+          this.subscriber,
+      subscriberId: subscriberId?.copyWith(
+            objectPath: '$newObjectPath.subscriberId',
+          ) ??
+          this.subscriberId,
+      beneficiary: beneficiary?.copyWith(
+            objectPath: '$newObjectPath.beneficiary',
+          ) ??
+          this.beneficiary,
+      dependent: dependent?.copyWith(
+            objectPath: '$newObjectPath.dependent',
+          ) ??
+          this.dependent,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      payor: payor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.payor',
+                ),
+              )
+              .toList() ??
+          this.payor,
+      class_: class_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.class',
+                ),
+              )
+              .toList() ??
+          this.class_,
+      order: order?.copyWith(
+            objectPath: '$newObjectPath.order',
+          ) ??
+          this.order,
+      network: network?.copyWith(
+            objectPath: '$newObjectPath.network',
+          ) ??
+          this.network,
+      costToBeneficiary: costToBeneficiary
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.costToBeneficiary',
+                ),
+              )
+              .toList() ??
+          this.costToBeneficiary,
+      subrogation: subrogation?.copyWith(
+            objectPath: '$newObjectPath.subrogation',
+          ) ??
+          this.subrogation,
+      contract: contract
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contract',
+                ),
+              )
+              .toList() ??
+          this.contract,
     );
   }
 }
@@ -638,14 +739,42 @@ class CoverageClass extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CoverageClass(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      value: value ?? this.value,
-      name: name ?? this.name,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
     );
   }
 }
@@ -831,14 +960,46 @@ class CoverageCostToBeneficiary extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CoverageCostToBeneficiary(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
-      exception: exception ?? this.exception,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXCoverageCostToBeneficiary? ??
+          this.valueX,
+      exception: exception
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.exception',
+                ),
+              )
+              .toList() ??
+          this.exception,
     );
   }
 }
@@ -1003,13 +1164,38 @@ class CoverageException extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CoverageException(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

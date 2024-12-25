@@ -206,12 +206,30 @@ class FhirExtension extends DataType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return FhirExtension(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      url: url ?? this.url,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXExtension? ??
+          this.valueX,
     );
   }
 }

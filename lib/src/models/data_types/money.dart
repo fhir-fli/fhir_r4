@@ -164,12 +164,30 @@ class Money extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Money(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      value: value ?? this.value,
-      currency: currency ?? this.currency,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      currency: currency?.copyWith(
+            objectPath: '$newObjectPath.currency',
+          ) ??
+          this.currency,
     );
   }
 }

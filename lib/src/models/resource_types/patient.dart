@@ -435,31 +435,145 @@ class Patient extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Patient(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      name: name ?? this.name,
-      telecom: telecom ?? this.telecom,
-      gender: gender ?? this.gender,
-      birthDate: birthDate ?? this.birthDate,
-      deceasedX: deceasedX ?? this.deceasedX,
-      address: address ?? this.address,
-      maritalStatus: maritalStatus ?? this.maritalStatus,
-      multipleBirthX: multipleBirthX ?? this.multipleBirthX,
-      photo: photo ?? this.photo,
-      contact: contact ?? this.contact,
-      communication: communication ?? this.communication,
-      generalPractitioner: generalPractitioner ?? this.generalPractitioner,
-      managingOrganization: managingOrganization ?? this.managingOrganization,
-      link: link ?? this.link,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      name: name
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.name',
+                ),
+              )
+              .toList() ??
+          this.name,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      gender: gender?.copyWith(
+            objectPath: '$newObjectPath.gender',
+          ) ??
+          this.gender,
+      birthDate: birthDate?.copyWith(
+            objectPath: '$newObjectPath.birthDate',
+          ) ??
+          this.birthDate,
+      deceasedX: deceasedX?.copyWith(
+            objectPath: '$newObjectPath.deceasedX',
+          ) as DeceasedXPatient? ??
+          this.deceasedX,
+      address: address
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.address',
+                ),
+              )
+              .toList() ??
+          this.address,
+      maritalStatus: maritalStatus?.copyWith(
+            objectPath: '$newObjectPath.maritalStatus',
+          ) ??
+          this.maritalStatus,
+      multipleBirthX: multipleBirthX?.copyWith(
+            objectPath: '$newObjectPath.multipleBirthX',
+          ) as MultipleBirthXPatient? ??
+          this.multipleBirthX,
+      photo: photo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.photo',
+                ),
+              )
+              .toList() ??
+          this.photo,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      communication: communication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.communication',
+                ),
+              )
+              .toList() ??
+          this.communication,
+      generalPractitioner: generalPractitioner
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.generalPractitioner',
+                ),
+              )
+              .toList() ??
+          this.generalPractitioner,
+      managingOrganization: managingOrganization?.copyWith(
+            objectPath: '$newObjectPath.managingOrganization',
+          ) ??
+          this.managingOrganization,
+      link: link
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.link',
+                ),
+              )
+              .toList() ??
+          this.link,
     );
   }
 }
@@ -697,18 +811,66 @@ class PatientContact extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PatientContact(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relationship: relationship ?? this.relationship,
-      name: name ?? this.name,
-      telecom: telecom ?? this.telecom,
-      address: address ?? this.address,
-      gender: gender ?? this.gender,
-      organization: organization ?? this.organization,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relationship: relationship
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relationship',
+                ),
+              )
+              .toList() ??
+          this.relationship,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
+      gender: gender?.copyWith(
+            objectPath: '$newObjectPath.gender',
+          ) ??
+          this.gender,
+      organization: organization?.copyWith(
+            objectPath: '$newObjectPath.organization',
+          ) ??
+          this.organization,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -877,13 +1039,38 @@ class PatientCommunication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PatientCommunication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      language: language ?? this.language,
-      preferred: preferred ?? this.preferred,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      preferred: preferred?.copyWith(
+            objectPath: '$newObjectPath.preferred',
+          ) ??
+          this.preferred,
     );
   }
 }
@@ -1048,13 +1235,38 @@ class PatientLink extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PatientLink(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      other: other ?? this.other,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      other: other?.copyWith(
+            objectPath: '$newObjectPath.other',
+          ) ??
+          this.other,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }

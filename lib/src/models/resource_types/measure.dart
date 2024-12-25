@@ -752,57 +752,270 @@ class Measure extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Measure(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      subtitle: subtitle ?? this.subtitle,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      usage: usage ?? this.usage,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      topic: topic ?? this.topic,
-      author: author ?? this.author,
-      editor: editor ?? this.editor,
-      reviewer: reviewer ?? this.reviewer,
-      endorser: endorser ?? this.endorser,
-      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
-      library_: library_ ?? this.library_,
-      disclaimer: disclaimer ?? this.disclaimer,
-      scoring: scoring ?? this.scoring,
-      compositeScoring: compositeScoring ?? this.compositeScoring,
-      type: type ?? this.type,
-      riskAdjustment: riskAdjustment ?? this.riskAdjustment,
-      rateAggregation: rateAggregation ?? this.rateAggregation,
-      rationale: rationale ?? this.rationale,
-      clinicalRecommendationStatement: clinicalRecommendationStatement ??
-          this.clinicalRecommendationStatement,
-      improvementNotation: improvementNotation ?? this.improvementNotation,
-      definition: definition ?? this.definition,
-      guidance: guidance ?? this.guidance,
-      group: group ?? this.group,
-      supplementalData: supplementalData ?? this.supplementalData,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      subtitle: subtitle?.copyWith(
+            objectPath: '$newObjectPath.subtitle',
+          ) ??
+          this.subtitle,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      subjectX: subjectX?.copyWith(
+            objectPath: '$newObjectPath.subjectX',
+          ) as SubjectXMeasure? ??
+          this.subjectX,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      usage: usage?.copyWith(
+            objectPath: '$newObjectPath.usage',
+          ) ??
+          this.usage,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      topic: topic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.topic',
+                ),
+              )
+              .toList() ??
+          this.topic,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      editor: editor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.editor',
+                ),
+              )
+              .toList() ??
+          this.editor,
+      reviewer: reviewer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reviewer',
+                ),
+              )
+              .toList() ??
+          this.reviewer,
+      endorser: endorser
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endorser',
+                ),
+              )
+              .toList() ??
+          this.endorser,
+      relatedArtifact: relatedArtifact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedArtifact',
+                ),
+              )
+              .toList() ??
+          this.relatedArtifact,
+      library_: library_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.library',
+                ),
+              )
+              .toList() ??
+          this.library_,
+      disclaimer: disclaimer?.copyWith(
+            objectPath: '$newObjectPath.disclaimer',
+          ) ??
+          this.disclaimer,
+      scoring: scoring?.copyWith(
+            objectPath: '$newObjectPath.scoring',
+          ) ??
+          this.scoring,
+      compositeScoring: compositeScoring?.copyWith(
+            objectPath: '$newObjectPath.compositeScoring',
+          ) ??
+          this.compositeScoring,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      riskAdjustment: riskAdjustment?.copyWith(
+            objectPath: '$newObjectPath.riskAdjustment',
+          ) ??
+          this.riskAdjustment,
+      rateAggregation: rateAggregation?.copyWith(
+            objectPath: '$newObjectPath.rateAggregation',
+          ) ??
+          this.rateAggregation,
+      rationale: rationale?.copyWith(
+            objectPath: '$newObjectPath.rationale',
+          ) ??
+          this.rationale,
+      clinicalRecommendationStatement:
+          clinicalRecommendationStatement?.copyWith(
+                objectPath: '$newObjectPath.clinicalRecommendationStatement',
+              ) ??
+              this.clinicalRecommendationStatement,
+      improvementNotation: improvementNotation?.copyWith(
+            objectPath: '$newObjectPath.improvementNotation',
+          ) ??
+          this.improvementNotation,
+      definition: definition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.definition',
+                ),
+              )
+              .toList() ??
+          this.definition,
+      guidance: guidance?.copyWith(
+            objectPath: '$newObjectPath.guidance',
+          ) ??
+          this.guidance,
+      group: group
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.group',
+                ),
+              )
+              .toList() ??
+          this.group,
+      supplementalData: supplementalData
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supplementalData',
+                ),
+              )
+              .toList() ??
+          this.supplementalData,
     );
   }
 }
@@ -1000,15 +1213,54 @@ class MeasureGroup extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureGroup(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      population: population ?? this.population,
-      stratifier: stratifier ?? this.stratifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      population: population
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.population',
+                ),
+              )
+              .toList() ??
+          this.population,
+      stratifier: stratifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.stratifier',
+                ),
+              )
+              .toList() ??
+          this.stratifier,
     );
   }
 }
@@ -1186,14 +1438,42 @@ class MeasurePopulation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasurePopulation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      criteria: criteria ?? this.criteria,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      criteria: criteria?.copyWith(
+            objectPath: '$newObjectPath.criteria',
+          ) ??
+          this.criteria,
     );
   }
 }
@@ -1394,15 +1674,50 @@ class MeasureStratifier extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureStratifier(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      criteria: criteria ?? this.criteria,
-      component: component ?? this.component,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      criteria: criteria?.copyWith(
+            objectPath: '$newObjectPath.criteria',
+          ) ??
+          this.criteria,
+      component: component
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.component',
+                ),
+              )
+              .toList() ??
+          this.component,
     );
   }
 }
@@ -1587,14 +1902,42 @@ class MeasureComponent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureComponent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      criteria: criteria ?? this.criteria,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      criteria: criteria?.copyWith(
+            objectPath: '$newObjectPath.criteria',
+          ) ??
+          this.criteria,
     );
   }
 }
@@ -1799,15 +2142,50 @@ class MeasureSupplementalData extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureSupplementalData(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      usage: usage ?? this.usage,
-      description: description ?? this.description,
-      criteria: criteria ?? this.criteria,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      usage: usage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.usage',
+                ),
+              )
+              .toList() ??
+          this.usage,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      criteria: criteria?.copyWith(
+            objectPath: '$newObjectPath.criteria',
+          ) ??
+          this.criteria,
     );
   }
 }

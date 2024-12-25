@@ -171,12 +171,30 @@ class Ratio extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Ratio(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      numerator: numerator ?? this.numerator,
-      denominator: denominator ?? this.denominator,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      numerator: numerator?.copyWith(
+            objectPath: '$newObjectPath.numerator',
+          ) ??
+          this.numerator,
+      denominator: denominator?.copyWith(
+            objectPath: '$newObjectPath.denominator',
+          ) ??
+          this.denominator,
     );
   }
 }

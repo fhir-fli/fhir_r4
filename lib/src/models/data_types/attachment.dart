@@ -262,18 +262,54 @@ class Attachment extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Attachment(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      contentType: contentType ?? this.contentType,
-      language: language ?? this.language,
-      data: data ?? this.data,
-      url: url ?? this.url,
-      size: size ?? this.size,
-      hash: hash ?? this.hash,
-      title: title ?? this.title,
-      creation: creation ?? this.creation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      contentType: contentType?.copyWith(
+            objectPath: '$newObjectPath.contentType',
+          ) ??
+          this.contentType,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      data: data?.copyWith(
+            objectPath: '$newObjectPath.data',
+          ) ??
+          this.data,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      size: size?.copyWith(
+            objectPath: '$newObjectPath.size',
+          ) ??
+          this.size,
+      hash: hash?.copyWith(
+            objectPath: '$newObjectPath.hash',
+          ) ??
+          this.hash,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      creation: creation?.copyWith(
+            objectPath: '$newObjectPath.creation',
+          ) ??
+          this.creation,
     );
   }
 }

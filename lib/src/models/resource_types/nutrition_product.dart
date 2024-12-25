@@ -333,26 +333,113 @@ class NutritionProduct extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return NutritionProduct(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      status: status ?? this.status,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      manufacturer: manufacturer ?? this.manufacturer,
-      nutrient: nutrient ?? this.nutrient,
-      ingredient: ingredient ?? this.ingredient,
-      knownAllergen: knownAllergen ?? this.knownAllergen,
-      productCharacteristic:
-          productCharacteristic ?? this.productCharacteristic,
-      instance: instance ?? this.instance,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      manufacturer: manufacturer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manufacturer',
+                ),
+              )
+              .toList() ??
+          this.manufacturer,
+      nutrient: nutrient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.nutrient',
+                ),
+              )
+              .toList() ??
+          this.nutrient,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
+      knownAllergen: knownAllergen
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.knownAllergen',
+                ),
+              )
+              .toList() ??
+          this.knownAllergen,
+      productCharacteristic: productCharacteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.productCharacteristic',
+                ),
+              )
+              .toList() ??
+          this.productCharacteristic,
+      instance: instance?.copyWith(
+            objectPath: '$newObjectPath.instance',
+          ) ??
+          this.instance,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -519,13 +606,42 @@ class NutritionProductNutrient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionProductNutrient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      item: item ?? this.item,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      item: item?.copyWith(
+            objectPath: '$newObjectPath.item',
+          ) ??
+          this.item,
+      amount: amount
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.amount',
+                ),
+              )
+              .toList() ??
+          this.amount,
     );
   }
 }
@@ -691,13 +807,42 @@ class NutritionProductIngredient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionProductIngredient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      item: item ?? this.item,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      item: item?.copyWith(
+            objectPath: '$newObjectPath.item',
+          ) ??
+          this.item,
+      amount: amount
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.amount',
+                ),
+              )
+              .toList() ??
+          this.amount,
     );
   }
 }
@@ -871,13 +1016,38 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionProductProductCharacteristic(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXNutritionProductProductCharacteristic? ??
+          this.valueX,
     );
   }
 }
@@ -1086,16 +1256,54 @@ class NutritionProductInstance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionProductInstance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      quantity: quantity ?? this.quantity,
-      identifier: identifier ?? this.identifier,
-      lotNumber: lotNumber ?? this.lotNumber,
-      expiry: expiry ?? this.expiry,
-      useBy: useBy ?? this.useBy,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      lotNumber: lotNumber?.copyWith(
+            objectPath: '$newObjectPath.lotNumber',
+          ) ??
+          this.lotNumber,
+      expiry: expiry?.copyWith(
+            objectPath: '$newObjectPath.expiry',
+          ) ??
+          this.expiry,
+      useBy: useBy?.copyWith(
+            objectPath: '$newObjectPath.useBy',
+          ) ??
+          this.useBy,
     );
   }
 }

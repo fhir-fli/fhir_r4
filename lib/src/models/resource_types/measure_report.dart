@@ -348,26 +348,101 @@ class MeasureReport extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MeasureReport(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      measure: measure ?? this.measure,
-      subject: subject ?? this.subject,
-      date: date ?? this.date,
-      reporter: reporter ?? this.reporter,
-      period: period ?? this.period,
-      improvementNotation: improvementNotation ?? this.improvementNotation,
-      group: group ?? this.group,
-      evaluatedResource: evaluatedResource ?? this.evaluatedResource,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      measure: measure?.copyWith(
+            objectPath: '$newObjectPath.measure',
+          ) ??
+          this.measure,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      reporter: reporter?.copyWith(
+            objectPath: '$newObjectPath.reporter',
+          ) ??
+          this.reporter,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      improvementNotation: improvementNotation?.copyWith(
+            objectPath: '$newObjectPath.improvementNotation',
+          ) ??
+          this.improvementNotation,
+      group: group
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.group',
+                ),
+              )
+              .toList() ??
+          this.group,
+      evaluatedResource: evaluatedResource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.evaluatedResource',
+                ),
+              )
+              .toList() ??
+          this.evaluatedResource,
     );
   }
 }
@@ -567,15 +642,54 @@ class MeasureReportGroup extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportGroup(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      population: population ?? this.population,
-      measureScore: measureScore ?? this.measureScore,
-      stratifier: stratifier ?? this.stratifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      population: population
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.population',
+                ),
+              )
+              .toList() ??
+          this.population,
+      measureScore: measureScore?.copyWith(
+            objectPath: '$newObjectPath.measureScore',
+          ) ??
+          this.measureScore,
+      stratifier: stratifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.stratifier',
+                ),
+              )
+              .toList() ??
+          this.stratifier,
     );
   }
 }
@@ -754,14 +868,42 @@ class MeasureReportPopulation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportPopulation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      count: count ?? this.count,
-      subjectResults: subjectResults ?? this.subjectResults,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      count: count?.copyWith(
+            objectPath: '$newObjectPath.count',
+          ) ??
+          this.count,
+      subjectResults: subjectResults?.copyWith(
+            objectPath: '$newObjectPath.subjectResults',
+          ) ??
+          this.subjectResults,
     );
   }
 }
@@ -932,13 +1074,46 @@ class MeasureReportStratifier extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportStratifier(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      stratum: stratum ?? this.stratum,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      stratum: stratum
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.stratum',
+                ),
+              )
+              .toList() ??
+          this.stratum,
     );
   }
 }
@@ -1139,15 +1314,54 @@ class MeasureReportStratum extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportStratum(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      value: value ?? this.value,
-      component: component ?? this.component,
-      population: population ?? this.population,
-      measureScore: measureScore ?? this.measureScore,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      component: component
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.component',
+                ),
+              )
+              .toList() ??
+          this.component,
+      population: population
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.population',
+                ),
+              )
+              .toList() ??
+          this.population,
+      measureScore: measureScore?.copyWith(
+            objectPath: '$newObjectPath.measureScore',
+          ) ??
+          this.measureScore,
     );
   }
 }
@@ -1311,13 +1525,38 @@ class MeasureReportComponent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportComponent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -1496,14 +1735,42 @@ class MeasureReportPopulation1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MeasureReportPopulation1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      count: count ?? this.count,
-      subjectResults: subjectResults ?? this.subjectResults,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      count: count?.copyWith(
+            objectPath: '$newObjectPath.count',
+          ) ??
+          this.count,
+      subjectResults: subjectResults?.copyWith(
+            objectPath: '$newObjectPath.subjectResults',
+          ) ??
+          this.subjectResults,
     );
   }
 }

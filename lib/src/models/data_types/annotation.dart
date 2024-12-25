@@ -179,13 +179,34 @@ class Annotation extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Annotation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      authorX: authorX ?? this.authorX,
-      time: time ?? this.time,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      authorX: authorX?.copyWith(
+            objectPath: '$newObjectPath.authorX',
+          ) as AuthorXAnnotation? ??
+          this.authorX,
+      time: time?.copyWith(
+            objectPath: '$newObjectPath.time',
+          ) ??
+          this.time,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }

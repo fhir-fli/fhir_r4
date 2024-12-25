@@ -395,30 +395,137 @@ class PractitionerRole extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return PractitionerRole(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      period: period ?? this.period,
-      practitioner: practitioner ?? this.practitioner,
-      organization: organization ?? this.organization,
-      code: code ?? this.code,
-      specialty: specialty ?? this.specialty,
-      location: location ?? this.location,
-      healthcareService: healthcareService ?? this.healthcareService,
-      telecom: telecom ?? this.telecom,
-      availableTime: availableTime ?? this.availableTime,
-      notAvailable: notAvailable ?? this.notAvailable,
-      availabilityExceptions:
-          availabilityExceptions ?? this.availabilityExceptions,
-      endpoint: endpoint ?? this.endpoint,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      practitioner: practitioner?.copyWith(
+            objectPath: '$newObjectPath.practitioner',
+          ) ??
+          this.practitioner,
+      organization: organization?.copyWith(
+            objectPath: '$newObjectPath.organization',
+          ) ??
+          this.organization,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      healthcareService: healthcareService
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.healthcareService',
+                ),
+              )
+              .toList() ??
+          this.healthcareService,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      availableTime: availableTime
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.availableTime',
+                ),
+              )
+              .toList() ??
+          this.availableTime,
+      notAvailable: notAvailable
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.notAvailable',
+                ),
+              )
+              .toList() ??
+          this.notAvailable,
+      availabilityExceptions: availabilityExceptions?.copyWith(
+            objectPath: '$newObjectPath.availabilityExceptions',
+          ) ??
+          this.availabilityExceptions,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
     );
   }
 }
@@ -613,15 +720,50 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PractitionerRoleAvailableTime(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
-      allDay: allDay ?? this.allDay,
-      availableStartTime: availableStartTime ?? this.availableStartTime,
-      availableEndTime: availableEndTime ?? this.availableEndTime,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      daysOfWeek: daysOfWeek
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.daysOfWeek',
+                ),
+              )
+              .toList() ??
+          this.daysOfWeek,
+      allDay: allDay?.copyWith(
+            objectPath: '$newObjectPath.allDay',
+          ) ??
+          this.allDay,
+      availableStartTime: availableStartTime?.copyWith(
+            objectPath: '$newObjectPath.availableStartTime',
+          ) ??
+          this.availableStartTime,
+      availableEndTime: availableEndTime?.copyWith(
+            objectPath: '$newObjectPath.availableEndTime',
+          ) ??
+          this.availableEndTime,
     );
   }
 }
@@ -788,13 +930,38 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PractitionerRoleNotAvailable(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      during: during ?? this.during,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      during: during?.copyWith(
+            objectPath: '$newObjectPath.during',
+          ) ??
+          this.during,
     );
   }
 }

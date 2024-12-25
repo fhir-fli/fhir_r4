@@ -345,26 +345,105 @@ class Slot extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Slot(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      serviceCategory: serviceCategory ?? this.serviceCategory,
-      serviceType: serviceType ?? this.serviceType,
-      specialty: specialty ?? this.specialty,
-      appointmentType: appointmentType ?? this.appointmentType,
-      schedule: schedule ?? this.schedule,
-      status: status ?? this.status,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      overbooked: overbooked ?? this.overbooked,
-      comment: comment ?? this.comment,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      serviceCategory: serviceCategory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceCategory',
+                ),
+              )
+              .toList() ??
+          this.serviceCategory,
+      serviceType: serviceType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceType',
+                ),
+              )
+              .toList() ??
+          this.serviceType,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      appointmentType: appointmentType?.copyWith(
+            objectPath: '$newObjectPath.appointmentType',
+          ) ??
+          this.appointmentType,
+      schedule: schedule?.copyWith(
+            objectPath: '$newObjectPath.schedule',
+          ) ??
+          this.schedule,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
+      overbooked: overbooked?.copyWith(
+            objectPath: '$newObjectPath.overbooked',
+          ) ??
+          this.overbooked,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }

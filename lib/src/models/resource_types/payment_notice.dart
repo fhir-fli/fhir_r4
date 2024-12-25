@@ -345,27 +345,97 @@ class PaymentNotice extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return PaymentNotice(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      request: request ?? this.request,
-      response: response ?? this.response,
-      created: created ?? this.created,
-      provider: provider ?? this.provider,
-      payment: payment ?? this.payment,
-      paymentDate: paymentDate ?? this.paymentDate,
-      payee: payee ?? this.payee,
-      recipient: recipient ?? this.recipient,
-      amount: amount ?? this.amount,
-      paymentStatus: paymentStatus ?? this.paymentStatus,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      request: request?.copyWith(
+            objectPath: '$newObjectPath.request',
+          ) ??
+          this.request,
+      response: response?.copyWith(
+            objectPath: '$newObjectPath.response',
+          ) ??
+          this.response,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      payment: payment?.copyWith(
+            objectPath: '$newObjectPath.payment',
+          ) ??
+          this.payment,
+      paymentDate: paymentDate?.copyWith(
+            objectPath: '$newObjectPath.paymentDate',
+          ) ??
+          this.paymentDate,
+      payee: payee?.copyWith(
+            objectPath: '$newObjectPath.payee',
+          ) ??
+          this.payee,
+      recipient: recipient?.copyWith(
+            objectPath: '$newObjectPath.recipient',
+          ) ??
+          this.recipient,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      paymentStatus: paymentStatus?.copyWith(
+            objectPath: '$newObjectPath.paymentStatus',
+          ) ??
+          this.paymentStatus,
     );
   }
 }

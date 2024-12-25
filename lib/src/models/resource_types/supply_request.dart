@@ -408,30 +408,125 @@ class SupplyRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return SupplyRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      itemX: itemX ?? this.itemX,
-      quantity: quantity ?? this.quantity,
-      parameter: parameter ?? this.parameter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      authoredOn: authoredOn ?? this.authoredOn,
-      requester: requester ?? this.requester,
-      supplier: supplier ?? this.supplier,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      deliverFrom: deliverFrom ?? this.deliverFrom,
-      deliverTo: deliverTo ?? this.deliverTo,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      itemX: itemX?.copyWith(
+            objectPath: '$newObjectPath.itemX',
+          ) as ItemXSupplyRequest? ??
+          this.itemX,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXSupplyRequest? ??
+          this.occurrenceX,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      supplier: supplier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supplier',
+                ),
+              )
+              .toList() ??
+          this.supplier,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      deliverFrom: deliverFrom?.copyWith(
+            objectPath: '$newObjectPath.deliverFrom',
+          ) ??
+          this.deliverFrom,
+      deliverTo: deliverTo?.copyWith(
+            objectPath: '$newObjectPath.deliverTo',
+          ) ??
+          this.deliverTo,
     );
   }
 }
@@ -604,13 +699,38 @@ class SupplyRequestParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SupplyRequestParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXSupplyRequestParameter? ??
+          this.valueX,
     );
   }
 }

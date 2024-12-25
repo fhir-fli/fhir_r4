@@ -514,38 +514,185 @@ class DeviceDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DeviceDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
-      manufacturerX: manufacturerX ?? this.manufacturerX,
-      deviceName: deviceName ?? this.deviceName,
-      modelNumber: modelNumber ?? this.modelNumber,
-      type: type ?? this.type,
-      specialization: specialization ?? this.specialization,
-      version: version ?? this.version,
-      safety: safety ?? this.safety,
-      shelfLifeStorage: shelfLifeStorage ?? this.shelfLifeStorage,
-      physicalCharacteristics:
-          physicalCharacteristics ?? this.physicalCharacteristics,
-      languageCode: languageCode ?? this.languageCode,
-      capability: capability ?? this.capability,
-      property: property ?? this.property,
-      owner: owner ?? this.owner,
-      contact: contact ?? this.contact,
-      url: url ?? this.url,
-      onlineInformation: onlineInformation ?? this.onlineInformation,
-      note: note ?? this.note,
-      quantity: quantity ?? this.quantity,
-      parentDevice: parentDevice ?? this.parentDevice,
-      material: material ?? this.material,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      udiDeviceIdentifier: udiDeviceIdentifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udiDeviceIdentifier',
+                ),
+              )
+              .toList() ??
+          this.udiDeviceIdentifier,
+      manufacturerX: manufacturerX?.copyWith(
+            objectPath: '$newObjectPath.manufacturerX',
+          ) as ManufacturerXDeviceDefinition? ??
+          this.manufacturerX,
+      deviceName: deviceName
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.deviceName',
+                ),
+              )
+              .toList() ??
+          this.deviceName,
+      modelNumber: modelNumber?.copyWith(
+            objectPath: '$newObjectPath.modelNumber',
+          ) ??
+          this.modelNumber,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      specialization: specialization
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialization',
+                ),
+              )
+              .toList() ??
+          this.specialization,
+      version: version
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.version',
+                ),
+              )
+              .toList() ??
+          this.version,
+      safety: safety
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.safety',
+                ),
+              )
+              .toList() ??
+          this.safety,
+      shelfLifeStorage: shelfLifeStorage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.shelfLifeStorage',
+                ),
+              )
+              .toList() ??
+          this.shelfLifeStorage,
+      physicalCharacteristics: physicalCharacteristics?.copyWith(
+            objectPath: '$newObjectPath.physicalCharacteristics',
+          ) ??
+          this.physicalCharacteristics,
+      languageCode: languageCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.languageCode',
+                ),
+              )
+              .toList() ??
+          this.languageCode,
+      capability: capability
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.capability',
+                ),
+              )
+              .toList() ??
+          this.capability,
+      property: property
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.property',
+                ),
+              )
+              .toList() ??
+          this.property,
+      owner: owner?.copyWith(
+            objectPath: '$newObjectPath.owner',
+          ) ??
+          this.owner,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      onlineInformation: onlineInformation?.copyWith(
+            objectPath: '$newObjectPath.onlineInformation',
+          ) ??
+          this.onlineInformation,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      parentDevice: parentDevice?.copyWith(
+            objectPath: '$newObjectPath.parentDevice',
+          ) ??
+          this.parentDevice,
+      material: material
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.material',
+                ),
+              )
+              .toList() ??
+          this.material,
     );
   }
 }
@@ -727,14 +874,42 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionUdiDeviceIdentifier(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      deviceIdentifier: deviceIdentifier ?? this.deviceIdentifier,
-      issuer: issuer ?? this.issuer,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      deviceIdentifier: deviceIdentifier?.copyWith(
+            objectPath: '$newObjectPath.deviceIdentifier',
+          ) ??
+          this.deviceIdentifier,
+      issuer: issuer?.copyWith(
+            objectPath: '$newObjectPath.issuer',
+          ) ??
+          this.issuer,
+      jurisdiction: jurisdiction?.copyWith(
+            objectPath: '$newObjectPath.jurisdiction',
+          ) ??
+          this.jurisdiction,
     );
   }
 }
@@ -900,13 +1075,38 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionDeviceName(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }
@@ -1072,13 +1272,38 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionSpecialization(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      systemType: systemType ?? this.systemType,
-      version: version ?? this.version,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      systemType: systemType?.copyWith(
+            objectPath: '$newObjectPath.systemType',
+          ) ??
+          this.systemType,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
     );
   }
 }
@@ -1244,13 +1469,42 @@ class DeviceDefinitionCapability extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionCapability(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      description: description
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.description',
+                ),
+              )
+              .toList() ??
+          this.description,
     );
   }
 }
@@ -1433,14 +1687,50 @@ class DeviceDefinitionProperty extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionProperty(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueCode: valueCode ?? this.valueCode,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueQuantity: valueQuantity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.valueQuantity',
+                ),
+              )
+              .toList() ??
+          this.valueQuantity,
+      valueCode: valueCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.valueCode',
+                ),
+              )
+              .toList() ??
+          this.valueCode,
     );
   }
 }
@@ -1617,14 +1907,42 @@ class DeviceDefinitionMaterial extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceDefinitionMaterial(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      substance: substance ?? this.substance,
-      alternate: alternate ?? this.alternate,
-      allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      substance: substance?.copyWith(
+            objectPath: '$newObjectPath.substance',
+          ) ??
+          this.substance,
+      alternate: alternate?.copyWith(
+            objectPath: '$newObjectPath.alternate',
+          ) ??
+          this.alternate,
+      allergenicIndicator: allergenicIndicator?.copyWith(
+            objectPath: '$newObjectPath.allergenicIndicator',
+          ) ??
+          this.allergenicIndicator,
     );
   }
 }

@@ -279,22 +279,77 @@ class EnrollmentRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return EnrollmentRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      created: created ?? this.created,
-      insurer: insurer ?? this.insurer,
-      provider: provider ?? this.provider,
-      candidate: candidate ?? this.candidate,
-      coverage: coverage ?? this.coverage,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      insurer: insurer?.copyWith(
+            objectPath: '$newObjectPath.insurer',
+          ) ??
+          this.insurer,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      candidate: candidate?.copyWith(
+            objectPath: '$newObjectPath.candidate',
+          ) ??
+          this.candidate,
+      coverage: coverage?.copyWith(
+            objectPath: '$newObjectPath.coverage',
+          ) ??
+          this.coverage,
     );
   }
 }

@@ -201,16 +201,53 @@ class OperationOutcome extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return OperationOutcome(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      issue: issue ?? this.issue,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      issue: issue
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.issue',
+                ),
+              )
+              .toList() ??
+          this.issue,
     );
   }
 }
@@ -442,17 +479,62 @@ class OperationOutcomeIssue extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return OperationOutcomeIssue(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      severity: severity ?? this.severity,
-      code: code ?? this.code,
-      details: details ?? this.details,
-      diagnostics: diagnostics ?? this.diagnostics,
-      location: location ?? this.location,
-      expression: expression ?? this.expression,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      details: details?.copyWith(
+            objectPath: '$newObjectPath.details',
+          ) ??
+          this.details,
+      diagnostics: diagnostics?.copyWith(
+            objectPath: '$newObjectPath.diagnostics',
+          ) ??
+          this.diagnostics,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      expression: expression
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.expression',
+                ),
+              )
+              .toList() ??
+          this.expression,
     );
   }
 }

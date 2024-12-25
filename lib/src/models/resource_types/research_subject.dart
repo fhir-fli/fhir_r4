@@ -294,23 +294,81 @@ class ResearchSubject extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ResearchSubject(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      period: period ?? this.period,
-      study: study ?? this.study,
-      individual: individual ?? this.individual,
-      assignedArm: assignedArm ?? this.assignedArm,
-      actualArm: actualArm ?? this.actualArm,
-      consent: consent ?? this.consent,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      study: study?.copyWith(
+            objectPath: '$newObjectPath.study',
+          ) ??
+          this.study,
+      individual: individual?.copyWith(
+            objectPath: '$newObjectPath.individual',
+          ) ??
+          this.individual,
+      assignedArm: assignedArm?.copyWith(
+            objectPath: '$newObjectPath.assignedArm',
+          ) ??
+          this.assignedArm,
+      actualArm: actualArm?.copyWith(
+            objectPath: '$newObjectPath.actualArm',
+          ) ??
+          this.actualArm,
+      consent: consent?.copyWith(
+            objectPath: '$newObjectPath.consent',
+          ) ??
+          this.consent,
     );
   }
 }

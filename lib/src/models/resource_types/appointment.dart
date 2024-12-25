@@ -534,38 +534,177 @@ class Appointment extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Appointment(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      cancelationReason: cancelationReason ?? this.cancelationReason,
-      serviceCategory: serviceCategory ?? this.serviceCategory,
-      serviceType: serviceType ?? this.serviceType,
-      specialty: specialty ?? this.specialty,
-      appointmentType: appointmentType ?? this.appointmentType,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      priority: priority ?? this.priority,
-      description: description ?? this.description,
-      supportingInformation:
-          supportingInformation ?? this.supportingInformation,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      minutesDuration: minutesDuration ?? this.minutesDuration,
-      slot: slot ?? this.slot,
-      created: created ?? this.created,
-      comment: comment ?? this.comment,
-      patientInstruction: patientInstruction ?? this.patientInstruction,
-      basedOn: basedOn ?? this.basedOn,
-      participant: participant ?? this.participant,
-      requestedPeriod: requestedPeriod ?? this.requestedPeriod,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      cancelationReason: cancelationReason?.copyWith(
+            objectPath: '$newObjectPath.cancelationReason',
+          ) ??
+          this.cancelationReason,
+      serviceCategory: serviceCategory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceCategory',
+                ),
+              )
+              .toList() ??
+          this.serviceCategory,
+      serviceType: serviceType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceType',
+                ),
+              )
+              .toList() ??
+          this.serviceType,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      appointmentType: appointmentType?.copyWith(
+            objectPath: '$newObjectPath.appointmentType',
+          ) ??
+          this.appointmentType,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      supportingInformation: supportingInformation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInformation',
+                ),
+              )
+              .toList() ??
+          this.supportingInformation,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
+      minutesDuration: minutesDuration?.copyWith(
+            objectPath: '$newObjectPath.minutesDuration',
+          ) ??
+          this.minutesDuration,
+      slot: slot
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.slot',
+                ),
+              )
+              .toList() ??
+          this.slot,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
+      patientInstruction: patientInstruction?.copyWith(
+            objectPath: '$newObjectPath.patientInstruction',
+          ) ??
+          this.patientInstruction,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      participant: participant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participant',
+                ),
+              )
+              .toList() ??
+          this.participant,
+      requestedPeriod: requestedPeriod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.requestedPeriod',
+                ),
+              )
+              .toList() ??
+          this.requestedPeriod,
     );
   }
 }
@@ -773,16 +912,54 @@ class AppointmentParticipant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AppointmentParticipant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      actor: actor ?? this.actor,
-      required_: required_ ?? this.required_,
-      status: status ?? this.status,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
+      required_: required_?.copyWith(
+            objectPath: '$newObjectPath.required',
+          ) ??
+          this.required_,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

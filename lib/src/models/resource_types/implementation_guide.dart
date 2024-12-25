@@ -434,35 +434,149 @@ class ImplementationGuide extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ImplementationGuide(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      copyright: copyright ?? this.copyright,
-      packageId: packageId ?? this.packageId,
-      license: license ?? this.license,
-      fhirVersion: fhirVersion ?? this.fhirVersion,
-      dependsOn: dependsOn ?? this.dependsOn,
-      global: global ?? this.global,
-      definition: definition ?? this.definition,
-      manifest: manifest ?? this.manifest,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      packageId: packageId?.copyWith(
+            objectPath: '$newObjectPath.packageId',
+          ) ??
+          this.packageId,
+      license: license?.copyWith(
+            objectPath: '$newObjectPath.license',
+          ) ??
+          this.license,
+      fhirVersion: fhirVersion
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.fhirVersion',
+                ),
+              )
+              .toList() ??
+          this.fhirVersion,
+      dependsOn: dependsOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dependsOn',
+                ),
+              )
+              .toList() ??
+          this.dependsOn,
+      global: global
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.global',
+                ),
+              )
+              .toList() ??
+          this.global,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
+      manifest: manifest?.copyWith(
+            objectPath: '$newObjectPath.manifest',
+          ) ??
+          this.manifest,
     );
   }
 }
@@ -643,14 +757,42 @@ class ImplementationGuideDependsOn extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideDependsOn(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      uri: uri ?? this.uri,
-      packageId: packageId ?? this.packageId,
-      version: version ?? this.version,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      uri: uri?.copyWith(
+            objectPath: '$newObjectPath.uri',
+          ) ??
+          this.uri,
+      packageId: packageId?.copyWith(
+            objectPath: '$newObjectPath.packageId',
+          ) ??
+          this.packageId,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
     );
   }
 }
@@ -815,13 +957,38 @@ class ImplementationGuideGlobal extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideGlobal(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      profile: profile ?? this.profile,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
     );
   }
 }
@@ -1038,16 +1205,66 @@ class ImplementationGuideDefinition extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideDefinition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      grouping: grouping ?? this.grouping,
-      resource: resource ?? this.resource,
-      page: page ?? this.page,
-      parameter: parameter ?? this.parameter,
-      template: template ?? this.template,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      grouping: grouping
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.grouping',
+                ),
+              )
+              .toList() ??
+          this.grouping,
+      resource: resource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resource',
+                ),
+              )
+              .toList() ??
+          this.resource,
+      page: page?.copyWith(
+            objectPath: '$newObjectPath.page',
+          ) ??
+          this.page,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
+      template: template
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.template',
+                ),
+              )
+              .toList() ??
+          this.template,
     );
   }
 }
@@ -1213,13 +1430,38 @@ class ImplementationGuideGrouping extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideGrouping(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
     );
   }
 }
@@ -1452,17 +1694,58 @@ class ImplementationGuideResource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideResource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      reference: reference ?? this.reference,
-      fhirVersion: fhirVersion ?? this.fhirVersion,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      exampleX: exampleX ?? this.exampleX,
-      groupingId: groupingId ?? this.groupingId,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
+      fhirVersion: fhirVersion
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.fhirVersion',
+                ),
+              )
+              .toList() ??
+          this.fhirVersion,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      exampleX: exampleX?.copyWith(
+            objectPath: '$newObjectPath.exampleX',
+          ) as ExampleXImplementationGuideResource? ??
+          this.exampleX,
+      groupingId: groupingId?.copyWith(
+            objectPath: '$newObjectPath.groupingId',
+          ) ??
+          this.groupingId,
     );
   }
 }
@@ -1660,15 +1943,50 @@ class ImplementationGuidePage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuidePage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      nameX: nameX ?? this.nameX,
-      title: title ?? this.title,
-      generation: generation ?? this.generation,
-      page: page ?? this.page,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      nameX: nameX?.copyWith(
+            objectPath: '$newObjectPath.nameX',
+          ) as NameXImplementationGuidePage? ??
+          this.nameX,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      generation: generation?.copyWith(
+            objectPath: '$newObjectPath.generation',
+          ) ??
+          this.generation,
+      page: page
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.page',
+                ),
+              )
+              .toList() ??
+          this.page,
     );
   }
 }
@@ -1834,13 +2152,38 @@ class ImplementationGuideParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -2017,14 +2360,42 @@ class ImplementationGuideTemplate extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideTemplate(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      source: source ?? this.source,
-      scope: scope ?? this.scope,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      scope: scope?.copyWith(
+            objectPath: '$newObjectPath.scope',
+          ) ??
+          this.scope,
     );
   }
 }
@@ -2238,16 +2609,66 @@ class ImplementationGuideManifest extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideManifest(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      rendering: rendering ?? this.rendering,
-      resource: resource ?? this.resource,
-      page: page ?? this.page,
-      image: image ?? this.image,
-      other: other ?? this.other,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      rendering: rendering?.copyWith(
+            objectPath: '$newObjectPath.rendering',
+          ) ??
+          this.rendering,
+      resource: resource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resource',
+                ),
+              )
+              .toList() ??
+          this.resource,
+      page: page
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.page',
+                ),
+              )
+              .toList() ??
+          this.page,
+      image: image
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.image',
+                ),
+              )
+              .toList() ??
+          this.image,
+      other: other
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.other',
+                ),
+              )
+              .toList() ??
+          this.other,
     );
   }
 }
@@ -2436,14 +2857,42 @@ class ImplementationGuideResource1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuideResource1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      reference: reference ?? this.reference,
-      exampleX: exampleX ?? this.exampleX,
-      relativePath: relativePath ?? this.relativePath,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
+      exampleX: exampleX?.copyWith(
+            objectPath: '$newObjectPath.exampleX',
+          ) as ExampleXImplementationGuideResource1? ??
+          this.exampleX,
+      relativePath: relativePath?.copyWith(
+            objectPath: '$newObjectPath.relativePath',
+          ) ??
+          this.relativePath,
     );
   }
 }
@@ -2620,14 +3069,46 @@ class ImplementationGuidePage1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImplementationGuidePage1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      anchor: anchor ?? this.anchor,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      anchor: anchor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.anchor',
+                ),
+              )
+              .toList() ??
+          this.anchor,
     );
   }
 }

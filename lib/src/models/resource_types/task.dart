@@ -629,47 +629,205 @@ class Task extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Task(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      businessStatus: businessStatus ?? this.businessStatus,
-      intent: intent ?? this.intent,
-      priority: priority ?? this.priority,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      focus: focus ?? this.focus,
-      for_: for_ ?? this.for_,
-      encounter: encounter ?? this.encounter,
-      executionPeriod: executionPeriod ?? this.executionPeriod,
-      authoredOn: authoredOn ?? this.authoredOn,
-      lastModified: lastModified ?? this.lastModified,
-      requester: requester ?? this.requester,
-      performerType: performerType ?? this.performerType,
-      owner: owner ?? this.owner,
-      location: location ?? this.location,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      insurance: insurance ?? this.insurance,
-      note: note ?? this.note,
-      relevantHistory: relevantHistory ?? this.relevantHistory,
-      restriction: restriction ?? this.restriction,
-      input: input ?? this.input,
-      output: output ?? this.output,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical?.copyWith(
+            objectPath: '$newObjectPath.instantiatesCanonical',
+          ) ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri?.copyWith(
+            objectPath: '$newObjectPath.instantiatesUri',
+          ) ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      groupIdentifier: groupIdentifier?.copyWith(
+            objectPath: '$newObjectPath.groupIdentifier',
+          ) ??
+          this.groupIdentifier,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      businessStatus: businessStatus?.copyWith(
+            objectPath: '$newObjectPath.businessStatus',
+          ) ??
+          this.businessStatus,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      focus: focus?.copyWith(
+            objectPath: '$newObjectPath.focus',
+          ) ??
+          this.focus,
+      for_: for_?.copyWith(
+            objectPath: '$newObjectPath.for',
+          ) ??
+          this.for_,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      executionPeriod: executionPeriod?.copyWith(
+            objectPath: '$newObjectPath.executionPeriod',
+          ) ??
+          this.executionPeriod,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      lastModified: lastModified?.copyWith(
+            objectPath: '$newObjectPath.lastModified',
+          ) ??
+          this.lastModified,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      performerType: performerType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performerType',
+                ),
+              )
+              .toList() ??
+          this.performerType,
+      owner: owner?.copyWith(
+            objectPath: '$newObjectPath.owner',
+          ) ??
+          this.owner,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      reasonCode: reasonCode?.copyWith(
+            objectPath: '$newObjectPath.reasonCode',
+          ) ??
+          this.reasonCode,
+      reasonReference: reasonReference?.copyWith(
+            objectPath: '$newObjectPath.reasonReference',
+          ) ??
+          this.reasonReference,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      relevantHistory: relevantHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relevantHistory',
+                ),
+              )
+              .toList() ??
+          this.relevantHistory,
+      restriction: restriction?.copyWith(
+            objectPath: '$newObjectPath.restriction',
+          ) ??
+          this.restriction,
+      input: input
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.input',
+                ),
+              )
+              .toList() ??
+          this.input,
+      output: output
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.output',
+                ),
+              )
+              .toList() ??
+          this.output,
     );
   }
 }
@@ -852,14 +1010,46 @@ class TaskRestriction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TaskRestriction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      repetitions: repetitions ?? this.repetitions,
-      period: period ?? this.period,
-      recipient: recipient ?? this.recipient,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      repetitions: repetitions?.copyWith(
+            objectPath: '$newObjectPath.repetitions',
+          ) ??
+          this.repetitions,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      recipient: recipient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.recipient',
+                ),
+              )
+              .toList() ??
+          this.recipient,
     );
   }
 }
@@ -1076,13 +1266,38 @@ class TaskInput extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TaskInput(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXTaskInput? ??
+          this.valueX,
     );
   }
 }
@@ -1298,13 +1513,38 @@ class TaskOutput extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return TaskOutput(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXTaskOutput? ??
+          this.valueX,
     );
   }
 }

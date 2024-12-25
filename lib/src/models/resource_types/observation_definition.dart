@@ -370,31 +370,113 @@ class ObservationDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ObservationDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      identifier: identifier ?? this.identifier,
-      permittedDataType: permittedDataType ?? this.permittedDataType,
-      multipleResultsAllowed:
-          multipleResultsAllowed ?? this.multipleResultsAllowed,
-      method: method ?? this.method,
-      preferredReportName: preferredReportName ?? this.preferredReportName,
-      quantitativeDetails: quantitativeDetails ?? this.quantitativeDetails,
-      qualifiedInterval: qualifiedInterval ?? this.qualifiedInterval,
-      validCodedValueSet: validCodedValueSet ?? this.validCodedValueSet,
-      normalCodedValueSet: normalCodedValueSet ?? this.normalCodedValueSet,
-      abnormalCodedValueSet:
-          abnormalCodedValueSet ?? this.abnormalCodedValueSet,
-      criticalCodedValueSet:
-          criticalCodedValueSet ?? this.criticalCodedValueSet,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      permittedDataType: permittedDataType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.permittedDataType',
+                ),
+              )
+              .toList() ??
+          this.permittedDataType,
+      multipleResultsAllowed: multipleResultsAllowed?.copyWith(
+            objectPath: '$newObjectPath.multipleResultsAllowed',
+          ) ??
+          this.multipleResultsAllowed,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      preferredReportName: preferredReportName?.copyWith(
+            objectPath: '$newObjectPath.preferredReportName',
+          ) ??
+          this.preferredReportName,
+      quantitativeDetails: quantitativeDetails?.copyWith(
+            objectPath: '$newObjectPath.quantitativeDetails',
+          ) ??
+          this.quantitativeDetails,
+      qualifiedInterval: qualifiedInterval
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.qualifiedInterval',
+                ),
+              )
+              .toList() ??
+          this.qualifiedInterval,
+      validCodedValueSet: validCodedValueSet?.copyWith(
+            objectPath: '$newObjectPath.validCodedValueSet',
+          ) ??
+          this.validCodedValueSet,
+      normalCodedValueSet: normalCodedValueSet?.copyWith(
+            objectPath: '$newObjectPath.normalCodedValueSet',
+          ) ??
+          this.normalCodedValueSet,
+      abnormalCodedValueSet: abnormalCodedValueSet?.copyWith(
+            objectPath: '$newObjectPath.abnormalCodedValueSet',
+          ) ??
+          this.abnormalCodedValueSet,
+      criticalCodedValueSet: criticalCodedValueSet?.copyWith(
+            objectPath: '$newObjectPath.criticalCodedValueSet',
+          ) ??
+          this.criticalCodedValueSet,
     );
   }
 }
@@ -589,15 +671,46 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ObservationDefinitionQuantitativeDetails(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      customaryUnit: customaryUnit ?? this.customaryUnit,
-      unit: unit ?? this.unit,
-      conversionFactor: conversionFactor ?? this.conversionFactor,
-      decimalPrecision: decimalPrecision ?? this.decimalPrecision,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      customaryUnit: customaryUnit?.copyWith(
+            objectPath: '$newObjectPath.customaryUnit',
+          ) ??
+          this.customaryUnit,
+      unit: unit?.copyWith(
+            objectPath: '$newObjectPath.unit',
+          ) ??
+          this.unit,
+      conversionFactor: conversionFactor?.copyWith(
+            objectPath: '$newObjectPath.conversionFactor',
+          ) ??
+          this.conversionFactor,
+      decimalPrecision: decimalPrecision?.copyWith(
+            objectPath: '$newObjectPath.decimalPrecision',
+          ) ??
+          this.decimalPrecision,
     );
   }
 }
@@ -848,19 +961,66 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ObservationDefinitionQualifiedInterval(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      range: range ?? this.range,
-      context: context ?? this.context,
-      appliesTo: appliesTo ?? this.appliesTo,
-      gender: gender ?? this.gender,
-      age: age ?? this.age,
-      gestationalAge: gestationalAge ?? this.gestationalAge,
-      condition: condition ?? this.condition,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      range: range?.copyWith(
+            objectPath: '$newObjectPath.range',
+          ) ??
+          this.range,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      appliesTo: appliesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.appliesTo',
+                ),
+              )
+              .toList() ??
+          this.appliesTo,
+      gender: gender?.copyWith(
+            objectPath: '$newObjectPath.gender',
+          ) ??
+          this.gender,
+      age: age?.copyWith(
+            objectPath: '$newObjectPath.age',
+          ) ??
+          this.age,
+      gestationalAge: gestationalAge?.copyWith(
+            objectPath: '$newObjectPath.gestationalAge',
+          ) ??
+          this.gestationalAge,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
     );
   }
 }

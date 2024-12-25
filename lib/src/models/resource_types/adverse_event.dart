@@ -479,36 +479,153 @@ class AdverseEvent extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return AdverseEvent(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      actuality: actuality ?? this.actuality,
-      category: category ?? this.category,
-      event: event ?? this.event,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      date: date ?? this.date,
-      detected: detected ?? this.detected,
-      recordedDate: recordedDate ?? this.recordedDate,
-      resultingCondition: resultingCondition ?? this.resultingCondition,
-      location: location ?? this.location,
-      seriousness: seriousness ?? this.seriousness,
-      severity: severity ?? this.severity,
-      outcome: outcome ?? this.outcome,
-      recorder: recorder ?? this.recorder,
-      contributor: contributor ?? this.contributor,
-      suspectEntity: suspectEntity ?? this.suspectEntity,
-      subjectMedicalHistory:
-          subjectMedicalHistory ?? this.subjectMedicalHistory,
-      referenceDocument: referenceDocument ?? this.referenceDocument,
-      study: study ?? this.study,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      actuality: actuality?.copyWith(
+            objectPath: '$newObjectPath.actuality',
+          ) ??
+          this.actuality,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      event: event?.copyWith(
+            objectPath: '$newObjectPath.event',
+          ) ??
+          this.event,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      detected: detected?.copyWith(
+            objectPath: '$newObjectPath.detected',
+          ) ??
+          this.detected,
+      recordedDate: recordedDate?.copyWith(
+            objectPath: '$newObjectPath.recordedDate',
+          ) ??
+          this.recordedDate,
+      resultingCondition: resultingCondition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resultingCondition',
+                ),
+              )
+              .toList() ??
+          this.resultingCondition,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      seriousness: seriousness?.copyWith(
+            objectPath: '$newObjectPath.seriousness',
+          ) ??
+          this.seriousness,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      recorder: recorder?.copyWith(
+            objectPath: '$newObjectPath.recorder',
+          ) ??
+          this.recorder,
+      contributor: contributor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contributor',
+                ),
+              )
+              .toList() ??
+          this.contributor,
+      suspectEntity: suspectEntity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.suspectEntity',
+                ),
+              )
+              .toList() ??
+          this.suspectEntity,
+      subjectMedicalHistory: subjectMedicalHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subjectMedicalHistory',
+                ),
+              )
+              .toList() ??
+          this.subjectMedicalHistory,
+      referenceDocument: referenceDocument
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referenceDocument',
+                ),
+              )
+              .toList() ??
+          this.referenceDocument,
+      study: study
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.study',
+                ),
+              )
+              .toList() ??
+          this.study,
     );
   }
 }
@@ -677,13 +794,42 @@ class AdverseEventSuspectEntity extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdverseEventSuspectEntity(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      instance: instance ?? this.instance,
-      causality: causality ?? this.causality,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      instance: instance?.copyWith(
+            objectPath: '$newObjectPath.instance',
+          ) ??
+          this.instance,
+      causality: causality
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.causality',
+                ),
+              )
+              .toList() ??
+          this.causality,
     );
   }
 }
@@ -873,15 +1019,46 @@ class AdverseEventCausality extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AdverseEventCausality(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      assessment: assessment ?? this.assessment,
-      productRelatedness: productRelatedness ?? this.productRelatedness,
-      author: author ?? this.author,
-      method: method ?? this.method,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      assessment: assessment?.copyWith(
+            objectPath: '$newObjectPath.assessment',
+          ) ??
+          this.assessment,
+      productRelatedness: productRelatedness?.copyWith(
+            objectPath: '$newObjectPath.productRelatedness',
+          ) ??
+          this.productRelatedness,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
     );
   }
 }

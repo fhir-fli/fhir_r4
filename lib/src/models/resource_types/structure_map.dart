@@ -401,33 +401,145 @@ class StructureMap extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return StructureMap(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      structure: structure ?? this.structure,
-      import_: import_ ?? this.import_,
-      group: group ?? this.group,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      structure: structure
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.structure',
+                ),
+              )
+              .toList() ??
+          this.structure,
+      import_: import_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.import',
+                ),
+              )
+              .toList() ??
+          this.import_,
+      group: group
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.group',
+                ),
+              )
+              .toList() ??
+          this.group,
     );
   }
 }
@@ -619,15 +731,46 @@ class StructureMapStructure extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapStructure(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      mode: mode ?? this.mode,
-      alias: alias ?? this.alias,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      alias: alias?.copyWith(
+            objectPath: '$newObjectPath.alias',
+          ) ??
+          this.alias,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -851,17 +994,62 @@ class StructureMapGroup extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapGroup(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      extends_: extends_ ?? this.extends_,
-      typeMode: typeMode ?? this.typeMode,
-      documentation: documentation ?? this.documentation,
-      input: input ?? this.input,
-      rule: rule ?? this.rule,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      extends_: extends_?.copyWith(
+            objectPath: '$newObjectPath.extends',
+          ) ??
+          this.extends_,
+      typeMode: typeMode?.copyWith(
+            objectPath: '$newObjectPath.typeMode',
+          ) ??
+          this.typeMode,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      input: input
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.input',
+                ),
+              )
+              .toList() ??
+          this.input,
+      rule: rule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.rule',
+                ),
+              )
+              .toList() ??
+          this.rule,
     );
   }
 }
@@ -1052,15 +1240,46 @@ class StructureMapInput extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapInput(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      type: type ?? this.type,
-      mode: mode ?? this.mode,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -1284,17 +1503,70 @@ class StructureMapRule extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapRule(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      source: source ?? this.source,
-      target: target ?? this.target,
-      rule: rule ?? this.rule,
-      dependent: dependent ?? this.dependent,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      source: source
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.source',
+                ),
+              )
+              .toList() ??
+          this.source,
+      target: target
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.target',
+                ),
+              )
+              .toList() ??
+          this.target,
+      rule: rule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.rule',
+                ),
+              )
+              .toList() ??
+          this.rule,
+      dependent: dependent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dependent',
+                ),
+              )
+              .toList() ??
+          this.dependent,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -1636,22 +1908,74 @@ class StructureMapSource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapSource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      context: context ?? this.context,
-      min: min ?? this.min,
-      max: max ?? this.max,
-      type: type ?? this.type,
-      defaultValueX: defaultValueX ?? this.defaultValueX,
-      element: element ?? this.element,
-      listMode: listMode ?? this.listMode,
-      variable: variable ?? this.variable,
-      condition: condition ?? this.condition,
-      check: check ?? this.check,
-      logMessage: logMessage ?? this.logMessage,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      min: min?.copyWith(
+            objectPath: '$newObjectPath.min',
+          ) ??
+          this.min,
+      max: max?.copyWith(
+            objectPath: '$newObjectPath.max',
+          ) ??
+          this.max,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      defaultValueX: defaultValueX?.copyWith(
+            objectPath: '$newObjectPath.defaultValueX',
+          ) as DefaultValueXStructureMapSource? ??
+          this.defaultValueX,
+      element: element?.copyWith(
+            objectPath: '$newObjectPath.element',
+          ) ??
+          this.element,
+      listMode: listMode?.copyWith(
+            objectPath: '$newObjectPath.listMode',
+          ) ??
+          this.listMode,
+      variable: variable?.copyWith(
+            objectPath: '$newObjectPath.variable',
+          ) ??
+          this.variable,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
+      check: check?.copyWith(
+            objectPath: '$newObjectPath.check',
+          ) ??
+          this.check,
+      logMessage: logMessage?.copyWith(
+            objectPath: '$newObjectPath.logMessage',
+          ) ??
+          this.logMessage,
     );
   }
 }
@@ -1895,19 +2219,70 @@ class StructureMapTarget extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapTarget(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      context: context ?? this.context,
-      contextType: contextType ?? this.contextType,
-      element: element ?? this.element,
-      variable: variable ?? this.variable,
-      listMode: listMode ?? this.listMode,
-      listRuleId: listRuleId ?? this.listRuleId,
-      transform: transform ?? this.transform,
-      parameter: parameter ?? this.parameter,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      contextType: contextType?.copyWith(
+            objectPath: '$newObjectPath.contextType',
+          ) ??
+          this.contextType,
+      element: element?.copyWith(
+            objectPath: '$newObjectPath.element',
+          ) ??
+          this.element,
+      variable: variable?.copyWith(
+            objectPath: '$newObjectPath.variable',
+          ) ??
+          this.variable,
+      listMode: listMode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.listMode',
+                ),
+              )
+              .toList() ??
+          this.listMode,
+      listRuleId: listRuleId?.copyWith(
+            objectPath: '$newObjectPath.listRuleId',
+          ) ??
+          this.listRuleId,
+      transform: transform?.copyWith(
+            objectPath: '$newObjectPath.transform',
+          ) ??
+          this.transform,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
     );
   }
 }
@@ -2065,12 +2440,34 @@ class StructureMapParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXStructureMapParameter? ??
+          this.valueX,
     );
   }
 }
@@ -2234,13 +2631,42 @@ class StructureMapDependent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return StructureMapDependent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      variable: variable ?? this.variable,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      variable: variable
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.variable',
+                ),
+              )
+              .toList() ??
+          this.variable,
     );
   }
 }

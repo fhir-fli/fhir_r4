@@ -489,35 +489,165 @@ class ImagingStudy extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ImagingStudy(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      modality: modality ?? this.modality,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      started: started ?? this.started,
-      basedOn: basedOn ?? this.basedOn,
-      referrer: referrer ?? this.referrer,
-      interpreter: interpreter ?? this.interpreter,
-      endpoint: endpoint ?? this.endpoint,
-      numberOfSeries: numberOfSeries ?? this.numberOfSeries,
-      numberOfInstances: numberOfInstances ?? this.numberOfInstances,
-      procedureReference: procedureReference ?? this.procedureReference,
-      procedureCode: procedureCode ?? this.procedureCode,
-      location: location ?? this.location,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
-      description: description ?? this.description,
-      series: series ?? this.series,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      modality: modality
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modality',
+                ),
+              )
+              .toList() ??
+          this.modality,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      started: started?.copyWith(
+            objectPath: '$newObjectPath.started',
+          ) ??
+          this.started,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      referrer: referrer?.copyWith(
+            objectPath: '$newObjectPath.referrer',
+          ) ??
+          this.referrer,
+      interpreter: interpreter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interpreter',
+                ),
+              )
+              .toList() ??
+          this.interpreter,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
+      numberOfSeries: numberOfSeries?.copyWith(
+            objectPath: '$newObjectPath.numberOfSeries',
+          ) ??
+          this.numberOfSeries,
+      numberOfInstances: numberOfInstances?.copyWith(
+            objectPath: '$newObjectPath.numberOfInstances',
+          ) ??
+          this.numberOfInstances,
+      procedureReference: procedureReference?.copyWith(
+            objectPath: '$newObjectPath.procedureReference',
+          ) ??
+          this.procedureReference,
+      procedureCode: procedureCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.procedureCode',
+                ),
+              )
+              .toList() ??
+          this.procedureCode,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      series: series
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.series',
+                ),
+              )
+              .toList() ??
+          this.series,
     );
   }
 }
@@ -833,23 +963,94 @@ class ImagingStudySeries extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImagingStudySeries(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      uid: uid ?? this.uid,
-      number: number ?? this.number,
-      modality: modality ?? this.modality,
-      description: description ?? this.description,
-      numberOfInstances: numberOfInstances ?? this.numberOfInstances,
-      endpoint: endpoint ?? this.endpoint,
-      bodySite: bodySite ?? this.bodySite,
-      laterality: laterality ?? this.laterality,
-      specimen: specimen ?? this.specimen,
-      started: started ?? this.started,
-      performer: performer ?? this.performer,
-      instance: instance ?? this.instance,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      uid: uid?.copyWith(
+            objectPath: '$newObjectPath.uid',
+          ) ??
+          this.uid,
+      number: number?.copyWith(
+            objectPath: '$newObjectPath.number',
+          ) ??
+          this.number,
+      modality: modality?.copyWith(
+            objectPath: '$newObjectPath.modality',
+          ) ??
+          this.modality,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      numberOfInstances: numberOfInstances?.copyWith(
+            objectPath: '$newObjectPath.numberOfInstances',
+          ) ??
+          this.numberOfInstances,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      laterality: laterality?.copyWith(
+            objectPath: '$newObjectPath.laterality',
+          ) ??
+          this.laterality,
+      specimen: specimen
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specimen',
+                ),
+              )
+              .toList() ??
+          this.specimen,
+      started: started?.copyWith(
+            objectPath: '$newObjectPath.started',
+          ) ??
+          this.started,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      instance: instance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instance',
+                ),
+              )
+              .toList() ??
+          this.instance,
     );
   }
 }
@@ -1013,13 +1214,38 @@ class ImagingStudyPerformer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImagingStudyPerformer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      function_: function_ ?? this.function_,
-      actor: actor ?? this.actor,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      function_: function_?.copyWith(
+            objectPath: '$newObjectPath.function',
+          ) ??
+          this.function_,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
     );
   }
 }
@@ -1210,15 +1436,46 @@ class ImagingStudyInstance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImagingStudyInstance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      uid: uid ?? this.uid,
-      sopClass: sopClass ?? this.sopClass,
-      number: number ?? this.number,
-      title: title ?? this.title,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      uid: uid?.copyWith(
+            objectPath: '$newObjectPath.uid',
+          ) ??
+          this.uid,
+      sopClass: sopClass?.copyWith(
+            objectPath: '$newObjectPath.sopClass',
+          ) ??
+          this.sopClass,
+      number: number?.copyWith(
+            objectPath: '$newObjectPath.number',
+          ) ??
+          this.number,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
     );
   }
 }

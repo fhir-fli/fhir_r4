@@ -643,47 +643,225 @@ class MedicinalProductDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MedicinalProductDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      domain: domain ?? this.domain,
-      version: version ?? this.version,
-      status: status ?? this.status,
-      statusDate: statusDate ?? this.statusDate,
-      description: description ?? this.description,
-      combinedPharmaceuticalDoseForm:
-          combinedPharmaceuticalDoseForm ?? this.combinedPharmaceuticalDoseForm,
-      route: route ?? this.route,
-      indication: indication ?? this.indication,
-      legalStatusOfSupply: legalStatusOfSupply ?? this.legalStatusOfSupply,
-      additionalMonitoringIndicator:
-          additionalMonitoringIndicator ?? this.additionalMonitoringIndicator,
-      specialMeasures: specialMeasures ?? this.specialMeasures,
-      pediatricUseIndicator:
-          pediatricUseIndicator ?? this.pediatricUseIndicator,
-      classification: classification ?? this.classification,
-      marketingStatus: marketingStatus ?? this.marketingStatus,
-      packagedMedicinalProduct:
-          packagedMedicinalProduct ?? this.packagedMedicinalProduct,
-      ingredient: ingredient ?? this.ingredient,
-      impurity: impurity ?? this.impurity,
-      attachedDocument: attachedDocument ?? this.attachedDocument,
-      masterFile: masterFile ?? this.masterFile,
-      contact: contact ?? this.contact,
-      clinicalTrial: clinicalTrial ?? this.clinicalTrial,
-      code: code ?? this.code,
-      name: name ?? this.name,
-      crossReference: crossReference ?? this.crossReference,
-      operation: operation ?? this.operation,
-      characteristic: characteristic ?? this.characteristic,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      domain: domain?.copyWith(
+            objectPath: '$newObjectPath.domain',
+          ) ??
+          this.domain,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      combinedPharmaceuticalDoseForm: combinedPharmaceuticalDoseForm?.copyWith(
+            objectPath: '$newObjectPath.combinedPharmaceuticalDoseForm',
+          ) ??
+          this.combinedPharmaceuticalDoseForm,
+      route: route
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.route',
+                ),
+              )
+              .toList() ??
+          this.route,
+      indication: indication?.copyWith(
+            objectPath: '$newObjectPath.indication',
+          ) ??
+          this.indication,
+      legalStatusOfSupply: legalStatusOfSupply?.copyWith(
+            objectPath: '$newObjectPath.legalStatusOfSupply',
+          ) ??
+          this.legalStatusOfSupply,
+      additionalMonitoringIndicator: additionalMonitoringIndicator?.copyWith(
+            objectPath: '$newObjectPath.additionalMonitoringIndicator',
+          ) ??
+          this.additionalMonitoringIndicator,
+      specialMeasures: specialMeasures
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialMeasures',
+                ),
+              )
+              .toList() ??
+          this.specialMeasures,
+      pediatricUseIndicator: pediatricUseIndicator?.copyWith(
+            objectPath: '$newObjectPath.pediatricUseIndicator',
+          ) ??
+          this.pediatricUseIndicator,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
+      marketingStatus: marketingStatus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.marketingStatus',
+                ),
+              )
+              .toList() ??
+          this.marketingStatus,
+      packagedMedicinalProduct: packagedMedicinalProduct
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.packagedMedicinalProduct',
+                ),
+              )
+              .toList() ??
+          this.packagedMedicinalProduct,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
+      impurity: impurity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.impurity',
+                ),
+              )
+              .toList() ??
+          this.impurity,
+      attachedDocument: attachedDocument
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.attachedDocument',
+                ),
+              )
+              .toList() ??
+          this.attachedDocument,
+      masterFile: masterFile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.masterFile',
+                ),
+              )
+              .toList() ??
+          this.masterFile,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      clinicalTrial: clinicalTrial
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.clinicalTrial',
+                ),
+              )
+              .toList() ??
+          this.clinicalTrial,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      name: name
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.name',
+                ),
+              )
+              .toList() ??
+          this.name,
+      crossReference: crossReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.crossReference',
+                ),
+              )
+              .toList() ??
+          this.crossReference,
+      operation: operation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.operation',
+                ),
+              )
+              .toList() ??
+          this.operation,
+      characteristic: characteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.characteristic',
+                ),
+              )
+              .toList() ??
+          this.characteristic,
     );
   }
 }
@@ -848,13 +1026,38 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionContact(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      contact: contact ?? this.contact,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      contact: contact?.copyWith(
+            objectPath: '$newObjectPath.contact',
+          ) ??
+          this.contact,
     );
   }
 }
@@ -1049,15 +1252,54 @@ class MedicinalProductDefinitionName extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionName(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      productName: productName ?? this.productName,
-      type: type ?? this.type,
-      namePart: namePart ?? this.namePart,
-      countryLanguage: countryLanguage ?? this.countryLanguage,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      productName: productName?.copyWith(
+            objectPath: '$newObjectPath.productName',
+          ) ??
+          this.productName,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      namePart: namePart
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.namePart',
+                ),
+              )
+              .toList() ??
+          this.namePart,
+      countryLanguage: countryLanguage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.countryLanguage',
+                ),
+              )
+              .toList() ??
+          this.countryLanguage,
     );
   }
 }
@@ -1221,13 +1463,38 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionNamePart(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      part_: part_ ?? this.part_,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      part_: part_?.copyWith(
+            objectPath: '$newObjectPath.part',
+          ) ??
+          this.part_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }
@@ -1407,14 +1674,42 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionCountryLanguage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      country: country ?? this.country,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      language: language ?? this.language,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      country: country?.copyWith(
+            objectPath: '$newObjectPath.country',
+          ) ??
+          this.country,
+      jurisdiction: jurisdiction?.copyWith(
+            objectPath: '$newObjectPath.jurisdiction',
+          ) ??
+          this.jurisdiction,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
     );
   }
 }
@@ -1583,13 +1878,38 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionCrossReference(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      product: product ?? this.product,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      product: product?.copyWith(
+            objectPath: '$newObjectPath.product',
+          ) ??
+          this.product,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }
@@ -1787,16 +2107,50 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionOperation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      effectiveDate: effectiveDate ?? this.effectiveDate,
-      organization: organization ?? this.organization,
-      confidentialityIndicator:
-          confidentialityIndicator ?? this.confidentialityIndicator,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      effectiveDate: effectiveDate?.copyWith(
+            objectPath: '$newObjectPath.effectiveDate',
+          ) ??
+          this.effectiveDate,
+      organization: organization
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.organization',
+                ),
+              )
+              .toList() ??
+          this.organization,
+      confidentialityIndicator: confidentialityIndicator?.copyWith(
+            objectPath: '$newObjectPath.confidentialityIndicator',
+          ) ??
+          this.confidentialityIndicator,
     );
   }
 }
@@ -1972,13 +2326,38 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicinalProductDefinitionCharacteristic(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXMedicinalProductDefinitionCharacteristic? ??
+          this.valueX,
     );
   }
 }

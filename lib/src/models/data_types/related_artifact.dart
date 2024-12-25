@@ -231,17 +231,50 @@ class RelatedArtifact extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return RelatedArtifact(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      label: label ?? this.label,
-      display: display ?? this.display,
-      citation: citation ?? this.citation,
-      url: url ?? this.url,
-      document: document ?? this.document,
-      resource: resource ?? this.resource,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      label: label?.copyWith(
+            objectPath: '$newObjectPath.label',
+          ) ??
+          this.label,
+      display: display?.copyWith(
+            objectPath: '$newObjectPath.display',
+          ) ??
+          this.display,
+      citation: citation?.copyWith(
+            objectPath: '$newObjectPath.citation',
+          ) ??
+          this.citation,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      document: document?.copyWith(
+            objectPath: '$newObjectPath.document',
+          ) ??
+          this.document,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
     );
   }
 }

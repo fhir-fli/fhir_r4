@@ -563,40 +563,185 @@ class EvidenceVariable extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return EvidenceVariable(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      shortTitle: shortTitle ?? this.shortTitle,
-      subtitle: subtitle ?? this.subtitle,
-      status: status ?? this.status,
-      date: date ?? this.date,
-      description: description ?? this.description,
-      note: note ?? this.note,
-      useContext: useContext ?? this.useContext,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      author: author ?? this.author,
-      editor: editor ?? this.editor,
-      reviewer: reviewer ?? this.reviewer,
-      endorser: endorser ?? this.endorser,
-      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
-      actual: actual ?? this.actual,
-      characteristicCombination:
-          characteristicCombination ?? this.characteristicCombination,
-      characteristic: characteristic ?? this.characteristic,
-      handling: handling ?? this.handling,
-      category: category ?? this.category,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      shortTitle: shortTitle?.copyWith(
+            objectPath: '$newObjectPath.shortTitle',
+          ) ??
+          this.shortTitle,
+      subtitle: subtitle?.copyWith(
+            objectPath: '$newObjectPath.subtitle',
+          ) ??
+          this.subtitle,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      editor: editor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.editor',
+                ),
+              )
+              .toList() ??
+          this.editor,
+      reviewer: reviewer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reviewer',
+                ),
+              )
+              .toList() ??
+          this.reviewer,
+      endorser: endorser
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endorser',
+                ),
+              )
+              .toList() ??
+          this.endorser,
+      relatedArtifact: relatedArtifact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedArtifact',
+                ),
+              )
+              .toList() ??
+          this.relatedArtifact,
+      actual: actual?.copyWith(
+            objectPath: '$newObjectPath.actual',
+          ) ??
+          this.actual,
+      characteristicCombination: characteristicCombination?.copyWith(
+            objectPath: '$newObjectPath.characteristicCombination',
+          ) ??
+          this.characteristicCombination,
+      characteristic: characteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.characteristic',
+                ),
+              )
+              .toList() ??
+          this.characteristic,
+      handling: handling?.copyWith(
+            objectPath: '$newObjectPath.handling',
+          ) ??
+          this.handling,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
     );
   }
 }
@@ -840,18 +985,58 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EvidenceVariableCharacteristic(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      definitionX: definitionX ?? this.definitionX,
-      method: method ?? this.method,
-      device: device ?? this.device,
-      exclude: exclude ?? this.exclude,
-      timeFromStart: timeFromStart ?? this.timeFromStart,
-      groupMeasure: groupMeasure ?? this.groupMeasure,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      definitionX: definitionX?.copyWith(
+            objectPath: '$newObjectPath.definitionX',
+          ) as DefinitionXEvidenceVariableCharacteristic? ??
+          this.definitionX,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      exclude: exclude?.copyWith(
+            objectPath: '$newObjectPath.exclude',
+          ) ??
+          this.exclude,
+      timeFromStart: timeFromStart?.copyWith(
+            objectPath: '$newObjectPath.timeFromStart',
+          ) ??
+          this.timeFromStart,
+      groupMeasure: groupMeasure?.copyWith(
+            objectPath: '$newObjectPath.groupMeasure',
+          ) ??
+          this.groupMeasure,
     );
   }
 }
@@ -1046,15 +1231,50 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EvidenceVariableTimeFromStart(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      quantity: quantity ?? this.quantity,
-      range: range ?? this.range,
-      note: note ?? this.note,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      range: range?.copyWith(
+            objectPath: '$newObjectPath.range',
+          ) ??
+          this.range,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -1226,13 +1446,38 @@ class EvidenceVariableCategory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EvidenceVariableCategory(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXEvidenceVariableCategory? ??
+          this.valueX,
     );
   }
 }

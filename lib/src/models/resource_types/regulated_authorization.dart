@@ -394,29 +394,117 @@ class RegulatedAuthorization extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return RegulatedAuthorization(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      subject: subject ?? this.subject,
-      type: type ?? this.type,
-      description: description ?? this.description,
-      region: region ?? this.region,
-      status: status ?? this.status,
-      statusDate: statusDate ?? this.statusDate,
-      validityPeriod: validityPeriod ?? this.validityPeriod,
-      indication: indication ?? this.indication,
-      intendedUse: intendedUse ?? this.intendedUse,
-      basis: basis ?? this.basis,
-      holder: holder ?? this.holder,
-      regulator: regulator ?? this.regulator,
-      case_: case_ ?? this.case_,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      subject: subject
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subject',
+                ),
+              )
+              .toList() ??
+          this.subject,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      region: region
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.region',
+                ),
+              )
+              .toList() ??
+          this.region,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      validityPeriod: validityPeriod?.copyWith(
+            objectPath: '$newObjectPath.validityPeriod',
+          ) ??
+          this.validityPeriod,
+      indication: indication?.copyWith(
+            objectPath: '$newObjectPath.indication',
+          ) ??
+          this.indication,
+      intendedUse: intendedUse?.copyWith(
+            objectPath: '$newObjectPath.intendedUse',
+          ) ??
+          this.intendedUse,
+      basis: basis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basis',
+                ),
+              )
+              .toList() ??
+          this.basis,
+      holder: holder?.copyWith(
+            objectPath: '$newObjectPath.holder',
+          ) ??
+          this.holder,
+      regulator: regulator?.copyWith(
+            objectPath: '$newObjectPath.regulator',
+          ) ??
+          this.regulator,
+      case_: case_?.copyWith(
+            objectPath: '$newObjectPath.case',
+          ) ??
+          this.case_,
     );
   }
 }
@@ -637,16 +725,54 @@ class RegulatedAuthorizationCase extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RegulatedAuthorizationCase(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      status: status ?? this.status,
-      dateX: dateX ?? this.dateX,
-      application: application ?? this.application,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      dateX: dateX?.copyWith(
+            objectPath: '$newObjectPath.dateX',
+          ) as DateXRegulatedAuthorizationCase? ??
+          this.dateX,
+      application: application
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.application',
+                ),
+              )
+              .toList() ??
+          this.application,
     );
   }
 }

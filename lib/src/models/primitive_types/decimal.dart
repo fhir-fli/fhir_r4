@@ -186,6 +186,7 @@ class FhirDecimal extends FhirNumber
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirDecimal(
       newValue ?? input,
@@ -199,6 +200,7 @@ class FhirDecimal extends FhirNumber
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

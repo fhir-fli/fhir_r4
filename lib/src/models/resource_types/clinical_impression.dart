@@ -491,36 +491,161 @@ class ClinicalImpression extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ClinicalImpression(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      code: code ?? this.code,
-      description: description ?? this.description,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
-      date: date ?? this.date,
-      assessor: assessor ?? this.assessor,
-      previous: previous ?? this.previous,
-      problem: problem ?? this.problem,
-      investigation: investigation ?? this.investigation,
-      protocol: protocol ?? this.protocol,
-      summary: summary ?? this.summary,
-      finding: finding ?? this.finding,
-      prognosisCodeableConcept:
-          prognosisCodeableConcept ?? this.prognosisCodeableConcept,
-      prognosisReference: prognosisReference ?? this.prognosisReference,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      effectiveX: effectiveX?.copyWith(
+            objectPath: '$newObjectPath.effectiveX',
+          ) as EffectiveXClinicalImpression? ??
+          this.effectiveX,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      assessor: assessor?.copyWith(
+            objectPath: '$newObjectPath.assessor',
+          ) ??
+          this.assessor,
+      previous: previous?.copyWith(
+            objectPath: '$newObjectPath.previous',
+          ) ??
+          this.previous,
+      problem: problem
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.problem',
+                ),
+              )
+              .toList() ??
+          this.problem,
+      investigation: investigation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.investigation',
+                ),
+              )
+              .toList() ??
+          this.investigation,
+      protocol: protocol
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.protocol',
+                ),
+              )
+              .toList() ??
+          this.protocol,
+      summary: summary?.copyWith(
+            objectPath: '$newObjectPath.summary',
+          ) ??
+          this.summary,
+      finding: finding
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.finding',
+                ),
+              )
+              .toList() ??
+          this.finding,
+      prognosisCodeableConcept: prognosisCodeableConcept
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.prognosisCodeableConcept',
+                ),
+              )
+              .toList() ??
+          this.prognosisCodeableConcept,
+      prognosisReference: prognosisReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.prognosisReference',
+                ),
+              )
+              .toList() ??
+          this.prognosisReference,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -693,13 +818,42 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalImpressionInvestigation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      item: item ?? this.item,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      item: item
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.item',
+                ),
+              )
+              .toList() ??
+          this.item,
     );
   }
 }
@@ -879,14 +1033,42 @@ class ClinicalImpressionFinding extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalImpressionFinding(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      itemReference: itemReference ?? this.itemReference,
-      basis: basis ?? this.basis,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      itemCodeableConcept: itemCodeableConcept?.copyWith(
+            objectPath: '$newObjectPath.itemCodeableConcept',
+          ) ??
+          this.itemCodeableConcept,
+      itemReference: itemReference?.copyWith(
+            objectPath: '$newObjectPath.itemReference',
+          ) ??
+          this.itemReference,
+      basis: basis?.copyWith(
+            objectPath: '$newObjectPath.basis',
+          ) ??
+          this.basis,
     );
   }
 }

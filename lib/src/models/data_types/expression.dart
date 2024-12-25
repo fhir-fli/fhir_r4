@@ -205,15 +205,42 @@ class FhirExpression extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return FhirExpression(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      description: description ?? this.description,
-      name: name ?? this.name,
-      language: language ?? this.language,
-      expression: expression ?? this.expression,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }

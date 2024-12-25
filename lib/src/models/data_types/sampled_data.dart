@@ -237,17 +237,50 @@ class SampledData extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return SampledData(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      origin: origin ?? this.origin,
-      period: period ?? this.period,
-      factor: factor ?? this.factor,
-      lowerLimit: lowerLimit ?? this.lowerLimit,
-      upperLimit: upperLimit ?? this.upperLimit,
-      dimensions: dimensions ?? this.dimensions,
-      data: data ?? this.data,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      origin: origin?.copyWith(
+            objectPath: '$newObjectPath.origin',
+          ) ??
+          this.origin,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      lowerLimit: lowerLimit?.copyWith(
+            objectPath: '$newObjectPath.lowerLimit',
+          ) ??
+          this.lowerLimit,
+      upperLimit: upperLimit?.copyWith(
+            objectPath: '$newObjectPath.upperLimit',
+          ) ??
+          this.upperLimit,
+      dimensions: dimensions?.copyWith(
+            objectPath: '$newObjectPath.dimensions',
+          ) ??
+          this.dimensions,
+      data: data?.copyWith(
+            objectPath: '$newObjectPath.data',
+          ) ??
+          this.data,
     );
   }
 }

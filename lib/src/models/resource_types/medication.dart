@@ -305,23 +305,85 @@ class Medication extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Medication(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      code: code ?? this.code,
-      status: status ?? this.status,
-      manufacturer: manufacturer ?? this.manufacturer,
-      form: form ?? this.form,
-      amount: amount ?? this.amount,
-      ingredient: ingredient ?? this.ingredient,
-      batch: batch ?? this.batch,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      manufacturer: manufacturer?.copyWith(
+            objectPath: '$newObjectPath.manufacturer',
+          ) ??
+          this.manufacturer,
+      form: form?.copyWith(
+            objectPath: '$newObjectPath.form',
+          ) ??
+          this.form,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      ingredient: ingredient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.ingredient',
+                ),
+              )
+              .toList() ??
+          this.ingredient,
+      batch: batch?.copyWith(
+            objectPath: '$newObjectPath.batch',
+          ) ??
+          this.batch,
     );
   }
 }
@@ -506,14 +568,42 @@ class MedicationIngredient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationIngredient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
-      isActive: isActive ?? this.isActive,
-      strength: strength ?? this.strength,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      itemX: itemX?.copyWith(
+            objectPath: '$newObjectPath.itemX',
+          ) as ItemXMedicationIngredient? ??
+          this.itemX,
+      isActive: isActive?.copyWith(
+            objectPath: '$newObjectPath.isActive',
+          ) ??
+          this.isActive,
+      strength: strength?.copyWith(
+            objectPath: '$newObjectPath.strength',
+          ) ??
+          this.strength,
     );
   }
 }
@@ -677,13 +767,38 @@ class MedicationBatch extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationBatch(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      lotNumber: lotNumber ?? this.lotNumber,
-      expirationDate: expirationDate ?? this.expirationDate,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      lotNumber: lotNumber?.copyWith(
+            objectPath: '$newObjectPath.lotNumber',
+          ) ??
+          this.lotNumber,
+      expirationDate: expirationDate?.copyWith(
+            objectPath: '$newObjectPath.expirationDate',
+          ) ??
+          this.expirationDate,
     );
   }
 }

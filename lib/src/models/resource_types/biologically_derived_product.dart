@@ -350,26 +350,109 @@ class BiologicallyDerivedProduct extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return BiologicallyDerivedProduct(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      productCategory: productCategory ?? this.productCategory,
-      productCode: productCode ?? this.productCode,
-      status: status ?? this.status,
-      request: request ?? this.request,
-      quantity: quantity ?? this.quantity,
-      parent: parent ?? this.parent,
-      collection: collection ?? this.collection,
-      processing: processing ?? this.processing,
-      manipulation: manipulation ?? this.manipulation,
-      storage: storage ?? this.storage,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      productCategory: productCategory?.copyWith(
+            objectPath: '$newObjectPath.productCategory',
+          ) ??
+          this.productCategory,
+      productCode: productCode?.copyWith(
+            objectPath: '$newObjectPath.productCode',
+          ) ??
+          this.productCode,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      request: request
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.request',
+                ),
+              )
+              .toList() ??
+          this.request,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      parent: parent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parent',
+                ),
+              )
+              .toList() ??
+          this.parent,
+      collection: collection?.copyWith(
+            objectPath: '$newObjectPath.collection',
+          ) ??
+          this.collection,
+      processing: processing
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.processing',
+                ),
+              )
+              .toList() ??
+          this.processing,
+      manipulation: manipulation?.copyWith(
+            objectPath: '$newObjectPath.manipulation',
+          ) ??
+          this.manipulation,
+      storage: storage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.storage',
+                ),
+              )
+              .toList() ??
+          this.storage,
     );
   }
 }
@@ -554,14 +637,42 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BiologicallyDerivedProductCollection(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      collector: collector ?? this.collector,
-      source: source ?? this.source,
-      collectedX: collectedX ?? this.collectedX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      collector: collector?.copyWith(
+            objectPath: '$newObjectPath.collector',
+          ) ??
+          this.collector,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      collectedX: collectedX?.copyWith(
+            objectPath: '$newObjectPath.collectedX',
+          ) as CollectedXBiologicallyDerivedProductCollection? ??
+          this.collectedX,
     );
   }
 }
@@ -760,15 +871,46 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BiologicallyDerivedProductProcessing(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      procedure: procedure ?? this.procedure,
-      additive: additive ?? this.additive,
-      timeX: timeX ?? this.timeX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      procedure: procedure?.copyWith(
+            objectPath: '$newObjectPath.procedure',
+          ) ??
+          this.procedure,
+      additive: additive?.copyWith(
+            objectPath: '$newObjectPath.additive',
+          ) ??
+          this.additive,
+      timeX: timeX?.copyWith(
+            objectPath: '$newObjectPath.timeX',
+          ) as TimeXBiologicallyDerivedProductProcessing? ??
+          this.timeX,
     );
   }
 }
@@ -941,13 +1083,38 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BiologicallyDerivedProductManipulation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      timeX: timeX ?? this.timeX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      timeX: timeX?.copyWith(
+            objectPath: '$newObjectPath.timeX',
+          ) as TimeXBiologicallyDerivedProductManipulation? ??
+          this.timeX,
     );
   }
 }
@@ -1137,15 +1304,46 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BiologicallyDerivedProductStorage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      temperature: temperature ?? this.temperature,
-      scale: scale ?? this.scale,
-      duration: duration ?? this.duration,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      temperature: temperature?.copyWith(
+            objectPath: '$newObjectPath.temperature',
+          ) ??
+          this.temperature,
+      scale: scale?.copyWith(
+            objectPath: '$newObjectPath.scale',
+          ) ??
+          this.scale,
+      duration: duration?.copyWith(
+            objectPath: '$newObjectPath.duration',
+          ) ??
+          this.duration,
     );
   }
 }

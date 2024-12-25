@@ -241,6 +241,7 @@ class FhirDate extends FhirDateTimeBase
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirDateTimeBase.constructor<FhirDate>(
       input: value ?? value,
@@ -258,6 +259,7 @@ class FhirDate extends FhirDateTimeBase
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     ) as FhirDate;
   }
 

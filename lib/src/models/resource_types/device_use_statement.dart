@@ -383,28 +383,121 @@ class DeviceUseStatement extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DeviceUseStatement(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      status: status ?? this.status,
-      subject: subject ?? this.subject,
-      derivedFrom: derivedFrom ?? this.derivedFrom,
-      timingX: timingX ?? this.timingX,
-      recordedOn: recordedOn ?? this.recordedOn,
-      source: source ?? this.source,
-      device: device ?? this.device,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      bodySite: bodySite ?? this.bodySite,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      derivedFrom: derivedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFrom',
+                ),
+              )
+              .toList() ??
+          this.derivedFrom,
+      timingX: timingX?.copyWith(
+            objectPath: '$newObjectPath.timingX',
+          ) as TimingXDeviceUseStatement? ??
+          this.timingX,
+      recordedOn: recordedOn?.copyWith(
+            objectPath: '$newObjectPath.recordedOn',
+          ) ??
+          this.recordedOn,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }

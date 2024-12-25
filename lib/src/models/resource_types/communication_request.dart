@@ -518,37 +518,177 @@ class CommunicationRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return CommunicationRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      replaces: replaces ?? this.replaces,
-      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      medium: medium ?? this.medium,
-      subject: subject ?? this.subject,
-      about: about ?? this.about,
-      encounter: encounter ?? this.encounter,
-      payload: payload ?? this.payload,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      authoredOn: authoredOn ?? this.authoredOn,
-      requester: requester ?? this.requester,
-      recipient: recipient ?? this.recipient,
-      sender: sender ?? this.sender,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      groupIdentifier: groupIdentifier?.copyWith(
+            objectPath: '$newObjectPath.groupIdentifier',
+          ) ??
+          this.groupIdentifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      medium: medium
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.medium',
+                ),
+              )
+              .toList() ??
+          this.medium,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      about: about
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.about',
+                ),
+              )
+              .toList() ??
+          this.about,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      payload: payload
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.payload',
+                ),
+              )
+              .toList() ??
+          this.payload,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXCommunicationRequest? ??
+          this.occurrenceX,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      recipient: recipient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.recipient',
+                ),
+              )
+              .toList() ??
+          this.recipient,
+      sender: sender?.copyWith(
+            objectPath: '$newObjectPath.sender',
+          ) ??
+          this.sender,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -707,12 +847,34 @@ class CommunicationRequestPayload extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CommunicationRequestPayload(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      contentX: contentX?.copyWith(
+            objectPath: '$newObjectPath.contentX',
+          ) as ContentXCommunicationRequestPayload? ??
+          this.contentX,
     );
   }
 }

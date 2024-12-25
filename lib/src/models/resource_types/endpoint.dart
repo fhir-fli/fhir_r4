@@ -346,26 +346,109 @@ class FhirEndpoint extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return FhirEndpoint(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      connectionType: connectionType ?? this.connectionType,
-      name: name ?? this.name,
-      managingOrganization: managingOrganization ?? this.managingOrganization,
-      contact: contact ?? this.contact,
-      period: period ?? this.period,
-      payloadType: payloadType ?? this.payloadType,
-      payloadMimeType: payloadMimeType ?? this.payloadMimeType,
-      address: address ?? this.address,
-      header: header ?? this.header,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      connectionType: connectionType?.copyWith(
+            objectPath: '$newObjectPath.connectionType',
+          ) ??
+          this.connectionType,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      managingOrganization: managingOrganization?.copyWith(
+            objectPath: '$newObjectPath.managingOrganization',
+          ) ??
+          this.managingOrganization,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      payloadType: payloadType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.payloadType',
+                ),
+              )
+              .toList() ??
+          this.payloadType,
+      payloadMimeType: payloadMimeType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.payloadMimeType',
+                ),
+              )
+              .toList() ??
+          this.payloadMimeType,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
+      header: header
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.header',
+                ),
+              )
+              .toList() ??
+          this.header,
     );
   }
 }

@@ -402,33 +402,133 @@ class ValueSet extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ValueSet(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      immutable: immutable ?? this.immutable,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      compose: compose ?? this.compose,
-      expansion: expansion ?? this.expansion,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      immutable: immutable?.copyWith(
+            objectPath: '$newObjectPath.immutable',
+          ) ??
+          this.immutable,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      compose: compose?.copyWith(
+            objectPath: '$newObjectPath.compose',
+          ) ??
+          this.compose,
+      expansion: expansion?.copyWith(
+            objectPath: '$newObjectPath.expansion',
+          ) ??
+          this.expansion,
     );
   }
 }
@@ -634,15 +734,54 @@ class ValueSetCompose extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetCompose(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      lockedDate: lockedDate ?? this.lockedDate,
-      inactive: inactive ?? this.inactive,
-      include: include ?? this.include,
-      exclude: exclude ?? this.exclude,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      lockedDate: lockedDate?.copyWith(
+            objectPath: '$newObjectPath.lockedDate',
+          ) ??
+          this.lockedDate,
+      inactive: inactive?.copyWith(
+            objectPath: '$newObjectPath.inactive',
+          ) ??
+          this.inactive,
+      include: include
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.include',
+                ),
+              )
+              .toList() ??
+          this.include,
+      exclude: exclude
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.exclude',
+                ),
+              )
+              .toList() ??
+          this.exclude,
     );
   }
 }
@@ -857,16 +996,62 @@ class ValueSetInclude extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetInclude(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      system: system ?? this.system,
-      version: version ?? this.version,
-      concept: concept ?? this.concept,
-      filter: filter ?? this.filter,
-      valueSet: valueSet ?? this.valueSet,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      concept: concept
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.concept',
+                ),
+              )
+              .toList() ??
+          this.concept,
+      filter: filter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.filter',
+                ),
+              )
+              .toList() ??
+          this.filter,
+      valueSet: valueSet
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.valueSet',
+                ),
+              )
+              .toList() ??
+          this.valueSet,
     );
   }
 }
@@ -1049,14 +1234,46 @@ class ValueSetConcept extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetConcept(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      display: display ?? this.display,
-      designation: designation ?? this.designation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      display: display?.copyWith(
+            objectPath: '$newObjectPath.display',
+          ) ??
+          this.display,
+      designation: designation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.designation',
+                ),
+              )
+              .toList() ??
+          this.designation,
     );
   }
 }
@@ -1235,14 +1452,42 @@ class ValueSetDesignation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetDesignation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      language: language ?? this.language,
-      use: use ?? this.use,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -1428,14 +1673,42 @@ class ValueSetFilter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetFilter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      property: property ?? this.property,
-      op: op ?? this.op,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      property: property?.copyWith(
+            objectPath: '$newObjectPath.property',
+          ) ??
+          this.property,
+      op: op?.copyWith(
+            objectPath: '$newObjectPath.op',
+          ) ??
+          this.op,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -1668,17 +1941,62 @@ class ValueSetExpansion extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetExpansion(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      timestamp: timestamp ?? this.timestamp,
-      total: total ?? this.total,
-      offset: offset ?? this.offset,
-      parameter: parameter ?? this.parameter,
-      contains: contains ?? this.contains,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      timestamp: timestamp?.copyWith(
+            objectPath: '$newObjectPath.timestamp',
+          ) ??
+          this.timestamp,
+      total: total?.copyWith(
+            objectPath: '$newObjectPath.total',
+          ) ??
+          this.total,
+      offset: offset?.copyWith(
+            objectPath: '$newObjectPath.offset',
+          ) ??
+          this.offset,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
+      contains: contains
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contains',
+                ),
+              )
+              .toList() ??
+          this.contains,
     );
   }
 }
@@ -1857,13 +2175,38 @@ class ValueSetParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXValueSetParameter? ??
+          this.valueX,
     );
   }
 }
@@ -2125,19 +2468,70 @@ class ValueSetContains extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ValueSetContains(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      system: system ?? this.system,
-      abstract_: abstract_ ?? this.abstract_,
-      inactive: inactive ?? this.inactive,
-      version: version ?? this.version,
-      code: code ?? this.code,
-      display: display ?? this.display,
-      designation: designation ?? this.designation,
-      contains: contains ?? this.contains,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      abstract_: abstract_?.copyWith(
+            objectPath: '$newObjectPath.abstract',
+          ) ??
+          this.abstract_,
+      inactive: inactive?.copyWith(
+            objectPath: '$newObjectPath.inactive',
+          ) ??
+          this.inactive,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      display: display?.copyWith(
+            objectPath: '$newObjectPath.display',
+          ) ??
+          this.display,
+      designation: designation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.designation',
+                ),
+              )
+              .toList() ??
+          this.designation,
+      contains: contains
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contains',
+                ),
+              )
+              .toList() ??
+          this.contains,
     );
   }
 }

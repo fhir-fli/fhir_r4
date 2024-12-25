@@ -243,18 +243,60 @@ class Bundle extends Resource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Bundle(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      timestamp: timestamp ?? this.timestamp,
-      total: total ?? this.total,
-      link: link ?? this.link,
-      entry: entry ?? this.entry,
-      signature: signature ?? this.signature,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      timestamp: timestamp?.copyWith(
+            objectPath: '$newObjectPath.timestamp',
+          ) ??
+          this.timestamp,
+      total: total?.copyWith(
+            objectPath: '$newObjectPath.total',
+          ) ??
+          this.total,
+      link: link
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.link',
+                ),
+              )
+              .toList() ??
+          this.link,
+      entry: entry
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entry',
+                ),
+              )
+              .toList() ??
+          this.entry,
+      signature: signature?.copyWith(
+            objectPath: '$newObjectPath.signature',
+          ) ??
+          this.signature,
     );
   }
 }
@@ -419,13 +461,38 @@ class BundleLink extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BundleLink(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relation: relation ?? this.relation,
-      url: url ?? this.url,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relation: relation?.copyWith(
+            objectPath: '$newObjectPath.relation',
+          ) ??
+          this.relation,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
     );
   }
 }
@@ -658,17 +725,55 @@ class BundleEntry extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BundleEntry(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      link: link ?? this.link,
-      fullUrl: fullUrl ?? this.fullUrl,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      link: link
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.link',
+                ),
+              )
+              .toList() ??
+          this.link,
+      fullUrl: fullUrl?.copyWith(
+            objectPath: '$newObjectPath.fullUrl',
+          ) ??
+          this.fullUrl,
       resource: resource ?? this.resource,
-      search: search ?? this.search,
-      request: request ?? this.request,
-      response: response ?? this.response,
+      search: search?.copyWith(
+            objectPath: '$newObjectPath.search',
+          ) ??
+          this.search,
+      request: request?.copyWith(
+            objectPath: '$newObjectPath.request',
+          ) ??
+          this.request,
+      response: response?.copyWith(
+            objectPath: '$newObjectPath.response',
+          ) ??
+          this.response,
     );
   }
 }
@@ -835,13 +940,38 @@ class BundleSearch extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BundleSearch(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      mode: mode ?? this.mode,
-      score: score ?? this.score,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      score: score?.copyWith(
+            objectPath: '$newObjectPath.score',
+          ) ??
+          this.score,
     );
   }
 }
@@ -1069,17 +1199,54 @@ class BundleRequest extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BundleRequest(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      method: method ?? this.method,
-      url: url ?? this.url,
-      ifNoneMatch: ifNoneMatch ?? this.ifNoneMatch,
-      ifModifiedSince: ifModifiedSince ?? this.ifModifiedSince,
-      ifMatch: ifMatch ?? this.ifMatch,
-      ifNoneExist: ifNoneExist ?? this.ifNoneExist,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      ifNoneMatch: ifNoneMatch?.copyWith(
+            objectPath: '$newObjectPath.ifNoneMatch',
+          ) ??
+          this.ifNoneMatch,
+      ifModifiedSince: ifModifiedSince?.copyWith(
+            objectPath: '$newObjectPath.ifModifiedSince',
+          ) ??
+          this.ifModifiedSince,
+      ifMatch: ifMatch?.copyWith(
+            objectPath: '$newObjectPath.ifMatch',
+          ) ??
+          this.ifMatch,
+      ifNoneExist: ifNoneExist?.copyWith(
+            objectPath: '$newObjectPath.ifNoneExist',
+          ) ??
+          this.ifNoneExist,
     );
   }
 }
@@ -1291,15 +1458,46 @@ class BundleResponse extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return BundleResponse(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      status: status ?? this.status,
-      location: location ?? this.location,
-      etag: etag ?? this.etag,
-      lastModified: lastModified ?? this.lastModified,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      etag: etag?.copyWith(
+            objectPath: '$newObjectPath.etag',
+          ) ??
+          this.etag,
+      lastModified: lastModified?.copyWith(
+            objectPath: '$newObjectPath.lastModified',
+          ) ??
+          this.lastModified,
       outcome: outcome ?? this.outcome,
     );
   }

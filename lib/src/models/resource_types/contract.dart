@@ -711,49 +711,233 @@ class Contract extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Contract(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      url: url ?? this.url,
-      version: version ?? this.version,
-      status: status ?? this.status,
-      legalState: legalState ?? this.legalState,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      contentDerivative: contentDerivative ?? this.contentDerivative,
-      issued: issued ?? this.issued,
-      applies: applies ?? this.applies,
-      expirationType: expirationType ?? this.expirationType,
-      subject: subject ?? this.subject,
-      authority: authority ?? this.authority,
-      domain: domain ?? this.domain,
-      site: site ?? this.site,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      subtitle: subtitle ?? this.subtitle,
-      alias: alias ?? this.alias,
-      author: author ?? this.author,
-      scope: scope ?? this.scope,
-      topicX: topicX ?? this.topicX,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      contentDefinition: contentDefinition ?? this.contentDefinition,
-      term: term ?? this.term,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      relevantHistory: relevantHistory ?? this.relevantHistory,
-      signer: signer ?? this.signer,
-      friendly: friendly ?? this.friendly,
-      legal: legal ?? this.legal,
-      rule: rule ?? this.rule,
-      legallyBindingX: legallyBindingX ?? this.legallyBindingX,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      legalState: legalState?.copyWith(
+            objectPath: '$newObjectPath.legalState',
+          ) ??
+          this.legalState,
+      instantiatesCanonical: instantiatesCanonical?.copyWith(
+            objectPath: '$newObjectPath.instantiatesCanonical',
+          ) ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri?.copyWith(
+            objectPath: '$newObjectPath.instantiatesUri',
+          ) ??
+          this.instantiatesUri,
+      contentDerivative: contentDerivative?.copyWith(
+            objectPath: '$newObjectPath.contentDerivative',
+          ) ??
+          this.contentDerivative,
+      issued: issued?.copyWith(
+            objectPath: '$newObjectPath.issued',
+          ) ??
+          this.issued,
+      applies: applies?.copyWith(
+            objectPath: '$newObjectPath.applies',
+          ) ??
+          this.applies,
+      expirationType: expirationType?.copyWith(
+            objectPath: '$newObjectPath.expirationType',
+          ) ??
+          this.expirationType,
+      subject: subject
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subject',
+                ),
+              )
+              .toList() ??
+          this.subject,
+      authority: authority
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.authority',
+                ),
+              )
+              .toList() ??
+          this.authority,
+      domain: domain
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.domain',
+                ),
+              )
+              .toList() ??
+          this.domain,
+      site: site
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.site',
+                ),
+              )
+              .toList() ??
+          this.site,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      subtitle: subtitle?.copyWith(
+            objectPath: '$newObjectPath.subtitle',
+          ) ??
+          this.subtitle,
+      alias: alias
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.alias',
+                ),
+              )
+              .toList() ??
+          this.alias,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      scope: scope?.copyWith(
+            objectPath: '$newObjectPath.scope',
+          ) ??
+          this.scope,
+      topicX: topicX?.copyWith(
+            objectPath: '$newObjectPath.topicX',
+          ) as TopicXContract? ??
+          this.topicX,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subType: subType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subType',
+                ),
+              )
+              .toList() ??
+          this.subType,
+      contentDefinition: contentDefinition?.copyWith(
+            objectPath: '$newObjectPath.contentDefinition',
+          ) ??
+          this.contentDefinition,
+      term: term
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.term',
+                ),
+              )
+              .toList() ??
+          this.term,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      relevantHistory: relevantHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relevantHistory',
+                ),
+              )
+              .toList() ??
+          this.relevantHistory,
+      signer: signer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.signer',
+                ),
+              )
+              .toList() ??
+          this.signer,
+      friendly: friendly
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.friendly',
+                ),
+              )
+              .toList() ??
+          this.friendly,
+      legal: legal
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.legal',
+                ),
+              )
+              .toList() ??
+          this.legal,
+      rule: rule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.rule',
+                ),
+              )
+              .toList() ??
+          this.rule,
+      legallyBindingX: legallyBindingX?.copyWith(
+            objectPath: '$newObjectPath.legallyBindingX',
+          ) as LegallyBindingXContract? ??
+          this.legallyBindingX,
     );
   }
 }
@@ -982,17 +1166,54 @@ class ContractContentDefinition extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractContentDefinition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      publisher: publisher ?? this.publisher,
-      publicationDate: publicationDate ?? this.publicationDate,
-      publicationStatus: publicationStatus ?? this.publicationStatus,
-      copyright: copyright ?? this.copyright,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subType: subType?.copyWith(
+            objectPath: '$newObjectPath.subType',
+          ) ??
+          this.subType,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      publicationDate: publicationDate?.copyWith(
+            objectPath: '$newObjectPath.publicationDate',
+          ) ??
+          this.publicationDate,
+      publicationStatus: publicationStatus?.copyWith(
+            objectPath: '$newObjectPath.publicationStatus',
+          ) ??
+          this.publicationStatus,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
     );
   }
 }
@@ -1308,23 +1529,94 @@ class ContractTerm extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractTerm(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      issued: issued ?? this.issued,
-      applies: applies ?? this.applies,
-      topicX: topicX ?? this.topicX,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      text: text ?? this.text,
-      securityLabel: securityLabel ?? this.securityLabel,
-      offer: offer ?? this.offer,
-      asset: asset ?? this.asset,
-      action: action ?? this.action,
-      group: group ?? this.group,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      issued: issued?.copyWith(
+            objectPath: '$newObjectPath.issued',
+          ) ??
+          this.issued,
+      applies: applies?.copyWith(
+            objectPath: '$newObjectPath.applies',
+          ) ??
+          this.applies,
+      topicX: topicX?.copyWith(
+            objectPath: '$newObjectPath.topicX',
+          ) as TopicXContractTerm? ??
+          this.topicX,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subType: subType?.copyWith(
+            objectPath: '$newObjectPath.subType',
+          ) ??
+          this.subType,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      securityLabel: securityLabel
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabel',
+                ),
+              )
+              .toList() ??
+          this.securityLabel,
+      offer: offer?.copyWith(
+            objectPath: '$newObjectPath.offer',
+          ) ??
+          this.offer,
+      asset: asset
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.asset',
+                ),
+              )
+              .toList() ??
+          this.asset,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
+      group: group
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.group',
+                ),
+              )
+              .toList() ??
+          this.group,
     );
   }
 }
@@ -1523,15 +1815,58 @@ class ContractSecurityLabel extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractSecurityLabel(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      number: number ?? this.number,
-      classification: classification ?? this.classification,
-      category: category ?? this.category,
-      control: control ?? this.control,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      number: number
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.number',
+                ),
+              )
+              .toList() ??
+          this.number,
+      classification: classification?.copyWith(
+            objectPath: '$newObjectPath.classification',
+          ) ??
+          this.classification,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      control: control
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.control',
+                ),
+              )
+              .toList() ??
+          this.control,
     );
   }
 }
@@ -1812,21 +2147,94 @@ class ContractOffer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractOffer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      party: party ?? this.party,
-      topic: topic ?? this.topic,
-      type: type ?? this.type,
-      decision: decision ?? this.decision,
-      decisionMode: decisionMode ?? this.decisionMode,
-      answer: answer ?? this.answer,
-      text: text ?? this.text,
-      linkId: linkId ?? this.linkId,
-      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      party: party
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.party',
+                ),
+              )
+              .toList() ??
+          this.party,
+      topic: topic?.copyWith(
+            objectPath: '$newObjectPath.topic',
+          ) ??
+          this.topic,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      decision: decision?.copyWith(
+            objectPath: '$newObjectPath.decision',
+          ) ??
+          this.decision,
+      decisionMode: decisionMode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.decisionMode',
+                ),
+              )
+              .toList() ??
+          this.decisionMode,
+      answer: answer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.answer',
+                ),
+              )
+              .toList() ??
+          this.answer,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      linkId: linkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.linkId',
+                ),
+              )
+              .toList() ??
+          this.linkId,
+      securityLabelNumber: securityLabelNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabelNumber',
+                ),
+              )
+              .toList() ??
+          this.securityLabelNumber,
     );
   }
 }
@@ -1992,13 +2400,42 @@ class ContractParty extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractParty(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      reference: reference ?? this.reference,
-      role: role ?? this.role,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      reference: reference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reference',
+                ),
+              )
+              .toList() ??
+          this.reference,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
     );
   }
 }
@@ -2166,12 +2603,34 @@ class ContractAnswer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractAnswer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXContractAnswer? ??
+          this.valueX,
     );
   }
 }
@@ -2528,26 +2987,134 @@ class ContractAsset extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractAsset(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      scope: scope ?? this.scope,
-      type: type ?? this.type,
-      typeReference: typeReference ?? this.typeReference,
-      subtype: subtype ?? this.subtype,
-      relationship: relationship ?? this.relationship,
-      context: context ?? this.context,
-      condition: condition ?? this.condition,
-      periodType: periodType ?? this.periodType,
-      period: period ?? this.period,
-      usePeriod: usePeriod ?? this.usePeriod,
-      text: text ?? this.text,
-      linkId: linkId ?? this.linkId,
-      answer: answer ?? this.answer,
-      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      valuedItem: valuedItem ?? this.valuedItem,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      scope: scope?.copyWith(
+            objectPath: '$newObjectPath.scope',
+          ) ??
+          this.scope,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      typeReference: typeReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.typeReference',
+                ),
+              )
+              .toList() ??
+          this.typeReference,
+      subtype: subtype
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subtype',
+                ),
+              )
+              .toList() ??
+          this.subtype,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      context: context
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.context',
+                ),
+              )
+              .toList() ??
+          this.context,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
+      periodType: periodType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.periodType',
+                ),
+              )
+              .toList() ??
+          this.periodType,
+      period: period
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.period',
+                ),
+              )
+              .toList() ??
+          this.period,
+      usePeriod: usePeriod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.usePeriod',
+                ),
+              )
+              .toList() ??
+          this.usePeriod,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      linkId: linkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.linkId',
+                ),
+              )
+              .toList() ??
+          this.linkId,
+      answer: answer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.answer',
+                ),
+              )
+              .toList() ??
+          this.answer,
+      securityLabelNumber: securityLabelNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabelNumber',
+                ),
+              )
+              .toList() ??
+          this.securityLabelNumber,
+      valuedItem: valuedItem
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.valuedItem',
+                ),
+              )
+              .toList() ??
+          this.valuedItem,
     );
   }
 }
@@ -2729,14 +3296,46 @@ class ContractContext extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractContext(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      reference: reference ?? this.reference,
-      code: code ?? this.code,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }
@@ -3077,25 +3676,94 @@ class ContractValuedItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractValuedItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      entityX: entityX ?? this.entityX,
-      identifier: identifier ?? this.identifier,
-      effectiveTime: effectiveTime ?? this.effectiveTime,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      points: points ?? this.points,
-      net: net ?? this.net,
-      payment: payment ?? this.payment,
-      paymentDate: paymentDate ?? this.paymentDate,
-      responsible: responsible ?? this.responsible,
-      recipient: recipient ?? this.recipient,
-      linkId: linkId ?? this.linkId,
-      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      entityX: entityX?.copyWith(
+            objectPath: '$newObjectPath.entityX',
+          ) as EntityXContractValuedItem? ??
+          this.entityX,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      effectiveTime: effectiveTime?.copyWith(
+            objectPath: '$newObjectPath.effectiveTime',
+          ) ??
+          this.effectiveTime,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      points: points?.copyWith(
+            objectPath: '$newObjectPath.points',
+          ) ??
+          this.points,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      payment: payment?.copyWith(
+            objectPath: '$newObjectPath.payment',
+          ) ??
+          this.payment,
+      paymentDate: paymentDate?.copyWith(
+            objectPath: '$newObjectPath.paymentDate',
+          ) ??
+          this.paymentDate,
+      responsible: responsible?.copyWith(
+            objectPath: '$newObjectPath.responsible',
+          ) ??
+          this.responsible,
+      recipient: recipient?.copyWith(
+            objectPath: '$newObjectPath.recipient',
+          ) ??
+          this.recipient,
+      linkId: linkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.linkId',
+                ),
+              )
+              .toList() ??
+          this.linkId,
+      securityLabelNumber: securityLabelNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabelNumber',
+                ),
+              )
+              .toList() ??
+          this.securityLabelNumber,
     );
   }
 }
@@ -3545,32 +4213,166 @@ class ContractAction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractAction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      type: type ?? this.type,
-      subject: subject ?? this.subject,
-      intent: intent ?? this.intent,
-      linkId: linkId ?? this.linkId,
-      status: status ?? this.status,
-      context: context ?? this.context,
-      contextLinkId: contextLinkId ?? this.contextLinkId,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      requester: requester ?? this.requester,
-      requesterLinkId: requesterLinkId ?? this.requesterLinkId,
-      performerType: performerType ?? this.performerType,
-      performerRole: performerRole ?? this.performerRole,
-      performer: performer ?? this.performer,
-      performerLinkId: performerLinkId ?? this.performerLinkId,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      reason: reason ?? this.reason,
-      reasonLinkId: reasonLinkId ?? this.reasonLinkId,
-      note: note ?? this.note,
-      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subject: subject
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subject',
+                ),
+              )
+              .toList() ??
+          this.subject,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      linkId: linkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.linkId',
+                ),
+              )
+              .toList() ??
+          this.linkId,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      contextLinkId: contextLinkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contextLinkId',
+                ),
+              )
+              .toList() ??
+          this.contextLinkId,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXContractAction? ??
+          this.occurrenceX,
+      requester: requester
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.requester',
+                ),
+              )
+              .toList() ??
+          this.requester,
+      requesterLinkId: requesterLinkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.requesterLinkId',
+                ),
+              )
+              .toList() ??
+          this.requesterLinkId,
+      performerType: performerType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performerType',
+                ),
+              )
+              .toList() ??
+          this.performerType,
+      performerRole: performerRole?.copyWith(
+            objectPath: '$newObjectPath.performerRole',
+          ) ??
+          this.performerRole,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      performerLinkId: performerLinkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performerLinkId',
+                ),
+              )
+              .toList() ??
+          this.performerLinkId,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      reason: reason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reason',
+                ),
+              )
+              .toList() ??
+          this.reason,
+      reasonLinkId: reasonLinkId
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonLinkId',
+                ),
+              )
+              .toList() ??
+          this.reasonLinkId,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      securityLabelNumber: securityLabelNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabelNumber',
+                ),
+              )
+              .toList() ??
+          this.securityLabelNumber,
     );
   }
 }
@@ -3736,13 +4538,42 @@ class ContractSubject extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractSubject(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      reference: reference ?? this.reference,
-      role: role ?? this.role,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      reference: reference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reference',
+                ),
+              )
+              .toList() ??
+          this.reference,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
     );
   }
 }
@@ -3924,14 +4755,46 @@ class ContractSigner extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractSigner(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      party: party ?? this.party,
-      signature: signature ?? this.signature,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      party: party?.copyWith(
+            objectPath: '$newObjectPath.party',
+          ) ??
+          this.party,
+      signature: signature
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.signature',
+                ),
+              )
+              .toList() ??
+          this.signature,
     );
   }
 }
@@ -4094,12 +4957,34 @@ class ContractFriendly extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractFriendly(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      contentX: contentX?.copyWith(
+            objectPath: '$newObjectPath.contentX',
+          ) as ContentXContractFriendly? ??
+          this.contentX,
     );
   }
 }
@@ -4254,12 +5139,34 @@ class ContractLegal extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractLegal(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      contentX: contentX?.copyWith(
+            objectPath: '$newObjectPath.contentX',
+          ) as ContentXContractLegal? ??
+          this.contentX,
     );
   }
 }
@@ -4416,12 +5323,34 @@ class ContractRule extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ContractRule(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      contentX: contentX?.copyWith(
+            objectPath: '$newObjectPath.contentX',
+          ) as ContentXContractRule? ??
+          this.contentX,
     );
   }
 }

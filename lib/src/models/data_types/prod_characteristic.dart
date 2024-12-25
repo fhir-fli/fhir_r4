@@ -306,22 +306,86 @@ class ProdCharacteristic extends BackboneType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return ProdCharacteristic(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      height: height ?? this.height,
-      width: width ?? this.width,
-      depth: depth ?? this.depth,
-      weight: weight ?? this.weight,
-      nominalVolume: nominalVolume ?? this.nominalVolume,
-      externalDiameter: externalDiameter ?? this.externalDiameter,
-      shape: shape ?? this.shape,
-      color: color ?? this.color,
-      imprint: imprint ?? this.imprint,
-      image: image ?? this.image,
-      scoring: scoring ?? this.scoring,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      height: height?.copyWith(
+            objectPath: '$newObjectPath.height',
+          ) ??
+          this.height,
+      width: width?.copyWith(
+            objectPath: '$newObjectPath.width',
+          ) ??
+          this.width,
+      depth: depth?.copyWith(
+            objectPath: '$newObjectPath.depth',
+          ) ??
+          this.depth,
+      weight: weight?.copyWith(
+            objectPath: '$newObjectPath.weight',
+          ) ??
+          this.weight,
+      nominalVolume: nominalVolume?.copyWith(
+            objectPath: '$newObjectPath.nominalVolume',
+          ) ??
+          this.nominalVolume,
+      externalDiameter: externalDiameter?.copyWith(
+            objectPath: '$newObjectPath.externalDiameter',
+          ) ??
+          this.externalDiameter,
+      shape: shape?.copyWith(
+            objectPath: '$newObjectPath.shape',
+          ) ??
+          this.shape,
+      color: color
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.color',
+                ),
+              )
+              .toList() ??
+          this.color,
+      imprint: imprint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.imprint',
+                ),
+              )
+              .toList() ??
+          this.imprint,
+      image: image
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.image',
+                ),
+              )
+              .toList() ??
+          this.image,
+      scoring: scoring?.copyWith(
+            objectPath: '$newObjectPath.scoring',
+          ) ??
+          this.scoring,
     );
   }
 }

@@ -172,13 +172,34 @@ class RatioRange extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return RatioRange(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      lowNumerator: lowNumerator ?? this.lowNumerator,
-      highNumerator: highNumerator ?? this.highNumerator,
-      denominator: denominator ?? this.denominator,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      lowNumerator: lowNumerator?.copyWith(
+            objectPath: '$newObjectPath.lowNumerator',
+          ) ??
+          this.lowNumerator,
+      highNumerator: highNumerator?.copyWith(
+            objectPath: '$newObjectPath.highNumerator',
+          ) ??
+          this.highNumerator,
+      denominator: denominator?.copyWith(
+            objectPath: '$newObjectPath.denominator',
+          ) ??
+          this.denominator,
     );
   }
 }

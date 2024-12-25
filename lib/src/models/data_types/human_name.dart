@@ -232,17 +232,62 @@ class HumanName extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return HumanName(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      use: use ?? this.use,
-      text: text ?? this.text,
-      family: family ?? this.family,
-      given: given ?? this.given,
-      prefix: prefix ?? this.prefix,
-      suffix: suffix ?? this.suffix,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      family: family?.copyWith(
+            objectPath: '$newObjectPath.family',
+          ) ??
+          this.family,
+      given: given
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.given',
+                ),
+              )
+              .toList() ??
+          this.given,
+      prefix: prefix
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.prefix',
+                ),
+              )
+              .toList() ??
+          this.prefix,
+      suffix: suffix
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.suffix',
+                ),
+              )
+              .toList() ??
+          this.suffix,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

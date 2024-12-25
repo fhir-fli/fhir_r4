@@ -548,38 +548,177 @@ class ChargeItemDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ChargeItemDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      title: title ?? this.title,
-      derivedFromUri: derivedFromUri ?? this.derivedFromUri,
-      partOf: partOf ?? this.partOf,
-      replaces: replaces ?? this.replaces,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      code: code ?? this.code,
-      instance: instance ?? this.instance,
-      applicability: applicability ?? this.applicability,
-      propertyGroup: propertyGroup ?? this.propertyGroup,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      derivedFromUri: derivedFromUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFromUri',
+                ),
+              )
+              .toList() ??
+          this.derivedFromUri,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      instance: instance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instance',
+                ),
+              )
+              .toList() ??
+          this.instance,
+      applicability: applicability
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.applicability',
+                ),
+              )
+              .toList() ??
+          this.applicability,
+      propertyGroup: propertyGroup
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.propertyGroup',
+                ),
+              )
+              .toList() ??
+          this.propertyGroup,
     );
   }
 }
@@ -762,14 +901,42 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ChargeItemDefinitionApplicability(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      language: language ?? this.language,
-      expression: expression ?? this.expression,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
     );
   }
 }
@@ -945,13 +1112,46 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ChargeItemDefinitionPropertyGroup(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      applicability: applicability ?? this.applicability,
-      priceComponent: priceComponent ?? this.priceComponent,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      applicability: applicability
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.applicability',
+                ),
+              )
+              .toList() ??
+          this.applicability,
+      priceComponent: priceComponent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.priceComponent',
+                ),
+              )
+              .toList() ??
+          this.priceComponent,
     );
   }
 }
@@ -1148,15 +1348,46 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ChargeItemDefinitionPriceComponent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      code: code ?? this.code,
-      factor: factor ?? this.factor,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }

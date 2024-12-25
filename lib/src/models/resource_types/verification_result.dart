@@ -380,29 +380,121 @@ class VerificationResult extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return VerificationResult(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      target: target ?? this.target,
-      targetLocation: targetLocation ?? this.targetLocation,
-      need: need ?? this.need,
-      status: status ?? this.status,
-      statusDate: statusDate ?? this.statusDate,
-      validationType: validationType ?? this.validationType,
-      validationProcess: validationProcess ?? this.validationProcess,
-      frequency: frequency ?? this.frequency,
-      lastPerformed: lastPerformed ?? this.lastPerformed,
-      nextScheduled: nextScheduled ?? this.nextScheduled,
-      failureAction: failureAction ?? this.failureAction,
-      primarySource: primarySource ?? this.primarySource,
-      attestation: attestation ?? this.attestation,
-      validator: validator ?? this.validator,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      target: target
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.target',
+                ),
+              )
+              .toList() ??
+          this.target,
+      targetLocation: targetLocation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetLocation',
+                ),
+              )
+              .toList() ??
+          this.targetLocation,
+      need: need?.copyWith(
+            objectPath: '$newObjectPath.need',
+          ) ??
+          this.need,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      validationType: validationType?.copyWith(
+            objectPath: '$newObjectPath.validationType',
+          ) ??
+          this.validationType,
+      validationProcess: validationProcess
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.validationProcess',
+                ),
+              )
+              .toList() ??
+          this.validationProcess,
+      frequency: frequency?.copyWith(
+            objectPath: '$newObjectPath.frequency',
+          ) ??
+          this.frequency,
+      lastPerformed: lastPerformed?.copyWith(
+            objectPath: '$newObjectPath.lastPerformed',
+          ) ??
+          this.lastPerformed,
+      nextScheduled: nextScheduled?.copyWith(
+            objectPath: '$newObjectPath.nextScheduled',
+          ) ??
+          this.nextScheduled,
+      failureAction: failureAction?.copyWith(
+            objectPath: '$newObjectPath.failureAction',
+          ) ??
+          this.failureAction,
+      primarySource: primarySource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.primarySource',
+                ),
+              )
+              .toList() ??
+          this.primarySource,
+      attestation: attestation?.copyWith(
+            objectPath: '$newObjectPath.attestation',
+          ) ??
+          this.attestation,
+      validator: validator
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.validator',
+                ),
+              )
+              .toList() ??
+          this.validator,
     );
   }
 }
@@ -642,18 +734,70 @@ class VerificationResultPrimarySource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return VerificationResultPrimarySource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      who: who ?? this.who,
-      type: type ?? this.type,
-      communicationMethod: communicationMethod ?? this.communicationMethod,
-      validationStatus: validationStatus ?? this.validationStatus,
-      validationDate: validationDate ?? this.validationDate,
-      canPushUpdates: canPushUpdates ?? this.canPushUpdates,
-      pushTypeAvailable: pushTypeAvailable ?? this.pushTypeAvailable,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      who: who?.copyWith(
+            objectPath: '$newObjectPath.who',
+          ) ??
+          this.who,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      communicationMethod: communicationMethod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.communicationMethod',
+                ),
+              )
+              .toList() ??
+          this.communicationMethod,
+      validationStatus: validationStatus?.copyWith(
+            objectPath: '$newObjectPath.validationStatus',
+          ) ??
+          this.validationStatus,
+      validationDate: validationDate?.copyWith(
+            objectPath: '$newObjectPath.validationDate',
+          ) ??
+          this.validationDate,
+      canPushUpdates: canPushUpdates?.copyWith(
+            objectPath: '$newObjectPath.canPushUpdates',
+          ) ??
+          this.canPushUpdates,
+      pushTypeAvailable: pushTypeAvailable
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.pushTypeAvailable',
+                ),
+              )
+              .toList() ??
+          this.pushTypeAvailable,
     );
   }
 }
@@ -901,21 +1045,62 @@ class VerificationResultAttestation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return VerificationResultAttestation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      who: who ?? this.who,
-      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
-      communicationMethod: communicationMethod ?? this.communicationMethod,
-      date: date ?? this.date,
-      sourceIdentityCertificate:
-          sourceIdentityCertificate ?? this.sourceIdentityCertificate,
-      proxyIdentityCertificate:
-          proxyIdentityCertificate ?? this.proxyIdentityCertificate,
-      proxySignature: proxySignature ?? this.proxySignature,
-      sourceSignature: sourceSignature ?? this.sourceSignature,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      who: who?.copyWith(
+            objectPath: '$newObjectPath.who',
+          ) ??
+          this.who,
+      onBehalfOf: onBehalfOf?.copyWith(
+            objectPath: '$newObjectPath.onBehalfOf',
+          ) ??
+          this.onBehalfOf,
+      communicationMethod: communicationMethod?.copyWith(
+            objectPath: '$newObjectPath.communicationMethod',
+          ) ??
+          this.communicationMethod,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      sourceIdentityCertificate: sourceIdentityCertificate?.copyWith(
+            objectPath: '$newObjectPath.sourceIdentityCertificate',
+          ) ??
+          this.sourceIdentityCertificate,
+      proxyIdentityCertificate: proxyIdentityCertificate?.copyWith(
+            objectPath: '$newObjectPath.proxyIdentityCertificate',
+          ) ??
+          this.proxyIdentityCertificate,
+      proxySignature: proxySignature?.copyWith(
+            objectPath: '$newObjectPath.proxySignature',
+          ) ??
+          this.proxySignature,
+      sourceSignature: sourceSignature?.copyWith(
+            objectPath: '$newObjectPath.sourceSignature',
+          ) ??
+          this.sourceSignature,
     );
   }
 }
@@ -1093,14 +1278,42 @@ class VerificationResultValidator extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return VerificationResultValidator(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      organization: organization ?? this.organization,
-      identityCertificate: identityCertificate ?? this.identityCertificate,
-      attestationSignature: attestationSignature ?? this.attestationSignature,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      organization: organization?.copyWith(
+            objectPath: '$newObjectPath.organization',
+          ) ??
+          this.organization,
+      identityCertificate: identityCertificate?.copyWith(
+            objectPath: '$newObjectPath.identityCertificate',
+          ) ??
+          this.identityCertificate,
+      attestationSignature: attestationSignature?.copyWith(
+            objectPath: '$newObjectPath.attestationSignature',
+          ) ??
+          this.attestationSignature,
     );
   }
 }

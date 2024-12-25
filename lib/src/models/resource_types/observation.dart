@@ -582,39 +582,189 @@ class Observation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Observation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      focus: focus ?? this.focus,
-      encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
-      issued: issued ?? this.issued,
-      performer: performer ?? this.performer,
-      valueX: valueX ?? this.valueX,
-      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
-      interpretation: interpretation ?? this.interpretation,
-      note: note ?? this.note,
-      bodySite: bodySite ?? this.bodySite,
-      method: method ?? this.method,
-      specimen: specimen ?? this.specimen,
-      device: device ?? this.device,
-      referenceRange: referenceRange ?? this.referenceRange,
-      hasMember: hasMember ?? this.hasMember,
-      derivedFrom: derivedFrom ?? this.derivedFrom,
-      component: component ?? this.component,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      focus: focus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.focus',
+                ),
+              )
+              .toList() ??
+          this.focus,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      effectiveX: effectiveX?.copyWith(
+            objectPath: '$newObjectPath.effectiveX',
+          ) as EffectiveXObservation? ??
+          this.effectiveX,
+      issued: issued?.copyWith(
+            objectPath: '$newObjectPath.issued',
+          ) ??
+          this.issued,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXObservation? ??
+          this.valueX,
+      dataAbsentReason: dataAbsentReason?.copyWith(
+            objectPath: '$newObjectPath.dataAbsentReason',
+          ) ??
+          this.dataAbsentReason,
+      interpretation: interpretation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interpretation',
+                ),
+              )
+              .toList() ??
+          this.interpretation,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      specimen: specimen?.copyWith(
+            objectPath: '$newObjectPath.specimen',
+          ) ??
+          this.specimen,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      referenceRange: referenceRange
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referenceRange',
+                ),
+              )
+              .toList() ??
+          this.referenceRange,
+      hasMember: hasMember
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.hasMember',
+                ),
+              )
+              .toList() ??
+          this.hasMember,
+      derivedFrom: derivedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFrom',
+                ),
+              )
+              .toList() ??
+          this.derivedFrom,
+      component: component
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.component',
+                ),
+              )
+              .toList() ??
+          this.component,
     );
   }
 }
@@ -851,17 +1001,58 @@ class ObservationReferenceRange extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ObservationReferenceRange(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      low: low ?? this.low,
-      high: high ?? this.high,
-      type: type ?? this.type,
-      appliesTo: appliesTo ?? this.appliesTo,
-      age: age ?? this.age,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      low: low?.copyWith(
+            objectPath: '$newObjectPath.low',
+          ) ??
+          this.low,
+      high: high?.copyWith(
+            objectPath: '$newObjectPath.high',
+          ) ??
+          this.high,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      appliesTo: appliesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.appliesTo',
+                ),
+              )
+              .toList() ??
+          this.appliesTo,
+      age: age?.copyWith(
+            objectPath: '$newObjectPath.age',
+          ) ??
+          this.age,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }
@@ -1092,16 +1283,58 @@ class ObservationComponent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ObservationComponent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
-      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
-      interpretation: interpretation ?? this.interpretation,
-      referenceRange: referenceRange ?? this.referenceRange,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXObservationComponent? ??
+          this.valueX,
+      dataAbsentReason: dataAbsentReason?.copyWith(
+            objectPath: '$newObjectPath.dataAbsentReason',
+          ) ??
+          this.dataAbsentReason,
+      interpretation: interpretation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interpretation',
+                ),
+              )
+              .toList() ??
+          this.interpretation,
+      referenceRange: referenceRange
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referenceRange',
+                ),
+              )
+              .toList() ??
+          this.referenceRange,
     );
   }
 }

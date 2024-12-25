@@ -428,31 +428,133 @@ class DocumentReference extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DocumentReference(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      masterIdentifier: masterIdentifier ?? this.masterIdentifier,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      docStatus: docStatus ?? this.docStatus,
-      type: type ?? this.type,
-      category: category ?? this.category,
-      subject: subject ?? this.subject,
-      date: date ?? this.date,
-      author: author ?? this.author,
-      authenticator: authenticator ?? this.authenticator,
-      custodian: custodian ?? this.custodian,
-      relatesTo: relatesTo ?? this.relatesTo,
-      description: description ?? this.description,
-      securityLabel: securityLabel ?? this.securityLabel,
-      content: content ?? this.content,
-      context: context ?? this.context,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      masterIdentifier: masterIdentifier?.copyWith(
+            objectPath: '$newObjectPath.masterIdentifier',
+          ) ??
+          this.masterIdentifier,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      docStatus: docStatus?.copyWith(
+            objectPath: '$newObjectPath.docStatus',
+          ) ??
+          this.docStatus,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      authenticator: authenticator?.copyWith(
+            objectPath: '$newObjectPath.authenticator',
+          ) ??
+          this.authenticator,
+      custodian: custodian?.copyWith(
+            objectPath: '$newObjectPath.custodian',
+          ) ??
+          this.custodian,
+      relatesTo: relatesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatesTo',
+                ),
+              )
+              .toList() ??
+          this.relatesTo,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      securityLabel: securityLabel
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabel',
+                ),
+              )
+              .toList() ??
+          this.securityLabel,
+      content: content
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.content',
+                ),
+              )
+              .toList() ??
+          this.content,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
     );
   }
 }
@@ -617,13 +719,38 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DocumentReferenceRelatesTo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      target: target ?? this.target,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      target: target?.copyWith(
+            objectPath: '$newObjectPath.target',
+          ) ??
+          this.target,
     );
   }
 }
@@ -791,13 +918,38 @@ class DocumentReferenceContent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DocumentReferenceContent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      attachment: attachment ?? this.attachment,
-      format: format ?? this.format,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      attachment: attachment?.copyWith(
+            objectPath: '$newObjectPath.attachment',
+          ) ??
+          this.attachment,
+      format: format?.copyWith(
+            objectPath: '$newObjectPath.format',
+          ) ??
+          this.format,
     );
   }
 }
@@ -1040,18 +1192,70 @@ class DocumentReferenceContext extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DocumentReferenceContext(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      encounter: encounter ?? this.encounter,
-      event: event ?? this.event,
-      period: period ?? this.period,
-      facilityType: facilityType ?? this.facilityType,
-      practiceSetting: practiceSetting ?? this.practiceSetting,
-      sourcePatientInfo: sourcePatientInfo ?? this.sourcePatientInfo,
-      related: related ?? this.related,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      encounter: encounter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.encounter',
+                ),
+              )
+              .toList() ??
+          this.encounter,
+      event: event
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.event',
+                ),
+              )
+              .toList() ??
+          this.event,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      facilityType: facilityType?.copyWith(
+            objectPath: '$newObjectPath.facilityType',
+          ) ??
+          this.facilityType,
+      practiceSetting: practiceSetting?.copyWith(
+            objectPath: '$newObjectPath.practiceSetting',
+          ) ??
+          this.practiceSetting,
+      sourcePatientInfo: sourcePatientInfo?.copyWith(
+            objectPath: '$newObjectPath.sourcePatientInfo',
+          ) ??
+          this.sourcePatientInfo,
+      related: related
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.related',
+                ),
+              )
+              .toList() ??
+          this.related,
     );
   }
 }

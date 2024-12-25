@@ -308,23 +308,97 @@ class Schedule extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Schedule(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      serviceCategory: serviceCategory ?? this.serviceCategory,
-      serviceType: serviceType ?? this.serviceType,
-      specialty: specialty ?? this.specialty,
-      actor: actor ?? this.actor,
-      planningHorizon: planningHorizon ?? this.planningHorizon,
-      comment: comment ?? this.comment,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      serviceCategory: serviceCategory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceCategory',
+                ),
+              )
+              .toList() ??
+          this.serviceCategory,
+      serviceType: serviceType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceType',
+                ),
+              )
+              .toList() ??
+          this.serviceType,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      actor: actor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.actor',
+                ),
+              )
+              .toList() ??
+          this.actor,
+      planningHorizon: planningHorizon?.copyWith(
+            objectPath: '$newObjectPath.planningHorizon',
+          ) ??
+          this.planningHorizon,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }

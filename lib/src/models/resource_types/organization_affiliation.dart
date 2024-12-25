@@ -368,28 +368,125 @@ class OrganizationAffiliation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return OrganizationAffiliation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      period: period ?? this.period,
-      organization: organization ?? this.organization,
-      participatingOrganization:
-          participatingOrganization ?? this.participatingOrganization,
-      network: network ?? this.network,
-      code: code ?? this.code,
-      specialty: specialty ?? this.specialty,
-      location: location ?? this.location,
-      healthcareService: healthcareService ?? this.healthcareService,
-      telecom: telecom ?? this.telecom,
-      endpoint: endpoint ?? this.endpoint,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      organization: organization?.copyWith(
+            objectPath: '$newObjectPath.organization',
+          ) ??
+          this.organization,
+      participatingOrganization: participatingOrganization?.copyWith(
+            objectPath: '$newObjectPath.participatingOrganization',
+          ) ??
+          this.participatingOrganization,
+      network: network
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.network',
+                ),
+              )
+              .toList() ??
+          this.network,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      healthcareService: healthcareService
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.healthcareService',
+                ),
+              )
+              .toList() ??
+          this.healthcareService,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
     );
   }
 }

@@ -415,31 +415,129 @@ class Invoice extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Invoice(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      cancelledReason: cancelledReason ?? this.cancelledReason,
-      type: type ?? this.type,
-      subject: subject ?? this.subject,
-      recipient: recipient ?? this.recipient,
-      date: date ?? this.date,
-      participant: participant ?? this.participant,
-      issuer: issuer ?? this.issuer,
-      account: account ?? this.account,
-      lineItem: lineItem ?? this.lineItem,
-      totalPriceComponent: totalPriceComponent ?? this.totalPriceComponent,
-      totalNet: totalNet ?? this.totalNet,
-      totalGross: totalGross ?? this.totalGross,
-      paymentTerms: paymentTerms ?? this.paymentTerms,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      cancelledReason: cancelledReason?.copyWith(
+            objectPath: '$newObjectPath.cancelledReason',
+          ) ??
+          this.cancelledReason,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      recipient: recipient?.copyWith(
+            objectPath: '$newObjectPath.recipient',
+          ) ??
+          this.recipient,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      participant: participant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participant',
+                ),
+              )
+              .toList() ??
+          this.participant,
+      issuer: issuer?.copyWith(
+            objectPath: '$newObjectPath.issuer',
+          ) ??
+          this.issuer,
+      account: account?.copyWith(
+            objectPath: '$newObjectPath.account',
+          ) ??
+          this.account,
+      lineItem: lineItem
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.lineItem',
+                ),
+              )
+              .toList() ??
+          this.lineItem,
+      totalPriceComponent: totalPriceComponent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.totalPriceComponent',
+                ),
+              )
+              .toList() ??
+          this.totalPriceComponent,
+      totalNet: totalNet?.copyWith(
+            objectPath: '$newObjectPath.totalNet',
+          ) ??
+          this.totalNet,
+      totalGross: totalGross?.copyWith(
+            objectPath: '$newObjectPath.totalGross',
+          ) ??
+          this.totalGross,
+      paymentTerms: paymentTerms?.copyWith(
+            objectPath: '$newObjectPath.paymentTerms',
+          ) ??
+          this.paymentTerms,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -606,13 +704,38 @@ class InvoiceParticipant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InvoiceParticipant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      role: role ?? this.role,
-      actor: actor ?? this.actor,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
     );
   }
 }
@@ -805,14 +928,46 @@ class InvoiceLineItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InvoiceLineItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      chargeItemX: chargeItemX ?? this.chargeItemX,
-      priceComponent: priceComponent ?? this.priceComponent,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      chargeItemX: chargeItemX?.copyWith(
+            objectPath: '$newObjectPath.chargeItemX',
+          ) as ChargeItemXInvoiceLineItem? ??
+          this.chargeItemX,
+      priceComponent: priceComponent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.priceComponent',
+                ),
+              )
+              .toList() ??
+          this.priceComponent,
     );
   }
 }
@@ -1009,15 +1164,46 @@ class InvoicePriceComponent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InvoicePriceComponent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      code: code ?? this.code,
-      factor: factor ?? this.factor,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }

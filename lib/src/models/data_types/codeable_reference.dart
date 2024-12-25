@@ -158,12 +158,30 @@ class CodeableReference extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return CodeableReference(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      concept: concept ?? this.concept,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      concept: concept?.copyWith(
+            objectPath: '$newObjectPath.concept',
+          ) ??
+          this.concept,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }

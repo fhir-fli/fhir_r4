@@ -407,30 +407,129 @@ class PackagedProductDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return PackagedProductDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      name: name ?? this.name,
-      type: type ?? this.type,
-      packageFor: packageFor ?? this.packageFor,
-      status: status ?? this.status,
-      statusDate: statusDate ?? this.statusDate,
-      containedItemQuantity:
-          containedItemQuantity ?? this.containedItemQuantity,
-      description: description ?? this.description,
-      legalStatusOfSupply: legalStatusOfSupply ?? this.legalStatusOfSupply,
-      marketingStatus: marketingStatus ?? this.marketingStatus,
-      characteristic: characteristic ?? this.characteristic,
-      copackagedIndicator: copackagedIndicator ?? this.copackagedIndicator,
-      manufacturer: manufacturer ?? this.manufacturer,
-      package: package ?? this.package,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      packageFor: packageFor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.packageFor',
+                ),
+              )
+              .toList() ??
+          this.packageFor,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      containedItemQuantity: containedItemQuantity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.containedItemQuantity',
+                ),
+              )
+              .toList() ??
+          this.containedItemQuantity,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      legalStatusOfSupply: legalStatusOfSupply
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.legalStatusOfSupply',
+                ),
+              )
+              .toList() ??
+          this.legalStatusOfSupply,
+      marketingStatus: marketingStatus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.marketingStatus',
+                ),
+              )
+              .toList() ??
+          this.marketingStatus,
+      characteristic: characteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.characteristic',
+                ),
+              )
+              .toList() ??
+          this.characteristic,
+      copackagedIndicator: copackagedIndicator?.copyWith(
+            objectPath: '$newObjectPath.copackagedIndicator',
+          ) ??
+          this.copackagedIndicator,
+      manufacturer: manufacturer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manufacturer',
+                ),
+              )
+              .toList() ??
+          this.manufacturer,
+      package: package?.copyWith(
+            objectPath: '$newObjectPath.package',
+          ) ??
+          this.package,
     );
   }
 }
@@ -598,13 +697,38 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PackagedProductDefinitionLegalStatusOfSupply(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      jurisdiction: jurisdiction?.copyWith(
+            objectPath: '$newObjectPath.jurisdiction',
+          ) ??
+          this.jurisdiction,
     );
   }
 }
@@ -897,21 +1021,102 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PackagedProductDefinitionPackage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      quantity: quantity ?? this.quantity,
-      material: material ?? this.material,
-      alternateMaterial: alternateMaterial ?? this.alternateMaterial,
-      shelfLifeStorage: shelfLifeStorage ?? this.shelfLifeStorage,
-      manufacturer: manufacturer ?? this.manufacturer,
-      property: property ?? this.property,
-      containedItem: containedItem ?? this.containedItem,
-      package: package ?? this.package,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      material: material
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.material',
+                ),
+              )
+              .toList() ??
+          this.material,
+      alternateMaterial: alternateMaterial
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.alternateMaterial',
+                ),
+              )
+              .toList() ??
+          this.alternateMaterial,
+      shelfLifeStorage: shelfLifeStorage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.shelfLifeStorage',
+                ),
+              )
+              .toList() ??
+          this.shelfLifeStorage,
+      manufacturer: manufacturer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manufacturer',
+                ),
+              )
+              .toList() ??
+          this.manufacturer,
+      property: property
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.property',
+                ),
+              )
+              .toList() ??
+          this.property,
+      containedItem: containedItem
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.containedItem',
+                ),
+              )
+              .toList() ??
+          this.containedItem,
+      package: package
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.package',
+                ),
+              )
+              .toList() ??
+          this.package,
     );
   }
 }
@@ -1111,15 +1316,46 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PackagedProductDefinitionShelfLifeStorage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      periodX: periodX ?? this.periodX,
-      specialPrecautionsForStorage:
-          specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      periodX: periodX?.copyWith(
+            objectPath: '$newObjectPath.periodX',
+          ) as PeriodXPackagedProductDefinitionShelfLifeStorage? ??
+          this.periodX,
+      specialPrecautionsForStorage: specialPrecautionsForStorage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialPrecautionsForStorage',
+                ),
+              )
+              .toList() ??
+          this.specialPrecautionsForStorage,
     );
   }
 }
@@ -1293,13 +1529,38 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PackagedProductDefinitionProperty(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXPackagedProductDefinitionProperty? ??
+          this.valueX,
     );
   }
 }
@@ -1470,13 +1731,38 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PackagedProductDefinitionContainedItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      item: item ?? this.item,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      item: item?.copyWith(
+            objectPath: '$newObjectPath.item',
+          ) ??
+          this.item,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }

@@ -365,27 +365,113 @@ class DocumentManifest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DocumentManifest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      masterIdentifier: masterIdentifier ?? this.masterIdentifier,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      subject: subject ?? this.subject,
-      created: created ?? this.created,
-      author: author ?? this.author,
-      recipient: recipient ?? this.recipient,
-      source: source ?? this.source,
-      description: description ?? this.description,
-      content: content ?? this.content,
-      related: related ?? this.related,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      masterIdentifier: masterIdentifier?.copyWith(
+            objectPath: '$newObjectPath.masterIdentifier',
+          ) ??
+          this.masterIdentifier,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      recipient: recipient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.recipient',
+                ),
+              )
+              .toList() ??
+          this.recipient,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      content: content
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.content',
+                ),
+              )
+              .toList() ??
+          this.content,
+      related: related
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.related',
+                ),
+              )
+              .toList() ??
+          this.related,
     );
   }
 }
@@ -551,13 +637,38 @@ class DocumentManifestRelated extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DocumentManifestRelated(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      ref: ref ?? this.ref,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      ref: ref?.copyWith(
+            objectPath: '$newObjectPath.ref',
+          ) ??
+          this.ref,
     );
   }
 }

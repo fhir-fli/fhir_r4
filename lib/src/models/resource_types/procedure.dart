@@ -619,44 +619,225 @@ class Procedure extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Procedure(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      performedX: performedX ?? this.performedX,
-      recorder: recorder ?? this.recorder,
-      asserter: asserter ?? this.asserter,
-      performer: performer ?? this.performer,
-      location: location ?? this.location,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      bodySite: bodySite ?? this.bodySite,
-      outcome: outcome ?? this.outcome,
-      report: report ?? this.report,
-      complication: complication ?? this.complication,
-      complicationDetail: complicationDetail ?? this.complicationDetail,
-      followUp: followUp ?? this.followUp,
-      note: note ?? this.note,
-      focalDevice: focalDevice ?? this.focalDevice,
-      usedReference: usedReference ?? this.usedReference,
-      usedCode: usedCode ?? this.usedCode,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      performedX: performedX?.copyWith(
+            objectPath: '$newObjectPath.performedX',
+          ) as PerformedXProcedure? ??
+          this.performedX,
+      recorder: recorder?.copyWith(
+            objectPath: '$newObjectPath.recorder',
+          ) ??
+          this.recorder,
+      asserter: asserter?.copyWith(
+            objectPath: '$newObjectPath.asserter',
+          ) ??
+          this.asserter,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      bodySite: bodySite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.bodySite',
+                ),
+              )
+              .toList() ??
+          this.bodySite,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      report: report
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.report',
+                ),
+              )
+              .toList() ??
+          this.report,
+      complication: complication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.complication',
+                ),
+              )
+              .toList() ??
+          this.complication,
+      complicationDetail: complicationDetail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.complicationDetail',
+                ),
+              )
+              .toList() ??
+          this.complicationDetail,
+      followUp: followUp
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.followUp',
+                ),
+              )
+              .toList() ??
+          this.followUp,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      focalDevice: focalDevice
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.focalDevice',
+                ),
+              )
+              .toList() ??
+          this.focalDevice,
+      usedReference: usedReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.usedReference',
+                ),
+              )
+              .toList() ??
+          this.usedReference,
+      usedCode: usedCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.usedCode',
+                ),
+              )
+              .toList() ??
+          this.usedCode,
     );
   }
 }
@@ -834,14 +1015,42 @@ class ProcedurePerformer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ProcedurePerformer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      function_: function_ ?? this.function_,
-      actor: actor ?? this.actor,
-      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      function_: function_?.copyWith(
+            objectPath: '$newObjectPath.function',
+          ) ??
+          this.function_,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
+      onBehalfOf: onBehalfOf?.copyWith(
+            objectPath: '$newObjectPath.onBehalfOf',
+          ) ??
+          this.onBehalfOf,
     );
   }
 }
@@ -1007,13 +1216,38 @@ class ProcedureFocalDevice extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ProcedureFocalDevice(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      action: action ?? this.action,
-      manipulated: manipulated ?? this.manipulated,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      action: action?.copyWith(
+            objectPath: '$newObjectPath.action',
+          ) ??
+          this.action,
+      manipulated: manipulated?.copyWith(
+            objectPath: '$newObjectPath.manipulated',
+          ) ??
+          this.manipulated,
     );
   }
 }

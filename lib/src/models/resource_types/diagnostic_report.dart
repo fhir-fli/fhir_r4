@@ -472,33 +472,161 @@ class DiagnosticReport extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DiagnosticReport(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      status: status ?? this.status,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
-      issued: issued ?? this.issued,
-      performer: performer ?? this.performer,
-      resultsInterpreter: resultsInterpreter ?? this.resultsInterpreter,
-      specimen: specimen ?? this.specimen,
-      result: result ?? this.result,
-      imagingStudy: imagingStudy ?? this.imagingStudy,
-      media: media ?? this.media,
-      conclusion: conclusion ?? this.conclusion,
-      conclusionCode: conclusionCode ?? this.conclusionCode,
-      presentedForm: presentedForm ?? this.presentedForm,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      effectiveX: effectiveX?.copyWith(
+            objectPath: '$newObjectPath.effectiveX',
+          ) as EffectiveXDiagnosticReport? ??
+          this.effectiveX,
+      issued: issued?.copyWith(
+            objectPath: '$newObjectPath.issued',
+          ) ??
+          this.issued,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      resultsInterpreter: resultsInterpreter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resultsInterpreter',
+                ),
+              )
+              .toList() ??
+          this.resultsInterpreter,
+      specimen: specimen
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specimen',
+                ),
+              )
+              .toList() ??
+          this.specimen,
+      result: result
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.result',
+                ),
+              )
+              .toList() ??
+          this.result,
+      imagingStudy: imagingStudy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.imagingStudy',
+                ),
+              )
+              .toList() ??
+          this.imagingStudy,
+      media: media
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.media',
+                ),
+              )
+              .toList() ??
+          this.media,
+      conclusion: conclusion?.copyWith(
+            objectPath: '$newObjectPath.conclusion',
+          ) ??
+          this.conclusion,
+      conclusionCode: conclusionCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.conclusionCode',
+                ),
+              )
+              .toList() ??
+          this.conclusionCode,
+      presentedForm: presentedForm
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.presentedForm',
+                ),
+              )
+              .toList() ??
+          this.presentedForm,
     );
   }
 }
@@ -666,13 +794,38 @@ class DiagnosticReportMedia extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DiagnosticReportMedia(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      comment: comment ?? this.comment,
-      link: link ?? this.link,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
+      link: link?.copyWith(
+            objectPath: '$newObjectPath.link',
+          ) ??
+          this.link,
     );
   }
 }

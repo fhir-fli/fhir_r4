@@ -628,44 +628,217 @@ class Citation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Citation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      author: author ?? this.author,
-      editor: editor ?? this.editor,
-      reviewer: reviewer ?? this.reviewer,
-      endorser: endorser ?? this.endorser,
-      summary: summary ?? this.summary,
-      classification: classification ?? this.classification,
-      note: note ?? this.note,
-      currentState: currentState ?? this.currentState,
-      statusDate: statusDate ?? this.statusDate,
-      relatesTo: relatesTo ?? this.relatesTo,
-      citedArtifact: citedArtifact ?? this.citedArtifact,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      author: author
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.author',
+                ),
+              )
+              .toList() ??
+          this.author,
+      editor: editor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.editor',
+                ),
+              )
+              .toList() ??
+          this.editor,
+      reviewer: reviewer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reviewer',
+                ),
+              )
+              .toList() ??
+          this.reviewer,
+      endorser: endorser
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endorser',
+                ),
+              )
+              .toList() ??
+          this.endorser,
+      summary: summary
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.summary',
+                ),
+              )
+              .toList() ??
+          this.summary,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      currentState: currentState
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.currentState',
+                ),
+              )
+              .toList() ??
+          this.currentState,
+      statusDate: statusDate
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.statusDate',
+                ),
+              )
+              .toList() ??
+          this.statusDate,
+      relatesTo: relatesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatesTo',
+                ),
+              )
+              .toList() ??
+          this.relatesTo,
+      citedArtifact: citedArtifact?.copyWith(
+            objectPath: '$newObjectPath.citedArtifact',
+          ) ??
+          this.citedArtifact,
     );
   }
 }
@@ -829,13 +1002,38 @@ class CitationSummary extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationSummary(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      style: style ?? this.style,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      style: style?.copyWith(
+            objectPath: '$newObjectPath.style',
+          ) ??
+          this.style,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }
@@ -1001,13 +1199,42 @@ class CitationClassification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationClassification(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      classifier: classifier ?? this.classifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      classifier: classifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classifier',
+                ),
+              )
+              .toList() ??
+          this.classifier,
     );
   }
 }
@@ -1184,14 +1411,42 @@ class CitationStatusDate extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationStatusDate(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      activity: activity ?? this.activity,
-      actual: actual ?? this.actual,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      activity: activity?.copyWith(
+            objectPath: '$newObjectPath.activity',
+          ) ??
+          this.activity,
+      actual: actual?.copyWith(
+            objectPath: '$newObjectPath.actual',
+          ) ??
+          this.actual,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -1376,14 +1631,46 @@ class CitationRelatesTo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationRelatesTo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relationshipType: relationshipType ?? this.relationshipType,
-      targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetX: targetX ?? this.targetX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relationshipType: relationshipType?.copyWith(
+            objectPath: '$newObjectPath.relationshipType',
+          ) ??
+          this.relationshipType,
+      targetClassifier: targetClassifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetClassifier',
+                ),
+              )
+              .toList() ??
+          this.targetClassifier,
+      targetX: targetX?.copyWith(
+            objectPath: '$newObjectPath.targetX',
+          ) as TargetXCitationRelatesTo? ??
+          this.targetX,
     );
   }
 }
@@ -1743,26 +2030,134 @@ class CitationCitedArtifact extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationCitedArtifact(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      relatedIdentifier: relatedIdentifier ?? this.relatedIdentifier,
-      dateAccessed: dateAccessed ?? this.dateAccessed,
-      version: version ?? this.version,
-      currentState: currentState ?? this.currentState,
-      statusDate: statusDate ?? this.statusDate,
-      title: title ?? this.title,
-      abstract_: abstract_ ?? this.abstract_,
-      part_: part_ ?? this.part_,
-      relatesTo: relatesTo ?? this.relatesTo,
-      publicationForm: publicationForm ?? this.publicationForm,
-      webLocation: webLocation ?? this.webLocation,
-      classification: classification ?? this.classification,
-      contributorship: contributorship ?? this.contributorship,
-      note: note ?? this.note,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      relatedIdentifier: relatedIdentifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedIdentifier',
+                ),
+              )
+              .toList() ??
+          this.relatedIdentifier,
+      dateAccessed: dateAccessed?.copyWith(
+            objectPath: '$newObjectPath.dateAccessed',
+          ) ??
+          this.dateAccessed,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      currentState: currentState
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.currentState',
+                ),
+              )
+              .toList() ??
+          this.currentState,
+      statusDate: statusDate
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.statusDate',
+                ),
+              )
+              .toList() ??
+          this.statusDate,
+      title: title
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.title',
+                ),
+              )
+              .toList() ??
+          this.title,
+      abstract_: abstract_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.abstract',
+                ),
+              )
+              .toList() ??
+          this.abstract_,
+      part_: part_?.copyWith(
+            objectPath: '$newObjectPath.part',
+          ) ??
+          this.part_,
+      relatesTo: relatesTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatesTo',
+                ),
+              )
+              .toList() ??
+          this.relatesTo,
+      publicationForm: publicationForm
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.publicationForm',
+                ),
+              )
+              .toList() ??
+          this.publicationForm,
+      webLocation: webLocation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.webLocation',
+                ),
+              )
+              .toList() ??
+          this.webLocation,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
+      contributorship: contributorship?.copyWith(
+            objectPath: '$newObjectPath.contributorship',
+          ) ??
+          this.contributorship,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -1926,13 +2321,38 @@ class CitationVersion extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationVersion(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      value: value ?? this.value,
-      baseCitation: baseCitation ?? this.baseCitation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      baseCitation: baseCitation?.copyWith(
+            objectPath: '$newObjectPath.baseCitation',
+          ) ??
+          this.baseCitation,
     );
   }
 }
@@ -2109,14 +2529,42 @@ class CitationStatusDate1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationStatusDate1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      activity: activity ?? this.activity,
-      actual: actual ?? this.actual,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      activity: activity?.copyWith(
+            objectPath: '$newObjectPath.activity',
+          ) ??
+          this.activity,
+      actual: actual?.copyWith(
+            objectPath: '$newObjectPath.actual',
+          ) ??
+          this.actual,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -2295,14 +2743,46 @@ class CitationTitle extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationTitle(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }
@@ -2492,15 +2972,46 @@ class CitationAbstract extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationAbstract(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      language: language ?? this.language,
-      text: text ?? this.text,
-      copyright: copyright ?? this.copyright,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
     );
   }
 }
@@ -2677,14 +3188,42 @@ class CitationPart extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationPart(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      value: value ?? this.value,
-      baseCitation: baseCitation ?? this.baseCitation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      baseCitation: baseCitation?.copyWith(
+            objectPath: '$newObjectPath.baseCitation',
+          ) ??
+          this.baseCitation,
     );
   }
 }
@@ -2869,14 +3408,46 @@ class CitationRelatesTo1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationRelatesTo1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relationshipType: relationshipType ?? this.relationshipType,
-      targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetX: targetX ?? this.targetX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relationshipType: relationshipType?.copyWith(
+            objectPath: '$newObjectPath.relationshipType',
+          ) ??
+          this.relationshipType,
+      targetClassifier: targetClassifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.targetClassifier',
+                ),
+              )
+              .toList() ??
+          this.targetClassifier,
+      targetX: targetX?.copyWith(
+            objectPath: '$newObjectPath.targetX',
+          ) as TargetXCitationRelatesTo1? ??
+          this.targetX,
     );
   }
 }
@@ -3162,22 +3733,78 @@ class CitationPublicationForm extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationPublicationForm(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      publishedIn: publishedIn ?? this.publishedIn,
-      periodicRelease: periodicRelease ?? this.periodicRelease,
-      articleDate: articleDate ?? this.articleDate,
-      lastRevisionDate: lastRevisionDate ?? this.lastRevisionDate,
-      language: language ?? this.language,
-      accessionNumber: accessionNumber ?? this.accessionNumber,
-      pageString: pageString ?? this.pageString,
-      firstPage: firstPage ?? this.firstPage,
-      lastPage: lastPage ?? this.lastPage,
-      pageCount: pageCount ?? this.pageCount,
-      copyright: copyright ?? this.copyright,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      publishedIn: publishedIn?.copyWith(
+            objectPath: '$newObjectPath.publishedIn',
+          ) ??
+          this.publishedIn,
+      periodicRelease: periodicRelease?.copyWith(
+            objectPath: '$newObjectPath.periodicRelease',
+          ) ??
+          this.periodicRelease,
+      articleDate: articleDate?.copyWith(
+            objectPath: '$newObjectPath.articleDate',
+          ) ??
+          this.articleDate,
+      lastRevisionDate: lastRevisionDate?.copyWith(
+            objectPath: '$newObjectPath.lastRevisionDate',
+          ) ??
+          this.lastRevisionDate,
+      language: language
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.language',
+                ),
+              )
+              .toList() ??
+          this.language,
+      accessionNumber: accessionNumber?.copyWith(
+            objectPath: '$newObjectPath.accessionNumber',
+          ) ??
+          this.accessionNumber,
+      pageString: pageString?.copyWith(
+            objectPath: '$newObjectPath.pageString',
+          ) ??
+          this.pageString,
+      firstPage: firstPage?.copyWith(
+            objectPath: '$newObjectPath.firstPage',
+          ) ??
+          this.firstPage,
+      lastPage: lastPage?.copyWith(
+            objectPath: '$newObjectPath.lastPage',
+          ) ??
+          this.lastPage,
+      pageCount: pageCount?.copyWith(
+            objectPath: '$newObjectPath.pageCount',
+          ) ??
+          this.pageCount,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
     );
   }
 }
@@ -3383,16 +4010,54 @@ class CitationPublishedIn extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationPublishedIn(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      identifier: identifier ?? this.identifier,
-      title: title ?? this.title,
-      publisher: publisher ?? this.publisher,
-      publisherLocation: publisherLocation ?? this.publisherLocation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      publisherLocation: publisherLocation?.copyWith(
+            objectPath: '$newObjectPath.publisherLocation',
+          ) ??
+          this.publisherLocation,
     );
   }
 }
@@ -3583,15 +4248,46 @@ class CitationPeriodicRelease extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationPeriodicRelease(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      citedMedium: citedMedium ?? this.citedMedium,
-      volume: volume ?? this.volume,
-      issue: issue ?? this.issue,
-      dateOfPublication: dateOfPublication ?? this.dateOfPublication,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      citedMedium: citedMedium?.copyWith(
+            objectPath: '$newObjectPath.citedMedium',
+          ) ??
+          this.citedMedium,
+      volume: volume?.copyWith(
+            objectPath: '$newObjectPath.volume',
+          ) ??
+          this.volume,
+      issue: issue?.copyWith(
+            objectPath: '$newObjectPath.issue',
+          ) ??
+          this.issue,
+      dateOfPublication: dateOfPublication?.copyWith(
+            objectPath: '$newObjectPath.dateOfPublication',
+          ) ??
+          this.dateOfPublication,
     );
   }
 }
@@ -3810,17 +4506,54 @@ class CitationDateOfPublication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationDateOfPublication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      date: date ?? this.date,
-      year: year ?? this.year,
-      month: month ?? this.month,
-      day: day ?? this.day,
-      season: season ?? this.season,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      year: year?.copyWith(
+            objectPath: '$newObjectPath.year',
+          ) ??
+          this.year,
+      month: month?.copyWith(
+            objectPath: '$newObjectPath.month',
+          ) ??
+          this.month,
+      day: day?.copyWith(
+            objectPath: '$newObjectPath.day',
+          ) ??
+          this.day,
+      season: season?.copyWith(
+            objectPath: '$newObjectPath.season',
+          ) ??
+          this.season,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }
@@ -3984,13 +4717,38 @@ class CitationWebLocation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationWebLocation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      url: url ?? this.url,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
     );
   }
 }
@@ -4169,14 +4927,46 @@ class CitationClassification1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationClassification1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      classifier: classifier ?? this.classifier,
-      whoClassified: whoClassified ?? this.whoClassified,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      classifier: classifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classifier',
+                ),
+              )
+              .toList() ??
+          this.classifier,
+      whoClassified: whoClassified?.copyWith(
+            objectPath: '$newObjectPath.whoClassified',
+          ) ??
+          this.whoClassified,
     );
   }
 }
@@ -4380,16 +5170,50 @@ class CitationWhoClassified extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationWhoClassified(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      person: person ?? this.person,
-      organization: organization ?? this.organization,
-      publisher: publisher ?? this.publisher,
-      classifierCopyright: classifierCopyright ?? this.classifierCopyright,
-      freeToShare: freeToShare ?? this.freeToShare,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      person: person?.copyWith(
+            objectPath: '$newObjectPath.person',
+          ) ??
+          this.person,
+      organization: organization?.copyWith(
+            objectPath: '$newObjectPath.organization',
+          ) ??
+          this.organization,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      classifierCopyright: classifierCopyright?.copyWith(
+            objectPath: '$newObjectPath.classifierCopyright',
+          ) ??
+          this.classifierCopyright,
+      freeToShare: freeToShare?.copyWith(
+            objectPath: '$newObjectPath.freeToShare',
+          ) ??
+          this.freeToShare,
     );
   }
 }
@@ -4572,14 +5396,50 @@ class CitationContributorship extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationContributorship(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      complete: complete ?? this.complete,
-      entry: entry ?? this.entry,
-      summary: summary ?? this.summary,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      complete: complete?.copyWith(
+            objectPath: '$newObjectPath.complete',
+          ) ??
+          this.complete,
+      entry: entry
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entry',
+                ),
+              )
+              .toList() ??
+          this.entry,
+      summary: summary
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.summary',
+                ),
+              )
+              .toList() ??
+          this.summary,
     );
   }
 }
@@ -4887,23 +5747,102 @@ class CitationEntry extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationEntry(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      initials: initials ?? this.initials,
-      collectiveName: collectiveName ?? this.collectiveName,
-      identifier: identifier ?? this.identifier,
-      affiliationInfo: affiliationInfo ?? this.affiliationInfo,
-      address: address ?? this.address,
-      telecom: telecom ?? this.telecom,
-      contributionType: contributionType ?? this.contributionType,
-      role: role ?? this.role,
-      contributionInstance: contributionInstance ?? this.contributionInstance,
-      correspondingContact: correspondingContact ?? this.correspondingContact,
-      listOrder: listOrder ?? this.listOrder,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      initials: initials?.copyWith(
+            objectPath: '$newObjectPath.initials',
+          ) ??
+          this.initials,
+      collectiveName: collectiveName?.copyWith(
+            objectPath: '$newObjectPath.collectiveName',
+          ) ??
+          this.collectiveName,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      affiliationInfo: affiliationInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.affiliationInfo',
+                ),
+              )
+              .toList() ??
+          this.affiliationInfo,
+      address: address
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.address',
+                ),
+              )
+              .toList() ??
+          this.address,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      contributionType: contributionType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contributionType',
+                ),
+              )
+              .toList() ??
+          this.contributionType,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      contributionInstance: contributionInstance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contributionInstance',
+                ),
+              )
+              .toList() ??
+          this.contributionInstance,
+      correspondingContact: correspondingContact?.copyWith(
+            objectPath: '$newObjectPath.correspondingContact',
+          ) ??
+          this.correspondingContact,
+      listOrder: listOrder?.copyWith(
+            objectPath: '$newObjectPath.listOrder',
+          ) ??
+          this.listOrder,
     );
   }
 }
@@ -5084,14 +6023,46 @@ class CitationAffiliationInfo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationAffiliationInfo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      affiliation: affiliation ?? this.affiliation,
-      role: role ?? this.role,
-      identifier: identifier ?? this.identifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      affiliation: affiliation?.copyWith(
+            objectPath: '$newObjectPath.affiliation',
+          ) ??
+          this.affiliation,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
     );
   }
 }
@@ -5257,13 +6228,38 @@ class CitationContributionInstance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationContributionInstance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      time: time ?? this.time,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      time: time?.copyWith(
+            objectPath: '$newObjectPath.time',
+          ) ??
+          this.time,
     );
   }
 }
@@ -5456,15 +6452,46 @@ class CitationSummary1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CitationSummary1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      style: style ?? this.style,
-      source: source ?? this.source,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      style: style?.copyWith(
+            objectPath: '$newObjectPath.style',
+          ) ??
+          this.style,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }

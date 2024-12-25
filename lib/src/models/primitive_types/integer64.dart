@@ -191,6 +191,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirInteger64(
       newValue ?? value,
@@ -204,6 +205,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

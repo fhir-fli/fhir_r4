@@ -189,12 +189,30 @@ class Range extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Range(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      low: low ?? this.low,
-      high: high ?? this.high,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      low: low?.copyWith(
+            objectPath: '$newObjectPath.low',
+          ) ??
+          this.low,
+      high: high?.copyWith(
+            objectPath: '$newObjectPath.high',
+          ) ??
+          this.high,
     );
   }
 }

@@ -272,18 +272,74 @@ class DataRequirement extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return DataRequirement(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      profile: profile ?? this.profile,
-      subjectX: subjectX ?? this.subjectX,
-      mustSupport: mustSupport ?? this.mustSupport,
-      codeFilter: codeFilter ?? this.codeFilter,
-      dateFilter: dateFilter ?? this.dateFilter,
-      limit: limit ?? this.limit,
-      sort: sort ?? this.sort,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      profile: profile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.profile',
+                ),
+              )
+              .toList() ??
+          this.profile,
+      subjectX: subjectX?.copyWith(
+            objectPath: '$newObjectPath.subjectX',
+          ) as SubjectXDataRequirement? ??
+          this.subjectX,
+      mustSupport: mustSupport
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.mustSupport',
+                ),
+              )
+              .toList() ??
+          this.mustSupport,
+      codeFilter: codeFilter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.codeFilter',
+                ),
+              )
+              .toList() ??
+          this.codeFilter,
+      dateFilter: dateFilter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dateFilter',
+                ),
+              )
+              .toList() ??
+          this.dateFilter,
+      limit: limit?.copyWith(
+            objectPath: '$newObjectPath.limit',
+          ) ??
+          this.limit,
+      sort: sort
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.sort',
+                ),
+              )
+              .toList() ??
+          this.sort,
     );
   }
 }
@@ -483,14 +539,42 @@ class DataRequirementCodeFilter extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return DataRequirementCodeFilter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      path: path ?? this.path,
-      searchParam: searchParam ?? this.searchParam,
-      valueSet: valueSet ?? this.valueSet,
-      code: code ?? this.code,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      searchParam: searchParam?.copyWith(
+            objectPath: '$newObjectPath.searchParam',
+          ) ??
+          this.searchParam,
+      valueSet: valueSet?.copyWith(
+            objectPath: '$newObjectPath.valueSet',
+          ) ??
+          this.valueSet,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
     );
   }
 }
@@ -681,13 +765,34 @@ class DataRequirementDateFilter extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return DataRequirementDateFilter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      path: path ?? this.path,
-      searchParam: searchParam ?? this.searchParam,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      searchParam: searchParam?.copyWith(
+            objectPath: '$newObjectPath.searchParam',
+          ) ??
+          this.searchParam,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXDataRequirementDateFilter? ??
+          this.valueX,
     );
   }
 }
@@ -843,12 +948,30 @@ class DataRequirementSort extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return DataRequirementSort(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      path: path ?? this.path,
-      direction: direction ?? this.direction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      path: path?.copyWith(
+            objectPath: '$newObjectPath.path',
+          ) ??
+          this.path,
+      direction: direction?.copyWith(
+            objectPath: '$newObjectPath.direction',
+          ) ??
+          this.direction,
     );
   }
 }

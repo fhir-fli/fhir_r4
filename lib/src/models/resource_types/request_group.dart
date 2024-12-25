@@ -448,34 +448,153 @@ class RequestGroup extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return RequestGroup(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      replaces: replaces ?? this.replaces,
-      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
-      status: status ?? this.status,
-      intent: intent ?? this.intent,
-      priority: priority ?? this.priority,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      authoredOn: authoredOn ?? this.authoredOn,
-      author: author ?? this.author,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
-      action: action ?? this.action,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      groupIdentifier: groupIdentifier?.copyWith(
+            objectPath: '$newObjectPath.groupIdentifier',
+          ) ??
+          this.groupIdentifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
     );
   }
 }
@@ -894,30 +1013,130 @@ class RequestGroupAction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RequestGroupAction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      prefix: prefix ?? this.prefix,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      textEquivalent: textEquivalent ?? this.textEquivalent,
-      priority: priority ?? this.priority,
-      code: code ?? this.code,
-      documentation: documentation ?? this.documentation,
-      condition: condition ?? this.condition,
-      relatedAction: relatedAction ?? this.relatedAction,
-      timingX: timingX ?? this.timingX,
-      participant: participant ?? this.participant,
-      type: type ?? this.type,
-      groupingBehavior: groupingBehavior ?? this.groupingBehavior,
-      selectionBehavior: selectionBehavior ?? this.selectionBehavior,
-      requiredBehavior: requiredBehavior ?? this.requiredBehavior,
-      precheckBehavior: precheckBehavior ?? this.precheckBehavior,
-      cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
-      resource: resource ?? this.resource,
-      action: action ?? this.action,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      prefix: prefix?.copyWith(
+            objectPath: '$newObjectPath.prefix',
+          ) ??
+          this.prefix,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      textEquivalent: textEquivalent?.copyWith(
+            objectPath: '$newObjectPath.textEquivalent',
+          ) ??
+          this.textEquivalent,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      documentation: documentation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.documentation',
+                ),
+              )
+              .toList() ??
+          this.documentation,
+      condition: condition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.condition',
+                ),
+              )
+              .toList() ??
+          this.condition,
+      relatedAction: relatedAction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedAction',
+                ),
+              )
+              .toList() ??
+          this.relatedAction,
+      timingX: timingX?.copyWith(
+            objectPath: '$newObjectPath.timingX',
+          ) as TimingXRequestGroupAction? ??
+          this.timingX,
+      participant: participant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participant',
+                ),
+              )
+              .toList() ??
+          this.participant,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      groupingBehavior: groupingBehavior?.copyWith(
+            objectPath: '$newObjectPath.groupingBehavior',
+          ) ??
+          this.groupingBehavior,
+      selectionBehavior: selectionBehavior?.copyWith(
+            objectPath: '$newObjectPath.selectionBehavior',
+          ) ??
+          this.selectionBehavior,
+      requiredBehavior: requiredBehavior?.copyWith(
+            objectPath: '$newObjectPath.requiredBehavior',
+          ) ??
+          this.requiredBehavior,
+      precheckBehavior: precheckBehavior?.copyWith(
+            objectPath: '$newObjectPath.precheckBehavior',
+          ) ??
+          this.precheckBehavior,
+      cardinalityBehavior: cardinalityBehavior?.copyWith(
+            objectPath: '$newObjectPath.cardinalityBehavior',
+          ) ??
+          this.cardinalityBehavior,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
     );
   }
 }
@@ -1083,13 +1302,38 @@ class RequestGroupCondition extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RequestGroupCondition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      kind: kind ?? this.kind,
-      expression: expression ?? this.expression,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      kind: kind?.copyWith(
+            objectPath: '$newObjectPath.kind',
+          ) ??
+          this.kind,
+      expression: expression?.copyWith(
+            objectPath: '$newObjectPath.expression',
+          ) ??
+          this.expression,
     );
   }
 }
@@ -1274,14 +1518,42 @@ class RequestGroupRelatedAction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return RequestGroupRelatedAction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      actionId: actionId ?? this.actionId,
-      relationship: relationship ?? this.relationship,
-      offsetX: offsetX ?? this.offsetX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      actionId: actionId?.copyWith(
+            objectPath: '$newObjectPath.actionId',
+          ) ??
+          this.actionId,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      offsetX: offsetX?.copyWith(
+            objectPath: '$newObjectPath.offsetX',
+          ) as OffsetXRequestGroupRelatedAction? ??
+          this.offsetX,
     );
   }
 }

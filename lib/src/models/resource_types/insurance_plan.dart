@@ -393,29 +393,137 @@ class InsurancePlan extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return InsurancePlan(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      name: name ?? this.name,
-      alias: alias ?? this.alias,
-      period: period ?? this.period,
-      ownedBy: ownedBy ?? this.ownedBy,
-      administeredBy: administeredBy ?? this.administeredBy,
-      coverageArea: coverageArea ?? this.coverageArea,
-      contact: contact ?? this.contact,
-      endpoint: endpoint ?? this.endpoint,
-      network: network ?? this.network,
-      coverage: coverage ?? this.coverage,
-      plan: plan ?? this.plan,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      alias: alias
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.alias',
+                ),
+              )
+              .toList() ??
+          this.alias,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      ownedBy: ownedBy?.copyWith(
+            objectPath: '$newObjectPath.ownedBy',
+          ) ??
+          this.ownedBy,
+      administeredBy: administeredBy?.copyWith(
+            objectPath: '$newObjectPath.administeredBy',
+          ) ??
+          this.administeredBy,
+      coverageArea: coverageArea
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coverageArea',
+                ),
+              )
+              .toList() ??
+          this.coverageArea,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
+      network: network
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.network',
+                ),
+              )
+              .toList() ??
+          this.network,
+      coverage: coverage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coverage',
+                ),
+              )
+              .toList() ??
+          this.coverage,
+      plan: plan
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.plan',
+                ),
+              )
+              .toList() ??
+          this.plan,
     );
   }
 }
@@ -608,15 +716,50 @@ class InsurancePlanContact extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanContact(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      purpose: purpose ?? this.purpose,
-      name: name ?? this.name,
-      telecom: telecom ?? this.telecom,
-      address: address ?? this.address,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
     );
   }
 }
@@ -798,14 +941,50 @@ class InsurancePlanCoverage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanCoverage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      network: network ?? this.network,
-      benefit: benefit ?? this.benefit,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      network: network
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.network',
+                ),
+              )
+              .toList() ??
+          this.network,
+      benefit: benefit
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.benefit',
+                ),
+              )
+              .toList() ??
+          this.benefit,
     );
   }
 }
@@ -984,14 +1163,46 @@ class InsurancePlanBenefit extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanBenefit(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      requirement: requirement ?? this.requirement,
-      limit: limit ?? this.limit,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      requirement: requirement?.copyWith(
+            objectPath: '$newObjectPath.requirement',
+          ) ??
+          this.requirement,
+      limit: limit
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.limit',
+                ),
+              )
+              .toList() ??
+          this.limit,
     );
   }
 }
@@ -1156,13 +1367,38 @@ class InsurancePlanLimit extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanLimit(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      value: value ?? this.value,
-      code: code ?? this.code,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
     );
   }
 }
@@ -1391,17 +1627,74 @@ class InsurancePlanPlan extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanPlan(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      coverageArea: coverageArea ?? this.coverageArea,
-      network: network ?? this.network,
-      generalCost: generalCost ?? this.generalCost,
-      specificCost: specificCost ?? this.specificCost,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      coverageArea: coverageArea
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coverageArea',
+                ),
+              )
+              .toList() ??
+          this.coverageArea,
+      network: network
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.network',
+                ),
+              )
+              .toList() ??
+          this.network,
+      generalCost: generalCost
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.generalCost',
+                ),
+              )
+              .toList() ??
+          this.generalCost,
+      specificCost: specificCost
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specificCost',
+                ),
+              )
+              .toList() ??
+          this.specificCost,
     );
   }
 }
@@ -1592,15 +1885,46 @@ class InsurancePlanGeneralCost extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanGeneralCost(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      groupSize: groupSize ?? this.groupSize,
-      cost: cost ?? this.cost,
-      comment: comment ?? this.comment,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      groupSize: groupSize?.copyWith(
+            objectPath: '$newObjectPath.groupSize',
+          ) ??
+          this.groupSize,
+      cost: cost?.copyWith(
+            objectPath: '$newObjectPath.cost',
+          ) ??
+          this.cost,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }
@@ -1767,13 +2091,42 @@ class InsurancePlanSpecificCost extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanSpecificCost(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      benefit: benefit ?? this.benefit,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      benefit: benefit
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.benefit',
+                ),
+              )
+              .toList() ??
+          this.benefit,
     );
   }
 }
@@ -1940,13 +2293,42 @@ class InsurancePlanBenefit1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanBenefit1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      cost: cost ?? this.cost,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      cost: cost
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.cost',
+                ),
+              )
+              .toList() ??
+          this.cost,
     );
   }
 }
@@ -2142,15 +2524,50 @@ class InsurancePlanCost extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return InsurancePlanCost(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      applicability: applicability ?? this.applicability,
-      qualifiers: qualifiers ?? this.qualifiers,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      applicability: applicability?.copyWith(
+            objectPath: '$newObjectPath.applicability',
+          ) ??
+          this.applicability,
+      qualifiers: qualifiers
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.qualifiers',
+                ),
+              )
+              .toList() ??
+          this.qualifiers,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }

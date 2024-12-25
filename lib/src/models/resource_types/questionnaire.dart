@@ -460,37 +460,165 @@ class Questionnaire extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Questionnaire(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      derivedFrom: derivedFrom ?? this.derivedFrom,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      subjectType: subjectType ?? this.subjectType,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      code: code ?? this.code,
-      item: item ?? this.item,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      derivedFrom: derivedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFrom',
+                ),
+              )
+              .toList() ??
+          this.derivedFrom,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      subjectType: subjectType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subjectType',
+                ),
+              )
+              .toList() ??
+          this.subjectType,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      item: item
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.item',
+                ),
+              )
+              .toList() ??
+          this.item,
     );
   }
 }
@@ -881,27 +1009,114 @@ class QuestionnaireItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return QuestionnaireItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      linkId: linkId ?? this.linkId,
-      definition: definition ?? this.definition,
-      code: code ?? this.code,
-      prefix: prefix ?? this.prefix,
-      text: text ?? this.text,
-      type: type ?? this.type,
-      enableWhen: enableWhen ?? this.enableWhen,
-      enableBehavior: enableBehavior ?? this.enableBehavior,
-      required_: required_ ?? this.required_,
-      repeats: repeats ?? this.repeats,
-      readOnly: readOnly ?? this.readOnly,
-      maxLength: maxLength ?? this.maxLength,
-      answerValueSet: answerValueSet ?? this.answerValueSet,
-      answerOption: answerOption ?? this.answerOption,
-      initial: initial ?? this.initial,
-      item: item ?? this.item,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      linkId: linkId?.copyWith(
+            objectPath: '$newObjectPath.linkId',
+          ) ??
+          this.linkId,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      prefix: prefix?.copyWith(
+            objectPath: '$newObjectPath.prefix',
+          ) ??
+          this.prefix,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      enableWhen: enableWhen
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.enableWhen',
+                ),
+              )
+              .toList() ??
+          this.enableWhen,
+      enableBehavior: enableBehavior?.copyWith(
+            objectPath: '$newObjectPath.enableBehavior',
+          ) ??
+          this.enableBehavior,
+      required_: required_?.copyWith(
+            objectPath: '$newObjectPath.required',
+          ) ??
+          this.required_,
+      repeats: repeats?.copyWith(
+            objectPath: '$newObjectPath.repeats',
+          ) ??
+          this.repeats,
+      readOnly: readOnly?.copyWith(
+            objectPath: '$newObjectPath.readOnly',
+          ) ??
+          this.readOnly,
+      maxLength: maxLength?.copyWith(
+            objectPath: '$newObjectPath.maxLength',
+          ) ??
+          this.maxLength,
+      answerValueSet: answerValueSet?.copyWith(
+            objectPath: '$newObjectPath.answerValueSet',
+          ) ??
+          this.answerValueSet,
+      answerOption: answerOption
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.answerOption',
+                ),
+              )
+              .toList() ??
+          this.answerOption,
+      initial: initial
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.initial',
+                ),
+              )
+              .toList() ??
+          this.initial,
+      item: item
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.item',
+                ),
+              )
+              .toList() ??
+          this.item,
     );
   }
 }
@@ -1094,14 +1309,42 @@ class QuestionnaireEnableWhen extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return QuestionnaireEnableWhen(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      question: question ?? this.question,
-      operator_: operator_ ?? this.operator_,
-      answerX: answerX ?? this.answerX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      question: question?.copyWith(
+            objectPath: '$newObjectPath.question',
+          ) ??
+          this.question,
+      operator_: operator_?.copyWith(
+            objectPath: '$newObjectPath.operator',
+          ) ??
+          this.operator_,
+      answerX: answerX?.copyWith(
+            objectPath: '$newObjectPath.answerX',
+          ) as AnswerXQuestionnaireEnableWhen? ??
+          this.answerX,
     );
   }
 }
@@ -1274,13 +1517,38 @@ class QuestionnaireAnswerOption extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return QuestionnaireAnswerOption(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
-      initialSelected: initialSelected ?? this.initialSelected,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXQuestionnaireAnswerOption? ??
+          this.valueX,
+      initialSelected: initialSelected?.copyWith(
+            objectPath: '$newObjectPath.initialSelected',
+          ) ??
+          this.initialSelected,
     );
   }
 }
@@ -1446,12 +1714,34 @@ class QuestionnaireInitial extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return QuestionnaireInitial(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXQuestionnaireInitial? ??
+          this.valueX,
     );
   }
 }

@@ -534,39 +534,193 @@ class CarePlan extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return CarePlan(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      replaces: replaces ?? this.replaces,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      intent: intent ?? this.intent,
-      category: category ?? this.category,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      period: period ?? this.period,
-      created: created ?? this.created,
-      author: author ?? this.author,
-      contributor: contributor ?? this.contributor,
-      careTeam: careTeam ?? this.careTeam,
-      addresses: addresses ?? this.addresses,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      goal: goal ?? this.goal,
-      activity: activity ?? this.activity,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      contributor: contributor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contributor',
+                ),
+              )
+              .toList() ??
+          this.contributor,
+      careTeam: careTeam
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.careTeam',
+                ),
+              )
+              .toList() ??
+          this.careTeam,
+      addresses: addresses
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.addresses',
+                ),
+              )
+              .toList() ??
+          this.addresses,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      goal: goal
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.goal',
+                ),
+              )
+              .toList() ??
+          this.goal,
+      activity: activity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.activity',
+                ),
+              )
+              .toList() ??
+          this.activity,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -786,17 +940,62 @@ class CarePlanActivity extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CarePlanActivity(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      outcomeCodeableConcept:
-          outcomeCodeableConcept ?? this.outcomeCodeableConcept,
-      outcomeReference: outcomeReference ?? this.outcomeReference,
-      progress: progress ?? this.progress,
-      reference: reference ?? this.reference,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      outcomeCodeableConcept: outcomeCodeableConcept
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.outcomeCodeableConcept',
+                ),
+              )
+              .toList() ??
+          this.outcomeCodeableConcept,
+      outcomeReference: outcomeReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.outcomeReference',
+                ),
+              )
+              .toList() ??
+          this.outcomeReference,
+      progress: progress
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.progress',
+                ),
+              )
+              .toList() ??
+          this.progress,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
+      detail: detail?.copyWith(
+            objectPath: '$newObjectPath.detail',
+          ) ??
+          this.detail,
     );
   }
 }
@@ -1204,29 +1403,122 @@ class CarePlanDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CarePlanDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      kind: kind ?? this.kind,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      code: code ?? this.code,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      goal: goal ?? this.goal,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      scheduledX: scheduledX ?? this.scheduledX,
-      location: location ?? this.location,
-      performer: performer ?? this.performer,
-      productX: productX ?? this.productX,
-      dailyAmount: dailyAmount ?? this.dailyAmount,
-      quantity: quantity ?? this.quantity,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      kind: kind?.copyWith(
+            objectPath: '$newObjectPath.kind',
+          ) ??
+          this.kind,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      goal: goal
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.goal',
+                ),
+              )
+              .toList() ??
+          this.goal,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      scheduledX: scheduledX?.copyWith(
+            objectPath: '$newObjectPath.scheduledX',
+          ) as ScheduledXCarePlanDetail? ??
+          this.scheduledX,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      productX: productX?.copyWith(
+            objectPath: '$newObjectPath.productX',
+          ) as ProductXCarePlanDetail? ??
+          this.productX,
+      dailyAmount: dailyAmount?.copyWith(
+            objectPath: '$newObjectPath.dailyAmount',
+          ) ??
+          this.dailyAmount,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
     );
   }
 }

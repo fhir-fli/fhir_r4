@@ -304,23 +304,85 @@ class AppointmentResponse extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return AppointmentResponse(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      appointment: appointment ?? this.appointment,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      participantType: participantType ?? this.participantType,
-      actor: actor ?? this.actor,
-      participantStatus: participantStatus ?? this.participantStatus,
-      comment: comment ?? this.comment,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      appointment: appointment?.copyWith(
+            objectPath: '$newObjectPath.appointment',
+          ) ??
+          this.appointment,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
+      participantType: participantType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participantType',
+                ),
+              )
+              .toList() ??
+          this.participantType,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
+      participantStatus: participantStatus?.copyWith(
+            objectPath: '$newObjectPath.participantStatus',
+          ) ??
+          this.participantStatus,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }

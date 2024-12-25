@@ -357,6 +357,7 @@ class FhirTime extends PrimitiveType<String>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirTime(
       newValue ?? value,
@@ -370,6 +371,7 @@ class FhirTime extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

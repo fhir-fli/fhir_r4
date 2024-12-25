@@ -389,28 +389,121 @@ class Consent extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Consent(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      scope: scope ?? this.scope,
-      category: category ?? this.category,
-      patient: patient ?? this.patient,
-      dateTime: dateTime ?? this.dateTime,
-      performer: performer ?? this.performer,
-      organization: organization ?? this.organization,
-      sourceX: sourceX ?? this.sourceX,
-      policy: policy ?? this.policy,
-      policyRule: policyRule ?? this.policyRule,
-      verification: verification ?? this.verification,
-      provision: provision ?? this.provision,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      scope: scope?.copyWith(
+            objectPath: '$newObjectPath.scope',
+          ) ??
+          this.scope,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      dateTime: dateTime?.copyWith(
+            objectPath: '$newObjectPath.dateTime',
+          ) ??
+          this.dateTime,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      organization: organization
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.organization',
+                ),
+              )
+              .toList() ??
+          this.organization,
+      sourceX: sourceX?.copyWith(
+            objectPath: '$newObjectPath.sourceX',
+          ) as SourceXConsent? ??
+          this.sourceX,
+      policy: policy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.policy',
+                ),
+              )
+              .toList() ??
+          this.policy,
+      policyRule: policyRule?.copyWith(
+            objectPath: '$newObjectPath.policyRule',
+          ) ??
+          this.policyRule,
+      verification: verification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.verification',
+                ),
+              )
+              .toList() ??
+          this.verification,
+      provision: provision?.copyWith(
+            objectPath: '$newObjectPath.provision',
+          ) ??
+          this.provision,
     );
   }
 }
@@ -579,13 +672,38 @@ class ConsentPolicy extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConsentPolicy(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      authority: authority ?? this.authority,
-      uri: uri ?? this.uri,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      authority: authority?.copyWith(
+            objectPath: '$newObjectPath.authority',
+          ) ??
+          this.authority,
+      uri: uri?.copyWith(
+            objectPath: '$newObjectPath.uri',
+          ) ??
+          this.uri,
     );
   }
 }
@@ -765,14 +883,42 @@ class ConsentVerification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConsentVerification(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      verified: verified ?? this.verified,
-      verifiedWith: verifiedWith ?? this.verifiedWith,
-      verificationDate: verificationDate ?? this.verificationDate,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      verified: verified?.copyWith(
+            objectPath: '$newObjectPath.verified',
+          ) ??
+          this.verified,
+      verifiedWith: verifiedWith?.copyWith(
+            objectPath: '$newObjectPath.verifiedWith',
+          ) ??
+          this.verifiedWith,
+      verificationDate: verificationDate?.copyWith(
+            objectPath: '$newObjectPath.verificationDate',
+          ) ??
+          this.verificationDate,
     );
   }
 }
@@ -1078,22 +1224,106 @@ class ConsentProvision extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConsentProvision(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      period: period ?? this.period,
-      actor: actor ?? this.actor,
-      action: action ?? this.action,
-      securityLabel: securityLabel ?? this.securityLabel,
-      purpose: purpose ?? this.purpose,
-      class_: class_ ?? this.class_,
-      code: code ?? this.code,
-      dataPeriod: dataPeriod ?? this.dataPeriod,
-      data: data ?? this.data,
-      provision: provision ?? this.provision,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      actor: actor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.actor',
+                ),
+              )
+              .toList() ??
+          this.actor,
+      action: action
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.action',
+                ),
+              )
+              .toList() ??
+          this.action,
+      securityLabel: securityLabel
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabel',
+                ),
+              )
+              .toList() ??
+          this.securityLabel,
+      purpose: purpose
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.purpose',
+                ),
+              )
+              .toList() ??
+          this.purpose,
+      class_: class_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.class',
+                ),
+              )
+              .toList() ??
+          this.class_,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      dataPeriod: dataPeriod?.copyWith(
+            objectPath: '$newObjectPath.dataPeriod',
+          ) ??
+          this.dataPeriod,
+      data: data
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.data',
+                ),
+              )
+              .toList() ??
+          this.data,
+      provision: provision
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.provision',
+                ),
+              )
+              .toList() ??
+          this.provision,
     );
   }
 }
@@ -1261,13 +1491,38 @@ class ConsentActor extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConsentActor(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      role: role ?? this.role,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }
@@ -1434,13 +1689,38 @@ class ConsentData extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConsentData(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      meaning: meaning ?? this.meaning,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      meaning: meaning?.copyWith(
+            objectPath: '$newObjectPath.meaning',
+          ) ??
+          this.meaning,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }

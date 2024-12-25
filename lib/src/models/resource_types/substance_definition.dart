@@ -467,34 +467,173 @@ class SubstanceDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return SubstanceDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      status: status ?? this.status,
-      classification: classification ?? this.classification,
-      domain: domain ?? this.domain,
-      grade: grade ?? this.grade,
-      description: description ?? this.description,
-      informationSource: informationSource ?? this.informationSource,
-      note: note ?? this.note,
-      manufacturer: manufacturer ?? this.manufacturer,
-      supplier: supplier ?? this.supplier,
-      moiety: moiety ?? this.moiety,
-      property: property ?? this.property,
-      molecularWeight: molecularWeight ?? this.molecularWeight,
-      structure: structure ?? this.structure,
-      code: code ?? this.code,
-      name: name ?? this.name,
-      relationship: relationship ?? this.relationship,
-      sourceMaterial: sourceMaterial ?? this.sourceMaterial,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      classification: classification
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classification',
+                ),
+              )
+              .toList() ??
+          this.classification,
+      domain: domain?.copyWith(
+            objectPath: '$newObjectPath.domain',
+          ) ??
+          this.domain,
+      grade: grade
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.grade',
+                ),
+              )
+              .toList() ??
+          this.grade,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      informationSource: informationSource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.informationSource',
+                ),
+              )
+              .toList() ??
+          this.informationSource,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      manufacturer: manufacturer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manufacturer',
+                ),
+              )
+              .toList() ??
+          this.manufacturer,
+      supplier: supplier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supplier',
+                ),
+              )
+              .toList() ??
+          this.supplier,
+      moiety: moiety
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.moiety',
+                ),
+              )
+              .toList() ??
+          this.moiety,
+      property: property
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.property',
+                ),
+              )
+              .toList() ??
+          this.property,
+      molecularWeight: molecularWeight
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.molecularWeight',
+                ),
+              )
+              .toList() ??
+          this.molecularWeight,
+      structure: structure?.copyWith(
+            objectPath: '$newObjectPath.structure',
+          ) ??
+          this.structure,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      name: name
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.name',
+                ),
+              )
+              .toList() ??
+          this.name,
+      relationship: relationship
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relationship',
+                ),
+              )
+              .toList() ??
+          this.relationship,
+      sourceMaterial: sourceMaterial?.copyWith(
+            objectPath: '$newObjectPath.sourceMaterial',
+          ) ??
+          this.sourceMaterial,
     );
   }
 }
@@ -746,19 +885,62 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionMoiety(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      role: role ?? this.role,
-      identifier: identifier ?? this.identifier,
-      name: name ?? this.name,
-      stereochemistry: stereochemistry ?? this.stereochemistry,
-      opticalActivity: opticalActivity ?? this.opticalActivity,
-      molecularFormula: molecularFormula ?? this.molecularFormula,
-      amountX: amountX ?? this.amountX,
-      measurementType: measurementType ?? this.measurementType,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      stereochemistry: stereochemistry?.copyWith(
+            objectPath: '$newObjectPath.stereochemistry',
+          ) ??
+          this.stereochemistry,
+      opticalActivity: opticalActivity?.copyWith(
+            objectPath: '$newObjectPath.opticalActivity',
+          ) ??
+          this.opticalActivity,
+      molecularFormula: molecularFormula?.copyWith(
+            objectPath: '$newObjectPath.molecularFormula',
+          ) ??
+          this.molecularFormula,
+      amountX: amountX?.copyWith(
+            objectPath: '$newObjectPath.amountX',
+          ) as AmountXSubstanceDefinitionMoiety? ??
+          this.amountX,
+      measurementType: measurementType?.copyWith(
+            objectPath: '$newObjectPath.measurementType',
+          ) ??
+          this.measurementType,
     );
   }
 }
@@ -931,13 +1113,38 @@ class SubstanceDefinitionProperty extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionProperty(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXSubstanceDefinitionProperty? ??
+          this.valueX,
     );
   }
 }
@@ -1119,14 +1326,42 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionMolecularWeight(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      method: method ?? this.method,
-      type: type ?? this.type,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }
@@ -1379,20 +1614,74 @@ class SubstanceDefinitionStructure extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionStructure(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      stereochemistry: stereochemistry ?? this.stereochemistry,
-      opticalActivity: opticalActivity ?? this.opticalActivity,
-      molecularFormula: molecularFormula ?? this.molecularFormula,
-      molecularFormulaByMoiety:
-          molecularFormulaByMoiety ?? this.molecularFormulaByMoiety,
-      molecularWeight: molecularWeight ?? this.molecularWeight,
-      technique: technique ?? this.technique,
-      sourceDocument: sourceDocument ?? this.sourceDocument,
-      representation: representation ?? this.representation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      stereochemistry: stereochemistry?.copyWith(
+            objectPath: '$newObjectPath.stereochemistry',
+          ) ??
+          this.stereochemistry,
+      opticalActivity: opticalActivity?.copyWith(
+            objectPath: '$newObjectPath.opticalActivity',
+          ) ??
+          this.opticalActivity,
+      molecularFormula: molecularFormula?.copyWith(
+            objectPath: '$newObjectPath.molecularFormula',
+          ) ??
+          this.molecularFormula,
+      molecularFormulaByMoiety: molecularFormulaByMoiety?.copyWith(
+            objectPath: '$newObjectPath.molecularFormulaByMoiety',
+          ) ??
+          this.molecularFormulaByMoiety,
+      molecularWeight: molecularWeight?.copyWith(
+            objectPath: '$newObjectPath.molecularWeight',
+          ) ??
+          this.molecularWeight,
+      technique: technique
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.technique',
+                ),
+              )
+              .toList() ??
+          this.technique,
+      sourceDocument: sourceDocument
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.sourceDocument',
+                ),
+              )
+              .toList() ??
+          this.sourceDocument,
+      representation: representation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.representation',
+                ),
+              )
+              .toList() ??
+          this.representation,
     );
   }
 }
@@ -1587,15 +1876,46 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionRepresentation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      representation: representation ?? this.representation,
-      format: format ?? this.format,
-      document: document ?? this.document,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      representation: representation?.copyWith(
+            objectPath: '$newObjectPath.representation',
+          ) ??
+          this.representation,
+      format: format?.copyWith(
+            objectPath: '$newObjectPath.format',
+          ) ??
+          this.format,
+      document: document?.copyWith(
+            objectPath: '$newObjectPath.document',
+          ) ??
+          this.document,
     );
   }
 }
@@ -1803,16 +2123,58 @@ class SubstanceDefinitionCode extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionCode(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      status: status ?? this.status,
-      statusDate: statusDate ?? this.statusDate,
-      note: note ?? this.note,
-      source: source ?? this.source,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      source: source
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.source',
+                ),
+              )
+              .toList() ??
+          this.source,
     );
   }
 }
@@ -2109,22 +2471,102 @@ class SubstanceDefinitionName extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionName(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      type: type ?? this.type,
-      status: status ?? this.status,
-      preferred: preferred ?? this.preferred,
-      language: language ?? this.language,
-      domain: domain ?? this.domain,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      synonym: synonym ?? this.synonym,
-      translation: translation ?? this.translation,
-      official: official ?? this.official,
-      source: source ?? this.source,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      preferred: preferred?.copyWith(
+            objectPath: '$newObjectPath.preferred',
+          ) ??
+          this.preferred,
+      language: language
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.language',
+                ),
+              )
+              .toList() ??
+          this.language,
+      domain: domain
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.domain',
+                ),
+              )
+              .toList() ??
+          this.domain,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      synonym: synonym
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.synonym',
+                ),
+              )
+              .toList() ??
+          this.synonym,
+      translation: translation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.translation',
+                ),
+              )
+              .toList() ??
+          this.translation,
+      official: official
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.official',
+                ),
+              )
+              .toList() ??
+          this.official,
+      source: source
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.source',
+                ),
+              )
+              .toList() ??
+          this.source,
     );
   }
 }
@@ -2302,14 +2744,42 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionOfficial(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      authority: authority ?? this.authority,
-      status: status ?? this.status,
-      date: date ?? this.date,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      authority: authority?.copyWith(
+            objectPath: '$newObjectPath.authority',
+          ) ??
+          this.authority,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
     );
   }
 }
@@ -2565,18 +3035,62 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionRelationship(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      substanceDefinitionX: substanceDefinitionX ?? this.substanceDefinitionX,
-      type: type ?? this.type,
-      isDefining: isDefining ?? this.isDefining,
-      amountX: amountX ?? this.amountX,
-      ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
-      comparator: comparator ?? this.comparator,
-      source: source ?? this.source,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      substanceDefinitionX: substanceDefinitionX?.copyWith(
+            objectPath: '$newObjectPath.substanceDefinitionX',
+          ) as SubstanceDefinitionXSubstanceDefinitionRelationship? ??
+          this.substanceDefinitionX,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      isDefining: isDefining?.copyWith(
+            objectPath: '$newObjectPath.isDefining',
+          ) ??
+          this.isDefining,
+      amountX: amountX?.copyWith(
+            objectPath: '$newObjectPath.amountX',
+          ) as AmountXSubstanceDefinitionRelationship? ??
+          this.amountX,
+      ratioHighLimitAmount: ratioHighLimitAmount?.copyWith(
+            objectPath: '$newObjectPath.ratioHighLimitAmount',
+          ) ??
+          this.ratioHighLimitAmount,
+      comparator: comparator?.copyWith(
+            objectPath: '$newObjectPath.comparator',
+          ) ??
+          this.comparator,
+      source: source
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.source',
+                ),
+              )
+              .toList() ??
+          this.source,
     );
   }
 }
@@ -2784,16 +3298,54 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubstanceDefinitionSourceMaterial(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      genus: genus ?? this.genus,
-      species: species ?? this.species,
-      part_: part_ ?? this.part_,
-      countryOfOrigin: countryOfOrigin ?? this.countryOfOrigin,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      genus: genus?.copyWith(
+            objectPath: '$newObjectPath.genus',
+          ) ??
+          this.genus,
+      species: species?.copyWith(
+            objectPath: '$newObjectPath.species',
+          ) ??
+          this.species,
+      part_: part_?.copyWith(
+            objectPath: '$newObjectPath.part',
+          ) ??
+          this.part_,
+      countryOfOrigin: countryOfOrigin
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.countryOfOrigin',
+                ),
+              )
+              .toList() ??
+          this.countryOfOrigin,
     );
   }
 }

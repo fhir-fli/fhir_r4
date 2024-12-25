@@ -255,20 +255,73 @@ class ImmunizationRecommendation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ImmunizationRecommendation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      patient: patient ?? this.patient,
-      date: date ?? this.date,
-      authority: authority ?? this.authority,
-      recommendation: recommendation ?? this.recommendation,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      authority: authority?.copyWith(
+            objectPath: '$newObjectPath.authority',
+          ) ??
+          this.authority,
+      recommendation: recommendation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.recommendation',
+                ),
+              )
+              .toList() ??
+          this.recommendation,
     );
   }
 }
@@ -601,26 +654,102 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImmunizationRecommendationRecommendation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      vaccineCode: vaccineCode ?? this.vaccineCode,
-      targetDisease: targetDisease ?? this.targetDisease,
-      contraindicatedVaccineCode:
-          contraindicatedVaccineCode ?? this.contraindicatedVaccineCode,
-      forecastStatus: forecastStatus ?? this.forecastStatus,
-      forecastReason: forecastReason ?? this.forecastReason,
-      dateCriterion: dateCriterion ?? this.dateCriterion,
-      description: description ?? this.description,
-      series: series ?? this.series,
-      doseNumberX: doseNumberX ?? this.doseNumberX,
-      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
-      supportingImmunization:
-          supportingImmunization ?? this.supportingImmunization,
-      supportingPatientInformation:
-          supportingPatientInformation ?? this.supportingPatientInformation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      vaccineCode: vaccineCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.vaccineCode',
+                ),
+              )
+              .toList() ??
+          this.vaccineCode,
+      targetDisease: targetDisease?.copyWith(
+            objectPath: '$newObjectPath.targetDisease',
+          ) ??
+          this.targetDisease,
+      contraindicatedVaccineCode: contraindicatedVaccineCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contraindicatedVaccineCode',
+                ),
+              )
+              .toList() ??
+          this.contraindicatedVaccineCode,
+      forecastStatus: forecastStatus?.copyWith(
+            objectPath: '$newObjectPath.forecastStatus',
+          ) ??
+          this.forecastStatus,
+      forecastReason: forecastReason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.forecastReason',
+                ),
+              )
+              .toList() ??
+          this.forecastReason,
+      dateCriterion: dateCriterion
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dateCriterion',
+                ),
+              )
+              .toList() ??
+          this.dateCriterion,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      series: series?.copyWith(
+            objectPath: '$newObjectPath.series',
+          ) ??
+          this.series,
+      doseNumberX: doseNumberX?.copyWith(
+            objectPath: '$newObjectPath.doseNumberX',
+          ) as DoseNumberXImmunizationRecommendationRecommendation? ??
+          this.doseNumberX,
+      seriesDosesX: seriesDosesX?.copyWith(
+            objectPath: '$newObjectPath.seriesDosesX',
+          ) as SeriesDosesXImmunizationRecommendationRecommendation? ??
+          this.seriesDosesX,
+      supportingImmunization: supportingImmunization
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingImmunization',
+                ),
+              )
+              .toList() ??
+          this.supportingImmunization,
+      supportingPatientInformation: supportingPatientInformation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingPatientInformation',
+                ),
+              )
+              .toList() ??
+          this.supportingPatientInformation,
     );
   }
 }
@@ -787,13 +916,38 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ImmunizationRecommendationDateCriterion(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }

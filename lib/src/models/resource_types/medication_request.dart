@@ -686,49 +686,225 @@ class MedicationRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MedicationRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      intent: intent ?? this.intent,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      reportedX: reportedX ?? this.reportedX,
-      medicationX: medicationX ?? this.medicationX,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      supportingInformation:
-          supportingInformation ?? this.supportingInformation,
-      authoredOn: authoredOn ?? this.authoredOn,
-      requester: requester ?? this.requester,
-      performer: performer ?? this.performer,
-      performerType: performerType ?? this.performerType,
-      recorder: recorder ?? this.recorder,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
-      courseOfTherapyType: courseOfTherapyType ?? this.courseOfTherapyType,
-      insurance: insurance ?? this.insurance,
-      note: note ?? this.note,
-      dosageInstruction: dosageInstruction ?? this.dosageInstruction,
-      dispenseRequest: dispenseRequest ?? this.dispenseRequest,
-      substitution: substitution ?? this.substitution,
-      priorPrescription: priorPrescription ?? this.priorPrescription,
-      detectedIssue: detectedIssue ?? this.detectedIssue,
-      eventHistory: eventHistory ?? this.eventHistory,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      reportedX: reportedX?.copyWith(
+            objectPath: '$newObjectPath.reportedX',
+          ) as ReportedXMedicationRequest? ??
+          this.reportedX,
+      medicationX: medicationX?.copyWith(
+            objectPath: '$newObjectPath.medicationX',
+          ) as MedicationXMedicationRequest? ??
+          this.medicationX,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      supportingInformation: supportingInformation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInformation',
+                ),
+              )
+              .toList() ??
+          this.supportingInformation,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      performerType: performerType?.copyWith(
+            objectPath: '$newObjectPath.performerType',
+          ) ??
+          this.performerType,
+      recorder: recorder?.copyWith(
+            objectPath: '$newObjectPath.recorder',
+          ) ??
+          this.recorder,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      groupIdentifier: groupIdentifier?.copyWith(
+            objectPath: '$newObjectPath.groupIdentifier',
+          ) ??
+          this.groupIdentifier,
+      courseOfTherapyType: courseOfTherapyType?.copyWith(
+            objectPath: '$newObjectPath.courseOfTherapyType',
+          ) ??
+          this.courseOfTherapyType,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      dosageInstruction: dosageInstruction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosageInstruction',
+                ),
+              )
+              .toList() ??
+          this.dosageInstruction,
+      dispenseRequest: dispenseRequest?.copyWith(
+            objectPath: '$newObjectPath.dispenseRequest',
+          ) ??
+          this.dispenseRequest,
+      substitution: substitution?.copyWith(
+            objectPath: '$newObjectPath.substitution',
+          ) ??
+          this.substitution,
+      priorPrescription: priorPrescription?.copyWith(
+            objectPath: '$newObjectPath.priorPrescription',
+          ) ??
+          this.priorPrescription,
+      detectedIssue: detectedIssue
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detectedIssue',
+                ),
+              )
+              .toList() ??
+          this.detectedIssue,
+      eventHistory: eventHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.eventHistory',
+                ),
+              )
+              .toList() ??
+          this.eventHistory,
     );
   }
 }
@@ -974,20 +1150,58 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationRequestDispenseRequest(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      initialFill: initialFill ?? this.initialFill,
-      dispenseInterval: dispenseInterval ?? this.dispenseInterval,
-      validityPeriod: validityPeriod ?? this.validityPeriod,
-      numberOfRepeatsAllowed:
-          numberOfRepeatsAllowed ?? this.numberOfRepeatsAllowed,
-      quantity: quantity ?? this.quantity,
-      expectedSupplyDuration:
-          expectedSupplyDuration ?? this.expectedSupplyDuration,
-      performer: performer ?? this.performer,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      initialFill: initialFill?.copyWith(
+            objectPath: '$newObjectPath.initialFill',
+          ) ??
+          this.initialFill,
+      dispenseInterval: dispenseInterval?.copyWith(
+            objectPath: '$newObjectPath.dispenseInterval',
+          ) ??
+          this.dispenseInterval,
+      validityPeriod: validityPeriod?.copyWith(
+            objectPath: '$newObjectPath.validityPeriod',
+          ) ??
+          this.validityPeriod,
+      numberOfRepeatsAllowed: numberOfRepeatsAllowed?.copyWith(
+            objectPath: '$newObjectPath.numberOfRepeatsAllowed',
+          ) ??
+          this.numberOfRepeatsAllowed,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      expectedSupplyDuration: expectedSupplyDuration?.copyWith(
+            objectPath: '$newObjectPath.expectedSupplyDuration',
+          ) ??
+          this.expectedSupplyDuration,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
     );
   }
 }
@@ -1152,13 +1366,38 @@ class MedicationRequestInitialFill extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationRequestInitialFill(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      quantity: quantity ?? this.quantity,
-      duration: duration ?? this.duration,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      duration: duration?.copyWith(
+            objectPath: '$newObjectPath.duration',
+          ) ??
+          this.duration,
     );
   }
 }
@@ -1332,13 +1571,38 @@ class MedicationRequestSubstitution extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationRequestSubstitution(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      allowedX: allowedX ?? this.allowedX,
-      reason: reason ?? this.reason,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      allowedX: allowedX?.copyWith(
+            objectPath: '$newObjectPath.allowedX',
+          ) as AllowedXMedicationRequestSubstitution? ??
+          this.allowedX,
+      reason: reason?.copyWith(
+            objectPath: '$newObjectPath.reason',
+          ) ??
+          this.reason,
     );
   }
 }

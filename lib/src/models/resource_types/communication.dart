@@ -531,39 +531,193 @@ class Communication extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Communication(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      partOf: partOf ?? this.partOf,
-      inResponseTo: inResponseTo ?? this.inResponseTo,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      medium: medium ?? this.medium,
-      subject: subject ?? this.subject,
-      topic: topic ?? this.topic,
-      about: about ?? this.about,
-      encounter: encounter ?? this.encounter,
-      sent: sent ?? this.sent,
-      received: received ?? this.received,
-      recipient: recipient ?? this.recipient,
-      sender: sender ?? this.sender,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      payload: payload ?? this.payload,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      inResponseTo: inResponseTo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.inResponseTo',
+                ),
+              )
+              .toList() ??
+          this.inResponseTo,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      medium: medium
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.medium',
+                ),
+              )
+              .toList() ??
+          this.medium,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      topic: topic?.copyWith(
+            objectPath: '$newObjectPath.topic',
+          ) ??
+          this.topic,
+      about: about
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.about',
+                ),
+              )
+              .toList() ??
+          this.about,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      sent: sent?.copyWith(
+            objectPath: '$newObjectPath.sent',
+          ) ??
+          this.sent,
+      received: received?.copyWith(
+            objectPath: '$newObjectPath.received',
+          ) ??
+          this.received,
+      recipient: recipient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.recipient',
+                ),
+              )
+              .toList() ??
+          this.recipient,
+      sender: sender?.copyWith(
+            objectPath: '$newObjectPath.sender',
+          ) ??
+          this.sender,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      payload: payload
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.payload',
+                ),
+              )
+              .toList() ??
+          this.payload,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -721,12 +875,34 @@ class CommunicationPayload extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CommunicationPayload(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      contentX: contentX?.copyWith(
+            objectPath: '$newObjectPath.contentX',
+          ) as ContentXCommunicationPayload? ??
+          this.contentX,
     );
   }
 }

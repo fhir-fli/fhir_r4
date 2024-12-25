@@ -428,30 +428,129 @@ class GuidanceResponse extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return GuidanceResponse(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      requestIdentifier: requestIdentifier ?? this.requestIdentifier,
-      identifier: identifier ?? this.identifier,
-      moduleX: moduleX ?? this.moduleX,
-      status: status ?? this.status,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      performer: performer ?? this.performer,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
-      evaluationMessage: evaluationMessage ?? this.evaluationMessage,
-      outputParameters: outputParameters ?? this.outputParameters,
-      result: result ?? this.result,
-      dataRequirement: dataRequirement ?? this.dataRequirement,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      requestIdentifier: requestIdentifier?.copyWith(
+            objectPath: '$newObjectPath.requestIdentifier',
+          ) ??
+          this.requestIdentifier,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      moduleX: moduleX?.copyWith(
+            objectPath: '$newObjectPath.moduleX',
+          ) as ModuleXGuidanceResponse? ??
+          this.moduleX,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      occurrenceDateTime: occurrenceDateTime?.copyWith(
+            objectPath: '$newObjectPath.occurrenceDateTime',
+          ) ??
+          this.occurrenceDateTime,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      evaluationMessage: evaluationMessage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.evaluationMessage',
+                ),
+              )
+              .toList() ??
+          this.evaluationMessage,
+      outputParameters: outputParameters?.copyWith(
+            objectPath: '$newObjectPath.outputParameters',
+          ) ??
+          this.outputParameters,
+      result: result?.copyWith(
+            objectPath: '$newObjectPath.result',
+          ) ??
+          this.result,
+      dataRequirement: dataRequirement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dataRequirement',
+                ),
+              )
+              .toList() ??
+          this.dataRequirement,
     );
   }
 }

@@ -541,38 +541,189 @@ class Encounter extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Encounter(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      statusHistory: statusHistory ?? this.statusHistory,
-      class_: class_ ?? this.class_,
-      classHistory: classHistory ?? this.classHistory,
-      type: type ?? this.type,
-      serviceType: serviceType ?? this.serviceType,
-      priority: priority ?? this.priority,
-      subject: subject ?? this.subject,
-      episodeOfCare: episodeOfCare ?? this.episodeOfCare,
-      basedOn: basedOn ?? this.basedOn,
-      participant: participant ?? this.participant,
-      appointment: appointment ?? this.appointment,
-      period: period ?? this.period,
-      length: length ?? this.length,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      diagnosis: diagnosis ?? this.diagnosis,
-      account: account ?? this.account,
-      hospitalization: hospitalization ?? this.hospitalization,
-      location: location ?? this.location,
-      serviceProvider: serviceProvider ?? this.serviceProvider,
-      partOf: partOf ?? this.partOf,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusHistory: statusHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.statusHistory',
+                ),
+              )
+              .toList() ??
+          this.statusHistory,
+      class_: class_?.copyWith(
+            objectPath: '$newObjectPath.class',
+          ) ??
+          this.class_,
+      classHistory: classHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.classHistory',
+                ),
+              )
+              .toList() ??
+          this.classHistory,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      serviceType: serviceType?.copyWith(
+            objectPath: '$newObjectPath.serviceType',
+          ) ??
+          this.serviceType,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      episodeOfCare: episodeOfCare
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.episodeOfCare',
+                ),
+              )
+              .toList() ??
+          this.episodeOfCare,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      participant: participant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.participant',
+                ),
+              )
+              .toList() ??
+          this.participant,
+      appointment: appointment
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.appointment',
+                ),
+              )
+              .toList() ??
+          this.appointment,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      length: length?.copyWith(
+            objectPath: '$newObjectPath.length',
+          ) ??
+          this.length,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      diagnosis: diagnosis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosis',
+                ),
+              )
+              .toList() ??
+          this.diagnosis,
+      account: account
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.account',
+                ),
+              )
+              .toList() ??
+          this.account,
+      hospitalization: hospitalization?.copyWith(
+            objectPath: '$newObjectPath.hospitalization',
+          ) ??
+          this.hospitalization,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      serviceProvider: serviceProvider?.copyWith(
+            objectPath: '$newObjectPath.serviceProvider',
+          ) ??
+          this.serviceProvider,
+      partOf: partOf?.copyWith(
+            objectPath: '$newObjectPath.partOf',
+          ) ??
+          this.partOf,
     );
   }
 }
@@ -739,13 +890,38 @@ class EncounterStatusHistory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterStatusHistory(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      status: status ?? this.status,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -915,13 +1091,38 @@ class EncounterClassHistory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterClassHistory(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      class_: class_ ?? this.class_,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      class_: class_?.copyWith(
+            objectPath: '$newObjectPath.class',
+          ) ??
+          this.class_,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }
@@ -1102,14 +1303,46 @@ class EncounterParticipant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterParticipant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      period: period ?? this.period,
-      individual: individual ?? this.individual,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      individual: individual?.copyWith(
+            objectPath: '$newObjectPath.individual',
+          ) ??
+          this.individual,
     );
   }
 }
@@ -1290,14 +1523,42 @@ class EncounterDiagnosis extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterDiagnosis(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      condition: condition ?? this.condition,
-      use: use ?? this.use,
-      rank: rank ?? this.rank,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      condition: condition?.copyWith(
+            objectPath: '$newObjectPath.condition',
+          ) ??
+          this.condition,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      rank: rank?.copyWith(
+            objectPath: '$newObjectPath.rank',
+          ) ??
+          this.rank,
     );
   }
 }
@@ -1559,21 +1820,78 @@ class EncounterHospitalization extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterHospitalization(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      preAdmissionIdentifier:
-          preAdmissionIdentifier ?? this.preAdmissionIdentifier,
-      origin: origin ?? this.origin,
-      admitSource: admitSource ?? this.admitSource,
-      reAdmission: reAdmission ?? this.reAdmission,
-      dietPreference: dietPreference ?? this.dietPreference,
-      specialCourtesy: specialCourtesy ?? this.specialCourtesy,
-      specialArrangement: specialArrangement ?? this.specialArrangement,
-      destination: destination ?? this.destination,
-      dischargeDisposition: dischargeDisposition ?? this.dischargeDisposition,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      preAdmissionIdentifier: preAdmissionIdentifier?.copyWith(
+            objectPath: '$newObjectPath.preAdmissionIdentifier',
+          ) ??
+          this.preAdmissionIdentifier,
+      origin: origin?.copyWith(
+            objectPath: '$newObjectPath.origin',
+          ) ??
+          this.origin,
+      admitSource: admitSource?.copyWith(
+            objectPath: '$newObjectPath.admitSource',
+          ) ??
+          this.admitSource,
+      reAdmission: reAdmission?.copyWith(
+            objectPath: '$newObjectPath.reAdmission',
+          ) ??
+          this.reAdmission,
+      dietPreference: dietPreference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dietPreference',
+                ),
+              )
+              .toList() ??
+          this.dietPreference,
+      specialCourtesy: specialCourtesy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialCourtesy',
+                ),
+              )
+              .toList() ??
+          this.specialCourtesy,
+      specialArrangement: specialArrangement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialArrangement',
+                ),
+              )
+              .toList() ??
+          this.specialArrangement,
+      destination: destination?.copyWith(
+            objectPath: '$newObjectPath.destination',
+          ) ??
+          this.destination,
+      dischargeDisposition: dischargeDisposition?.copyWith(
+            objectPath: '$newObjectPath.dischargeDisposition',
+          ) ??
+          this.dischargeDisposition,
     );
   }
 }
@@ -1766,15 +2084,46 @@ class EncounterLocation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return EncounterLocation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      location: location ?? this.location,
-      status: status ?? this.status,
-      physicalType: physicalType ?? this.physicalType,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      physicalType: physicalType?.copyWith(
+            objectPath: '$newObjectPath.physicalType',
+          ) ??
+          this.physicalType,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

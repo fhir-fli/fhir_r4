@@ -194,14 +194,36 @@ class Binary extends Resource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Binary(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      contentType: contentType ?? this.contentType,
-      securityContext: securityContext ?? this.securityContext,
-      data: data ?? this.data,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      contentType: contentType?.copyWith(
+            objectPath: '$newObjectPath.contentType',
+          ) ??
+          this.contentType,
+      securityContext: securityContext?.copyWith(
+            objectPath: '$newObjectPath.securityContext',
+          ) ??
+          this.securityContext,
+      data: data?.copyWith(
+            objectPath: '$newObjectPath.data',
+          ) ??
+          this.data,
     );
   }
 }

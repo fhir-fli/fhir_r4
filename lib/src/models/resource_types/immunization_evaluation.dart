@@ -378,28 +378,105 @@ class ImmunizationEvaluation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ImmunizationEvaluation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      patient: patient ?? this.patient,
-      date: date ?? this.date,
-      authority: authority ?? this.authority,
-      targetDisease: targetDisease ?? this.targetDisease,
-      immunizationEvent: immunizationEvent ?? this.immunizationEvent,
-      doseStatus: doseStatus ?? this.doseStatus,
-      doseStatusReason: doseStatusReason ?? this.doseStatusReason,
-      description: description ?? this.description,
-      series: series ?? this.series,
-      doseNumberX: doseNumberX ?? this.doseNumberX,
-      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      authority: authority?.copyWith(
+            objectPath: '$newObjectPath.authority',
+          ) ??
+          this.authority,
+      targetDisease: targetDisease?.copyWith(
+            objectPath: '$newObjectPath.targetDisease',
+          ) ??
+          this.targetDisease,
+      immunizationEvent: immunizationEvent?.copyWith(
+            objectPath: '$newObjectPath.immunizationEvent',
+          ) ??
+          this.immunizationEvent,
+      doseStatus: doseStatus?.copyWith(
+            objectPath: '$newObjectPath.doseStatus',
+          ) ??
+          this.doseStatus,
+      doseStatusReason: doseStatusReason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.doseStatusReason',
+                ),
+              )
+              .toList() ??
+          this.doseStatusReason,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      series: series?.copyWith(
+            objectPath: '$newObjectPath.series',
+          ) ??
+          this.series,
+      doseNumberX: doseNumberX?.copyWith(
+            objectPath: '$newObjectPath.doseNumberX',
+          ) as DoseNumberXImmunizationEvaluation? ??
+          this.doseNumberX,
+      seriesDosesX: seriesDosesX?.copyWith(
+            objectPath: '$newObjectPath.seriesDosesX',
+          ) as SeriesDosesXImmunizationEvaluation? ??
+          this.seriesDosesX,
     );
   }
 }

@@ -353,26 +353,97 @@ class MessageHeader extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MessageHeader(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      eventX: eventX ?? this.eventX,
-      destination: destination ?? this.destination,
-      sender: sender ?? this.sender,
-      enterer: enterer ?? this.enterer,
-      author: author ?? this.author,
-      source: source ?? this.source,
-      responsible: responsible ?? this.responsible,
-      reason: reason ?? this.reason,
-      response: response ?? this.response,
-      focus: focus ?? this.focus,
-      definition: definition ?? this.definition,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      eventX: eventX?.copyWith(
+            objectPath: '$newObjectPath.eventX',
+          ) as EventXMessageHeader? ??
+          this.eventX,
+      destination: destination
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.destination',
+                ),
+              )
+              .toList() ??
+          this.destination,
+      sender: sender?.copyWith(
+            objectPath: '$newObjectPath.sender',
+          ) ??
+          this.sender,
+      enterer: enterer?.copyWith(
+            objectPath: '$newObjectPath.enterer',
+          ) ??
+          this.enterer,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      responsible: responsible?.copyWith(
+            objectPath: '$newObjectPath.responsible',
+          ) ??
+          this.responsible,
+      reason: reason?.copyWith(
+            objectPath: '$newObjectPath.reason',
+          ) ??
+          this.reason,
+      response: response?.copyWith(
+            objectPath: '$newObjectPath.response',
+          ) ??
+          this.response,
+      focus: focus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.focus',
+                ),
+              )
+              .toList() ??
+          this.focus,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
     );
   }
 }
@@ -565,15 +636,46 @@ class MessageHeaderDestination extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MessageHeaderDestination(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      target: target ?? this.target,
-      endpoint: endpoint ?? this.endpoint,
-      receiver: receiver ?? this.receiver,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      target: target?.copyWith(
+            objectPath: '$newObjectPath.target',
+          ) ??
+          this.target,
+      endpoint: endpoint?.copyWith(
+            objectPath: '$newObjectPath.endpoint',
+          ) ??
+          this.endpoint,
+      receiver: receiver?.copyWith(
+            objectPath: '$newObjectPath.receiver',
+          ) ??
+          this.receiver,
     );
   }
 }
@@ -778,16 +880,50 @@ class MessageHeaderSource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MessageHeaderSource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      software: software ?? this.software,
-      version: version ?? this.version,
-      contact: contact ?? this.contact,
-      endpoint: endpoint ?? this.endpoint,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      software: software?.copyWith(
+            objectPath: '$newObjectPath.software',
+          ) ??
+          this.software,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      contact: contact?.copyWith(
+            objectPath: '$newObjectPath.contact',
+          ) ??
+          this.contact,
+      endpoint: endpoint?.copyWith(
+            objectPath: '$newObjectPath.endpoint',
+          ) ??
+          this.endpoint,
     );
   }
 }
@@ -967,14 +1103,42 @@ class MessageHeaderResponse extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MessageHeaderResponse(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      code: code ?? this.code,
-      details: details ?? this.details,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      details: details?.copyWith(
+            objectPath: '$newObjectPath.details',
+          ) ??
+          this.details,
     );
   }
 }

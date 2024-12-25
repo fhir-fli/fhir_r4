@@ -287,23 +287,81 @@ class SubscriptionStatus extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return SubscriptionStatus(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      eventsSinceSubscriptionStart:
-          eventsSinceSubscriptionStart ?? this.eventsSinceSubscriptionStart,
-      notificationEvent: notificationEvent ?? this.notificationEvent,
-      subscription: subscription ?? this.subscription,
-      topic: topic ?? this.topic,
-      error: error ?? this.error,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      eventsSinceSubscriptionStart: eventsSinceSubscriptionStart?.copyWith(
+            objectPath: '$newObjectPath.eventsSinceSubscriptionStart',
+          ) ??
+          this.eventsSinceSubscriptionStart,
+      notificationEvent: notificationEvent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.notificationEvent',
+                ),
+              )
+              .toList() ??
+          this.notificationEvent,
+      subscription: subscription?.copyWith(
+            objectPath: '$newObjectPath.subscription',
+          ) ??
+          this.subscription,
+      topic: topic?.copyWith(
+            objectPath: '$newObjectPath.topic',
+          ) ??
+          this.topic,
+      error: error
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.error',
+                ),
+              )
+              .toList() ??
+          this.error,
     );
   }
 }
@@ -502,15 +560,50 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionStatusNotificationEvent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      eventNumber: eventNumber ?? this.eventNumber,
-      timestamp: timestamp ?? this.timestamp,
-      focus: focus ?? this.focus,
-      additionalContext: additionalContext ?? this.additionalContext,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      eventNumber: eventNumber?.copyWith(
+            objectPath: '$newObjectPath.eventNumber',
+          ) ??
+          this.eventNumber,
+      timestamp: timestamp?.copyWith(
+            objectPath: '$newObjectPath.timestamp',
+          ) ??
+          this.timestamp,
+      focus: focus?.copyWith(
+            objectPath: '$newObjectPath.focus',
+          ) ??
+          this.focus,
+      additionalContext: additionalContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additionalContext',
+                ),
+              )
+              .toList() ??
+          this.additionalContext,
     );
   }
 }

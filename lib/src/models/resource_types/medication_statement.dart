@@ -479,32 +479,149 @@ class MedicationStatement extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MedicationStatement(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      statusReason: statusReason ?? this.statusReason,
-      category: category ?? this.category,
-      medicationX: medicationX ?? this.medicationX,
-      subject: subject ?? this.subject,
-      context: context ?? this.context,
-      effectiveX: effectiveX ?? this.effectiveX,
-      dateAsserted: dateAsserted ?? this.dateAsserted,
-      informationSource: informationSource ?? this.informationSource,
-      derivedFrom: derivedFrom ?? this.derivedFrom,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
-      dosage: dosage ?? this.dosage,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReason: statusReason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.statusReason',
+                ),
+              )
+              .toList() ??
+          this.statusReason,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      medicationX: medicationX?.copyWith(
+            objectPath: '$newObjectPath.medicationX',
+          ) as MedicationXMedicationStatement? ??
+          this.medicationX,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      effectiveX: effectiveX?.copyWith(
+            objectPath: '$newObjectPath.effectiveX',
+          ) as EffectiveXMedicationStatement? ??
+          this.effectiveX,
+      dateAsserted: dateAsserted?.copyWith(
+            objectPath: '$newObjectPath.dateAsserted',
+          ) ??
+          this.dateAsserted,
+      informationSource: informationSource?.copyWith(
+            objectPath: '$newObjectPath.informationSource',
+          ) ??
+          this.informationSource,
+      derivedFrom: derivedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFrom',
+                ),
+              )
+              .toList() ??
+          this.derivedFrom,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      dosage: dosage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosage',
+                ),
+              )
+              .toList() ??
+          this.dosage,
     );
   }
 }

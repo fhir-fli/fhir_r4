@@ -345,26 +345,105 @@ class Account extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Account(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      name: name ?? this.name,
-      subject: subject ?? this.subject,
-      servicePeriod: servicePeriod ?? this.servicePeriod,
-      coverage: coverage ?? this.coverage,
-      owner: owner ?? this.owner,
-      description: description ?? this.description,
-      guarantor: guarantor ?? this.guarantor,
-      partOf: partOf ?? this.partOf,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      subject: subject
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subject',
+                ),
+              )
+              .toList() ??
+          this.subject,
+      servicePeriod: servicePeriod?.copyWith(
+            objectPath: '$newObjectPath.servicePeriod',
+          ) ??
+          this.servicePeriod,
+      coverage: coverage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coverage',
+                ),
+              )
+              .toList() ??
+          this.coverage,
+      owner: owner?.copyWith(
+            objectPath: '$newObjectPath.owner',
+          ) ??
+          this.owner,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      guarantor: guarantor
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.guarantor',
+                ),
+              )
+              .toList() ??
+          this.guarantor,
+      partOf: partOf?.copyWith(
+            objectPath: '$newObjectPath.partOf',
+          ) ??
+          this.partOf,
     );
   }
 }
@@ -534,13 +613,38 @@ class AccountCoverage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AccountCoverage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      coverage: coverage ?? this.coverage,
-      priority: priority ?? this.priority,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      coverage: coverage?.copyWith(
+            objectPath: '$newObjectPath.coverage',
+          ) ??
+          this.coverage,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
     );
   }
 }
@@ -720,14 +824,42 @@ class AccountGuarantor extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AccountGuarantor(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      party: party ?? this.party,
-      onHold: onHold ?? this.onHold,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      party: party?.copyWith(
+            objectPath: '$newObjectPath.party',
+          ) ??
+          this.party,
+      onHold: onHold?.copyWith(
+            objectPath: '$newObjectPath.onHold',
+          ) ??
+          this.onHold,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

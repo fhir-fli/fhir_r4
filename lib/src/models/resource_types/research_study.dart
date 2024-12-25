@@ -559,40 +559,201 @@ class ResearchStudy extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ResearchStudy(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      title: title ?? this.title,
-      protocol: protocol ?? this.protocol,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      primaryPurposeType: primaryPurposeType ?? this.primaryPurposeType,
-      phase: phase ?? this.phase,
-      category: category ?? this.category,
-      focus: focus ?? this.focus,
-      condition: condition ?? this.condition,
-      contact: contact ?? this.contact,
-      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
-      keyword: keyword ?? this.keyword,
-      location: location ?? this.location,
-      description: description ?? this.description,
-      enrollment: enrollment ?? this.enrollment,
-      period: period ?? this.period,
-      sponsor: sponsor ?? this.sponsor,
-      principalInvestigator:
-          principalInvestigator ?? this.principalInvestigator,
-      site: site ?? this.site,
-      reasonStopped: reasonStopped ?? this.reasonStopped,
-      note: note ?? this.note,
-      arm: arm ?? this.arm,
-      objective: objective ?? this.objective,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      protocol: protocol
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.protocol',
+                ),
+              )
+              .toList() ??
+          this.protocol,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      primaryPurposeType: primaryPurposeType?.copyWith(
+            objectPath: '$newObjectPath.primaryPurposeType',
+          ) ??
+          this.primaryPurposeType,
+      phase: phase?.copyWith(
+            objectPath: '$newObjectPath.phase',
+          ) ??
+          this.phase,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      focus: focus
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.focus',
+                ),
+              )
+              .toList() ??
+          this.focus,
+      condition: condition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.condition',
+                ),
+              )
+              .toList() ??
+          this.condition,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      relatedArtifact: relatedArtifact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relatedArtifact',
+                ),
+              )
+              .toList() ??
+          this.relatedArtifact,
+      keyword: keyword
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.keyword',
+                ),
+              )
+              .toList() ??
+          this.keyword,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      enrollment: enrollment
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.enrollment',
+                ),
+              )
+              .toList() ??
+          this.enrollment,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      sponsor: sponsor?.copyWith(
+            objectPath: '$newObjectPath.sponsor',
+          ) ??
+          this.sponsor,
+      principalInvestigator: principalInvestigator?.copyWith(
+            objectPath: '$newObjectPath.principalInvestigator',
+          ) ??
+          this.principalInvestigator,
+      site: site
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.site',
+                ),
+              )
+              .toList() ??
+          this.site,
+      reasonStopped: reasonStopped?.copyWith(
+            objectPath: '$newObjectPath.reasonStopped',
+          ) ??
+          this.reasonStopped,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      arm: arm
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.arm',
+                ),
+              )
+              .toList() ??
+          this.arm,
+      objective: objective
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.objective',
+                ),
+              )
+              .toList() ??
+          this.objective,
     );
   }
 }
@@ -773,14 +934,42 @@ class ResearchStudyArm extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ResearchStudyArm(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      type: type ?? this.type,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
     );
   }
 }
@@ -946,13 +1135,38 @@ class ResearchStudyObjective extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ResearchStudyObjective(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }

@@ -215,15 +215,42 @@ class Coding extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Coding(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      system: system ?? this.system,
-      version: version ?? this.version,
-      code: code ?? this.code,
-      display: display ?? this.display,
-      userSelected: userSelected ?? this.userSelected,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      display: display?.copyWith(
+            objectPath: '$newObjectPath.display',
+          ) ??
+          this.display,
+      userSelected: userSelected?.copyWith(
+            objectPath: '$newObjectPath.userSelected',
+          ) ??
+          this.userSelected,
     );
   }
 }

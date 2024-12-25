@@ -549,40 +549,189 @@ class DeviceRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DeviceRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      priorRequest: priorRequest ?? this.priorRequest,
-      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
-      status: status ?? this.status,
-      intent: intent ?? this.intent,
-      priority: priority ?? this.priority,
-      codeX: codeX ?? this.codeX,
-      parameter: parameter ?? this.parameter,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      authoredOn: authoredOn ?? this.authoredOn,
-      requester: requester ?? this.requester,
-      performerType: performerType ?? this.performerType,
-      performer: performer ?? this.performer,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      insurance: insurance ?? this.insurance,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      note: note ?? this.note,
-      relevantHistory: relevantHistory ?? this.relevantHistory,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      priorRequest: priorRequest
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.priorRequest',
+                ),
+              )
+              .toList() ??
+          this.priorRequest,
+      groupIdentifier: groupIdentifier?.copyWith(
+            objectPath: '$newObjectPath.groupIdentifier',
+          ) ??
+          this.groupIdentifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      codeX: codeX?.copyWith(
+            objectPath: '$newObjectPath.codeX',
+          ) as CodeXDeviceRequest? ??
+          this.codeX,
+      parameter: parameter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.parameter',
+                ),
+              )
+              .toList() ??
+          this.parameter,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXDeviceRequest? ??
+          this.occurrenceX,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      performerType: performerType?.copyWith(
+            objectPath: '$newObjectPath.performerType',
+          ) ??
+          this.performerType,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      relevantHistory: relevantHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relevantHistory',
+                ),
+              )
+              .toList() ??
+          this.relevantHistory,
     );
   }
 }
@@ -755,13 +904,38 @@ class DeviceRequestParameter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceRequestParameter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXDeviceRequestParameter? ??
+          this.valueX,
     );
   }
 }

@@ -471,34 +471,145 @@ class FamilyMemberHistory extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return FamilyMemberHistory(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      status: status ?? this.status,
-      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
-      patient: patient ?? this.patient,
-      date: date ?? this.date,
-      name: name ?? this.name,
-      relationship: relationship ?? this.relationship,
-      sex: sex ?? this.sex,
-      bornX: bornX ?? this.bornX,
-      ageX: ageX ?? this.ageX,
-      estimatedAge: estimatedAge ?? this.estimatedAge,
-      deceasedX: deceasedX ?? this.deceasedX,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      note: note ?? this.note,
-      condition: condition ?? this.condition,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      dataAbsentReason: dataAbsentReason?.copyWith(
+            objectPath: '$newObjectPath.dataAbsentReason',
+          ) ??
+          this.dataAbsentReason,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      sex: sex?.copyWith(
+            objectPath: '$newObjectPath.sex',
+          ) ??
+          this.sex,
+      bornX: bornX?.copyWith(
+            objectPath: '$newObjectPath.bornX',
+          ) as BornXFamilyMemberHistory? ??
+          this.bornX,
+      ageX: ageX?.copyWith(
+            objectPath: '$newObjectPath.ageX',
+          ) as AgeXFamilyMemberHistory? ??
+          this.ageX,
+      estimatedAge: estimatedAge?.copyWith(
+            objectPath: '$newObjectPath.estimatedAge',
+          ) ??
+          this.estimatedAge,
+      deceasedX: deceasedX?.copyWith(
+            objectPath: '$newObjectPath.deceasedX',
+          ) as DeceasedXFamilyMemberHistory? ??
+          this.deceasedX,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      condition: condition
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.condition',
+                ),
+              )
+              .toList() ??
+          this.condition,
     );
   }
 }
@@ -722,16 +833,54 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return FamilyMemberHistoryCondition(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      outcome: outcome ?? this.outcome,
-      contributedToDeath: contributedToDeath ?? this.contributedToDeath,
-      onsetX: onsetX ?? this.onsetX,
-      note: note ?? this.note,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      contributedToDeath: contributedToDeath?.copyWith(
+            objectPath: '$newObjectPath.contributedToDeath',
+          ) ??
+          this.contributedToDeath,
+      onsetX: onsetX?.copyWith(
+            objectPath: '$newObjectPath.onsetX',
+          ) as OnsetXFamilyMemberHistoryCondition? ??
+          this.onsetX,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }

@@ -453,32 +453,137 @@ class Condition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Condition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      clinicalStatus: clinicalStatus ?? this.clinicalStatus,
-      verificationStatus: verificationStatus ?? this.verificationStatus,
-      category: category ?? this.category,
-      severity: severity ?? this.severity,
-      code: code ?? this.code,
-      bodySite: bodySite ?? this.bodySite,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      onsetX: onsetX ?? this.onsetX,
-      abatementX: abatementX ?? this.abatementX,
-      recordedDate: recordedDate ?? this.recordedDate,
-      recorder: recorder ?? this.recorder,
-      asserter: asserter ?? this.asserter,
-      stage: stage ?? this.stage,
-      evidence: evidence ?? this.evidence,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      clinicalStatus: clinicalStatus?.copyWith(
+            objectPath: '$newObjectPath.clinicalStatus',
+          ) ??
+          this.clinicalStatus,
+      verificationStatus: verificationStatus?.copyWith(
+            objectPath: '$newObjectPath.verificationStatus',
+          ) ??
+          this.verificationStatus,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      bodySite: bodySite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.bodySite',
+                ),
+              )
+              .toList() ??
+          this.bodySite,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      onsetX: onsetX?.copyWith(
+            objectPath: '$newObjectPath.onsetX',
+          ) as OnsetXCondition? ??
+          this.onsetX,
+      abatementX: abatementX?.copyWith(
+            objectPath: '$newObjectPath.abatementX',
+          ) as AbatementXCondition? ??
+          this.abatementX,
+      recordedDate: recordedDate?.copyWith(
+            objectPath: '$newObjectPath.recordedDate',
+          ) ??
+          this.recordedDate,
+      recorder: recorder?.copyWith(
+            objectPath: '$newObjectPath.recorder',
+          ) ??
+          this.recorder,
+      asserter: asserter?.copyWith(
+            objectPath: '$newObjectPath.asserter',
+          ) ??
+          this.asserter,
+      stage: stage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.stage',
+                ),
+              )
+              .toList() ??
+          this.stage,
+      evidence: evidence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.evidence',
+                ),
+              )
+              .toList() ??
+          this.evidence,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -660,14 +765,46 @@ class ConditionStage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConditionStage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      summary: summary ?? this.summary,
-      assessment: assessment ?? this.assessment,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      summary: summary?.copyWith(
+            objectPath: '$newObjectPath.summary',
+          ) ??
+          this.summary,
+      assessment: assessment
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.assessment',
+                ),
+              )
+              .toList() ??
+          this.assessment,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }
@@ -837,13 +974,46 @@ class ConditionEvidence extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ConditionEvidence(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }

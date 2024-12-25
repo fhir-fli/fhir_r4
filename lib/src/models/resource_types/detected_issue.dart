@@ -368,27 +368,109 @@ class DetectedIssue extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DetectedIssue(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      code: code ?? this.code,
-      severity: severity ?? this.severity,
-      patient: patient ?? this.patient,
-      identifiedX: identifiedX ?? this.identifiedX,
-      author: author ?? this.author,
-      implicated: implicated ?? this.implicated,
-      evidence: evidence ?? this.evidence,
-      detail: detail ?? this.detail,
-      reference: reference ?? this.reference,
-      mitigation: mitigation ?? this.mitigation,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      identifiedX: identifiedX?.copyWith(
+            objectPath: '$newObjectPath.identifiedX',
+          ) as IdentifiedXDetectedIssue? ??
+          this.identifiedX,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
+      implicated: implicated
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.implicated',
+                ),
+              )
+              .toList() ??
+          this.implicated,
+      evidence: evidence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.evidence',
+                ),
+              )
+              .toList() ??
+          this.evidence,
+      detail: detail?.copyWith(
+            objectPath: '$newObjectPath.detail',
+          ) ??
+          this.detail,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
+      mitigation: mitigation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.mitigation',
+                ),
+              )
+              .toList() ??
+          this.mitigation,
     );
   }
 }
@@ -559,13 +641,46 @@ class DetectedIssueEvidence extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DetectedIssueEvidence(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.code',
+                ),
+              )
+              .toList() ??
+          this.code,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -747,14 +862,42 @@ class DetectedIssueMitigation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DetectedIssueMitigation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      action: action ?? this.action,
-      date: date ?? this.date,
-      author: author ?? this.author,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      action: action?.copyWith(
+            objectPath: '$newObjectPath.action',
+          ) ??
+          this.action,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      author: author?.copyWith(
+            objectPath: '$newObjectPath.author',
+          ) ??
+          this.author,
     );
   }
 }

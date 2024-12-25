@@ -232,12 +232,34 @@ class CodeableConcept extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return CodeableConcept(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      coding: coding ?? this.coding,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      coding: coding
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coding',
+                ),
+              )
+              .toList() ??
+          this.coding,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }

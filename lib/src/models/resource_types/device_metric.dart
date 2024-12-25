@@ -346,25 +346,93 @@ class DeviceMetric extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return DeviceMetric(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      unit: unit ?? this.unit,
-      source: source ?? this.source,
-      parent: parent ?? this.parent,
-      operationalStatus: operationalStatus ?? this.operationalStatus,
-      color: color ?? this.color,
-      category: category ?? this.category,
-      measurementPeriod: measurementPeriod ?? this.measurementPeriod,
-      calibration: calibration ?? this.calibration,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      unit: unit?.copyWith(
+            objectPath: '$newObjectPath.unit',
+          ) ??
+          this.unit,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      parent: parent?.copyWith(
+            objectPath: '$newObjectPath.parent',
+          ) ??
+          this.parent,
+      operationalStatus: operationalStatus?.copyWith(
+            objectPath: '$newObjectPath.operationalStatus',
+          ) ??
+          this.operationalStatus,
+      color: color?.copyWith(
+            objectPath: '$newObjectPath.color',
+          ) ??
+          this.color,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      measurementPeriod: measurementPeriod?.copyWith(
+            objectPath: '$newObjectPath.measurementPeriod',
+          ) ??
+          this.measurementPeriod,
+      calibration: calibration
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.calibration',
+                ),
+              )
+              .toList() ??
+          this.calibration,
     );
   }
 }
@@ -542,14 +610,42 @@ class DeviceMetricCalibration extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return DeviceMetricCalibration(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      state: state ?? this.state,
-      time: time ?? this.time,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      state: state?.copyWith(
+            objectPath: '$newObjectPath.state',
+          ) ??
+          this.state,
+      time: time?.copyWith(
+            objectPath: '$newObjectPath.time',
+          ) ??
+          this.time,
     );
   }
 }

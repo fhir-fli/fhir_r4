@@ -48,6 +48,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Uuid',
   });
 
   /// Factory constructor to create [FhirUuid] from JSON.
@@ -284,6 +285,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirUuid.fromUuid(
       newValue ?? value,
@@ -297,6 +299,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

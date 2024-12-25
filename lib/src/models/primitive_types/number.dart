@@ -26,6 +26,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    String? objectPath,
   }) {
     return value is int
         ? FhirInteger(
@@ -33,12 +34,14 @@ abstract class FhirNumber extends PrimitiveType<num?>
             element: element,
             id: id,
             extension_: extension_,
+            objectPath: objectPath,
           )
         : FhirDecimal(
             value,
             element: element,
             id: id,
             extension_: extension_,
+            objectPath: objectPath,
           );
   }
 
@@ -269,6 +272,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
     return FhirNumber.fromNum(
       value: newValue ?? value!,
@@ -281,6 +285,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -805,59 +805,277 @@ class ExplanationOfBenefit extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ExplanationOfBenefit(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      use: use ?? this.use,
-      patient: patient ?? this.patient,
-      billablePeriod: billablePeriod ?? this.billablePeriod,
-      created: created ?? this.created,
-      enterer: enterer ?? this.enterer,
-      insurer: insurer ?? this.insurer,
-      provider: provider ?? this.provider,
-      priority: priority ?? this.priority,
-      fundsReserveRequested:
-          fundsReserveRequested ?? this.fundsReserveRequested,
-      fundsReserve: fundsReserve ?? this.fundsReserve,
-      related: related ?? this.related,
-      prescription: prescription ?? this.prescription,
-      originalPrescription: originalPrescription ?? this.originalPrescription,
-      payee: payee ?? this.payee,
-      referral: referral ?? this.referral,
-      facility: facility ?? this.facility,
-      claim: claim ?? this.claim,
-      claimResponse: claimResponse ?? this.claimResponse,
-      outcome: outcome ?? this.outcome,
-      disposition: disposition ?? this.disposition,
-      preAuthRef: preAuthRef ?? this.preAuthRef,
-      preAuthRefPeriod: preAuthRefPeriod ?? this.preAuthRefPeriod,
-      careTeam: careTeam ?? this.careTeam,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      diagnosis: diagnosis ?? this.diagnosis,
-      procedure: procedure ?? this.procedure,
-      precedence: precedence ?? this.precedence,
-      insurance: insurance ?? this.insurance,
-      accident: accident ?? this.accident,
-      item: item ?? this.item,
-      addItem: addItem ?? this.addItem,
-      adjudication: adjudication ?? this.adjudication,
-      total: total ?? this.total,
-      payment: payment ?? this.payment,
-      formCode: formCode ?? this.formCode,
-      form: form ?? this.form,
-      processNote: processNote ?? this.processNote,
-      benefitPeriod: benefitPeriod ?? this.benefitPeriod,
-      benefitBalance: benefitBalance ?? this.benefitBalance,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subType: subType?.copyWith(
+            objectPath: '$newObjectPath.subType',
+          ) ??
+          this.subType,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      billablePeriod: billablePeriod?.copyWith(
+            objectPath: '$newObjectPath.billablePeriod',
+          ) ??
+          this.billablePeriod,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      enterer: enterer?.copyWith(
+            objectPath: '$newObjectPath.enterer',
+          ) ??
+          this.enterer,
+      insurer: insurer?.copyWith(
+            objectPath: '$newObjectPath.insurer',
+          ) ??
+          this.insurer,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      fundsReserveRequested: fundsReserveRequested?.copyWith(
+            objectPath: '$newObjectPath.fundsReserveRequested',
+          ) ??
+          this.fundsReserveRequested,
+      fundsReserve: fundsReserve?.copyWith(
+            objectPath: '$newObjectPath.fundsReserve',
+          ) ??
+          this.fundsReserve,
+      related: related
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.related',
+                ),
+              )
+              .toList() ??
+          this.related,
+      prescription: prescription?.copyWith(
+            objectPath: '$newObjectPath.prescription',
+          ) ??
+          this.prescription,
+      originalPrescription: originalPrescription?.copyWith(
+            objectPath: '$newObjectPath.originalPrescription',
+          ) ??
+          this.originalPrescription,
+      payee: payee?.copyWith(
+            objectPath: '$newObjectPath.payee',
+          ) ??
+          this.payee,
+      referral: referral?.copyWith(
+            objectPath: '$newObjectPath.referral',
+          ) ??
+          this.referral,
+      facility: facility?.copyWith(
+            objectPath: '$newObjectPath.facility',
+          ) ??
+          this.facility,
+      claim: claim?.copyWith(
+            objectPath: '$newObjectPath.claim',
+          ) ??
+          this.claim,
+      claimResponse: claimResponse?.copyWith(
+            objectPath: '$newObjectPath.claimResponse',
+          ) ??
+          this.claimResponse,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      disposition: disposition?.copyWith(
+            objectPath: '$newObjectPath.disposition',
+          ) ??
+          this.disposition,
+      preAuthRef: preAuthRef
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.preAuthRef',
+                ),
+              )
+              .toList() ??
+          this.preAuthRef,
+      preAuthRefPeriod: preAuthRefPeriod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.preAuthRefPeriod',
+                ),
+              )
+              .toList() ??
+          this.preAuthRefPeriod,
+      careTeam: careTeam
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.careTeam',
+                ),
+              )
+              .toList() ??
+          this.careTeam,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      diagnosis: diagnosis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosis',
+                ),
+              )
+              .toList() ??
+          this.diagnosis,
+      procedure: procedure
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.procedure',
+                ),
+              )
+              .toList() ??
+          this.procedure,
+      precedence: precedence?.copyWith(
+            objectPath: '$newObjectPath.precedence',
+          ) ??
+          this.precedence,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      accident: accident?.copyWith(
+            objectPath: '$newObjectPath.accident',
+          ) ??
+          this.accident,
+      item: item
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.item',
+                ),
+              )
+              .toList() ??
+          this.item,
+      addItem: addItem
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.addItem',
+                ),
+              )
+              .toList() ??
+          this.addItem,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
+      total: total
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.total',
+                ),
+              )
+              .toList() ??
+          this.total,
+      payment: payment?.copyWith(
+            objectPath: '$newObjectPath.payment',
+          ) ??
+          this.payment,
+      formCode: formCode?.copyWith(
+            objectPath: '$newObjectPath.formCode',
+          ) ??
+          this.formCode,
+      form: form?.copyWith(
+            objectPath: '$newObjectPath.form',
+          ) ??
+          this.form,
+      processNote: processNote
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.processNote',
+                ),
+              )
+              .toList() ??
+          this.processNote,
+      benefitPeriod: benefitPeriod?.copyWith(
+            objectPath: '$newObjectPath.benefitPeriod',
+          ) ??
+          this.benefitPeriod,
+      benefitBalance: benefitBalance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.benefitBalance',
+                ),
+              )
+              .toList() ??
+          this.benefitBalance,
     );
   }
 }
@@ -1036,14 +1254,42 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitRelated(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      claim: claim ?? this.claim,
-      relationship: relationship ?? this.relationship,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      claim: claim?.copyWith(
+            objectPath: '$newObjectPath.claim',
+          ) ??
+          this.claim,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }
@@ -1209,13 +1455,38 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitPayee(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      party: party ?? this.party,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      party: party?.copyWith(
+            objectPath: '$newObjectPath.party',
+          ) ??
+          this.party,
     );
   }
 }
@@ -1421,16 +1692,50 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitCareTeam(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      provider: provider ?? this.provider,
-      responsible: responsible ?? this.responsible,
-      role: role ?? this.role,
-      qualification: qualification ?? this.qualification,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      responsible: responsible?.copyWith(
+            objectPath: '$newObjectPath.responsible',
+          ) ??
+          this.responsible,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      qualification: qualification?.copyWith(
+            objectPath: '$newObjectPath.qualification',
+          ) ??
+          this.qualification,
     );
   }
 }
@@ -1670,17 +1975,54 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitSupportingInfo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      timingX: timingX ?? this.timingX,
-      valueX: valueX ?? this.valueX,
-      reason: reason ?? this.reason,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      timingX: timingX?.copyWith(
+            objectPath: '$newObjectPath.timingX',
+          ) as TimingXExplanationOfBenefitSupportingInfo? ??
+          this.timingX,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXExplanationOfBenefitSupportingInfo? ??
+          this.valueX,
+      reason: reason?.copyWith(
+            objectPath: '$newObjectPath.reason',
+          ) ??
+          this.reason,
     );
   }
 }
@@ -1894,16 +2236,54 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitDiagnosis(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      diagnosisX: diagnosisX ?? this.diagnosisX,
-      type: type ?? this.type,
-      onAdmission: onAdmission ?? this.onAdmission,
-      packageCode: packageCode ?? this.packageCode,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      diagnosisX: diagnosisX?.copyWith(
+            objectPath: '$newObjectPath.diagnosisX',
+          ) as DiagnosisXExplanationOfBenefitDiagnosis? ??
+          this.diagnosisX,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      onAdmission: onAdmission?.copyWith(
+            objectPath: '$newObjectPath.onAdmission',
+          ) ??
+          this.onAdmission,
+      packageCode: packageCode?.copyWith(
+            objectPath: '$newObjectPath.packageCode',
+          ) ??
+          this.packageCode,
     );
   }
 }
@@ -2117,16 +2497,58 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitProcedure(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      type: type ?? this.type,
-      date: date ?? this.date,
-      procedureX: procedureX ?? this.procedureX,
-      udi: udi ?? this.udi,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      procedureX: procedureX?.copyWith(
+            objectPath: '$newObjectPath.procedureX',
+          ) as ProcedureXExplanationOfBenefitProcedure? ??
+          this.procedureX,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
     );
   }
 }
@@ -2310,14 +2732,46 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitInsurance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      focal: focal ?? this.focal,
-      coverage: coverage ?? this.coverage,
-      preAuthRef: preAuthRef ?? this.preAuthRef,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      focal: focal?.copyWith(
+            objectPath: '$newObjectPath.focal',
+          ) ??
+          this.focal,
+      coverage: coverage?.copyWith(
+            objectPath: '$newObjectPath.coverage',
+          ) ??
+          this.coverage,
+      preAuthRef: preAuthRef
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.preAuthRef',
+                ),
+              )
+              .toList() ??
+          this.preAuthRef,
     );
   }
 }
@@ -2505,14 +2959,42 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitAccident(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      date: date ?? this.date,
-      type: type ?? this.type,
-      locationX: locationX ?? this.locationX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      locationX: locationX?.copyWith(
+            objectPath: '$newObjectPath.locationX',
+          ) as LocationXExplanationOfBenefitAccident? ??
+          this.locationX,
     );
   }
 }
@@ -2995,34 +3477,170 @@ class ExplanationOfBenefitItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      careTeamSequence: careTeamSequence ?? this.careTeamSequence,
-      diagnosisSequence: diagnosisSequence ?? this.diagnosisSequence,
-      procedureSequence: procedureSequence ?? this.procedureSequence,
-      informationSequence: informationSequence ?? this.informationSequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      servicedX: servicedX ?? this.servicedX,
-      locationX: locationX ?? this.locationX,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
-      bodySite: bodySite ?? this.bodySite,
-      subSite: subSite ?? this.subSite,
-      encounter: encounter ?? this.encounter,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      careTeamSequence: careTeamSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.careTeamSequence',
+                ),
+              )
+              .toList() ??
+          this.careTeamSequence,
+      diagnosisSequence: diagnosisSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosisSequence',
+                ),
+              )
+              .toList() ??
+          this.diagnosisSequence,
+      procedureSequence: procedureSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.procedureSequence',
+                ),
+              )
+              .toList() ??
+          this.procedureSequence,
+      informationSequence: informationSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.informationSequence',
+                ),
+              )
+              .toList() ??
+          this.informationSequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      servicedX: servicedX?.copyWith(
+            objectPath: '$newObjectPath.servicedX',
+          ) as ServicedXExplanationOfBenefitItem? ??
+          this.servicedX,
+      locationX: locationX?.copyWith(
+            objectPath: '$newObjectPath.locationX',
+          ) as LocationXExplanationOfBenefitItem? ??
+          this.locationX,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      subSite: subSite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subSite',
+                ),
+              )
+              .toList() ??
+          this.subSite,
+      encounter: encounter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.encounter',
+                ),
+              )
+              .toList() ??
+          this.encounter,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -3220,15 +3838,46 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitAdjudication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      reason: reason ?? this.reason,
-      amount: amount ?? this.amount,
-      value: value ?? this.value,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      reason: reason?.copyWith(
+            objectPath: '$newObjectPath.reason',
+          ) ??
+          this.reason,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
     );
   }
 }
@@ -3571,25 +4220,110 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
-      subDetail: subDetail ?? this.subDetail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
+      subDetail: subDetail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subDetail',
+                ),
+              )
+              .toList() ??
+          this.subDetail,
     );
   }
 }
@@ -3917,24 +4651,102 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitSubDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
     );
   }
 }
@@ -4349,29 +5161,142 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitAddItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemSequence: itemSequence ?? this.itemSequence,
-      detailSequence: detailSequence ?? this.detailSequence,
-      subDetailSequence: subDetailSequence ?? this.subDetailSequence,
-      provider: provider ?? this.provider,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      servicedX: servicedX ?? this.servicedX,
-      locationX: locationX ?? this.locationX,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      bodySite: bodySite ?? this.bodySite,
-      subSite: subSite ?? this.subSite,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      itemSequence: itemSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.itemSequence',
+                ),
+              )
+              .toList() ??
+          this.itemSequence,
+      detailSequence: detailSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detailSequence',
+                ),
+              )
+              .toList() ??
+          this.detailSequence,
+      subDetailSequence: subDetailSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subDetailSequence',
+                ),
+              )
+              .toList() ??
+          this.subDetailSequence,
+      provider: provider
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.provider',
+                ),
+              )
+              .toList() ??
+          this.provider,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      servicedX: servicedX?.copyWith(
+            objectPath: '$newObjectPath.servicedX',
+          ) as ServicedXExplanationOfBenefitAddItem? ??
+          this.servicedX,
+      locationX: locationX?.copyWith(
+            objectPath: '$newObjectPath.locationX',
+          ) as LocationXExplanationOfBenefitAddItem? ??
+          this.locationX,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      subSite: subSite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subSite',
+                ),
+              )
+              .toList() ??
+          this.subSite,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -4642,20 +5567,82 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitDetail1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
-      subDetail: subDetail ?? this.subDetail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
+      subDetail: subDetail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subDetail',
+                ),
+              )
+              .toList() ??
+          this.subDetail,
     );
   }
 }
@@ -4911,19 +5898,74 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitSubDetail1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      noteNumber: noteNumber ?? this.noteNumber,
-      adjudication: adjudication ?? this.adjudication,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      noteNumber: noteNumber
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.noteNumber',
+                ),
+              )
+              .toList() ??
+          this.noteNumber,
+      adjudication: adjudication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.adjudication',
+                ),
+              )
+              .toList() ??
+          this.adjudication,
     );
   }
 }
@@ -5091,13 +6133,38 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitTotal(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }
@@ -5316,17 +6383,54 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitPayment(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      adjustment: adjustment ?? this.adjustment,
-      adjustmentReason: adjustmentReason ?? this.adjustmentReason,
-      date: date ?? this.date,
-      amount: amount ?? this.amount,
-      identifier: identifier ?? this.identifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      adjustment: adjustment?.copyWith(
+            objectPath: '$newObjectPath.adjustment',
+          ) ??
+          this.adjustment,
+      adjustmentReason: adjustmentReason?.copyWith(
+            objectPath: '$newObjectPath.adjustmentReason',
+          ) ??
+          this.adjustmentReason,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
     );
   }
 }
@@ -5517,15 +6621,46 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitProcessNote(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      number: number ?? this.number,
-      type: type ?? this.type,
-      text: text ?? this.text,
-      language: language ?? this.language,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      number: number?.copyWith(
+            objectPath: '$newObjectPath.number',
+          ) ??
+          this.number,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
     );
   }
 }
@@ -5774,19 +6909,66 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitBenefitBalance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      category: category ?? this.category,
-      excluded: excluded ?? this.excluded,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      network: network ?? this.network,
-      unit: unit ?? this.unit,
-      term: term ?? this.term,
-      financial: financial ?? this.financial,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      excluded: excluded?.copyWith(
+            objectPath: '$newObjectPath.excluded',
+          ) ??
+          this.excluded,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      network: network?.copyWith(
+            objectPath: '$newObjectPath.network',
+          ) ??
+          this.network,
+      unit: unit?.copyWith(
+            objectPath: '$newObjectPath.unit',
+          ) ??
+          this.unit,
+      term: term?.copyWith(
+            objectPath: '$newObjectPath.term',
+          ) ??
+          this.term,
+      financial: financial
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.financial',
+                ),
+              )
+              .toList() ??
+          this.financial,
     );
   }
 }
@@ -5977,14 +7159,42 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ExplanationOfBenefitFinancial(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      allowedX: allowedX ?? this.allowedX,
-      usedX: usedX ?? this.usedX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      allowedX: allowedX?.copyWith(
+            objectPath: '$newObjectPath.allowedX',
+          ) as AllowedXExplanationOfBenefitFinancial? ??
+          this.allowedX,
+      usedX: usedX?.copyWith(
+            objectPath: '$newObjectPath.usedX',
+          ) as UsedXExplanationOfBenefitFinancial? ??
+          this.usedX,
     );
   }
 }

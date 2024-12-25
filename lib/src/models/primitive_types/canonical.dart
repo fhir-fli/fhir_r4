@@ -191,6 +191,7 @@ class FhirCanonical extends PrimitiveType<Uri>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirCanonical(
       newValue?.toString() ?? input,
@@ -204,6 +205,7 @@ class FhirCanonical extends PrimitiveType<Uri>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

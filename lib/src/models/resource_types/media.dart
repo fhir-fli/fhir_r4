@@ -503,37 +503,153 @@ class Media extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Media(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      basedOn: basedOn ?? this.basedOn,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      modality: modality ?? this.modality,
-      view: view ?? this.view,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      createdX: createdX ?? this.createdX,
-      issued: issued ?? this.issued,
-      operator_: operator_ ?? this.operator_,
-      reasonCode: reasonCode ?? this.reasonCode,
-      bodySite: bodySite ?? this.bodySite,
-      deviceName: deviceName ?? this.deviceName,
-      device: device ?? this.device,
-      height: height ?? this.height,
-      width: width ?? this.width,
-      frames: frames ?? this.frames,
-      duration: duration ?? this.duration,
-      content: content ?? this.content,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      modality: modality?.copyWith(
+            objectPath: '$newObjectPath.modality',
+          ) ??
+          this.modality,
+      view: view?.copyWith(
+            objectPath: '$newObjectPath.view',
+          ) ??
+          this.view,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      createdX: createdX?.copyWith(
+            objectPath: '$newObjectPath.createdX',
+          ) as CreatedXMedia? ??
+          this.createdX,
+      issued: issued?.copyWith(
+            objectPath: '$newObjectPath.issued',
+          ) ??
+          this.issued,
+      operator_: operator_?.copyWith(
+            objectPath: '$newObjectPath.operator',
+          ) ??
+          this.operator_,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      deviceName: deviceName?.copyWith(
+            objectPath: '$newObjectPath.deviceName',
+          ) ??
+          this.deviceName,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      height: height?.copyWith(
+            objectPath: '$newObjectPath.height',
+          ) ??
+          this.height,
+      width: width?.copyWith(
+            objectPath: '$newObjectPath.width',
+          ) ??
+          this.width,
+      frames: frames?.copyWith(
+            objectPath: '$newObjectPath.frames',
+          ) ??
+          this.frames,
+      duration: duration?.copyWith(
+            objectPath: '$newObjectPath.duration',
+          ) ??
+          this.duration,
+      content: content?.copyWith(
+            objectPath: '$newObjectPath.content',
+          ) ??
+          this.content,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }

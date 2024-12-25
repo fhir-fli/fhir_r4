@@ -219,16 +219,46 @@ class Identifier extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Identifier(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      use: use ?? this.use,
-      type: type ?? this.type,
-      system: system ?? this.system,
-      value: value ?? this.value,
-      period: period ?? this.period,
-      assigner: assigner ?? this.assigner,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      system: system?.copyWith(
+            objectPath: '$newObjectPath.system',
+          ) ??
+          this.system,
+      value: value?.copyWith(
+            objectPath: '$newObjectPath.value',
+          ) ??
+          this.value,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      assigner: assigner?.copyWith(
+            objectPath: '$newObjectPath.assigner',
+          ) ??
+          this.assigner,
     );
   }
 }

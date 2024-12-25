@@ -190,6 +190,7 @@ class FhirBoolean extends PrimitiveType<bool>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirBoolean(
       newValue ?? input,
@@ -203,6 +204,7 @@ class FhirBoolean extends PrimitiveType<bool>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

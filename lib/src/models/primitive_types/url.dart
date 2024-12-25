@@ -180,6 +180,7 @@ class FhirUrl extends PrimitiveType<Uri>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirUrl(
       newValue?.toString() ?? input,
@@ -193,6 +194,7 @@ class FhirUrl extends PrimitiveType<Uri>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

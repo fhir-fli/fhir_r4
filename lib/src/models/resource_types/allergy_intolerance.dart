@@ -436,31 +436,125 @@ class AllergyIntolerance extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return AllergyIntolerance(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      clinicalStatus: clinicalStatus ?? this.clinicalStatus,
-      verificationStatus: verificationStatus ?? this.verificationStatus,
-      type: type ?? this.type,
-      category: category ?? this.category,
-      criticality: criticality ?? this.criticality,
-      code: code ?? this.code,
-      patient: patient ?? this.patient,
-      encounter: encounter ?? this.encounter,
-      onsetX: onsetX ?? this.onsetX,
-      recordedDate: recordedDate ?? this.recordedDate,
-      recorder: recorder ?? this.recorder,
-      asserter: asserter ?? this.asserter,
-      lastOccurrence: lastOccurrence ?? this.lastOccurrence,
-      note: note ?? this.note,
-      reaction: reaction ?? this.reaction,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      clinicalStatus: clinicalStatus?.copyWith(
+            objectPath: '$newObjectPath.clinicalStatus',
+          ) ??
+          this.clinicalStatus,
+      verificationStatus: verificationStatus?.copyWith(
+            objectPath: '$newObjectPath.verificationStatus',
+          ) ??
+          this.verificationStatus,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      criticality: criticality?.copyWith(
+            objectPath: '$newObjectPath.criticality',
+          ) ??
+          this.criticality,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      onsetX: onsetX?.copyWith(
+            objectPath: '$newObjectPath.onsetX',
+          ) as OnsetXAllergyIntolerance? ??
+          this.onsetX,
+      recordedDate: recordedDate?.copyWith(
+            objectPath: '$newObjectPath.recordedDate',
+          ) ??
+          this.recordedDate,
+      recorder: recorder?.copyWith(
+            objectPath: '$newObjectPath.recorder',
+          ) ??
+          this.recorder,
+      asserter: asserter?.copyWith(
+            objectPath: '$newObjectPath.asserter',
+          ) ??
+          this.asserter,
+      lastOccurrence: lastOccurrence?.copyWith(
+            objectPath: '$newObjectPath.lastOccurrence',
+          ) ??
+          this.lastOccurrence,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      reaction: reaction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reaction',
+                ),
+              )
+              .toList() ??
+          this.reaction,
     );
   }
 }
@@ -709,18 +803,66 @@ class AllergyIntoleranceReaction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AllergyIntoleranceReaction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      substance: substance ?? this.substance,
-      manifestation: manifestation ?? this.manifestation,
-      description: description ?? this.description,
-      onset: onset ?? this.onset,
-      severity: severity ?? this.severity,
-      exposureRoute: exposureRoute ?? this.exposureRoute,
-      note: note ?? this.note,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      substance: substance?.copyWith(
+            objectPath: '$newObjectPath.substance',
+          ) ??
+          this.substance,
+      manifestation: manifestation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manifestation',
+                ),
+              )
+              .toList() ??
+          this.manifestation,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      onset: onset?.copyWith(
+            objectPath: '$newObjectPath.onset',
+          ) ??
+          this.onset,
+      severity: severity?.copyWith(
+            objectPath: '$newObjectPath.severity',
+          ) ??
+          this.severity,
+      exposureRoute: exposureRoute?.copyWith(
+            objectPath: '$newObjectPath.exposureRoute',
+          ) ??
+          this.exposureRoute,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }

@@ -573,42 +573,185 @@ class Claim extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Claim(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      use: use ?? this.use,
-      patient: patient ?? this.patient,
-      billablePeriod: billablePeriod ?? this.billablePeriod,
-      created: created ?? this.created,
-      enterer: enterer ?? this.enterer,
-      insurer: insurer ?? this.insurer,
-      provider: provider ?? this.provider,
-      priority: priority ?? this.priority,
-      fundsReserve: fundsReserve ?? this.fundsReserve,
-      related: related ?? this.related,
-      prescription: prescription ?? this.prescription,
-      originalPrescription: originalPrescription ?? this.originalPrescription,
-      payee: payee ?? this.payee,
-      referral: referral ?? this.referral,
-      facility: facility ?? this.facility,
-      careTeam: careTeam ?? this.careTeam,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      diagnosis: diagnosis ?? this.diagnosis,
-      procedure: procedure ?? this.procedure,
-      insurance: insurance ?? this.insurance,
-      accident: accident ?? this.accident,
-      item: item ?? this.item,
-      total: total ?? this.total,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subType: subType?.copyWith(
+            objectPath: '$newObjectPath.subType',
+          ) ??
+          this.subType,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      billablePeriod: billablePeriod?.copyWith(
+            objectPath: '$newObjectPath.billablePeriod',
+          ) ??
+          this.billablePeriod,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      enterer: enterer?.copyWith(
+            objectPath: '$newObjectPath.enterer',
+          ) ??
+          this.enterer,
+      insurer: insurer?.copyWith(
+            objectPath: '$newObjectPath.insurer',
+          ) ??
+          this.insurer,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      fundsReserve: fundsReserve?.copyWith(
+            objectPath: '$newObjectPath.fundsReserve',
+          ) ??
+          this.fundsReserve,
+      related: related
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.related',
+                ),
+              )
+              .toList() ??
+          this.related,
+      prescription: prescription?.copyWith(
+            objectPath: '$newObjectPath.prescription',
+          ) ??
+          this.prescription,
+      originalPrescription: originalPrescription?.copyWith(
+            objectPath: '$newObjectPath.originalPrescription',
+          ) ??
+          this.originalPrescription,
+      payee: payee?.copyWith(
+            objectPath: '$newObjectPath.payee',
+          ) ??
+          this.payee,
+      referral: referral?.copyWith(
+            objectPath: '$newObjectPath.referral',
+          ) ??
+          this.referral,
+      facility: facility?.copyWith(
+            objectPath: '$newObjectPath.facility',
+          ) ??
+          this.facility,
+      careTeam: careTeam
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.careTeam',
+                ),
+              )
+              .toList() ??
+          this.careTeam,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      diagnosis: diagnosis
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosis',
+                ),
+              )
+              .toList() ??
+          this.diagnosis,
+      procedure: procedure
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.procedure',
+                ),
+              )
+              .toList() ??
+          this.procedure,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      accident: accident?.copyWith(
+            objectPath: '$newObjectPath.accident',
+          ) ??
+          this.accident,
+      item: item
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.item',
+                ),
+              )
+              .toList() ??
+          this.item,
+      total: total?.copyWith(
+            objectPath: '$newObjectPath.total',
+          ) ??
+          this.total,
     );
   }
 }
@@ -787,14 +930,42 @@ class ClaimRelated extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimRelated(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      claim: claim ?? this.claim,
-      relationship: relationship ?? this.relationship,
-      reference: reference ?? this.reference,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      claim: claim?.copyWith(
+            objectPath: '$newObjectPath.claim',
+          ) ??
+          this.claim,
+      relationship: relationship?.copyWith(
+            objectPath: '$newObjectPath.relationship',
+          ) ??
+          this.relationship,
+      reference: reference?.copyWith(
+            objectPath: '$newObjectPath.reference',
+          ) ??
+          this.reference,
     );
   }
 }
@@ -960,13 +1131,38 @@ class ClaimPayee extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimPayee(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      party: party ?? this.party,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      party: party?.copyWith(
+            objectPath: '$newObjectPath.party',
+          ) ??
+          this.party,
     );
   }
 }
@@ -1172,16 +1368,50 @@ class ClaimCareTeam extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimCareTeam(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      provider: provider ?? this.provider,
-      responsible: responsible ?? this.responsible,
-      role: role ?? this.role,
-      qualification: qualification ?? this.qualification,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      provider: provider?.copyWith(
+            objectPath: '$newObjectPath.provider',
+          ) ??
+          this.provider,
+      responsible: responsible?.copyWith(
+            objectPath: '$newObjectPath.responsible',
+          ) ??
+          this.responsible,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      qualification: qualification?.copyWith(
+            objectPath: '$newObjectPath.qualification',
+          ) ??
+          this.qualification,
     );
   }
 }
@@ -1419,17 +1649,54 @@ class ClaimSupportingInfo extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimSupportingInfo(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      category: category ?? this.category,
-      code: code ?? this.code,
-      timingX: timingX ?? this.timingX,
-      valueX: valueX ?? this.valueX,
-      reason: reason ?? this.reason,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      timingX: timingX?.copyWith(
+            objectPath: '$newObjectPath.timingX',
+          ) as TimingXClaimSupportingInfo? ??
+          this.timingX,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXClaimSupportingInfo? ??
+          this.valueX,
+      reason: reason?.copyWith(
+            objectPath: '$newObjectPath.reason',
+          ) ??
+          this.reason,
     );
   }
 }
@@ -1642,16 +1909,54 @@ class ClaimDiagnosis extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimDiagnosis(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      diagnosisX: diagnosisX ?? this.diagnosisX,
-      type: type ?? this.type,
-      onAdmission: onAdmission ?? this.onAdmission,
-      packageCode: packageCode ?? this.packageCode,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      diagnosisX: diagnosisX?.copyWith(
+            objectPath: '$newObjectPath.diagnosisX',
+          ) as DiagnosisXClaimDiagnosis? ??
+          this.diagnosisX,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      onAdmission: onAdmission?.copyWith(
+            objectPath: '$newObjectPath.onAdmission',
+          ) ??
+          this.onAdmission,
+      packageCode: packageCode?.copyWith(
+            objectPath: '$newObjectPath.packageCode',
+          ) ??
+          this.packageCode,
     );
   }
 }
@@ -1864,16 +2169,58 @@ class ClaimProcedure extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimProcedure(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      type: type ?? this.type,
-      date: date ?? this.date,
-      procedureX: procedureX ?? this.procedureX,
-      udi: udi ?? this.udi,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      procedureX: procedureX?.copyWith(
+            objectPath: '$newObjectPath.procedureX',
+          ) as ProcedureXClaimProcedure? ??
+          this.procedureX,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
     );
   }
 }
@@ -2113,18 +2460,62 @@ class ClaimInsurance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimInsurance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      focal: focal ?? this.focal,
-      identifier: identifier ?? this.identifier,
-      coverage: coverage ?? this.coverage,
-      businessArrangement: businessArrangement ?? this.businessArrangement,
-      preAuthRef: preAuthRef ?? this.preAuthRef,
-      claimResponse: claimResponse ?? this.claimResponse,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      focal: focal?.copyWith(
+            objectPath: '$newObjectPath.focal',
+          ) ??
+          this.focal,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      coverage: coverage?.copyWith(
+            objectPath: '$newObjectPath.coverage',
+          ) ??
+          this.coverage,
+      businessArrangement: businessArrangement?.copyWith(
+            objectPath: '$newObjectPath.businessArrangement',
+          ) ??
+          this.businessArrangement,
+      preAuthRef: preAuthRef
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.preAuthRef',
+                ),
+              )
+              .toList() ??
+          this.preAuthRef,
+      claimResponse: claimResponse?.copyWith(
+            objectPath: '$newObjectPath.claimResponse',
+          ) ??
+          this.claimResponse,
     );
   }
 }
@@ -2311,14 +2702,42 @@ class ClaimAccident extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimAccident(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      date: date ?? this.date,
-      type: type ?? this.type,
-      locationX: locationX ?? this.locationX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      locationX: locationX?.copyWith(
+            objectPath: '$newObjectPath.locationX',
+          ) as LocationXClaimAccident? ??
+          this.locationX,
     );
   }
 }
@@ -2771,32 +3190,154 @@ class ClaimItem extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimItem(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      careTeamSequence: careTeamSequence ?? this.careTeamSequence,
-      diagnosisSequence: diagnosisSequence ?? this.diagnosisSequence,
-      procedureSequence: procedureSequence ?? this.procedureSequence,
-      informationSequence: informationSequence ?? this.informationSequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      servicedX: servicedX ?? this.servicedX,
-      locationX: locationX ?? this.locationX,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
-      bodySite: bodySite ?? this.bodySite,
-      subSite: subSite ?? this.subSite,
-      encounter: encounter ?? this.encounter,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      careTeamSequence: careTeamSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.careTeamSequence',
+                ),
+              )
+              .toList() ??
+          this.careTeamSequence,
+      diagnosisSequence: diagnosisSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.diagnosisSequence',
+                ),
+              )
+              .toList() ??
+          this.diagnosisSequence,
+      procedureSequence: procedureSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.procedureSequence',
+                ),
+              )
+              .toList() ??
+          this.procedureSequence,
+      informationSequence: informationSequence
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.informationSequence',
+                ),
+              )
+              .toList() ??
+          this.informationSequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      servicedX: servicedX?.copyWith(
+            objectPath: '$newObjectPath.servicedX',
+          ) as ServicedXClaimItem? ??
+          this.servicedX,
+      locationX: locationX?.copyWith(
+            objectPath: '$newObjectPath.locationX',
+          ) as LocationXClaimItem? ??
+          this.locationX,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
+      bodySite: bodySite?.copyWith(
+            objectPath: '$newObjectPath.bodySite',
+          ) ??
+          this.bodySite,
+      subSite: subSite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subSite',
+                ),
+              )
+              .toList() ??
+          this.subSite,
+      encounter: encounter
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.encounter',
+                ),
+              )
+              .toList() ??
+          this.encounter,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -3111,23 +3652,94 @@ class ClaimDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
-      subDetail: subDetail ?? this.subDetail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
+      subDetail: subDetail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subDetail',
+                ),
+              )
+              .toList() ??
+          this.subDetail,
     );
   }
 }
@@ -3426,22 +4038,86 @@ class ClaimSubDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClaimSubDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      sequence: sequence ?? this.sequence,
-      revenue: revenue ?? this.revenue,
-      category: category ?? this.category,
-      productOrService: productOrService ?? this.productOrService,
-      modifier: modifier ?? this.modifier,
-      programCode: programCode ?? this.programCode,
-      quantity: quantity ?? this.quantity,
-      unitPrice: unitPrice ?? this.unitPrice,
-      factor: factor ?? this.factor,
-      net: net ?? this.net,
-      udi: udi ?? this.udi,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      sequence: sequence?.copyWith(
+            objectPath: '$newObjectPath.sequence',
+          ) ??
+          this.sequence,
+      revenue: revenue?.copyWith(
+            objectPath: '$newObjectPath.revenue',
+          ) ??
+          this.revenue,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      productOrService: productOrService?.copyWith(
+            objectPath: '$newObjectPath.productOrService',
+          ) ??
+          this.productOrService,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
+      programCode: programCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.programCode',
+                ),
+              )
+              .toList() ??
+          this.programCode,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      unitPrice: unitPrice?.copyWith(
+            objectPath: '$newObjectPath.unitPrice',
+          ) ??
+          this.unitPrice,
+      factor: factor?.copyWith(
+            objectPath: '$newObjectPath.factor',
+          ) ??
+          this.factor,
+      net: net?.copyWith(
+            objectPath: '$newObjectPath.net',
+          ) ??
+          this.net,
+      udi: udi
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.udi',
+                ),
+              )
+              .toList() ??
+          this.udi,
     );
   }
 }

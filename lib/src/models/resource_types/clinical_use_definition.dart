@@ -346,26 +346,105 @@ class ClinicalUseDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ClinicalUseDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      category: category ?? this.category,
-      subject: subject ?? this.subject,
-      status: status ?? this.status,
-      contraindication: contraindication ?? this.contraindication,
-      indication: indication ?? this.indication,
-      interaction: interaction ?? this.interaction,
-      population: population ?? this.population,
-      undesirableEffect: undesirableEffect ?? this.undesirableEffect,
-      warning: warning ?? this.warning,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      subject: subject
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subject',
+                ),
+              )
+              .toList() ??
+          this.subject,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      contraindication: contraindication?.copyWith(
+            objectPath: '$newObjectPath.contraindication',
+          ) ??
+          this.contraindication,
+      indication: indication?.copyWith(
+            objectPath: '$newObjectPath.indication',
+          ) ??
+          this.indication,
+      interaction: interaction?.copyWith(
+            objectPath: '$newObjectPath.interaction',
+          ) ??
+          this.interaction,
+      population: population
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.population',
+                ),
+              )
+              .toList() ??
+          this.population,
+      undesirableEffect: undesirableEffect?.copyWith(
+            objectPath: '$newObjectPath.undesirableEffect',
+          ) ??
+          this.undesirableEffect,
+      warning: warning?.copyWith(
+            objectPath: '$newObjectPath.warning',
+          ) ??
+          this.warning,
     );
   }
 }
@@ -577,17 +656,62 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionContraindication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      diseaseSymptomProcedure:
-          diseaseSymptomProcedure ?? this.diseaseSymptomProcedure,
-      diseaseStatus: diseaseStatus ?? this.diseaseStatus,
-      comorbidity: comorbidity ?? this.comorbidity,
-      indication: indication ?? this.indication,
-      otherTherapy: otherTherapy ?? this.otherTherapy,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      diseaseSymptomProcedure: diseaseSymptomProcedure?.copyWith(
+            objectPath: '$newObjectPath.diseaseSymptomProcedure',
+          ) ??
+          this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus?.copyWith(
+            objectPath: '$newObjectPath.diseaseStatus',
+          ) ??
+          this.diseaseStatus,
+      comorbidity: comorbidity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.comorbidity',
+                ),
+              )
+              .toList() ??
+          this.comorbidity,
+      indication: indication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.indication',
+                ),
+              )
+              .toList() ??
+          this.indication,
+      otherTherapy: otherTherapy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.otherTherapy',
+                ),
+              )
+              .toList() ??
+          this.otherTherapy,
     );
   }
 }
@@ -754,13 +878,38 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionOtherTherapy(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      relationshipType: relationshipType ?? this.relationshipType,
-      therapy: therapy ?? this.therapy,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      relationshipType: relationshipType?.copyWith(
+            objectPath: '$newObjectPath.relationshipType',
+          ) ??
+          this.relationshipType,
+      therapy: therapy?.copyWith(
+            objectPath: '$newObjectPath.therapy',
+          ) ??
+          this.therapy,
     );
   }
 }
@@ -1009,19 +1158,70 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionIndication(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      diseaseSymptomProcedure:
-          diseaseSymptomProcedure ?? this.diseaseSymptomProcedure,
-      diseaseStatus: diseaseStatus ?? this.diseaseStatus,
-      comorbidity: comorbidity ?? this.comorbidity,
-      intendedEffect: intendedEffect ?? this.intendedEffect,
-      durationX: durationX ?? this.durationX,
-      undesirableEffect: undesirableEffect ?? this.undesirableEffect,
-      otherTherapy: otherTherapy ?? this.otherTherapy,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      diseaseSymptomProcedure: diseaseSymptomProcedure?.copyWith(
+            objectPath: '$newObjectPath.diseaseSymptomProcedure',
+          ) ??
+          this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus?.copyWith(
+            objectPath: '$newObjectPath.diseaseStatus',
+          ) ??
+          this.diseaseStatus,
+      comorbidity: comorbidity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.comorbidity',
+                ),
+              )
+              .toList() ??
+          this.comorbidity,
+      intendedEffect: intendedEffect?.copyWith(
+            objectPath: '$newObjectPath.intendedEffect',
+          ) ??
+          this.intendedEffect,
+      durationX: durationX?.copyWith(
+            objectPath: '$newObjectPath.durationX',
+          ) as DurationXClinicalUseDefinitionIndication? ??
+          this.durationX,
+      undesirableEffect: undesirableEffect
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.undesirableEffect',
+                ),
+              )
+              .toList() ??
+          this.undesirableEffect,
+      otherTherapy: otherTherapy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.otherTherapy',
+                ),
+              )
+              .toList() ??
+          this.otherTherapy,
     );
   }
 }
@@ -1231,16 +1431,58 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionInteraction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      interactant: interactant ?? this.interactant,
-      type: type ?? this.type,
-      effect: effect ?? this.effect,
-      incidence: incidence ?? this.incidence,
-      management: management ?? this.management,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      interactant: interactant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interactant',
+                ),
+              )
+              .toList() ??
+          this.interactant,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      effect: effect?.copyWith(
+            objectPath: '$newObjectPath.effect',
+          ) ??
+          this.effect,
+      incidence: incidence?.copyWith(
+            objectPath: '$newObjectPath.incidence',
+          ) ??
+          this.incidence,
+      management: management
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.management',
+                ),
+              )
+              .toList() ??
+          this.management,
     );
   }
 }
@@ -1396,12 +1638,34 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionInteractant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      itemX: itemX?.copyWith(
+            objectPath: '$newObjectPath.itemX',
+          ) as ItemXClinicalUseDefinitionInteractant? ??
+          this.itemX,
     );
   }
 }
@@ -1579,16 +1843,42 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionUndesirableEffect(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      symptomConditionEffect:
-          symptomConditionEffect ?? this.symptomConditionEffect,
-      classification: classification ?? this.classification,
-      frequencyOfOccurrence:
-          frequencyOfOccurrence ?? this.frequencyOfOccurrence,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      symptomConditionEffect: symptomConditionEffect?.copyWith(
+            objectPath: '$newObjectPath.symptomConditionEffect',
+          ) ??
+          this.symptomConditionEffect,
+      classification: classification?.copyWith(
+            objectPath: '$newObjectPath.classification',
+          ) ??
+          this.classification,
+      frequencyOfOccurrence: frequencyOfOccurrence?.copyWith(
+            objectPath: '$newObjectPath.frequencyOfOccurrence',
+          ) ??
+          this.frequencyOfOccurrence,
     );
   }
 }
@@ -1755,13 +2045,38 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ClinicalUseDefinitionWarning(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      code: code ?? this.code,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
     );
   }
 }

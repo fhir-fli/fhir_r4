@@ -418,31 +418,133 @@ class MolecularSequence extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MolecularSequence(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      type: type ?? this.type,
-      coordinateSystem: coordinateSystem ?? this.coordinateSystem,
-      patient: patient ?? this.patient,
-      specimen: specimen ?? this.specimen,
-      device: device ?? this.device,
-      performer: performer ?? this.performer,
-      quantity: quantity ?? this.quantity,
-      referenceSeq: referenceSeq ?? this.referenceSeq,
-      variant: variant ?? this.variant,
-      observedSeq: observedSeq ?? this.observedSeq,
-      quality: quality ?? this.quality,
-      readCoverage: readCoverage ?? this.readCoverage,
-      repository: repository ?? this.repository,
-      pointer: pointer ?? this.pointer,
-      structureVariant: structureVariant ?? this.structureVariant,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      coordinateSystem: coordinateSystem?.copyWith(
+            objectPath: '$newObjectPath.coordinateSystem',
+          ) ??
+          this.coordinateSystem,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      specimen: specimen?.copyWith(
+            objectPath: '$newObjectPath.specimen',
+          ) ??
+          this.specimen,
+      device: device?.copyWith(
+            objectPath: '$newObjectPath.device',
+          ) ??
+          this.device,
+      performer: performer?.copyWith(
+            objectPath: '$newObjectPath.performer',
+          ) ??
+          this.performer,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      referenceSeq: referenceSeq?.copyWith(
+            objectPath: '$newObjectPath.referenceSeq',
+          ) ??
+          this.referenceSeq,
+      variant: variant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.variant',
+                ),
+              )
+              .toList() ??
+          this.variant,
+      observedSeq: observedSeq?.copyWith(
+            objectPath: '$newObjectPath.observedSeq',
+          ) ??
+          this.observedSeq,
+      quality: quality
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.quality',
+                ),
+              )
+              .toList() ??
+          this.quality,
+      readCoverage: readCoverage?.copyWith(
+            objectPath: '$newObjectPath.readCoverage',
+          ) ??
+          this.readCoverage,
+      repository: repository
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.repository',
+                ),
+              )
+              .toList() ??
+          this.repository,
+      pointer: pointer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.pointer',
+                ),
+              )
+              .toList() ??
+          this.pointer,
+      structureVariant: structureVariant
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.structureVariant',
+                ),
+              )
+              .toList() ??
+          this.structureVariant,
     );
   }
 }
@@ -716,20 +818,66 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceReferenceSeq(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      chromosome: chromosome ?? this.chromosome,
-      genomeBuild: genomeBuild ?? this.genomeBuild,
-      orientation: orientation ?? this.orientation,
-      referenceSeqId: referenceSeqId ?? this.referenceSeqId,
-      referenceSeqPointer: referenceSeqPointer ?? this.referenceSeqPointer,
-      referenceSeqString: referenceSeqString ?? this.referenceSeqString,
-      strand: strand ?? this.strand,
-      windowStart: windowStart ?? this.windowStart,
-      windowEnd: windowEnd ?? this.windowEnd,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      chromosome: chromosome?.copyWith(
+            objectPath: '$newObjectPath.chromosome',
+          ) ??
+          this.chromosome,
+      genomeBuild: genomeBuild?.copyWith(
+            objectPath: '$newObjectPath.genomeBuild',
+          ) ??
+          this.genomeBuild,
+      orientation: orientation?.copyWith(
+            objectPath: '$newObjectPath.orientation',
+          ) ??
+          this.orientation,
+      referenceSeqId: referenceSeqId?.copyWith(
+            objectPath: '$newObjectPath.referenceSeqId',
+          ) ??
+          this.referenceSeqId,
+      referenceSeqPointer: referenceSeqPointer?.copyWith(
+            objectPath: '$newObjectPath.referenceSeqPointer',
+          ) ??
+          this.referenceSeqPointer,
+      referenceSeqString: referenceSeqString?.copyWith(
+            objectPath: '$newObjectPath.referenceSeqString',
+          ) ??
+          this.referenceSeqString,
+      strand: strand?.copyWith(
+            objectPath: '$newObjectPath.strand',
+          ) ??
+          this.strand,
+      windowStart: windowStart?.copyWith(
+            objectPath: '$newObjectPath.windowStart',
+          ) ??
+          this.windowStart,
+      windowEnd: windowEnd?.copyWith(
+            objectPath: '$newObjectPath.windowEnd',
+          ) ??
+          this.windowEnd,
     );
   }
 }
@@ -968,17 +1116,54 @@ class MolecularSequenceVariant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceVariant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      observedAllele: observedAllele ?? this.observedAllele,
-      referenceAllele: referenceAllele ?? this.referenceAllele,
-      cigar: cigar ?? this.cigar,
-      variantPointer: variantPointer ?? this.variantPointer,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
+      observedAllele: observedAllele?.copyWith(
+            objectPath: '$newObjectPath.observedAllele',
+          ) ??
+          this.observedAllele,
+      referenceAllele: referenceAllele?.copyWith(
+            objectPath: '$newObjectPath.referenceAllele',
+          ) ??
+          this.referenceAllele,
+      cigar: cigar?.copyWith(
+            objectPath: '$newObjectPath.cigar',
+          ) ??
+          this.cigar,
+      variantPointer: variantPointer?.copyWith(
+            objectPath: '$newObjectPath.variantPointer',
+          ) ??
+          this.variantPointer,
     );
   }
 }
@@ -1335,26 +1520,90 @@ class MolecularSequenceQuality extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceQuality(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      standardSequence: standardSequence ?? this.standardSequence,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      score: score ?? this.score,
-      method: method ?? this.method,
-      truthTP: truthTP ?? this.truthTP,
-      queryTP: queryTP ?? this.queryTP,
-      truthFN: truthFN ?? this.truthFN,
-      queryFP: queryFP ?? this.queryFP,
-      gtFP: gtFP ?? this.gtFP,
-      precision: precision ?? this.precision,
-      recall: recall ?? this.recall,
-      fScore: fScore ?? this.fScore,
-      roc: roc ?? this.roc,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      standardSequence: standardSequence?.copyWith(
+            objectPath: '$newObjectPath.standardSequence',
+          ) ??
+          this.standardSequence,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
+      score: score?.copyWith(
+            objectPath: '$newObjectPath.score',
+          ) ??
+          this.score,
+      method: method?.copyWith(
+            objectPath: '$newObjectPath.method',
+          ) ??
+          this.method,
+      truthTP: truthTP?.copyWith(
+            objectPath: '$newObjectPath.truthTP',
+          ) ??
+          this.truthTP,
+      queryTP: queryTP?.copyWith(
+            objectPath: '$newObjectPath.queryTP',
+          ) ??
+          this.queryTP,
+      truthFN: truthFN?.copyWith(
+            objectPath: '$newObjectPath.truthFN',
+          ) ??
+          this.truthFN,
+      queryFP: queryFP?.copyWith(
+            objectPath: '$newObjectPath.queryFP',
+          ) ??
+          this.queryFP,
+      gtFP: gtFP?.copyWith(
+            objectPath: '$newObjectPath.gtFP',
+          ) ??
+          this.gtFP,
+      precision: precision?.copyWith(
+            objectPath: '$newObjectPath.precision',
+          ) ??
+          this.precision,
+      recall: recall?.copyWith(
+            objectPath: '$newObjectPath.recall',
+          ) ??
+          this.recall,
+      fScore: fScore?.copyWith(
+            objectPath: '$newObjectPath.fScore',
+          ) ??
+          this.fScore,
+      roc: roc?.copyWith(
+            objectPath: '$newObjectPath.roc',
+          ) ??
+          this.roc,
     );
   }
 }
@@ -1591,18 +1840,86 @@ class MolecularSequenceRoc extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceRoc(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      score: score ?? this.score,
-      numTP: numTP ?? this.numTP,
-      numFP: numFP ?? this.numFP,
-      numFN: numFN ?? this.numFN,
-      precision: precision ?? this.precision,
-      sensitivity: sensitivity ?? this.sensitivity,
-      fMeasure: fMeasure ?? this.fMeasure,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      score: score
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.score',
+                ),
+              )
+              .toList() ??
+          this.score,
+      numTP: numTP
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.numTP',
+                ),
+              )
+              .toList() ??
+          this.numTP,
+      numFP: numFP
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.numFP',
+                ),
+              )
+              .toList() ??
+          this.numFP,
+      numFN: numFN
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.numFN',
+                ),
+              )
+              .toList() ??
+          this.numFN,
+      precision: precision
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.precision',
+                ),
+              )
+              .toList() ??
+          this.precision,
+      sensitivity: sensitivity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.sensitivity',
+                ),
+              )
+              .toList() ??
+          this.sensitivity,
+      fMeasure: fMeasure
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.fMeasure',
+                ),
+              )
+              .toList() ??
+          this.fMeasure,
     );
   }
 }
@@ -1826,17 +2143,54 @@ class MolecularSequenceRepository extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceRepository(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      url: url ?? this.url,
-      name: name ?? this.name,
-      datasetId: datasetId ?? this.datasetId,
-      variantsetId: variantsetId ?? this.variantsetId,
-      readsetId: readsetId ?? this.readsetId,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      datasetId: datasetId?.copyWith(
+            objectPath: '$newObjectPath.datasetId',
+          ) ??
+          this.datasetId,
+      variantsetId: variantsetId?.copyWith(
+            objectPath: '$newObjectPath.variantsetId',
+          ) ??
+          this.variantsetId,
+      readsetId: readsetId?.copyWith(
+            objectPath: '$newObjectPath.readsetId',
+          ) ??
+          this.readsetId,
     );
   }
 }
@@ -2040,16 +2394,50 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceStructureVariant(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      variantType: variantType ?? this.variantType,
-      exact: exact ?? this.exact,
-      length: length ?? this.length,
-      outer: outer ?? this.outer,
-      inner: inner ?? this.inner,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      variantType: variantType?.copyWith(
+            objectPath: '$newObjectPath.variantType',
+          ) ??
+          this.variantType,
+      exact: exact?.copyWith(
+            objectPath: '$newObjectPath.exact',
+          ) ??
+          this.exact,
+      length: length?.copyWith(
+            objectPath: '$newObjectPath.length',
+          ) ??
+          this.length,
+      outer: outer?.copyWith(
+            objectPath: '$newObjectPath.outer',
+          ) ??
+          this.outer,
+      inner: inner?.copyWith(
+            objectPath: '$newObjectPath.inner',
+          ) ??
+          this.inner,
     );
   }
 }
@@ -2217,13 +2605,38 @@ class MolecularSequenceOuter extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceOuter(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      start: start ?? this.start,
-      end: end ?? this.end,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
     );
   }
 }
@@ -2391,13 +2804,38 @@ class MolecularSequenceInner extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MolecularSequenceInner(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      start: start ?? this.start,
-      end: end ?? this.end,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      start: start?.copyWith(
+            objectPath: '$newObjectPath.start',
+          ) ??
+          this.start,
+      end: end?.copyWith(
+            objectPath: '$newObjectPath.end',
+          ) ??
+          this.end,
     );
   }
 }

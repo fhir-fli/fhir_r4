@@ -225,16 +225,58 @@ class FhirMeta extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return FhirMeta(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      versionId: versionId ?? this.versionId,
-      lastUpdated: lastUpdated ?? this.lastUpdated,
-      source: source ?? this.source,
-      profile: profile ?? this.profile,
-      security: security ?? this.security,
-      tag: tag ?? this.tag,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      versionId: versionId?.copyWith(
+            objectPath: '$newObjectPath.versionId',
+          ) ??
+          this.versionId,
+      lastUpdated: lastUpdated?.copyWith(
+            objectPath: '$newObjectPath.lastUpdated',
+          ) ??
+          this.lastUpdated,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      profile: profile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.profile',
+                ),
+              )
+              .toList() ??
+          this.profile,
+      security: security
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.security',
+                ),
+              )
+              .toList() ??
+          this.security,
+      tag: tag
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.tag',
+                ),
+              )
+              .toList() ??
+          this.tag,
     );
   }
 }

@@ -269,21 +269,81 @@ class SpecimenDefinition extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return SpecimenDefinition(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      typeCollected: typeCollected ?? this.typeCollected,
-      patientPreparation: patientPreparation ?? this.patientPreparation,
-      timeAspect: timeAspect ?? this.timeAspect,
-      collection: collection ?? this.collection,
-      typeTested: typeTested ?? this.typeTested,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      typeCollected: typeCollected?.copyWith(
+            objectPath: '$newObjectPath.typeCollected',
+          ) ??
+          this.typeCollected,
+      patientPreparation: patientPreparation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.patientPreparation',
+                ),
+              )
+              .toList() ??
+          this.patientPreparation,
+      timeAspect: timeAspect?.copyWith(
+            objectPath: '$newObjectPath.timeAspect',
+          ) ??
+          this.timeAspect,
+      collection: collection
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.collection',
+                ),
+              )
+              .toList() ??
+          this.collection,
+      typeTested: typeTested
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.typeTested',
+                ),
+              )
+              .toList() ??
+          this.typeTested,
     );
   }
 }
@@ -534,19 +594,70 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SpecimenDefinitionTypeTested(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      isDerived: isDerived ?? this.isDerived,
-      type: type ?? this.type,
-      preference: preference ?? this.preference,
-      container: container ?? this.container,
-      requirement: requirement ?? this.requirement,
-      retentionTime: retentionTime ?? this.retentionTime,
-      rejectionCriterion: rejectionCriterion ?? this.rejectionCriterion,
-      handling: handling ?? this.handling,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      isDerived: isDerived?.copyWith(
+            objectPath: '$newObjectPath.isDerived',
+          ) ??
+          this.isDerived,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      preference: preference?.copyWith(
+            objectPath: '$newObjectPath.preference',
+          ) ??
+          this.preference,
+      container: container?.copyWith(
+            objectPath: '$newObjectPath.container',
+          ) ??
+          this.container,
+      requirement: requirement?.copyWith(
+            objectPath: '$newObjectPath.requirement',
+          ) ??
+          this.requirement,
+      retentionTime: retentionTime?.copyWith(
+            objectPath: '$newObjectPath.retentionTime',
+          ) ??
+          this.retentionTime,
+      rejectionCriterion: rejectionCriterion
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.rejectionCriterion',
+                ),
+              )
+              .toList() ??
+          this.rejectionCriterion,
+      handling: handling
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.handling',
+                ),
+              )
+              .toList() ??
+          this.handling,
     );
   }
 }
@@ -799,19 +910,66 @@ class SpecimenDefinitionContainer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SpecimenDefinitionContainer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      material: material ?? this.material,
-      type: type ?? this.type,
-      cap: cap ?? this.cap,
-      description: description ?? this.description,
-      capacity: capacity ?? this.capacity,
-      minimumVolumeX: minimumVolumeX ?? this.minimumVolumeX,
-      additive: additive ?? this.additive,
-      preparation: preparation ?? this.preparation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      material: material?.copyWith(
+            objectPath: '$newObjectPath.material',
+          ) ??
+          this.material,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      cap: cap?.copyWith(
+            objectPath: '$newObjectPath.cap',
+          ) ??
+          this.cap,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      capacity: capacity?.copyWith(
+            objectPath: '$newObjectPath.capacity',
+          ) ??
+          this.capacity,
+      minimumVolumeX: minimumVolumeX?.copyWith(
+            objectPath: '$newObjectPath.minimumVolumeX',
+          ) as MinimumVolumeXSpecimenDefinitionContainer? ??
+          this.minimumVolumeX,
+      additive: additive
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.additive',
+                ),
+              )
+              .toList() ??
+          this.additive,
+      preparation: preparation?.copyWith(
+            objectPath: '$newObjectPath.preparation',
+          ) ??
+          this.preparation,
     );
   }
 }
@@ -969,12 +1127,34 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SpecimenDefinitionAdditive(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      additiveX: additiveX ?? this.additiveX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      additiveX: additiveX?.copyWith(
+            objectPath: '$newObjectPath.additiveX',
+          ) as AdditiveXSpecimenDefinitionAdditive? ??
+          this.additiveX,
     );
   }
 }
@@ -1169,15 +1349,46 @@ class SpecimenDefinitionHandling extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SpecimenDefinitionHandling(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      temperatureQualifier: temperatureQualifier ?? this.temperatureQualifier,
-      temperatureRange: temperatureRange ?? this.temperatureRange,
-      maxDuration: maxDuration ?? this.maxDuration,
-      instruction: instruction ?? this.instruction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      temperatureQualifier: temperatureQualifier?.copyWith(
+            objectPath: '$newObjectPath.temperatureQualifier',
+          ) ??
+          this.temperatureQualifier,
+      temperatureRange: temperatureRange?.copyWith(
+            objectPath: '$newObjectPath.temperatureRange',
+          ) ??
+          this.temperatureRange,
+      maxDuration: maxDuration?.copyWith(
+            objectPath: '$newObjectPath.maxDuration',
+          ) ??
+          this.maxDuration,
+      instruction: instruction?.copyWith(
+            objectPath: '$newObjectPath.instruction',
+          ) ??
+          this.instruction,
     );
   }
 }

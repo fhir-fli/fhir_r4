@@ -425,31 +425,137 @@ class Goal extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Goal(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      lifecycleStatus: lifecycleStatus ?? this.lifecycleStatus,
-      achievementStatus: achievementStatus ?? this.achievementStatus,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      description: description ?? this.description,
-      subject: subject ?? this.subject,
-      startX: startX ?? this.startX,
-      target: target ?? this.target,
-      statusDate: statusDate ?? this.statusDate,
-      statusReason: statusReason ?? this.statusReason,
-      expressedBy: expressedBy ?? this.expressedBy,
-      addresses: addresses ?? this.addresses,
-      note: note ?? this.note,
-      outcomeCode: outcomeCode ?? this.outcomeCode,
-      outcomeReference: outcomeReference ?? this.outcomeReference,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      lifecycleStatus: lifecycleStatus?.copyWith(
+            objectPath: '$newObjectPath.lifecycleStatus',
+          ) ??
+          this.lifecycleStatus,
+      achievementStatus: achievementStatus?.copyWith(
+            objectPath: '$newObjectPath.achievementStatus',
+          ) ??
+          this.achievementStatus,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      startX: startX?.copyWith(
+            objectPath: '$newObjectPath.startX',
+          ) as StartXGoal? ??
+          this.startX,
+      target: target
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.target',
+                ),
+              )
+              .toList() ??
+          this.target,
+      statusDate: statusDate?.copyWith(
+            objectPath: '$newObjectPath.statusDate',
+          ) ??
+          this.statusDate,
+      statusReason: statusReason?.copyWith(
+            objectPath: '$newObjectPath.statusReason',
+          ) ??
+          this.statusReason,
+      expressedBy: expressedBy?.copyWith(
+            objectPath: '$newObjectPath.expressedBy',
+          ) ??
+          this.expressedBy,
+      addresses: addresses
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.addresses',
+                ),
+              )
+              .toList() ??
+          this.addresses,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      outcomeCode: outcomeCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.outcomeCode',
+                ),
+              )
+              .toList() ??
+          this.outcomeCode,
+      outcomeReference: outcomeReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.outcomeReference',
+                ),
+              )
+              .toList() ??
+          this.outcomeReference,
     );
   }
 }
@@ -650,14 +756,42 @@ class GoalTarget extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return GoalTarget(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      measure: measure ?? this.measure,
-      detailX: detailX ?? this.detailX,
-      dueX: dueX ?? this.dueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      measure: measure?.copyWith(
+            objectPath: '$newObjectPath.measure',
+          ) ??
+          this.measure,
+      detailX: detailX?.copyWith(
+            objectPath: '$newObjectPath.detailX',
+          ) as DetailXGoalTarget? ??
+          this.detailX,
+      dueX: dueX?.copyWith(
+            objectPath: '$newObjectPath.dueX',
+          ) as DueXGoalTarget? ??
+          this.dueX,
     );
   }
 }

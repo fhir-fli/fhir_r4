@@ -60,5 +60,6 @@ abstract class DataType extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   });
 }

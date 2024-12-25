@@ -341,26 +341,105 @@ class AuditEvent extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return AuditEvent(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      subtype: subtype ?? this.subtype,
-      action: action ?? this.action,
-      period: period ?? this.period,
-      recorded: recorded ?? this.recorded,
-      outcome: outcome ?? this.outcome,
-      outcomeDesc: outcomeDesc ?? this.outcomeDesc,
-      purposeOfEvent: purposeOfEvent ?? this.purposeOfEvent,
-      agent: agent ?? this.agent,
-      source: source ?? this.source,
-      entity: entity ?? this.entity,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      subtype: subtype
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.subtype',
+                ),
+              )
+              .toList() ??
+          this.subtype,
+      action: action?.copyWith(
+            objectPath: '$newObjectPath.action',
+          ) ??
+          this.action,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      recorded: recorded?.copyWith(
+            objectPath: '$newObjectPath.recorded',
+          ) ??
+          this.recorded,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      outcomeDesc: outcomeDesc?.copyWith(
+            objectPath: '$newObjectPath.outcomeDesc',
+          ) ??
+          this.outcomeDesc,
+      purposeOfEvent: purposeOfEvent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.purposeOfEvent',
+                ),
+              )
+              .toList() ??
+          this.purposeOfEvent,
+      agent: agent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.agent',
+                ),
+              )
+              .toList() ??
+          this.agent,
+      source: source?.copyWith(
+            objectPath: '$newObjectPath.source',
+          ) ??
+          this.source,
+      entity: entity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entity',
+                ),
+              )
+              .toList() ??
+          this.entity,
     );
   }
 }
@@ -658,22 +737,86 @@ class AuditEventAgent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AuditEventAgent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      role: role ?? this.role,
-      who: who ?? this.who,
-      altId: altId ?? this.altId,
-      name: name ?? this.name,
-      requestor: requestor ?? this.requestor,
-      location: location ?? this.location,
-      policy: policy ?? this.policy,
-      media: media ?? this.media,
-      network: network ?? this.network,
-      purposeOfUse: purposeOfUse ?? this.purposeOfUse,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      role: role
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.role',
+                ),
+              )
+              .toList() ??
+          this.role,
+      who: who?.copyWith(
+            objectPath: '$newObjectPath.who',
+          ) ??
+          this.who,
+      altId: altId?.copyWith(
+            objectPath: '$newObjectPath.altId',
+          ) ??
+          this.altId,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      requestor: requestor?.copyWith(
+            objectPath: '$newObjectPath.requestor',
+          ) ??
+          this.requestor,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      policy: policy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.policy',
+                ),
+              )
+              .toList() ??
+          this.policy,
+      media: media?.copyWith(
+            objectPath: '$newObjectPath.media',
+          ) ??
+          this.media,
+      network: network?.copyWith(
+            objectPath: '$newObjectPath.network',
+          ) ??
+          this.network,
+      purposeOfUse: purposeOfUse
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.purposeOfUse',
+                ),
+              )
+              .toList() ??
+          this.purposeOfUse,
     );
   }
 }
@@ -840,13 +983,38 @@ class AuditEventNetwork extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AuditEventNetwork(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      address: address ?? this.address,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
     );
   }
 }
@@ -1027,14 +1195,46 @@ class AuditEventSource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AuditEventSource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      site: site ?? this.site,
-      observer: observer ?? this.observer,
-      type: type ?? this.type,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      site: site?.copyWith(
+            objectPath: '$newObjectPath.site',
+          ) ??
+          this.site,
+      observer: observer?.copyWith(
+            objectPath: '$newObjectPath.observer',
+          ) ??
+          this.observer,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
     );
   }
 }
@@ -1296,20 +1496,74 @@ class AuditEventEntity extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AuditEventEntity(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      what: what ?? this.what,
-      type: type ?? this.type,
-      role: role ?? this.role,
-      lifecycle: lifecycle ?? this.lifecycle,
-      securityLabel: securityLabel ?? this.securityLabel,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      query: query ?? this.query,
-      detail: detail ?? this.detail,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      what: what?.copyWith(
+            objectPath: '$newObjectPath.what',
+          ) ??
+          this.what,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      lifecycle: lifecycle?.copyWith(
+            objectPath: '$newObjectPath.lifecycle',
+          ) ??
+          this.lifecycle,
+      securityLabel: securityLabel
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.securityLabel',
+                ),
+              )
+              .toList() ??
+          this.securityLabel,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      query: query?.copyWith(
+            objectPath: '$newObjectPath.query',
+          ) ??
+          this.query,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
     );
   }
 }
@@ -1478,13 +1732,38 @@ class AuditEventDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return AuditEventDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      valueX: valueX?.copyWith(
+            objectPath: '$newObjectPath.valueX',
+          ) as ValueXAuditEventDetail? ??
+          this.valueX,
     );
   }
 }

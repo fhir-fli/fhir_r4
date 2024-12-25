@@ -523,41 +523,193 @@ class CapabilityStatement extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return CapabilityStatement(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      version: version ?? this.version,
-      name: name ?? this.name,
-      title: title ?? this.title,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      kind: kind ?? this.kind,
-      instantiates: instantiates ?? this.instantiates,
-      imports: imports ?? this.imports,
-      software: software ?? this.software,
-      implementation: implementation ?? this.implementation,
-      fhirVersion: fhirVersion ?? this.fhirVersion,
-      format: format ?? this.format,
-      patchFormat: patchFormat ?? this.patchFormat,
-      implementationGuide: implementationGuide ?? this.implementationGuide,
-      rest: rest ?? this.rest,
-      messaging: messaging ?? this.messaging,
-      document: document ?? this.document,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      kind: kind?.copyWith(
+            objectPath: '$newObjectPath.kind',
+          ) ??
+          this.kind,
+      instantiates: instantiates
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiates',
+                ),
+              )
+              .toList() ??
+          this.instantiates,
+      imports: imports
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.imports',
+                ),
+              )
+              .toList() ??
+          this.imports,
+      software: software?.copyWith(
+            objectPath: '$newObjectPath.software',
+          ) ??
+          this.software,
+      implementation: implementation?.copyWith(
+            objectPath: '$newObjectPath.implementation',
+          ) ??
+          this.implementation,
+      fhirVersion: fhirVersion?.copyWith(
+            objectPath: '$newObjectPath.fhirVersion',
+          ) ??
+          this.fhirVersion,
+      format: format
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.format',
+                ),
+              )
+              .toList() ??
+          this.format,
+      patchFormat: patchFormat
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.patchFormat',
+                ),
+              )
+              .toList() ??
+          this.patchFormat,
+      implementationGuide: implementationGuide
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.implementationGuide',
+                ),
+              )
+              .toList() ??
+          this.implementationGuide,
+      rest: rest
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.rest',
+                ),
+              )
+              .toList() ??
+          this.rest,
+      messaging: messaging
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.messaging',
+                ),
+              )
+              .toList() ??
+          this.messaging,
+      document: document
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.document',
+                ),
+              )
+              .toList() ??
+          this.document,
     );
   }
 }
@@ -736,14 +888,42 @@ class CapabilityStatementSoftware extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementSoftware(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      version: version ?? this.version,
-      releaseDate: releaseDate ?? this.releaseDate,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      releaseDate: releaseDate?.copyWith(
+            objectPath: '$newObjectPath.releaseDate',
+          ) ??
+          this.releaseDate,
     );
   }
 }
@@ -925,14 +1105,42 @@ class CapabilityStatementImplementation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementImplementation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      url: url ?? this.url,
-      custodian: custodian ?? this.custodian,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      custodian: custodian?.copyWith(
+            objectPath: '$newObjectPath.custodian',
+          ) ??
+          this.custodian,
     );
   }
 }
@@ -1192,19 +1400,82 @@ class CapabilityStatementRest extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementRest(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      mode: mode ?? this.mode,
-      documentation: documentation ?? this.documentation,
-      security: security ?? this.security,
-      resource: resource ?? this.resource,
-      interaction: interaction ?? this.interaction,
-      searchParam: searchParam ?? this.searchParam,
-      operation: operation ?? this.operation,
-      compartment: compartment ?? this.compartment,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      security: security?.copyWith(
+            objectPath: '$newObjectPath.security',
+          ) ??
+          this.security,
+      resource: resource
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resource',
+                ),
+              )
+              .toList() ??
+          this.resource,
+      interaction: interaction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interaction',
+                ),
+              )
+              .toList() ??
+          this.interaction,
+      searchParam: searchParam
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.searchParam',
+                ),
+              )
+              .toList() ??
+          this.searchParam,
+      operation: operation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.operation',
+                ),
+              )
+              .toList() ??
+          this.operation,
+      compartment: compartment
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.compartment',
+                ),
+              )
+              .toList() ??
+          this.compartment,
     );
   }
 }
@@ -1385,14 +1656,46 @@ class CapabilityStatementSecurity extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementSecurity(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      cors: cors ?? this.cors,
-      service: service ?? this.service,
-      description: description ?? this.description,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      cors: cors?.copyWith(
+            objectPath: '$newObjectPath.cors',
+          ) ??
+          this.cors,
+      service: service
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.service',
+                ),
+              )
+              .toList() ??
+          this.service,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
     );
   }
 }
@@ -1783,28 +2086,126 @@ class CapabilityStatementResource extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementResource(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      profile: profile ?? this.profile,
-      supportedProfile: supportedProfile ?? this.supportedProfile,
-      documentation: documentation ?? this.documentation,
-      interaction: interaction ?? this.interaction,
-      versioning: versioning ?? this.versioning,
-      readHistory: readHistory ?? this.readHistory,
-      updateCreate: updateCreate ?? this.updateCreate,
-      conditionalCreate: conditionalCreate ?? this.conditionalCreate,
-      conditionalRead: conditionalRead ?? this.conditionalRead,
-      conditionalUpdate: conditionalUpdate ?? this.conditionalUpdate,
-      conditionalDelete: conditionalDelete ?? this.conditionalDelete,
-      referencePolicy: referencePolicy ?? this.referencePolicy,
-      searchInclude: searchInclude ?? this.searchInclude,
-      searchRevInclude: searchRevInclude ?? this.searchRevInclude,
-      searchParam: searchParam ?? this.searchParam,
-      operation: operation ?? this.operation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
+      supportedProfile: supportedProfile
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportedProfile',
+                ),
+              )
+              .toList() ??
+          this.supportedProfile,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      interaction: interaction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.interaction',
+                ),
+              )
+              .toList() ??
+          this.interaction,
+      versioning: versioning?.copyWith(
+            objectPath: '$newObjectPath.versioning',
+          ) ??
+          this.versioning,
+      readHistory: readHistory?.copyWith(
+            objectPath: '$newObjectPath.readHistory',
+          ) ??
+          this.readHistory,
+      updateCreate: updateCreate?.copyWith(
+            objectPath: '$newObjectPath.updateCreate',
+          ) ??
+          this.updateCreate,
+      conditionalCreate: conditionalCreate?.copyWith(
+            objectPath: '$newObjectPath.conditionalCreate',
+          ) ??
+          this.conditionalCreate,
+      conditionalRead: conditionalRead?.copyWith(
+            objectPath: '$newObjectPath.conditionalRead',
+          ) ??
+          this.conditionalRead,
+      conditionalUpdate: conditionalUpdate?.copyWith(
+            objectPath: '$newObjectPath.conditionalUpdate',
+          ) ??
+          this.conditionalUpdate,
+      conditionalDelete: conditionalDelete?.copyWith(
+            objectPath: '$newObjectPath.conditionalDelete',
+          ) ??
+          this.conditionalDelete,
+      referencePolicy: referencePolicy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referencePolicy',
+                ),
+              )
+              .toList() ??
+          this.referencePolicy,
+      searchInclude: searchInclude
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.searchInclude',
+                ),
+              )
+              .toList() ??
+          this.searchInclude,
+      searchRevInclude: searchRevInclude
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.searchRevInclude',
+                ),
+              )
+              .toList() ??
+          this.searchRevInclude,
+      searchParam: searchParam
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.searchParam',
+                ),
+              )
+              .toList() ??
+          this.searchParam,
+      operation: operation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.operation',
+                ),
+              )
+              .toList() ??
+          this.operation,
     );
   }
 }
@@ -1970,13 +2371,38 @@ class CapabilityStatementInteraction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementInteraction(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -2176,15 +2602,46 @@ class CapabilityStatementSearchParam extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementSearchParam(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      definition: definition ?? this.definition,
-      type: type ?? this.type,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -2376,14 +2833,42 @@ class CapabilityStatementOperation extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementOperation(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      name: name ?? this.name,
-      definition: definition ?? this.definition,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -2549,13 +3034,38 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementInteraction1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      documentation: documentation ?? this.documentation,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
     );
   }
 }
@@ -2756,15 +3266,54 @@ class CapabilityStatementMessaging extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementMessaging(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      endpoint: endpoint ?? this.endpoint,
-      reliableCache: reliableCache ?? this.reliableCache,
-      documentation: documentation ?? this.documentation,
-      supportedMessage: supportedMessage ?? this.supportedMessage,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
+      reliableCache: reliableCache?.copyWith(
+            objectPath: '$newObjectPath.reliableCache',
+          ) ??
+          this.reliableCache,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      supportedMessage: supportedMessage
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportedMessage',
+                ),
+              )
+              .toList() ??
+          this.supportedMessage,
     );
   }
 }
@@ -2931,13 +3480,38 @@ class CapabilityStatementEndpoint extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementEndpoint(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      protocol: protocol ?? this.protocol,
-      address: address ?? this.address,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      protocol: protocol?.copyWith(
+            objectPath: '$newObjectPath.protocol',
+          ) ??
+          this.protocol,
+      address: address?.copyWith(
+            objectPath: '$newObjectPath.address',
+          ) ??
+          this.address,
     );
   }
 }
@@ -3104,13 +3678,38 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementSupportedMessage(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      mode: mode ?? this.mode,
-      definition: definition ?? this.definition,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      definition: definition?.copyWith(
+            objectPath: '$newObjectPath.definition',
+          ) ??
+          this.definition,
     );
   }
 }
@@ -3291,14 +3890,42 @@ class CapabilityStatementDocument extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return CapabilityStatementDocument(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      mode: mode ?? this.mode,
-      documentation: documentation ?? this.documentation,
-      profile: profile ?? this.profile,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      mode: mode?.copyWith(
+            objectPath: '$newObjectPath.mode',
+          ) ??
+          this.mode,
+      documentation: documentation?.copyWith(
+            objectPath: '$newObjectPath.documentation',
+          ) ??
+          this.documentation,
+      profile: profile?.copyWith(
+            objectPath: '$newObjectPath.profile',
+          ) ??
+          this.profile,
     );
   }
 }

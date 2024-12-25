@@ -552,40 +552,205 @@ class HealthcareService extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return HealthcareService(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      active: active ?? this.active,
-      providedBy: providedBy ?? this.providedBy,
-      category: category ?? this.category,
-      type: type ?? this.type,
-      specialty: specialty ?? this.specialty,
-      location: location ?? this.location,
-      name: name ?? this.name,
-      comment: comment ?? this.comment,
-      extraDetails: extraDetails ?? this.extraDetails,
-      photo: photo ?? this.photo,
-      telecom: telecom ?? this.telecom,
-      coverageArea: coverageArea ?? this.coverageArea,
-      serviceProvisionCode: serviceProvisionCode ?? this.serviceProvisionCode,
-      eligibility: eligibility ?? this.eligibility,
-      program: program ?? this.program,
-      characteristic: characteristic ?? this.characteristic,
-      communication: communication ?? this.communication,
-      referralMethod: referralMethod ?? this.referralMethod,
-      appointmentRequired: appointmentRequired ?? this.appointmentRequired,
-      availableTime: availableTime ?? this.availableTime,
-      notAvailable: notAvailable ?? this.notAvailable,
-      availabilityExceptions:
-          availabilityExceptions ?? this.availabilityExceptions,
-      endpoint: endpoint ?? this.endpoint,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      active: active?.copyWith(
+            objectPath: '$newObjectPath.active',
+          ) ??
+          this.active,
+      providedBy: providedBy?.copyWith(
+            objectPath: '$newObjectPath.providedBy',
+          ) ??
+          this.providedBy,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      specialty: specialty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specialty',
+                ),
+              )
+              .toList() ??
+          this.specialty,
+      location: location
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.location',
+                ),
+              )
+              .toList() ??
+          this.location,
+      name: name?.copyWith(
+            objectPath: '$newObjectPath.name',
+          ) ??
+          this.name,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
+      extraDetails: extraDetails?.copyWith(
+            objectPath: '$newObjectPath.extraDetails',
+          ) ??
+          this.extraDetails,
+      photo: photo?.copyWith(
+            objectPath: '$newObjectPath.photo',
+          ) ??
+          this.photo,
+      telecom: telecom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.telecom',
+                ),
+              )
+              .toList() ??
+          this.telecom,
+      coverageArea: coverageArea
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.coverageArea',
+                ),
+              )
+              .toList() ??
+          this.coverageArea,
+      serviceProvisionCode: serviceProvisionCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.serviceProvisionCode',
+                ),
+              )
+              .toList() ??
+          this.serviceProvisionCode,
+      eligibility: eligibility
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.eligibility',
+                ),
+              )
+              .toList() ??
+          this.eligibility,
+      program: program
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.program',
+                ),
+              )
+              .toList() ??
+          this.program,
+      characteristic: characteristic
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.characteristic',
+                ),
+              )
+              .toList() ??
+          this.characteristic,
+      communication: communication
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.communication',
+                ),
+              )
+              .toList() ??
+          this.communication,
+      referralMethod: referralMethod
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referralMethod',
+                ),
+              )
+              .toList() ??
+          this.referralMethod,
+      appointmentRequired: appointmentRequired?.copyWith(
+            objectPath: '$newObjectPath.appointmentRequired',
+          ) ??
+          this.appointmentRequired,
+      availableTime: availableTime
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.availableTime',
+                ),
+              )
+              .toList() ??
+          this.availableTime,
+      notAvailable: notAvailable
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.notAvailable',
+                ),
+              )
+              .toList() ??
+          this.notAvailable,
+      availabilityExceptions: availabilityExceptions?.copyWith(
+            objectPath: '$newObjectPath.availabilityExceptions',
+          ) ??
+          this.availabilityExceptions,
+      endpoint: endpoint
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.endpoint',
+                ),
+              )
+              .toList() ??
+          this.endpoint,
     );
   }
 }
@@ -750,13 +915,38 @@ class HealthcareServiceEligibility extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return HealthcareServiceEligibility(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      comment: comment ?? this.comment,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      comment: comment?.copyWith(
+            objectPath: '$newObjectPath.comment',
+          ) ??
+          this.comment,
     );
   }
 }
@@ -950,15 +1140,50 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return HealthcareServiceAvailableTime(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
-      allDay: allDay ?? this.allDay,
-      availableStartTime: availableStartTime ?? this.availableStartTime,
-      availableEndTime: availableEndTime ?? this.availableEndTime,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      daysOfWeek: daysOfWeek
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.daysOfWeek',
+                ),
+              )
+              .toList() ??
+          this.daysOfWeek,
+      allDay: allDay?.copyWith(
+            objectPath: '$newObjectPath.allDay',
+          ) ??
+          this.allDay,
+      availableStartTime: availableStartTime?.copyWith(
+            objectPath: '$newObjectPath.availableStartTime',
+          ) ??
+          this.availableStartTime,
+      availableEndTime: availableEndTime?.copyWith(
+            objectPath: '$newObjectPath.availableEndTime',
+          ) ??
+          this.availableEndTime,
     );
   }
 }
@@ -1125,13 +1350,38 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return HealthcareServiceNotAvailable(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      during: during ?? this.during,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      during: during?.copyWith(
+            objectPath: '$newObjectPath.during',
+          ) ??
+          this.during,
     );
   }
 }

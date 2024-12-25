@@ -182,6 +182,7 @@ class FhirPositiveInt extends FhirNumber
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirPositiveInt(
       newValue ?? value,
@@ -195,6 +196,7 @@ class FhirPositiveInt extends FhirNumber
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -569,44 +569,193 @@ class ChargeItem extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ChargeItem(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      definitionUri: definitionUri ?? this.definitionUri,
-      definitionCanonical: definitionCanonical ?? this.definitionCanonical,
-      status: status ?? this.status,
-      partOf: partOf ?? this.partOf,
-      code: code ?? this.code,
-      subject: subject ?? this.subject,
-      context: context ?? this.context,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      performer: performer ?? this.performer,
-      performingOrganization:
-          performingOrganization ?? this.performingOrganization,
-      requestingOrganization:
-          requestingOrganization ?? this.requestingOrganization,
-      costCenter: costCenter ?? this.costCenter,
-      quantity: quantity ?? this.quantity,
-      bodysite: bodysite ?? this.bodysite,
-      factorOverride: factorOverride ?? this.factorOverride,
-      priceOverride: priceOverride ?? this.priceOverride,
-      overrideReason: overrideReason ?? this.overrideReason,
-      enterer: enterer ?? this.enterer,
-      enteredDate: enteredDate ?? this.enteredDate,
-      reason: reason ?? this.reason,
-      service: service ?? this.service,
-      productX: productX ?? this.productX,
-      account: account ?? this.account,
-      note: note ?? this.note,
-      supportingInformation:
-          supportingInformation ?? this.supportingInformation,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      definitionUri: definitionUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.definitionUri',
+                ),
+              )
+              .toList() ??
+          this.definitionUri,
+      definitionCanonical: definitionCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.definitionCanonical',
+                ),
+              )
+              .toList() ??
+          this.definitionCanonical,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXChargeItem? ??
+          this.occurrenceX,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      performingOrganization: performingOrganization?.copyWith(
+            objectPath: '$newObjectPath.performingOrganization',
+          ) ??
+          this.performingOrganization,
+      requestingOrganization: requestingOrganization?.copyWith(
+            objectPath: '$newObjectPath.requestingOrganization',
+          ) ??
+          this.requestingOrganization,
+      costCenter: costCenter?.copyWith(
+            objectPath: '$newObjectPath.costCenter',
+          ) ??
+          this.costCenter,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      bodysite: bodysite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.bodysite',
+                ),
+              )
+              .toList() ??
+          this.bodysite,
+      factorOverride: factorOverride?.copyWith(
+            objectPath: '$newObjectPath.factorOverride',
+          ) ??
+          this.factorOverride,
+      priceOverride: priceOverride?.copyWith(
+            objectPath: '$newObjectPath.priceOverride',
+          ) ??
+          this.priceOverride,
+      overrideReason: overrideReason?.copyWith(
+            objectPath: '$newObjectPath.overrideReason',
+          ) ??
+          this.overrideReason,
+      enterer: enterer?.copyWith(
+            objectPath: '$newObjectPath.enterer',
+          ) ??
+          this.enterer,
+      enteredDate: enteredDate?.copyWith(
+            objectPath: '$newObjectPath.enteredDate',
+          ) ??
+          this.enteredDate,
+      reason: reason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reason',
+                ),
+              )
+              .toList() ??
+          this.reason,
+      service: service
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.service',
+                ),
+              )
+              .toList() ??
+          this.service,
+      productX: productX?.copyWith(
+            objectPath: '$newObjectPath.productX',
+          ) as ProductXChargeItem? ??
+          this.productX,
+      account: account
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.account',
+                ),
+              )
+              .toList() ??
+          this.account,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      supportingInformation: supportingInformation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInformation',
+                ),
+              )
+              .toList() ??
+          this.supportingInformation,
     );
   }
 }
@@ -772,13 +921,38 @@ class ChargeItemPerformer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ChargeItemPerformer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      function_: function_ ?? this.function_,
-      actor: actor ?? this.actor,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      function_: function_?.copyWith(
+            objectPath: '$newObjectPath.function',
+          ) ??
+          this.function_,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
     );
   }
 }

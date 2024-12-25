@@ -241,17 +241,54 @@ class Signature extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Signature(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      type: type ?? this.type,
-      when: when ?? this.when,
-      who: who ?? this.who,
-      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
-      targetFormat: targetFormat ?? this.targetFormat,
-      sigFormat: sigFormat ?? this.sigFormat,
-      data: data ?? this.data,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      when: when?.copyWith(
+            objectPath: '$newObjectPath.when',
+          ) ??
+          this.when,
+      who: who?.copyWith(
+            objectPath: '$newObjectPath.who',
+          ) ??
+          this.who,
+      onBehalfOf: onBehalfOf?.copyWith(
+            objectPath: '$newObjectPath.onBehalfOf',
+          ) ??
+          this.onBehalfOf,
+      targetFormat: targetFormat?.copyWith(
+            objectPath: '$newObjectPath.targetFormat',
+          ) ??
+          this.targetFormat,
+      sigFormat: sigFormat?.copyWith(
+            objectPath: '$newObjectPath.sigFormat',
+          ) ??
+          this.sigFormat,
+      data: data?.copyWith(
+            objectPath: '$newObjectPath.data',
+          ) ??
+          this.data,
     );
   }
 }

@@ -348,25 +348,109 @@ class Provenance extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Provenance(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      target: target ?? this.target,
-      occurredX: occurredX ?? this.occurredX,
-      recorded: recorded ?? this.recorded,
-      policy: policy ?? this.policy,
-      location: location ?? this.location,
-      reason: reason ?? this.reason,
-      activity: activity ?? this.activity,
-      agent: agent ?? this.agent,
-      entity: entity ?? this.entity,
-      signature: signature ?? this.signature,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      target: target
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.target',
+                ),
+              )
+              .toList() ??
+          this.target,
+      occurredX: occurredX?.copyWith(
+            objectPath: '$newObjectPath.occurredX',
+          ) as OccurredXProvenance? ??
+          this.occurredX,
+      recorded: recorded?.copyWith(
+            objectPath: '$newObjectPath.recorded',
+          ) ??
+          this.recorded,
+      policy: policy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.policy',
+                ),
+              )
+              .toList() ??
+          this.policy,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      reason: reason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reason',
+                ),
+              )
+              .toList() ??
+          this.reason,
+      activity: activity?.copyWith(
+            objectPath: '$newObjectPath.activity',
+          ) ??
+          this.activity,
+      agent: agent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.agent',
+                ),
+              )
+              .toList() ??
+          this.agent,
+      entity: entity
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.entity',
+                ),
+              )
+              .toList() ??
+          this.entity,
+      signature: signature
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.signature',
+                ),
+              )
+              .toList() ??
+          this.signature,
     );
   }
 }
@@ -560,15 +644,50 @@ class ProvenanceAgent extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ProvenanceAgent(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      role: role ?? this.role,
-      who: who ?? this.who,
-      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      role: role
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.role',
+                ),
+              )
+              .toList() ??
+          this.role,
+      who: who?.copyWith(
+            objectPath: '$newObjectPath.who',
+          ) ??
+          this.who,
+      onBehalfOf: onBehalfOf?.copyWith(
+            objectPath: '$newObjectPath.onBehalfOf',
+          ) ??
+          this.onBehalfOf,
     );
   }
 }
@@ -751,14 +870,46 @@ class ProvenanceEntity extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return ProvenanceEntity(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      role: role ?? this.role,
-      what: what ?? this.what,
-      agent: agent ?? this.agent,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      what: what?.copyWith(
+            objectPath: '$newObjectPath.what',
+          ) ??
+          this.what,
+      agent: agent
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.agent',
+                ),
+              )
+              .toList() ??
+          this.agent,
     );
   }
 }

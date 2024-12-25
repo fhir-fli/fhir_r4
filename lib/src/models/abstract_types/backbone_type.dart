@@ -124,5 +124,6 @@ abstract class BackboneType extends DataType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   });
 }

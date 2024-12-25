@@ -152,12 +152,30 @@ class Narrative extends DataType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Narrative(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      status: status ?? this.status,
-      div: div ?? this.div,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      div: div?.copyWith(
+            objectPath: '$newObjectPath.div',
+          ) ??
+          this.div,
     );
   }
 }

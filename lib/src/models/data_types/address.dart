@@ -282,20 +282,66 @@ class Address extends DataType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Address(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      use: use ?? this.use,
-      type: type ?? this.type,
-      text: text ?? this.text,
-      line: line ?? this.line,
-      city: city ?? this.city,
-      district: district ?? this.district,
-      state: state ?? this.state,
-      postalCode: postalCode ?? this.postalCode,
-      country: country ?? this.country,
-      period: period ?? this.period,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      use: use?.copyWith(
+            objectPath: '$newObjectPath.use',
+          ) ??
+          this.use,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
+      line: line
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.line',
+                ),
+              )
+              .toList() ??
+          this.line,
+      city: city?.copyWith(
+            objectPath: '$newObjectPath.city',
+          ) ??
+          this.city,
+      district: district?.copyWith(
+            objectPath: '$newObjectPath.district',
+          ) ??
+          this.district,
+      state: state?.copyWith(
+            objectPath: '$newObjectPath.state',
+          ) ??
+          this.state,
+      postalCode: postalCode?.copyWith(
+            objectPath: '$newObjectPath.postalCode',
+          ) ??
+          this.postalCode,
+      country: country?.copyWith(
+            objectPath: '$newObjectPath.country',
+          ) ??
+          this.country,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
     );
   }
 }

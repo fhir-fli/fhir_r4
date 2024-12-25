@@ -445,34 +445,149 @@ class NutritionOrder extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return NutritionOrder(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiates: instantiates ?? this.instantiates,
-      status: status ?? this.status,
-      intent: intent ?? this.intent,
-      patient: patient ?? this.patient,
-      encounter: encounter ?? this.encounter,
-      dateTime: dateTime ?? this.dateTime,
-      orderer: orderer ?? this.orderer,
-      allergyIntolerance: allergyIntolerance ?? this.allergyIntolerance,
-      foodPreferenceModifier:
-          foodPreferenceModifier ?? this.foodPreferenceModifier,
-      excludeFoodModifier: excludeFoodModifier ?? this.excludeFoodModifier,
-      oralDiet: oralDiet ?? this.oralDiet,
-      supplement: supplement ?? this.supplement,
-      enteralFormula: enteralFormula ?? this.enteralFormula,
-      note: note ?? this.note,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      instantiates: instantiates
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiates',
+                ),
+              )
+              .toList() ??
+          this.instantiates,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      patient: patient?.copyWith(
+            objectPath: '$newObjectPath.patient',
+          ) ??
+          this.patient,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      dateTime: dateTime?.copyWith(
+            objectPath: '$newObjectPath.dateTime',
+          ) ??
+          this.dateTime,
+      orderer: orderer?.copyWith(
+            objectPath: '$newObjectPath.orderer',
+          ) ??
+          this.orderer,
+      allergyIntolerance: allergyIntolerance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.allergyIntolerance',
+                ),
+              )
+              .toList() ??
+          this.allergyIntolerance,
+      foodPreferenceModifier: foodPreferenceModifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.foodPreferenceModifier',
+                ),
+              )
+              .toList() ??
+          this.foodPreferenceModifier,
+      excludeFoodModifier: excludeFoodModifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.excludeFoodModifier',
+                ),
+              )
+              .toList() ??
+          this.excludeFoodModifier,
+      oralDiet: oralDiet?.copyWith(
+            objectPath: '$newObjectPath.oralDiet',
+          ) ??
+          this.oralDiet,
+      supplement: supplement
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supplement',
+                ),
+              )
+              .toList() ??
+          this.supplement,
+      enteralFormula: enteralFormula?.copyWith(
+            objectPath: '$newObjectPath.enteralFormula',
+          ) ??
+          this.enteralFormula,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
     );
   }
 }
@@ -705,17 +820,74 @@ class NutritionOrderOralDiet extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderOralDiet(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      schedule: schedule ?? this.schedule,
-      nutrient: nutrient ?? this.nutrient,
-      texture: texture ?? this.texture,
-      fluidConsistencyType: fluidConsistencyType ?? this.fluidConsistencyType,
-      instruction: instruction ?? this.instruction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.type',
+                ),
+              )
+              .toList() ??
+          this.type,
+      schedule: schedule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.schedule',
+                ),
+              )
+              .toList() ??
+          this.schedule,
+      nutrient: nutrient
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.nutrient',
+                ),
+              )
+              .toList() ??
+          this.nutrient,
+      texture: texture
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.texture',
+                ),
+              )
+              .toList() ??
+          this.texture,
+      fluidConsistencyType: fluidConsistencyType
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.fluidConsistencyType',
+                ),
+              )
+              .toList() ??
+          this.fluidConsistencyType,
+      instruction: instruction?.copyWith(
+            objectPath: '$newObjectPath.instruction',
+          ) ??
+          this.instruction,
     );
   }
 }
@@ -880,13 +1052,38 @@ class NutritionOrderNutrient extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderNutrient(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      modifier: modifier ?? this.modifier,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      modifier: modifier?.copyWith(
+            objectPath: '$newObjectPath.modifier',
+          ) ??
+          this.modifier,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }
@@ -1053,13 +1250,38 @@ class NutritionOrderTexture extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderTexture(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      modifier: modifier ?? this.modifier,
-      foodType: foodType ?? this.foodType,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      modifier: modifier?.copyWith(
+            objectPath: '$newObjectPath.modifier',
+          ) ??
+          this.modifier,
+      foodType: foodType?.copyWith(
+            objectPath: '$newObjectPath.foodType',
+          ) ??
+          this.foodType,
     );
   }
 }
@@ -1270,16 +1492,54 @@ class NutritionOrderSupplement extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderSupplement(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      productName: productName ?? this.productName,
-      schedule: schedule ?? this.schedule,
-      quantity: quantity ?? this.quantity,
-      instruction: instruction ?? this.instruction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      productName: productName?.copyWith(
+            objectPath: '$newObjectPath.productName',
+          ) ??
+          this.productName,
+      schedule: schedule
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.schedule',
+                ),
+              )
+              .toList() ??
+          this.schedule,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      instruction: instruction?.copyWith(
+            objectPath: '$newObjectPath.instruction',
+          ) ??
+          this.instruction,
     );
   }
 }
@@ -1553,23 +1813,70 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderEnteralFormula(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      baseFormulaType: baseFormulaType ?? this.baseFormulaType,
-      baseFormulaProductName:
-          baseFormulaProductName ?? this.baseFormulaProductName,
-      additiveType: additiveType ?? this.additiveType,
-      additiveProductName: additiveProductName ?? this.additiveProductName,
-      caloricDensity: caloricDensity ?? this.caloricDensity,
-      routeofAdministration:
-          routeofAdministration ?? this.routeofAdministration,
-      administration: administration ?? this.administration,
-      maxVolumeToDeliver: maxVolumeToDeliver ?? this.maxVolumeToDeliver,
-      administrationInstruction:
-          administrationInstruction ?? this.administrationInstruction,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      baseFormulaType: baseFormulaType?.copyWith(
+            objectPath: '$newObjectPath.baseFormulaType',
+          ) ??
+          this.baseFormulaType,
+      baseFormulaProductName: baseFormulaProductName?.copyWith(
+            objectPath: '$newObjectPath.baseFormulaProductName',
+          ) ??
+          this.baseFormulaProductName,
+      additiveType: additiveType?.copyWith(
+            objectPath: '$newObjectPath.additiveType',
+          ) ??
+          this.additiveType,
+      additiveProductName: additiveProductName?.copyWith(
+            objectPath: '$newObjectPath.additiveProductName',
+          ) ??
+          this.additiveProductName,
+      caloricDensity: caloricDensity?.copyWith(
+            objectPath: '$newObjectPath.caloricDensity',
+          ) ??
+          this.caloricDensity,
+      routeofAdministration: routeofAdministration?.copyWith(
+            objectPath: '$newObjectPath.routeofAdministration',
+          ) ??
+          this.routeofAdministration,
+      administration: administration
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.administration',
+                ),
+              )
+              .toList() ??
+          this.administration,
+      maxVolumeToDeliver: maxVolumeToDeliver?.copyWith(
+            objectPath: '$newObjectPath.maxVolumeToDeliver',
+          ) ??
+          this.maxVolumeToDeliver,
+      administrationInstruction: administrationInstruction?.copyWith(
+            objectPath: '$newObjectPath.administrationInstruction',
+          ) ??
+          this.administrationInstruction,
     );
   }
 }
@@ -1759,14 +2066,42 @@ class NutritionOrderAdministration extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return NutritionOrderAdministration(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      schedule: schedule ?? this.schedule,
-      quantity: quantity ?? this.quantity,
-      rateX: rateX ?? this.rateX,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      schedule: schedule?.copyWith(
+            objectPath: '$newObjectPath.schedule',
+          ) ??
+          this.schedule,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      rateX: rateX?.copyWith(
+            objectPath: '$newObjectPath.rateX',
+          ) as RateXNutritionOrderAdministration? ??
+          this.rateX,
     );
   }
 }

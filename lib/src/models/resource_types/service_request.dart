@@ -710,49 +710,249 @@ class ServiceRequest extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return ServiceRequest(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      basedOn: basedOn ?? this.basedOn,
-      replaces: replaces ?? this.replaces,
-      requisition: requisition ?? this.requisition,
-      status: status ?? this.status,
-      intent: intent ?? this.intent,
-      category: category ?? this.category,
-      priority: priority ?? this.priority,
-      doNotPerform: doNotPerform ?? this.doNotPerform,
-      code: code ?? this.code,
-      orderDetail: orderDetail ?? this.orderDetail,
-      quantityX: quantityX ?? this.quantityX,
-      subject: subject ?? this.subject,
-      encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      asNeededX: asNeededX ?? this.asNeededX,
-      authoredOn: authoredOn ?? this.authoredOn,
-      requester: requester ?? this.requester,
-      performerType: performerType ?? this.performerType,
-      performer: performer ?? this.performer,
-      locationCode: locationCode ?? this.locationCode,
-      locationReference: locationReference ?? this.locationReference,
-      reasonCode: reasonCode ?? this.reasonCode,
-      reasonReference: reasonReference ?? this.reasonReference,
-      insurance: insurance ?? this.insurance,
-      supportingInfo: supportingInfo ?? this.supportingInfo,
-      specimen: specimen ?? this.specimen,
-      bodySite: bodySite ?? this.bodySite,
-      note: note ?? this.note,
-      patientInstruction: patientInstruction ?? this.patientInstruction,
-      relevantHistory: relevantHistory ?? this.relevantHistory,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      instantiatesCanonical: instantiatesCanonical
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesCanonical',
+                ),
+              )
+              .toList() ??
+          this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.instantiatesUri',
+                ),
+              )
+              .toList() ??
+          this.instantiatesUri,
+      basedOn: basedOn
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.basedOn',
+                ),
+              )
+              .toList() ??
+          this.basedOn,
+      replaces: replaces
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.replaces',
+                ),
+              )
+              .toList() ??
+          this.replaces,
+      requisition: requisition?.copyWith(
+            objectPath: '$newObjectPath.requisition',
+          ) ??
+          this.requisition,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      intent: intent?.copyWith(
+            objectPath: '$newObjectPath.intent',
+          ) ??
+          this.intent,
+      category: category
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.category',
+                ),
+              )
+              .toList() ??
+          this.category,
+      priority: priority?.copyWith(
+            objectPath: '$newObjectPath.priority',
+          ) ??
+          this.priority,
+      doNotPerform: doNotPerform?.copyWith(
+            objectPath: '$newObjectPath.doNotPerform',
+          ) ??
+          this.doNotPerform,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      orderDetail: orderDetail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.orderDetail',
+                ),
+              )
+              .toList() ??
+          this.orderDetail,
+      quantityX: quantityX?.copyWith(
+            objectPath: '$newObjectPath.quantityX',
+          ) as QuantityXServiceRequest? ??
+          this.quantityX,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      encounter: encounter?.copyWith(
+            objectPath: '$newObjectPath.encounter',
+          ) ??
+          this.encounter,
+      occurrenceX: occurrenceX?.copyWith(
+            objectPath: '$newObjectPath.occurrenceX',
+          ) as OccurrenceXServiceRequest? ??
+          this.occurrenceX,
+      asNeededX: asNeededX?.copyWith(
+            objectPath: '$newObjectPath.asNeededX',
+          ) as AsNeededXServiceRequest? ??
+          this.asNeededX,
+      authoredOn: authoredOn?.copyWith(
+            objectPath: '$newObjectPath.authoredOn',
+          ) ??
+          this.authoredOn,
+      requester: requester?.copyWith(
+            objectPath: '$newObjectPath.requester',
+          ) ??
+          this.requester,
+      performerType: performerType?.copyWith(
+            objectPath: '$newObjectPath.performerType',
+          ) ??
+          this.performerType,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      locationCode: locationCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.locationCode',
+                ),
+              )
+              .toList() ??
+          this.locationCode,
+      locationReference: locationReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.locationReference',
+                ),
+              )
+              .toList() ??
+          this.locationReference,
+      reasonCode: reasonCode
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonCode',
+                ),
+              )
+              .toList() ??
+          this.reasonCode,
+      reasonReference: reasonReference
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reasonReference',
+                ),
+              )
+              .toList() ??
+          this.reasonReference,
+      insurance: insurance
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.insurance',
+                ),
+              )
+              .toList() ??
+          this.insurance,
+      supportingInfo: supportingInfo
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInfo',
+                ),
+              )
+              .toList() ??
+          this.supportingInfo,
+      specimen: specimen
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.specimen',
+                ),
+              )
+              .toList() ??
+          this.specimen,
+      bodySite: bodySite
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.bodySite',
+                ),
+              )
+              .toList() ??
+          this.bodySite,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      patientInstruction: patientInstruction?.copyWith(
+            objectPath: '$newObjectPath.patientInstruction',
+          ) ??
+          this.patientInstruction,
+      relevantHistory: relevantHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.relevantHistory',
+                ),
+              )
+              .toList() ??
+          this.relevantHistory,
     );
   }
 }

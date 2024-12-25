@@ -308,23 +308,89 @@ class Ingredient extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return Ingredient(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      for_: for_ ?? this.for_,
-      role: role ?? this.role,
-      function_: function_ ?? this.function_,
-      allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
-      manufacturer: manufacturer ?? this.manufacturer,
-      substance: substance ?? this.substance,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      for_: for_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.for',
+                ),
+              )
+              .toList() ??
+          this.for_,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      function_: function_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.function',
+                ),
+              )
+              .toList() ??
+          this.function_,
+      allergenicIndicator: allergenicIndicator?.copyWith(
+            objectPath: '$newObjectPath.allergenicIndicator',
+          ) ??
+          this.allergenicIndicator,
+      manufacturer: manufacturer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.manufacturer',
+                ),
+              )
+              .toList() ??
+          this.manufacturer,
+      substance: substance?.copyWith(
+            objectPath: '$newObjectPath.substance',
+          ) ??
+          this.substance,
     );
   }
 }
@@ -496,13 +562,38 @@ class IngredientManufacturer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return IngredientManufacturer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      role: role ?? this.role,
-      manufacturer: manufacturer ?? this.manufacturer,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      role: role?.copyWith(
+            objectPath: '$newObjectPath.role',
+          ) ??
+          this.role,
+      manufacturer: manufacturer?.copyWith(
+            objectPath: '$newObjectPath.manufacturer',
+          ) ??
+          this.manufacturer,
     );
   }
 }
@@ -672,13 +763,42 @@ class IngredientSubstance extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return IngredientSubstance(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      code: code ?? this.code,
-      strength: strength ?? this.strength,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
+      strength: strength
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.strength',
+                ),
+              )
+              .toList() ??
+          this.strength,
     );
   }
 }
@@ -947,18 +1067,66 @@ class IngredientStrength extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return IngredientStrength(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      presentationX: presentationX ?? this.presentationX,
-      textPresentation: textPresentation ?? this.textPresentation,
-      concentrationX: concentrationX ?? this.concentrationX,
-      textConcentration: textConcentration ?? this.textConcentration,
-      measurementPoint: measurementPoint ?? this.measurementPoint,
-      country: country ?? this.country,
-      referenceStrength: referenceStrength ?? this.referenceStrength,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      presentationX: presentationX?.copyWith(
+            objectPath: '$newObjectPath.presentationX',
+          ) as PresentationXIngredientStrength? ??
+          this.presentationX,
+      textPresentation: textPresentation?.copyWith(
+            objectPath: '$newObjectPath.textPresentation',
+          ) ??
+          this.textPresentation,
+      concentrationX: concentrationX?.copyWith(
+            objectPath: '$newObjectPath.concentrationX',
+          ) as ConcentrationXIngredientStrength? ??
+          this.concentrationX,
+      textConcentration: textConcentration?.copyWith(
+            objectPath: '$newObjectPath.textConcentration',
+          ) ??
+          this.textConcentration,
+      measurementPoint: measurementPoint?.copyWith(
+            objectPath: '$newObjectPath.measurementPoint',
+          ) ??
+          this.measurementPoint,
+      country: country
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.country',
+                ),
+              )
+              .toList() ??
+          this.country,
+      referenceStrength: referenceStrength
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.referenceStrength',
+                ),
+              )
+              .toList() ??
+          this.referenceStrength,
     );
   }
 }
@@ -1161,15 +1329,50 @@ class IngredientReferenceStrength extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return IngredientReferenceStrength(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      substance: substance ?? this.substance,
-      strengthX: strengthX ?? this.strengthX,
-      measurementPoint: measurementPoint ?? this.measurementPoint,
-      country: country ?? this.country,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      substance: substance?.copyWith(
+            objectPath: '$newObjectPath.substance',
+          ) ??
+          this.substance,
+      strengthX: strengthX?.copyWith(
+            objectPath: '$newObjectPath.strengthX',
+          ) as StrengthXIngredientReferenceStrength? ??
+          this.strengthX,
+      measurementPoint: measurementPoint?.copyWith(
+            objectPath: '$newObjectPath.measurementPoint',
+          ) ??
+          this.measurementPoint,
+      country: country
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.country',
+                ),
+              )
+              .toList() ??
+          this.country,
     );
   }
 }

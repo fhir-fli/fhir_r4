@@ -467,37 +467,169 @@ class SubscriptionTopic extends CanonicalResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return SubscriptionTopic(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      url: url ?? this.url,
-      identifier: identifier ?? this.identifier,
-      version: version ?? this.version,
-      title: title ?? this.title,
-      derivedFrom: derivedFrom ?? this.derivedFrom,
-      status: status ?? this.status,
-      experimental: experimental ?? this.experimental,
-      date: date ?? this.date,
-      publisher: publisher ?? this.publisher,
-      contact: contact ?? this.contact,
-      description: description ?? this.description,
-      useContext: useContext ?? this.useContext,
-      jurisdiction: jurisdiction ?? this.jurisdiction,
-      purpose: purpose ?? this.purpose,
-      copyright: copyright ?? this.copyright,
-      approvalDate: approvalDate ?? this.approvalDate,
-      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      resourceTrigger: resourceTrigger ?? this.resourceTrigger,
-      eventTrigger: eventTrigger ?? this.eventTrigger,
-      canFilterBy: canFilterBy ?? this.canFilterBy,
-      notificationShape: notificationShape ?? this.notificationShape,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      url: url?.copyWith(
+            objectPath: '$newObjectPath.url',
+          ) ??
+          this.url,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      version: version?.copyWith(
+            objectPath: '$newObjectPath.version',
+          ) ??
+          this.version,
+      title: title?.copyWith(
+            objectPath: '$newObjectPath.title',
+          ) ??
+          this.title,
+      derivedFrom: derivedFrom
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.derivedFrom',
+                ),
+              )
+              .toList() ??
+          this.derivedFrom,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      experimental: experimental?.copyWith(
+            objectPath: '$newObjectPath.experimental',
+          ) ??
+          this.experimental,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      publisher: publisher?.copyWith(
+            objectPath: '$newObjectPath.publisher',
+          ) ??
+          this.publisher,
+      contact: contact
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.contact',
+                ),
+              )
+              .toList() ??
+          this.contact,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      useContext: useContext
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.useContext',
+                ),
+              )
+              .toList() ??
+          this.useContext,
+      jurisdiction: jurisdiction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.jurisdiction',
+                ),
+              )
+              .toList() ??
+          this.jurisdiction,
+      purpose: purpose?.copyWith(
+            objectPath: '$newObjectPath.purpose',
+          ) ??
+          this.purpose,
+      copyright: copyright?.copyWith(
+            objectPath: '$newObjectPath.copyright',
+          ) ??
+          this.copyright,
+      approvalDate: approvalDate?.copyWith(
+            objectPath: '$newObjectPath.approvalDate',
+          ) ??
+          this.approvalDate,
+      lastReviewDate: lastReviewDate?.copyWith(
+            objectPath: '$newObjectPath.lastReviewDate',
+          ) ??
+          this.lastReviewDate,
+      effectivePeriod: effectivePeriod?.copyWith(
+            objectPath: '$newObjectPath.effectivePeriod',
+          ) ??
+          this.effectivePeriod,
+      resourceTrigger: resourceTrigger
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.resourceTrigger',
+                ),
+              )
+              .toList() ??
+          this.resourceTrigger,
+      eventTrigger: eventTrigger
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.eventTrigger',
+                ),
+              )
+              .toList() ??
+          this.eventTrigger,
+      canFilterBy: canFilterBy
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.canFilterBy',
+                ),
+              )
+              .toList() ??
+          this.canFilterBy,
+      notificationShape: notificationShape
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.notificationShape',
+                ),
+              )
+              .toList() ??
+          this.notificationShape,
     );
   }
 }
@@ -717,16 +849,54 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionTopicResourceTrigger(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      resource: resource ?? this.resource,
-      supportedInteraction: supportedInteraction ?? this.supportedInteraction,
-      queryCriteria: queryCriteria ?? this.queryCriteria,
-      fhirPathCriteria: fhirPathCriteria ?? this.fhirPathCriteria,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      supportedInteraction: supportedInteraction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportedInteraction',
+                ),
+              )
+              .toList() ??
+          this.supportedInteraction,
+      queryCriteria: queryCriteria?.copyWith(
+            objectPath: '$newObjectPath.queryCriteria',
+          ) ??
+          this.queryCriteria,
+      fhirPathCriteria: fhirPathCriteria?.copyWith(
+            objectPath: '$newObjectPath.fhirPathCriteria',
+          ) ??
+          this.fhirPathCriteria,
     );
   }
 }
@@ -936,16 +1106,50 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionTopicQueryCriteria(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      previous: previous ?? this.previous,
-      resultForCreate: resultForCreate ?? this.resultForCreate,
-      current: current ?? this.current,
-      resultForDelete: resultForDelete ?? this.resultForDelete,
-      requireBoth: requireBoth ?? this.requireBoth,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      previous: previous?.copyWith(
+            objectPath: '$newObjectPath.previous',
+          ) ??
+          this.previous,
+      resultForCreate: resultForCreate?.copyWith(
+            objectPath: '$newObjectPath.resultForCreate',
+          ) ??
+          this.resultForCreate,
+      current: current?.copyWith(
+            objectPath: '$newObjectPath.current',
+          ) ??
+          this.current,
+      resultForDelete: resultForDelete?.copyWith(
+            objectPath: '$newObjectPath.resultForDelete',
+          ) ??
+          this.resultForDelete,
+      requireBoth: requireBoth?.copyWith(
+            objectPath: '$newObjectPath.requireBoth',
+          ) ??
+          this.requireBoth,
     );
   }
 }
@@ -1132,14 +1336,42 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionTopicEventTrigger(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      event: event ?? this.event,
-      resource: resource ?? this.resource,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      event: event?.copyWith(
+            objectPath: '$newObjectPath.event',
+          ) ??
+          this.event,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
     );
   }
 }
@@ -1358,16 +1590,54 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionTopicCanFilterBy(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      description: description ?? this.description,
-      resource: resource ?? this.resource,
-      filterParameter: filterParameter ?? this.filterParameter,
-      filterDefinition: filterDefinition ?? this.filterDefinition,
-      modifier: modifier ?? this.modifier,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      description: description?.copyWith(
+            objectPath: '$newObjectPath.description',
+          ) ??
+          this.description,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      filterParameter: filterParameter?.copyWith(
+            objectPath: '$newObjectPath.filterParameter',
+          ) ??
+          this.filterParameter,
+      filterDefinition: filterDefinition?.copyWith(
+            objectPath: '$newObjectPath.filterDefinition',
+          ) ??
+          this.filterDefinition,
+      modifier: modifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifier',
+                ),
+              )
+              .toList() ??
+          this.modifier,
     );
   }
 }
@@ -1558,14 +1828,50 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return SubscriptionTopicNotificationShape(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      resource: resource ?? this.resource,
-      include: include ?? this.include,
-      revInclude: revInclude ?? this.revInclude,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      resource: resource?.copyWith(
+            objectPath: '$newObjectPath.resource',
+          ) ??
+          this.resource,
+      include: include
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.include',
+                ),
+              )
+              .toList() ??
+          this.include,
+      revInclude: revInclude
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.revInclude',
+                ),
+              )
+              .toList() ??
+          this.revInclude,
     );
   }
 }

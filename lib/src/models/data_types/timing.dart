@@ -209,14 +209,46 @@ class Timing extends BackboneType
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return Timing(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      event: event ?? this.event,
-      repeat: repeat ?? this.repeat,
-      code: code ?? this.code,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      event: event
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.event',
+                ),
+              )
+              .toList() ??
+          this.event,
+      repeat: repeat?.copyWith(
+            objectPath: '$newObjectPath.repeat',
+          ) ??
+          this.repeat,
+      code: code?.copyWith(
+            objectPath: '$newObjectPath.code',
+          ) ??
+          this.code,
     );
   }
 }
@@ -565,25 +597,94 @@ class TimingRepeat extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = objectPath ?? this.objectPath;
     return TimingRepeat(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      boundsX: boundsX ?? this.boundsX,
-      count: count ?? this.count,
-      countMax: countMax ?? this.countMax,
-      duration: duration ?? this.duration,
-      durationMax: durationMax ?? this.durationMax,
-      durationUnit: durationUnit ?? this.durationUnit,
-      frequency: frequency ?? this.frequency,
-      frequencyMax: frequencyMax ?? this.frequencyMax,
-      period: period ?? this.period,
-      periodMax: periodMax ?? this.periodMax,
-      periodUnit: periodUnit ?? this.periodUnit,
-      dayOfWeek: dayOfWeek ?? this.dayOfWeek,
-      timeOfDay: timeOfDay ?? this.timeOfDay,
-      when: when ?? this.when,
-      offset: offset ?? this.offset,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      boundsX: boundsX?.copyWith(
+            objectPath: '$newObjectPath.boundsX',
+          ) as BoundsXTimingRepeat? ??
+          this.boundsX,
+      count: count?.copyWith(
+            objectPath: '$newObjectPath.count',
+          ) ??
+          this.count,
+      countMax: countMax?.copyWith(
+            objectPath: '$newObjectPath.countMax',
+          ) ??
+          this.countMax,
+      duration: duration?.copyWith(
+            objectPath: '$newObjectPath.duration',
+          ) ??
+          this.duration,
+      durationMax: durationMax?.copyWith(
+            objectPath: '$newObjectPath.durationMax',
+          ) ??
+          this.durationMax,
+      durationUnit: durationUnit?.copyWith(
+            objectPath: '$newObjectPath.durationUnit',
+          ) ??
+          this.durationUnit,
+      frequency: frequency?.copyWith(
+            objectPath: '$newObjectPath.frequency',
+          ) ??
+          this.frequency,
+      frequencyMax: frequencyMax?.copyWith(
+            objectPath: '$newObjectPath.frequencyMax',
+          ) ??
+          this.frequencyMax,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      periodMax: periodMax?.copyWith(
+            objectPath: '$newObjectPath.periodMax',
+          ) ??
+          this.periodMax,
+      periodUnit: periodUnit?.copyWith(
+            objectPath: '$newObjectPath.periodUnit',
+          ) ??
+          this.periodUnit,
+      dayOfWeek: dayOfWeek
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dayOfWeek',
+                ),
+              )
+              .toList() ??
+          this.dayOfWeek,
+      timeOfDay: timeOfDay
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.timeOfDay',
+                ),
+              )
+              .toList() ??
+          this.timeOfDay,
+      when: when
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.when',
+                ),
+              )
+              .toList() ??
+          this.when,
+      offset: offset?.copyWith(
+            objectPath: '$newObjectPath.offset',
+          ) ??
+          this.offset,
     );
   }
 }

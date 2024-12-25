@@ -32,6 +32,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Xhtml',
   });
 
   /// Factory constructor to create [FhirXhtml] from JSON.
@@ -247,6 +248,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     return FhirXhtml.fromValidatedXhtml(
       newValue ?? value,
@@ -260,6 +262,7 @@ class FhirXhtml extends PrimitiveType<String?> {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 

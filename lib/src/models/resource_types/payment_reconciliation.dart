@@ -391,30 +391,117 @@ class PaymentReconciliation extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return PaymentReconciliation(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      status: status ?? this.status,
-      period: period ?? this.period,
-      created: created ?? this.created,
-      paymentIssuer: paymentIssuer ?? this.paymentIssuer,
-      request: request ?? this.request,
-      requestor: requestor ?? this.requestor,
-      outcome: outcome ?? this.outcome,
-      disposition: disposition ?? this.disposition,
-      paymentDate: paymentDate ?? this.paymentDate,
-      paymentAmount: paymentAmount ?? this.paymentAmount,
-      paymentIdentifier: paymentIdentifier ?? this.paymentIdentifier,
-      detail: detail ?? this.detail,
-      formCode: formCode ?? this.formCode,
-      processNote: processNote ?? this.processNote,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      period: period?.copyWith(
+            objectPath: '$newObjectPath.period',
+          ) ??
+          this.period,
+      created: created?.copyWith(
+            objectPath: '$newObjectPath.created',
+          ) ??
+          this.created,
+      paymentIssuer: paymentIssuer?.copyWith(
+            objectPath: '$newObjectPath.paymentIssuer',
+          ) ??
+          this.paymentIssuer,
+      request: request?.copyWith(
+            objectPath: '$newObjectPath.request',
+          ) ??
+          this.request,
+      requestor: requestor?.copyWith(
+            objectPath: '$newObjectPath.requestor',
+          ) ??
+          this.requestor,
+      outcome: outcome?.copyWith(
+            objectPath: '$newObjectPath.outcome',
+          ) ??
+          this.outcome,
+      disposition: disposition?.copyWith(
+            objectPath: '$newObjectPath.disposition',
+          ) ??
+          this.disposition,
+      paymentDate: paymentDate?.copyWith(
+            objectPath: '$newObjectPath.paymentDate',
+          ) ??
+          this.paymentDate,
+      paymentAmount: paymentAmount?.copyWith(
+            objectPath: '$newObjectPath.paymentAmount',
+          ) ??
+          this.paymentAmount,
+      paymentIdentifier: paymentIdentifier?.copyWith(
+            objectPath: '$newObjectPath.paymentIdentifier',
+          ) ??
+          this.paymentIdentifier,
+      detail: detail
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detail',
+                ),
+              )
+              .toList() ??
+          this.detail,
+      formCode: formCode?.copyWith(
+            objectPath: '$newObjectPath.formCode',
+          ) ??
+          this.formCode,
+      processNote: processNote
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.processNote',
+                ),
+              )
+              .toList() ??
+          this.processNote,
     );
   }
 }
@@ -688,21 +775,70 @@ class PaymentReconciliationDetail extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PaymentReconciliationDetail(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      predecessor: predecessor ?? this.predecessor,
-      type: type ?? this.type,
-      request: request ?? this.request,
-      submitter: submitter ?? this.submitter,
-      response: response ?? this.response,
-      date: date ?? this.date,
-      responsible: responsible ?? this.responsible,
-      payee: payee ?? this.payee,
-      amount: amount ?? this.amount,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier?.copyWith(
+            objectPath: '$newObjectPath.identifier',
+          ) ??
+          this.identifier,
+      predecessor: predecessor?.copyWith(
+            objectPath: '$newObjectPath.predecessor',
+          ) ??
+          this.predecessor,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      request: request?.copyWith(
+            objectPath: '$newObjectPath.request',
+          ) ??
+          this.request,
+      submitter: submitter?.copyWith(
+            objectPath: '$newObjectPath.submitter',
+          ) ??
+          this.submitter,
+      response: response?.copyWith(
+            objectPath: '$newObjectPath.response',
+          ) ??
+          this.response,
+      date: date?.copyWith(
+            objectPath: '$newObjectPath.date',
+          ) ??
+          this.date,
+      responsible: responsible?.copyWith(
+            objectPath: '$newObjectPath.responsible',
+          ) ??
+          this.responsible,
+      payee: payee?.copyWith(
+            objectPath: '$newObjectPath.payee',
+          ) ??
+          this.payee,
+      amount: amount?.copyWith(
+            objectPath: '$newObjectPath.amount',
+          ) ??
+          this.amount,
     );
   }
 }
@@ -867,13 +1003,38 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return PaymentReconciliationProcessNote(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      type: type ?? this.type,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
     );
   }
 }

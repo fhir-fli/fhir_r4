@@ -559,41 +559,181 @@ class MedicationDispense extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
+    final newObjectPath = objectPath;
     return MedicationDispense(
-      id: id ?? this.id,
-      meta: meta ?? this.meta,
-      implicitRules: implicitRules ?? this.implicitRules,
-      language: language ?? this.language,
-      text: text ?? this.text,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      meta: meta?.copyWith(
+            objectPath: '$newObjectPath.meta',
+          ) ??
+          this.meta,
+      implicitRules: implicitRules?.copyWith(
+            objectPath: '$newObjectPath.implicitRules',
+          ) ??
+          this.implicitRules,
+      language: language?.copyWith(
+            objectPath: '$newObjectPath.language',
+          ) ??
+          this.language,
+      text: text?.copyWith(
+            objectPath: '$newObjectPath.text',
+          ) ??
+          this.text,
       contained: contained ?? this.contained,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      identifier: identifier ?? this.identifier,
-      partOf: partOf ?? this.partOf,
-      status: status ?? this.status,
-      statusReasonX: statusReasonX ?? this.statusReasonX,
-      category: category ?? this.category,
-      medicationX: medicationX ?? this.medicationX,
-      subject: subject ?? this.subject,
-      context: context ?? this.context,
-      supportingInformation:
-          supportingInformation ?? this.supportingInformation,
-      performer: performer ?? this.performer,
-      location: location ?? this.location,
-      authorizingPrescription:
-          authorizingPrescription ?? this.authorizingPrescription,
-      type: type ?? this.type,
-      quantity: quantity ?? this.quantity,
-      daysSupply: daysSupply ?? this.daysSupply,
-      whenPrepared: whenPrepared ?? this.whenPrepared,
-      whenHandedOver: whenHandedOver ?? this.whenHandedOver,
-      destination: destination ?? this.destination,
-      receiver: receiver ?? this.receiver,
-      note: note ?? this.note,
-      dosageInstruction: dosageInstruction ?? this.dosageInstruction,
-      substitution: substitution ?? this.substitution,
-      detectedIssue: detectedIssue ?? this.detectedIssue,
-      eventHistory: eventHistory ?? this.eventHistory,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      identifier: identifier
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.identifier',
+                ),
+              )
+              .toList() ??
+          this.identifier,
+      partOf: partOf
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.partOf',
+                ),
+              )
+              .toList() ??
+          this.partOf,
+      status: status?.copyWith(
+            objectPath: '$newObjectPath.status',
+          ) ??
+          this.status,
+      statusReasonX: statusReasonX?.copyWith(
+            objectPath: '$newObjectPath.statusReasonX',
+          ) as StatusReasonXMedicationDispense? ??
+          this.statusReasonX,
+      category: category?.copyWith(
+            objectPath: '$newObjectPath.category',
+          ) ??
+          this.category,
+      medicationX: medicationX?.copyWith(
+            objectPath: '$newObjectPath.medicationX',
+          ) as MedicationXMedicationDispense? ??
+          this.medicationX,
+      subject: subject?.copyWith(
+            objectPath: '$newObjectPath.subject',
+          ) ??
+          this.subject,
+      context: context?.copyWith(
+            objectPath: '$newObjectPath.context',
+          ) ??
+          this.context,
+      supportingInformation: supportingInformation
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.supportingInformation',
+                ),
+              )
+              .toList() ??
+          this.supportingInformation,
+      performer: performer
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.performer',
+                ),
+              )
+              .toList() ??
+          this.performer,
+      location: location?.copyWith(
+            objectPath: '$newObjectPath.location',
+          ) ??
+          this.location,
+      authorizingPrescription: authorizingPrescription
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.authorizingPrescription',
+                ),
+              )
+              .toList() ??
+          this.authorizingPrescription,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      quantity: quantity?.copyWith(
+            objectPath: '$newObjectPath.quantity',
+          ) ??
+          this.quantity,
+      daysSupply: daysSupply?.copyWith(
+            objectPath: '$newObjectPath.daysSupply',
+          ) ??
+          this.daysSupply,
+      whenPrepared: whenPrepared?.copyWith(
+            objectPath: '$newObjectPath.whenPrepared',
+          ) ??
+          this.whenPrepared,
+      whenHandedOver: whenHandedOver?.copyWith(
+            objectPath: '$newObjectPath.whenHandedOver',
+          ) ??
+          this.whenHandedOver,
+      destination: destination?.copyWith(
+            objectPath: '$newObjectPath.destination',
+          ) ??
+          this.destination,
+      receiver: receiver
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.receiver',
+                ),
+              )
+              .toList() ??
+          this.receiver,
+      note: note
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.note',
+                ),
+              )
+              .toList() ??
+          this.note,
+      dosageInstruction: dosageInstruction
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.dosageInstruction',
+                ),
+              )
+              .toList() ??
+          this.dosageInstruction,
+      substitution: substitution?.copyWith(
+            objectPath: '$newObjectPath.substitution',
+          ) ??
+          this.substitution,
+      detectedIssue: detectedIssue
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.detectedIssue',
+                ),
+              )
+              .toList() ??
+          this.detectedIssue,
+      eventHistory: eventHistory
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.eventHistory',
+                ),
+              )
+              .toList() ??
+          this.eventHistory,
     );
   }
 }
@@ -759,13 +899,38 @@ class MedicationDispensePerformer extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationDispensePerformer(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      function_: function_ ?? this.function_,
-      actor: actor ?? this.actor,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      function_: function_?.copyWith(
+            objectPath: '$newObjectPath.function',
+          ) ??
+          this.function_,
+      actor: actor?.copyWith(
+            objectPath: '$newObjectPath.actor',
+          ) ??
+          this.actor,
     );
   }
 }
@@ -967,15 +1132,54 @@ class MedicationDispenseSubstitution extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
+    final newObjectPath = this.objectPath;
     return MedicationDispenseSubstitution(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      modifierExtension: modifierExtension ?? this.modifierExtension,
-      wasSubstituted: wasSubstituted ?? this.wasSubstituted,
-      type: type ?? this.type,
-      reason: reason ?? this.reason,
-      responsibleParty: responsibleParty ?? this.responsibleParty,
+      id: id?.copyWith(
+            objectPath: '$newObjectPath.id',
+          ) ??
+          this.id,
+      extension_: extension_
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.extension',
+                ),
+              )
+              .toList() ??
+          this.extension_,
+      modifierExtension: modifierExtension
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.modifierExtension',
+                ),
+              )
+              .toList() ??
+          this.modifierExtension,
+      wasSubstituted: wasSubstituted?.copyWith(
+            objectPath: '$newObjectPath.wasSubstituted',
+          ) ??
+          this.wasSubstituted,
+      type: type?.copyWith(
+            objectPath: '$newObjectPath.type',
+          ) ??
+          this.type,
+      reason: reason
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.reason',
+                ),
+              )
+              .toList() ??
+          this.reason,
+      responsibleParty: responsibleParty
+              ?.map(
+                (e) => e.copyWith(
+                  objectPath: '$newObjectPath.responsibleParty',
+                ),
+              )
+              .toList() ??
+          this.responsibleParty,
     );
   }
 }
