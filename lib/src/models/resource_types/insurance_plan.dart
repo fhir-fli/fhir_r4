@@ -76,7 +76,11 @@ class InsurancePlan extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -84,7 +88,11 @@ class InsurancePlan extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -92,7 +100,11 @@ class InsurancePlan extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -100,7 +112,11 @@ class InsurancePlan extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -114,7 +130,11 @@ class InsurancePlan extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.type'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.type',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -152,7 +172,11 @@ class InsurancePlan extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.coverageArea'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.coverageArea',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -160,7 +184,11 @@ class InsurancePlan extends DomainResource {
           ?.map<InsurancePlanContact>(
             (v) => InsurancePlanContact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -168,7 +196,11 @@ class InsurancePlan extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endpoint'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endpoint',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -176,7 +208,11 @@ class InsurancePlan extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.network'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.network',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -184,7 +220,11 @@ class InsurancePlan extends DomainResource {
           ?.map<InsurancePlanCoverage>(
             (v) => InsurancePlanCoverage.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.coverage'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.coverage',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -192,7 +232,11 @@ class InsurancePlan extends DomainResource {
           ?.map<InsurancePlanPlan>(
             (v) => InsurancePlanPlan.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.plan'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.plan',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -360,6 +404,150 @@ class InsurancePlan extends DomainResource {
     addField('coverage', coverage);
     addField('plan', plan);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'type',
+      'name',
+      'alias',
+      'period',
+      'ownedBy',
+      'administeredBy',
+      'coverageArea',
+      'contact',
+      'endpoint',
+      'network',
+      'coverage',
+      'plan',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'alias':
+        if (alias != null) {
+          fields.addAll(alias!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'ownedBy':
+        if (ownedBy != null) {
+          fields.add(ownedBy!);
+        }
+      case 'administeredBy':
+        if (administeredBy != null) {
+          fields.add(administeredBy!);
+        }
+      case 'coverageArea':
+        if (coverageArea != null) {
+          fields.addAll(coverageArea!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'endpoint':
+        if (endpoint != null) {
+          fields.addAll(endpoint!);
+        }
+      case 'network':
+        if (network != null) {
+          fields.addAll(network!);
+        }
+      case 'coverage':
+        if (coverage != null) {
+          fields.addAll(coverage!);
+        }
+      case 'plan':
+        if (plan != null) {
+          fields.addAll(plan!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -563,7 +751,11 @@ class InsurancePlanContact extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -571,7 +763,11 @@ class InsurancePlanContact extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -591,7 +787,11 @@ class InsurancePlanContact extends BackboneElement {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.telecom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.telecom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -701,6 +901,75 @@ class InsurancePlanContact extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'purpose',
+      'name',
+      'telecom',
+      'address',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'telecom':
+        if (telecom != null) {
+          fields.addAll(telecom!);
+        }
+      case 'address':
+        if (address != null) {
+          fields.add(address!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanContact clone() => throw UnimplementedError();
   @override
@@ -798,7 +1067,11 @@ class InsurancePlanCoverage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -806,7 +1079,11 @@ class InsurancePlanCoverage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -820,7 +1097,11 @@ class InsurancePlanCoverage extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.network'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.network',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -828,7 +1109,11 @@ class InsurancePlanCoverage extends BackboneElement {
           .map<InsurancePlanBenefit>(
             (v) => InsurancePlanBenefit.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.benefit'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.benefit',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -927,6 +1212,66 @@ class InsurancePlanCoverage extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'network',
+      'benefit',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'network':
+        if (network != null) {
+          fields.addAll(network!);
+        }
+      case 'benefit':
+        fields.addAll(benefit);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanCoverage clone() => throw UnimplementedError();
   @override
@@ -1023,7 +1368,11 @@ class InsurancePlanBenefit extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1031,7 +1380,11 @@ class InsurancePlanBenefit extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1051,7 +1404,11 @@ class InsurancePlanBenefit extends BackboneElement {
           ?.map<InsurancePlanLimit>(
             (v) => InsurancePlanLimit.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.limit'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.limit',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1149,6 +1506,68 @@ class InsurancePlanBenefit extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'requirement',
+      'limit',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'requirement':
+        if (requirement != null) {
+          fields.add(requirement!);
+        }
+      case 'limit':
+        if (limit != null) {
+          fields.addAll(limit!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanBenefit clone() => throw UnimplementedError();
   @override
@@ -1240,7 +1659,11 @@ class InsurancePlanLimit extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1248,7 +1671,11 @@ class InsurancePlanLimit extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1354,6 +1781,65 @@ class InsurancePlanLimit extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'value',
+      'code',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'value':
+        if (value != null) {
+          fields.add(value!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanLimit clone() => throw UnimplementedError();
   @override
@@ -1440,7 +1926,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1448,7 +1938,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1456,7 +1950,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1470,7 +1968,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.coverageArea'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.coverageArea',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1478,7 +1980,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.network'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.network',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1486,7 +1992,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<InsurancePlanGeneralCost>(
             (v) => InsurancePlanGeneralCost.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.generalCost'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.generalCost',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1494,7 +2004,11 @@ class InsurancePlanPlan extends BackboneElement {
           ?.map<InsurancePlanSpecificCost>(
             (v) => InsurancePlanSpecificCost.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specificCost'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specificCost',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1608,6 +2122,85 @@ class InsurancePlanPlan extends BackboneElement {
     addField('generalCost', generalCost);
     addField('specificCost', specificCost);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'type',
+      'coverageArea',
+      'network',
+      'generalCost',
+      'specificCost',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'coverageArea':
+        if (coverageArea != null) {
+          fields.addAll(coverageArea!);
+        }
+      case 'network':
+        if (network != null) {
+          fields.addAll(network!);
+        }
+      case 'generalCost':
+        if (generalCost != null) {
+          fields.addAll(generalCost!);
+        }
+      case 'specificCost':
+        if (specificCost != null) {
+          fields.addAll(specificCost!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1734,7 +2327,11 @@ class InsurancePlanGeneralCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1742,7 +2339,11 @@ class InsurancePlanGeneralCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1870,6 +2471,75 @@ class InsurancePlanGeneralCost extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'groupSize',
+      'cost',
+      'comment',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'groupSize':
+        if (groupSize != null) {
+          fields.add(groupSize!);
+        }
+      case 'cost':
+        if (cost != null) {
+          fields.add(cost!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanGeneralCost clone() => throw UnimplementedError();
   @override
@@ -1962,7 +2632,11 @@ class InsurancePlanSpecificCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1970,7 +2644,11 @@ class InsurancePlanSpecificCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1984,7 +2662,11 @@ class InsurancePlanSpecificCost extends BackboneElement {
           ?.map<InsurancePlanBenefit>(
             (v) => InsurancePlanBenefit.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.benefit'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.benefit',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2078,6 +2760,63 @@ class InsurancePlanSpecificCost extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'category',
+      'benefit',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'category':
+        fields.add(category);
+      case 'benefit':
+        if (benefit != null) {
+          fields.addAll(benefit!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanSpecificCost clone() => throw UnimplementedError();
   @override
@@ -2164,7 +2903,11 @@ class InsurancePlanBenefit1 extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2172,7 +2915,11 @@ class InsurancePlanBenefit1 extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2186,7 +2933,11 @@ class InsurancePlanBenefit1 extends BackboneElement {
           ?.map<InsurancePlanCost>(
             (v) => InsurancePlanCost.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.cost'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.cost',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2280,6 +3031,63 @@ class InsurancePlanBenefit1 extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'cost',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'cost':
+        if (cost != null) {
+          fields.addAll(cost!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   InsurancePlanBenefit1 clone() => throw UnimplementedError();
   @override
@@ -2368,7 +3176,11 @@ class InsurancePlanCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2376,7 +3188,11 @@ class InsurancePlanCost extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2396,7 +3212,11 @@ class InsurancePlanCost extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.qualifiers'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.qualifiers',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2507,6 +3327,73 @@ class InsurancePlanCost extends BackboneElement {
     addField('qualifiers', qualifiers);
     addField('value', value);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'applicability',
+      'qualifiers',
+      'value',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'applicability':
+        if (applicability != null) {
+          fields.add(applicability!);
+        }
+      case 'qualifiers':
+        if (qualifiers != null) {
+          fields.addAll(qualifiers!);
+        }
+      case 'value':
+        if (value != null) {
+          fields.add(value!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

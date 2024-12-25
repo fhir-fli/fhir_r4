@@ -80,7 +80,11 @@ class RiskAssessment extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -88,7 +92,11 @@ class RiskAssessment extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -96,7 +104,11 @@ class RiskAssessment extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -104,7 +116,11 @@ class RiskAssessment extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -174,7 +190,11 @@ class RiskAssessment extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -182,7 +202,11 @@ class RiskAssessment extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -190,7 +214,11 @@ class RiskAssessment extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basis'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basis',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -198,7 +226,11 @@ class RiskAssessment extends DomainResource {
           ?.map<RiskAssessmentPrediction>(
             (v) => RiskAssessmentPrediction.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.prediction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.prediction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -212,7 +244,11 @@ class RiskAssessment extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -393,6 +429,165 @@ class RiskAssessment extends DomainResource {
     addField('mitigation', mitigation);
     addField('note', note);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'basedOn',
+      'parent',
+      'status',
+      'method',
+      'code',
+      'subject',
+      'encounter',
+      'occurrenceXRiskAssessment',
+      'condition',
+      'performer',
+      'reasonCode',
+      'reasonReference',
+      'basis',
+      'prediction',
+      'mitigation',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.add(basedOn!);
+        }
+      case 'parent':
+        if (parent != null) {
+          fields.add(parent!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'subject':
+        fields.add(subject);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.add(condition!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.add(performer!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'basis':
+        if (basis != null) {
+          fields.addAll(basis!);
+        }
+      case 'prediction':
+        if (prediction != null) {
+          fields.addAll(prediction!);
+        }
+      case 'mitigation':
+        if (mitigation != null) {
+          fields.add(mitigation!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -601,7 +796,11 @@ class RiskAssessmentPrediction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -609,7 +808,11 @@ class RiskAssessmentPrediction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -775,6 +978,93 @@ class RiskAssessmentPrediction extends BackboneElement {
 
     addField('rationale', rationale);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'outcome',
+      'probabilityXRiskAssessmentPrediction',
+      'qualitativeRisk',
+      'relativeRisk',
+      'whenXRiskAssessmentPrediction',
+      'rationale',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'outcome':
+        if (outcome != null) {
+          fields.add(outcome!);
+        }
+      case 'probabilityDecimal':
+        if (probabilityX is FhirDecimal) {
+          fields.add(probabilityX!);
+        }
+      case 'probabilityRange':
+        if (probabilityX is Range) {
+          fields.add(probabilityX!);
+        }
+      case 'qualitativeRisk':
+        if (qualitativeRisk != null) {
+          fields.add(qualitativeRisk!);
+        }
+      case 'relativeRisk':
+        if (relativeRisk != null) {
+          fields.add(relativeRisk!);
+        }
+      case 'whenPeriod':
+        if (whenX is Period) {
+          fields.add(whenX!);
+        }
+      case 'whenRange':
+        if (whenX is Range) {
+          fields.add(whenX!);
+        }
+      case 'rationale':
+        if (rationale != null) {
+          fields.add(rationale!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

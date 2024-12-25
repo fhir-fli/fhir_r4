@@ -71,7 +71,11 @@ class VisionPrescription extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -79,7 +83,11 @@ class VisionPrescription extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -87,7 +95,11 @@ class VisionPrescription extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +107,11 @@ class VisionPrescription extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -139,7 +155,11 @@ class VisionPrescription extends DomainResource {
           .map<VisionPrescriptionLensSpecification>(
             (v) => VisionPrescriptionLensSpecification.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.lensSpecification'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.lensSpecification',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -271,6 +291,108 @@ class VisionPrescription extends DomainResource {
     addField('prescriber', prescriber);
     addField('lensSpecification', lensSpecification);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'created',
+      'patient',
+      'encounter',
+      'dateWritten',
+      'prescriber',
+      'lensSpecification',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'created':
+        fields.add(created);
+      case 'patient':
+        fields.add(patient);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'dateWritten':
+        fields.add(dateWritten);
+      case 'prescriber':
+        fields.add(prescriber);
+      case 'lensSpecification':
+        fields.addAll(lensSpecification);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -427,7 +549,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -435,7 +561,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -473,7 +603,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           ?.map<VisionPrescriptionPrism>(
             (v) => VisionPrescriptionPrism.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.prism'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.prism',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -523,7 +657,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -678,6 +816,121 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'product',
+      'eye',
+      'sphere',
+      'cylinder',
+      'axis',
+      'prism',
+      'add',
+      'power',
+      'backCurve',
+      'diameter',
+      'duration',
+      'color',
+      'brand',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'product':
+        fields.add(product);
+      case 'eye':
+        fields.add(eye);
+      case 'sphere':
+        if (sphere != null) {
+          fields.add(sphere!);
+        }
+      case 'cylinder':
+        if (cylinder != null) {
+          fields.add(cylinder!);
+        }
+      case 'axis':
+        if (axis != null) {
+          fields.add(axis!);
+        }
+      case 'prism':
+        if (prism != null) {
+          fields.addAll(prism!);
+        }
+      case 'add':
+        if (add != null) {
+          fields.add(add!);
+        }
+      case 'power':
+        if (power != null) {
+          fields.add(power!);
+        }
+      case 'backCurve':
+        if (backCurve != null) {
+          fields.add(backCurve!);
+        }
+      case 'diameter':
+        if (diameter != null) {
+          fields.add(diameter!);
+        }
+      case 'duration':
+        if (duration != null) {
+          fields.add(duration!);
+        }
+      case 'color':
+        if (color != null) {
+          fields.add(color!);
+        }
+      case 'brand':
+        if (brand != null) {
+          fields.add(brand!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -828,7 +1081,11 @@ class VisionPrescriptionPrism extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -836,7 +1093,11 @@ class VisionPrescriptionPrism extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -939,6 +1200,61 @@ class VisionPrescriptionPrism extends BackboneElement {
     addField('amount', amount);
     addField('base', base);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'amount',
+      'base',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'amount':
+        fields.add(amount);
+      case 'base':
+        fields.add(base);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

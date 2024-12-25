@@ -87,7 +87,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +99,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +111,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -117,7 +129,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -173,7 +189,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -181,7 +201,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -195,7 +219,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -203,7 +231,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -211,7 +243,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.editor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.editor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -219,7 +255,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reviewer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reviewer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -227,7 +267,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endorser'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endorser',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -235,7 +279,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedArtifact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -256,7 +304,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<EvidenceVariableCharacteristic>(
             (v) => EvidenceVariableCharacteristic.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.characteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.characteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -270,7 +322,11 @@ class EvidenceVariable extends DomainResource {
           ?.map<EvidenceVariableCategory>(
             (v) => EvidenceVariableCategory.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -520,6 +576,198 @@ class EvidenceVariable extends DomainResource {
     addField('handling', handling);
     addField('category', category);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'shortTitle',
+      'subtitle',
+      'status',
+      'date',
+      'description',
+      'note',
+      'useContext',
+      'publisher',
+      'contact',
+      'author',
+      'editor',
+      'reviewer',
+      'endorser',
+      'relatedArtifact',
+      'actual',
+      'characteristicCombination',
+      'characteristic',
+      'handling',
+      'category',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'shortTitle':
+        if (shortTitle != null) {
+          fields.add(shortTitle!);
+        }
+      case 'subtitle':
+        if (subtitle != null) {
+          fields.add(subtitle!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'editor':
+        if (editor != null) {
+          fields.addAll(editor!);
+        }
+      case 'reviewer':
+        if (reviewer != null) {
+          fields.addAll(reviewer!);
+        }
+      case 'endorser':
+        if (endorser != null) {
+          fields.addAll(endorser!);
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          fields.addAll(relatedArtifact!);
+        }
+      case 'actual':
+        if (actual != null) {
+          fields.add(actual!);
+        }
+      case 'characteristicCombination':
+        if (characteristicCombination != null) {
+          fields.add(characteristicCombination!);
+        }
+      case 'characteristic':
+        if (characteristic != null) {
+          fields.addAll(characteristic!);
+        }
+      case 'handling':
+        if (handling != null) {
+          fields.add(handling!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -785,7 +1033,11 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -793,7 +1045,11 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -967,6 +1223,102 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'definitionXEvidenceVariableCharacteristic',
+      'method',
+      'device',
+      'exclude',
+      'timeFromStart',
+      'groupMeasure',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'definitionReference':
+        if (definitionX is Reference) {
+          fields.add(definitionX);
+        }
+      case 'definitionCanonical':
+        if (definitionX is FhirCanonical) {
+          fields.add(definitionX);
+        }
+      case 'definitionCodeableConcept':
+        if (definitionX is CodeableConcept) {
+          fields.add(definitionX);
+        }
+      case 'definitionExpression':
+        if (definitionX is FhirExpression) {
+          fields.add(definitionX);
+        }
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'device':
+        if (device != null) {
+          fields.add(device!);
+        }
+      case 'exclude':
+        if (exclude != null) {
+          fields.add(exclude!);
+        }
+      case 'timeFromStart':
+        if (timeFromStart != null) {
+          fields.add(timeFromStart!);
+        }
+      case 'groupMeasure':
+        if (groupMeasure != null) {
+          fields.add(groupMeasure!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   EvidenceVariableCharacteristic clone() => throw UnimplementedError();
   @override
@@ -1077,7 +1429,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1085,7 +1441,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1111,7 +1471,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1216,6 +1580,75 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'quantity',
+      'range',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'range':
+        if (range != null) {
+          fields.add(range!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
   @override
@@ -1313,7 +1746,11 @@ class EvidenceVariableCategory extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1321,7 +1758,11 @@ class EvidenceVariableCategory extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1431,6 +1872,73 @@ class EvidenceVariableCategory extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'valueXEvidenceVariableCategory',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

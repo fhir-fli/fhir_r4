@@ -82,7 +82,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -90,7 +94,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -98,7 +106,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -160,7 +172,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -174,7 +190,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -182,7 +202,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -218,7 +242,11 @@ class ConceptMap extends CanonicalResource {
           ?.map<ConceptMapGroup>(
             (v) => ConceptMapGroup.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.group'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.group',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -374,6 +402,178 @@ class ConceptMap extends CanonicalResource {
 
     addField('group', group);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'status',
+      'experimental',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'copyright',
+      'sourceXConceptMap',
+      'targetXConceptMap',
+      'group',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'sourceUri':
+        if (sourceX is FhirUri) {
+          fields.add(sourceX!);
+        }
+      case 'sourceCanonical':
+        if (sourceX is FhirCanonical) {
+          fields.add(sourceX!);
+        }
+      case 'targetUri':
+        if (targetX is FhirUri) {
+          fields.add(targetX!);
+        }
+      case 'targetCanonical':
+        if (targetX is FhirCanonical) {
+          fields.add(targetX!);
+        }
+      case 'group':
+        if (group != null) {
+          fields.addAll(group!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -579,7 +779,11 @@ class ConceptMapGroup extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -587,7 +791,11 @@ class ConceptMapGroup extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -619,7 +827,11 @@ class ConceptMapGroup extends BackboneElement {
           .map<ConceptMapElement>(
             (v) => ConceptMapElement.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.element'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.element',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -745,6 +957,83 @@ class ConceptMapGroup extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'source',
+      'sourceVersion',
+      'target',
+      'targetVersion',
+      'element',
+      'unmapped',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'source':
+        if (source != null) {
+          fields.add(source!);
+        }
+      case 'sourceVersion':
+        if (sourceVersion != null) {
+          fields.add(sourceVersion!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.add(target!);
+        }
+      case 'targetVersion':
+        if (targetVersion != null) {
+          fields.add(targetVersion!);
+        }
+      case 'element':
+        fields.addAll(element);
+      case 'unmapped':
+        if (unmapped != null) {
+          fields.add(unmapped!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConceptMapGroup clone() => throw UnimplementedError();
   @override
@@ -853,7 +1142,11 @@ class ConceptMapElement extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -861,7 +1154,11 @@ class ConceptMapElement extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -881,7 +1178,11 @@ class ConceptMapElement extends BackboneElement {
           ?.map<ConceptMapTarget>(
             (v) => ConceptMapTarget.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -980,6 +1281,70 @@ class ConceptMapElement extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'display',
+      'target',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConceptMapElement clone() => throw UnimplementedError();
   @override
@@ -1075,7 +1440,11 @@ class ConceptMapTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1083,7 +1452,11 @@ class ConceptMapTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1115,7 +1488,11 @@ class ConceptMapTarget extends BackboneElement {
           ?.map<ConceptMapDependsOn>(
             (v) => ConceptMapDependsOn.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dependsOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dependsOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1123,7 +1500,11 @@ class ConceptMapTarget extends BackboneElement {
           ?.map<ConceptMapDependsOn>(
             (v) => ConceptMapDependsOn.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.product'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.product',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1246,6 +1627,83 @@ class ConceptMapTarget extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'display',
+      'equivalence',
+      'comment',
+      'dependsOn',
+      'product',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      case 'equivalence':
+        fields.add(equivalence);
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      case 'dependsOn':
+        if (dependsOn != null) {
+          fields.addAll(dependsOn!);
+        }
+      case 'product':
+        if (product != null) {
+          fields.addAll(product!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConceptMapTarget clone() => throw UnimplementedError();
   @override
@@ -1360,7 +1818,11 @@ class ConceptMapDependsOn extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1368,7 +1830,11 @@ class ConceptMapDependsOn extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1501,6 +1967,71 @@ class ConceptMapDependsOn extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'property',
+      'system',
+      'value',
+      'display',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'property':
+        fields.add(property);
+      case 'system':
+        if (system != null) {
+          fields.add(system!);
+        }
+      case 'value':
+        fields.add(value);
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConceptMapDependsOn clone() => throw UnimplementedError();
   @override
@@ -1597,7 +2128,11 @@ class ConceptMapUnmapped extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1605,7 +2140,11 @@ class ConceptMapUnmapped extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1739,6 +2278,73 @@ class ConceptMapUnmapped extends BackboneElement {
     addField('display', display);
     addField('url', url);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'mode',
+      'code',
+      'display',
+      'url',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'mode':
+        fields.add(mode);
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

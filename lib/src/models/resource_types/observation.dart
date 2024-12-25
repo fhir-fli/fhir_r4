@@ -87,7 +87,11 @@ class Observation extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +99,11 @@ class Observation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +111,11 @@ class Observation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -111,7 +123,11 @@ class Observation extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -119,7 +135,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basedOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basedOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -127,7 +147,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.partOf'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.partOf',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -141,7 +165,11 @@ class Observation extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -161,7 +189,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.focus'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.focus',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -191,7 +223,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.performer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.performer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -222,7 +258,11 @@ class Observation extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.interpretation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.interpretation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -230,7 +270,11 @@ class Observation extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -262,7 +306,11 @@ class Observation extends DomainResource {
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.referenceRange'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.referenceRange',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -270,7 +318,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.hasMember'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.hasMember',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -278,7 +330,11 @@ class Observation extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.derivedFrom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.derivedFrom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -286,7 +342,11 @@ class Observation extends DomainResource {
           ?.map<ObservationComponent>(
             (v) => ObservationComponent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.component'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.component',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -539,6 +599,248 @@ class Observation extends DomainResource {
     addField('derivedFrom', derivedFrom);
     addField('component', component);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'basedOn',
+      'partOf',
+      'status',
+      'category',
+      'code',
+      'subject',
+      'focus',
+      'encounter',
+      'effectiveXObservation',
+      'issued',
+      'performer',
+      'valueXObservation',
+      'dataAbsentReason',
+      'interpretation',
+      'note',
+      'bodySite',
+      'method',
+      'specimen',
+      'device',
+      'referenceRange',
+      'hasMember',
+      'derivedFrom',
+      'component',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'focus':
+        if (focus != null) {
+          fields.addAll(focus!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'effectiveDateTime':
+        if (effectiveX is FhirDateTime) {
+          fields.add(effectiveX!);
+        }
+      case 'effectivePeriod':
+        if (effectiveX is Period) {
+          fields.add(effectiveX!);
+        }
+      case 'effectiveTiming':
+        if (effectiveX is Timing) {
+          fields.add(effectiveX!);
+        }
+      case 'effectiveInstant':
+        if (effectiveX is FhirInstant) {
+          fields.add(effectiveX!);
+        }
+      case 'issued':
+        if (issued != null) {
+          fields.add(issued!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueInteger':
+        if (valueX is FhirInteger) {
+          fields.add(valueX!);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX!);
+        }
+      case 'valueRatio':
+        if (valueX is Ratio) {
+          fields.add(valueX!);
+        }
+      case 'valueSampledData':
+        if (valueX is SampledData) {
+          fields.add(valueX!);
+        }
+      case 'valueTime':
+        if (valueX is FhirTime) {
+          fields.add(valueX!);
+        }
+      case 'valueDateTime':
+        if (valueX is FhirDateTime) {
+          fields.add(valueX!);
+        }
+      case 'valuePeriod':
+        if (valueX is Period) {
+          fields.add(valueX!);
+        }
+      case 'dataAbsentReason':
+        if (dataAbsentReason != null) {
+          fields.add(dataAbsentReason!);
+        }
+      case 'interpretation':
+        if (interpretation != null) {
+          fields.addAll(interpretation!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.add(bodySite!);
+        }
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'specimen':
+        if (specimen != null) {
+          fields.add(specimen!);
+        }
+      case 'device':
+        if (device != null) {
+          fields.add(device!);
+        }
+      case 'referenceRange':
+        if (referenceRange != null) {
+          fields.addAll(referenceRange!);
+        }
+      case 'hasMember':
+        if (hasMember != null) {
+          fields.addAll(hasMember!);
+        }
+      case 'derivedFrom':
+        if (derivedFrom != null) {
+          fields.addAll(derivedFrom!);
+        }
+      case 'component':
+        if (component != null) {
+          fields.addAll(component!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -809,7 +1111,11 @@ class ObservationReferenceRange extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -817,7 +1123,11 @@ class ObservationReferenceRange extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -843,7 +1153,11 @@ class ObservationReferenceRange extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.appliesTo'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.appliesTo',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -984,6 +1298,85 @@ class ObservationReferenceRange extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'low',
+      'high',
+      'type',
+      'appliesTo',
+      'age',
+      'text',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'low':
+        if (low != null) {
+          fields.add(low!);
+        }
+      case 'high':
+        if (high != null) {
+          fields.add(high!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'appliesTo':
+        if (appliesTo != null) {
+          fields.addAll(appliesTo!);
+        }
+      case 'age':
+        if (age != null) {
+          fields.add(age!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ObservationReferenceRange clone() => throw UnimplementedError();
   @override
@@ -1097,7 +1490,11 @@ class ObservationComponent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1105,7 +1502,11 @@ class ObservationComponent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1142,7 +1543,11 @@ class ObservationComponent extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.interpretation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.interpretation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1150,7 +1555,11 @@ class ObservationComponent extends BackboneElement {
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.referenceRange'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.referenceRange',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1265,6 +1674,118 @@ class ObservationComponent extends BackboneElement {
     addField('interpretation', interpretation);
     addField('referenceRange', referenceRange);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'valueXObservationComponent',
+      'dataAbsentReason',
+      'interpretation',
+      'referenceRange',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueInteger':
+        if (valueX is FhirInteger) {
+          fields.add(valueX!);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX!);
+        }
+      case 'valueRatio':
+        if (valueX is Ratio) {
+          fields.add(valueX!);
+        }
+      case 'valueSampledData':
+        if (valueX is SampledData) {
+          fields.add(valueX!);
+        }
+      case 'valueTime':
+        if (valueX is FhirTime) {
+          fields.add(valueX!);
+        }
+      case 'valueDateTime':
+        if (valueX is FhirDateTime) {
+          fields.add(valueX!);
+        }
+      case 'valuePeriod':
+        if (valueX is Period) {
+          fields.add(valueX!);
+        }
+      case 'dataAbsentReason':
+        if (dataAbsentReason != null) {
+          fields.add(dataAbsentReason!);
+        }
+      case 'interpretation':
+        if (interpretation != null) {
+          fields.addAll(interpretation!);
+        }
+      case 'referenceRange':
+        if (referenceRange != null) {
+          fields.addAll(referenceRange!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

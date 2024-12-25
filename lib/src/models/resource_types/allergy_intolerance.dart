@@ -79,7 +79,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -87,7 +91,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +103,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +115,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -194,7 +210,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -202,7 +222,11 @@ class AllergyIntolerance extends DomainResource {
           ?.map<AllergyIntoleranceReaction>(
             (v) => AllergyIntoleranceReaction.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reaction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reaction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -403,6 +427,174 @@ class AllergyIntolerance extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'clinicalStatus',
+      'verificationStatus',
+      'type',
+      'category',
+      'criticality',
+      'code',
+      'patient',
+      'encounter',
+      'onsetXAllergyIntolerance',
+      'recordedDate',
+      'recorder',
+      'asserter',
+      'lastOccurrence',
+      'note',
+      'reaction',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'clinicalStatus':
+        if (clinicalStatus != null) {
+          fields.add(clinicalStatus!);
+        }
+      case 'verificationStatus':
+        if (verificationStatus != null) {
+          fields.add(verificationStatus!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'criticality':
+        if (criticality != null) {
+          fields.add(criticality!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'patient':
+        fields.add(patient);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'onsetDateTime':
+        if (onsetX is FhirDateTime) {
+          fields.add(onsetX!);
+        }
+      case 'onsetAge':
+        if (onsetX is Age) {
+          fields.add(onsetX!);
+        }
+      case 'onsetPeriod':
+        if (onsetX is Period) {
+          fields.add(onsetX!);
+        }
+      case 'onsetRange':
+        if (onsetX is Range) {
+          fields.add(onsetX!);
+        }
+      case 'onsetString':
+        if (onsetX is FhirString) {
+          fields.add(onsetX!);
+        }
+      case 'recordedDate':
+        if (recordedDate != null) {
+          fields.add(recordedDate!);
+        }
+      case 'recorder':
+        if (recorder != null) {
+          fields.add(recorder!);
+        }
+      case 'asserter':
+        if (asserter != null) {
+          fields.add(asserter!);
+        }
+      case 'lastOccurrence':
+        if (lastOccurrence != null) {
+          fields.add(lastOccurrence!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'reaction':
+        if (reaction != null) {
+          fields.addAll(reaction!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   AllergyIntolerance clone() => throw UnimplementedError();
   @override
@@ -598,7 +790,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -606,7 +802,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -620,7 +820,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
           .map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.manifestation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.manifestation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -652,7 +856,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -783,6 +991,88 @@ class AllergyIntoleranceReaction extends BackboneElement {
     addField('exposureRoute', exposureRoute);
     addField('note', note);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'substance',
+      'manifestation',
+      'description',
+      'onset',
+      'severity',
+      'exposureRoute',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'substance':
+        if (substance != null) {
+          fields.add(substance!);
+        }
+      case 'manifestation':
+        fields.addAll(manifestation);
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'onset':
+        if (onset != null) {
+          fields.add(onset!);
+        }
+      case 'severity':
+        if (severity != null) {
+          fields.add(severity!);
+        }
+      case 'exposureRoute':
+        if (exposureRoute != null) {
+          fields.add(exposureRoute!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

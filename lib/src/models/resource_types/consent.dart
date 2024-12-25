@@ -78,7 +78,11 @@ class Consent extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -86,7 +90,11 @@ class Consent extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -94,7 +102,11 @@ class Consent extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +114,11 @@ class Consent extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -122,7 +138,11 @@ class Consent extends DomainResource {
           .map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -142,7 +162,11 @@ class Consent extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.performer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.performer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -150,7 +174,11 @@ class Consent extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.organization'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.organization',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -166,7 +194,11 @@ class Consent extends DomainResource {
           ?.map<ConsentPolicy>(
             (v) => ConsentPolicy.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.policy'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.policy',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -180,7 +212,11 @@ class Consent extends DomainResource {
           ?.map<ConsentVerification>(
             (v) => ConsentVerification.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.verification'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.verification',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -357,6 +393,143 @@ class Consent extends DomainResource {
     addField('verification', verification);
     addField('provision', provision);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'scope',
+      'category',
+      'patient',
+      'dateTime',
+      'performer',
+      'organization',
+      'sourceXConsent',
+      'policy',
+      'policyRule',
+      'verification',
+      'provision',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'scope':
+        fields.add(scope);
+      case 'category':
+        fields.addAll(category);
+      case 'patient':
+        if (patient != null) {
+          fields.add(patient!);
+        }
+      case 'dateTime':
+        if (dateTime != null) {
+          fields.add(dateTime!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'organization':
+        if (organization != null) {
+          fields.addAll(organization!);
+        }
+      case 'sourceAttachment':
+        if (sourceX is Attachment) {
+          fields.add(sourceX!);
+        }
+      case 'sourceReference':
+        if (sourceX is Reference) {
+          fields.add(sourceX!);
+        }
+      case 'policy':
+        if (policy != null) {
+          fields.addAll(policy!);
+        }
+      case 'policyRule':
+        if (policyRule != null) {
+          fields.add(policyRule!);
+        }
+      case 'verification':
+        if (verification != null) {
+          fields.addAll(verification!);
+        }
+      case 'provision':
+        if (provision != null) {
+          fields.add(provision!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -543,7 +716,11 @@ class ConsentPolicy extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -551,7 +728,11 @@ class ConsentPolicy extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -659,6 +840,65 @@ class ConsentPolicy extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'authority',
+      'uri',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'authority':
+        if (authority != null) {
+          fields.add(authority!);
+        }
+      case 'uri':
+        if (uri != null) {
+          fields.add(uri!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -744,7 +984,11 @@ class ConsentVerification extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -752,7 +996,11 @@ class ConsentVerification extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -869,6 +1117,68 @@ class ConsentVerification extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'verified',
+      'verifiedWith',
+      'verificationDate',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'verified':
+        fields.add(verified);
+      case 'verifiedWith':
+        if (verifiedWith != null) {
+          fields.add(verifiedWith!);
+        }
+      case 'verificationDate':
+        if (verificationDate != null) {
+          fields.add(verificationDate!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConsentVerification clone() => throw UnimplementedError();
   @override
@@ -966,7 +1276,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -974,7 +1288,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -994,7 +1312,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<ConsentActor>(
             (v) => ConsentActor.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.actor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.actor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1002,7 +1324,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.action'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.action',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1010,7 +1336,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.securityLabel'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.securityLabel',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1018,7 +1348,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.purpose'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.purpose',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1026,7 +1360,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.class'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.class',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1034,7 +1372,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.code'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.code',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1048,7 +1390,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<ConsentData>(
             (v) => ConsentData.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.data'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.data',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1056,7 +1402,11 @@ class ConsentProvision extends BackboneElement {
           ?.map<ConsentProvision>(
             (v) => ConsentProvision.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.provision'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.provision',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1200,6 +1550,110 @@ class ConsentProvision extends BackboneElement {
     addField('data', data);
     addField('provision', provision);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'period',
+      'actor',
+      'action',
+      'securityLabel',
+      'purpose',
+      'class',
+      'code',
+      'dataPeriod',
+      'data',
+      'provision',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'actor':
+        if (actor != null) {
+          fields.addAll(actor!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.addAll(action!);
+        }
+      case 'securityLabel':
+        if (securityLabel != null) {
+          fields.addAll(securityLabel!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.addAll(purpose!);
+        }
+      case 'class':
+        if (class_ != null) {
+          fields.addAll(class_!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.addAll(code!);
+        }
+      case 'dataPeriod':
+        if (dataPeriod != null) {
+          fields.add(dataPeriod!);
+        }
+      case 'data':
+        if (data != null) {
+          fields.addAll(data!);
+        }
+      case 'provision':
+        if (provision != null) {
+          fields.addAll(provision!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1362,7 +1816,11 @@ class ConsentActor extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1370,7 +1828,11 @@ class ConsentActor extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1478,6 +1940,61 @@ class ConsentActor extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'role',
+      'reference',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'role':
+        fields.add(role);
+      case 'reference':
+        fields.add(reference);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -1561,7 +2078,11 @@ class ConsentData extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1569,7 +2090,11 @@ class ConsentData extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1674,6 +2199,61 @@ class ConsentData extends BackboneElement {
     addField('meaning', meaning);
     addField('reference', reference);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'meaning',
+      'reference',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'meaning':
+        fields.add(meaning);
+      case 'reference':
+        fields.add(reference);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

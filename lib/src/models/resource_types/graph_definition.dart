@@ -80,7 +80,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -88,7 +92,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -96,7 +104,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -146,7 +158,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -160,7 +176,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -168,7 +188,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -194,7 +218,11 @@ class GraphDefinition extends CanonicalResource {
           ?.map<GraphDefinitionLink>(
             (v) => GraphDefinitionLink.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.link'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.link',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -319,6 +347,151 @@ class GraphDefinition extends CanonicalResource {
     addField('profile', profile);
     addField('link', link);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'version',
+      'name',
+      'status',
+      'experimental',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'start',
+      'profile',
+      'link',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'start':
+        fields.add(start);
+      case 'profile':
+        if (profile != null) {
+          fields.add(profile!);
+        }
+      case 'link':
+        if (link != null) {
+          fields.addAll(link!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -509,7 +682,11 @@ class GraphDefinitionLink extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -517,7 +694,11 @@ class GraphDefinitionLink extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -555,7 +736,11 @@ class GraphDefinitionLink extends BackboneElement {
           ?.map<GraphDefinitionTarget>(
             (v) => GraphDefinitionTarget.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -670,6 +855,85 @@ class GraphDefinitionLink extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'path',
+      'sliceName',
+      'min',
+      'max',
+      'description',
+      'target',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'path':
+        if (path != null) {
+          fields.add(path!);
+        }
+      case 'sliceName':
+        if (sliceName != null) {
+          fields.add(sliceName!);
+        }
+      case 'min':
+        if (min != null) {
+          fields.add(min!);
+        }
+      case 'max':
+        if (max != null) {
+          fields.add(max!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   GraphDefinitionLink clone() => throw UnimplementedError();
   @override
@@ -779,7 +1043,11 @@ class GraphDefinitionTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -787,7 +1055,11 @@ class GraphDefinitionTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -813,7 +1085,11 @@ class GraphDefinitionTarget extends BackboneElement {
           ?.map<GraphDefinitionCompartment>(
             (v) => GraphDefinitionCompartment.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.compartment'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.compartment',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -821,7 +1097,11 @@ class GraphDefinitionTarget extends BackboneElement {
           ?.map<GraphDefinitionLink>(
             (v) => GraphDefinitionLink.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.link'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.link',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -927,6 +1207,78 @@ class GraphDefinitionTarget extends BackboneElement {
     addField('compartment', compartment);
     addField('link', link);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'params',
+      'profile',
+      'compartment',
+      'link',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'params':
+        if (params != null) {
+          fields.add(params!);
+        }
+      case 'profile':
+        if (profile != null) {
+          fields.add(profile!);
+        }
+      case 'compartment':
+        if (compartment != null) {
+          fields.addAll(compartment!);
+        }
+      case 'link':
+        if (link != null) {
+          fields.addAll(link!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1037,7 +1389,11 @@ class GraphDefinitionCompartment extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1045,7 +1401,11 @@ class GraphDefinitionCompartment extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1183,6 +1543,74 @@ class GraphDefinitionCompartment extends BackboneElement {
     addField('expression', expression);
     addField('description', description);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'use',
+      'code',
+      'rule',
+      'expression',
+      'description',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'use':
+        fields.add(use);
+      case 'code':
+        fields.add(code);
+      case 'rule':
+        fields.add(rule);
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

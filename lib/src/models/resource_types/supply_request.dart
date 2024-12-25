@@ -78,7 +78,11 @@ class SupplyRequest extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -86,7 +90,11 @@ class SupplyRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -94,7 +102,11 @@ class SupplyRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +114,11 @@ class SupplyRequest extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -142,7 +158,11 @@ class SupplyRequest extends DomainResource {
           ?.map<SupplyRequestParameter>(
             (v) => SupplyRequestParameter.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.parameter'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.parameter',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -171,7 +191,11 @@ class SupplyRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.supplier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.supplier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -179,7 +203,11 @@ class SupplyRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -187,7 +215,11 @@ class SupplyRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -374,6 +406,165 @@ class SupplyRequest extends DomainResource {
     addField('deliverFrom', deliverFrom);
     addField('deliverTo', deliverTo);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'category',
+      'priority',
+      'itemXSupplyRequest',
+      'quantity',
+      'parameter',
+      'occurrenceXSupplyRequest',
+      'authoredOn',
+      'requester',
+      'supplier',
+      'reasonCode',
+      'reasonReference',
+      'deliverFrom',
+      'deliverTo',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'itemCodeableConcept':
+        if (itemX is CodeableConcept) {
+          fields.add(itemX);
+        }
+      case 'itemReference':
+        if (itemX is Reference) {
+          fields.add(itemX);
+        }
+      case 'quantity':
+        fields.add(quantity);
+      case 'parameter':
+        if (parameter != null) {
+          fields.addAll(parameter!);
+        }
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrenceTiming':
+        if (occurrenceX is Timing) {
+          fields.add(occurrenceX!);
+        }
+      case 'authoredOn':
+        if (authoredOn != null) {
+          fields.add(authoredOn!);
+        }
+      case 'requester':
+        if (requester != null) {
+          fields.add(requester!);
+        }
+      case 'supplier':
+        if (supplier != null) {
+          fields.addAll(supplier!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'deliverFrom':
+        if (deliverFrom != null) {
+          fields.add(deliverFrom!);
+        }
+      case 'deliverTo':
+        if (deliverTo != null) {
+          fields.add(deliverTo!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -565,7 +756,11 @@ class SupplyRequestParameter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -573,7 +768,11 @@ class SupplyRequestParameter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -684,6 +883,77 @@ class SupplyRequestParameter extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'valueXSupplyRequestParameter',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

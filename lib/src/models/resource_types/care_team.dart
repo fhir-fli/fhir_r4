@@ -76,7 +76,11 @@ class CareTeam extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -84,7 +88,11 @@ class CareTeam extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -92,7 +100,11 @@ class CareTeam extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -100,7 +112,11 @@ class CareTeam extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -114,7 +130,11 @@ class CareTeam extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -146,7 +166,11 @@ class CareTeam extends DomainResource {
           ?.map<CareTeamParticipant>(
             (v) => CareTeamParticipant.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.participant'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.participant',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -154,7 +178,11 @@ class CareTeam extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -162,7 +190,11 @@ class CareTeam extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -170,7 +202,11 @@ class CareTeam extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.managingOrganization'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.managingOrganization',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -178,7 +214,11 @@ class CareTeam extends DomainResource {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.telecom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.telecom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -186,7 +226,11 @@ class CareTeam extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -348,6 +392,145 @@ class CareTeam extends DomainResource {
     addField('telecom', telecom);
     addField('note', note);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'category',
+      'name',
+      'subject',
+      'encounter',
+      'period',
+      'participant',
+      'reasonCode',
+      'reasonReference',
+      'managingOrganization',
+      'telecom',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'participant':
+        if (participant != null) {
+          fields.addAll(participant!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'managingOrganization':
+        if (managingOrganization != null) {
+          fields.addAll(managingOrganization!);
+        }
+      case 'telecom':
+        if (telecom != null) {
+          fields.addAll(telecom!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -543,7 +726,11 @@ class CareTeamParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -551,7 +738,11 @@ class CareTeamParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -559,7 +750,11 @@ class CareTeamParticipant extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.role'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.role',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -682,6 +877,75 @@ class CareTeamParticipant extends BackboneElement {
     addField('onBehalfOf', onBehalfOf);
     addField('period', period);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'role',
+      'member',
+      'onBehalfOf',
+      'period',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.addAll(role!);
+        }
+      case 'member':
+        if (member != null) {
+          fields.add(member!);
+        }
+      case 'onBehalfOf':
+        if (onBehalfOf != null) {
+          fields.add(onBehalfOf!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

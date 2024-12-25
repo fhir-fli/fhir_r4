@@ -47,7 +47,11 @@ class TriggerDefinition extends DataType
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -77,7 +81,11 @@ class TriggerDefinition extends DataType
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.data'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.data',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -198,6 +206,85 @@ class TriggerDefinition extends DataType
     addField('data', data);
     addField('condition', condition);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'type',
+      'name',
+      'timingXTriggerDefinition',
+      'data',
+      'condition',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'timingTiming':
+        if (timingX is Timing) {
+          fields.add(timingX!);
+        }
+      case 'timingReference':
+        if (timingX is Reference) {
+          fields.add(timingX!);
+        }
+      case 'timingDate':
+        if (timingX is FhirDate) {
+          fields.add(timingX!);
+        }
+      case 'timingDateTime':
+        if (timingX is FhirDateTime) {
+          fields.add(timingX!);
+        }
+      case 'data':
+        if (data != null) {
+          fields.addAll(data!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.add(condition!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

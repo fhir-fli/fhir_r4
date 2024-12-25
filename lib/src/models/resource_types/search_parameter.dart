@@ -89,7 +89,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -97,7 +101,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -105,7 +113,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -161,7 +173,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -175,7 +191,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -183,7 +203,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -269,7 +293,11 @@ class SearchParameter extends CanonicalResource {
           ?.map<SearchParameterComponent>(
             (v) => SearchParameterComponent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.component'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.component',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -467,6 +495,202 @@ class SearchParameter extends CanonicalResource {
     addField('chain', chain);
     addField('component', component);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'version',
+      'name',
+      'derivedFrom',
+      'status',
+      'experimental',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'code',
+      'base',
+      'type',
+      'expression',
+      'xpath',
+      'xpathUsage',
+      'target',
+      'multipleOr',
+      'multipleAnd',
+      'comparator',
+      'modifier',
+      'chain',
+      'component',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'derivedFrom':
+        if (derivedFrom != null) {
+          fields.add(derivedFrom!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'base':
+        fields.addAll(base);
+      case 'type':
+        fields.add(type);
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      case 'xpath':
+        if (xpath != null) {
+          fields.add(xpath!);
+        }
+      case 'xpathUsage':
+        if (xpathUsage != null) {
+          fields.add(xpathUsage!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      case 'multipleOr':
+        if (multipleOr != null) {
+          fields.add(multipleOr!);
+        }
+      case 'multipleAnd':
+        if (multipleAnd != null) {
+          fields.add(multipleAnd!);
+        }
+      case 'comparator':
+        if (comparator != null) {
+          fields.addAll(comparator!);
+        }
+      case 'modifier':
+        if (modifier != null) {
+          fields.addAll(modifier!);
+        }
+      case 'chain':
+        if (chain != null) {
+          fields.addAll(chain!);
+        }
+      case 'component':
+        if (component != null) {
+          fields.addAll(component!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -728,7 +952,11 @@ class SearchParameterComponent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -736,7 +964,11 @@ class SearchParameterComponent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -840,6 +1072,61 @@ class SearchParameterComponent extends BackboneElement {
     addField('definition', definition);
     addField('expression', expression);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'definition',
+      'expression',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'definition':
+        fields.add(definition);
+      case 'expression':
+        fields.add(expression);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

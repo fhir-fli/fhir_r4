@@ -92,7 +92,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -100,7 +104,11 @@ class ResearchStudy extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -108,7 +116,11 @@ class ResearchStudy extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -116,7 +128,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -130,7 +146,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.protocol'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.protocol',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -138,7 +158,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.partOf'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.partOf',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -164,7 +188,11 @@ class ResearchStudy extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -172,7 +200,11 @@ class ResearchStudy extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.focus'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.focus',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -180,7 +212,11 @@ class ResearchStudy extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.condition'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.condition',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -188,7 +224,11 @@ class ResearchStudy extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -196,7 +236,11 @@ class ResearchStudy extends DomainResource {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedArtifact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -204,7 +248,11 @@ class ResearchStudy extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.keyword'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.keyword',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -212,7 +260,11 @@ class ResearchStudy extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.location'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.location',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -226,7 +278,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.enrollment'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.enrollment',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -252,7 +308,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.site'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.site',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -266,7 +326,11 @@ class ResearchStudy extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -274,7 +338,11 @@ class ResearchStudy extends DomainResource {
           ?.map<ResearchStudyArm>(
             (v) => ResearchStudyArm.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.arm'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.arm',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -282,7 +350,11 @@ class ResearchStudy extends DomainResource {
           ?.map<ResearchStudyObjective>(
             (v) => ResearchStudyObjective.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.objective'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.objective',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -516,6 +588,198 @@ class ResearchStudy extends DomainResource {
     addField('arm', arm);
     addField('objective', objective);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'title',
+      'protocol',
+      'partOf',
+      'status',
+      'primaryPurposeType',
+      'phase',
+      'category',
+      'focus',
+      'condition',
+      'contact',
+      'relatedArtifact',
+      'keyword',
+      'location',
+      'description',
+      'enrollment',
+      'period',
+      'sponsor',
+      'principalInvestigator',
+      'site',
+      'reasonStopped',
+      'note',
+      'arm',
+      'objective',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'protocol':
+        if (protocol != null) {
+          fields.addAll(protocol!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'primaryPurposeType':
+        if (primaryPurposeType != null) {
+          fields.add(primaryPurposeType!);
+        }
+      case 'phase':
+        if (phase != null) {
+          fields.add(phase!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'focus':
+        if (focus != null) {
+          fields.addAll(focus!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          fields.addAll(relatedArtifact!);
+        }
+      case 'keyword':
+        if (keyword != null) {
+          fields.addAll(keyword!);
+        }
+      case 'location':
+        if (location != null) {
+          fields.addAll(location!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'enrollment':
+        if (enrollment != null) {
+          fields.addAll(enrollment!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'sponsor':
+        if (sponsor != null) {
+          fields.add(sponsor!);
+        }
+      case 'principalInvestigator':
+        if (principalInvestigator != null) {
+          fields.add(principalInvestigator!);
+        }
+      case 'site':
+        if (site != null) {
+          fields.addAll(site!);
+        }
+      case 'reasonStopped':
+        if (reasonStopped != null) {
+          fields.add(reasonStopped!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'arm':
+        if (arm != null) {
+          fields.addAll(arm!);
+        }
+      case 'objective':
+        if (objective != null) {
+          fields.addAll(objective!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -794,7 +1058,11 @@ class ResearchStudyArm extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -802,7 +1070,11 @@ class ResearchStudyArm extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -920,6 +1192,68 @@ class ResearchStudyArm extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'type',
+      'description',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ResearchStudyArm clone() => throw UnimplementedError();
   @override
@@ -1009,7 +1343,11 @@ class ResearchStudyObjective extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1017,7 +1355,11 @@ class ResearchStudyObjective extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1120,6 +1462,65 @@ class ResearchStudyObjective extends BackboneElement {
     addField('name', name);
     addField('type', type);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'type',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

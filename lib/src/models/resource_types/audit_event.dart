@@ -75,7 +75,11 @@ class AuditEvent extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -83,7 +87,11 @@ class AuditEvent extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -91,7 +99,11 @@ class AuditEvent extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -105,7 +117,11 @@ class AuditEvent extends DomainResource {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.subtype'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.subtype',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -143,7 +159,11 @@ class AuditEvent extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.purposeOfEvent'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.purposeOfEvent',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -151,7 +171,11 @@ class AuditEvent extends DomainResource {
           .map<AuditEventAgent>(
             (v) => AuditEventAgent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.agent'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.agent',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -165,7 +189,11 @@ class AuditEvent extends DomainResource {
           ?.map<AuditEventEntity>(
             (v) => AuditEventEntity.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.entity'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.entity',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -311,6 +339,127 @@ class AuditEvent extends DomainResource {
     addField('source', source);
     addField('entity', entity);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'type',
+      'subtype',
+      'action',
+      'period',
+      'recorded',
+      'outcome',
+      'outcomeDesc',
+      'purposeOfEvent',
+      'agent',
+      'source',
+      'entity',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'subtype':
+        if (subtype != null) {
+          fields.addAll(subtype!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.add(action!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'recorded':
+        fields.add(recorded);
+      case 'outcome':
+        if (outcome != null) {
+          fields.add(outcome!);
+        }
+      case 'outcomeDesc':
+        if (outcomeDesc != null) {
+          fields.add(outcomeDesc!);
+        }
+      case 'purposeOfEvent':
+        if (purposeOfEvent != null) {
+          fields.addAll(purposeOfEvent!);
+        }
+      case 'agent':
+        fields.addAll(agent);
+      case 'source':
+        fields.add(source);
+      case 'entity':
+        if (entity != null) {
+          fields.addAll(entity!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -486,7 +635,11 @@ class AuditEventAgent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -494,7 +647,11 @@ class AuditEventAgent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -508,7 +665,11 @@ class AuditEventAgent extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.role'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.role',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -564,7 +725,11 @@ class AuditEventAgent extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.purposeOfUse'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.purposeOfUse',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -715,6 +880,108 @@ class AuditEventAgent extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'role',
+      'who',
+      'altId',
+      'name',
+      'requestor',
+      'location',
+      'policy',
+      'media',
+      'network',
+      'purposeOfUse',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.addAll(role!);
+        }
+      case 'who':
+        if (who != null) {
+          fields.add(who!);
+        }
+      case 'altId':
+        if (altId != null) {
+          fields.add(altId!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'requestor':
+        fields.add(requestor);
+      case 'location':
+        if (location != null) {
+          fields.add(location!);
+        }
+      case 'policy':
+        if (policy != null) {
+          fields.addAll(policy!);
+        }
+      case 'media':
+        if (media != null) {
+          fields.add(media!);
+        }
+      case 'network':
+        if (network != null) {
+          fields.add(network!);
+        }
+      case 'purposeOfUse':
+        if (purposeOfUse != null) {
+          fields.addAll(purposeOfUse!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -855,7 +1122,11 @@ class AuditEventNetwork extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -863,7 +1134,11 @@ class AuditEventNetwork extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -970,6 +1245,65 @@ class AuditEventNetwork extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'address',
+      'type',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'address':
+        if (address != null) {
+          fields.add(address!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -1053,7 +1387,11 @@ class AuditEventSource extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1061,7 +1399,11 @@ class AuditEventSource extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1081,7 +1423,11 @@ class AuditEventSource extends BackboneElement {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.type'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.type',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1179,6 +1525,68 @@ class AuditEventSource extends BackboneElement {
     addField('observer', observer);
     addField('type', type);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'site',
+      'observer',
+      'type',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'site':
+        if (site != null) {
+          fields.add(site!);
+        }
+      case 'observer':
+        fields.add(observer);
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1279,7 +1687,11 @@ class AuditEventEntity extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1287,7 +1699,11 @@ class AuditEventEntity extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1319,7 +1735,11 @@ class AuditEventEntity extends BackboneElement {
           ?.map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.securityLabel'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.securityLabel',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1345,7 +1765,11 @@ class AuditEventEntity extends BackboneElement {
           ?.map<AuditEventDetail>(
             (v) => AuditEventDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.detail'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.detail',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1476,6 +1900,100 @@ class AuditEventEntity extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'what',
+      'type',
+      'role',
+      'lifecycle',
+      'securityLabel',
+      'name',
+      'description',
+      'query',
+      'detail',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'what':
+        if (what != null) {
+          fields.add(what!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.add(role!);
+        }
+      case 'lifecycle':
+        if (lifecycle != null) {
+          fields.add(lifecycle!);
+        }
+      case 'securityLabel':
+        if (securityLabel != null) {
+          fields.addAll(securityLabel!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'query':
+        if (query != null) {
+          fields.add(query!);
+        }
+      case 'detail':
+        if (detail != null) {
+          fields.addAll(detail!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -1602,7 +2120,11 @@ class AuditEventDetail extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1610,7 +2132,11 @@ class AuditEventDetail extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1717,6 +2243,67 @@ class AuditEventDetail extends BackboneElement {
     addField('value${valueXFhirType.capitalize()}', valueX);
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'valueXAuditEventDetail',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX);
+        }
+      case 'valueBase64Binary':
+        if (valueX is FhirBase64Binary) {
+          fields.add(valueX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

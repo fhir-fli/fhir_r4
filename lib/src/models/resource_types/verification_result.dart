@@ -77,7 +77,11 @@ class VerificationResult extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -85,7 +89,11 @@ class VerificationResult extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -93,7 +101,11 @@ class VerificationResult extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -101,7 +113,11 @@ class VerificationResult extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -139,7 +155,11 @@ class VerificationResult extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.validationProcess'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.validationProcess',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -171,7 +191,11 @@ class VerificationResult extends DomainResource {
           ?.map<VerificationResultPrimarySource>(
             (v) => VerificationResultPrimarySource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.primarySource'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.primarySource',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -185,7 +209,11 @@ class VerificationResult extends DomainResource {
           ?.map<VerificationResultValidator>(
             (v) => VerificationResultValidator.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.validator'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.validator',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -347,6 +375,148 @@ class VerificationResult extends DomainResource {
     addField('attestation', attestation);
     addField('validator', validator);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'target',
+      'targetLocation',
+      'need',
+      'status',
+      'statusDate',
+      'validationType',
+      'validationProcess',
+      'frequency',
+      'lastPerformed',
+      'nextScheduled',
+      'failureAction',
+      'primarySource',
+      'attestation',
+      'validator',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      case 'targetLocation':
+        if (targetLocation != null) {
+          fields.addAll(targetLocation!);
+        }
+      case 'need':
+        if (need != null) {
+          fields.add(need!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'statusDate':
+        if (statusDate != null) {
+          fields.add(statusDate!);
+        }
+      case 'validationType':
+        if (validationType != null) {
+          fields.add(validationType!);
+        }
+      case 'validationProcess':
+        if (validationProcess != null) {
+          fields.addAll(validationProcess!);
+        }
+      case 'frequency':
+        if (frequency != null) {
+          fields.add(frequency!);
+        }
+      case 'lastPerformed':
+        if (lastPerformed != null) {
+          fields.add(lastPerformed!);
+        }
+      case 'nextScheduled':
+        if (nextScheduled != null) {
+          fields.add(nextScheduled!);
+        }
+      case 'failureAction':
+        if (failureAction != null) {
+          fields.add(failureAction!);
+        }
+      case 'primarySource':
+        if (primarySource != null) {
+          fields.addAll(primarySource!);
+        }
+      case 'attestation':
+        if (attestation != null) {
+          fields.add(attestation!);
+        }
+      case 'validator':
+        if (validator != null) {
+          fields.addAll(validator!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -537,7 +707,11 @@ class VerificationResultPrimarySource extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -545,7 +719,11 @@ class VerificationResultPrimarySource extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -559,7 +737,11 @@ class VerificationResultPrimarySource extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.type'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.type',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -567,7 +749,11 @@ class VerificationResultPrimarySource extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.communicationMethod'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.communicationMethod',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -593,7 +779,11 @@ class VerificationResultPrimarySource extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.pushTypeAvailable'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.pushTypeAvailable',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -714,6 +904,90 @@ class VerificationResultPrimarySource extends BackboneElement {
     addField('canPushUpdates', canPushUpdates);
     addField('pushTypeAvailable', pushTypeAvailable);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'who',
+      'type',
+      'communicationMethod',
+      'validationStatus',
+      'validationDate',
+      'canPushUpdates',
+      'pushTypeAvailable',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'who':
+        if (who != null) {
+          fields.add(who!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'communicationMethod':
+        if (communicationMethod != null) {
+          fields.addAll(communicationMethod!);
+        }
+      case 'validationStatus':
+        if (validationStatus != null) {
+          fields.add(validationStatus!);
+        }
+      case 'validationDate':
+        if (validationDate != null) {
+          fields.add(validationDate!);
+        }
+      case 'canPushUpdates':
+        if (canPushUpdates != null) {
+          fields.add(canPushUpdates!);
+        }
+      case 'pushTypeAvailable':
+        if (pushTypeAvailable != null) {
+          fields.addAll(pushTypeAvailable!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -841,7 +1115,11 @@ class VerificationResultAttestation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -849,7 +1127,11 @@ class VerificationResultAttestation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1026,6 +1308,95 @@ class VerificationResultAttestation extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'who',
+      'onBehalfOf',
+      'communicationMethod',
+      'date',
+      'sourceIdentityCertificate',
+      'proxyIdentityCertificate',
+      'proxySignature',
+      'sourceSignature',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'who':
+        if (who != null) {
+          fields.add(who!);
+        }
+      case 'onBehalfOf':
+        if (onBehalfOf != null) {
+          fields.add(onBehalfOf!);
+        }
+      case 'communicationMethod':
+        if (communicationMethod != null) {
+          fields.add(communicationMethod!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'sourceIdentityCertificate':
+        if (sourceIdentityCertificate != null) {
+          fields.add(sourceIdentityCertificate!);
+        }
+      case 'proxyIdentityCertificate':
+        if (proxyIdentityCertificate != null) {
+          fields.add(proxyIdentityCertificate!);
+        }
+      case 'proxySignature':
+        if (proxySignature != null) {
+          fields.add(proxySignature!);
+        }
+      case 'sourceSignature':
+        if (sourceSignature != null) {
+          fields.add(sourceSignature!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -1139,7 +1510,11 @@ class VerificationResultValidator extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1147,7 +1522,11 @@ class VerificationResultValidator extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1262,6 +1641,68 @@ class VerificationResultValidator extends BackboneElement {
     addField('identityCertificate', identityCertificate);
     addField('attestationSignature', attestationSignature);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'organization',
+      'identityCertificate',
+      'attestationSignature',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'organization':
+        fields.add(organization);
+      case 'identityCertificate':
+        if (identityCertificate != null) {
+          fields.add(identityCertificate!);
+        }
+      case 'attestationSignature':
+        if (attestationSignature != null) {
+          fields.add(attestationSignature!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

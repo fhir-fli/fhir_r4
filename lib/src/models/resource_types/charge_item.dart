@@ -93,7 +93,11 @@ class ChargeItem extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -101,7 +105,11 @@ class ChargeItem extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -109,7 +117,11 @@ class ChargeItem extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -117,7 +129,11 @@ class ChargeItem extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -143,7 +159,11 @@ class ChargeItem extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.partOf'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.partOf',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -178,7 +198,11 @@ class ChargeItem extends DomainResource {
           ?.map<ChargeItemPerformer>(
             (v) => ChargeItemPerformer.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.performer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.performer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -210,7 +234,11 @@ class ChargeItem extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.bodysite'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.bodysite',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -248,7 +276,11 @@ class ChargeItem extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reason'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reason',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -256,7 +288,11 @@ class ChargeItem extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.service'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.service',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -272,7 +308,11 @@ class ChargeItem extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.account'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.account',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -280,7 +320,11 @@ class ChargeItem extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -288,7 +332,11 @@ class ChargeItem extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.supportingInformation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.supportingInformation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -524,6 +572,216 @@ class ChargeItem extends DomainResource {
     addField('note', note);
     addField('supportingInformation', supportingInformation);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'definitionUri',
+      'definitionCanonical',
+      'status',
+      'partOf',
+      'code',
+      'subject',
+      'context',
+      'occurrenceXChargeItem',
+      'performer',
+      'performingOrganization',
+      'requestingOrganization',
+      'costCenter',
+      'quantity',
+      'bodysite',
+      'factorOverride',
+      'priceOverride',
+      'overrideReason',
+      'enterer',
+      'enteredDate',
+      'reason',
+      'service',
+      'productXChargeItem',
+      'account',
+      'note',
+      'supportingInformation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'definitionUri':
+        if (definitionUri != null) {
+          fields.addAll(definitionUri!);
+        }
+      case 'definitionCanonical':
+        if (definitionCanonical != null) {
+          fields.addAll(definitionCanonical!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'subject':
+        fields.add(subject);
+      case 'context':
+        if (context != null) {
+          fields.add(context!);
+        }
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrenceTiming':
+        if (occurrenceX is Timing) {
+          fields.add(occurrenceX!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'performingOrganization':
+        if (performingOrganization != null) {
+          fields.add(performingOrganization!);
+        }
+      case 'requestingOrganization':
+        if (requestingOrganization != null) {
+          fields.add(requestingOrganization!);
+        }
+      case 'costCenter':
+        if (costCenter != null) {
+          fields.add(costCenter!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'bodysite':
+        if (bodysite != null) {
+          fields.addAll(bodysite!);
+        }
+      case 'factorOverride':
+        if (factorOverride != null) {
+          fields.add(factorOverride!);
+        }
+      case 'priceOverride':
+        if (priceOverride != null) {
+          fields.add(priceOverride!);
+        }
+      case 'overrideReason':
+        if (overrideReason != null) {
+          fields.add(overrideReason!);
+        }
+      case 'enterer':
+        if (enterer != null) {
+          fields.add(enterer!);
+        }
+      case 'enteredDate':
+        if (enteredDate != null) {
+          fields.add(enteredDate!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.addAll(reason!);
+        }
+      case 'service':
+        if (service != null) {
+          fields.addAll(service!);
+        }
+      case 'productReference':
+        if (productX is Reference) {
+          fields.add(productX!);
+        }
+      case 'productCodeableConcept':
+        if (productX is CodeableConcept) {
+          fields.add(productX!);
+        }
+      case 'account':
+        if (account != null) {
+          fields.addAll(account!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'supportingInformation':
+        if (supportingInformation != null) {
+          fields.addAll(supportingInformation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -793,7 +1051,11 @@ class ChargeItemPerformer extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -801,7 +1063,11 @@ class ChargeItemPerformer extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -906,6 +1172,63 @@ class ChargeItemPerformer extends BackboneElement {
     addField('function', function_);
     addField('actor', actor);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'function',
+      'actor',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'function':
+        if (function_ != null) {
+          fields.add(function_!);
+        }
+      case 'actor':
+        fields.add(actor);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

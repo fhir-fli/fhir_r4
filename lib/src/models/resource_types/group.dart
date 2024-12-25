@@ -75,7 +75,11 @@ class FhirGroup extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -83,7 +87,11 @@ class FhirGroup extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -91,7 +99,11 @@ class FhirGroup extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -99,7 +111,11 @@ class FhirGroup extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -149,7 +165,11 @@ class FhirGroup extends DomainResource {
           ?.map<GroupCharacteristic>(
             (v) => GroupCharacteristic.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.characteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.characteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -157,7 +177,11 @@ class FhirGroup extends DomainResource {
           ?.map<GroupMember>(
             (v) => GroupMember.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.member'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.member',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -301,6 +325,126 @@ class FhirGroup extends DomainResource {
     addField('characteristic', characteristic);
     addField('member', member);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'active',
+      'type',
+      'actual',
+      'code',
+      'name',
+      'quantity',
+      'managingEntity',
+      'characteristic',
+      'member',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'active':
+        if (active != null) {
+          fields.add(active!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'actual':
+        fields.add(actual);
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'managingEntity':
+        if (managingEntity != null) {
+          fields.add(managingEntity!);
+        }
+      case 'characteristic':
+        if (characteristic != null) {
+          fields.addAll(characteristic!);
+        }
+      case 'member':
+        if (member != null) {
+          fields.addAll(member!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -461,7 +605,11 @@ class GroupCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -469,7 +617,11 @@ class GroupCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -606,6 +758,87 @@ class GroupCharacteristic extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'valueXGroupCharacteristic',
+      'exclude',
+      'period',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX);
+        }
+      case 'valueReference':
+        if (valueX is Reference) {
+          fields.add(valueX);
+        }
+      case 'exclude':
+        fields.add(exclude);
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   GroupCharacteristic clone() => throw UnimplementedError();
   @override
@@ -699,7 +932,11 @@ class GroupMember extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -707,7 +944,11 @@ class GroupMember extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -824,6 +1065,68 @@ class GroupMember extends BackboneElement {
     addField('period', period);
     addField('inactive', inactive);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'entity',
+      'period',
+      'inactive',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'entity':
+        fields.add(entity);
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'inactive':
+        if (inactive != null) {
+          fields.add(inactive!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

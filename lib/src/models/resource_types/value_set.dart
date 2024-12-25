@@ -83,7 +83,11 @@ class ValueSet extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -91,7 +95,11 @@ class ValueSet extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -99,7 +107,11 @@ class ValueSet extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -113,7 +125,11 @@ class ValueSet extends CanonicalResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -163,7 +179,11 @@ class ValueSet extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -177,7 +197,11 @@ class ValueSet extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -185,7 +209,11 @@ class ValueSet extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -365,6 +393,170 @@ class ValueSet extends CanonicalResource {
     addField('compose', compose);
     addField('expansion', expansion);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'status',
+      'experimental',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'immutable',
+      'purpose',
+      'copyright',
+      'compose',
+      'expansion',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'immutable':
+        if (immutable != null) {
+          fields.add(immutable!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'compose':
+        if (compose != null) {
+          fields.add(compose!);
+        }
+      case 'expansion':
+        if (expansion != null) {
+          fields.add(expansion!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -571,7 +763,11 @@ class ValueSetCompose extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -579,7 +775,11 @@ class ValueSetCompose extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -599,7 +799,11 @@ class ValueSetCompose extends BackboneElement {
           .map<ValueSetInclude>(
             (v) => ValueSetInclude.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.include'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.include',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -607,7 +811,11 @@ class ValueSetCompose extends BackboneElement {
           ?.map<ValueSetInclude>(
             (v) => ValueSetInclude.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.exclude'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.exclude',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -719,6 +927,73 @@ class ValueSetCompose extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'lockedDate',
+      'inactive',
+      'include',
+      'exclude',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'lockedDate':
+        if (lockedDate != null) {
+          fields.add(lockedDate!);
+        }
+      case 'inactive':
+        if (inactive != null) {
+          fields.add(inactive!);
+        }
+      case 'include':
+        fields.addAll(include);
+      case 'exclude':
+        if (exclude != null) {
+          fields.addAll(exclude!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetCompose clone() => throw UnimplementedError();
   @override
@@ -822,7 +1097,11 @@ class ValueSetInclude extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -830,7 +1109,11 @@ class ValueSetInclude extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -850,7 +1133,11 @@ class ValueSetInclude extends BackboneElement {
           ?.map<ValueSetConcept>(
             (v) => ValueSetConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.concept'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.concept',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -858,7 +1145,11 @@ class ValueSetInclude extends BackboneElement {
           ?.map<ValueSetFilter>(
             (v) => ValueSetFilter.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.filter'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.filter',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -980,6 +1271,80 @@ class ValueSetInclude extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'system',
+      'version',
+      'concept',
+      'filter',
+      'valueSet',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'system':
+        if (system != null) {
+          fields.add(system!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'concept':
+        if (concept != null) {
+          fields.addAll(concept!);
+        }
+      case 'filter':
+        if (filter != null) {
+          fields.addAll(filter!);
+        }
+      case 'valueSet':
+        if (valueSet != null) {
+          fields.addAll(valueSet!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetInclude clone() => throw UnimplementedError();
   @override
@@ -1090,7 +1455,11 @@ class ValueSetConcept extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1098,7 +1467,11 @@ class ValueSetConcept extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1118,7 +1491,11 @@ class ValueSetConcept extends BackboneElement {
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.designation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.designation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1220,6 +1597,68 @@ class ValueSetConcept extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'display',
+      'designation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      case 'designation':
+        if (designation != null) {
+          fields.addAll(designation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetConcept clone() => throw UnimplementedError();
   @override
@@ -1314,7 +1753,11 @@ class ValueSetDesignation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1322,7 +1765,11 @@ class ValueSetDesignation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1438,6 +1885,68 @@ class ValueSetDesignation extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'language',
+      'use',
+      'value',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'use':
+        if (use != null) {
+          fields.add(use!);
+        }
+      case 'value':
+        fields.add(value);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetDesignation clone() => throw UnimplementedError();
   @override
@@ -1529,7 +2038,11 @@ class ValueSetFilter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1537,7 +2050,11 @@ class ValueSetFilter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1659,6 +2176,64 @@ class ValueSetFilter extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'property',
+      'op',
+      'value',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'property':
+        fields.add(property);
+      case 'op':
+        fields.add(op);
+      case 'value':
+        fields.add(value);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetFilter clone() => throw UnimplementedError();
   @override
@@ -1752,7 +2327,11 @@ class ValueSetExpansion extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1760,7 +2339,11 @@ class ValueSetExpansion extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1792,7 +2375,11 @@ class ValueSetExpansion extends BackboneElement {
           ?.map<ValueSetParameter>(
             (v) => ValueSetParameter.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.parameter'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.parameter',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1800,7 +2387,11 @@ class ValueSetExpansion extends BackboneElement {
           ?.map<ValueSetContains>(
             (v) => ValueSetContains.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contains'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contains',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1924,6 +2515,83 @@ class ValueSetExpansion extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'timestamp',
+      'total',
+      'offset',
+      'parameter',
+      'contains',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'timestamp':
+        fields.add(timestamp);
+      case 'total':
+        if (total != null) {
+          fields.add(total!);
+        }
+      case 'offset':
+        if (offset != null) {
+          fields.add(offset!);
+        }
+      case 'parameter':
+        if (parameter != null) {
+          fields.addAll(parameter!);
+        }
+      case 'contains':
+        if (contains != null) {
+          fields.addAll(contains!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetExpansion clone() => throw UnimplementedError();
   @override
@@ -2036,7 +2704,11 @@ class ValueSetParameter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2044,7 +2716,11 @@ class ValueSetParameter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2162,6 +2838,87 @@ class ValueSetParameter extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'valueXValueSetParameter',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueInteger':
+        if (valueX is FhirInteger) {
+          fields.add(valueX!);
+        }
+      case 'valueDecimal':
+        if (valueX is FhirDecimal) {
+          fields.add(valueX!);
+        }
+      case 'valueUri':
+        if (valueX is FhirUri) {
+          fields.add(valueX!);
+        }
+      case 'valueCode':
+        if (valueX is FhirCode) {
+          fields.add(valueX!);
+        }
+      case 'valueDateTime':
+        if (valueX is FhirDateTime) {
+          fields.add(valueX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ValueSetParameter clone() => throw UnimplementedError();
   @override
@@ -2250,7 +3007,11 @@ class ValueSetContains extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2258,7 +3019,11 @@ class ValueSetContains extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2302,7 +3067,11 @@ class ValueSetContains extends BackboneElement {
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.designation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.designation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2310,7 +3079,11 @@ class ValueSetContains extends BackboneElement {
           ?.map<ValueSetContains>(
             (v) => ValueSetContains.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contains'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contains',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2447,6 +3220,95 @@ class ValueSetContains extends BackboneElement {
     addField('designation', designation);
     addField('contains', contains);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'system',
+      'abstract',
+      'inactive',
+      'version',
+      'code',
+      'display',
+      'designation',
+      'contains',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'system':
+        if (system != null) {
+          fields.add(system!);
+        }
+      case 'abstract':
+        if (abstract_ != null) {
+          fields.add(abstract_!);
+        }
+      case 'inactive':
+        if (inactive != null) {
+          fields.add(inactive!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'display':
+        if (display != null) {
+          fields.add(display!);
+        }
+      case 'designation':
+        if (designation != null) {
+          fields.addAll(designation!);
+        }
+      case 'contains':
+        if (contains != null) {
+          fields.addAll(contains!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

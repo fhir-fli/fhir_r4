@@ -83,7 +83,11 @@ class DocumentReference extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -91,7 +95,11 @@ class DocumentReference extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -99,7 +107,11 @@ class DocumentReference extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -113,7 +125,11 @@ class DocumentReference extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -139,7 +155,11 @@ class DocumentReference extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -159,7 +179,11 @@ class DocumentReference extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -179,7 +203,11 @@ class DocumentReference extends DomainResource {
           ?.map<DocumentReferenceRelatesTo>(
             (v) => DocumentReferenceRelatesTo.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatesTo'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatesTo',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -193,7 +221,11 @@ class DocumentReference extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.securityLabel'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.securityLabel',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -201,7 +233,11 @@ class DocumentReference extends DomainResource {
           .map<DocumentReferenceContent>(
             (v) => DocumentReferenceContent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.content'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.content',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -393,6 +429,156 @@ class DocumentReference extends DomainResource {
     addField('content', content);
     addField('context', context);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'masterIdentifier',
+      'identifier',
+      'status',
+      'docStatus',
+      'type',
+      'category',
+      'subject',
+      'date',
+      'author',
+      'authenticator',
+      'custodian',
+      'relatesTo',
+      'description',
+      'securityLabel',
+      'content',
+      'context',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'masterIdentifier':
+        if (masterIdentifier != null) {
+          fields.add(masterIdentifier!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'docStatus':
+        if (docStatus != null) {
+          fields.add(docStatus!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'authenticator':
+        if (authenticator != null) {
+          fields.add(authenticator!);
+        }
+      case 'custodian':
+        if (custodian != null) {
+          fields.add(custodian!);
+        }
+      case 'relatesTo':
+        if (relatesTo != null) {
+          fields.addAll(relatesTo!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'securityLabel':
+        if (securityLabel != null) {
+          fields.addAll(securityLabel!);
+        }
+      case 'content':
+        fields.addAll(content);
+      case 'context':
+        if (context != null) {
+          fields.add(context!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -593,7 +779,11 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -601,7 +791,11 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -706,6 +900,61 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'target',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'target':
+        fields.add(target);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DocumentReferenceRelatesTo clone() => throw UnimplementedError();
   @override
@@ -789,7 +1038,11 @@ class DocumentReferenceContent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -797,7 +1050,11 @@ class DocumentReferenceContent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -905,6 +1162,63 @@ class DocumentReferenceContent extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'attachment',
+      'format',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'attachment':
+        fields.add(attachment);
+      case 'format':
+        if (format != null) {
+          fields.add(format!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DocumentReferenceContent clone() => throw UnimplementedError();
   @override
@@ -992,7 +1306,11 @@ class DocumentReferenceContext extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1000,7 +1318,11 @@ class DocumentReferenceContext extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1008,7 +1330,11 @@ class DocumentReferenceContext extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.encounter'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.encounter',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1016,7 +1342,11 @@ class DocumentReferenceContext extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.event'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.event',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1048,7 +1378,11 @@ class DocumentReferenceContext extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.related'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.related',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1172,6 +1506,90 @@ class DocumentReferenceContext extends BackboneElement {
     addField('sourcePatientInfo', sourcePatientInfo);
     addField('related', related);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'encounter',
+      'event',
+      'period',
+      'facilityType',
+      'practiceSetting',
+      'sourcePatientInfo',
+      'related',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.addAll(encounter!);
+        }
+      case 'event':
+        if (event != null) {
+          fields.addAll(event!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'facilityType':
+        if (facilityType != null) {
+          fields.add(facilityType!);
+        }
+      case 'practiceSetting':
+        if (practiceSetting != null) {
+          fields.add(practiceSetting!);
+        }
+      case 'sourcePatientInfo':
+        if (sourcePatientInfo != null) {
+          fields.add(sourcePatientInfo!);
+        }
+      case 'related':
+        if (related != null) {
+          fields.addAll(related!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

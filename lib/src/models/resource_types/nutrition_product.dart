@@ -72,7 +72,11 @@ class NutritionProduct extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -80,7 +84,11 @@ class NutritionProduct extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -88,7 +96,11 @@ class NutritionProduct extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +114,11 @@ class NutritionProduct extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -116,7 +132,11 @@ class NutritionProduct extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.manufacturer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.manufacturer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -124,7 +144,11 @@ class NutritionProduct extends DomainResource {
           ?.map<NutritionProductNutrient>(
             (v) => NutritionProductNutrient.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.nutrient'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.nutrient',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -132,7 +156,11 @@ class NutritionProduct extends DomainResource {
           ?.map<NutritionProductIngredient>(
             (v) => NutritionProductIngredient.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.ingredient'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.ingredient',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -140,7 +168,11 @@ class NutritionProduct extends DomainResource {
           ?.map<CodeableReference>(
             (v) => CodeableReference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.knownAllergen'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.knownAllergen',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -148,7 +180,11 @@ class NutritionProduct extends DomainResource {
           ?.map<NutritionProductProductCharacteristic>(
             (v) => NutritionProductProductCharacteristic.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.productCharacteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.productCharacteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -162,7 +198,11 @@ class NutritionProduct extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -304,6 +344,128 @@ class NutritionProduct extends DomainResource {
     addField('instance', instance);
     addField('note', note);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'status',
+      'category',
+      'code',
+      'manufacturer',
+      'nutrient',
+      'ingredient',
+      'knownAllergen',
+      'productCharacteristic',
+      'instance',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'manufacturer':
+        if (manufacturer != null) {
+          fields.addAll(manufacturer!);
+        }
+      case 'nutrient':
+        if (nutrient != null) {
+          fields.addAll(nutrient!);
+        }
+      case 'ingredient':
+        if (ingredient != null) {
+          fields.addAll(ingredient!);
+        }
+      case 'knownAllergen':
+        if (knownAllergen != null) {
+          fields.addAll(knownAllergen!);
+        }
+      case 'productCharacteristic':
+        if (productCharacteristic != null) {
+          fields.addAll(productCharacteristic!);
+        }
+      case 'instance':
+        if (instance != null) {
+          fields.add(instance!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -477,7 +639,11 @@ class NutritionProductNutrient extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -485,7 +651,11 @@ class NutritionProductNutrient extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -499,7 +669,11 @@ class NutritionProductNutrient extends BackboneElement {
           ?.map<Ratio>(
             (v) => Ratio.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.amount'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.amount',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -593,6 +767,65 @@ class NutritionProductNutrient extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'item',
+      'amount',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'item':
+        if (item != null) {
+          fields.add(item!);
+        }
+      case 'amount':
+        if (amount != null) {
+          fields.addAll(amount!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   NutritionProductNutrient clone() => throw UnimplementedError();
   @override
@@ -679,7 +912,11 @@ class NutritionProductIngredient extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -687,7 +924,11 @@ class NutritionProductIngredient extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -701,7 +942,11 @@ class NutritionProductIngredient extends BackboneElement {
           ?.map<Ratio>(
             (v) => Ratio.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.amount'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.amount',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -794,6 +1039,63 @@ class NutritionProductIngredient extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'item',
+      'amount',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'item':
+        fields.add(item);
+      case 'amount':
+        if (amount != null) {
+          fields.addAll(amount!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   NutritionProductIngredient clone() => throw UnimplementedError();
   @override
@@ -880,7 +1182,11 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -888,7 +1194,11 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1003,6 +1313,83 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'valueXNutritionProductProductCharacteristic',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX);
+        }
+      case 'valueBase64Binary':
+        if (valueX is FhirBase64Binary) {
+          fields.add(valueX);
+        }
+      case 'valueAttachment':
+        if (valueX is Attachment) {
+          fields.add(valueX);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   NutritionProductProductCharacteristic clone() => throw UnimplementedError();
   @override
@@ -1089,7 +1476,11 @@ class NutritionProductInstance extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1097,7 +1488,11 @@ class NutritionProductInstance extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1111,7 +1506,11 @@ class NutritionProductInstance extends BackboneElement {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1238,6 +1637,80 @@ class NutritionProductInstance extends BackboneElement {
     addField('expiry', expiry);
     addField('useBy', useBy);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'quantity',
+      'identifier',
+      'lotNumber',
+      'expiry',
+      'useBy',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'lotNumber':
+        if (lotNumber != null) {
+          fields.add(lotNumber!);
+        }
+      case 'expiry':
+        if (expiry != null) {
+          fields.add(expiry!);
+        }
+      case 'useBy':
+        if (useBy != null) {
+          fields.add(useBy!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

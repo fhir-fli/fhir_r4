@@ -85,7 +85,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -93,7 +97,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -101,7 +109,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -115,7 +127,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -165,7 +181,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -179,7 +199,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -187,7 +211,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -225,7 +253,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<SubscriptionTopicResourceTrigger>(
             (v) => SubscriptionTopicResourceTrigger.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.resourceTrigger'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.resourceTrigger',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -233,7 +265,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<SubscriptionTopicEventTrigger>(
             (v) => SubscriptionTopicEventTrigger.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.eventTrigger'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.eventTrigger',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -241,7 +277,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<SubscriptionTopicCanFilterBy>(
             (v) => SubscriptionTopicCanFilterBy.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.canFilterBy'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.canFilterBy',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -249,7 +289,11 @@ class SubscriptionTopic extends CanonicalResource {
           ?.map<SubscriptionTopicNotificationShape>(
             (v) => SubscriptionTopicNotificationShape.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.notificationShape'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.notificationShape',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -426,6 +470,190 @@ class SubscriptionTopic extends CanonicalResource {
     addField('canFilterBy', canFilterBy);
     addField('notificationShape', notificationShape);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'title',
+      'derivedFrom',
+      'status',
+      'experimental',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'copyright',
+      'approvalDate',
+      'lastReviewDate',
+      'effectivePeriod',
+      'resourceTrigger',
+      'eventTrigger',
+      'canFilterBy',
+      'notificationShape',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'derivedFrom':
+        if (derivedFrom != null) {
+          fields.addAll(derivedFrom!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'approvalDate':
+        if (approvalDate != null) {
+          fields.add(approvalDate!);
+        }
+      case 'lastReviewDate':
+        if (lastReviewDate != null) {
+          fields.add(lastReviewDate!);
+        }
+      case 'effectivePeriod':
+        if (effectivePeriod != null) {
+          fields.add(effectivePeriod!);
+        }
+      case 'resourceTrigger':
+        if (resourceTrigger != null) {
+          fields.addAll(resourceTrigger!);
+        }
+      case 'eventTrigger':
+        if (eventTrigger != null) {
+          fields.addAll(eventTrigger!);
+        }
+      case 'canFilterBy':
+        if (canFilterBy != null) {
+          fields.addAll(canFilterBy!);
+        }
+      case 'notificationShape':
+        if (notificationShape != null) {
+          fields.addAll(notificationShape!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -675,7 +903,11 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -683,7 +915,11 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -833,6 +1069,78 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'resource',
+      'supportedInteraction',
+      'queryCriteria',
+      'fhirPathCriteria',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'resource':
+        fields.add(resource);
+      case 'supportedInteraction':
+        if (supportedInteraction != null) {
+          fields.addAll(supportedInteraction!);
+        }
+      case 'queryCriteria':
+        if (queryCriteria != null) {
+          fields.add(queryCriteria!);
+        }
+      case 'fhirPathCriteria':
+        if (fhirPathCriteria != null) {
+          fields.add(fhirPathCriteria!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
   @override
@@ -938,7 +1246,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -946,7 +1258,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1090,6 +1406,80 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'previous',
+      'resultForCreate',
+      'current',
+      'resultForDelete',
+      'requireBoth',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'previous':
+        if (previous != null) {
+          fields.add(previous!);
+        }
+      case 'resultForCreate':
+        if (resultForCreate != null) {
+          fields.add(resultForCreate!);
+        }
+      case 'current':
+        if (current != null) {
+          fields.add(current!);
+        }
+      case 'resultForDelete':
+        if (resultForDelete != null) {
+          fields.add(resultForDelete!);
+        }
+      case 'requireBoth':
+        if (requireBoth != null) {
+          fields.add(requireBoth!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
   @override
@@ -1188,7 +1578,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1196,7 +1590,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1322,6 +1720,66 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'event',
+      'resource',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'event':
+        fields.add(event);
+      case 'resource':
+        fields.add(resource);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SubscriptionTopicEventTrigger clone() => throw UnimplementedError();
   @override
@@ -1415,7 +1873,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1423,7 +1885,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1574,6 +2040,78 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'resource',
+      'filterParameter',
+      'filterDefinition',
+      'modifier',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'resource':
+        if (resource != null) {
+          fields.add(resource!);
+        }
+      case 'filterParameter':
+        fields.add(filterParameter);
+      case 'filterDefinition':
+        if (filterDefinition != null) {
+          fields.add(filterDefinition!);
+        }
+      case 'modifier':
+        if (modifier != null) {
+          fields.addAll(modifier!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
   @override
@@ -1677,7 +2215,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1685,7 +2227,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1812,6 +2358,68 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     addField('include', include);
     addField('revInclude', revInclude);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'resource',
+      'include',
+      'revInclude',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'resource':
+        fields.add(resource);
+      case 'include':
+        if (include != null) {
+          fields.addAll(include!);
+        }
+      case 'revInclude':
+        if (revInclude != null) {
+          fields.addAll(revInclude!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

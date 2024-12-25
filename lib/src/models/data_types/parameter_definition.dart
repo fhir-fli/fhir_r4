@@ -51,7 +51,11 @@ class ParameterDefinition extends DataType
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -213,6 +217,81 @@ class ParameterDefinition extends DataType
     addField('type', type);
     addField('profile', profile);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'name',
+      'use',
+      'min',
+      'max',
+      'documentation',
+      'type',
+      'profile',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'use':
+        fields.add(use);
+      case 'min':
+        if (min != null) {
+          fields.add(min!);
+        }
+      case 'max':
+        if (max != null) {
+          fields.add(max!);
+        }
+      case 'documentation':
+        if (documentation != null) {
+          fields.add(documentation!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'profile':
+        if (profile != null) {
+          fields.add(profile!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

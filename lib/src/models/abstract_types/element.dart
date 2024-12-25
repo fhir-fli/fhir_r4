@@ -249,4 +249,30 @@ class Element extends FhirBase {
 
   @override
   FhirBase clone() => copy();
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    if (name == 'id') {
+      return id;
+    } else if (name == 'extension') {
+      if (extension_ == null && extension_!.isEmpty) {
+        return null;
+      } else if (extension_!.length == 1) {
+        return extension_!.first;
+      } else {
+        throw FHIRException(message: 'Too manye values for $name found');
+      }
+    }
+    return null;
+  }
+
+  @override
+  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+    if (name == 'id') {
+      return [id!];
+    } else if (name == 'extension') {
+      return extension_ ?? <FhirExtension>[];
+    }
+    return <FhirBase>[];
+  }
 }

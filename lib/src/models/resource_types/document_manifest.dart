@@ -75,7 +75,11 @@ class DocumentManifest extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -83,7 +87,11 @@ class DocumentManifest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -91,7 +99,11 @@ class DocumentManifest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -105,7 +117,11 @@ class DocumentManifest extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -137,7 +153,11 @@ class DocumentManifest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -145,7 +165,11 @@ class DocumentManifest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.recipient'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.recipient',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -165,7 +189,11 @@ class DocumentManifest extends DomainResource {
           .map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.content'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.content',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -173,7 +201,11 @@ class DocumentManifest extends DomainResource {
           ?.map<DocumentManifestRelated>(
             (v) => DocumentManifestRelated.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.related'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.related',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -334,6 +366,136 @@ class DocumentManifest extends DomainResource {
     addField('content', content);
     addField('related', related);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'masterIdentifier',
+      'identifier',
+      'status',
+      'type',
+      'subject',
+      'created',
+      'author',
+      'recipient',
+      'source',
+      'description',
+      'content',
+      'related',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'masterIdentifier':
+        if (masterIdentifier != null) {
+          fields.add(masterIdentifier!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'created':
+        if (created != null) {
+          fields.add(created!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'recipient':
+        if (recipient != null) {
+          fields.addAll(recipient!);
+        }
+      case 'source':
+        if (source != null) {
+          fields.add(source!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'content':
+        fields.addAll(content);
+      case 'related':
+        if (related != null) {
+          fields.addAll(related!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -509,7 +671,11 @@ class DocumentManifestRelated extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -517,7 +683,11 @@ class DocumentManifestRelated extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -622,6 +792,65 @@ class DocumentManifestRelated extends BackboneElement {
     addField('identifier', identifier);
     addField('ref', ref);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'ref',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'ref':
+        if (ref != null) {
+          fields.add(ref!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

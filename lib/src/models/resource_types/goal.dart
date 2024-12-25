@@ -81,7 +81,11 @@ class Goal extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -89,7 +93,11 @@ class Goal extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -97,7 +105,11 @@ class Goal extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -105,7 +117,11 @@ class Goal extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -125,7 +141,11 @@ class Goal extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -159,7 +179,11 @@ class Goal extends DomainResource {
           ?.map<GoalTarget>(
             (v) => GoalTarget.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -185,7 +209,11 @@ class Goal extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.addresses'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.addresses',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -193,7 +221,11 @@ class Goal extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -201,7 +233,11 @@ class Goal extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.outcomeCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.outcomeCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -209,7 +245,11 @@ class Goal extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.outcomeReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.outcomeReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -390,6 +430,158 @@ class Goal extends DomainResource {
     addField('outcomeCode', outcomeCode);
     addField('outcomeReference', outcomeReference);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'lifecycleStatus',
+      'achievementStatus',
+      'category',
+      'priority',
+      'description',
+      'subject',
+      'startXGoal',
+      'target',
+      'statusDate',
+      'statusReason',
+      'expressedBy',
+      'addresses',
+      'note',
+      'outcomeCode',
+      'outcomeReference',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'lifecycleStatus':
+        fields.add(lifecycleStatus);
+      case 'achievementStatus':
+        if (achievementStatus != null) {
+          fields.add(achievementStatus!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'description':
+        fields.add(description);
+      case 'subject':
+        fields.add(subject);
+      case 'startDate':
+        if (startX is FhirDate) {
+          fields.add(startX!);
+        }
+      case 'startCodeableConcept':
+        if (startX is CodeableConcept) {
+          fields.add(startX!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      case 'statusDate':
+        if (statusDate != null) {
+          fields.add(statusDate!);
+        }
+      case 'statusReason':
+        if (statusReason != null) {
+          fields.add(statusReason!);
+        }
+      case 'expressedBy':
+        if (expressedBy != null) {
+          fields.add(expressedBy!);
+        }
+      case 'addresses':
+        if (addresses != null) {
+          fields.addAll(addresses!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'outcomeCode':
+        if (outcomeCode != null) {
+          fields.addAll(outcomeCode!);
+        }
+      case 'outcomeReference':
+        if (outcomeReference != null) {
+          fields.addAll(outcomeReference!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -594,7 +786,11 @@ class GoalTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -602,7 +798,11 @@ class GoalTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -740,6 +940,98 @@ class GoalTarget extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'measure',
+      'detailXGoalTarget',
+      'dueXGoalTarget',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'measure':
+        if (measure != null) {
+          fields.add(measure!);
+        }
+      case 'detailQuantity':
+        if (detailX is Quantity) {
+          fields.add(detailX!);
+        }
+      case 'detailRange':
+        if (detailX is Range) {
+          fields.add(detailX!);
+        }
+      case 'detailCodeableConcept':
+        if (detailX is CodeableConcept) {
+          fields.add(detailX!);
+        }
+      case 'detailString':
+        if (detailX is FhirString) {
+          fields.add(detailX!);
+        }
+      case 'detailBoolean':
+        if (detailX is FhirBoolean) {
+          fields.add(detailX!);
+        }
+      case 'detailInteger':
+        if (detailX is FhirInteger) {
+          fields.add(detailX!);
+        }
+      case 'detailRatio':
+        if (detailX is Ratio) {
+          fields.add(detailX!);
+        }
+      case 'dueDate':
+        if (dueX is FhirDate) {
+          fields.add(dueX!);
+        }
+      case 'dueDuration':
+        if (dueX is FhirDuration) {
+          fields.add(dueX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

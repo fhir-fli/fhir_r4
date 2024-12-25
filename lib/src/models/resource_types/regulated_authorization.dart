@@ -79,7 +79,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -87,7 +91,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +103,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +115,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -111,7 +127,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.subject'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.subject',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -131,7 +151,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.region'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.region',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -169,7 +193,11 @@ class RegulatedAuthorization extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basis'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basis',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -363,6 +391,150 @@ class RegulatedAuthorization extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'subject',
+      'type',
+      'description',
+      'region',
+      'status',
+      'statusDate',
+      'validityPeriod',
+      'indication',
+      'intendedUse',
+      'basis',
+      'holder',
+      'regulator',
+      'case',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.addAll(subject!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'region':
+        if (region != null) {
+          fields.addAll(region!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'statusDate':
+        if (statusDate != null) {
+          fields.add(statusDate!);
+        }
+      case 'validityPeriod':
+        if (validityPeriod != null) {
+          fields.add(validityPeriod!);
+        }
+      case 'indication':
+        if (indication != null) {
+          fields.add(indication!);
+        }
+      case 'intendedUse':
+        if (intendedUse != null) {
+          fields.add(intendedUse!);
+        }
+      case 'basis':
+        if (basis != null) {
+          fields.addAll(basis!);
+        }
+      case 'holder':
+        if (holder != null) {
+          fields.add(holder!);
+        }
+      case 'regulator':
+        if (regulator != null) {
+          fields.add(regulator!);
+        }
+      case 'case':
+        if (case_ != null) {
+          fields.add(case_!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -551,7 +723,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -559,7 +735,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -593,7 +773,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
           ?.map<RegulatedAuthorizationCase>(
             (v) => RegulatedAuthorizationCase.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.application'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.application',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -707,6 +891,84 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
     addField('application', application);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'type',
+      'status',
+      'dateXRegulatedAuthorizationCase',
+      'application',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'datePeriod':
+        if (dateX is Period) {
+          fields.add(dateX!);
+        }
+      case 'dateDateTime':
+        if (dateX is FhirDateTime) {
+          fields.add(dateX!);
+        }
+      case 'application':
+        if (application != null) {
+          fields.addAll(application!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

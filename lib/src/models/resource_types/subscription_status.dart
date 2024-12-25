@@ -70,7 +70,11 @@ class SubscriptionStatus extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -78,7 +82,11 @@ class SubscriptionStatus extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -86,7 +94,11 @@ class SubscriptionStatus extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -112,7 +124,11 @@ class SubscriptionStatus extends DomainResource {
           ?.map<SubscriptionStatusNotificationEvent>(
             (v) => SubscriptionStatusNotificationEvent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.notificationEvent'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.notificationEvent',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -132,7 +148,11 @@ class SubscriptionStatus extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.error'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.error',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -261,6 +281,111 @@ class SubscriptionStatus extends DomainResource {
     addField('topic', topic);
     addField('error', error);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'status',
+      'type',
+      'eventsSinceSubscriptionStart',
+      'notificationEvent',
+      'subscription',
+      'topic',
+      'error',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'eventsSinceSubscriptionStart':
+        if (eventsSinceSubscriptionStart != null) {
+          fields.add(eventsSinceSubscriptionStart!);
+        }
+      case 'notificationEvent':
+        if (notificationEvent != null) {
+          fields.addAll(notificationEvent!);
+        }
+      case 'subscription':
+        fields.add(subscription);
+      case 'topic':
+        if (topic != null) {
+          fields.add(topic!);
+        }
+      case 'error':
+        if (error != null) {
+          fields.addAll(error!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -402,7 +527,11 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -410,7 +539,11 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -436,7 +569,11 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.additionalContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.additionalContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -543,6 +680,73 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     addField('focus', focus);
     addField('additionalContext', additionalContext);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'eventNumber',
+      'timestamp',
+      'focus',
+      'additionalContext',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'eventNumber':
+        fields.add(eventNumber);
+      case 'timestamp':
+        if (timestamp != null) {
+          fields.add(timestamp!);
+        }
+      case 'focus':
+        if (focus != null) {
+          fields.add(focus!);
+        }
+      case 'additionalContext':
+        if (additionalContext != null) {
+          fields.addAll(additionalContext!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

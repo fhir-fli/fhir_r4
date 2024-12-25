@@ -99,7 +99,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -107,7 +111,11 @@ class MedicationRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -115,7 +123,11 @@ class MedicationRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -123,7 +135,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -149,7 +165,11 @@ class MedicationRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -197,7 +217,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.supportingInformation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.supportingInformation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -235,7 +259,11 @@ class MedicationRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -243,7 +271,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -263,7 +295,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basedOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basedOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -283,7 +319,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.insurance'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.insurance',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -291,7 +331,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -299,7 +343,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Dosage>(
             (v) => Dosage.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dosageInstruction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dosageInstruction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -325,7 +373,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.detectedIssue'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.detectedIssue',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -333,7 +385,11 @@ class MedicationRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.eventHistory'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.eventHistory',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -635,6 +691,242 @@ class MedicationRequest extends DomainResource {
     addField('detectedIssue', detectedIssue);
     addField('eventHistory', eventHistory);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'statusReason',
+      'intent',
+      'category',
+      'priority',
+      'doNotPerform',
+      'reportedXMedicationRequest',
+      'medicationXMedicationRequest',
+      'subject',
+      'encounter',
+      'supportingInformation',
+      'authoredOn',
+      'requester',
+      'performer',
+      'performerType',
+      'recorder',
+      'reasonCode',
+      'reasonReference',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'basedOn',
+      'groupIdentifier',
+      'courseOfTherapyType',
+      'insurance',
+      'note',
+      'dosageInstruction',
+      'dispenseRequest',
+      'substitution',
+      'priorPrescription',
+      'detectedIssue',
+      'eventHistory',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'statusReason':
+        if (statusReason != null) {
+          fields.add(statusReason!);
+        }
+      case 'intent':
+        fields.add(intent);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'doNotPerform':
+        if (doNotPerform != null) {
+          fields.add(doNotPerform!);
+        }
+      case 'reportedBoolean':
+        if (reportedX is FhirBoolean) {
+          fields.add(reportedX!);
+        }
+      case 'reportedReference':
+        if (reportedX is Reference) {
+          fields.add(reportedX!);
+        }
+      case 'medicationCodeableConcept':
+        if (medicationX is CodeableConcept) {
+          fields.add(medicationX);
+        }
+      case 'medicationReference':
+        if (medicationX is Reference) {
+          fields.add(medicationX);
+        }
+      case 'subject':
+        fields.add(subject);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'supportingInformation':
+        if (supportingInformation != null) {
+          fields.addAll(supportingInformation!);
+        }
+      case 'authoredOn':
+        if (authoredOn != null) {
+          fields.add(authoredOn!);
+        }
+      case 'requester':
+        if (requester != null) {
+          fields.add(requester!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.add(performer!);
+        }
+      case 'performerType':
+        if (performerType != null) {
+          fields.add(performerType!);
+        }
+      case 'recorder':
+        if (recorder != null) {
+          fields.add(recorder!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'groupIdentifier':
+        if (groupIdentifier != null) {
+          fields.add(groupIdentifier!);
+        }
+      case 'courseOfTherapyType':
+        if (courseOfTherapyType != null) {
+          fields.add(courseOfTherapyType!);
+        }
+      case 'insurance':
+        if (insurance != null) {
+          fields.addAll(insurance!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'dosageInstruction':
+        if (dosageInstruction != null) {
+          fields.addAll(dosageInstruction!);
+        }
+      case 'dispenseRequest':
+        if (dispenseRequest != null) {
+          fields.add(dispenseRequest!);
+        }
+      case 'substitution':
+        if (substitution != null) {
+          fields.add(substitution!);
+        }
+      case 'priorPrescription':
+        if (priorPrescription != null) {
+          fields.add(priorPrescription!);
+        }
+      case 'detectedIssue':
+        if (detectedIssue != null) {
+          fields.addAll(detectedIssue!);
+        }
+      case 'eventHistory':
+        if (eventHistory != null) {
+          fields.addAll(eventHistory!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -952,7 +1244,11 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -960,7 +1256,11 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1132,6 +1432,90 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'initialFill',
+      'dispenseInterval',
+      'validityPeriod',
+      'numberOfRepeatsAllowed',
+      'quantity',
+      'expectedSupplyDuration',
+      'performer',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'initialFill':
+        if (initialFill != null) {
+          fields.add(initialFill!);
+        }
+      case 'dispenseInterval':
+        if (dispenseInterval != null) {
+          fields.add(dispenseInterval!);
+        }
+      case 'validityPeriod':
+        if (validityPeriod != null) {
+          fields.add(validityPeriod!);
+        }
+      case 'numberOfRepeatsAllowed':
+        if (numberOfRepeatsAllowed != null) {
+          fields.add(numberOfRepeatsAllowed!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'expectedSupplyDuration':
+        if (expectedSupplyDuration != null) {
+          fields.add(expectedSupplyDuration!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.add(performer!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MedicationRequestDispenseRequest clone() => throw UnimplementedError();
   @override
@@ -1240,7 +1624,11 @@ class MedicationRequestInitialFill extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1248,7 +1636,11 @@ class MedicationRequestInitialFill extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1353,6 +1745,65 @@ class MedicationRequestInitialFill extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'quantity',
+      'duration',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'duration':
+        if (duration != null) {
+          fields.add(duration!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MedicationRequestInitialFill clone() => throw UnimplementedError();
   @override
@@ -1438,7 +1889,11 @@ class MedicationRequestSubstitution extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1446,7 +1901,11 @@ class MedicationRequestSubstitution extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1556,6 +2015,69 @@ class MedicationRequestSubstitution extends BackboneElement {
 
     addField('reason', reason);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'allowedXMedicationRequestSubstitution',
+      'reason',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'allowedBoolean':
+        if (allowedX is FhirBoolean) {
+          fields.add(allowedX);
+        }
+      case 'allowedCodeableConcept':
+        if (allowedX is CodeableConcept) {
+          fields.add(allowedX);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.add(reason!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

@@ -121,44 +121,19 @@ abstract class FhirBase {
       (formatCommentsPre?.isNotEmpty ?? false) ||
       (formatCommentsPost?.isNotEmpty ?? false);
 
-  /// Lists all children as properties.
-  List<Property> listChildren([List<Property>? children]) {
+  /// Lists the JSON keys for the object.
+  List<String> children() {
     // Subclasses should override this to return their specific children.
-    return <Property>[];
+    return <String>[];
   }
 
-  /// Retrieves a property by name.
-  Property? getChildByName(String name) {
-    return listChildren().firstWhereOrNull((property) => property.name == name);
-  }
-
-  /// Retrieves a property by name.
-  List<FhirBase> listChildrenByName(String name) {
-    final result = <FhirBase>[];
-    for (final b in listChildrenByNameValid(name, true)) {
-      if (b != null) {
-        result.add(b);
-      }
-    }
-    return result;
-  }
-
-  /// Retrieves a property by name.
+  /// Retrieves the properties of the object.
   // ignore: avoid_positional_boolean_parameters
-  List<FhirBase?> listChildrenByNameValid(String name, bool checkValid) {
-    if (name == '*') {
-      // Collect all child values for wildcard name
-      final children = <Property>[];
-      listChildren(children); // Populate the list of children
-      final result = <FhirBase?>[];
-      for (final c in children) {
-        result.addAll(c.getValues()); // Add all values from each property
-      }
-      return result;
-    } else {
-      throw ArgumentError('Invalid name: $name');
-    }
-  }
+  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]);
+
+  /// Retrieves a property by name, or if its a list that contains only one
+  /// element, returns that element.
+  FhirBase? getChildValueByName(String name);
 
   /// Deep equality check.
   bool equalsDeep(FhirBase? other) {
@@ -211,13 +186,7 @@ abstract class FhirBase {
   }
 
   /// Converts the object to a JSON representation.
-  Map<String, dynamic> toJson() {
-    final json = <String, Object?>{};
-    for (final property in listChildren()) {
-      json[property.name] = property.values;
-    }
-    return json;
-  }
+  Map<String, dynamic> toJson();
 
   /// Converts the object to a YAML string.
   String toYaml() => json2yaml(toJson());

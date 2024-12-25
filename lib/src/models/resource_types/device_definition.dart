@@ -85,7 +85,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -93,7 +97,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -101,7 +109,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -109,7 +121,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -117,7 +133,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionUdiDeviceIdentifier>(
             (v) => DeviceDefinitionUdiDeviceIdentifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.udiDeviceIdentifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.udiDeviceIdentifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -133,7 +153,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionDeviceName>(
             (v) => DeviceDefinitionDeviceName.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.deviceName'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.deviceName',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -153,7 +177,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionSpecialization>(
             (v) => DeviceDefinitionSpecialization.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specialization'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specialization',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -167,7 +195,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.safety'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.safety',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -175,7 +207,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<ProductShelfLife>(
             (v) => ProductShelfLife.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.shelfLifeStorage'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.shelfLifeStorage',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -189,7 +225,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.languageCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.languageCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -197,7 +237,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionCapability>(
             (v) => DeviceDefinitionCapability.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.capability'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.capability',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -205,7 +249,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionProperty>(
             (v) => DeviceDefinitionProperty.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.property'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.property',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -219,7 +267,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -239,7 +291,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -259,7 +315,11 @@ class DeviceDefinition extends DomainResource {
           ?.map<DeviceDefinitionMaterial>(
             (v) => DeviceDefinitionMaterial.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.material'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.material',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -473,6 +533,194 @@ class DeviceDefinition extends DomainResource {
     addField('parentDevice', parentDevice);
     addField('material', material);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'udiDeviceIdentifier',
+      'manufacturerXDeviceDefinition',
+      'deviceName',
+      'modelNumber',
+      'type',
+      'specialization',
+      'version',
+      'safety',
+      'shelfLifeStorage',
+      'physicalCharacteristics',
+      'languageCode',
+      'capability',
+      'property',
+      'owner',
+      'contact',
+      'url',
+      'onlineInformation',
+      'note',
+      'quantity',
+      'parentDevice',
+      'material',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'udiDeviceIdentifier':
+        if (udiDeviceIdentifier != null) {
+          fields.addAll(udiDeviceIdentifier!);
+        }
+      case 'manufacturerString':
+        if (manufacturerX is FhirString) {
+          fields.add(manufacturerX!);
+        }
+      case 'manufacturerReference':
+        if (manufacturerX is Reference) {
+          fields.add(manufacturerX!);
+        }
+      case 'deviceName':
+        if (deviceName != null) {
+          fields.addAll(deviceName!);
+        }
+      case 'modelNumber':
+        if (modelNumber != null) {
+          fields.add(modelNumber!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'specialization':
+        if (specialization != null) {
+          fields.addAll(specialization!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.addAll(version!);
+        }
+      case 'safety':
+        if (safety != null) {
+          fields.addAll(safety!);
+        }
+      case 'shelfLifeStorage':
+        if (shelfLifeStorage != null) {
+          fields.addAll(shelfLifeStorage!);
+        }
+      case 'physicalCharacteristics':
+        if (physicalCharacteristics != null) {
+          fields.add(physicalCharacteristics!);
+        }
+      case 'languageCode':
+        if (languageCode != null) {
+          fields.addAll(languageCode!);
+        }
+      case 'capability':
+        if (capability != null) {
+          fields.addAll(capability!);
+        }
+      case 'property':
+        if (property != null) {
+          fields.addAll(property!);
+        }
+      case 'owner':
+        if (owner != null) {
+          fields.add(owner!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'onlineInformation':
+        if (onlineInformation != null) {
+          fields.add(onlineInformation!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'parentDevice':
+        if (parentDevice != null) {
+          fields.add(parentDevice!);
+        }
+      case 'material':
+        if (material != null) {
+          fields.addAll(material!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -734,7 +982,11 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -742,7 +994,11 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -860,6 +1116,64 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'deviceIdentifier',
+      'issuer',
+      'jurisdiction',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'deviceIdentifier':
+        fields.add(deviceIdentifier);
+      case 'issuer':
+        fields.add(issuer);
+      case 'jurisdiction':
+        fields.add(jurisdiction);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
   @override
@@ -947,7 +1261,11 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -955,7 +1273,11 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1062,6 +1384,61 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'type',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'type':
+        fields.add(type);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DeviceDefinitionDeviceName clone() => throw UnimplementedError();
   @override
@@ -1146,7 +1523,11 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1154,7 +1535,11 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1259,6 +1644,63 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'systemType',
+      'version',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'systemType':
+        fields.add(systemType);
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DeviceDefinitionSpecialization clone() => throw UnimplementedError();
   @override
@@ -1341,7 +1783,11 @@ class DeviceDefinitionCapability extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1349,7 +1795,11 @@ class DeviceDefinitionCapability extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1363,7 +1813,11 @@ class DeviceDefinitionCapability extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.description'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.description',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1456,6 +1910,63 @@ class DeviceDefinitionCapability extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'description',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'description':
+        if (description != null) {
+          fields.addAll(description!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DeviceDefinitionCapability clone() => throw UnimplementedError();
   @override
@@ -1544,7 +2055,11 @@ class DeviceDefinitionProperty extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1552,7 +2067,11 @@ class DeviceDefinitionProperty extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1566,7 +2085,11 @@ class DeviceDefinitionProperty extends BackboneElement {
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.valueQuantity'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.valueQuantity',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1574,7 +2097,11 @@ class DeviceDefinitionProperty extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.valueCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.valueCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1673,6 +2200,68 @@ class DeviceDefinitionProperty extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'valueQuantity',
+      'valueCode',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'valueQuantity':
+        if (valueQuantity != null) {
+          fields.addAll(valueQuantity!);
+        }
+      case 'valueCode':
+        if (valueCode != null) {
+          fields.addAll(valueCode!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   DeviceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1769,7 +2358,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1777,7 +2370,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1891,6 +2488,68 @@ class DeviceDefinitionMaterial extends BackboneElement {
     addField('alternate', alternate);
     addField('allergenicIndicator', allergenicIndicator);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'substance',
+      'alternate',
+      'allergenicIndicator',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'substance':
+        fields.add(substance);
+      case 'alternate':
+        if (alternate != null) {
+          fields.add(alternate!);
+        }
+      case 'allergenicIndicator':
+        if (allergenicIndicator != null) {
+          fields.add(allergenicIndicator!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

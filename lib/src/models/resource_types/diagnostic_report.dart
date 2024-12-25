@@ -85,7 +85,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -93,7 +97,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -101,7 +109,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -109,7 +121,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -117,7 +133,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basedOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basedOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -131,7 +151,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -171,7 +195,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.performer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.performer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -179,7 +207,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.resultsInterpreter'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.resultsInterpreter',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -187,7 +219,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specimen'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specimen',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -195,7 +231,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.result'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.result',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -203,7 +243,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.imagingStudy'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.imagingStudy',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -211,7 +255,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<DiagnosticReportMedia>(
             (v) => DiagnosticReportMedia.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.media'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.media',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -225,7 +273,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.conclusionCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.conclusionCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -233,7 +285,11 @@ class DiagnosticReport extends DomainResource {
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.presentedForm'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.presentedForm',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -435,6 +491,170 @@ class DiagnosticReport extends DomainResource {
     addField('conclusionCode', conclusionCode);
     addField('presentedForm', presentedForm);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'basedOn',
+      'status',
+      'category',
+      'code',
+      'subject',
+      'encounter',
+      'effectiveXDiagnosticReport',
+      'issued',
+      'performer',
+      'resultsInterpreter',
+      'specimen',
+      'result',
+      'imagingStudy',
+      'media',
+      'conclusion',
+      'conclusionCode',
+      'presentedForm',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'effectiveDateTime':
+        if (effectiveX is FhirDateTime) {
+          fields.add(effectiveX!);
+        }
+      case 'effectivePeriod':
+        if (effectiveX is Period) {
+          fields.add(effectiveX!);
+        }
+      case 'issued':
+        if (issued != null) {
+          fields.add(issued!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'resultsInterpreter':
+        if (resultsInterpreter != null) {
+          fields.addAll(resultsInterpreter!);
+        }
+      case 'specimen':
+        if (specimen != null) {
+          fields.addAll(specimen!);
+        }
+      case 'result':
+        if (result != null) {
+          fields.addAll(result!);
+        }
+      case 'imagingStudy':
+        if (imagingStudy != null) {
+          fields.addAll(imagingStudy!);
+        }
+      case 'media':
+        if (media != null) {
+          fields.addAll(media!);
+        }
+      case 'conclusion':
+        if (conclusion != null) {
+          fields.add(conclusion!);
+        }
+      case 'conclusionCode':
+        if (conclusionCode != null) {
+          fields.addAll(conclusionCode!);
+        }
+      case 'presentedForm':
+        if (presentedForm != null) {
+          fields.addAll(presentedForm!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -666,7 +886,11 @@ class DiagnosticReportMedia extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -674,7 +898,11 @@ class DiagnosticReportMedia extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -779,6 +1007,63 @@ class DiagnosticReportMedia extends BackboneElement {
     addField('comment', comment);
     addField('link', link);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'comment',
+      'link',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      case 'link':
+        fields.add(link);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

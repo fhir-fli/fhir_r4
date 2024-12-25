@@ -65,7 +65,11 @@ class Timing extends BackboneType
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -73,7 +77,11 @@ class Timing extends BackboneType
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -195,6 +203,70 @@ class Timing extends BackboneType
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'event',
+      'repeat',
+      'code',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'event':
+        if (event != null) {
+          fields.addAll(event!);
+        }
+      case 'repeat':
+        if (repeat != null) {
+          fields.add(repeat!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -297,7 +369,11 @@ class TimingRepeat extends Element {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -570,6 +646,133 @@ class TimingRepeat extends Element {
     addField('when', when);
     addField('offset', offset);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'boundsXTimingRepeat',
+      'count',
+      'countMax',
+      'duration',
+      'durationMax',
+      'durationUnit',
+      'frequency',
+      'frequencyMax',
+      'period',
+      'periodMax',
+      'periodUnit',
+      'dayOfWeek',
+      'timeOfDay',
+      'when',
+      'offset',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'boundsDuration':
+        if (boundsX is FhirDuration) {
+          fields.add(boundsX!);
+        }
+      case 'boundsRange':
+        if (boundsX is Range) {
+          fields.add(boundsX!);
+        }
+      case 'boundsPeriod':
+        if (boundsX is Period) {
+          fields.add(boundsX!);
+        }
+      case 'count':
+        if (count != null) {
+          fields.add(count!);
+        }
+      case 'countMax':
+        if (countMax != null) {
+          fields.add(countMax!);
+        }
+      case 'duration':
+        if (duration != null) {
+          fields.add(duration!);
+        }
+      case 'durationMax':
+        if (durationMax != null) {
+          fields.add(durationMax!);
+        }
+      case 'durationUnit':
+        if (durationUnit != null) {
+          fields.add(durationUnit!);
+        }
+      case 'frequency':
+        if (frequency != null) {
+          fields.add(frequency!);
+        }
+      case 'frequencyMax':
+        if (frequencyMax != null) {
+          fields.add(frequencyMax!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'periodMax':
+        if (periodMax != null) {
+          fields.add(periodMax!);
+        }
+      case 'periodUnit':
+        if (periodUnit != null) {
+          fields.add(periodUnit!);
+        }
+      case 'dayOfWeek':
+        if (dayOfWeek != null) {
+          fields.addAll(dayOfWeek!);
+        }
+      case 'timeOfDay':
+        if (timeOfDay != null) {
+          fields.addAll(timeOfDay!);
+        }
+      case 'when':
+        if (when != null) {
+          fields.addAll(when!);
+        }
+      case 'offset':
+        if (offset != null) {
+          fields.add(offset!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

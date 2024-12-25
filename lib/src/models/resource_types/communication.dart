@@ -87,7 +87,11 @@ class Communication extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +99,11 @@ class Communication extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +111,11 @@ class Communication extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -111,7 +123,11 @@ class Communication extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -131,7 +147,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basedOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basedOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -139,7 +159,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.partOf'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.partOf',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -147,7 +171,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.inResponseTo'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.inResponseTo',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -167,7 +195,11 @@ class Communication extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -181,7 +213,11 @@ class Communication extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.medium'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.medium',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -201,7 +237,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.about'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.about',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -227,7 +267,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.recipient'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.recipient',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -241,7 +285,11 @@ class Communication extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -249,7 +297,11 @@ class Communication extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -257,7 +309,11 @@ class Communication extends DomainResource {
           ?.map<CommunicationPayload>(
             (v) => CommunicationPayload.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.payload'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.payload',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -265,7 +321,11 @@ class Communication extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -489,6 +549,193 @@ class Communication extends DomainResource {
     addField('payload', payload);
     addField('note', note);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'basedOn',
+      'partOf',
+      'inResponseTo',
+      'status',
+      'statusReason',
+      'category',
+      'priority',
+      'medium',
+      'subject',
+      'topic',
+      'about',
+      'encounter',
+      'sent',
+      'received',
+      'recipient',
+      'sender',
+      'reasonCode',
+      'reasonReference',
+      'payload',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'inResponseTo':
+        if (inResponseTo != null) {
+          fields.addAll(inResponseTo!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'statusReason':
+        if (statusReason != null) {
+          fields.add(statusReason!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'medium':
+        if (medium != null) {
+          fields.addAll(medium!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'topic':
+        if (topic != null) {
+          fields.add(topic!);
+        }
+      case 'about':
+        if (about != null) {
+          fields.addAll(about!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'sent':
+        if (sent != null) {
+          fields.add(sent!);
+        }
+      case 'received':
+        if (received != null) {
+          fields.add(received!);
+        }
+      case 'recipient':
+        if (recipient != null) {
+          fields.addAll(recipient!);
+        }
+      case 'sender':
+        if (sender != null) {
+          fields.add(sender!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'payload':
+        if (payload != null) {
+          fields.addAll(payload!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -755,7 +1002,11 @@ class CommunicationPayload extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -763,7 +1014,11 @@ class CommunicationPayload extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -861,6 +1116,68 @@ class CommunicationPayload extends BackboneElement {
     addField('content${contentXFhirType.capitalize()}', contentX);
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'contentXCommunicationPayload',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'contentString':
+        if (contentX is FhirString) {
+          fields.add(contentX);
+        }
+      case 'contentAttachment':
+        if (contentX is Attachment) {
+          fields.add(contentX);
+        }
+      case 'contentReference':
+        if (contentX is Reference) {
+          fields.add(contentX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

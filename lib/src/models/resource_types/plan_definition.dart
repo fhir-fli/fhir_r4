@@ -97,7 +97,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -105,7 +109,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -113,7 +121,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -127,7 +139,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -198,7 +214,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -212,7 +232,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -220,7 +244,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -264,7 +292,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.topic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.topic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -272,7 +304,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -280,7 +316,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.editor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.editor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -288,7 +328,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reviewer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reviewer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -296,7 +340,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endorser'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endorser',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -304,7 +352,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedArtifact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -318,7 +370,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<PlanDefinitionGoal>(
             (v) => PlanDefinitionGoal.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.goal'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.goal',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -326,7 +382,11 @@ class PlanDefinition extends CanonicalResource {
           ?.map<PlanDefinitionAction>(
             (v) => PlanDefinitionAction.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.action'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.action',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -569,6 +629,243 @@ class PlanDefinition extends CanonicalResource {
     addField('goal', goal);
     addField('action', action);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'subtitle',
+      'type',
+      'status',
+      'experimental',
+      'subjectXPlanDefinition',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'usage',
+      'copyright',
+      'approvalDate',
+      'lastReviewDate',
+      'effectivePeriod',
+      'topic',
+      'author',
+      'editor',
+      'reviewer',
+      'endorser',
+      'relatedArtifact',
+      'library',
+      'goal',
+      'action',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'subtitle':
+        if (subtitle != null) {
+          fields.add(subtitle!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'subjectCodeableConcept':
+        if (subjectX is CodeableConcept) {
+          fields.add(subjectX!);
+        }
+      case 'subjectReference':
+        if (subjectX is Reference) {
+          fields.add(subjectX!);
+        }
+      case 'subjectCanonical':
+        if (subjectX is FhirCanonical) {
+          fields.add(subjectX!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'usage':
+        if (usage != null) {
+          fields.add(usage!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'approvalDate':
+        if (approvalDate != null) {
+          fields.add(approvalDate!);
+        }
+      case 'lastReviewDate':
+        if (lastReviewDate != null) {
+          fields.add(lastReviewDate!);
+        }
+      case 'effectivePeriod':
+        if (effectivePeriod != null) {
+          fields.add(effectivePeriod!);
+        }
+      case 'topic':
+        if (topic != null) {
+          fields.addAll(topic!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'editor':
+        if (editor != null) {
+          fields.addAll(editor!);
+        }
+      case 'reviewer':
+        if (reviewer != null) {
+          fields.addAll(reviewer!);
+        }
+      case 'endorser':
+        if (endorser != null) {
+          fields.addAll(endorser!);
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          fields.addAll(relatedArtifact!);
+        }
+      case 'library':
+        if (library_ != null) {
+          fields.addAll(library_!);
+        }
+      case 'goal':
+        if (goal != null) {
+          fields.addAll(goal!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.addAll(action!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -880,7 +1177,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -888,7 +1189,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -920,7 +1225,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.addresses'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.addresses',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -928,7 +1237,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.documentation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.documentation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -936,7 +1249,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ?.map<PlanDefinitionTarget>(
             (v) => PlanDefinitionTarget.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1061,6 +1378,88 @@ class PlanDefinitionGoal extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'category',
+      'description',
+      'priority',
+      'start',
+      'addresses',
+      'documentation',
+      'target',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'description':
+        fields.add(description);
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'start':
+        if (start != null) {
+          fields.add(start!);
+        }
+      case 'addresses':
+        if (addresses != null) {
+          fields.addAll(addresses!);
+        }
+      case 'documentation':
+        if (documentation != null) {
+          fields.addAll(documentation!);
+        }
+      case 'target':
+        if (target != null) {
+          fields.addAll(target!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionGoal clone() => throw UnimplementedError();
   @override
@@ -1181,7 +1580,11 @@ class PlanDefinitionTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1189,7 +1592,11 @@ class PlanDefinitionTarget extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1320,6 +1727,78 @@ class PlanDefinitionTarget extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'measure',
+      'detailXPlanDefinitionTarget',
+      'due',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'measure':
+        if (measure != null) {
+          fields.add(measure!);
+        }
+      case 'detailQuantity':
+        if (detailX is Quantity) {
+          fields.add(detailX!);
+        }
+      case 'detailRange':
+        if (detailX is Range) {
+          fields.add(detailX!);
+        }
+      case 'detailCodeableConcept':
+        if (detailX is CodeableConcept) {
+          fields.add(detailX!);
+        }
+      case 'due':
+        if (due != null) {
+          fields.add(due!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionTarget clone() => throw UnimplementedError();
   @override
@@ -1436,7 +1915,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1444,7 +1927,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1482,7 +1969,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.code'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.code',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1490,7 +1981,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reason'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reason',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1498,7 +1993,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.documentation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.documentation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1521,7 +2020,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<TriggerDefinition>(
             (v) => TriggerDefinition.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.trigger'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.trigger',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1529,7 +2032,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<PlanDefinitionCondition>(
             (v) => PlanDefinitionCondition.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.condition'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.condition',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1537,7 +2044,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.input'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.input',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1545,7 +2056,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.output'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.output',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1553,7 +2068,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<PlanDefinitionRelatedAction>(
             (v) => PlanDefinitionRelatedAction.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedAction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedAction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1573,7 +2092,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<PlanDefinitionParticipant>(
             (v) => PlanDefinitionParticipant.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.participant'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.participant',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1631,7 +2154,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<PlanDefinitionDynamicValue>(
             (v) => PlanDefinitionDynamicValue.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dynamicValue'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dynamicValue',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1639,7 +2166,11 @@ class PlanDefinitionAction extends BackboneElement {
           ?.map<PlanDefinitionAction>(
             (v) => PlanDefinitionAction.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.action'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.action',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1904,6 +2435,222 @@ class PlanDefinitionAction extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'prefix',
+      'title',
+      'description',
+      'textEquivalent',
+      'priority',
+      'code',
+      'reason',
+      'documentation',
+      'goalId',
+      'subjectXPlanDefinitionAction',
+      'trigger',
+      'condition',
+      'input',
+      'output',
+      'relatedAction',
+      'timingXPlanDefinitionAction',
+      'participant',
+      'type',
+      'groupingBehavior',
+      'selectionBehavior',
+      'requiredBehavior',
+      'precheckBehavior',
+      'cardinalityBehavior',
+      'definitionXPlanDefinitionAction',
+      'transform',
+      'dynamicValue',
+      'action',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'prefix':
+        if (prefix != null) {
+          fields.add(prefix!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'textEquivalent':
+        if (textEquivalent != null) {
+          fields.add(textEquivalent!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.addAll(code!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.addAll(reason!);
+        }
+      case 'documentation':
+        if (documentation != null) {
+          fields.addAll(documentation!);
+        }
+      case 'goalId':
+        if (goalId != null) {
+          fields.addAll(goalId!);
+        }
+      case 'subjectCodeableConcept':
+        if (subjectX is CodeableConcept) {
+          fields.add(subjectX!);
+        }
+      case 'subjectReference':
+        if (subjectX is Reference) {
+          fields.add(subjectX!);
+        }
+      case 'subjectCanonical':
+        if (subjectX is FhirCanonical) {
+          fields.add(subjectX!);
+        }
+      case 'trigger':
+        if (trigger != null) {
+          fields.addAll(trigger!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      case 'input':
+        if (input != null) {
+          fields.addAll(input!);
+        }
+      case 'output':
+        if (output != null) {
+          fields.addAll(output!);
+        }
+      case 'relatedAction':
+        if (relatedAction != null) {
+          fields.addAll(relatedAction!);
+        }
+      case 'timingDateTime':
+        if (timingX is FhirDateTime) {
+          fields.add(timingX!);
+        }
+      case 'timingAge':
+        if (timingX is Age) {
+          fields.add(timingX!);
+        }
+      case 'timingPeriod':
+        if (timingX is Period) {
+          fields.add(timingX!);
+        }
+      case 'timingDuration':
+        if (timingX is FhirDuration) {
+          fields.add(timingX!);
+        }
+      case 'timingRange':
+        if (timingX is Range) {
+          fields.add(timingX!);
+        }
+      case 'timingTiming':
+        if (timingX is Timing) {
+          fields.add(timingX!);
+        }
+      case 'participant':
+        if (participant != null) {
+          fields.addAll(participant!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'groupingBehavior':
+        if (groupingBehavior != null) {
+          fields.add(groupingBehavior!);
+        }
+      case 'selectionBehavior':
+        if (selectionBehavior != null) {
+          fields.add(selectionBehavior!);
+        }
+      case 'requiredBehavior':
+        if (requiredBehavior != null) {
+          fields.add(requiredBehavior!);
+        }
+      case 'precheckBehavior':
+        if (precheckBehavior != null) {
+          fields.add(precheckBehavior!);
+        }
+      case 'cardinalityBehavior':
+        if (cardinalityBehavior != null) {
+          fields.add(cardinalityBehavior!);
+        }
+      case 'definitionCanonical':
+        if (definitionX is FhirCanonical) {
+          fields.add(definitionX!);
+        }
+      case 'definitionUri':
+        if (definitionX is FhirUri) {
+          fields.add(definitionX!);
+        }
+      case 'transform':
+        if (transform != null) {
+          fields.add(transform!);
+        }
+      case 'dynamicValue':
+        if (dynamicValue != null) {
+          fields.addAll(dynamicValue!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.addAll(action!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionAction clone() => throw UnimplementedError();
   @override
@@ -2160,7 +2907,11 @@ class PlanDefinitionCondition extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2168,7 +2919,11 @@ class PlanDefinitionCondition extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2274,6 +3029,63 @@ class PlanDefinitionCondition extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'kind',
+      'expression',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'kind':
+        fields.add(kind);
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionCondition clone() => throw UnimplementedError();
   @override
@@ -2358,7 +3170,11 @@ class PlanDefinitionRelatedAction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2366,7 +3182,11 @@ class PlanDefinitionRelatedAction extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2489,6 +3309,70 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'actionId',
+      'relationship',
+      'offsetXPlanDefinitionRelatedAction',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'actionId':
+        fields.add(actionId);
+      case 'relationship':
+        fields.add(relationship);
+      case 'offsetDuration':
+        if (offsetX is FhirDuration) {
+          fields.add(offsetX!);
+        }
+      case 'offsetRange':
+        if (offsetX is Range) {
+          fields.add(offsetX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionRelatedAction clone() => throw UnimplementedError();
   @override
@@ -2576,7 +3460,11 @@ class PlanDefinitionParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2584,7 +3472,11 @@ class PlanDefinitionParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2690,6 +3582,63 @@ class PlanDefinitionParticipant extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'role',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'role':
+        if (role != null) {
+          fields.add(role!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PlanDefinitionParticipant clone() => throw UnimplementedError();
   @override
@@ -2776,7 +3725,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2784,7 +3737,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2895,6 +3852,65 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     addField('path', path);
     addField('expression', expression);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'path',
+      'expression',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'path':
+        if (path != null) {
+          fields.add(path!);
+        }
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

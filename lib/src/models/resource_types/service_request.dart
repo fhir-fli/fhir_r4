@@ -96,7 +96,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -104,7 +108,11 @@ class ServiceRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -112,7 +120,11 @@ class ServiceRequest extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -120,7 +132,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -140,7 +156,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.basedOn'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.basedOn',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -148,7 +168,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.replaces'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.replaces',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -174,7 +198,11 @@ class ServiceRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -200,7 +228,11 @@ class ServiceRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.orderDetail'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.orderDetail',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -264,7 +296,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.performer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.performer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -272,7 +308,11 @@ class ServiceRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.locationCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.locationCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -280,7 +320,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.locationReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.locationReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -288,7 +332,11 @@ class ServiceRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -296,7 +344,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reasonReference'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reasonReference',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -304,7 +356,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.insurance'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.insurance',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -312,7 +368,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.supportingInfo'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.supportingInfo',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -320,7 +380,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specimen'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specimen',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -328,7 +392,11 @@ class ServiceRequest extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.bodySite'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.bodySite',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -336,7 +404,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.note'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.note',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -350,7 +422,11 @@ class ServiceRequest extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relevantHistory'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relevantHistory',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -658,6 +734,259 @@ class ServiceRequest extends DomainResource {
     addField('patientInstruction', patientInstruction);
     addField('relevantHistory', relevantHistory);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'basedOn',
+      'replaces',
+      'requisition',
+      'status',
+      'intent',
+      'category',
+      'priority',
+      'doNotPerform',
+      'code',
+      'orderDetail',
+      'quantityXServiceRequest',
+      'subject',
+      'encounter',
+      'occurrenceXServiceRequest',
+      'asNeededXServiceRequest',
+      'authoredOn',
+      'requester',
+      'performerType',
+      'performer',
+      'locationCode',
+      'locationReference',
+      'reasonCode',
+      'reasonReference',
+      'insurance',
+      'supportingInfo',
+      'specimen',
+      'bodySite',
+      'note',
+      'patientInstruction',
+      'relevantHistory',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'replaces':
+        if (replaces != null) {
+          fields.addAll(replaces!);
+        }
+      case 'requisition':
+        if (requisition != null) {
+          fields.add(requisition!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'intent':
+        fields.add(intent);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'doNotPerform':
+        if (doNotPerform != null) {
+          fields.add(doNotPerform!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'orderDetail':
+        if (orderDetail != null) {
+          fields.addAll(orderDetail!);
+        }
+      case 'quantityQuantity':
+        if (quantityX is Quantity) {
+          fields.add(quantityX!);
+        }
+      case 'quantityRatio':
+        if (quantityX is Ratio) {
+          fields.add(quantityX!);
+        }
+      case 'quantityRange':
+        if (quantityX is Range) {
+          fields.add(quantityX!);
+        }
+      case 'subject':
+        fields.add(subject);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrenceTiming':
+        if (occurrenceX is Timing) {
+          fields.add(occurrenceX!);
+        }
+      case 'asNeededBoolean':
+        if (asNeededX is FhirBoolean) {
+          fields.add(asNeededX!);
+        }
+      case 'asNeededCodeableConcept':
+        if (asNeededX is CodeableConcept) {
+          fields.add(asNeededX!);
+        }
+      case 'authoredOn':
+        if (authoredOn != null) {
+          fields.add(authoredOn!);
+        }
+      case 'requester':
+        if (requester != null) {
+          fields.add(requester!);
+        }
+      case 'performerType':
+        if (performerType != null) {
+          fields.add(performerType!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'locationCode':
+        if (locationCode != null) {
+          fields.addAll(locationCode!);
+        }
+      case 'locationReference':
+        if (locationReference != null) {
+          fields.addAll(locationReference!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'insurance':
+        if (insurance != null) {
+          fields.addAll(insurance!);
+        }
+      case 'supportingInfo':
+        if (supportingInfo != null) {
+          fields.addAll(supportingInfo!);
+        }
+      case 'specimen':
+        if (specimen != null) {
+          fields.addAll(specimen!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.addAll(bodySite!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'patientInstruction':
+        if (patientInstruction != null) {
+          fields.add(patientInstruction!);
+        }
+      case 'relevantHistory':
+        if (relevantHistory != null) {
+          fields.addAll(relevantHistory!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

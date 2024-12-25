@@ -76,7 +76,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -84,7 +88,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -92,7 +100,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -100,7 +112,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -120,7 +136,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.packageFor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.packageFor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -140,7 +160,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.containedItemQuantity'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.containedItemQuantity',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -154,7 +178,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<PackagedProductDefinitionLegalStatusOfSupply>(
             (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.legalStatusOfSupply'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.legalStatusOfSupply',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -162,7 +190,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<MarketingStatus>(
             (v) => MarketingStatus.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.marketingStatus'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.marketingStatus',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -170,7 +202,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.characteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.characteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -184,7 +220,11 @@ class PackagedProductDefinition extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.manufacturer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.manufacturer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -374,6 +414,150 @@ class PackagedProductDefinition extends DomainResource {
     addField('manufacturer', manufacturer);
     addField('package', package);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'name',
+      'type',
+      'packageFor',
+      'status',
+      'statusDate',
+      'containedItemQuantity',
+      'description',
+      'legalStatusOfSupply',
+      'marketingStatus',
+      'characteristic',
+      'copackagedIndicator',
+      'manufacturer',
+      'package',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'packageFor':
+        if (packageFor != null) {
+          fields.addAll(packageFor!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'statusDate':
+        if (statusDate != null) {
+          fields.add(statusDate!);
+        }
+      case 'containedItemQuantity':
+        if (containedItemQuantity != null) {
+          fields.addAll(containedItemQuantity!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'legalStatusOfSupply':
+        if (legalStatusOfSupply != null) {
+          fields.addAll(legalStatusOfSupply!);
+        }
+      case 'marketingStatus':
+        if (marketingStatus != null) {
+          fields.addAll(marketingStatus!);
+        }
+      case 'characteristic':
+        if (characteristic != null) {
+          fields.addAll(characteristic!);
+        }
+      case 'copackagedIndicator':
+        if (copackagedIndicator != null) {
+          fields.add(copackagedIndicator!);
+        }
+      case 'manufacturer':
+        if (manufacturer != null) {
+          fields.addAll(manufacturer!);
+        }
+      case 'package':
+        if (package != null) {
+          fields.add(package!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -568,7 +752,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -576,7 +764,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -683,6 +875,65 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'jurisdiction',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.add(jurisdiction!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PackagedProductDefinitionLegalStatusOfSupply clone() =>
       throw UnimplementedError();
@@ -776,7 +1027,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -784,7 +1039,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -792,7 +1051,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -812,7 +1075,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.material'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.material',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -820,7 +1087,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.alternateMaterial'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.alternateMaterial',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -828,7 +1099,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<PackagedProductDefinitionShelfLifeStorage>(
             (v) => PackagedProductDefinitionShelfLifeStorage.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.shelfLifeStorage'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.shelfLifeStorage',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -836,7 +1111,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.manufacturer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.manufacturer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -844,7 +1123,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<PackagedProductDefinitionProperty>(
             (v) => PackagedProductDefinitionProperty.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.property'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.property',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -852,7 +1135,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<PackagedProductDefinitionContainedItem>(
             (v) => PackagedProductDefinitionContainedItem.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.containedItem'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.containedItem',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -860,7 +1147,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           ?.map<PackagedProductDefinitionPackage>(
             (v) => PackagedProductDefinitionPackage.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.package'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.package',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -998,6 +1289,105 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     addField('containedItem', containedItem);
     addField('package', package);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'type',
+      'quantity',
+      'material',
+      'alternateMaterial',
+      'shelfLifeStorage',
+      'manufacturer',
+      'property',
+      'containedItem',
+      'package',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'material':
+        if (material != null) {
+          fields.addAll(material!);
+        }
+      case 'alternateMaterial':
+        if (alternateMaterial != null) {
+          fields.addAll(alternateMaterial!);
+        }
+      case 'shelfLifeStorage':
+        if (shelfLifeStorage != null) {
+          fields.addAll(shelfLifeStorage!);
+        }
+      case 'manufacturer':
+        if (manufacturer != null) {
+          fields.addAll(manufacturer!);
+        }
+      case 'property':
+        if (property != null) {
+          fields.addAll(property!);
+        }
+      case 'containedItem':
+        if (containedItem != null) {
+          fields.addAll(containedItem!);
+        }
+      case 'package':
+        if (package != null) {
+          fields.addAll(package!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1155,7 +1545,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1163,7 +1557,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1182,16 +1580,20 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         },
         objectPath,
       ),
-      specialPrecautionsForStorage: (json['specialPrecautionsForStorage']
-              as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                    {'objectPath': '$objectPath.specialPrecautionsForStorage'}),
-            ),
-          )
-          .toList(),
+      specialPrecautionsForStorage:
+          (json['specialPrecautionsForStorage'] as List<dynamic>?)
+              ?.map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                      {
+                        'objectPath':
+                            '$objectPath.specialPrecautionsForStorage',
+                      },
+                    ),
+                ),
+              )
+              .toList(),
     );
   }
 
@@ -1301,6 +1703,74 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'periodXPackagedProductDefinitionShelfLifeStorage',
+      'specialPrecautionsForStorage',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'periodDuration':
+        if (periodX is FhirDuration) {
+          fields.add(periodX!);
+        }
+      case 'periodString':
+        if (periodX is FhirString) {
+          fields.add(periodX!);
+        }
+      case 'specialPrecautionsForStorage':
+        if (specialPrecautionsForStorage != null) {
+          fields.addAll(specialPrecautionsForStorage!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PackagedProductDefinitionShelfLifeStorage clone() =>
       throw UnimplementedError();
@@ -1393,7 +1863,11 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1401,7 +1875,11 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1516,6 +1994,79 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'valueXPackagedProductDefinitionProperty',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueDate':
+        if (valueX is FhirDate) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueAttachment':
+        if (valueX is Attachment) {
+          fields.add(valueX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PackagedProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1598,7 +2149,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1606,7 +2161,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1716,6 +2275,63 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     addField('item', item);
     addField('amount', amount);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'item',
+      'amount',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'item':
+        fields.add(item);
+      case 'amount':
+        if (amount != null) {
+          fields.add(amount!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

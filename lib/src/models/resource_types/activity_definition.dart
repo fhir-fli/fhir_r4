@@ -110,7 +110,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -118,7 +122,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -126,7 +134,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -140,7 +152,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -205,7 +221,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -219,7 +239,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -227,7 +251,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -271,7 +299,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.topic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.topic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -279,7 +311,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -287,7 +323,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.editor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.editor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -295,7 +335,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reviewer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reviewer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -303,7 +347,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endorser'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endorser',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -311,7 +359,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedArtifact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -379,7 +431,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ActivityDefinitionParticipant>(
             (v) => ActivityDefinitionParticipant.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.participant'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.participant',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -401,7 +457,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<Dosage>(
             (v) => Dosage.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dosage'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dosage',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -409,7 +469,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.bodySite'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.bodySite',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -417,7 +481,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specimenRequirement'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specimenRequirement',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -425,20 +493,28 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.observationRequirement'}),
-            ),
-          )
-          .toList(),
-      observationResultRequirement: (json['observationResultRequirement']
-              as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
                 ..addAll(
-                    {'objectPath': '$objectPath.observationResultRequirement'}),
+                  {
+                    'objectPath': '$objectPath.observationRequirement',
+                  },
+                ),
             ),
           )
           .toList(),
+      observationResultRequirement:
+          (json['observationResultRequirement'] as List<dynamic>?)
+              ?.map<Reference>(
+                (v) => Reference.fromJson(
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                      {
+                        'objectPath':
+                            '$objectPath.observationResultRequirement',
+                      },
+                    ),
+                ),
+              )
+              .toList(),
       transform: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'transform',
@@ -449,7 +525,11 @@ class ActivityDefinition extends CanonicalResource {
           ?.map<ActivityDefinitionDynamicValue>(
             (v) => ActivityDefinitionDynamicValue.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dynamicValue'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dynamicValue',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -792,6 +872,342 @@ class ActivityDefinition extends CanonicalResource {
     addField('transform', transform);
     addField('dynamicValue', dynamicValue);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'subtitle',
+      'status',
+      'experimental',
+      'subjectXActivityDefinition',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'usage',
+      'copyright',
+      'approvalDate',
+      'lastReviewDate',
+      'effectivePeriod',
+      'topic',
+      'author',
+      'editor',
+      'reviewer',
+      'endorser',
+      'relatedArtifact',
+      'library',
+      'kind',
+      'profile',
+      'code',
+      'intent',
+      'priority',
+      'doNotPerform',
+      'timingXActivityDefinition',
+      'location',
+      'participant',
+      'productXActivityDefinition',
+      'quantity',
+      'dosage',
+      'bodySite',
+      'specimenRequirement',
+      'observationRequirement',
+      'observationResultRequirement',
+      'transform',
+      'dynamicValue',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'subtitle':
+        if (subtitle != null) {
+          fields.add(subtitle!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'subjectCodeableConcept':
+        if (subjectX is CodeableConcept) {
+          fields.add(subjectX!);
+        }
+      case 'subjectReference':
+        if (subjectX is Reference) {
+          fields.add(subjectX!);
+        }
+      case 'subjectCanonical':
+        if (subjectX is FhirCanonical) {
+          fields.add(subjectX!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'usage':
+        if (usage != null) {
+          fields.add(usage!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'approvalDate':
+        if (approvalDate != null) {
+          fields.add(approvalDate!);
+        }
+      case 'lastReviewDate':
+        if (lastReviewDate != null) {
+          fields.add(lastReviewDate!);
+        }
+      case 'effectivePeriod':
+        if (effectivePeriod != null) {
+          fields.add(effectivePeriod!);
+        }
+      case 'topic':
+        if (topic != null) {
+          fields.addAll(topic!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'editor':
+        if (editor != null) {
+          fields.addAll(editor!);
+        }
+      case 'reviewer':
+        if (reviewer != null) {
+          fields.addAll(reviewer!);
+        }
+      case 'endorser':
+        if (endorser != null) {
+          fields.addAll(endorser!);
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          fields.addAll(relatedArtifact!);
+        }
+      case 'library':
+        if (library_ != null) {
+          fields.addAll(library_!);
+        }
+      case 'kind':
+        if (kind != null) {
+          fields.add(kind!);
+        }
+      case 'profile':
+        if (profile != null) {
+          fields.add(profile!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'intent':
+        if (intent != null) {
+          fields.add(intent!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'doNotPerform':
+        if (doNotPerform != null) {
+          fields.add(doNotPerform!);
+        }
+      case 'timingTiming':
+        if (timingX is Timing) {
+          fields.add(timingX!);
+        }
+      case 'timingDateTime':
+        if (timingX is FhirDateTime) {
+          fields.add(timingX!);
+        }
+      case 'timingAge':
+        if (timingX is Age) {
+          fields.add(timingX!);
+        }
+      case 'timingPeriod':
+        if (timingX is Period) {
+          fields.add(timingX!);
+        }
+      case 'timingRange':
+        if (timingX is Range) {
+          fields.add(timingX!);
+        }
+      case 'timingDuration':
+        if (timingX is FhirDuration) {
+          fields.add(timingX!);
+        }
+      case 'location':
+        if (location != null) {
+          fields.add(location!);
+        }
+      case 'participant':
+        if (participant != null) {
+          fields.addAll(participant!);
+        }
+      case 'productReference':
+        if (productX is Reference) {
+          fields.add(productX!);
+        }
+      case 'productCodeableConcept':
+        if (productX is CodeableConcept) {
+          fields.add(productX!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'dosage':
+        if (dosage != null) {
+          fields.addAll(dosage!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.addAll(bodySite!);
+        }
+      case 'specimenRequirement':
+        if (specimenRequirement != null) {
+          fields.addAll(specimenRequirement!);
+        }
+      case 'observationRequirement':
+        if (observationRequirement != null) {
+          fields.addAll(observationRequirement!);
+        }
+      case 'observationResultRequirement':
+        if (observationResultRequirement != null) {
+          fields.addAll(observationResultRequirement!);
+        }
+      case 'transform':
+        if (transform != null) {
+          fields.add(transform!);
+        }
+      case 'dynamicValue':
+        if (dynamicValue != null) {
+          fields.addAll(dynamicValue!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1189,7 +1605,11 @@ class ActivityDefinitionParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1197,7 +1617,11 @@ class ActivityDefinitionParticipant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1303,6 +1727,63 @@ class ActivityDefinitionParticipant extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'role',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'role':
+        if (role != null) {
+          fields.add(role!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ActivityDefinitionParticipant clone() => throw UnimplementedError();
   @override
@@ -1389,7 +1870,11 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1397,7 +1882,11 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1508,6 +1997,61 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     addField('path', path);
     addField('expression', expression);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'path',
+      'expression',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'path':
+        fields.add(path);
+      case 'expression':
+        fields.add(expression);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

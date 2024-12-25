@@ -96,7 +96,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -104,7 +108,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -112,7 +120,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -126,7 +138,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -196,7 +212,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -216,7 +236,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.useContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.useContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -224,7 +248,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.jurisdiction',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -268,7 +296,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.topic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.topic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -276,7 +308,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.author'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.author',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -284,7 +320,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.editor'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.editor',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -292,7 +332,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reviewer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reviewer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -300,7 +344,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endorser'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endorser',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -308,7 +356,11 @@ class ResearchElementDefinition extends DomainResource {
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relatedArtifact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -334,7 +386,11 @@ class ResearchElementDefinition extends DomainResource {
           .map<ResearchElementDefinitionCharacteristic>(
             (v) => ResearchElementDefinitionCharacteristic.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.characteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.characteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -653,6 +709,243 @@ class ResearchElementDefinition extends DomainResource {
     addField('variableType', variableType);
     addField('characteristic', characteristic);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'url',
+      'identifier',
+      'version',
+      'name',
+      'title',
+      'shortTitle',
+      'subtitle',
+      'status',
+      'experimental',
+      'subjectXResearchElementDefinition',
+      'date',
+      'publisher',
+      'contact',
+      'description',
+      'comment',
+      'useContext',
+      'jurisdiction',
+      'purpose',
+      'usage',
+      'copyright',
+      'approvalDate',
+      'lastReviewDate',
+      'effectivePeriod',
+      'topic',
+      'author',
+      'editor',
+      'reviewer',
+      'endorser',
+      'relatedArtifact',
+      'library',
+      'type',
+      'variableType',
+      'characteristic',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'version':
+        if (version != null) {
+          fields.add(version!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'shortTitle':
+        if (shortTitle != null) {
+          fields.add(shortTitle!);
+        }
+      case 'subtitle':
+        if (subtitle != null) {
+          fields.add(subtitle!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'experimental':
+        if (experimental != null) {
+          fields.add(experimental!);
+        }
+      case 'subjectCodeableConcept':
+        if (subjectX is CodeableConcept) {
+          fields.add(subjectX!);
+        }
+      case 'subjectReference':
+        if (subjectX is Reference) {
+          fields.add(subjectX!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'publisher':
+        if (publisher != null) {
+          fields.add(publisher!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.addAll(comment!);
+        }
+      case 'useContext':
+        if (useContext != null) {
+          fields.addAll(useContext!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.addAll(jurisdiction!);
+        }
+      case 'purpose':
+        if (purpose != null) {
+          fields.add(purpose!);
+        }
+      case 'usage':
+        if (usage != null) {
+          fields.add(usage!);
+        }
+      case 'copyright':
+        if (copyright != null) {
+          fields.add(copyright!);
+        }
+      case 'approvalDate':
+        if (approvalDate != null) {
+          fields.add(approvalDate!);
+        }
+      case 'lastReviewDate':
+        if (lastReviewDate != null) {
+          fields.add(lastReviewDate!);
+        }
+      case 'effectivePeriod':
+        if (effectivePeriod != null) {
+          fields.add(effectivePeriod!);
+        }
+      case 'topic':
+        if (topic != null) {
+          fields.addAll(topic!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.addAll(author!);
+        }
+      case 'editor':
+        if (editor != null) {
+          fields.addAll(editor!);
+        }
+      case 'reviewer':
+        if (reviewer != null) {
+          fields.addAll(reviewer!);
+        }
+      case 'endorser':
+        if (endorser != null) {
+          fields.addAll(endorser!);
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          fields.addAll(relatedArtifact!);
+        }
+      case 'library':
+        if (library_ != null) {
+          fields.addAll(library_!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'variableType':
+        if (variableType != null) {
+          fields.add(variableType!);
+        }
+      case 'characteristic':
+        fields.addAll(characteristic);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -976,7 +1269,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -984,7 +1281,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1003,7 +1304,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.usageContext'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.usageContext',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1236,6 +1541,151 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField(
         'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'definitionXResearchElementDefinitionCharacteristic',
+      'usageContext',
+      'exclude',
+      'unitOfMeasure',
+      'studyEffectiveDescription',
+      'studyEffectiveXResearchElementDefinitionCharacteristic',
+      'studyEffectiveTimeFromStart',
+      'studyEffectiveGroupMeasure',
+      'participantEffectiveDescription',
+      'participantEffectiveXResearchElementDefinitionCharacteristic',
+      'participantEffectiveTimeFromStart',
+      'participantEffectiveGroupMeasure',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'definitionCodeableConcept':
+        if (definitionX is CodeableConcept) {
+          fields.add(definitionX);
+        }
+      case 'definitionCanonical':
+        if (definitionX is FhirCanonical) {
+          fields.add(definitionX);
+        }
+      case 'definitionExpression':
+        if (definitionX is FhirExpression) {
+          fields.add(definitionX);
+        }
+      case 'definitionDataRequirement':
+        if (definitionX is DataRequirement) {
+          fields.add(definitionX);
+        }
+      case 'usageContext':
+        if (usageContext != null) {
+          fields.addAll(usageContext!);
+        }
+      case 'exclude':
+        if (exclude != null) {
+          fields.add(exclude!);
+        }
+      case 'unitOfMeasure':
+        if (unitOfMeasure != null) {
+          fields.add(unitOfMeasure!);
+        }
+      case 'studyEffectiveDescription':
+        if (studyEffectiveDescription != null) {
+          fields.add(studyEffectiveDescription!);
+        }
+      case 'studyEffectiveDateTime':
+        if (studyEffectiveX is FhirDateTime) {
+          fields.add(studyEffectiveX!);
+        }
+      case 'studyEffectivePeriod':
+        if (studyEffectiveX is Period) {
+          fields.add(studyEffectiveX!);
+        }
+      case 'studyEffectiveDuration':
+        if (studyEffectiveX is FhirDuration) {
+          fields.add(studyEffectiveX!);
+        }
+      case 'studyEffectiveTiming':
+        if (studyEffectiveX is Timing) {
+          fields.add(studyEffectiveX!);
+        }
+      case 'studyEffectiveTimeFromStart':
+        if (studyEffectiveTimeFromStart != null) {
+          fields.add(studyEffectiveTimeFromStart!);
+        }
+      case 'studyEffectiveGroupMeasure':
+        if (studyEffectiveGroupMeasure != null) {
+          fields.add(studyEffectiveGroupMeasure!);
+        }
+      case 'participantEffectiveDescription':
+        if (participantEffectiveDescription != null) {
+          fields.add(participantEffectiveDescription!);
+        }
+      case 'participantEffectiveDateTime':
+        if (participantEffectiveX is FhirDateTime) {
+          fields.add(participantEffectiveX!);
+        }
+      case 'participantEffectivePeriod':
+        if (participantEffectiveX is Period) {
+          fields.add(participantEffectiveX!);
+        }
+      case 'participantEffectiveDuration':
+        if (participantEffectiveX is FhirDuration) {
+          fields.add(participantEffectiveX!);
+        }
+      case 'participantEffectiveTiming':
+        if (participantEffectiveX is Timing) {
+          fields.add(participantEffectiveX!);
+        }
+      case 'participantEffectiveTimeFromStart':
+        if (participantEffectiveTimeFromStart != null) {
+          fields.add(participantEffectiveTimeFromStart!);
+        }
+      case 'participantEffectiveGroupMeasure':
+        if (participantEffectiveGroupMeasure != null) {
+          fields.add(participantEffectiveGroupMeasure!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

@@ -69,7 +69,11 @@ class ImmunizationRecommendation extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -77,7 +81,11 @@ class ImmunizationRecommendation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -85,7 +93,11 @@ class ImmunizationRecommendation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -93,7 +105,11 @@ class ImmunizationRecommendation extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -119,7 +135,11 @@ class ImmunizationRecommendation extends DomainResource {
           .map<ImmunizationRecommendationRecommendation>(
             (v) => ImmunizationRecommendationRecommendation.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.recommendation'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.recommendation',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -231,6 +251,99 @@ class ImmunizationRecommendation extends DomainResource {
     addField('authority', authority);
     addField('recommendation', recommendation);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'patient',
+      'date',
+      'authority',
+      'recommendation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'patient':
+        fields.add(patient);
+      case 'date':
+        fields.add(date);
+      case 'authority':
+        if (authority != null) {
+          fields.add(authority!);
+        }
+      case 'recommendation':
+        fields.addAll(recommendation);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -369,7 +482,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -377,7 +494,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -385,7 +506,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.vaccineCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.vaccineCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -395,16 +520,19 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         CodeableConcept.fromJson,
         '$objectPath.targetDisease',
       ),
-      contraindicatedVaccineCode: (json['contraindicatedVaccineCode']
-              as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                    {'objectPath': '$objectPath.contraindicatedVaccineCode'}),
-            ),
-          )
-          .toList(),
+      contraindicatedVaccineCode:
+          (json['contraindicatedVaccineCode'] as List<dynamic>?)
+              ?.map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                      {
+                        'objectPath': '$objectPath.contraindicatedVaccineCode',
+                      },
+                    ),
+                ),
+              )
+              .toList(),
       forecastStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'forecastStatus',
@@ -415,7 +543,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.forecastReason'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.forecastReason',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -423,7 +555,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<ImmunizationRecommendationDateCriterion>(
             (v) => ImmunizationRecommendationDateCriterion.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.dateCriterion'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.dateCriterion',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -461,20 +597,28 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.supportingImmunization'}),
-            ),
-          )
-          .toList(),
-      supportingPatientInformation: (json['supportingPatientInformation']
-              as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
                 ..addAll(
-                    {'objectPath': '$objectPath.supportingPatientInformation'}),
+                  {
+                    'objectPath': '$objectPath.supportingImmunization',
+                  },
+                ),
             ),
           )
           .toList(),
+      supportingPatientInformation:
+          (json['supportingPatientInformation'] as List<dynamic>?)
+              ?.map<Reference>(
+                (v) => Reference.fromJson(
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                      {
+                        'objectPath':
+                            '$objectPath.supportingPatientInformation',
+                      },
+                    ),
+                ),
+              )
+              .toList(),
     );
   }
 
@@ -628,6 +772,121 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     addField('supportingImmunization', supportingImmunization);
     addField('supportingPatientInformation', supportingPatientInformation);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'vaccineCode',
+      'targetDisease',
+      'contraindicatedVaccineCode',
+      'forecastStatus',
+      'forecastReason',
+      'dateCriterion',
+      'description',
+      'series',
+      'doseNumberXImmunizationRecommendationRecommendation',
+      'seriesDosesXImmunizationRecommendationRecommendation',
+      'supportingImmunization',
+      'supportingPatientInformation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'vaccineCode':
+        if (vaccineCode != null) {
+          fields.addAll(vaccineCode!);
+        }
+      case 'targetDisease':
+        if (targetDisease != null) {
+          fields.add(targetDisease!);
+        }
+      case 'contraindicatedVaccineCode':
+        if (contraindicatedVaccineCode != null) {
+          fields.addAll(contraindicatedVaccineCode!);
+        }
+      case 'forecastStatus':
+        fields.add(forecastStatus);
+      case 'forecastReason':
+        if (forecastReason != null) {
+          fields.addAll(forecastReason!);
+        }
+      case 'dateCriterion':
+        if (dateCriterion != null) {
+          fields.addAll(dateCriterion!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'series':
+        if (series != null) {
+          fields.add(series!);
+        }
+      case 'doseNumberPositiveInt':
+        if (doseNumberX is FhirPositiveInt) {
+          fields.add(doseNumberX!);
+        }
+      case 'doseNumberString':
+        if (doseNumberX is FhirString) {
+          fields.add(doseNumberX!);
+        }
+      case 'seriesDosesPositiveInt':
+        if (seriesDosesX is FhirPositiveInt) {
+          fields.add(seriesDosesX!);
+        }
+      case 'seriesDosesString':
+        if (seriesDosesX is FhirString) {
+          fields.add(seriesDosesX!);
+        }
+      case 'supportingImmunization':
+        if (supportingImmunization != null) {
+          fields.addAll(supportingImmunization!);
+        }
+      case 'supportingPatientInformation':
+        if (supportingPatientInformation != null) {
+          fields.addAll(supportingPatientInformation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -789,7 +1048,11 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -797,7 +1060,11 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -901,6 +1168,61 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     addField('code', code);
     addField('value', value);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'value',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'value':
+        fields.add(value);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

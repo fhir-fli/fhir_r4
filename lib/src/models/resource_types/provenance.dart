@@ -82,7 +82,11 @@ class Provenance extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -90,7 +94,11 @@ class Provenance extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -98,7 +106,11 @@ class Provenance extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -106,7 +118,11 @@ class Provenance extends DomainResource {
           .map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.target'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.target',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -140,7 +156,11 @@ class Provenance extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.reason'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.reason',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -154,7 +174,11 @@ class Provenance extends DomainResource {
           .map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.agent'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.agent',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -162,7 +186,11 @@ class Provenance extends DomainResource {
           ?.map<ProvenanceEntity>(
             (v) => ProvenanceEntity.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.entity'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.entity',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -170,7 +198,11 @@ class Provenance extends DomainResource {
           ?.map<Signature>(
             (v) => Signature.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.signature'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.signature',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -319,6 +351,128 @@ class Provenance extends DomainResource {
     addField('entity', entity);
     addField('signature', signature);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'target',
+      'occurredXProvenance',
+      'recorded',
+      'policy',
+      'location',
+      'reason',
+      'activity',
+      'agent',
+      'entity',
+      'signature',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'target':
+        fields.addAll(target);
+      case 'occurredPeriod':
+        if (occurredX is Period) {
+          fields.add(occurredX!);
+        }
+      case 'occurredDateTime':
+        if (occurredX is FhirDateTime) {
+          fields.add(occurredX!);
+        }
+      case 'recorded':
+        fields.add(recorded);
+      case 'policy':
+        if (policy != null) {
+          fields.addAll(policy!);
+        }
+      case 'location':
+        if (location != null) {
+          fields.add(location!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.addAll(reason!);
+        }
+      case 'activity':
+        if (activity != null) {
+          fields.add(activity!);
+        }
+      case 'agent':
+        fields.addAll(agent);
+      case 'entity':
+        if (entity != null) {
+          fields.addAll(entity!);
+        }
+      case 'signature':
+        if (signature != null) {
+          fields.addAll(signature!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -491,7 +645,11 @@ class ProvenanceAgent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -499,7 +657,11 @@ class ProvenanceAgent extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -513,7 +675,11 @@ class ProvenanceAgent extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.role'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.role',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -629,6 +795,73 @@ class ProvenanceAgent extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'role',
+      'who',
+      'onBehalfOf',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.addAll(role!);
+        }
+      case 'who':
+        fields.add(who);
+      case 'onBehalfOf':
+        if (onBehalfOf != null) {
+          fields.add(onBehalfOf!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -726,7 +959,11 @@ class ProvenanceEntity extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -734,7 +971,11 @@ class ProvenanceEntity extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -754,7 +995,11 @@ class ProvenanceEntity extends BackboneElement {
           ?.map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.agent'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.agent',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -854,6 +1099,66 @@ class ProvenanceEntity extends BackboneElement {
     addField('what', what);
     addField('agent', agent);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'role',
+      'what',
+      'agent',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'role':
+        fields.add(role);
+      case 'what':
+        fields.add(what);
+      case 'agent':
+        if (agent != null) {
+          fields.addAll(agent!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

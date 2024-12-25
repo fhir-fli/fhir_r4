@@ -79,7 +79,11 @@ class Patient extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -87,7 +91,11 @@ class Patient extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -95,7 +103,11 @@ class Patient extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -103,7 +115,11 @@ class Patient extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -117,7 +133,11 @@ class Patient extends DomainResource {
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.name'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.name',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -125,7 +145,11 @@ class Patient extends DomainResource {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.telecom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.telecom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -153,7 +177,11 @@ class Patient extends DomainResource {
           ?.map<Address>(
             (v) => Address.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.address'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.address',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -175,7 +203,11 @@ class Patient extends DomainResource {
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.photo'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.photo',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -183,7 +215,11 @@ class Patient extends DomainResource {
           ?.map<PatientContact>(
             (v) => PatientContact.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contact'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contact',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -191,7 +227,11 @@ class Patient extends DomainResource {
           ?.map<PatientCommunication>(
             (v) => PatientCommunication.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.communication'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.communication',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -199,7 +239,11 @@ class Patient extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.generalPractitioner'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.generalPractitioner',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -213,7 +257,11 @@ class Patient extends DomainResource {
           ?.map<PatientLink>(
             (v) => PatientLink.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.link'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.link',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -400,6 +448,168 @@ class Patient extends DomainResource {
     addField('managingOrganization', managingOrganization);
     addField('link', link);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'active',
+      'name',
+      'telecom',
+      'gender',
+      'birthDate',
+      'deceasedXPatient',
+      'address',
+      'maritalStatus',
+      'multipleBirthXPatient',
+      'photo',
+      'contact',
+      'communication',
+      'generalPractitioner',
+      'managingOrganization',
+      'link',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'active':
+        if (active != null) {
+          fields.add(active!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.addAll(name!);
+        }
+      case 'telecom':
+        if (telecom != null) {
+          fields.addAll(telecom!);
+        }
+      case 'gender':
+        if (gender != null) {
+          fields.add(gender!);
+        }
+      case 'birthDate':
+        if (birthDate != null) {
+          fields.add(birthDate!);
+        }
+      case 'deceasedBoolean':
+        if (deceasedX is FhirBoolean) {
+          fields.add(deceasedX!);
+        }
+      case 'deceasedDateTime':
+        if (deceasedX is FhirDateTime) {
+          fields.add(deceasedX!);
+        }
+      case 'address':
+        if (address != null) {
+          fields.addAll(address!);
+        }
+      case 'maritalStatus':
+        if (maritalStatus != null) {
+          fields.add(maritalStatus!);
+        }
+      case 'multipleBirthBoolean':
+        if (multipleBirthX is FhirBoolean) {
+          fields.add(multipleBirthX!);
+        }
+      case 'multipleBirthInteger':
+        if (multipleBirthX is FhirInteger) {
+          fields.add(multipleBirthX!);
+        }
+      case 'photo':
+        if (photo != null) {
+          fields.addAll(photo!);
+        }
+      case 'contact':
+        if (contact != null) {
+          fields.addAll(contact!);
+        }
+      case 'communication':
+        if (communication != null) {
+          fields.addAll(communication!);
+        }
+      case 'generalPractitioner':
+        if (generalPractitioner != null) {
+          fields.addAll(generalPractitioner!);
+        }
+      case 'managingOrganization':
+        if (managingOrganization != null) {
+          fields.add(managingOrganization!);
+        }
+      case 'link':
+        if (link != null) {
+          fields.addAll(link!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -616,7 +826,11 @@ class PatientContact extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -624,7 +838,11 @@ class PatientContact extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -632,7 +850,11 @@ class PatientContact extends BackboneElement {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.relationship'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.relationship',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -646,7 +868,11 @@ class PatientContact extends BackboneElement {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.telecom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.telecom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -793,6 +1019,90 @@ class PatientContact extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'relationship',
+      'name',
+      'telecom',
+      'address',
+      'gender',
+      'organization',
+      'period',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'relationship':
+        if (relationship != null) {
+          fields.addAll(relationship!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'telecom':
+        if (telecom != null) {
+          fields.addAll(telecom!);
+        }
+      case 'address':
+        if (address != null) {
+          fields.add(address!);
+        }
+      case 'gender':
+        if (gender != null) {
+          fields.add(gender!);
+        }
+      case 'organization':
+        if (organization != null) {
+          fields.add(organization!);
+        }
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PatientContact clone() => throw UnimplementedError();
   @override
@@ -909,7 +1219,11 @@ class PatientCommunication extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -917,7 +1231,11 @@ class PatientCommunication extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1026,6 +1344,63 @@ class PatientCommunication extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'language',
+      'preferred',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'language':
+        fields.add(language);
+      case 'preferred':
+        if (preferred != null) {
+          fields.add(preferred!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PatientCommunication clone() => throw UnimplementedError();
   @override
@@ -1108,7 +1483,11 @@ class PatientLink extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1116,7 +1495,11 @@ class PatientLink extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1220,6 +1603,61 @@ class PatientLink extends BackboneElement {
     addField('other', other);
     addField('type', type);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'other',
+      'type',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'other':
+        fields.add(other);
+      case 'type':
+        fields.add(type);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

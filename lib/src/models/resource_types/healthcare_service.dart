@@ -86,7 +86,11 @@ class HealthcareService extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -94,7 +98,11 @@ class HealthcareService extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +110,11 @@ class HealthcareService extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -110,7 +122,11 @@ class HealthcareService extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -130,7 +146,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.category'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.category',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -138,7 +158,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.type'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.type',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -146,7 +170,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.specialty'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.specialty',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -154,7 +182,11 @@ class HealthcareService extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.location'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.location',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -186,7 +218,11 @@ class HealthcareService extends DomainResource {
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.telecom'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.telecom',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -194,7 +230,11 @@ class HealthcareService extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.coverageArea'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.coverageArea',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -202,7 +242,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.serviceProvisionCode'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.serviceProvisionCode',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -210,7 +254,11 @@ class HealthcareService extends DomainResource {
           ?.map<HealthcareServiceEligibility>(
             (v) => HealthcareServiceEligibility.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.eligibility'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.eligibility',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -218,7 +266,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.program'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.program',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -226,7 +278,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.characteristic'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.characteristic',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -234,7 +290,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.communication'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.communication',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -242,7 +302,11 @@ class HealthcareService extends DomainResource {
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.referralMethod'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.referralMethod',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -256,7 +320,11 @@ class HealthcareService extends DomainResource {
           ?.map<HealthcareServiceAvailableTime>(
             (v) => HealthcareServiceAvailableTime.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.availableTime'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.availableTime',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -264,7 +332,11 @@ class HealthcareService extends DomainResource {
           ?.map<HealthcareServiceNotAvailable>(
             (v) => HealthcareServiceNotAvailable.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.notAvailable'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.notAvailable',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -278,7 +350,11 @@ class HealthcareService extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.endpoint'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.endpoint',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -509,6 +585,200 @@ class HealthcareService extends DomainResource {
     addField('availabilityExceptions', availabilityExceptions);
     addField('endpoint', endpoint);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'active',
+      'providedBy',
+      'category',
+      'type',
+      'specialty',
+      'location',
+      'name',
+      'comment',
+      'extraDetails',
+      'photo',
+      'telecom',
+      'coverageArea',
+      'serviceProvisionCode',
+      'eligibility',
+      'program',
+      'characteristic',
+      'communication',
+      'referralMethod',
+      'appointmentRequired',
+      'availableTime',
+      'notAvailable',
+      'availabilityExceptions',
+      'endpoint',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'active':
+        if (active != null) {
+          fields.add(active!);
+        }
+      case 'providedBy':
+        if (providedBy != null) {
+          fields.add(providedBy!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'specialty':
+        if (specialty != null) {
+          fields.addAll(specialty!);
+        }
+      case 'location':
+        if (location != null) {
+          fields.addAll(location!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      case 'extraDetails':
+        if (extraDetails != null) {
+          fields.add(extraDetails!);
+        }
+      case 'photo':
+        if (photo != null) {
+          fields.add(photo!);
+        }
+      case 'telecom':
+        if (telecom != null) {
+          fields.addAll(telecom!);
+        }
+      case 'coverageArea':
+        if (coverageArea != null) {
+          fields.addAll(coverageArea!);
+        }
+      case 'serviceProvisionCode':
+        if (serviceProvisionCode != null) {
+          fields.addAll(serviceProvisionCode!);
+        }
+      case 'eligibility':
+        if (eligibility != null) {
+          fields.addAll(eligibility!);
+        }
+      case 'program':
+        if (program != null) {
+          fields.addAll(program!);
+        }
+      case 'characteristic':
+        if (characteristic != null) {
+          fields.addAll(characteristic!);
+        }
+      case 'communication':
+        if (communication != null) {
+          fields.addAll(communication!);
+        }
+      case 'referralMethod':
+        if (referralMethod != null) {
+          fields.addAll(referralMethod!);
+        }
+      case 'appointmentRequired':
+        if (appointmentRequired != null) {
+          fields.add(appointmentRequired!);
+        }
+      case 'availableTime':
+        if (availableTime != null) {
+          fields.addAll(availableTime!);
+        }
+      case 'notAvailable':
+        if (notAvailable != null) {
+          fields.addAll(notAvailable!);
+        }
+      case 'availabilityExceptions':
+        if (availabilityExceptions != null) {
+          fields.add(availabilityExceptions!);
+        }
+      case 'endpoint':
+        if (endpoint != null) {
+          fields.addAll(endpoint!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -789,7 +1059,11 @@ class HealthcareServiceEligibility extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -797,7 +1071,11 @@ class HealthcareServiceEligibility extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -902,6 +1180,65 @@ class HealthcareServiceEligibility extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'comment',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
   @override
@@ -986,7 +1323,11 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -994,7 +1335,11 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1125,6 +1470,75 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'daysOfWeek',
+      'allDay',
+      'availableStartTime',
+      'availableEndTime',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'daysOfWeek':
+        if (daysOfWeek != null) {
+          fields.addAll(daysOfWeek!);
+        }
+      case 'allDay':
+        if (allDay != null) {
+          fields.add(allDay!);
+        }
+      case 'availableStartTime':
+        if (availableStartTime != null) {
+          fields.add(availableStartTime!);
+        }
+      case 'availableEndTime':
+        if (availableEndTime != null) {
+          fields.add(availableEndTime!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
   @override
@@ -1222,7 +1636,11 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1230,7 +1648,11 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1335,6 +1757,63 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     addField('description', description);
     addField('during', during);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'during',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        fields.add(description);
+      case 'during':
+        if (during != null) {
+          fields.add(during!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

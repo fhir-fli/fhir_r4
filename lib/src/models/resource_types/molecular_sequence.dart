@@ -78,7 +78,11 @@ class MolecularSequence extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -86,7 +90,11 @@ class MolecularSequence extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -94,7 +102,11 @@ class MolecularSequence extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +114,11 @@ class MolecularSequence extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -158,7 +174,11 @@ class MolecularSequence extends DomainResource {
           ?.map<MolecularSequenceVariant>(
             (v) => MolecularSequenceVariant.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.variant'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.variant',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -172,7 +192,11 @@ class MolecularSequence extends DomainResource {
           ?.map<MolecularSequenceQuality>(
             (v) => MolecularSequenceQuality.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.quality'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.quality',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -186,7 +210,11 @@ class MolecularSequence extends DomainResource {
           ?.map<MolecularSequenceRepository>(
             (v) => MolecularSequenceRepository.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.repository'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.repository',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -194,7 +222,11 @@ class MolecularSequence extends DomainResource {
           ?.map<Reference>(
             (v) => Reference.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.pointer'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.pointer',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -202,7 +234,11 @@ class MolecularSequence extends DomainResource {
           ?.map<MolecularSequenceStructureVariant>(
             (v) => MolecularSequenceStructureVariant.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.structureVariant'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.structureVariant',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -383,6 +419,158 @@ class MolecularSequence extends DomainResource {
     addField('pointer', pointer);
     addField('structureVariant', structureVariant);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'type',
+      'coordinateSystem',
+      'patient',
+      'specimen',
+      'device',
+      'performer',
+      'quantity',
+      'referenceSeq',
+      'variant',
+      'observedSeq',
+      'quality',
+      'readCoverage',
+      'repository',
+      'pointer',
+      'structureVariant',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'coordinateSystem':
+        fields.add(coordinateSystem);
+      case 'patient':
+        if (patient != null) {
+          fields.add(patient!);
+        }
+      case 'specimen':
+        if (specimen != null) {
+          fields.add(specimen!);
+        }
+      case 'device':
+        if (device != null) {
+          fields.add(device!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.add(performer!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'referenceSeq':
+        if (referenceSeq != null) {
+          fields.add(referenceSeq!);
+        }
+      case 'variant':
+        if (variant != null) {
+          fields.addAll(variant!);
+        }
+      case 'observedSeq':
+        if (observedSeq != null) {
+          fields.add(observedSeq!);
+        }
+      case 'quality':
+        if (quality != null) {
+          fields.addAll(quality!);
+        }
+      case 'readCoverage':
+        if (readCoverage != null) {
+          fields.add(readCoverage!);
+        }
+      case 'repository':
+        if (repository != null) {
+          fields.addAll(repository!);
+        }
+      case 'pointer':
+        if (pointer != null) {
+          fields.addAll(pointer!);
+        }
+      case 'structureVariant':
+        if (structureVariant != null) {
+          fields.addAll(structureVariant!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -590,7 +778,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -598,7 +790,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -798,6 +994,100 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'chromosome',
+      'genomeBuild',
+      'orientation',
+      'referenceSeqId',
+      'referenceSeqPointer',
+      'referenceSeqString',
+      'strand',
+      'windowStart',
+      'windowEnd',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'chromosome':
+        if (chromosome != null) {
+          fields.add(chromosome!);
+        }
+      case 'genomeBuild':
+        if (genomeBuild != null) {
+          fields.add(genomeBuild!);
+        }
+      case 'orientation':
+        if (orientation != null) {
+          fields.add(orientation!);
+        }
+      case 'referenceSeqId':
+        if (referenceSeqId != null) {
+          fields.add(referenceSeqId!);
+        }
+      case 'referenceSeqPointer':
+        if (referenceSeqPointer != null) {
+          fields.add(referenceSeqPointer!);
+        }
+      case 'referenceSeqString':
+        if (referenceSeqString != null) {
+          fields.add(referenceSeqString!);
+        }
+      case 'strand':
+        if (strand != null) {
+          fields.add(strand!);
+        }
+      case 'windowStart':
+        if (windowStart != null) {
+          fields.add(windowStart!);
+        }
+      case 'windowEnd':
+        if (windowEnd != null) {
+          fields.add(windowEnd!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -923,7 +1213,11 @@ class MolecularSequenceVariant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -931,7 +1225,11 @@ class MolecularSequenceVariant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1099,6 +1397,85 @@ class MolecularSequenceVariant extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'start',
+      'end',
+      'observedAllele',
+      'referenceAllele',
+      'cigar',
+      'variantPointer',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'start':
+        if (start != null) {
+          fields.add(start!);
+        }
+      case 'end':
+        if (end != null) {
+          fields.add(end!);
+        }
+      case 'observedAllele':
+        if (observedAllele != null) {
+          fields.add(observedAllele!);
+        }
+      case 'referenceAllele':
+        if (referenceAllele != null) {
+          fields.add(referenceAllele!);
+        }
+      case 'cigar':
+        if (cigar != null) {
+          fields.add(cigar!);
+        }
+      case 'variantPointer':
+        if (variantPointer != null) {
+          fields.add(variantPointer!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceVariant clone() => throw UnimplementedError();
   @override
@@ -1216,7 +1593,11 @@ class MolecularSequenceQuality extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1224,7 +1605,11 @@ class MolecularSequenceQuality extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1494,6 +1879,128 @@ class MolecularSequenceQuality extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'standardSequence',
+      'start',
+      'end',
+      'score',
+      'method',
+      'truthTP',
+      'queryTP',
+      'truthFN',
+      'queryFP',
+      'gtFP',
+      'precision',
+      'recall',
+      'fScore',
+      'roc',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'standardSequence':
+        if (standardSequence != null) {
+          fields.add(standardSequence!);
+        }
+      case 'start':
+        if (start != null) {
+          fields.add(start!);
+        }
+      case 'end':
+        if (end != null) {
+          fields.add(end!);
+        }
+      case 'score':
+        if (score != null) {
+          fields.add(score!);
+        }
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'truthTP':
+        if (truthTP != null) {
+          fields.add(truthTP!);
+        }
+      case 'queryTP':
+        if (queryTP != null) {
+          fields.add(queryTP!);
+        }
+      case 'truthFN':
+        if (truthFN != null) {
+          fields.add(truthFN!);
+        }
+      case 'queryFP':
+        if (queryFP != null) {
+          fields.add(queryFP!);
+        }
+      case 'gtFP':
+        if (gtFP != null) {
+          fields.add(gtFP!);
+        }
+      case 'precision':
+        if (precision != null) {
+          fields.add(precision!);
+        }
+      case 'recall':
+        if (recall != null) {
+          fields.add(recall!);
+        }
+      case 'fScore':
+        if (fScore != null) {
+          fields.add(fScore!);
+        }
+      case 'roc':
+        if (roc != null) {
+          fields.add(roc!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -1647,7 +2154,11 @@ class MolecularSequenceRoc extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1655,7 +2166,11 @@ class MolecularSequenceRoc extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1822,6 +2337,90 @@ class MolecularSequenceRoc extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'score',
+      'numTP',
+      'numFP',
+      'numFN',
+      'precision',
+      'sensitivity',
+      'fMeasure',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'score':
+        if (score != null) {
+          fields.addAll(score!);
+        }
+      case 'numTP':
+        if (numTP != null) {
+          fields.addAll(numTP!);
+        }
+      case 'numFP':
+        if (numFP != null) {
+          fields.addAll(numFP!);
+        }
+      case 'numFN':
+        if (numFN != null) {
+          fields.addAll(numFN!);
+        }
+      case 'precision':
+        if (precision != null) {
+          fields.addAll(precision!);
+        }
+      case 'sensitivity':
+        if (sensitivity != null) {
+          fields.addAll(sensitivity!);
+        }
+      case 'fMeasure':
+        if (fMeasure != null) {
+          fields.addAll(fMeasure!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -1962,7 +2561,11 @@ class MolecularSequenceRepository extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -1970,7 +2573,11 @@ class MolecularSequenceRepository extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2126,6 +2733,83 @@ class MolecularSequenceRepository extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'url',
+      'name',
+      'datasetId',
+      'variantsetId',
+      'readsetId',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'url':
+        if (url != null) {
+          fields.add(url!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'datasetId':
+        if (datasetId != null) {
+          fields.add(datasetId!);
+        }
+      case 'variantsetId':
+        if (variantsetId != null) {
+          fields.add(variantsetId!);
+        }
+      case 'readsetId':
+        if (readsetId != null) {
+          fields.add(readsetId!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -2231,7 +2915,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2239,7 +2927,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2378,6 +3070,80 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'variantType',
+      'exact',
+      'length',
+      'outer',
+      'inner',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'variantType':
+        if (variantType != null) {
+          fields.add(variantType!);
+        }
+      case 'exact':
+        if (exact != null) {
+          fields.add(exact!);
+        }
+      case 'length':
+        if (length != null) {
+          fields.add(length!);
+        }
+      case 'outer':
+        if (outer != null) {
+          fields.add(outer!);
+        }
+      case 'inner':
+        if (inner != null) {
+          fields.add(inner!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -2475,7 +3241,11 @@ class MolecularSequenceOuter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2483,7 +3253,11 @@ class MolecularSequenceOuter extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2592,6 +3366,65 @@ class MolecularSequenceOuter extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'start',
+      'end',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'start':
+        if (start != null) {
+          fields.add(start!);
+        }
+      case 'end':
+        if (end != null) {
+          fields.add(end!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -2674,7 +3507,11 @@ class MolecularSequenceInner extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2682,7 +3519,11 @@ class MolecularSequenceInner extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -2789,6 +3630,65 @@ class MolecularSequenceInner extends BackboneElement {
     addField('start', start);
     addField('end', end);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'start',
+      'end',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'start':
+        if (start != null) {
+          fields.add(start!);
+        }
+      case 'end':
+        if (end != null) {
+          fields.add(end!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

@@ -45,7 +45,11 @@ class ProdCharacteristic extends BackboneType {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -53,7 +57,11 @@ class ProdCharacteristic extends BackboneType {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -115,7 +123,11 @@ class ProdCharacteristic extends BackboneType {
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.image'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.image',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -282,6 +294,110 @@ class ProdCharacteristic extends BackboneType {
     addField('image', image);
     addField('scoring', scoring);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'height',
+      'width',
+      'depth',
+      'weight',
+      'nominalVolume',
+      'externalDiameter',
+      'shape',
+      'color',
+      'imprint',
+      'image',
+      'scoring',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'height':
+        if (height != null) {
+          fields.add(height!);
+        }
+      case 'width':
+        if (width != null) {
+          fields.add(width!);
+        }
+      case 'depth':
+        if (depth != null) {
+          fields.add(depth!);
+        }
+      case 'weight':
+        if (weight != null) {
+          fields.add(weight!);
+        }
+      case 'nominalVolume':
+        if (nominalVolume != null) {
+          fields.add(nominalVolume!);
+        }
+      case 'externalDiameter':
+        if (externalDiameter != null) {
+          fields.add(externalDiameter!);
+        }
+      case 'shape':
+        if (shape != null) {
+          fields.add(shape!);
+        }
+      case 'color':
+        if (color != null) {
+          fields.addAll(color!);
+        }
+      case 'imprint':
+        if (imprint != null) {
+          fields.addAll(imprint!);
+        }
+      case 'image':
+        if (image != null) {
+          fields.addAll(image!);
+        }
+      case 'scoring':
+        if (scoring != null) {
+          fields.add(scoring!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

@@ -78,7 +78,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<Resource>(
             (v) => Resource.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.contained'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.contained',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -86,7 +90,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -94,7 +102,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -102,7 +114,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.identifier'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.identifier',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -176,7 +192,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<PaymentReconciliationDetail>(
             (v) => PaymentReconciliationDetail.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.detail'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.detail',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -190,7 +210,11 @@ class PaymentReconciliation extends DomainResource {
           ?.map<PaymentReconciliationProcessNote>(
             (v) => PaymentReconciliationProcessNote.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.processNote'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.processNote',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -357,6 +381,147 @@ class PaymentReconciliation extends DomainResource {
     addField('formCode', formCode);
     addField('processNote', processNote);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'period',
+      'created',
+      'paymentIssuer',
+      'request',
+      'requestor',
+      'outcome',
+      'disposition',
+      'paymentDate',
+      'paymentAmount',
+      'paymentIdentifier',
+      'detail',
+      'formCode',
+      'processNote',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'period':
+        if (period != null) {
+          fields.add(period!);
+        }
+      case 'created':
+        fields.add(created);
+      case 'paymentIssuer':
+        if (paymentIssuer != null) {
+          fields.add(paymentIssuer!);
+        }
+      case 'request':
+        if (request != null) {
+          fields.add(request!);
+        }
+      case 'requestor':
+        if (requestor != null) {
+          fields.add(requestor!);
+        }
+      case 'outcome':
+        if (outcome != null) {
+          fields.add(outcome!);
+        }
+      case 'disposition':
+        if (disposition != null) {
+          fields.add(disposition!);
+        }
+      case 'paymentDate':
+        fields.add(paymentDate);
+      case 'paymentAmount':
+        fields.add(paymentAmount);
+      case 'paymentIdentifier':
+        if (paymentIdentifier != null) {
+          fields.add(paymentIdentifier!);
+        }
+      case 'detail':
+        if (detail != null) {
+          fields.addAll(detail!);
+        }
+      case 'formCode':
+        if (formCode != null) {
+          fields.add(formCode!);
+        }
+      case 'processNote':
+        if (processNote != null) {
+          fields.addAll(processNote!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -548,7 +713,11 @@ class PaymentReconciliationDetail extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -556,7 +725,11 @@ class PaymentReconciliationDetail extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -754,6 +927,103 @@ class PaymentReconciliationDetail extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'predecessor',
+      'type',
+      'request',
+      'submitter',
+      'response',
+      'date',
+      'responsible',
+      'payee',
+      'amount',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'predecessor':
+        if (predecessor != null) {
+          fields.add(predecessor!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'request':
+        if (request != null) {
+          fields.add(request!);
+        }
+      case 'submitter':
+        if (submitter != null) {
+          fields.add(submitter!);
+        }
+      case 'response':
+        if (response != null) {
+          fields.add(response!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'responsible':
+        if (responsible != null) {
+          fields.add(responsible!);
+        }
+      case 'payee':
+        if (payee != null) {
+          fields.add(payee!);
+        }
+      case 'amount':
+        if (amount != null) {
+          fields.add(amount!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   PaymentReconciliationDetail clone() => throw UnimplementedError();
   @override
@@ -877,7 +1147,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -885,7 +1159,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.modifierExtension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -988,6 +1266,65 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     addField('type', type);
     addField('text', text);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'text',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

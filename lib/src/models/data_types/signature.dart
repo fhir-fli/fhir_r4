@@ -53,7 +53,11 @@ class Signature extends DataType
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.extension'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.extension',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -61,7 +65,11 @@ class Signature extends DataType
           .map<Coding>(
             (v) => Coding.fromJson(
               (v as Map<String, dynamic>)
-                ..addAll({'objectPath': '$objectPath.type'}),
+                ..addAll(
+                  {
+                    'objectPath': '$objectPath.type',
+                  },
+                ),
             ),
           )
           .toList(),
@@ -222,6 +230,79 @@ class Signature extends DataType
     addField('sigFormat', sigFormat);
     addField('data', data);
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> children() {
+    return [
+      'id',
+      'extension',
+      'type',
+      'when',
+      'who',
+      'onBehalfOf',
+      'targetFormat',
+      'sigFormat',
+      'data',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'type':
+        fields.addAll(type);
+      case 'when':
+        fields.add(when);
+      case 'who':
+        fields.add(who);
+      case 'onBehalfOf':
+        if (onBehalfOf != null) {
+          fields.add(onBehalfOf!);
+        }
+      case 'targetFormat':
+        if (targetFormat != null) {
+          fields.add(targetFormat!);
+        }
+      case 'sigFormat':
+        if (sigFormat != null) {
+          fields.add(sigFormat!);
+        }
+      case 'data':
+        if (data != null) {
+          fields.add(data!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
