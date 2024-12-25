@@ -386,13 +386,7 @@ class ClassTypeInfo extends FhirBase {
   }
 
   @override
-  FhirBase copy() {
-    throw UnsupportedError('Not Implemented');
-  }
-
-  @override
   FhirBase clone() {
-    // TODO: implement clone
     throw UnimplementedError();
   }
 
@@ -401,9 +395,23 @@ class ClassTypeInfo extends FhirBase {
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    List? annotations,
+    List<dynamic>? annotations,
   }) {
-    // TODO: implement copyWith
+    throw UnimplementedError();
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    throw UnimplementedError();
+  }
+
+  @override
+  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
     throw UnimplementedError();
   }
 }

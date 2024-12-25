@@ -60,4 +60,19 @@ class FHIRConstant extends FhirBase {
   }) {
     throw UnimplementedError();
   }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    throw UnimplementedError();
+  }
+
+  @override
+  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    throw UnimplementedError();
+  }
 }
