@@ -32,6 +32,7 @@ class RelatedPerson extends DomainResource {
     this.period,
     this.communication,
   }) : super(
+          objectPath: 'RelatedPerson',
           resourceType: R4ResourceType.RelatedPerson,
         );
 
@@ -39,57 +40,67 @@ class RelatedPerson extends DomainResource {
   factory RelatedPerson.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RelatedPerson';
     return RelatedPerson(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -97,30 +108,35 @@ class RelatedPerson extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       relationship: (json['relationship'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relationship'}),
             ),
           )
           .toList(),
       name: (json['name'] as List<dynamic>?)
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.name'}),
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
@@ -128,23 +144,27 @@ class RelatedPerson extends DomainResource {
         json,
         'gender',
         AdministrativeGender.fromJson,
+        '$objectPath.gender',
       ),
       birthDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'birthDate',
         FhirDate.fromJson,
+        '$objectPath.birthDate',
       ),
       address: (json['address'] as List<dynamic>?)
           ?.map<Address>(
             (v) => Address.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.address'}),
             ),
           )
           .toList(),
       photo: (json['photo'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.photo'}),
             ),
           )
           .toList(),
@@ -152,11 +172,13 @@ class RelatedPerson extends DomainResource {
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       communication: (json['communication'] as List<dynamic>?)
           ?.map<RelatedPersonCommunication>(
             (v) => RelatedPersonCommunication.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.communication'}),
             ),
           )
           .toList(),
@@ -378,29 +400,35 @@ class RelatedPersonCommunication extends BackboneElement {
     required this.language,
     this.preferred,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'RelatedPerson.communication',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedPersonCommunication.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RelatedPerson.communication';
     return RelatedPersonCommunication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -408,11 +436,13 @@ class RelatedPersonCommunication extends BackboneElement {
         json,
         'language',
         CodeableConcept.fromJson,
+        '$objectPath.language',
       )!,
       preferred: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'preferred',
         FhirBoolean.fromJson,
+        '$objectPath.preferred',
       ),
     );
   }

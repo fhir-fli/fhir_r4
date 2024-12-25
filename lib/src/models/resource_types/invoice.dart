@@ -35,6 +35,7 @@ class Invoice extends DomainResource {
     this.paymentTerms,
     this.note,
   }) : super(
+          objectPath: 'Invoice',
           resourceType: R4ResourceType.Invoice,
         );
 
@@ -42,57 +43,67 @@ class Invoice extends DomainResource {
   factory Invoice.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Invoice';
     return Invoice(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -100,36 +111,43 @@ class Invoice extends DomainResource {
         json,
         'status',
         InvoiceStatus.fromJson,
+        '$objectPath.status',
       )!,
       cancelledReason: JsonParser.parsePrimitive<FhirString>(
         json,
         'cancelledReason',
         FhirString.fromJson,
+        '$objectPath.cancelledReason',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       recipient: JsonParser.parseObject<Reference>(
         json,
         'recipient',
         Reference.fromJson,
+        '$objectPath.recipient',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<InvoiceParticipant>(
             (v) => InvoiceParticipant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.participant'}),
             ),
           )
           .toList(),
@@ -137,23 +155,27 @@ class Invoice extends DomainResource {
         json,
         'issuer',
         Reference.fromJson,
+        '$objectPath.issuer',
       ),
       account: JsonParser.parseObject<Reference>(
         json,
         'account',
         Reference.fromJson,
+        '$objectPath.account',
       ),
       lineItem: (json['lineItem'] as List<dynamic>?)
           ?.map<InvoiceLineItem>(
             (v) => InvoiceLineItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.lineItem'}),
             ),
           )
           .toList(),
       totalPriceComponent: (json['totalPriceComponent'] as List<dynamic>?)
           ?.map<InvoicePriceComponent>(
             (v) => InvoicePriceComponent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.totalPriceComponent'}),
             ),
           )
           .toList(),
@@ -161,21 +183,25 @@ class Invoice extends DomainResource {
         json,
         'totalNet',
         Money.fromJson,
+        '$objectPath.totalNet',
       ),
       totalGross: JsonParser.parseObject<Money>(
         json,
         'totalGross',
         Money.fromJson,
+        '$objectPath.totalGross',
       ),
       paymentTerms: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'paymentTerms',
         FhirMarkdown.fromJson,
+        '$objectPath.paymentTerms',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -431,29 +457,35 @@ class InvoiceParticipant extends BackboneElement {
     this.role,
     required this.actor,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Invoice.participant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Invoice.participant';
     return InvoiceParticipant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -461,11 +493,13 @@ class InvoiceParticipant extends BackboneElement {
         json,
         'role',
         CodeableConcept.fromJson,
+        '$objectPath.role',
       ),
       actor: JsonParser.parseObject<Reference>(
         json,
         'actor',
         Reference.fromJson,
+        '$objectPath.actor',
       )!,
     );
   }
@@ -599,29 +633,35 @@ class InvoiceLineItem extends BackboneElement {
     required this.chargeItemX,
     this.priceComponent,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Invoice.lineItem',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceLineItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Invoice.lineItem';
     return InvoiceLineItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -629,16 +669,21 @@ class InvoiceLineItem extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       ),
-      chargeItemX:
-          JsonParser.parsePolymorphic<ChargeItemXInvoiceLineItem>(json, {
-        'chargeItemReference': Reference.fromJson,
-        'chargeItemCodeableConcept': CodeableConcept.fromJson,
-      })!,
+      chargeItemX: JsonParser.parsePolymorphic<ChargeItemXInvoiceLineItem>(
+        json,
+        {
+          'chargeItemReference': Reference.fromJson,
+          'chargeItemCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      )!,
       priceComponent: (json['priceComponent'] as List<dynamic>?)
           ?.map<InvoicePriceComponent>(
             (v) => InvoicePriceComponent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.priceComponent'}),
             ),
           )
           .toList(),
@@ -792,29 +837,35 @@ class InvoicePriceComponent extends BackboneElement {
     this.factor,
     this.amount,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Invoice.lineItem.priceComponent',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoicePriceComponent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Invoice.lineItem.priceComponent';
     return InvoicePriceComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -822,21 +873,25 @@ class InvoicePriceComponent extends BackboneElement {
         json,
         'type',
         InvoicePriceComponentType.fromJson,
+        '$objectPath.type',
       )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
+        '$objectPath.amount',
       ),
     );
   }

@@ -25,22 +25,26 @@ class FhirMeta extends DataType
     this.security,
     this.tag,
     super.disallowExtensions,
+    super.objectPath = 'FhirMeta',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirMeta.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'FhirMeta';
     return FhirMeta(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -48,33 +52,39 @@ class FhirMeta extends DataType
         json,
         'versionId',
         FhirId.fromJson,
+        '$objectPath.versionId',
       ),
       lastUpdated: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'lastUpdated',
         FhirInstant.fromJson,
+        '$objectPath.lastUpdated',
       ),
       source: JsonParser.parsePrimitive<FhirUri>(
         json,
         'source',
         FhirUri.fromJson,
+        '$objectPath.source',
       ),
       profile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
       security: (json['security'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.security'}),
             ),
           )
           .toList(),
       tag: (json['tag'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.tag'}),
             ),
           )
           .toList(),

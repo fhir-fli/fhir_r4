@@ -19,6 +19,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'DateTimeBase',
   }) : super(null) {
     _validateDateTimeComponents();
   }
@@ -376,6 +377,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   }) {
     // If input is null, return an instance with only the element
     if (input == null) {
@@ -409,6 +411,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       formatCommentsPost,
       annotations,
       disallowExtensions,
+      objectPath,
     );
   }
 
@@ -424,6 +427,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     bool? disallowExtensions,
+    String? objectPath,
   ]) {
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
@@ -441,6 +445,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
+          objectPath: objectPath,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
@@ -457,6 +462,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'] as num?,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        disallowExtensions: disallowExtensions,
+        objectPath: objectPath,
       );
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
@@ -466,6 +473,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           day: null,
           isUtc: false,
           element: element,
+          disallowExtensions: disallowExtensions,
+          objectPath: objectPath,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDate');
@@ -477,6 +486,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'] as num?,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        disallowExtensions: disallowExtensions,
+        objectPath: objectPath,
       );
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
@@ -492,6 +503,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          disallowExtensions: disallowExtensions,
+          objectPath: objectPath,
         );
       } else if (dateTimeMap['year'] == null ||
           dateTimeMap['month'] == null ||
@@ -516,6 +529,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'] as num? ?? 0,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        disallowExtensions: disallowExtensions,
+        objectPath: objectPath,
       );
       return instant;
     } else {

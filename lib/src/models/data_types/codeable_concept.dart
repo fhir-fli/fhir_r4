@@ -93,29 +93,34 @@ class CodeableConcept extends DataType
     this.coding,
     this.text,
     super.disallowExtensions,
+    super.objectPath = 'CodeableConcept',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeableConcept.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'CodeableConcept';
     return CodeableConcept(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       coding: (json['coding'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.coding'}),
             ),
           )
           .toList(),
@@ -123,6 +128,7 @@ class CodeableConcept extends DataType
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
     );
   }

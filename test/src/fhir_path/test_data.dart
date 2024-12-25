@@ -6,10 +6,11 @@ List<StructureDefinition> getStructureDefinitions() {
   final sdListStrings =
       File('test/src/fhir_path/sds.ndjson').readAsStringSync().split('\n');
   final sds = <StructureDefinition>[];
-  for(final sd in sdListStrings) {
-    if(sd.isNotEmpty){
-    sds.add(StructureDefinition.fromJsonString(sd));
-  }}
+  for (final sd in sdListStrings) {
+    if (sd.isNotEmpty) {
+      sds.add(StructureDefinition.fromJsonString(sd));
+    }
+  }
   return sds;
 }
 

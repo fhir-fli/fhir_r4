@@ -25,6 +25,7 @@ class ImmunizationRecommendation extends DomainResource {
     this.authority,
     required this.recommendation,
   }) : super(
+          objectPath: 'ImmunizationRecommendation',
           resourceType: R4ResourceType.ImmunizationRecommendation,
         );
 
@@ -32,57 +33,67 @@ class ImmunizationRecommendation extends DomainResource {
   factory ImmunizationRecommendation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImmunizationRecommendation';
     return ImmunizationRecommendation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -90,21 +101,25 @@ class ImmunizationRecommendation extends DomainResource {
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       )!,
       authority: JsonParser.parseObject<Reference>(
         json,
         'authority',
         Reference.fromJson,
+        '$objectPath.authority',
       ),
       recommendation: (json['recommendation'] as List<dynamic>)
           .map<ImmunizationRecommendationRecommendation>(
             (v) => ImmunizationRecommendationRecommendation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.recommendation'}),
             ),
           )
           .toList(),
@@ -281,36 +296,43 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.supportingImmunization,
     this.supportingPatientInformation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImmunizationRecommendation.recommendation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationRecommendation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImmunizationRecommendation.recommendation';
     return ImmunizationRecommendationRecommendation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       vaccineCode: (json['vaccineCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.vaccineCode'}),
             ),
           )
           .toList(),
@@ -318,31 +340,37 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         json,
         'targetDisease',
         CodeableConcept.fromJson,
+        '$objectPath.targetDisease',
       ),
-      contraindicatedVaccineCode:
-          (json['contraindicatedVaccineCode'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      contraindicatedVaccineCode: (json['contraindicatedVaccineCode']
+              as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll(
+                    {'objectPath': '$objectPath.contraindicatedVaccineCode'}),
+            ),
+          )
+          .toList(),
       forecastStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'forecastStatus',
         CodeableConcept.fromJson,
+        '$objectPath.forecastStatus',
       )!,
       forecastReason: (json['forecastReason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.forecastReason'}),
             ),
           )
           .toList(),
       dateCriterion: (json['dateCriterion'] as List<dynamic>?)
           ?.map<ImmunizationRecommendationDateCriterion>(
             (v) => ImmunizationRecommendationDateCriterion.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dateCriterion'}),
             ),
           )
           .toList(),
@@ -350,37 +378,50 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       series: JsonParser.parsePrimitive<FhirString>(
         json,
         'series',
         FhirString.fromJson,
+        '$objectPath.series',
       ),
       doseNumberX: JsonParser.parsePolymorphic<
-          DoseNumberXImmunizationRecommendationRecommendation>(json, {
-        'doseNumberPositiveInt': FhirPositiveInt.fromJson,
-        'doseNumberString': FhirString.fromJson,
-      }),
+          DoseNumberXImmunizationRecommendationRecommendation>(
+        json,
+        {
+          'doseNumberPositiveInt': FhirPositiveInt.fromJson,
+          'doseNumberString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       seriesDosesX: JsonParser.parsePolymorphic<
-          SeriesDosesXImmunizationRecommendationRecommendation>(json, {
-        'seriesDosesPositiveInt': FhirPositiveInt.fromJson,
-        'seriesDosesString': FhirString.fromJson,
-      }),
+          SeriesDosesXImmunizationRecommendationRecommendation>(
+        json,
+        {
+          'seriesDosesPositiveInt': FhirPositiveInt.fromJson,
+          'seriesDosesString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       supportingImmunization: (json['supportingImmunization'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supportingImmunization'}),
             ),
           )
           .toList(),
-      supportingPatientInformation:
-          (json['supportingPatientInformation'] as List<dynamic>?)
-              ?.map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      supportingPatientInformation: (json['supportingPatientInformation']
+              as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll(
+                    {'objectPath': '$objectPath.supportingPatientInformation'}),
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -598,29 +639,36 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImmunizationRecommendation.recommendation.dateCriterion',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationDateCriterion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath =
+        'ImmunizationRecommendation.recommendation.dateCriterion';
     return ImmunizationRecommendationDateCriterion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -628,11 +676,13 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       value: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'value',
         FhirDateTime.fromJson,
+        '$objectPath.value',
       )!,
     );
   }

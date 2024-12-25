@@ -35,6 +35,7 @@ class Patient extends DomainResource {
     this.managingOrganization,
     this.link,
   }) : super(
+          objectPath: 'Patient',
           resourceType: R4ResourceType.Patient,
         );
 
@@ -42,57 +43,67 @@ class Patient extends DomainResource {
   factory Patient.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Patient';
     return Patient(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -100,18 +111,21 @@ class Patient extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       name: (json['name'] as List<dynamic>?)
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.name'}),
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
@@ -119,20 +133,27 @@ class Patient extends DomainResource {
         json,
         'gender',
         AdministrativeGender.fromJson,
+        '$objectPath.gender',
       ),
       birthDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'birthDate',
         FhirDate.fromJson,
+        '$objectPath.birthDate',
       ),
-      deceasedX: JsonParser.parsePolymorphic<DeceasedXPatient>(json, {
-        'deceasedBoolean': FhirBoolean.fromJson,
-        'deceasedDateTime': FhirDateTime.fromJson,
-      }),
+      deceasedX: JsonParser.parsePolymorphic<DeceasedXPatient>(
+        json,
+        {
+          'deceasedBoolean': FhirBoolean.fromJson,
+          'deceasedDateTime': FhirDateTime.fromJson,
+        },
+        objectPath,
+      ),
       address: (json['address'] as List<dynamic>?)
           ?.map<Address>(
             (v) => Address.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.address'}),
             ),
           )
           .toList(),
@@ -140,36 +161,45 @@ class Patient extends DomainResource {
         json,
         'maritalStatus',
         CodeableConcept.fromJson,
+        '$objectPath.maritalStatus',
       ),
-      multipleBirthX: JsonParser.parsePolymorphic<MultipleBirthXPatient>(json, {
-        'multipleBirthBoolean': FhirBoolean.fromJson,
-        'multipleBirthInteger': FhirInteger.fromJson,
-      }),
+      multipleBirthX: JsonParser.parsePolymorphic<MultipleBirthXPatient>(
+        json,
+        {
+          'multipleBirthBoolean': FhirBoolean.fromJson,
+          'multipleBirthInteger': FhirInteger.fromJson,
+        },
+        objectPath,
+      ),
       photo: (json['photo'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.photo'}),
             ),
           )
           .toList(),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<PatientContact>(
             (v) => PatientContact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
       communication: (json['communication'] as List<dynamic>?)
           ?.map<PatientCommunication>(
             (v) => PatientCommunication.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.communication'}),
             ),
           )
           .toList(),
       generalPractitioner: (json['generalPractitioner'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.generalPractitioner'}),
             ),
           )
           .toList(),
@@ -177,11 +207,13 @@ class Patient extends DomainResource {
         json,
         'managingOrganization',
         Reference.fromJson,
+        '$objectPath.managingOrganization',
       ),
       link: (json['link'] as List<dynamic>?)
           ?.map<PatientLink>(
             (v) => PatientLink.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.link'}),
             ),
           )
           .toList(),
@@ -450,36 +482,43 @@ class PatientContact extends BackboneElement {
     this.organization,
     this.period,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Patient.contact',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientContact.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Patient.contact';
     return PatientContact(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       relationship: (json['relationship'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relationship'}),
             ),
           )
           .toList(),
@@ -487,11 +526,13 @@ class PatientContact extends BackboneElement {
         json,
         'name',
         HumanName.fromJson,
+        '$objectPath.name',
       ),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
@@ -499,21 +540,25 @@ class PatientContact extends BackboneElement {
         json,
         'address',
         Address.fromJson,
+        '$objectPath.address',
       ),
       gender: JsonParser.parsePrimitive<AdministrativeGender>(
         json,
         'gender',
         AdministrativeGender.fromJson,
+        '$objectPath.gender',
       ),
       organization: JsonParser.parseObject<Reference>(
         json,
         'organization',
         Reference.fromJson,
+        '$objectPath.organization',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }
@@ -682,29 +727,35 @@ class PatientCommunication extends BackboneElement {
     required this.language,
     this.preferred,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Patient.communication',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientCommunication.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Patient.communication';
     return PatientCommunication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -712,11 +763,13 @@ class PatientCommunication extends BackboneElement {
         json,
         'language',
         CodeableConcept.fromJson,
+        '$objectPath.language',
       )!,
       preferred: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'preferred',
         FhirBoolean.fromJson,
+        '$objectPath.preferred',
       ),
     );
   }
@@ -848,29 +901,35 @@ class PatientLink extends BackboneElement {
     required this.other,
     required this.type,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Patient.link',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientLink.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Patient.link';
     return PatientLink(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -878,11 +937,13 @@ class PatientLink extends BackboneElement {
         json,
         'other',
         Reference.fromJson,
+        '$objectPath.other',
       )!,
       type: JsonParser.parsePrimitive<LinkType>(
         json,
         'type',
         LinkType.fromJson,
+        '$objectPath.type',
       )!,
     );
   }

@@ -21,22 +21,26 @@ class CodeableReference extends DataType
     this.concept,
     this.reference,
     super.disallowExtensions,
+    super.objectPath = 'CodeableReference',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeableReference.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'CodeableReference';
     return CodeableReference(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -44,11 +48,13 @@ class CodeableReference extends DataType
         json,
         'concept',
         CodeableConcept.fromJson,
+        '$objectPath.concept',
       ),
       reference: JsonParser.parseObject<Reference>(
         json,
         'reference',
         Reference.fromJson,
+        '$objectPath.reference',
       ),
     );
   }

@@ -11,6 +11,7 @@ class EncounterStatus extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Code',
   });
 
   /// Factory constructor to create [EncounterStatus] from JSON.

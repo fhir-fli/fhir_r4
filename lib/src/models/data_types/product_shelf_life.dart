@@ -18,29 +18,34 @@ class ProductShelfLife extends BackboneType {
     required this.period,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
+    super.objectPath = 'ProductShelfLife',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProductShelfLife.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'ProductShelfLife';
     return ProductShelfLife(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -48,25 +53,30 @@ class ProductShelfLife extends BackboneType {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       period: JsonParser.parseObject<Quantity>(
         json,
         'period',
         Quantity.fromJson,
+        '$objectPath.period',
       )!,
-      specialPrecautionsForStorage:
-          (json['specialPrecautionsForStorage'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      specialPrecautionsForStorage: (json['specialPrecautionsForStorage']
+              as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll(
+                    {'objectPath': '$objectPath.specialPrecautionsForStorage'}),
+            ),
+          )
+          .toList(),
     );
   }
 

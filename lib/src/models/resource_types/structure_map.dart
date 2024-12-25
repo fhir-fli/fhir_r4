@@ -37,6 +37,7 @@ class StructureMap extends CanonicalResource {
     this.import_,
     required this.group,
   }) : super(
+          objectPath: 'StructureMap',
           resourceType: R4ResourceType.StructureMap,
         );
 
@@ -44,50 +45,59 @@ class StructureMap extends CanonicalResource {
   factory StructureMap.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap';
     return StructureMap(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -95,11 +105,13 @@ class StructureMap extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+        '$objectPath.url',
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -107,41 +119,49 @@ class StructureMap extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -149,18 +169,21 @@ class StructureMap extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -168,16 +191,19 @@ class StructureMap extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       structure: (json['structure'] as List<dynamic>?)
           ?.map<StructureMapStructure>(
             (v) => StructureMapStructure.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.structure'}),
             ),
           )
           .toList(),
@@ -185,11 +211,13 @@ class StructureMap extends CanonicalResource {
         json,
         'import',
         FhirCanonical.fromJson,
+        '$objectPath.import',
       ),
       group: (json['group'] as List<dynamic>)
           .map<StructureMapGroup>(
             (v) => StructureMapGroup.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.group'}),
             ),
           )
           .toList(),
@@ -421,29 +449,35 @@ class StructureMapStructure extends BackboneElement {
     this.alias,
     this.documentation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.structure',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapStructure.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.structure';
     return StructureMapStructure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -451,21 +485,25 @@ class StructureMapStructure extends BackboneElement {
         json,
         'url',
         FhirCanonical.fromJson,
+        '$objectPath.url',
       )!,
       mode: JsonParser.parsePrimitive<StructureMapModelMode>(
         json,
         'mode',
         StructureMapModelMode.fromJson,
+        '$objectPath.mode',
       )!,
       alias: JsonParser.parsePrimitive<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
+        '$objectPath.alias',
       ),
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
     );
   }
@@ -612,29 +650,35 @@ class StructureMapGroup extends BackboneElement {
     required this.input,
     required this.rule,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapGroup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group';
     return StructureMapGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -642,33 +686,39 @@ class StructureMapGroup extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
+        '$objectPath.name',
       )!,
       extends_: JsonParser.parsePrimitive<FhirId>(
         json,
         'extends',
         FhirId.fromJson,
+        '$objectPath.extends',
       ),
       typeMode: JsonParser.parsePrimitive<StructureMapGroupTypeMode>(
         json,
         'typeMode',
         StructureMapGroupTypeMode.fromJson,
+        '$objectPath.typeMode',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
       input: (json['input'] as List<dynamic>)
           .map<StructureMapInput>(
             (v) => StructureMapInput.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.input'}),
             ),
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>)
           .map<StructureMapRule>(
             (v) => StructureMapRule.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.rule'}),
             ),
           )
           .toList(),
@@ -832,29 +882,35 @@ class StructureMapInput extends BackboneElement {
     required this.mode,
     this.documentation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.input',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapInput.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.input';
     return StructureMapInput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -862,21 +918,25 @@ class StructureMapInput extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
+        '$objectPath.name',
       )!,
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
+        '$objectPath.type',
       ),
       mode: JsonParser.parsePrimitive<StructureMapInputMode>(
         json,
         'mode',
         StructureMapInputMode.fromJson,
+        '$objectPath.mode',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
     );
   }
@@ -1022,29 +1082,35 @@ class StructureMapRule extends BackboneElement {
     this.dependent,
     this.documentation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.rule',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapRule.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.rule';
     return StructureMapRule(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1052,32 +1118,37 @@ class StructureMapRule extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
+        '$objectPath.name',
       )!,
       source: (json['source'] as List<dynamic>)
           .map<StructureMapSource>(
             (v) => StructureMapSource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.source'}),
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
           ?.map<StructureMapTarget>(
             (v) => StructureMapTarget.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>?)
           ?.map<StructureMapRule>(
             (v) => StructureMapRule.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.rule'}),
             ),
           )
           .toList(),
       dependent: (json['dependent'] as List<dynamic>?)
           ?.map<StructureMapDependent>(
             (v) => StructureMapDependent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dependent'}),
             ),
           )
           .toList(),
@@ -1085,6 +1156,7 @@ class StructureMapRule extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
     );
   }
@@ -1249,29 +1321,35 @@ class StructureMapSource extends BackboneElement {
     this.check,
     this.logMessage,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.rule.source',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapSource.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.rule.source';
     return StructureMapSource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1279,104 +1357,118 @@ class StructureMapSource extends BackboneElement {
         json,
         'context',
         FhirId.fromJson,
+        '$objectPath.context',
       )!,
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
+        '$objectPath.min',
       ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
+        '$objectPath.max',
       ),
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
+        '$objectPath.type',
       ),
       defaultValueX:
-          JsonParser.parsePolymorphic<DefaultValueXStructureMapSource>(json, {
-        'defaultValueBase64Binary': FhirBase64Binary.fromJson,
-        'defaultValueBoolean': FhirBoolean.fromJson,
-        'defaultValueCanonical': FhirCanonical.fromJson,
-        'defaultValueCode': FhirCode.fromJson,
-        'defaultValueDate': FhirDate.fromJson,
-        'defaultValueDateTime': FhirDateTime.fromJson,
-        'defaultValueDecimal': FhirDecimal.fromJson,
-        'defaultValueId': FhirId.fromJson,
-        'defaultValueInstant': FhirInstant.fromJson,
-        'defaultValueInteger': FhirInteger.fromJson,
-        'defaultValueMarkdown': FhirMarkdown.fromJson,
-        'defaultValueOid': FhirOid.fromJson,
-        'defaultValuePositiveInt': FhirPositiveInt.fromJson,
-        'defaultValueString': FhirString.fromJson,
-        'defaultValueTime': FhirTime.fromJson,
-        'defaultValueUnsignedInt': FhirUnsignedInt.fromJson,
-        'defaultValueUri': FhirUri.fromJson,
-        'defaultValueUrl': FhirUrl.fromJson,
-        'defaultValueUuid': FhirUuid.fromJson,
-        'defaultValueAddress': Address.fromJson,
-        'defaultValueAge': Age.fromJson,
-        'defaultValueAnnotation': Annotation.fromJson,
-        'defaultValueAttachment': Attachment.fromJson,
-        'defaultValueCodeableConcept': CodeableConcept.fromJson,
-        'defaultValueCoding': Coding.fromJson,
-        'defaultValueContactPoint': ContactPoint.fromJson,
-        'defaultValueCount': Count.fromJson,
-        'defaultValueDistance': Distance.fromJson,
-        'defaultValueDuration': FhirDuration.fromJson,
-        'defaultValueHumanName': HumanName.fromJson,
-        'defaultValueIdentifier': Identifier.fromJson,
-        'defaultValueMoney': Money.fromJson,
-        'defaultValuePeriod': Period.fromJson,
-        'defaultValueQuantity': Quantity.fromJson,
-        'defaultValueRange': Range.fromJson,
-        'defaultValueRatio': Ratio.fromJson,
-        'defaultValueReference': Reference.fromJson,
-        'defaultValueSampledData': SampledData.fromJson,
-        'defaultValueSignature': Signature.fromJson,
-        'defaultValueTiming': Timing.fromJson,
-        'defaultValueContactDetail': ContactDetail.fromJson,
-        'defaultValueContributor': Contributor.fromJson,
-        'defaultValueDataRequirement': DataRequirement.fromJson,
-        'defaultValueExpression': FhirExpression.fromJson,
-        'defaultValueParameterDefinition': ParameterDefinition.fromJson,
-        'defaultValueRelatedArtifact': RelatedArtifact.fromJson,
-        'defaultValueTriggerDefinition': TriggerDefinition.fromJson,
-        'defaultValueUsageContext': UsageContext.fromJson,
-        'defaultValueDosage': Dosage.fromJson,
-        'defaultValueMeta': FhirMeta.fromJson,
-      }),
+          JsonParser.parsePolymorphic<DefaultValueXStructureMapSource>(
+        json,
+        {
+          'defaultValueBase64Binary': FhirBase64Binary.fromJson,
+          'defaultValueBoolean': FhirBoolean.fromJson,
+          'defaultValueCanonical': FhirCanonical.fromJson,
+          'defaultValueCode': FhirCode.fromJson,
+          'defaultValueDate': FhirDate.fromJson,
+          'defaultValueDateTime': FhirDateTime.fromJson,
+          'defaultValueDecimal': FhirDecimal.fromJson,
+          'defaultValueId': FhirId.fromJson,
+          'defaultValueInstant': FhirInstant.fromJson,
+          'defaultValueInteger': FhirInteger.fromJson,
+          'defaultValueMarkdown': FhirMarkdown.fromJson,
+          'defaultValueOid': FhirOid.fromJson,
+          'defaultValuePositiveInt': FhirPositiveInt.fromJson,
+          'defaultValueString': FhirString.fromJson,
+          'defaultValueTime': FhirTime.fromJson,
+          'defaultValueUnsignedInt': FhirUnsignedInt.fromJson,
+          'defaultValueUri': FhirUri.fromJson,
+          'defaultValueUrl': FhirUrl.fromJson,
+          'defaultValueUuid': FhirUuid.fromJson,
+          'defaultValueAddress': Address.fromJson,
+          'defaultValueAge': Age.fromJson,
+          'defaultValueAnnotation': Annotation.fromJson,
+          'defaultValueAttachment': Attachment.fromJson,
+          'defaultValueCodeableConcept': CodeableConcept.fromJson,
+          'defaultValueCoding': Coding.fromJson,
+          'defaultValueContactPoint': ContactPoint.fromJson,
+          'defaultValueCount': Count.fromJson,
+          'defaultValueDistance': Distance.fromJson,
+          'defaultValueDuration': FhirDuration.fromJson,
+          'defaultValueHumanName': HumanName.fromJson,
+          'defaultValueIdentifier': Identifier.fromJson,
+          'defaultValueMoney': Money.fromJson,
+          'defaultValuePeriod': Period.fromJson,
+          'defaultValueQuantity': Quantity.fromJson,
+          'defaultValueRange': Range.fromJson,
+          'defaultValueRatio': Ratio.fromJson,
+          'defaultValueReference': Reference.fromJson,
+          'defaultValueSampledData': SampledData.fromJson,
+          'defaultValueSignature': Signature.fromJson,
+          'defaultValueTiming': Timing.fromJson,
+          'defaultValueContactDetail': ContactDetail.fromJson,
+          'defaultValueContributor': Contributor.fromJson,
+          'defaultValueDataRequirement': DataRequirement.fromJson,
+          'defaultValueExpression': FhirExpression.fromJson,
+          'defaultValueParameterDefinition': ParameterDefinition.fromJson,
+          'defaultValueRelatedArtifact': RelatedArtifact.fromJson,
+          'defaultValueTriggerDefinition': TriggerDefinition.fromJson,
+          'defaultValueUsageContext': UsageContext.fromJson,
+          'defaultValueDosage': Dosage.fromJson,
+          'defaultValueMeta': FhirMeta.fromJson,
+        },
+        objectPath,
+      ),
       element: JsonParser.parsePrimitive<FhirString>(
         json,
         'element',
         FhirString.fromJson,
+        '$objectPath.element',
       ),
       listMode: JsonParser.parsePrimitive<StructureMapSourceListMode>(
         json,
         'listMode',
         StructureMapSourceListMode.fromJson,
+        '$objectPath.listMode',
       ),
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
+        '$objectPath.variable',
       ),
       condition: JsonParser.parsePrimitive<FhirString>(
         json,
         'condition',
         FhirString.fromJson,
+        '$objectPath.condition',
       ),
       check: JsonParser.parsePrimitive<FhirString>(
         json,
         'check',
         FhirString.fromJson,
+        '$objectPath.check',
       ),
       logMessage: JsonParser.parsePrimitive<FhirString>(
         json,
         'logMessage',
         FhirString.fromJson,
+        '$objectPath.logMessage',
       ),
     );
   }
@@ -1583,29 +1675,35 @@ class StructureMapTarget extends BackboneElement {
     this.transform,
     this.parameter,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.rule.target',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapTarget.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.rule.target';
     return StructureMapTarget(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1613,41 +1711,49 @@ class StructureMapTarget extends BackboneElement {
         json,
         'context',
         FhirId.fromJson,
+        '$objectPath.context',
       ),
       contextType: JsonParser.parsePrimitive<StructureMapContextType>(
         json,
         'contextType',
         StructureMapContextType.fromJson,
+        '$objectPath.contextType',
       ),
       element: JsonParser.parsePrimitive<FhirString>(
         json,
         'element',
         FhirString.fromJson,
+        '$objectPath.element',
       ),
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
+        '$objectPath.variable',
       ),
       listMode: JsonParser.parsePrimitiveList<StructureMapTargetListMode>(
         json,
         'listMode',
         StructureMapTargetListMode.fromJson,
+        '$objectPath.listMode',
       ),
       listRuleId: JsonParser.parsePrimitive<FhirId>(
         json,
         'listRuleId',
         FhirId.fromJson,
+        '$objectPath.listRuleId',
       ),
       transform: JsonParser.parsePrimitive<StructureMapTransform>(
         json,
         'transform',
         StructureMapTransform.fromJson,
+        '$objectPath.transform',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<StructureMapParameter>(
             (v) => StructureMapParameter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parameter'}),
             ),
           )
           .toList(),
@@ -1818,39 +1924,49 @@ class StructureMapParameter extends BackboneElement {
     super.modifierExtension,
     required this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.rule.target.parameter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.rule.target.parameter';
     return StructureMapParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      valueX: JsonParser.parsePolymorphic<ValueXStructureMapParameter>(json, {
-        'valueId': FhirId.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXStructureMapParameter>(
+        json,
+        {
+          'valueId': FhirId.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 
@@ -1972,29 +2088,35 @@ class StructureMapDependent extends BackboneElement {
     required this.name,
     required this.variable,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureMap.group.rule.dependent',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapDependent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureMap.group.rule.dependent';
     return StructureMapDependent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2002,11 +2124,13 @@ class StructureMapDependent extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
+        '$objectPath.name',
       )!,
       variable: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'variable',
         FhirString.fromJson,
+        '$objectPath.variable',
       )!,
     );
   }

@@ -52,6 +52,7 @@ class ResearchElementDefinition extends DomainResource {
     this.variableType,
     required this.characteristic,
   }) : super(
+          objectPath: 'ResearchElementDefinition',
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
 
@@ -59,50 +60,59 @@ class ResearchElementDefinition extends DomainResource {
   factory ResearchElementDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchElementDefinition';
     return ResearchElementDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -110,11 +120,13 @@ class ResearchElementDefinition extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -122,56 +134,69 @@ class ResearchElementDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       shortTitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'shortTitle',
         FhirString.fromJson,
+        '$objectPath.shortTitle',
       ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
+        '$objectPath.subtitle',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
-      subjectX:
-          JsonParser.parsePolymorphic<SubjectXResearchElementDefinition>(json, {
-        'subjectCodeableConcept': CodeableConcept.fromJson,
-        'subjectReference': Reference.fromJson,
-      }),
+      subjectX: JsonParser.parsePolymorphic<SubjectXResearchElementDefinition>(
+        json,
+        {
+          'subjectCodeableConcept': CodeableConcept.fromJson,
+          'subjectReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -179,23 +204,27 @@ class ResearchElementDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       comment: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -203,71 +232,83 @@ class ResearchElementDefinition extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
+        '$objectPath.usage',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
+        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
+        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
+        '$objectPath.effectivePeriod',
       ),
       topic: (json['topic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.topic'}),
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.editor'}),
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reviewer'}),
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endorser'}),
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
             ),
           )
           .toList(),
@@ -275,21 +316,25 @@ class ResearchElementDefinition extends DomainResource {
         json,
         'library',
         FhirCanonical.fromJson,
+        '$objectPath.library',
       ),
       type: JsonParser.parsePrimitive<ResearchElementType>(
         json,
         'type',
         ResearchElementType.fromJson,
+        '$objectPath.type',
       )!,
       variableType: JsonParser.parsePrimitive<VariableType>(
         json,
         'variableType',
         VariableType.fromJson,
+        '$objectPath.variableType',
       ),
       characteristic: (json['characteristic'] as List<dynamic>)
           .map<ResearchElementDefinitionCharacteristic>(
             (v) => ResearchElementDefinitionCharacteristic.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.characteristic'}),
             ),
           )
           .toList(),
@@ -730,43 +775,54 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ResearchElementDefinition.characteristic',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchElementDefinitionCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchElementDefinition.characteristic';
     return ResearchElementDefinitionCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       definitionX: JsonParser.parsePolymorphic<
-          DefinitionXResearchElementDefinitionCharacteristic>(json, {
-        'definitionCodeableConcept': CodeableConcept.fromJson,
-        'definitionCanonical': FhirCanonical.fromJson,
-        'definitionExpression': FhirExpression.fromJson,
-        'definitionDataRequirement': DataRequirement.fromJson,
-      })!,
+          DefinitionXResearchElementDefinitionCharacteristic>(
+        json,
+        {
+          'definitionCodeableConcept': CodeableConcept.fromJson,
+          'definitionCanonical': FhirCanonical.fromJson,
+          'definitionExpression': FhirExpression.fromJson,
+          'definitionDataRequirement': DataRequirement.fromJson,
+        },
+        objectPath,
+      )!,
       usageContext: (json['usageContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.usageContext'}),
             ),
           )
           .toList(),
@@ -774,55 +830,71 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         json,
         'exclude',
         FhirBoolean.fromJson,
+        '$objectPath.exclude',
       ),
       unitOfMeasure: JsonParser.parseObject<CodeableConcept>(
         json,
         'unitOfMeasure',
         CodeableConcept.fromJson,
+        '$objectPath.unitOfMeasure',
       ),
       studyEffectiveDescription: JsonParser.parsePrimitive<FhirString>(
         json,
         'studyEffectiveDescription',
         FhirString.fromJson,
+        '$objectPath.studyEffectiveDescription',
       ),
       studyEffectiveX: JsonParser.parsePolymorphic<
-          StudyEffectiveXResearchElementDefinitionCharacteristic>(json, {
-        'studyEffectiveDateTime': FhirDateTime.fromJson,
-        'studyEffectivePeriod': Period.fromJson,
-        'studyEffectiveDuration': FhirDuration.fromJson,
-        'studyEffectiveTiming': Timing.fromJson,
-      }),
+          StudyEffectiveXResearchElementDefinitionCharacteristic>(
+        json,
+        {
+          'studyEffectiveDateTime': FhirDateTime.fromJson,
+          'studyEffectivePeriod': Period.fromJson,
+          'studyEffectiveDuration': FhirDuration.fromJson,
+          'studyEffectiveTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       studyEffectiveTimeFromStart: JsonParser.parseObject<FhirDuration>(
         json,
         'studyEffectiveTimeFromStart',
         FhirDuration.fromJson,
+        '$objectPath.studyEffectiveTimeFromStart',
       ),
       studyEffectiveGroupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
         json,
         'studyEffectiveGroupMeasure',
         GroupMeasure.fromJson,
+        '$objectPath.studyEffectiveGroupMeasure',
       ),
       participantEffectiveDescription: JsonParser.parsePrimitive<FhirString>(
         json,
         'participantEffectiveDescription',
         FhirString.fromJson,
+        '$objectPath.participantEffectiveDescription',
       ),
       participantEffectiveX: JsonParser.parsePolymorphic<
-          ParticipantEffectiveXResearchElementDefinitionCharacteristic>(json, {
-        'participantEffectiveDateTime': FhirDateTime.fromJson,
-        'participantEffectivePeriod': Period.fromJson,
-        'participantEffectiveDuration': FhirDuration.fromJson,
-        'participantEffectiveTiming': Timing.fromJson,
-      }),
+          ParticipantEffectiveXResearchElementDefinitionCharacteristic>(
+        json,
+        {
+          'participantEffectiveDateTime': FhirDateTime.fromJson,
+          'participantEffectivePeriod': Period.fromJson,
+          'participantEffectiveDuration': FhirDuration.fromJson,
+          'participantEffectiveTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       participantEffectiveTimeFromStart: JsonParser.parseObject<FhirDuration>(
         json,
         'participantEffectiveTimeFromStart',
         FhirDuration.fromJson,
+        '$objectPath.participantEffectiveTimeFromStart',
       ),
       participantEffectiveGroupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
         json,
         'participantEffectiveGroupMeasure',
         GroupMeasure.fromJson,
+        '$objectPath.participantEffectiveGroupMeasure',
       ),
     );
   }
@@ -971,25 +1043,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 

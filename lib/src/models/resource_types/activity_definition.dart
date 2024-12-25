@@ -66,6 +66,7 @@ class ActivityDefinition extends CanonicalResource {
     this.transform,
     this.dynamicValue,
   }) : super(
+          objectPath: 'ActivityDefinition',
           resourceType: R4ResourceType.ActivityDefinition,
         );
 
@@ -73,50 +74,59 @@ class ActivityDefinition extends CanonicalResource {
   factory ActivityDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ActivityDefinition';
     return ActivityDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -124,11 +134,13 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -136,51 +148,64 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
+        '$objectPath.subtitle',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
-      subjectX: JsonParser.parsePolymorphic<SubjectXActivityDefinition>(json, {
-        'subjectCodeableConcept': CodeableConcept.fromJson,
-        'subjectReference': Reference.fromJson,
-        'subjectCanonical': FhirCanonical.fromJson,
-      }),
+      subjectX: JsonParser.parsePolymorphic<SubjectXActivityDefinition>(
+        json,
+        {
+          'subjectCodeableConcept': CodeableConcept.fromJson,
+          'subjectReference': Reference.fromJson,
+          'subjectCanonical': FhirCanonical.fromJson,
+        },
+        objectPath,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -188,18 +213,21 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -207,71 +235,83 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
+        '$objectPath.usage',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
+        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
+        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
+        '$objectPath.effectivePeriod',
       ),
       topic: (json['topic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.topic'}),
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.editor'}),
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reviewer'}),
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endorser'}),
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
             ),
           )
           .toList(),
@@ -279,111 +319,137 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'library',
         FhirCanonical.fromJson,
+        '$objectPath.library',
       ),
       kind: JsonParser.parsePrimitive<RequestResourceType>(
         json,
         'kind',
         RequestResourceType.fromJson,
+        '$objectPath.kind',
       ),
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       intent: JsonParser.parsePrimitive<RequestIntent>(
         json,
         'intent',
         RequestIntent.fromJson,
+        '$objectPath.intent',
       ),
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
+        '$objectPath.doNotPerform',
       ),
-      timingX: JsonParser.parsePolymorphic<TimingXActivityDefinition>(json, {
-        'timingTiming': Timing.fromJson,
-        'timingDateTime': FhirDateTime.fromJson,
-        'timingAge': Age.fromJson,
-        'timingPeriod': Period.fromJson,
-        'timingRange': Range.fromJson,
-        'timingDuration': FhirDuration.fromJson,
-      }),
+      timingX: JsonParser.parsePolymorphic<TimingXActivityDefinition>(
+        json,
+        {
+          'timingTiming': Timing.fromJson,
+          'timingDateTime': FhirDateTime.fromJson,
+          'timingAge': Age.fromJson,
+          'timingPeriod': Period.fromJson,
+          'timingRange': Range.fromJson,
+          'timingDuration': FhirDuration.fromJson,
+        },
+        objectPath,
+      ),
       location: JsonParser.parseObject<Reference>(
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<ActivityDefinitionParticipant>(
             (v) => ActivityDefinitionParticipant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.participant'}),
             ),
           )
           .toList(),
-      productX: JsonParser.parsePolymorphic<ProductXActivityDefinition>(json, {
-        'productReference': Reference.fromJson,
-        'productCodeableConcept': CodeableConcept.fromJson,
-      }),
+      productX: JsonParser.parsePolymorphic<ProductXActivityDefinition>(
+        json,
+        {
+          'productReference': Reference.fromJson,
+          'productCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       dosage: (json['dosage'] as List<dynamic>?)
           ?.map<Dosage>(
             (v) => Dosage.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dosage'}),
             ),
           )
           .toList(),
       bodySite: (json['bodySite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.bodySite'}),
             ),
           )
           .toList(),
       specimenRequirement: (json['specimenRequirement'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specimenRequirement'}),
             ),
           )
           .toList(),
       observationRequirement: (json['observationRequirement'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.observationRequirement'}),
             ),
           )
           .toList(),
-      observationResultRequirement:
-          (json['observationResultRequirement'] as List<dynamic>?)
-              ?.map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      observationResultRequirement: (json['observationResultRequirement']
+              as List<dynamic>?)
+          ?.map<Reference>(
+            (v) => Reference.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll(
+                    {'objectPath': '$objectPath.observationResultRequirement'}),
+            ),
+          )
+          .toList(),
       transform: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'transform',
         FhirCanonical.fromJson,
+        '$objectPath.transform',
       ),
       dynamicValue: (json['dynamicValue'] as List<dynamic>?)
           ?.map<ActivityDefinitionDynamicValue>(
             (v) => ActivityDefinitionDynamicValue.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dynamicValue'}),
             ),
           )
           .toList(),
@@ -865,29 +931,35 @@ class ActivityDefinitionParticipant extends BackboneElement {
     required this.type,
     this.role,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ActivityDefinition.participant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ActivityDefinition.participant';
     return ActivityDefinitionParticipant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -895,11 +967,13 @@ class ActivityDefinitionParticipant extends BackboneElement {
         json,
         'type',
         ActionParticipantType.fromJson,
+        '$objectPath.type',
       )!,
       role: JsonParser.parseObject<CodeableConcept>(
         json,
         'role',
         CodeableConcept.fromJson,
+        '$objectPath.role',
       ),
     );
   }
@@ -1032,29 +1106,35 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     required this.path,
     required this.expression,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ActivityDefinition.dynamicValue',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionDynamicValue.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ActivityDefinition.dynamicValue';
     return ActivityDefinitionDynamicValue(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1062,11 +1142,13 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
         json,
         'path',
         FhirString.fromJson,
+        '$objectPath.path',
       )!,
       expression: JsonParser.parseObject<FhirExpression>(
         json,
         'expression',
         FhirExpression.fromJson,
+        '$objectPath.expression',
       )!,
     );
   }

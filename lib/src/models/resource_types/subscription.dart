@@ -30,6 +30,7 @@ class Subscription extends DomainResource {
     this.error,
     required this.channel,
   }) : super(
+          objectPath: 'Subscription',
           resourceType: R4ResourceType.Subscription,
         );
 
@@ -37,50 +38,59 @@ class Subscription extends DomainResource {
   factory Subscription.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Subscription';
     return Subscription(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -88,11 +98,13 @@ class Subscription extends DomainResource {
         json,
         'status',
         SubscriptionStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -100,26 +112,31 @@ class Subscription extends DomainResource {
         json,
         'end',
         FhirInstant.fromJson,
+        '$objectPath.end',
       ),
       reason: JsonParser.parsePrimitive<FhirString>(
         json,
         'reason',
         FhirString.fromJson,
+        '$objectPath.reason',
       )!,
       criteria: JsonParser.parsePrimitive<FhirString>(
         json,
         'criteria',
         FhirString.fromJson,
+        '$objectPath.criteria',
       )!,
       error: JsonParser.parsePrimitive<FhirString>(
         json,
         'error',
         FhirString.fromJson,
+        '$objectPath.error',
       ),
       channel: JsonParser.parseObject<SubscriptionChannel>(
         json,
         'channel',
         SubscriptionChannel.fromJson,
+        '$objectPath.channel',
       )!,
     );
   }
@@ -306,29 +323,35 @@ class SubscriptionChannel extends BackboneElement {
     this.payload,
     this.header,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Subscription.channel',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionChannel.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Subscription.channel';
     return SubscriptionChannel(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -336,21 +359,25 @@ class SubscriptionChannel extends BackboneElement {
         json,
         'type',
         SubscriptionChannelType.fromJson,
+        '$objectPath.type',
       )!,
       endpoint: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'endpoint',
         FhirUrl.fromJson,
+        '$objectPath.endpoint',
       ),
       payload: JsonParser.parsePrimitive<FhirCode>(
         json,
         'payload',
         FhirCode.fromJson,
+        '$objectPath.payload',
       ),
       header: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'header',
         FhirString.fromJson,
+        '$objectPath.header',
       ),
     );
   }

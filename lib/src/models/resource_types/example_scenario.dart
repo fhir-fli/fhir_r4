@@ -35,6 +35,7 @@ class ExampleScenario extends DomainResource {
     this.process,
     this.workflow,
   }) : super(
+          objectPath: 'ExampleScenario',
           resourceType: R4ResourceType.ExampleScenario,
         );
 
@@ -42,50 +43,59 @@ class ExampleScenario extends DomainResource {
   factory ExampleScenario.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario';
     return ExampleScenario(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -93,11 +103,13 @@ class ExampleScenario extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -105,50 +117,59 @@ class ExampleScenario extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -156,30 +177,35 @@ class ExampleScenario extends DomainResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       purpose: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       actor: (json['actor'] as List<dynamic>?)
           ?.map<ExampleScenarioActor>(
             (v) => ExampleScenarioActor.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.actor'}),
             ),
           )
           .toList(),
       instance: (json['instance'] as List<dynamic>?)
           ?.map<ExampleScenarioInstance>(
             (v) => ExampleScenarioInstance.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.instance'}),
             ),
           )
           .toList(),
       process: (json['process'] as List<dynamic>?)
           ?.map<ExampleScenarioProcess>(
             (v) => ExampleScenarioProcess.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.process'}),
             ),
           )
           .toList(),
@@ -187,6 +213,7 @@ class ExampleScenario extends DomainResource {
         json,
         'workflow',
         FhirCanonical.fromJson,
+        '$objectPath.workflow',
       ),
     );
   }
@@ -471,29 +498,35 @@ class ExampleScenarioActor extends BackboneElement {
     this.name,
     this.description,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.actor',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioActor.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.actor';
     return ExampleScenarioActor(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -501,21 +534,25 @@ class ExampleScenarioActor extends BackboneElement {
         json,
         'actorId',
         FhirString.fromJson,
+        '$objectPath.actorId',
       )!,
       type: JsonParser.parsePrimitive<ExampleScenarioActorType>(
         json,
         'type',
         ExampleScenarioActorType.fromJson,
+        '$objectPath.type',
       )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
     );
   }
@@ -661,29 +698,35 @@ class ExampleScenarioInstance extends BackboneElement {
     this.version,
     this.containedInstance,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.instance',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioInstance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.instance';
     return ExampleScenarioInstance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -691,33 +734,39 @@ class ExampleScenarioInstance extends BackboneElement {
         json,
         'resourceId',
         FhirString.fromJson,
+        '$objectPath.resourceId',
       )!,
       resourceType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'resourceType',
         FhirCode.fromJson,
+        '$objectPath.resourceType',
       )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       version: (json['version'] as List<dynamic>?)
           ?.map<ExampleScenarioVersion>(
             (v) => ExampleScenarioVersion.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.version'}),
             ),
           )
           .toList(),
       containedInstance: (json['containedInstance'] as List<dynamic>?)
           ?.map<ExampleScenarioContainedInstance>(
             (v) => ExampleScenarioContainedInstance.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.containedInstance'}),
             ),
           )
           .toList(),
@@ -876,29 +925,35 @@ class ExampleScenarioVersion extends BackboneElement {
     required this.versionId,
     required this.description,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.instance.version',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioVersion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.instance.version';
     return ExampleScenarioVersion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -906,11 +961,13 @@ class ExampleScenarioVersion extends BackboneElement {
         json,
         'versionId',
         FhirString.fromJson,
+        '$objectPath.versionId',
       )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       )!,
     );
   }
@@ -1039,29 +1096,35 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     required this.resourceId,
     this.versionId,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.instance.containedInstance',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioContainedInstance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.instance.containedInstance';
     return ExampleScenarioContainedInstance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1069,11 +1132,13 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         json,
         'resourceId',
         FhirString.fromJson,
+        '$objectPath.resourceId',
       )!,
       versionId: JsonParser.parsePrimitive<FhirString>(
         json,
         'versionId',
         FhirString.fromJson,
+        '$objectPath.versionId',
       ),
     );
   }
@@ -1204,29 +1269,35 @@ class ExampleScenarioProcess extends BackboneElement {
     this.postConditions,
     this.step,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.process',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioProcess.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.process';
     return ExampleScenarioProcess(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1234,26 +1305,31 @@ class ExampleScenarioProcess extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       preConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'preConditions',
         FhirMarkdown.fromJson,
+        '$objectPath.preConditions',
       ),
       postConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'postConditions',
         FhirMarkdown.fromJson,
+        '$objectPath.postConditions',
       ),
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.step'}),
             ),
           )
           .toList(),
@@ -1406,36 +1482,43 @@ class ExampleScenarioStep extends BackboneElement {
     this.operation,
     this.alternative,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.process.step',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioStep.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.process.step';
     return ExampleScenarioStep(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       process: (json['process'] as List<dynamic>?)
           ?.map<ExampleScenarioProcess>(
             (v) => ExampleScenarioProcess.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.process'}),
             ),
           )
           .toList(),
@@ -1443,16 +1526,19 @@ class ExampleScenarioStep extends BackboneElement {
         json,
         'pause',
         FhirBoolean.fromJson,
+        '$objectPath.pause',
       ),
       operation: JsonParser.parseObject<ExampleScenarioOperation>(
         json,
         'operation',
         ExampleScenarioOperation.fromJson,
+        '$objectPath.operation',
       ),
       alternative: (json['alternative'] as List<dynamic>?)
           ?.map<ExampleScenarioAlternative>(
             (v) => ExampleScenarioAlternative.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.alternative'}),
             ),
           )
           .toList(),
@@ -1605,29 +1691,35 @@ class ExampleScenarioOperation extends BackboneElement {
     this.request,
     this.response,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.process.step.operation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioOperation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.process.step.operation';
     return ExampleScenarioOperation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1635,51 +1727,61 @@ class ExampleScenarioOperation extends BackboneElement {
         json,
         'number',
         FhirString.fromJson,
+        '$objectPath.number',
       )!,
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
+        '$objectPath.type',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       initiator: JsonParser.parsePrimitive<FhirString>(
         json,
         'initiator',
         FhirString.fromJson,
+        '$objectPath.initiator',
       ),
       receiver: JsonParser.parsePrimitive<FhirString>(
         json,
         'receiver',
         FhirString.fromJson,
+        '$objectPath.receiver',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       initiatorActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'initiatorActive',
         FhirBoolean.fromJson,
+        '$objectPath.initiatorActive',
       ),
       receiverActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'receiverActive',
         FhirBoolean.fromJson,
+        '$objectPath.receiverActive',
       ),
       request: JsonParser.parseObject<ExampleScenarioContainedInstance>(
         json,
         'request',
         ExampleScenarioContainedInstance.fromJson,
+        '$objectPath.request',
       ),
       response: JsonParser.parseObject<ExampleScenarioContainedInstance>(
         json,
         'response',
         ExampleScenarioContainedInstance.fromJson,
+        '$objectPath.response',
       ),
     );
   }
@@ -1865,29 +1967,35 @@ class ExampleScenarioAlternative extends BackboneElement {
     this.description,
     this.step,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ExampleScenario.process.step.alternative',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioAlternative.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ExampleScenario.process.step.alternative';
     return ExampleScenarioAlternative(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1895,16 +2003,19 @@ class ExampleScenarioAlternative extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.step'}),
             ),
           )
           .toList(),

@@ -43,6 +43,7 @@ class Observation extends DomainResource {
     this.derivedFrom,
     this.component,
   }) : super(
+          objectPath: 'Observation',
           resourceType: R4ResourceType.Observation,
         );
 
@@ -50,71 +51,83 @@ class Observation extends DomainResource {
   factory Observation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Observation';
     return Observation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -122,11 +135,13 @@ class Observation extends DomainResource {
         json,
         'status',
         ObservationStatus.fromJson,
+        '$objectPath.status',
       )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -134,16 +149,19 @@ class Observation extends DomainResource {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.focus'}),
             ),
           )
           .toList(),
@@ -151,54 +169,68 @@ class Observation extends DomainResource {
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
-      effectiveX: JsonParser.parsePolymorphic<EffectiveXObservation>(json, {
-        'effectiveDateTime': FhirDateTime.fromJson,
-        'effectivePeriod': Period.fromJson,
-        'effectiveTiming': Timing.fromJson,
-        'effectiveInstant': FhirInstant.fromJson,
-      }),
+      effectiveX: JsonParser.parsePolymorphic<EffectiveXObservation>(
+        json,
+        {
+          'effectiveDateTime': FhirDateTime.fromJson,
+          'effectivePeriod': Period.fromJson,
+          'effectiveTiming': Timing.fromJson,
+          'effectiveInstant': FhirInstant.fromJson,
+        },
+        objectPath,
+      ),
       issued: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'issued',
         FhirInstant.fromJson,
+        '$objectPath.issued',
       ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performer'}),
             ),
           )
           .toList(),
-      valueX: JsonParser.parsePolymorphic<ValueXObservation>(json, {
-        'valueQuantity': Quantity.fromJson,
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueRange': Range.fromJson,
-        'valueRatio': Ratio.fromJson,
-        'valueSampledData': SampledData.fromJson,
-        'valueTime': FhirTime.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valuePeriod': Period.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXObservation>(
+        json,
+        {
+          'valueQuantity': Quantity.fromJson,
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueRange': Range.fromJson,
+          'valueRatio': Ratio.fromJson,
+          'valueSampledData': SampledData.fromJson,
+          'valueTime': FhirTime.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valuePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
+        '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.interpretation'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -206,47 +238,55 @@ class Observation extends DomainResource {
         json,
         'bodySite',
         CodeableConcept.fromJson,
+        '$objectPath.bodySite',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       specimen: JsonParser.parseObject<Reference>(
         json,
         'specimen',
         Reference.fromJson,
+        '$objectPath.specimen',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
+        '$objectPath.device',
       ),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.referenceRange'}),
             ),
           )
           .toList(),
       hasMember: (json['hasMember'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.hasMember'}),
             ),
           )
           .toList(),
       derivedFrom: (json['derivedFrom'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.derivedFrom'}),
             ),
           )
           .toList(),
       component: (json['component'] as List<dynamic>?)
           ?.map<ObservationComponent>(
             (v) => ObservationComponent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.component'}),
             ),
           )
           .toList(),
@@ -599,29 +639,35 @@ class ObservationReferenceRange extends BackboneElement {
     this.age,
     this.text,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Observation.referenceRange',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Observation.referenceRange';
     return ObservationReferenceRange(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -629,21 +675,25 @@ class ObservationReferenceRange extends BackboneElement {
         json,
         'low',
         Quantity.fromJson,
+        '$objectPath.low',
       ),
       high: JsonParser.parseObject<Quantity>(
         json,
         'high',
         Quantity.fromJson,
+        '$objectPath.high',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       appliesTo: (json['appliesTo'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.appliesTo'}),
             ),
           )
           .toList(),
@@ -651,11 +701,13 @@ class ObservationReferenceRange extends BackboneElement {
         json,
         'age',
         Range.fromJson,
+        '$objectPath.age',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
     );
   }
@@ -834,29 +886,35 @@ class ObservationComponent extends BackboneElement {
     this.interpretation,
     this.referenceRange,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Observation.component',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationComponent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Observation.component';
     return ObservationComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -864,36 +922,44 @@ class ObservationComponent extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXObservationComponent>(json, {
-        'valueQuantity': Quantity.fromJson,
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueRange': Range.fromJson,
-        'valueRatio': Ratio.fromJson,
-        'valueSampledData': SampledData.fromJson,
-        'valueTime': FhirTime.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valuePeriod': Period.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXObservationComponent>(
+        json,
+        {
+          'valueQuantity': Quantity.fromJson,
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueRange': Range.fromJson,
+          'valueRatio': Ratio.fromJson,
+          'valueSampledData': SampledData.fromJson,
+          'valueTime': FhirTime.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valuePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
+        '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.interpretation'}),
             ),
           )
           .toList(),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.referenceRange'}),
             ),
           )
           .toList(),

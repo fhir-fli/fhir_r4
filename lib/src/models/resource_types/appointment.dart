@@ -42,6 +42,7 @@ class Appointment extends DomainResource {
     required this.participant,
     this.requestedPeriod,
   }) : super(
+          objectPath: 'Appointment',
           resourceType: R4ResourceType.Appointment,
         );
 
@@ -49,57 +50,67 @@ class Appointment extends DomainResource {
   factory Appointment.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Appointment';
     return Appointment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -107,30 +118,35 @@ class Appointment extends DomainResource {
         json,
         'status',
         AppointmentStatus.fromJson,
+        '$objectPath.status',
       )!,
       cancelationReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'cancelationReason',
         CodeableConcept.fromJson,
+        '$objectPath.cancelationReason',
       ),
       serviceCategory: (json['serviceCategory'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.serviceCategory'}),
             ),
           )
           .toList(),
       serviceType: (json['serviceType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.serviceType'}),
             ),
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specialty'}),
             ),
           )
           .toList(),
@@ -138,18 +154,21 @@ class Appointment extends DomainResource {
         json,
         'appointmentType',
         CodeableConcept.fromJson,
+        '$objectPath.appointmentType',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
@@ -157,16 +176,19 @@ class Appointment extends DomainResource {
         json,
         'priority',
         FhirUnsignedInt.fromJson,
+        '$objectPath.priority',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       supportingInformation: (json['supportingInformation'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supportingInformation'}),
             ),
           )
           .toList(),
@@ -174,21 +196,25 @@ class Appointment extends DomainResource {
         json,
         'start',
         FhirInstant.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'end',
         FhirInstant.fromJson,
+        '$objectPath.end',
       ),
       minutesDuration: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'minutesDuration',
         FhirPositiveInt.fromJson,
+        '$objectPath.minutesDuration',
       ),
       slot: (json['slot'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.slot'}),
             ),
           )
           .toList(),
@@ -196,35 +222,41 @@ class Appointment extends DomainResource {
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
       patientInstruction: JsonParser.parsePrimitive<FhirString>(
         json,
         'patientInstruction',
         FhirString.fromJson,
+        '$objectPath.patientInstruction',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       participant: (json['participant'] as List<dynamic>)
           .map<AppointmentParticipant>(
             (v) => AppointmentParticipant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.participant'}),
             ),
           )
           .toList(),
       requestedPeriod: (json['requestedPeriod'] as List<dynamic>?)
           ?.map<Period>(
             (v) => Period.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.requestedPeriod'}),
             ),
           )
           .toList(),
@@ -554,36 +586,43 @@ class AppointmentParticipant extends BackboneElement {
     required this.status,
     this.period,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Appointment.participant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AppointmentParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Appointment.participant';
     return AppointmentParticipant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
@@ -591,21 +630,25 @@ class AppointmentParticipant extends BackboneElement {
         json,
         'actor',
         Reference.fromJson,
+        '$objectPath.actor',
       ),
       required_: JsonParser.parsePrimitive<ParticipantRequired>(
         json,
         'required',
         ParticipantRequired.fromJson,
+        '$objectPath.required',
       ),
       status: JsonParser.parsePrimitive<ParticipationStatus>(
         json,
         'status',
         ParticipationStatus.fromJson,
+        '$objectPath.status',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }

@@ -31,6 +31,7 @@ class Specimen extends DomainResource {
     this.condition,
     this.note,
   }) : super(
+          objectPath: 'Specimen',
           resourceType: R4ResourceType.Specimen,
         );
 
@@ -38,57 +39,67 @@ class Specimen extends DomainResource {
   factory Specimen.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Specimen';
     return Specimen(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -96,38 +107,45 @@ class Specimen extends DomainResource {
         json,
         'accessionIdentifier',
         Identifier.fromJson,
+        '$objectPath.accessionIdentifier',
       ),
       status: JsonParser.parsePrimitive<SpecimenStatus>(
         json,
         'status',
         SpecimenStatus.fromJson,
+        '$objectPath.status',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       receivedTime: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'receivedTime',
         FhirDateTime.fromJson,
+        '$objectPath.receivedTime',
       ),
       parent: (json['parent'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parent'}),
             ),
           )
           .toList(),
       request: (json['request'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.request'}),
             ),
           )
           .toList(),
@@ -135,32 +153,37 @@ class Specimen extends DomainResource {
         json,
         'collection',
         SpecimenCollection.fromJson,
+        '$objectPath.collection',
       ),
       processing: (json['processing'] as List<dynamic>?)
           ?.map<SpecimenProcessing>(
             (v) => SpecimenProcessing.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.processing'}),
             ),
           )
           .toList(),
       container: (json['container'] as List<dynamic>?)
           ?.map<SpecimenContainer>(
             (v) => SpecimenContainer.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.container'}),
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.condition'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -397,29 +420,35 @@ class SpecimenCollection extends BackboneElement {
     this.bodySite,
     this.fastingStatusX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Specimen.collection',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenCollection.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Specimen.collection';
     return SpecimenCollection(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -427,37 +456,49 @@ class SpecimenCollection extends BackboneElement {
         json,
         'collector',
         Reference.fromJson,
+        '$objectPath.collector',
       ),
-      collectedX:
-          JsonParser.parsePolymorphic<CollectedXSpecimenCollection>(json, {
-        'collectedDateTime': FhirDateTime.fromJson,
-        'collectedPeriod': Period.fromJson,
-      }),
+      collectedX: JsonParser.parsePolymorphic<CollectedXSpecimenCollection>(
+        json,
+        {
+          'collectedDateTime': FhirDateTime.fromJson,
+          'collectedPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       duration: JsonParser.parseObject<FhirDuration>(
         json,
         'duration',
         FhirDuration.fromJson,
+        '$objectPath.duration',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       bodySite: JsonParser.parseObject<CodeableConcept>(
         json,
         'bodySite',
         CodeableConcept.fromJson,
+        '$objectPath.bodySite',
       ),
       fastingStatusX:
-          JsonParser.parsePolymorphic<FastingStatusXSpecimenCollection>(json, {
-        'fastingStatusCodeableConcept': CodeableConcept.fromJson,
-        'fastingStatusDuration': FhirDuration.fromJson,
-      }),
+          JsonParser.parsePolymorphic<FastingStatusXSpecimenCollection>(
+        json,
+        {
+          'fastingStatusCodeableConcept': CodeableConcept.fromJson,
+          'fastingStatusDuration': FhirDuration.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -635,29 +676,35 @@ class SpecimenProcessing extends BackboneElement {
     this.additive,
     this.timeX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Specimen.processing',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenProcessing.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Specimen.processing';
     return SpecimenProcessing(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -665,23 +712,30 @@ class SpecimenProcessing extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       procedure: JsonParser.parseObject<CodeableConcept>(
         json,
         'procedure',
         CodeableConcept.fromJson,
+        '$objectPath.procedure',
       ),
       additive: (json['additive'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.additive'}),
             ),
           )
           .toList(),
-      timeX: JsonParser.parsePolymorphic<TimeXSpecimenProcessing>(json, {
-        'timeDateTime': FhirDateTime.fromJson,
-        'timePeriod': Period.fromJson,
-      }),
+      timeX: JsonParser.parsePolymorphic<TimeXSpecimenProcessing>(
+        json,
+        {
+          'timeDateTime': FhirDateTime.fromJson,
+          'timePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -833,36 +887,43 @@ class SpecimenContainer extends BackboneElement {
     this.specimenQuantity,
     this.additiveX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Specimen.container',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenContainer.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Specimen.container';
     return SpecimenContainer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -870,26 +931,34 @@ class SpecimenContainer extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       capacity: JsonParser.parseObject<Quantity>(
         json,
         'capacity',
         Quantity.fromJson,
+        '$objectPath.capacity',
       ),
       specimenQuantity: JsonParser.parseObject<Quantity>(
         json,
         'specimenQuantity',
         Quantity.fromJson,
+        '$objectPath.specimenQuantity',
       ),
-      additiveX: JsonParser.parsePolymorphic<AdditiveXSpecimenContainer>(json, {
-        'additiveCodeableConcept': CodeableConcept.fromJson,
-        'additiveReference': Reference.fromJson,
-      }),
+      additiveX: JsonParser.parsePolymorphic<AdditiveXSpecimenContainer>(
+        json,
+        {
+          'additiveCodeableConcept': CodeableConcept.fromJson,
+          'additiveReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

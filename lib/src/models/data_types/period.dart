@@ -72,22 +72,26 @@ class Period extends DataType
     this.start,
     this.end,
     super.disallowExtensions,
+    super.objectPath = 'Period',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Period.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Period';
     return Period(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -95,11 +99,13 @@ class Period extends DataType
         json,
         'start',
         FhirDateTime.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'end',
         FhirDateTime.fromJson,
+        '$objectPath.end',
       ),
     );
   }

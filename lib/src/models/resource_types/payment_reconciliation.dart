@@ -34,6 +34,7 @@ class PaymentReconciliation extends DomainResource {
     this.formCode,
     this.processNote,
   }) : super(
+          objectPath: 'PaymentReconciliation',
           resourceType: R4ResourceType.PaymentReconciliation,
         );
 
@@ -41,57 +42,67 @@ class PaymentReconciliation extends DomainResource {
   factory PaymentReconciliation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PaymentReconciliation';
     return PaymentReconciliation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -99,61 +110,73 @@ class PaymentReconciliation extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       )!,
       paymentIssuer: JsonParser.parseObject<Reference>(
         json,
         'paymentIssuer',
         Reference.fromJson,
+        '$objectPath.paymentIssuer',
       ),
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
+        '$objectPath.request',
       ),
       requestor: JsonParser.parseObject<Reference>(
         json,
         'requestor',
         Reference.fromJson,
+        '$objectPath.requestor',
       ),
       outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
         json,
         'outcome',
         RemittanceOutcome.fromJson,
+        '$objectPath.outcome',
       ),
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
+        '$objectPath.disposition',
       ),
       paymentDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'paymentDate',
         FhirDate.fromJson,
+        '$objectPath.paymentDate',
       )!,
       paymentAmount: JsonParser.parseObject<Money>(
         json,
         'paymentAmount',
         Money.fromJson,
+        '$objectPath.paymentAmount',
       )!,
       paymentIdentifier: JsonParser.parseObject<Identifier>(
         json,
         'paymentIdentifier',
         Identifier.fromJson,
+        '$objectPath.paymentIdentifier',
       ),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<PaymentReconciliationDetail>(
             (v) => PaymentReconciliationDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.detail'}),
             ),
           )
           .toList(),
@@ -161,11 +184,13 @@ class PaymentReconciliation extends DomainResource {
         json,
         'formCode',
         CodeableConcept.fromJson,
+        '$objectPath.formCode',
       ),
       processNote: (json['processNote'] as List<dynamic>?)
           ?.map<PaymentReconciliationProcessNote>(
             (v) => PaymentReconciliationProcessNote.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.processNote'}),
             ),
           )
           .toList(),
@@ -416,29 +441,35 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.payee,
     this.amount,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'PaymentReconciliation.detail',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PaymentReconciliation.detail';
     return PaymentReconciliationDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -446,51 +477,61 @@ class PaymentReconciliationDetail extends BackboneElement {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       predecessor: JsonParser.parseObject<Identifier>(
         json,
         'predecessor',
         Identifier.fromJson,
+        '$objectPath.predecessor',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
+        '$objectPath.request',
       ),
       submitter: JsonParser.parseObject<Reference>(
         json,
         'submitter',
         Reference.fromJson,
+        '$objectPath.submitter',
       ),
       response: JsonParser.parseObject<Reference>(
         json,
         'response',
         Reference.fromJson,
+        '$objectPath.response',
       ),
       date: JsonParser.parsePrimitive<FhirDate>(
         json,
         'date',
         FhirDate.fromJson,
+        '$objectPath.date',
       ),
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
         Reference.fromJson,
+        '$objectPath.responsible',
       ),
       payee: JsonParser.parseObject<Reference>(
         json,
         'payee',
         Reference.fromJson,
+        '$objectPath.payee',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
+        '$objectPath.amount',
       ),
     );
   }
@@ -680,29 +721,35 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     this.type,
     this.text,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'PaymentReconciliation.processNote',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationProcessNote.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PaymentReconciliation.processNote';
     return PaymentReconciliationProcessNote(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -710,11 +757,13 @@ class PaymentReconciliationProcessNote extends BackboneElement {
         json,
         'type',
         NoteType.fromJson,
+        '$objectPath.type',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
     );
   }

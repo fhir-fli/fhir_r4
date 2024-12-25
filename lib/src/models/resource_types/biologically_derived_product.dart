@@ -31,6 +31,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     this.manipulation,
     this.storage,
   }) : super(
+          objectPath: 'BiologicallyDerivedProduct',
           resourceType: R4ResourceType.BiologicallyDerivedProduct,
         );
 
@@ -38,57 +39,67 @@ class BiologicallyDerivedProduct extends DomainResource {
   factory BiologicallyDerivedProduct.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BiologicallyDerivedProduct';
     return BiologicallyDerivedProduct(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -97,21 +108,25 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'productCategory',
         BiologicallyDerivedProductCategory.fromJson,
+        '$objectPath.productCategory',
       ),
       productCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'productCode',
         CodeableConcept.fromJson,
+        '$objectPath.productCode',
       ),
       status: JsonParser.parsePrimitive<BiologicallyDerivedProductStatus>(
         json,
         'status',
         BiologicallyDerivedProductStatus.fromJson,
+        '$objectPath.status',
       ),
       request: (json['request'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.request'}),
             ),
           )
           .toList(),
@@ -119,11 +134,13 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'quantity',
         FhirInteger.fromJson,
+        '$objectPath.quantity',
       ),
       parent: (json['parent'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parent'}),
             ),
           )
           .toList(),
@@ -131,11 +148,13 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'collection',
         BiologicallyDerivedProductCollection.fromJson,
+        '$objectPath.collection',
       ),
       processing: (json['processing'] as List<dynamic>?)
           ?.map<BiologicallyDerivedProductProcessing>(
             (v) => BiologicallyDerivedProductProcessing.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.processing'}),
             ),
           )
           .toList(),
@@ -144,11 +163,13 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'manipulation',
         BiologicallyDerivedProductManipulation.fromJson,
+        '$objectPath.manipulation',
       ),
       storage: (json['storage'] as List<dynamic>?)
           ?.map<BiologicallyDerivedProductStorage>(
             (v) => BiologicallyDerivedProductStorage.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.storage'}),
             ),
           )
           .toList(),
@@ -367,29 +388,35 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.source,
     this.collectedX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'BiologicallyDerivedProduct.collection',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BiologicallyDerivedProduct.collection';
     return BiologicallyDerivedProductCollection(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -397,17 +424,23 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         json,
         'collector',
         Reference.fromJson,
+        '$objectPath.collector',
       ),
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
         Reference.fromJson,
+        '$objectPath.source',
       ),
       collectedX: JsonParser.parsePolymorphic<
-          CollectedXBiologicallyDerivedProductCollection>(json, {
-        'collectedDateTime': FhirDateTime.fromJson,
-        'collectedPeriod': Period.fromJson,
-      }),
+          CollectedXBiologicallyDerivedProductCollection>(
+        json,
+        {
+          'collectedDateTime': FhirDateTime.fromJson,
+          'collectedPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -550,29 +583,35 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.additive,
     this.timeX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'BiologicallyDerivedProduct.processing',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BiologicallyDerivedProduct.processing';
     return BiologicallyDerivedProductProcessing(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -580,22 +619,29 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       procedure: JsonParser.parseObject<CodeableConcept>(
         json,
         'procedure',
         CodeableConcept.fromJson,
+        '$objectPath.procedure',
       ),
       additive: JsonParser.parseObject<Reference>(
         json,
         'additive',
         Reference.fromJson,
+        '$objectPath.additive',
       ),
       timeX: JsonParser.parsePolymorphic<
-          TimeXBiologicallyDerivedProductProcessing>(json, {
-        'timeDateTime': FhirDateTime.fromJson,
-        'timePeriod': Period.fromJson,
-      }),
+          TimeXBiologicallyDerivedProductProcessing>(
+        json,
+        {
+          'timeDateTime': FhirDateTime.fromJson,
+          'timePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -742,29 +788,35 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     this.description,
     this.timeX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'BiologicallyDerivedProduct.manipulation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BiologicallyDerivedProduct.manipulation';
     return BiologicallyDerivedProductManipulation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -772,12 +824,17 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       timeX: JsonParser.parsePolymorphic<
-          TimeXBiologicallyDerivedProductManipulation>(json, {
-        'timeDateTime': FhirDateTime.fromJson,
-        'timePeriod': Period.fromJson,
-      }),
+          TimeXBiologicallyDerivedProductManipulation>(
+        json,
+        {
+          'timeDateTime': FhirDateTime.fromJson,
+          'timePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -910,29 +967,35 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     this.scale,
     this.duration,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'BiologicallyDerivedProduct.storage',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductStorage.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BiologicallyDerivedProduct.storage';
     return BiologicallyDerivedProductStorage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -940,21 +1003,25 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       temperature: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'temperature',
         FhirDecimal.fromJson,
+        '$objectPath.temperature',
       ),
       scale: JsonParser.parsePrimitive<BiologicallyDerivedProductStorageScale>(
         json,
         'scale',
         BiologicallyDerivedProductStorageScale.fromJson,
+        '$objectPath.scale',
       ),
       duration: JsonParser.parseObject<Period>(
         json,
         'duration',
         Period.fromJson,
+        '$objectPath.duration',
       ),
     );
   }

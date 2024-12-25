@@ -30,6 +30,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Integer64',
   }) : super(input != null ? _validateInteger64(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -42,8 +43,16 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   }
 
   /// Factory constructor to create a [FhirInteger64] from a [String].
-  factory FhirInteger64.fromString(String input, {Element? element}) {
-    return FhirInteger64(BigInt.parse(input), element: element);
+  factory FhirInteger64.fromString(
+    String input, {
+    Element? element,
+    String? objectPath,
+  }) {
+    return FhirInteger64(
+      BigInt.parse(input),
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create a [FhirInteger64] from a [BigInt].
@@ -56,7 +65,12 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirInteger64.fromString(value ?? '', element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirInteger64.fromString(
+      value ?? '',
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create a [FhirInteger64] from YAML input.

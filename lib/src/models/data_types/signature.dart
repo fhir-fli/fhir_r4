@@ -34,29 +34,34 @@ class Signature extends DataType
     this.sigFormat,
     this.data,
     super.disallowExtensions,
+    super.objectPath = 'Signature',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Signature.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Signature';
     return Signature(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       type: (json['type'] as List<dynamic>)
           .map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
@@ -64,31 +69,37 @@ class Signature extends DataType
         json,
         'when',
         FhirInstant.fromJson,
+        '$objectPath.when',
       )!,
       who: JsonParser.parseObject<Reference>(
         json,
         'who',
         Reference.fromJson,
+        '$objectPath.who',
       )!,
       onBehalfOf: JsonParser.parseObject<Reference>(
         json,
         'onBehalfOf',
         Reference.fromJson,
+        '$objectPath.onBehalfOf',
       ),
       targetFormat: JsonParser.parsePrimitive<FhirCode>(
         json,
         'targetFormat',
         FhirCode.fromJson,
+        '$objectPath.targetFormat',
       ),
       sigFormat: JsonParser.parsePrimitive<FhirCode>(
         json,
         'sigFormat',
         FhirCode.fromJson,
+        '$objectPath.sigFormat',
       ),
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
+        '$objectPath.data',
       ),
     );
   }

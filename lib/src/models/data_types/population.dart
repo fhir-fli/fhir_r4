@@ -17,50 +17,62 @@ class Population extends BackboneType {
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
+    super.objectPath = 'Population',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Population.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Population';
     return Population(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      ageX: JsonParser.parsePolymorphic<AgeXPopulation>(json, {
-        'ageRange': Range.fromJson,
-        'ageCodeableConcept': CodeableConcept.fromJson,
-      }),
+      ageX: JsonParser.parsePolymorphic<AgeXPopulation>(
+        json,
+        {
+          'ageRange': Range.fromJson,
+          'ageCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       gender: JsonParser.parseObject<CodeableConcept>(
         json,
         'gender',
         CodeableConcept.fromJson,
+        '$objectPath.gender',
       ),
       race: JsonParser.parseObject<CodeableConcept>(
         json,
         'race',
         CodeableConcept.fromJson,
+        '$objectPath.race',
       ),
       physiologicalCondition: JsonParser.parseObject<CodeableConcept>(
         json,
         'physiologicalCondition',
         CodeableConcept.fromJson,
+        '$objectPath.physiologicalCondition',
       ),
     );
   }

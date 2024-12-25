@@ -30,6 +30,7 @@ class AdministrableProductDefinition extends DomainResource {
     this.property,
     required this.routeOfAdministration,
   }) : super(
+          objectPath: 'AdministrableProductDefinition',
           resourceType: R4ResourceType.AdministrableProductDefinition,
         );
 
@@ -37,57 +38,67 @@ class AdministrableProductDefinition extends DomainResource {
   factory AdministrableProductDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdministrableProductDefinition';
     return AdministrableProductDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -95,11 +106,13 @@ class AdministrableProductDefinition extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       formOf: (json['formOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.formOf'}),
             ),
           )
           .toList(),
@@ -107,23 +120,27 @@ class AdministrableProductDefinition extends DomainResource {
         json,
         'administrableDoseForm',
         CodeableConcept.fromJson,
+        '$objectPath.administrableDoseForm',
       ),
       unitOfPresentation: JsonParser.parseObject<CodeableConcept>(
         json,
         'unitOfPresentation',
         CodeableConcept.fromJson,
+        '$objectPath.unitOfPresentation',
       ),
       producedFrom: (json['producedFrom'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.producedFrom'}),
             ),
           )
           .toList(),
       ingredient: (json['ingredient'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.ingredient'}),
             ),
           )
           .toList(),
@@ -131,18 +148,21 @@ class AdministrableProductDefinition extends DomainResource {
         json,
         'device',
         Reference.fromJson,
+        '$objectPath.device',
       ),
       property: (json['property'] as List<dynamic>?)
           ?.map<AdministrableProductDefinitionProperty>(
             (v) => AdministrableProductDefinitionProperty.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.property'}),
             ),
           )
           .toList(),
       routeOfAdministration: (json['routeOfAdministration'] as List<dynamic>)
           .map<AdministrableProductDefinitionRouteOfAdministration>(
             (v) => AdministrableProductDefinitionRouteOfAdministration.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.routeOfAdministration'}),
             ),
           )
           .toList(),
@@ -382,29 +402,35 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     this.valueX,
     this.status,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'AdministrableProductDefinition.property',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionProperty.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdministrableProductDefinition.property';
     return AdministrableProductDefinitionProperty(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -412,19 +438,25 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       valueX: JsonParser.parsePolymorphic<
-          ValueXAdministrableProductDefinitionProperty>(json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueDate': FhirDate.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueAttachment': Attachment.fromJson,
-      }),
+          ValueXAdministrableProductDefinitionProperty>(
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueDate': FhirDate.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueAttachment': Attachment.fromJson,
+        },
+        objectPath,
+      ),
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
         CodeableConcept.fromJson,
+        '$objectPath.status',
       ),
     );
   }
@@ -572,29 +604,35 @@ class AdministrableProductDefinitionRouteOfAdministration
     this.maxTreatmentPeriod,
     this.targetSpecies,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'AdministrableProductDefinition.routeOfAdministration',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionRouteOfAdministration.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdministrableProductDefinition.routeOfAdministration';
     return AdministrableProductDefinitionRouteOfAdministration(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -602,36 +640,43 @@ class AdministrableProductDefinitionRouteOfAdministration
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       firstDose: JsonParser.parseObject<Quantity>(
         json,
         'firstDose',
         Quantity.fromJson,
+        '$objectPath.firstDose',
       ),
       maxSingleDose: JsonParser.parseObject<Quantity>(
         json,
         'maxSingleDose',
         Quantity.fromJson,
+        '$objectPath.maxSingleDose',
       ),
       maxDosePerDay: JsonParser.parseObject<Quantity>(
         json,
         'maxDosePerDay',
         Quantity.fromJson,
+        '$objectPath.maxDosePerDay',
       ),
       maxDosePerTreatmentPeriod: JsonParser.parseObject<Ratio>(
         json,
         'maxDosePerTreatmentPeriod',
         Ratio.fromJson,
+        '$objectPath.maxDosePerTreatmentPeriod',
       ),
       maxTreatmentPeriod: JsonParser.parseObject<FhirDuration>(
         json,
         'maxTreatmentPeriod',
         FhirDuration.fromJson,
+        '$objectPath.maxTreatmentPeriod',
       ),
       targetSpecies: (json['targetSpecies'] as List<dynamic>?)
           ?.map<AdministrableProductDefinitionTargetSpecies>(
             (v) => AdministrableProductDefinitionTargetSpecies.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.targetSpecies'}),
             ),
           )
           .toList(),
@@ -802,29 +847,37 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     required this.code,
     this.withdrawalPeriod,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath:
+              'AdministrableProductDefinition.routeOfAdministration.targetSpecies',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionTargetSpecies.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath =
+        'AdministrableProductDefinition.routeOfAdministration.targetSpecies';
     return AdministrableProductDefinitionTargetSpecies(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -832,11 +885,13 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       withdrawalPeriod: (json['withdrawalPeriod'] as List<dynamic>?)
           ?.map<AdministrableProductDefinitionWithdrawalPeriod>(
             (v) => AdministrableProductDefinitionWithdrawalPeriod.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.withdrawalPeriod'}),
             ),
           )
           .toList(),
@@ -970,29 +1025,37 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     required this.value,
     this.supportingInformation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath:
+              'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath =
+        'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod';
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1000,16 +1063,19 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
         json,
         'tissue',
         CodeableConcept.fromJson,
+        '$objectPath.tissue',
       )!,
       value: JsonParser.parseObject<Quantity>(
         json,
         'value',
         Quantity.fromJson,
+        '$objectPath.value',
       )!,
       supportingInformation: JsonParser.parsePrimitive<FhirString>(
         json,
         'supportingInformation',
         FhirString.fromJson,
+        '$objectPath.supportingInformation',
       ),
     );
   }

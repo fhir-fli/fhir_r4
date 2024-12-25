@@ -28,6 +28,7 @@ class BodyStructure extends DomainResource {
     this.image,
     required this.patient,
   }) : super(
+          objectPath: 'BodyStructure',
           resourceType: R4ResourceType.BodyStructure,
         );
 
@@ -35,57 +36,67 @@ class BodyStructure extends DomainResource {
   factory BodyStructure.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'BodyStructure';
     return BodyStructure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -93,21 +104,25 @@ class BodyStructure extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       morphology: JsonParser.parseObject<CodeableConcept>(
         json,
         'morphology',
         CodeableConcept.fromJson,
+        '$objectPath.morphology',
       ),
       location: JsonParser.parseObject<CodeableConcept>(
         json,
         'location',
         CodeableConcept.fromJson,
+        '$objectPath.location',
       ),
       locationQualifier: (json['locationQualifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.locationQualifier'}),
             ),
           )
           .toList(),
@@ -115,11 +130,13 @@ class BodyStructure extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       image: (json['image'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.image'}),
             ),
           )
           .toList(),
@@ -127,6 +144,7 @@ class BodyStructure extends DomainResource {
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
     );
   }

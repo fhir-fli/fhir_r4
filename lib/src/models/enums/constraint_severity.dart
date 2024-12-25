@@ -11,6 +11,7 @@ class ConstraintSeverity extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Code',
   });
 
   /// Factory constructor to create [ConstraintSeverity] from JSON.

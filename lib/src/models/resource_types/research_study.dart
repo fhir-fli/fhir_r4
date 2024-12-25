@@ -48,6 +48,7 @@ class ResearchStudy extends DomainResource {
     this.arm,
     this.objective,
   }) : super(
+          objectPath: 'ResearchStudy',
           resourceType: R4ResourceType.ResearchStudy,
         );
 
@@ -55,57 +56,67 @@ class ResearchStudy extends DomainResource {
   factory ResearchStudy.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchStudy';
     return ResearchStudy(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -113,18 +124,21 @@ class ResearchStudy extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       protocol: (json['protocol'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.protocol'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -132,63 +146,73 @@ class ResearchStudy extends DomainResource {
         json,
         'status',
         ResearchStudyStatus.fromJson,
+        '$objectPath.status',
       )!,
       primaryPurposeType: JsonParser.parseObject<CodeableConcept>(
         json,
         'primaryPurposeType',
         CodeableConcept.fromJson,
+        '$objectPath.primaryPurposeType',
       ),
       phase: JsonParser.parseObject<CodeableConcept>(
         json,
         'phase',
         CodeableConcept.fromJson,
+        '$objectPath.phase',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.focus'}),
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.condition'}),
             ),
           )
           .toList(),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
             ),
           )
           .toList(),
       keyword: (json['keyword'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.keyword'}),
             ),
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.location'}),
             ),
           )
           .toList(),
@@ -196,11 +220,13 @@ class ResearchStudy extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       enrollment: (json['enrollment'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.enrollment'}),
             ),
           )
           .toList(),
@@ -208,21 +234,25 @@ class ResearchStudy extends DomainResource {
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       sponsor: JsonParser.parseObject<Reference>(
         json,
         'sponsor',
         Reference.fromJson,
+        '$objectPath.sponsor',
       ),
       principalInvestigator: JsonParser.parseObject<Reference>(
         json,
         'principalInvestigator',
         Reference.fromJson,
+        '$objectPath.principalInvestigator',
       ),
       site: (json['site'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.site'}),
             ),
           )
           .toList(),
@@ -230,25 +260,29 @@ class ResearchStudy extends DomainResource {
         json,
         'reasonStopped',
         CodeableConcept.fromJson,
+        '$objectPath.reasonStopped',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       arm: (json['arm'] as List<dynamic>?)
           ?.map<ResearchStudyArm>(
             (v) => ResearchStudyArm.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.arm'}),
             ),
           )
           .toList(),
       objective: (json['objective'] as List<dynamic>?)
           ?.map<ResearchStudyObjective>(
             (v) => ResearchStudyObjective.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.objective'}),
             ),
           )
           .toList(),
@@ -579,29 +613,35 @@ class ResearchStudyArm extends BackboneElement {
     this.type,
     this.description,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ResearchStudy.arm',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyArm.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchStudy.arm';
     return ResearchStudyArm(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -609,16 +649,19 @@ class ResearchStudyArm extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
     );
   }
@@ -757,29 +800,35 @@ class ResearchStudyObjective extends BackboneElement {
     this.name,
     this.type,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ResearchStudy.objective',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyObjective.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchStudy.objective';
     return ResearchStudyObjective(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -787,11 +836,13 @@ class ResearchStudyObjective extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
     );
   }

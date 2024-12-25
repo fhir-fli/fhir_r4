@@ -30,22 +30,26 @@ class RelatedArtifact extends DataType
     this.document,
     this.resource,
     super.disallowExtensions,
+    super.objectPath = 'RelatedArtifact',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedArtifact.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'RelatedArtifact';
     return RelatedArtifact(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -53,36 +57,43 @@ class RelatedArtifact extends DataType
         json,
         'type',
         RelatedArtifactType.fromJson,
+        '$objectPath.type',
       )!,
       label: JsonParser.parsePrimitive<FhirString>(
         json,
         'label',
         FhirString.fromJson,
+        '$objectPath.label',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       citation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'citation',
         FhirMarkdown.fromJson,
+        '$objectPath.citation',
       ),
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
+        '$objectPath.url',
       ),
       document: JsonParser.parseObject<Attachment>(
         json,
         'document',
         Attachment.fromJson,
+        '$objectPath.document',
       ),
       resource: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'resource',
         FhirCanonical.fromJson,
+        '$objectPath.resource',
       ),
     );
   }

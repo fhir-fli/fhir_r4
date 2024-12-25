@@ -49,6 +49,7 @@ class ChargeItem extends DomainResource {
     this.note,
     this.supportingInformation,
   }) : super(
+          objectPath: 'ChargeItem',
           resourceType: R4ResourceType.ChargeItem,
         );
 
@@ -56,57 +57,67 @@ class ChargeItem extends DomainResource {
   factory ChargeItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItem';
     return ChargeItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -114,21 +125,25 @@ class ChargeItem extends DomainResource {
         json,
         'definitionUri',
         FhirUri.fromJson,
+        '$objectPath.definitionUri',
       ),
       definitionCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'definitionCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.definitionCanonical',
       ),
       status: JsonParser.parsePrimitive<ChargeItemStatus>(
         json,
         'status',
         ChargeItemStatus.fromJson,
+        '$objectPath.status',
       )!,
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -136,26 +151,34 @@ class ChargeItem extends DomainResource {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
       context: JsonParser.parseObject<Reference>(
         json,
         'context',
         Reference.fromJson,
+        '$objectPath.context',
       ),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXChargeItem>(json, {
-        'occurrenceDateTime': FhirDateTime.fromJson,
-        'occurrencePeriod': Period.fromJson,
-        'occurrenceTiming': Timing.fromJson,
-      }),
+      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXChargeItem>(
+        json,
+        {
+          'occurrenceDateTime': FhirDateTime.fromJson,
+          'occurrencePeriod': Period.fromJson,
+          'occurrenceTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<ChargeItemPerformer>(
             (v) => ChargeItemPerformer.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performer'}),
             ),
           )
           .toList(),
@@ -163,26 +186,31 @@ class ChargeItem extends DomainResource {
         json,
         'performingOrganization',
         Reference.fromJson,
+        '$objectPath.performingOrganization',
       ),
       requestingOrganization: JsonParser.parseObject<Reference>(
         json,
         'requestingOrganization',
         Reference.fromJson,
+        '$objectPath.requestingOrganization',
       ),
       costCenter: JsonParser.parseObject<Reference>(
         json,
         'costCenter',
         Reference.fromJson,
+        '$objectPath.costCenter',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       bodysite: (json['bodysite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.bodysite'}),
             ),
           )
           .toList(),
@@ -190,63 +218,77 @@ class ChargeItem extends DomainResource {
         json,
         'factorOverride',
         FhirDecimal.fromJson,
+        '$objectPath.factorOverride',
       ),
       priceOverride: JsonParser.parseObject<Money>(
         json,
         'priceOverride',
         Money.fromJson,
+        '$objectPath.priceOverride',
       ),
       overrideReason: JsonParser.parsePrimitive<FhirString>(
         json,
         'overrideReason',
         FhirString.fromJson,
+        '$objectPath.overrideReason',
       ),
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
+        '$objectPath.enterer',
       ),
       enteredDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'enteredDate',
         FhirDateTime.fromJson,
+        '$objectPath.enteredDate',
       ),
       reason: (json['reason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reason'}),
             ),
           )
           .toList(),
       service: (json['service'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.service'}),
             ),
           )
           .toList(),
-      productX: JsonParser.parsePolymorphic<ProductXChargeItem>(json, {
-        'productReference': Reference.fromJson,
-        'productCodeableConcept': CodeableConcept.fromJson,
-      }),
+      productX: JsonParser.parsePolymorphic<ProductXChargeItem>(
+        json,
+        {
+          'productReference': Reference.fromJson,
+          'productCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       account: (json['account'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.account'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       supportingInformation: (json['supportingInformation'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supportingInformation'}),
             ),
           )
           .toList(),
@@ -582,29 +624,35 @@ class ChargeItemPerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ChargeItem.performer',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemPerformer.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItem.performer';
     return ChargeItemPerformer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -612,11 +660,13 @@ class ChargeItemPerformer extends BackboneElement {
         json,
         'function',
         CodeableConcept.fromJson,
+        '$objectPath.function',
       ),
       actor: JsonParser.parseObject<Reference>(
         json,
         'actor',
         Reference.fromJson,
+        '$objectPath.actor',
       )!,
     );
   }

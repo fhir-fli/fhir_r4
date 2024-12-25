@@ -24,6 +24,7 @@ class SpecimenDefinition extends DomainResource {
     this.collection,
     this.typeTested,
   }) : super(
+          objectPath: 'SpecimenDefinition',
           resourceType: R4ResourceType.SpecimenDefinition,
         );
 
@@ -31,50 +32,59 @@ class SpecimenDefinition extends DomainResource {
   factory SpecimenDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SpecimenDefinition';
     return SpecimenDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -82,16 +92,19 @@ class SpecimenDefinition extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       typeCollected: JsonParser.parseObject<CodeableConcept>(
         json,
         'typeCollected',
         CodeableConcept.fromJson,
+        '$objectPath.typeCollected',
       ),
       patientPreparation: (json['patientPreparation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.patientPreparation'}),
             ),
           )
           .toList(),
@@ -99,18 +112,21 @@ class SpecimenDefinition extends DomainResource {
         json,
         'timeAspect',
         FhirString.fromJson,
+        '$objectPath.timeAspect',
       ),
       collection: (json['collection'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.collection'}),
             ),
           )
           .toList(),
       typeTested: (json['typeTested'] as List<dynamic>?)
           ?.map<SpecimenDefinitionTypeTested>(
             (v) => SpecimenDefinitionTypeTested.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.typeTested'}),
             ),
           )
           .toList(),
@@ -292,29 +308,35 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     this.rejectionCriterion,
     this.handling,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SpecimenDefinition.typeTested',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionTypeTested.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SpecimenDefinition.typeTested';
     return SpecimenDefinitionTypeTested(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -322,43 +344,51 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'isDerived',
         FhirBoolean.fromJson,
+        '$objectPath.isDerived',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       preference: JsonParser.parsePrimitive<SpecimenContainedPreference>(
         json,
         'preference',
         SpecimenContainedPreference.fromJson,
+        '$objectPath.preference',
       )!,
       container: JsonParser.parseObject<SpecimenDefinitionContainer>(
         json,
         'container',
         SpecimenDefinitionContainer.fromJson,
+        '$objectPath.container',
       ),
       requirement: JsonParser.parsePrimitive<FhirString>(
         json,
         'requirement',
         FhirString.fromJson,
+        '$objectPath.requirement',
       ),
       retentionTime: JsonParser.parseObject<FhirDuration>(
         json,
         'retentionTime',
         FhirDuration.fromJson,
+        '$objectPath.retentionTime',
       ),
       rejectionCriterion: (json['rejectionCriterion'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.rejectionCriterion'}),
             ),
           )
           .toList(),
       handling: (json['handling'] as List<dynamic>?)
           ?.map<SpecimenDefinitionHandling>(
             (v) => SpecimenDefinitionHandling.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.handling'}),
             ),
           )
           .toList(),
@@ -540,29 +570,35 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.additive,
     this.preparation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SpecimenDefinition.typeTested.container',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SpecimenDefinition.typeTested.container';
     return SpecimenDefinitionContainer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -570,36 +606,46 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'material',
         CodeableConcept.fromJson,
+        '$objectPath.material',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       cap: JsonParser.parseObject<CodeableConcept>(
         json,
         'cap',
         CodeableConcept.fromJson,
+        '$objectPath.cap',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       capacity: JsonParser.parseObject<Quantity>(
         json,
         'capacity',
         Quantity.fromJson,
+        '$objectPath.capacity',
       ),
       minimumVolumeX: JsonParser.parsePolymorphic<
-          MinimumVolumeXSpecimenDefinitionContainer>(json, {
-        'minimumVolumeQuantity': Quantity.fromJson,
-        'minimumVolumeString': FhirString.fromJson,
-      }),
+          MinimumVolumeXSpecimenDefinitionContainer>(
+        json,
+        {
+          'minimumVolumeQuantity': Quantity.fromJson,
+          'minimumVolumeString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       additive: (json['additive'] as List<dynamic>?)
           ?.map<SpecimenDefinitionAdditive>(
             (v) => SpecimenDefinitionAdditive.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.additive'}),
             ),
           )
           .toList(),
@@ -607,6 +653,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'preparation',
         FhirString.fromJson,
+        '$objectPath.preparation',
       ),
     );
   }
@@ -782,38 +829,47 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.modifierExtension,
     required this.additiveX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SpecimenDefinition.typeTested.container.additive',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionAdditive.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SpecimenDefinition.typeTested.container.additive';
     return SpecimenDefinitionAdditive(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       additiveX:
           JsonParser.parsePolymorphic<AdditiveXSpecimenDefinitionAdditive>(
-              json, {
-        'additiveCodeableConcept': CodeableConcept.fromJson,
-        'additiveReference': Reference.fromJson,
-      })!,
+        json,
+        {
+          'additiveCodeableConcept': CodeableConcept.fromJson,
+          'additiveReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 
@@ -939,29 +995,35 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.maxDuration,
     this.instruction,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SpecimenDefinition.typeTested.handling',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SpecimenDefinition.typeTested.handling';
     return SpecimenDefinitionHandling(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -969,21 +1031,25 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'temperatureQualifier',
         CodeableConcept.fromJson,
+        '$objectPath.temperatureQualifier',
       ),
       temperatureRange: JsonParser.parseObject<Range>(
         json,
         'temperatureRange',
         Range.fromJson,
+        '$objectPath.temperatureRange',
       ),
       maxDuration: JsonParser.parseObject<FhirDuration>(
         json,
         'maxDuration',
         FhirDuration.fromJson,
+        '$objectPath.maxDuration',
       ),
       instruction: JsonParser.parsePrimitive<FhirString>(
         json,
         'instruction',
         FhirString.fromJson,
+        '$objectPath.instruction',
       ),
     );
   }

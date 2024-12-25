@@ -38,6 +38,7 @@ class RequestGroup extends DomainResource {
     this.note,
     this.action,
   }) : super(
+          objectPath: 'RequestGroup',
           resourceType: R4ResourceType.RequestGroup,
         );
 
@@ -45,57 +46,67 @@ class RequestGroup extends DomainResource {
   factory RequestGroup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RequestGroup';
     return RequestGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -103,23 +114,27 @@ class RequestGroup extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       replaces: (json['replaces'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.replaces'}),
             ),
           )
           .toList(),
@@ -127,72 +142,85 @@ class RequestGroup extends DomainResource {
         json,
         'groupIdentifier',
         Identifier.fromJson,
+        '$objectPath.groupIdentifier',
       ),
       status: JsonParser.parsePrimitive<RequestStatus>(
         json,
         'status',
         RequestStatus.fromJson,
+        '$objectPath.status',
       )!,
       intent: JsonParser.parsePrimitive<RequestIntent>(
         json,
         'intent',
         RequestIntent.fromJson,
+        '$objectPath.intent',
       )!,
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authoredOn',
         FhirDateTime.fromJson,
+        '$objectPath.authoredOn',
       ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
         Reference.fromJson,
+        '$objectPath.author',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
           ?.map<RequestGroupAction>(
             (v) => RequestGroupAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
@@ -482,29 +510,35 @@ class RequestGroupAction extends BackboneElement {
     this.resource,
     this.action,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'RequestGroup.action',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupAction.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RequestGroup.action';
     return RequestGroupAction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -512,67 +546,81 @@ class RequestGroupAction extends BackboneElement {
         json,
         'prefix',
         FhirString.fromJson,
+        '$objectPath.prefix',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       textEquivalent: JsonParser.parsePrimitive<FhirString>(
         json,
         'textEquivalent',
         FhirString.fromJson,
+        '$objectPath.textEquivalent',
       ),
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.code'}),
             ),
           )
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.documentation'}),
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<RequestGroupCondition>(
             (v) => RequestGroupCondition.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.condition'}),
             ),
           )
           .toList(),
       relatedAction: (json['relatedAction'] as List<dynamic>?)
           ?.map<RequestGroupRelatedAction>(
             (v) => RequestGroupRelatedAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedAction'}),
             ),
           )
           .toList(),
-      timingX: JsonParser.parsePolymorphic<TimingXRequestGroupAction>(json, {
-        'timingDateTime': FhirDateTime.fromJson,
-        'timingAge': Age.fromJson,
-        'timingPeriod': Period.fromJson,
-        'timingDuration': FhirDuration.fromJson,
-        'timingRange': Range.fromJson,
-        'timingTiming': Timing.fromJson,
-      }),
+      timingX: JsonParser.parsePolymorphic<TimingXRequestGroupAction>(
+        json,
+        {
+          'timingDateTime': FhirDateTime.fromJson,
+          'timingAge': Age.fromJson,
+          'timingPeriod': Period.fromJson,
+          'timingDuration': FhirDuration.fromJson,
+          'timingRange': Range.fromJson,
+          'timingTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.participant'}),
             ),
           )
           .toList(),
@@ -580,41 +628,49 @@ class RequestGroupAction extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       groupingBehavior: JsonParser.parsePrimitive<ActionGroupingBehavior>(
         json,
         'groupingBehavior',
         ActionGroupingBehavior.fromJson,
+        '$objectPath.groupingBehavior',
       ),
       selectionBehavior: JsonParser.parsePrimitive<ActionSelectionBehavior>(
         json,
         'selectionBehavior',
         ActionSelectionBehavior.fromJson,
+        '$objectPath.selectionBehavior',
       ),
       requiredBehavior: JsonParser.parsePrimitive<ActionRequiredBehavior>(
         json,
         'requiredBehavior',
         ActionRequiredBehavior.fromJson,
+        '$objectPath.requiredBehavior',
       ),
       precheckBehavior: JsonParser.parsePrimitive<ActionPrecheckBehavior>(
         json,
         'precheckBehavior',
         ActionPrecheckBehavior.fromJson,
+        '$objectPath.precheckBehavior',
       ),
       cardinalityBehavior: JsonParser.parsePrimitive<ActionCardinalityBehavior>(
         json,
         'cardinalityBehavior',
         ActionCardinalityBehavior.fromJson,
+        '$objectPath.cardinalityBehavior',
       ),
       resource: JsonParser.parseObject<Reference>(
         json,
         'resource',
         Reference.fromJson,
+        '$objectPath.resource',
       ),
       action: (json['action'] as List<dynamic>?)
           ?.map<RequestGroupAction>(
             (v) => RequestGroupAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
@@ -880,29 +936,35 @@ class RequestGroupCondition extends BackboneElement {
     required this.kind,
     this.expression,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'RequestGroup.action.condition',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupCondition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RequestGroup.action.condition';
     return RequestGroupCondition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -910,11 +972,13 @@ class RequestGroupCondition extends BackboneElement {
         json,
         'kind',
         ActionConditionKind.fromJson,
+        '$objectPath.kind',
       )!,
       expression: JsonParser.parseObject<FhirExpression>(
         json,
         'expression',
         FhirExpression.fromJson,
+        '$objectPath.expression',
       ),
     );
   }
@@ -1045,29 +1109,35 @@ class RequestGroupRelatedAction extends BackboneElement {
     required this.relationship,
     this.offsetX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'RequestGroup.action.relatedAction',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupRelatedAction.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'RequestGroup.action.relatedAction';
     return RequestGroupRelatedAction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1075,17 +1145,22 @@ class RequestGroupRelatedAction extends BackboneElement {
         json,
         'actionId',
         FhirId.fromJson,
+        '$objectPath.actionId',
       )!,
       relationship: JsonParser.parsePrimitive<ActionRelationshipType>(
         json,
         'relationship',
         ActionRelationshipType.fromJson,
+        '$objectPath.relationship',
       )!,
-      offsetX:
-          JsonParser.parsePolymorphic<OffsetXRequestGroupRelatedAction>(json, {
-        'offsetDuration': FhirDuration.fromJson,
-        'offsetRange': Range.fromJson,
-      }),
+      offsetX: JsonParser.parsePolymorphic<OffsetXRequestGroupRelatedAction>(
+        json,
+        {
+          'offsetDuration': FhirDuration.fromJson,
+          'offsetRange': Range.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

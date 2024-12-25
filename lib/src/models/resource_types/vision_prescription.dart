@@ -27,6 +27,7 @@ class VisionPrescription extends DomainResource {
     required this.prescriber,
     required this.lensSpecification,
   }) : super(
+          objectPath: 'VisionPrescription',
           resourceType: R4ResourceType.VisionPrescription,
         );
 
@@ -34,57 +35,67 @@ class VisionPrescription extends DomainResource {
   factory VisionPrescription.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VisionPrescription';
     return VisionPrescription(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -92,36 +103,43 @@ class VisionPrescription extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       dateWritten: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'dateWritten',
         FhirDateTime.fromJson,
+        '$objectPath.dateWritten',
       )!,
       prescriber: JsonParser.parseObject<Reference>(
         json,
         'prescriber',
         Reference.fromJson,
+        '$objectPath.prescriber',
       )!,
       lensSpecification: (json['lensSpecification'] as List<dynamic>)
           .map<VisionPrescriptionLensSpecification>(
             (v) => VisionPrescriptionLensSpecification.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.lensSpecification'}),
             ),
           )
           .toList(),
@@ -327,29 +345,35 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     this.brand,
     this.note,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'VisionPrescription.lensSpecification',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionLensSpecification.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VisionPrescription.lensSpecification';
     return VisionPrescriptionLensSpecification(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -357,31 +381,37 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'product',
         CodeableConcept.fromJson,
+        '$objectPath.product',
       )!,
       eye: JsonParser.parsePrimitive<VisionEyes>(
         json,
         'eye',
         VisionEyes.fromJson,
+        '$objectPath.eye',
       )!,
       sphere: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'sphere',
         FhirDecimal.fromJson,
+        '$objectPath.sphere',
       ),
       cylinder: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'cylinder',
         FhirDecimal.fromJson,
+        '$objectPath.cylinder',
       ),
       axis: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'axis',
         FhirInteger.fromJson,
+        '$objectPath.axis',
       ),
       prism: (json['prism'] as List<dynamic>?)
           ?.map<VisionPrescriptionPrism>(
             (v) => VisionPrescriptionPrism.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.prism'}),
             ),
           )
           .toList(),
@@ -389,41 +419,49 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'add',
         FhirDecimal.fromJson,
+        '$objectPath.add',
       ),
       power: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'power',
         FhirDecimal.fromJson,
+        '$objectPath.power',
       ),
       backCurve: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'backCurve',
         FhirDecimal.fromJson,
+        '$objectPath.backCurve',
       ),
       diameter: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'diameter',
         FhirDecimal.fromJson,
+        '$objectPath.diameter',
       ),
       duration: JsonParser.parseObject<Quantity>(
         json,
         'duration',
         Quantity.fromJson,
+        '$objectPath.duration',
       ),
       color: JsonParser.parsePrimitive<FhirString>(
         json,
         'color',
         FhirString.fromJson,
+        '$objectPath.color',
       ),
       brand: JsonParser.parsePrimitive<FhirString>(
         json,
         'brand',
         FhirString.fromJson,
+        '$objectPath.brand',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -639,29 +677,35 @@ class VisionPrescriptionPrism extends BackboneElement {
     required this.amount,
     required this.base,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'VisionPrescription.lensSpecification.prism',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionPrism.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VisionPrescription.lensSpecification.prism';
     return VisionPrescriptionPrism(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -669,11 +713,13 @@ class VisionPrescriptionPrism extends BackboneElement {
         json,
         'amount',
         FhirDecimal.fromJson,
+        '$objectPath.amount',
       )!,
       base: JsonParser.parsePrimitive<VisionBase>(
         json,
         'base',
         VisionBase.fromJson,
+        '$objectPath.base',
       )!,
     );
   }

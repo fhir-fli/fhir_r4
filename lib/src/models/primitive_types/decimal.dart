@@ -37,6 +37,7 @@ class FhirDecimal extends FhirNumber
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Decimal',
   })  : isInt = input is int,
         super(input?.toDouble()) {
     if (value == null && element == null) {
@@ -64,7 +65,8 @@ class FhirDecimal extends FhirNumber
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirDecimal(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirDecimal(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create a [FhirDecimal] from YAML input.

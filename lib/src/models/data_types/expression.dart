@@ -32,22 +32,26 @@ class FhirExpression extends DataType
     this.expression,
     this.reference,
     super.disallowExtensions,
+    super.objectPath = 'FhirExpression',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirExpression.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'FhirExpression';
     return FhirExpression(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -55,26 +59,31 @@ class FhirExpression extends DataType
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       name: JsonParser.parsePrimitive<FhirId>(
         json,
         'name',
         FhirId.fromJson,
+        '$objectPath.name',
       ),
       language: JsonParser.parsePrimitive<ExpressionLanguage>(
         json,
         'language',
         ExpressionLanguage.fromJson,
+        '$objectPath.language',
       )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       ),
       reference: JsonParser.parsePrimitive<FhirUri>(
         json,
         'reference',
         FhirUri.fromJson,
+        '$objectPath.reference',
       ),
     );
   }

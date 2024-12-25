@@ -26,6 +26,7 @@ class SubscriptionStatus extends DomainResource {
     this.topic,
     this.error,
   }) : super(
+          objectPath: 'SubscriptionStatus',
           resourceType: R4ResourceType.SubscriptionStatus,
         );
 
@@ -33,50 +34,59 @@ class SubscriptionStatus extends DomainResource {
   factory SubscriptionStatus.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionStatus';
     return SubscriptionStatus(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -84,21 +94,25 @@ class SubscriptionStatus extends DomainResource {
         json,
         'status',
         SubscriptionStatusCodes.fromJson,
+        '$objectPath.status',
       ),
       type: JsonParser.parsePrimitive<SubscriptionNotificationType>(
         json,
         'type',
         SubscriptionNotificationType.fromJson,
+        '$objectPath.type',
       )!,
       eventsSinceSubscriptionStart: JsonParser.parsePrimitive<FhirString>(
         json,
         'eventsSinceSubscriptionStart',
         FhirString.fromJson,
+        '$objectPath.eventsSinceSubscriptionStart',
       ),
       notificationEvent: (json['notificationEvent'] as List<dynamic>?)
           ?.map<SubscriptionStatusNotificationEvent>(
             (v) => SubscriptionStatusNotificationEvent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.notificationEvent'}),
             ),
           )
           .toList(),
@@ -106,16 +120,19 @@ class SubscriptionStatus extends DomainResource {
         json,
         'subscription',
         Reference.fromJson,
+        '$objectPath.subscription',
       )!,
       topic: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'topic',
         FhirCanonical.fromJson,
+        '$objectPath.topic',
       ),
       error: (json['error'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.error'}),
             ),
           )
           .toList(),
@@ -307,29 +324,35 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     this.focus,
     this.additionalContext,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionStatus.notificationEvent',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionStatusNotificationEvent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionStatus.notificationEvent';
     return SubscriptionStatusNotificationEvent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -337,21 +360,25 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         json,
         'eventNumber',
         FhirString.fromJson,
+        '$objectPath.eventNumber',
       )!,
       timestamp: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'timestamp',
         FhirInstant.fromJson,
+        '$objectPath.timestamp',
       ),
       focus: JsonParser.parseObject<Reference>(
         json,
         'focus',
         Reference.fromJson,
+        '$objectPath.focus',
       ),
       additionalContext: (json['additionalContext'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.additionalContext'}),
             ),
           )
           .toList(),

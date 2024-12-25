@@ -33,6 +33,7 @@ class PractitionerRole extends DomainResource {
     this.availabilityExceptions,
     this.endpoint,
   }) : super(
+          objectPath: 'PractitionerRole',
           resourceType: R4ResourceType.PractitionerRole,
         );
 
@@ -40,57 +41,67 @@ class PractitionerRole extends DomainResource {
   factory PractitionerRole.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PractitionerRole';
     return PractitionerRole(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -98,68 +109,79 @@ class PractitionerRole extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       practitioner: JsonParser.parseObject<Reference>(
         json,
         'practitioner',
         Reference.fromJson,
+        '$objectPath.practitioner',
       ),
       organization: JsonParser.parseObject<Reference>(
         json,
         'organization',
         Reference.fromJson,
+        '$objectPath.organization',
       ),
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.code'}),
             ),
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specialty'}),
             ),
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.location'}),
             ),
           )
           .toList(),
       healthcareService: (json['healthcareService'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.healthcareService'}),
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
       availableTime: (json['availableTime'] as List<dynamic>?)
           ?.map<PractitionerRoleAvailableTime>(
             (v) => PractitionerRoleAvailableTime.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.availableTime'}),
             ),
           )
           .toList(),
       notAvailable: (json['notAvailable'] as List<dynamic>?)
           ?.map<PractitionerRoleNotAvailable>(
             (v) => PractitionerRoleNotAvailable.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.notAvailable'}),
             ),
           )
           .toList(),
@@ -167,11 +189,13 @@ class PractitionerRole extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
+        '$objectPath.availabilityExceptions',
       ),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endpoint'}),
             ),
           )
           .toList(),
@@ -415,29 +439,35 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     this.availableStartTime,
     this.availableEndTime,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'PractitionerRole.availableTime',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRoleAvailableTime.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PractitionerRole.availableTime';
     return PractitionerRoleAvailableTime(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -445,21 +475,25 @@ class PractitionerRoleAvailableTime extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
+        '$objectPath.daysOfWeek',
       ),
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
+        '$objectPath.allDay',
       ),
       availableStartTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableStartTime',
         FhirTime.fromJson,
+        '$objectPath.availableStartTime',
       ),
       availableEndTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableEndTime',
         FhirTime.fromJson,
+        '$objectPath.availableEndTime',
       ),
     );
   }
@@ -606,29 +640,35 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     required this.description,
     this.during,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'PractitionerRole.notAvailable',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRoleNotAvailable.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PractitionerRole.notAvailable';
     return PractitionerRoleNotAvailable(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -636,11 +676,13 @@ class PractitionerRoleNotAvailable extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       )!,
       during: JsonParser.parseObject<Period>(
         json,
         'during',
         Period.fromJson,
+        '$objectPath.during',
       ),
     );
   }

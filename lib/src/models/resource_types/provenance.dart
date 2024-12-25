@@ -38,6 +38,7 @@ class Provenance extends DomainResource {
     this.entity,
     this.signature,
   }) : super(
+          objectPath: 'Provenance',
           resourceType: R4ResourceType.Provenance,
         );
 
@@ -45,83 +46,101 @@ class Provenance extends DomainResource {
   factory Provenance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Provenance';
     return Provenance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
-      occurredX: JsonParser.parsePolymorphic<OccurredXProvenance>(json, {
-        'occurredPeriod': Period.fromJson,
-        'occurredDateTime': FhirDateTime.fromJson,
-      }),
+      occurredX: JsonParser.parsePolymorphic<OccurredXProvenance>(
+        json,
+        {
+          'occurredPeriod': Period.fromJson,
+          'occurredDateTime': FhirDateTime.fromJson,
+        },
+        objectPath,
+      ),
       recorded: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'recorded',
         FhirInstant.fromJson,
+        '$objectPath.recorded',
       )!,
       policy: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'policy',
         FhirUri.fromJson,
+        '$objectPath.policy',
       ),
       location: JsonParser.parseObject<Reference>(
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       reason: (json['reason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reason'}),
             ),
           )
           .toList(),
@@ -129,25 +148,29 @@ class Provenance extends DomainResource {
         json,
         'activity',
         CodeableConcept.fromJson,
+        '$objectPath.activity',
       ),
       agent: (json['agent'] as List<dynamic>)
           .map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.agent'}),
             ),
           )
           .toList(),
       entity: (json['entity'] as List<dynamic>?)
           ?.map<ProvenanceEntity>(
             (v) => ProvenanceEntity.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entity'}),
             ),
           )
           .toList(),
       signature: (json['signature'] as List<dynamic>?)
           ?.map<Signature>(
             (v) => Signature.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.signature'}),
             ),
           )
           .toList(),
@@ -364,29 +387,35 @@ class ProvenanceAgent extends BackboneElement {
     required this.who,
     this.onBehalfOf,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Provenance.agent',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceAgent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Provenance.agent';
     return ProvenanceAgent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -394,11 +423,13 @@ class ProvenanceAgent extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       role: (json['role'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.role'}),
             ),
           )
           .toList(),
@@ -406,11 +437,13 @@ class ProvenanceAgent extends BackboneElement {
         json,
         'who',
         Reference.fromJson,
+        '$objectPath.who',
       )!,
       onBehalfOf: JsonParser.parseObject<Reference>(
         json,
         'onBehalfOf',
         Reference.fromJson,
+        '$objectPath.onBehalfOf',
       ),
     );
   }
@@ -554,29 +587,35 @@ class ProvenanceEntity extends BackboneElement {
     required this.what,
     this.agent,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Provenance.entity',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceEntity.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Provenance.entity';
     return ProvenanceEntity(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -584,16 +623,19 @@ class ProvenanceEntity extends BackboneElement {
         json,
         'role',
         ProvenanceEntityRole.fromJson,
+        '$objectPath.role',
       )!,
       what: JsonParser.parseObject<Reference>(
         json,
         'what',
         Reference.fromJson,
+        '$objectPath.what',
       )!,
       agent: (json['agent'] as List<dynamic>?)
           ?.map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.agent'}),
             ),
           )
           .toList(),

@@ -28,22 +28,26 @@ class TriggerDefinition extends DataType
     this.data,
     this.condition,
     super.disallowExtensions,
+    super.objectPath = 'TriggerDefinition',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TriggerDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'TriggerDefinition';
     return TriggerDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -51,22 +55,29 @@ class TriggerDefinition extends DataType
         json,
         'type',
         TriggerType.fromJson,
+        '$objectPath.type',
       )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
-      timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(json, {
-        'timingTiming': Timing.fromJson,
-        'timingReference': Reference.fromJson,
-        'timingDate': FhirDate.fromJson,
-        'timingDateTime': FhirDateTime.fromJson,
-      }),
+      timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(
+        json,
+        {
+          'timingTiming': Timing.fromJson,
+          'timingReference': Reference.fromJson,
+          'timingDate': FhirDate.fromJson,
+          'timingDateTime': FhirDateTime.fromJson,
+        },
+        objectPath,
+      ),
       data: (json['data'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.data'}),
             ),
           )
           .toList(),
@@ -74,6 +85,7 @@ class TriggerDefinition extends DataType
         json,
         'condition',
         FhirExpression.fromJson,
+        '$objectPath.condition',
       ),
     );
   }

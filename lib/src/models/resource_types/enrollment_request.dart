@@ -26,6 +26,7 @@ class EnrollmentRequest extends DomainResource {
     this.candidate,
     this.coverage,
   }) : super(
+          objectPath: 'EnrollmentRequest',
           resourceType: R4ResourceType.EnrollmentRequest,
         );
 
@@ -33,57 +34,67 @@ class EnrollmentRequest extends DomainResource {
   factory EnrollmentRequest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EnrollmentRequest';
     return EnrollmentRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -91,31 +102,37 @@ class EnrollmentRequest extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
+        '$objectPath.insurer',
       ),
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
+        '$objectPath.provider',
       ),
       candidate: JsonParser.parseObject<Reference>(
         json,
         'candidate',
         Reference.fromJson,
+        '$objectPath.candidate',
       ),
       coverage: JsonParser.parseObject<Reference>(
         json,
         'coverage',
         Reference.fromJson,
+        '$objectPath.coverage',
       ),
     );
   }

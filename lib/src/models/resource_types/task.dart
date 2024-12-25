@@ -49,6 +49,7 @@ class Task extends DomainResource {
     this.input,
     this.output,
   }) : super(
+          objectPath: 'Task',
           resourceType: R4ResourceType.Task,
         );
 
@@ -56,57 +57,67 @@ class Task extends DomainResource {
   factory Task.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Task';
     return Task(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -114,16 +125,19 @@ class Task extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
@@ -131,11 +145,13 @@ class Task extends DomainResource {
         json,
         'groupIdentifier',
         Identifier.fromJson,
+        '$objectPath.groupIdentifier',
       ),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -143,76 +159,91 @@ class Task extends DomainResource {
         json,
         'status',
         TaskStatus.fromJson,
+        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
+        '$objectPath.statusReason',
       ),
       businessStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'businessStatus',
         CodeableConcept.fromJson,
+        '$objectPath.businessStatus',
       ),
       intent: JsonParser.parsePrimitive<TaskIntent>(
         json,
         'intent',
         TaskIntent.fromJson,
+        '$objectPath.intent',
       )!,
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       focus: JsonParser.parseObject<Reference>(
         json,
         'focus',
         Reference.fromJson,
+        '$objectPath.focus',
       ),
       for_: JsonParser.parseObject<Reference>(
         json,
         'for',
         Reference.fromJson,
+        '$objectPath.for',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       executionPeriod: JsonParser.parseObject<Period>(
         json,
         'executionPeriod',
         Period.fromJson,
+        '$objectPath.executionPeriod',
       ),
       authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authoredOn',
         FhirDateTime.fromJson,
+        '$objectPath.authoredOn',
       ),
       lastModified: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastModified',
         FhirDateTime.fromJson,
+        '$objectPath.lastModified',
       ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
         Reference.fromJson,
+        '$objectPath.requester',
       ),
       performerType: (json['performerType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performerType'}),
             ),
           )
           .toList(),
@@ -220,40 +251,47 @@ class Task extends DomainResource {
         json,
         'owner',
         Reference.fromJson,
+        '$objectPath.owner',
       ),
       location: JsonParser.parseObject<Reference>(
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       reasonCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'reasonCode',
         CodeableConcept.fromJson,
+        '$objectPath.reasonCode',
       ),
       reasonReference: JsonParser.parseObject<Reference>(
         json,
         'reasonReference',
         Reference.fromJson,
+        '$objectPath.reasonReference',
       ),
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.insurance'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       relevantHistory: (json['relevantHistory'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relevantHistory'}),
             ),
           )
           .toList(),
@@ -261,18 +299,21 @@ class Task extends DomainResource {
         json,
         'restriction',
         TaskRestriction.fromJson,
+        '$objectPath.restriction',
       ),
       input: (json['input'] as List<dynamic>?)
           ?.map<TaskInput>(
             (v) => TaskInput.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.input'}),
             ),
           )
           .toList(),
       output: (json['output'] as List<dynamic>?)
           ?.map<TaskOutput>(
             (v) => TaskOutput.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.output'}),
             ),
           )
           .toList(),
@@ -650,29 +691,35 @@ class TaskRestriction extends BackboneElement {
     this.period,
     this.recipient,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Task.restriction',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskRestriction.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Task.restriction';
     return TaskRestriction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -680,16 +727,19 @@ class TaskRestriction extends BackboneElement {
         json,
         'repetitions',
         FhirPositiveInt.fromJson,
+        '$objectPath.repetitions',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.recipient'}),
             ),
           )
           .toList(),
@@ -827,29 +877,35 @@ class TaskInput extends BackboneElement {
     required this.type,
     required this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Task.input',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskInput.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Task.input';
     return TaskInput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -857,59 +913,64 @@ class TaskInput extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXTaskInput>(json, {
-        'valueBase64Binary': FhirBase64Binary.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueCanonical': FhirCanonical.fromJson,
-        'valueCode': FhirCode.fromJson,
-        'valueDate': FhirDate.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-        'valueId': FhirId.fromJson,
-        'valueInstant': FhirInstant.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueMarkdown': FhirMarkdown.fromJson,
-        'valueOid': FhirOid.fromJson,
-        'valuePositiveInt': FhirPositiveInt.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueTime': FhirTime.fromJson,
-        'valueUnsignedInt': FhirUnsignedInt.fromJson,
-        'valueUri': FhirUri.fromJson,
-        'valueUrl': FhirUrl.fromJson,
-        'valueUuid': FhirUuid.fromJson,
-        'valueAddress': Address.fromJson,
-        'valueAge': Age.fromJson,
-        'valueAnnotation': Annotation.fromJson,
-        'valueAttachment': Attachment.fromJson,
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueCoding': Coding.fromJson,
-        'valueContactPoint': ContactPoint.fromJson,
-        'valueCount': Count.fromJson,
-        'valueDistance': Distance.fromJson,
-        'valueDuration': FhirDuration.fromJson,
-        'valueHumanName': HumanName.fromJson,
-        'valueIdentifier': Identifier.fromJson,
-        'valueMoney': Money.fromJson,
-        'valuePeriod': Period.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-        'valueRatio': Ratio.fromJson,
-        'valueReference': Reference.fromJson,
-        'valueSampledData': SampledData.fromJson,
-        'valueSignature': Signature.fromJson,
-        'valueTiming': Timing.fromJson,
-        'valueContactDetail': ContactDetail.fromJson,
-        'valueContributor': Contributor.fromJson,
-        'valueDataRequirement': DataRequirement.fromJson,
-        'valueExpression': FhirExpression.fromJson,
-        'valueParameterDefinition': ParameterDefinition.fromJson,
-        'valueRelatedArtifact': RelatedArtifact.fromJson,
-        'valueTriggerDefinition': TriggerDefinition.fromJson,
-        'valueUsageContext': UsageContext.fromJson,
-        'valueDosage': Dosage.fromJson,
-        'valueMeta': FhirMeta.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXTaskInput>(
+        json,
+        {
+          'valueBase64Binary': FhirBase64Binary.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueCanonical': FhirCanonical.fromJson,
+          'valueCode': FhirCode.fromJson,
+          'valueDate': FhirDate.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+          'valueId': FhirId.fromJson,
+          'valueInstant': FhirInstant.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueMarkdown': FhirMarkdown.fromJson,
+          'valueOid': FhirOid.fromJson,
+          'valuePositiveInt': FhirPositiveInt.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueTime': FhirTime.fromJson,
+          'valueUnsignedInt': FhirUnsignedInt.fromJson,
+          'valueUri': FhirUri.fromJson,
+          'valueUrl': FhirUrl.fromJson,
+          'valueUuid': FhirUuid.fromJson,
+          'valueAddress': Address.fromJson,
+          'valueAge': Age.fromJson,
+          'valueAnnotation': Annotation.fromJson,
+          'valueAttachment': Attachment.fromJson,
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueCoding': Coding.fromJson,
+          'valueContactPoint': ContactPoint.fromJson,
+          'valueCount': Count.fromJson,
+          'valueDistance': Distance.fromJson,
+          'valueDuration': FhirDuration.fromJson,
+          'valueHumanName': HumanName.fromJson,
+          'valueIdentifier': Identifier.fromJson,
+          'valueMoney': Money.fromJson,
+          'valuePeriod': Period.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+          'valueRatio': Ratio.fromJson,
+          'valueReference': Reference.fromJson,
+          'valueSampledData': SampledData.fromJson,
+          'valueSignature': Signature.fromJson,
+          'valueTiming': Timing.fromJson,
+          'valueContactDetail': ContactDetail.fromJson,
+          'valueContributor': Contributor.fromJson,
+          'valueDataRequirement': DataRequirement.fromJson,
+          'valueExpression': FhirExpression.fromJson,
+          'valueParameterDefinition': ParameterDefinition.fromJson,
+          'valueRelatedArtifact': RelatedArtifact.fromJson,
+          'valueTriggerDefinition': TriggerDefinition.fromJson,
+          'valueUsageContext': UsageContext.fromJson,
+          'valueDosage': Dosage.fromJson,
+          'valueMeta': FhirMeta.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 
@@ -1039,29 +1100,35 @@ class TaskOutput extends BackboneElement {
     required this.type,
     required this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Task.output',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskOutput.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Task.output';
     return TaskOutput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1069,59 +1136,64 @@ class TaskOutput extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXTaskOutput>(json, {
-        'valueBase64Binary': FhirBase64Binary.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueCanonical': FhirCanonical.fromJson,
-        'valueCode': FhirCode.fromJson,
-        'valueDate': FhirDate.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-        'valueId': FhirId.fromJson,
-        'valueInstant': FhirInstant.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueMarkdown': FhirMarkdown.fromJson,
-        'valueOid': FhirOid.fromJson,
-        'valuePositiveInt': FhirPositiveInt.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueTime': FhirTime.fromJson,
-        'valueUnsignedInt': FhirUnsignedInt.fromJson,
-        'valueUri': FhirUri.fromJson,
-        'valueUrl': FhirUrl.fromJson,
-        'valueUuid': FhirUuid.fromJson,
-        'valueAddress': Address.fromJson,
-        'valueAge': Age.fromJson,
-        'valueAnnotation': Annotation.fromJson,
-        'valueAttachment': Attachment.fromJson,
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueCoding': Coding.fromJson,
-        'valueContactPoint': ContactPoint.fromJson,
-        'valueCount': Count.fromJson,
-        'valueDistance': Distance.fromJson,
-        'valueDuration': FhirDuration.fromJson,
-        'valueHumanName': HumanName.fromJson,
-        'valueIdentifier': Identifier.fromJson,
-        'valueMoney': Money.fromJson,
-        'valuePeriod': Period.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-        'valueRatio': Ratio.fromJson,
-        'valueReference': Reference.fromJson,
-        'valueSampledData': SampledData.fromJson,
-        'valueSignature': Signature.fromJson,
-        'valueTiming': Timing.fromJson,
-        'valueContactDetail': ContactDetail.fromJson,
-        'valueContributor': Contributor.fromJson,
-        'valueDataRequirement': DataRequirement.fromJson,
-        'valueExpression': FhirExpression.fromJson,
-        'valueParameterDefinition': ParameterDefinition.fromJson,
-        'valueRelatedArtifact': RelatedArtifact.fromJson,
-        'valueTriggerDefinition': TriggerDefinition.fromJson,
-        'valueUsageContext': UsageContext.fromJson,
-        'valueDosage': Dosage.fromJson,
-        'valueMeta': FhirMeta.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXTaskOutput>(
+        json,
+        {
+          'valueBase64Binary': FhirBase64Binary.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueCanonical': FhirCanonical.fromJson,
+          'valueCode': FhirCode.fromJson,
+          'valueDate': FhirDate.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+          'valueId': FhirId.fromJson,
+          'valueInstant': FhirInstant.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueMarkdown': FhirMarkdown.fromJson,
+          'valueOid': FhirOid.fromJson,
+          'valuePositiveInt': FhirPositiveInt.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueTime': FhirTime.fromJson,
+          'valueUnsignedInt': FhirUnsignedInt.fromJson,
+          'valueUri': FhirUri.fromJson,
+          'valueUrl': FhirUrl.fromJson,
+          'valueUuid': FhirUuid.fromJson,
+          'valueAddress': Address.fromJson,
+          'valueAge': Age.fromJson,
+          'valueAnnotation': Annotation.fromJson,
+          'valueAttachment': Attachment.fromJson,
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueCoding': Coding.fromJson,
+          'valueContactPoint': ContactPoint.fromJson,
+          'valueCount': Count.fromJson,
+          'valueDistance': Distance.fromJson,
+          'valueDuration': FhirDuration.fromJson,
+          'valueHumanName': HumanName.fromJson,
+          'valueIdentifier': Identifier.fromJson,
+          'valueMoney': Money.fromJson,
+          'valuePeriod': Period.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+          'valueRatio': Ratio.fromJson,
+          'valueReference': Reference.fromJson,
+          'valueSampledData': SampledData.fromJson,
+          'valueSignature': Signature.fromJson,
+          'valueTiming': Timing.fromJson,
+          'valueContactDetail': ContactDetail.fromJson,
+          'valueContributor': Contributor.fromJson,
+          'valueDataRequirement': DataRequirement.fromJson,
+          'valueExpression': FhirExpression.fromJson,
+          'valueParameterDefinition': ParameterDefinition.fromJson,
+          'valueRelatedArtifact': RelatedArtifact.fromJson,
+          'valueTriggerDefinition': TriggerDefinition.fromJson,
+          'valueUsageContext': UsageContext.fromJson,
+          'valueDosage': Dosage.fromJson,
+          'valueMeta': FhirMeta.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 

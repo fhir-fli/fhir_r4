@@ -38,6 +38,7 @@ class ConceptMap extends CanonicalResource {
     this.targetX,
     this.group,
   }) : super(
+          objectPath: 'ConceptMap',
           resourceType: R4ResourceType.ConceptMap,
         );
 
@@ -45,50 +46,59 @@ class ConceptMap extends CanonicalResource {
   factory ConceptMap.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap';
     return ConceptMap(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -96,51 +106,61 @@ class ConceptMap extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -148,18 +168,21 @@ class ConceptMap extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -167,24 +190,35 @@ class ConceptMap extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
-      sourceX: JsonParser.parsePolymorphic<SourceXConceptMap>(json, {
-        'sourceUri': FhirUri.fromJson,
-        'sourceCanonical': FhirCanonical.fromJson,
-      }),
-      targetX: JsonParser.parsePolymorphic<TargetXConceptMap>(json, {
-        'targetUri': FhirUri.fromJson,
-        'targetCanonical': FhirCanonical.fromJson,
-      }),
+      sourceX: JsonParser.parsePolymorphic<SourceXConceptMap>(
+        json,
+        {
+          'sourceUri': FhirUri.fromJson,
+          'sourceCanonical': FhirCanonical.fromJson,
+        },
+        objectPath,
+      ),
+      targetX: JsonParser.parsePolymorphic<TargetXConceptMap>(
+        json,
+        {
+          'targetUri': FhirUri.fromJson,
+          'targetCanonical': FhirCanonical.fromJson,
+        },
+        objectPath,
+      ),
       group: (json['group'] as List<dynamic>?)
           ?.map<ConceptMapGroup>(
             (v) => ConceptMapGroup.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.group'}),
             ),
           )
           .toList(),
@@ -425,29 +459,35 @@ class ConceptMapGroup extends BackboneElement {
     required this.element,
     this.unmapped,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ConceptMap.group',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapGroup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap.group';
     return ConceptMapGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -455,26 +495,31 @@ class ConceptMapGroup extends BackboneElement {
         json,
         'source',
         FhirUri.fromJson,
+        '$objectPath.source',
       ),
       sourceVersion: JsonParser.parsePrimitive<FhirString>(
         json,
         'sourceVersion',
         FhirString.fromJson,
+        '$objectPath.sourceVersion',
       ),
       target: JsonParser.parsePrimitive<FhirUri>(
         json,
         'target',
         FhirUri.fromJson,
+        '$objectPath.target',
       ),
       targetVersion: JsonParser.parsePrimitive<FhirString>(
         json,
         'targetVersion',
         FhirString.fromJson,
+        '$objectPath.targetVersion',
       ),
       element: (json['element'] as List<dynamic>)
           .map<ConceptMapElement>(
             (v) => ConceptMapElement.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.element'}),
             ),
           )
           .toList(),
@@ -482,6 +527,7 @@ class ConceptMapGroup extends BackboneElement {
         json,
         'unmapped',
         ConceptMapUnmapped.fromJson,
+        '$objectPath.unmapped',
       ),
     );
   }
@@ -646,29 +692,35 @@ class ConceptMapElement extends BackboneElement {
     this.display,
     this.target,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ConceptMap.group.element',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapElement.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap.group.element';
     return ConceptMapElement(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -676,16 +728,19 @@ class ConceptMapElement extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       target: (json['target'] as List<dynamic>?)
           ?.map<ConceptMapTarget>(
             (v) => ConceptMapTarget.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
@@ -827,29 +882,35 @@ class ConceptMapTarget extends BackboneElement {
     this.dependsOn,
     this.product,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ConceptMap.group.element.target',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapTarget.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap.group.element.target';
     return ConceptMapTarget(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -857,33 +918,39 @@ class ConceptMapTarget extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       equivalence: JsonParser.parsePrimitive<ConceptMapEquivalence>(
         json,
         'equivalence',
         ConceptMapEquivalence.fromJson,
+        '$objectPath.equivalence',
       )!,
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
       dependsOn: (json['dependsOn'] as List<dynamic>?)
           ?.map<ConceptMapDependsOn>(
             (v) => ConceptMapDependsOn.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dependsOn'}),
             ),
           )
           .toList(),
       product: (json['product'] as List<dynamic>?)
           ?.map<ConceptMapDependsOn>(
             (v) => ConceptMapDependsOn.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.product'}),
             ),
           )
           .toList(),
@@ -1055,29 +1122,35 @@ class ConceptMapDependsOn extends BackboneElement {
     required this.value,
     this.display,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ConceptMap.group.element.target.dependsOn',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapDependsOn.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap.group.element.target.dependsOn';
     return ConceptMapDependsOn(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1085,21 +1158,25 @@ class ConceptMapDependsOn extends BackboneElement {
         json,
         'property',
         FhirUri.fromJson,
+        '$objectPath.property',
       )!,
       system: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'system',
         FhirCanonical.fromJson,
+        '$objectPath.system',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
     );
   }
@@ -1251,29 +1328,35 @@ class ConceptMapUnmapped extends BackboneElement {
     this.display,
     this.url,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ConceptMap.group.unmapped',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapUnmapped.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ConceptMap.group.unmapped';
     return ConceptMapUnmapped(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1281,21 +1364,25 @@ class ConceptMapUnmapped extends BackboneElement {
         json,
         'mode',
         ConceptMapGroupUnmappedMode.fromJson,
+        '$objectPath.mode',
       )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       url: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'url',
         FhirCanonical.fromJson,
+        '$objectPath.url',
       ),
     );
   }

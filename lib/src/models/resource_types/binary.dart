@@ -19,6 +19,7 @@ class Binary extends Resource {
     this.securityContext,
     this.data,
   }) : super(
+          objectPath: 'Binary',
           resourceType: R4ResourceType.Binary,
         );
 
@@ -26,41 +27,49 @@ class Binary extends Resource {
   factory Binary.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Binary';
     return Binary(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
         FhirCode.fromJson,
+        '$objectPath.contentType',
       )!,
       securityContext: JsonParser.parseObject<Reference>(
         json,
         'securityContext',
         Reference.fromJson,
+        '$objectPath.securityContext',
       ),
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
+        '$objectPath.data',
       ),
     );
   }

@@ -15,22 +15,26 @@ class Narrative extends DataType {
     required this.status,
     required this.div,
     super.disallowExtensions,
+    super.objectPath = 'Narrative',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Narrative.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Narrative';
     return Narrative(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -38,11 +42,13 @@ class Narrative extends DataType {
         json,
         'status',
         NarrativeStatus.fromJson,
+        '$objectPath.status',
       )!,
       div: JsonParser.parsePrimitive<FhirXhtml>(
         json,
         'div',
         FhirXhtml.fromJson,
+        '$objectPath.div',
       )!,
     );
   }

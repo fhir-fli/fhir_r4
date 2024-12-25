@@ -98,22 +98,26 @@ class Reference extends DataType
     this.identifier,
     this.display,
     super.disallowExtensions,
+    super.objectPath = 'Reference',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Reference.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Reference';
     return Reference(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -121,21 +125,25 @@ class Reference extends DataType
         json,
         'reference',
         FhirString.fromJson,
+        '$objectPath.reference',
       ),
       type: JsonParser.parsePrimitive<FhirUri>(
         json,
         'type',
         FhirUri.fromJson,
+        '$objectPath.type',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
     );
   }

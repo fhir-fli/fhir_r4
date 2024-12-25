@@ -45,6 +45,7 @@ class FhirInteger extends FhirNumber
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Integer',
   }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -56,7 +57,12 @@ class FhirInteger extends FhirNumber
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirInteger(value?.toInt(), element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirInteger(
+      value?.toInt(),
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create [FhirInteger] from YAML input.

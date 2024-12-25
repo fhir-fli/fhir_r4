@@ -42,22 +42,26 @@ class Address extends DataType
     this.country,
     this.period,
     super.disallowExtensions,
+    super.objectPath = 'Address',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Address.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Address';
     return Address(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -65,51 +69,61 @@ class Address extends DataType
         json,
         'use',
         AddressUse.fromJson,
+        '$objectPath.use',
       ),
       type: JsonParser.parsePrimitive<AddressType>(
         json,
         'type',
         AddressType.fromJson,
+        '$objectPath.type',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
       line: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'line',
         FhirString.fromJson,
+        '$objectPath.line',
       ),
       city: JsonParser.parsePrimitive<FhirString>(
         json,
         'city',
         FhirString.fromJson,
+        '$objectPath.city',
       ),
       district: JsonParser.parsePrimitive<FhirString>(
         json,
         'district',
         FhirString.fromJson,
+        '$objectPath.district',
       ),
       state: JsonParser.parsePrimitive<FhirString>(
         json,
         'state',
         FhirString.fromJson,
+        '$objectPath.state',
       ),
       postalCode: JsonParser.parsePrimitive<FhirString>(
         json,
         'postalCode',
         FhirString.fromJson,
+        '$objectPath.postalCode',
       ),
       country: JsonParser.parsePrimitive<FhirString>(
         json,
         'country',
         FhirString.fromJson,
+        '$objectPath.country',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }

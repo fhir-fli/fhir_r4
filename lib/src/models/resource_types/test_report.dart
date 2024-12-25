@@ -31,6 +31,7 @@ class TestReport extends DomainResource {
     this.test,
     this.teardown,
   }) : super(
+          objectPath: 'TestReport',
           resourceType: R4ResourceType.TestReport,
         );
 
@@ -38,50 +39,59 @@ class TestReport extends DomainResource {
   factory TestReport.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport';
     return TestReport(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -89,46 +99,55 @@ class TestReport extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       status: JsonParser.parsePrimitive<TestReportStatus>(
         json,
         'status',
         TestReportStatus.fromJson,
+        '$objectPath.status',
       )!,
       testScript: JsonParser.parseObject<Reference>(
         json,
         'testScript',
         Reference.fromJson,
+        '$objectPath.testScript',
       )!,
       result: JsonParser.parsePrimitive<TestReportResult>(
         json,
         'result',
         TestReportResult.fromJson,
+        '$objectPath.result',
       )!,
       score: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'score',
         FhirDecimal.fromJson,
+        '$objectPath.score',
       ),
       tester: JsonParser.parsePrimitive<FhirString>(
         json,
         'tester',
         FhirString.fromJson,
+        '$objectPath.tester',
       ),
       issued: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'issued',
         FhirDateTime.fromJson,
+        '$objectPath.issued',
       ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<TestReportParticipant>(
             (v) => TestReportParticipant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.participant'}),
             ),
           )
           .toList(),
@@ -136,11 +155,13 @@ class TestReport extends DomainResource {
         json,
         'setup',
         TestReportSetup.fromJson,
+        '$objectPath.setup',
       ),
       test: (json['test'] as List<dynamic>?)
           ?.map<TestReportTest>(
             (v) => TestReportTest.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.test'}),
             ),
           )
           .toList(),
@@ -148,6 +169,7 @@ class TestReport extends DomainResource {
         json,
         'teardown',
         TestReportTeardown.fromJson,
+        '$objectPath.teardown',
       ),
     );
   }
@@ -370,29 +392,35 @@ class TestReportParticipant extends BackboneElement {
     required this.uri,
     this.display,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.participant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.participant';
     return TestReportParticipant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -400,16 +428,19 @@ class TestReportParticipant extends BackboneElement {
         json,
         'type',
         TestReportParticipantType.fromJson,
+        '$objectPath.type',
       )!,
       uri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'uri',
         FhirUri.fromJson,
+        '$objectPath.uri',
       )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
     );
   }
@@ -544,36 +575,43 @@ class TestReportSetup extends BackboneElement {
     super.modifierExtension,
     required this.action,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.setup',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportSetup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.setup';
     return TestReportSetup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>)
           .map<TestReportAction>(
             (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
@@ -696,29 +734,35 @@ class TestReportAction extends BackboneElement {
     this.operation,
     this.assert_,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.setup.action',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.setup.action';
     return TestReportAction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -726,11 +770,13 @@ class TestReportAction extends BackboneElement {
         json,
         'operation',
         TestReportOperation.fromJson,
+        '$objectPath.operation',
       ),
       assert_: JsonParser.parseObject<TestReportAssert>(
         json,
         'assert',
         TestReportAssert.fromJson,
+        '$objectPath.assert',
       ),
     );
   }
@@ -859,29 +905,35 @@ class TestReportOperation extends BackboneElement {
     this.message,
     this.detail,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.setup.action.operation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportOperation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.setup.action.operation';
     return TestReportOperation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -889,16 +941,19 @@ class TestReportOperation extends BackboneElement {
         json,
         'result',
         TestReportActionResult.fromJson,
+        '$objectPath.result',
       )!,
       message: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'message',
         FhirMarkdown.fromJson,
+        '$objectPath.message',
       ),
       detail: JsonParser.parsePrimitive<FhirUri>(
         json,
         'detail',
         FhirUri.fromJson,
+        '$objectPath.detail',
       ),
     );
   }
@@ -1034,29 +1089,35 @@ class TestReportAssert extends BackboneElement {
     this.message,
     this.detail,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.setup.action.assert',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAssert.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.setup.action.assert';
     return TestReportAssert(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1064,16 +1125,19 @@ class TestReportAssert extends BackboneElement {
         json,
         'result',
         TestReportActionResult.fromJson,
+        '$objectPath.result',
       )!,
       message: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'message',
         FhirMarkdown.fromJson,
+        '$objectPath.message',
       ),
       detail: JsonParser.parsePrimitive<FhirString>(
         json,
         'detail',
         FhirString.fromJson,
+        '$objectPath.detail',
       ),
     );
   }
@@ -1209,29 +1273,35 @@ class TestReportTest extends BackboneElement {
     this.description,
     required this.action,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.test',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportTest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.test';
     return TestReportTest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1239,16 +1309,19 @@ class TestReportTest extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       action: (json['action'] as List<dynamic>)
           .map<TestReportAction>(
             (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
@@ -1387,29 +1460,35 @@ class TestReportAction1 extends BackboneElement {
     this.operation,
     this.assert_,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.test.action',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction1.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.test.action';
     return TestReportAction1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1417,11 +1496,13 @@ class TestReportAction1 extends BackboneElement {
         json,
         'operation',
         TestReportOperation.fromJson,
+        '$objectPath.operation',
       ),
       assert_: JsonParser.parseObject<TestReportAssert>(
         json,
         'assert',
         TestReportAssert.fromJson,
+        '$objectPath.assert',
       ),
     );
   }
@@ -1549,36 +1630,43 @@ class TestReportTeardown extends BackboneElement {
     super.modifierExtension,
     required this.action,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.teardown',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportTeardown.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.teardown';
     return TestReportTeardown(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>)
           .map<TestReportAction>(
             (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
@@ -1700,29 +1788,35 @@ class TestReportAction2 extends BackboneElement {
     super.modifierExtension,
     required this.operation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TestReport.teardown.action',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction2.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TestReport.teardown.action';
     return TestReportAction2(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1730,6 +1824,7 @@ class TestReportAction2 extends BackboneElement {
         json,
         'operation',
         TestReportOperation.fromJson,
+        '$objectPath.operation',
       )!,
     );
   }

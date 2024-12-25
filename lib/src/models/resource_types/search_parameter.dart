@@ -45,6 +45,7 @@ class SearchParameter extends CanonicalResource {
     this.chain,
     this.component,
   }) : super(
+          objectPath: 'SearchParameter',
           resourceType: R4ResourceType.SearchParameter,
         );
 
@@ -52,50 +53,59 @@ class SearchParameter extends CanonicalResource {
   factory SearchParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SearchParameter';
     return SearchParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -103,46 +113,55 @@ class SearchParameter extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+        '$objectPath.url',
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       derivedFrom: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
+        '$objectPath.derivedFrom',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -150,18 +169,21 @@ class SearchParameter extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+        '$objectPath.description',
+      )!,
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -169,71 +191,85 @@ class SearchParameter extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       base: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'base',
         FhirCode.fromJson,
+        '$objectPath.base',
       )!,
       type: JsonParser.parsePrimitive<SearchParamType>(
         json,
         'type',
         SearchParamType.fromJson,
+        '$objectPath.type',
       )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       ),
       xpath: JsonParser.parsePrimitive<FhirString>(
         json,
         'xpath',
         FhirString.fromJson,
+        '$objectPath.xpath',
       ),
       xpathUsage: JsonParser.parsePrimitive<XPathUsageType>(
         json,
         'xpathUsage',
         XPathUsageType.fromJson,
+        '$objectPath.xpathUsage',
       ),
       target: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'target',
         FhirCode.fromJson,
+        '$objectPath.target',
       ),
       multipleOr: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleOr',
         FhirBoolean.fromJson,
+        '$objectPath.multipleOr',
       ),
       multipleAnd: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleAnd',
         FhirBoolean.fromJson,
+        '$objectPath.multipleAnd',
       ),
       comparator: JsonParser.parsePrimitiveList<SearchComparator>(
         json,
         'comparator',
         SearchComparator.fromJson,
+        '$objectPath.comparator',
       ),
       modifier: JsonParser.parsePrimitiveList<SearchModifierCode>(
         json,
         'modifier',
         SearchModifierCode.fromJson,
+        '$objectPath.modifier',
       ),
       chain: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'chain',
         FhirString.fromJson,
+        '$objectPath.chain',
       ),
       component: (json['component'] as List<dynamic>?)
           ?.map<SearchParameterComponent>(
             (v) => SearchParameterComponent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.component'}),
             ),
           )
           .toList(),
@@ -528,29 +564,35 @@ class SearchParameterComponent extends BackboneElement {
     required this.definition,
     required this.expression,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SearchParameter.component',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SearchParameterComponent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SearchParameter.component';
     return SearchParameterComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -558,11 +600,13 @@ class SearchParameterComponent extends BackboneElement {
         json,
         'definition',
         FhirCanonical.fromJson,
+        '$objectPath.definition',
       )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       )!,
     );
   }

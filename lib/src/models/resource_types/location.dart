@@ -37,6 +37,7 @@ class Location extends DomainResource {
     this.availabilityExceptions,
     this.endpoint,
   }) : super(
+          objectPath: 'Location',
           resourceType: R4ResourceType.Location,
         );
 
@@ -44,57 +45,67 @@ class Location extends DomainResource {
   factory Location.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Location';
     return Location(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -102,43 +113,51 @@ class Location extends DomainResource {
         json,
         'status',
         LocationStatus.fromJson,
+        '$objectPath.status',
       ),
       operationalStatus: JsonParser.parseObject<Coding>(
         json,
         'operationalStatus',
         Coding.fromJson,
+        '$objectPath.operationalStatus',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       alias: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
+        '$objectPath.alias',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       mode: JsonParser.parsePrimitive<LocationMode>(
         json,
         'mode',
         LocationMode.fromJson,
+        '$objectPath.mode',
       ),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
@@ -146,31 +165,37 @@ class Location extends DomainResource {
         json,
         'address',
         Address.fromJson,
+        '$objectPath.address',
       ),
       physicalType: JsonParser.parseObject<CodeableConcept>(
         json,
         'physicalType',
         CodeableConcept.fromJson,
+        '$objectPath.physicalType',
       ),
       position: JsonParser.parseObject<LocationPosition>(
         json,
         'position',
         LocationPosition.fromJson,
+        '$objectPath.position',
       ),
       managingOrganization: JsonParser.parseObject<Reference>(
         json,
         'managingOrganization',
         Reference.fromJson,
+        '$objectPath.managingOrganization',
       ),
       partOf: JsonParser.parseObject<Reference>(
         json,
         'partOf',
         Reference.fromJson,
+        '$objectPath.partOf',
       ),
       hoursOfOperation: (json['hoursOfOperation'] as List<dynamic>?)
           ?.map<LocationHoursOfOperation>(
             (v) => LocationHoursOfOperation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.hoursOfOperation'}),
             ),
           )
           .toList(),
@@ -178,11 +203,13 @@ class Location extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
+        '$objectPath.availabilityExceptions',
       ),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endpoint'}),
             ),
           )
           .toList(),
@@ -452,29 +479,35 @@ class LocationPosition extends BackboneElement {
     required this.latitude,
     this.altitude,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Location.position',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationPosition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Location.position';
     return LocationPosition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -482,16 +515,19 @@ class LocationPosition extends BackboneElement {
         json,
         'longitude',
         FhirDecimal.fromJson,
+        '$objectPath.longitude',
       )!,
       latitude: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'latitude',
         FhirDecimal.fromJson,
+        '$objectPath.latitude',
       )!,
       altitude: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'altitude',
         FhirDecimal.fromJson,
+        '$objectPath.altitude',
       ),
     );
   }
@@ -631,29 +667,35 @@ class LocationHoursOfOperation extends BackboneElement {
     this.openingTime,
     this.closingTime,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Location.hoursOfOperation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationHoursOfOperation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Location.hoursOfOperation';
     return LocationHoursOfOperation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -661,21 +703,25 @@ class LocationHoursOfOperation extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
+        '$objectPath.daysOfWeek',
       ),
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
+        '$objectPath.allDay',
       ),
       openingTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'openingTime',
         FhirTime.fromJson,
+        '$objectPath.openingTime',
       ),
       closingTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'closingTime',
         FhirTime.fromJson,
+        '$objectPath.closingTime',
       ),
     );
   }

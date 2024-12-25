@@ -41,6 +41,7 @@ class SubscriptionTopic extends CanonicalResource {
     this.canFilterBy,
     this.notificationShape,
   }) : super(
+          objectPath: 'SubscriptionTopic',
           resourceType: R4ResourceType.SubscriptionTopic,
         );
 
@@ -48,50 +49,59 @@ class SubscriptionTopic extends CanonicalResource {
   factory SubscriptionTopic.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic';
     return SubscriptionTopic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -99,11 +109,13 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+        '$objectPath.url',
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -111,41 +123,49 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       derivedFrom: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
+        '$objectPath.derivedFrom',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -153,18 +173,21 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -172,52 +195,61 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
+        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
+        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
+        '$objectPath.effectivePeriod',
       ),
       resourceTrigger: (json['resourceTrigger'] as List<dynamic>?)
           ?.map<SubscriptionTopicResourceTrigger>(
             (v) => SubscriptionTopicResourceTrigger.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.resourceTrigger'}),
             ),
           )
           .toList(),
       eventTrigger: (json['eventTrigger'] as List<dynamic>?)
           ?.map<SubscriptionTopicEventTrigger>(
             (v) => SubscriptionTopicEventTrigger.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.eventTrigger'}),
             ),
           )
           .toList(),
       canFilterBy: (json['canFilterBy'] as List<dynamic>?)
           ?.map<SubscriptionTopicCanFilterBy>(
             (v) => SubscriptionTopicCanFilterBy.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.canFilterBy'}),
             ),
           )
           .toList(),
       notificationShape: (json['notificationShape'] as List<dynamic>?)
           ?.map<SubscriptionTopicNotificationShape>(
             (v) => SubscriptionTopicNotificationShape.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.notificationShape'}),
             ),
           )
           .toList(),
@@ -491,29 +523,35 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     this.queryCriteria,
     this.fhirPathCriteria,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionTopic.resourceTrigger',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicResourceTrigger.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic.resourceTrigger';
     return SubscriptionTopicResourceTrigger(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -521,26 +559,31 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
+        '$objectPath.resource',
       )!,
       supportedInteraction: JsonParser.parsePrimitiveList<InteractionTrigger>(
         json,
         'supportedInteraction',
         InteractionTrigger.fromJson,
+        '$objectPath.supportedInteraction',
       ),
       queryCriteria: JsonParser.parseObject<SubscriptionTopicQueryCriteria>(
         json,
         'queryCriteria',
         SubscriptionTopicQueryCriteria.fromJson,
+        '$objectPath.queryCriteria',
       ),
       fhirPathCriteria: JsonParser.parsePrimitive<FhirString>(
         json,
         'fhirPathCriteria',
         FhirString.fromJson,
+        '$objectPath.fhirPathCriteria',
       ),
     );
   }
@@ -705,29 +748,35 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     this.resultForDelete,
     this.requireBoth,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionTopic.resourceTrigger.queryCriteria',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicQueryCriteria.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic.resourceTrigger.queryCriteria';
     return SubscriptionTopicQueryCriteria(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -735,26 +784,31 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
         json,
         'previous',
         FhirString.fromJson,
+        '$objectPath.previous',
       ),
       resultForCreate: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForCreate',
         CriteriaNotExistsBehavior.fromJson,
+        '$objectPath.resultForCreate',
       ),
       current: JsonParser.parsePrimitive<FhirString>(
         json,
         'current',
         FhirString.fromJson,
+        '$objectPath.current',
       ),
       resultForDelete: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForDelete',
         CriteriaNotExistsBehavior.fromJson,
+        '$objectPath.resultForDelete',
       ),
       requireBoth: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'requireBoth',
         FhirBoolean.fromJson,
+        '$objectPath.requireBoth',
       ),
     );
   }
@@ -910,29 +964,35 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     required this.event,
     required this.resource,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionTopic.eventTrigger',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicEventTrigger.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic.eventTrigger';
     return SubscriptionTopicEventTrigger(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -940,16 +1000,19 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       event: JsonParser.parseObject<CodeableConcept>(
         json,
         'event',
         CodeableConcept.fromJson,
+        '$objectPath.event',
       )!,
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
+        '$objectPath.resource',
       )!,
     );
   }
@@ -1100,29 +1163,35 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     this.filterDefinition,
     this.modifier,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionTopic.canFilterBy',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicCanFilterBy.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic.canFilterBy';
     return SubscriptionTopicCanFilterBy(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1130,26 +1199,31 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
+        '$objectPath.resource',
       ),
       filterParameter: JsonParser.parsePrimitive<FhirString>(
         json,
         'filterParameter',
         FhirString.fromJson,
+        '$objectPath.filterParameter',
       )!,
       filterDefinition: JsonParser.parsePrimitive<FhirUri>(
         json,
         'filterDefinition',
         FhirUri.fromJson,
+        '$objectPath.filterDefinition',
       ),
       modifier: JsonParser.parsePrimitiveList<SubscriptionSearchModifier>(
         json,
         'modifier',
         SubscriptionSearchModifier.fromJson,
+        '$objectPath.modifier',
       ),
     );
   }
@@ -1313,29 +1387,35 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     this.include,
     this.revInclude,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SubscriptionTopic.notificationShape',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicNotificationShape.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SubscriptionTopic.notificationShape';
     return SubscriptionTopicNotificationShape(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1343,16 +1423,19 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         json,
         'resource',
         FhirUri.fromJson,
+        '$objectPath.resource',
       )!,
       include: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'include',
         FhirString.fromJson,
+        '$objectPath.include',
       ),
       revInclude: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'revInclude',
         FhirString.fromJson,
+        '$objectPath.revInclude',
       ),
     );
   }

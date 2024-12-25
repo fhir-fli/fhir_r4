@@ -33,6 +33,7 @@ class NamingSystem extends DomainResource {
     this.usage,
     required this.uniqueId,
   }) : super(
+          objectPath: 'NamingSystem',
           resourceType: R4ResourceType.NamingSystem,
         );
 
@@ -40,50 +41,59 @@ class NamingSystem extends DomainResource {
   factory NamingSystem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'NamingSystem';
     return NamingSystem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -91,31 +101,37 @@ class NamingSystem extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       kind: JsonParser.parsePrimitive<NamingSystemType>(
         json,
         'kind',
         NamingSystemType.fromJson,
+        '$objectPath.kind',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       )!,
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -123,28 +139,33 @@ class NamingSystem extends DomainResource {
         json,
         'responsible',
         FhirString.fromJson,
+        '$objectPath.responsible',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -152,11 +173,13 @@ class NamingSystem extends DomainResource {
         json,
         'usage',
         FhirString.fromJson,
+        '$objectPath.usage',
       ),
       uniqueId: (json['uniqueId'] as List<dynamic>)
           .map<NamingSystemUniqueId>(
             (v) => NamingSystemUniqueId.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.uniqueId'}),
             ),
           )
           .toList(),
@@ -404,29 +427,35 @@ class NamingSystemUniqueId extends BackboneElement {
     this.comment,
     this.period,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'NamingSystem.uniqueId',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NamingSystemUniqueId.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'NamingSystem.uniqueId';
     return NamingSystemUniqueId(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -434,26 +463,31 @@ class NamingSystemUniqueId extends BackboneElement {
         json,
         'type',
         NamingSystemIdentifierType.fromJson,
+        '$objectPath.type',
       )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
       preferred: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'preferred',
         FhirBoolean.fromJson,
+        '$objectPath.preferred',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }

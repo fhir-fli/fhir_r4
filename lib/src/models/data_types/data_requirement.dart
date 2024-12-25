@@ -32,22 +32,26 @@ class DataRequirement extends DataType
     this.limit,
     this.sort,
     super.disallowExtensions,
+    super.objectPath = 'DataRequirement',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirement.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'DataRequirement';
     return DataRequirement(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -55,32 +59,41 @@ class DataRequirement extends DataType
         json,
         'type',
         FHIRAllTypes.fromJson,
+        '$objectPath.type',
       )!,
       profile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
-      subjectX: JsonParser.parsePolymorphic<SubjectXDataRequirement>(json, {
-        'subjectCodeableConcept': CodeableConcept.fromJson,
-        'subjectReference': Reference.fromJson,
-      }),
+      subjectX: JsonParser.parsePolymorphic<SubjectXDataRequirement>(
+        json,
+        {
+          'subjectCodeableConcept': CodeableConcept.fromJson,
+          'subjectReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       mustSupport: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'mustSupport',
         FhirString.fromJson,
+        '$objectPath.mustSupport',
       ),
       codeFilter: (json['codeFilter'] as List<dynamic>?)
           ?.map<DataRequirementCodeFilter>(
             (v) => DataRequirementCodeFilter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.codeFilter'}),
             ),
           )
           .toList(),
       dateFilter: (json['dateFilter'] as List<dynamic>?)
           ?.map<DataRequirementDateFilter>(
             (v) => DataRequirementDateFilter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dateFilter'}),
             ),
           )
           .toList(),
@@ -88,11 +101,13 @@ class DataRequirement extends DataType
         json,
         'limit',
         FhirPositiveInt.fromJson,
+        '$objectPath.limit',
       ),
       sort: (json['sort'] as List<dynamic>?)
           ?.map<DataRequirementSort>(
             (v) => DataRequirementSort.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.sort'}),
             ),
           )
           .toList(),
@@ -290,22 +305,27 @@ class DataRequirementCodeFilter extends Element {
     this.valueSet,
     this.code,
     super.disallowExtensions,
+    super.objectPath = 'DataRequirementCodeFilter',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath =
+        json['resourceType'] as String? ?? 'DataRequirementCodeFilter';
     return DataRequirementCodeFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -313,21 +333,25 @@ class DataRequirementCodeFilter extends Element {
         json,
         'path',
         FhirString.fromJson,
+        '$objectPath.path',
       ),
       searchParam: JsonParser.parsePrimitive<FhirString>(
         json,
         'searchParam',
         FhirString.fromJson,
+        '$objectPath.searchParam',
       ),
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
+        '$objectPath.valueSet',
       ),
       code: (json['code'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.code'}),
             ),
           )
           .toList(),
@@ -487,22 +511,27 @@ class DataRequirementDateFilter extends Element {
     this.searchParam,
     this.valueX,
     super.disallowExtensions,
+    super.objectPath = 'DataRequirementDateFilter',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath =
+        json['resourceType'] as String? ?? 'DataRequirementDateFilter';
     return DataRequirementDateFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -510,18 +539,23 @@ class DataRequirementDateFilter extends Element {
         json,
         'path',
         FhirString.fromJson,
+        '$objectPath.path',
       ),
       searchParam: JsonParser.parsePrimitive<FhirString>(
         json,
         'searchParam',
         FhirString.fromJson,
+        '$objectPath.searchParam',
       ),
-      valueX:
-          JsonParser.parsePolymorphic<ValueXDataRequirementDateFilter>(json, {
-        'valueDateTime': FhirDateTime.fromJson,
-        'valuePeriod': Period.fromJson,
-        'valueDuration': FhirDuration.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXDataRequirementDateFilter>(
+        json,
+        {
+          'valueDateTime': FhirDateTime.fromJson,
+          'valuePeriod': Period.fromJson,
+          'valueDuration': FhirDuration.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -670,22 +704,26 @@ class DataRequirementSort extends Element {
     required this.path,
     required this.direction,
     super.disallowExtensions,
+    super.objectPath = 'DataRequirementSort',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementSort.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'DataRequirementSort';
     return DataRequirementSort(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -693,11 +731,13 @@ class DataRequirementSort extends Element {
         json,
         'path',
         FhirString.fromJson,
+        '$objectPath.path',
       )!,
       direction: JsonParser.parsePrimitive<SortDirection>(
         json,
         'direction',
         SortDirection.fromJson,
+        '$objectPath.direction',
       )!,
     );
   }

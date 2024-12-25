@@ -31,6 +31,7 @@ class QuestionnaireResponse extends DomainResource {
     this.source,
     this.item,
   }) : super(
+          objectPath: 'QuestionnaireResponse',
           resourceType: R4ResourceType.QuestionnaireResponse,
         );
 
@@ -38,50 +39,59 @@ class QuestionnaireResponse extends DomainResource {
   factory QuestionnaireResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'QuestionnaireResponse';
     return QuestionnaireResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -89,18 +99,21 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -108,41 +121,49 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'questionnaire',
         FhirCanonical.fromJson,
+        '$objectPath.questionnaire',
       ),
       status: JsonParser.parsePrimitive<QuestionnaireResponseStatus>(
         json,
         'status',
         QuestionnaireResponseStatus.fromJson,
+        '$objectPath.status',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       authored: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authored',
         FhirDateTime.fromJson,
+        '$objectPath.authored',
       ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
         Reference.fromJson,
+        '$objectPath.author',
       ),
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
         Reference.fromJson,
+        '$objectPath.source',
       ),
       item: (json['item'] as List<dynamic>?)
           ?.map<QuestionnaireResponseItem>(
             (v) => QuestionnaireResponseItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.item'}),
             ),
           )
           .toList(),
@@ -368,29 +389,35 @@ class QuestionnaireResponseItem extends BackboneElement {
     this.answer,
     this.item,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'QuestionnaireResponse.item',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'QuestionnaireResponse.item';
     return QuestionnaireResponseItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -398,28 +425,33 @@ class QuestionnaireResponseItem extends BackboneElement {
         json,
         'linkId',
         FhirString.fromJson,
+        '$objectPath.linkId',
       )!,
       definition: JsonParser.parsePrimitive<FhirUri>(
         json,
         'definition',
         FhirUri.fromJson,
+        '$objectPath.definition',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
       answer: (json['answer'] as List<dynamic>?)
           ?.map<QuestionnaireResponseAnswer>(
             (v) => QuestionnaireResponseAnswer.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.answer'}),
             ),
           )
           .toList(),
       item: (json['item'] as List<dynamic>?)
           ?.map<QuestionnaireResponseItem>(
             (v) => QuestionnaireResponseItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.item'}),
             ),
           )
           .toList(),
@@ -573,51 +605,61 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     this.valueX,
     this.item,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'QuestionnaireResponse.item.answer',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseAnswer.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'QuestionnaireResponse.item.answer';
     return QuestionnaireResponseAnswer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      valueX:
-          JsonParser.parsePolymorphic<ValueXQuestionnaireResponseAnswer>(json, {
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueDate': FhirDate.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valueTime': FhirTime.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueUri': FhirUri.fromJson,
-        'valueAttachment': Attachment.fromJson,
-        'valueCoding': Coding.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueReference': Reference.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXQuestionnaireResponseAnswer>(
+        json,
+        {
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueDate': FhirDate.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valueTime': FhirTime.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueUri': FhirUri.fromJson,
+          'valueAttachment': Attachment.fromJson,
+          'valueCoding': Coding.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       item: (json['item'] as List<dynamic>?)
           ?.map<QuestionnaireResponseItem>(
             (v) => QuestionnaireResponseItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.item'}),
             ),
           )
           .toList(),

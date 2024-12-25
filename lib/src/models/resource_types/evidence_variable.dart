@@ -43,6 +43,7 @@ class EvidenceVariable extends DomainResource {
     this.handling,
     this.category,
   }) : super(
+          objectPath: 'EvidenceVariable',
           resourceType: R4ResourceType.EvidenceVariable,
         );
 
@@ -50,50 +51,59 @@ class EvidenceVariable extends DomainResource {
   factory EvidenceVariable.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceVariable';
     return EvidenceVariable(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -101,11 +111,13 @@ class EvidenceVariable extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -113,53 +125,63 @@ class EvidenceVariable extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       shortTitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'shortTitle',
         FhirString.fromJson,
+        '$objectPath.shortTitle',
       ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
+        '$objectPath.subtitle',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
@@ -167,46 +189,53 @@ class EvidenceVariable extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.editor'}),
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reviewer'}),
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endorser'}),
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
             ),
           )
           .toList(),
@@ -214,17 +243,20 @@ class EvidenceVariable extends DomainResource {
         json,
         'actual',
         FhirBoolean.fromJson,
+        '$objectPath.actual',
       ),
       characteristicCombination:
           JsonParser.parsePrimitive<CharacteristicCombination>(
         json,
         'characteristicCombination',
         CharacteristicCombination.fromJson,
+        '$objectPath.characteristicCombination',
       ),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<EvidenceVariableCharacteristic>(
             (v) => EvidenceVariableCharacteristic.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.characteristic'}),
             ),
           )
           .toList(),
@@ -232,11 +264,13 @@ class EvidenceVariable extends DomainResource {
         json,
         'handling',
         EvidenceVariableHandling.fromJson,
+        '$objectPath.handling',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<EvidenceVariableCategory>(
             (v) => EvidenceVariableCategory.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -586,29 +620,35 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     this.timeFromStart,
     this.groupMeasure,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceVariable.characteristic',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceVariable.characteristic';
     return EvidenceVariableCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -616,38 +656,48 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       definitionX: JsonParser.parsePolymorphic<
-          DefinitionXEvidenceVariableCharacteristic>(json, {
-        'definitionReference': Reference.fromJson,
-        'definitionCanonical': FhirCanonical.fromJson,
-        'definitionCodeableConcept': CodeableConcept.fromJson,
-        'definitionExpression': FhirExpression.fromJson,
-      })!,
+          DefinitionXEvidenceVariableCharacteristic>(
+        json,
+        {
+          'definitionReference': Reference.fromJson,
+          'definitionCanonical': FhirCanonical.fromJson,
+          'definitionCodeableConcept': CodeableConcept.fromJson,
+          'definitionExpression': FhirExpression.fromJson,
+        },
+        objectPath,
+      )!,
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
+        '$objectPath.device',
       ),
       exclude: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'exclude',
         FhirBoolean.fromJson,
+        '$objectPath.exclude',
       ),
       timeFromStart: JsonParser.parseObject<EvidenceVariableTimeFromStart>(
         json,
         'timeFromStart',
         EvidenceVariableTimeFromStart.fromJson,
+        '$objectPath.timeFromStart',
       ),
       groupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
         json,
         'groupMeasure',
         GroupMeasure.fromJson,
+        '$objectPath.groupMeasure',
       ),
     );
   }
@@ -822,29 +872,35 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     this.range,
     this.note,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceVariable.characteristic.timeFromStart',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableTimeFromStart.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceVariable.characteristic.timeFromStart';
     return EvidenceVariableTimeFromStart(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -852,21 +908,25 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       range: JsonParser.parseObject<Range>(
         json,
         'range',
         Range.fromJson,
+        '$objectPath.range',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -1013,29 +1073,35 @@ class EvidenceVariableCategory extends BackboneElement {
     this.name,
     this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceVariable.category',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceVariable.category';
     return EvidenceVariableCategory(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1043,13 +1109,17 @@ class EvidenceVariableCategory extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
-      valueX:
-          JsonParser.parsePolymorphic<ValueXEvidenceVariableCategory>(json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXEvidenceVariableCategory>(
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

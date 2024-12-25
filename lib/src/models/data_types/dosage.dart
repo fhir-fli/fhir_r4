@@ -37,29 +37,34 @@ class Dosage extends BackboneType
     this.maxDosePerAdministration,
     this.maxDosePerLifetime,
     super.disallowExtensions,
+    super.objectPath = 'Dosage',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Dosage.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Dosage';
     return Dosage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -67,16 +72,19 @@ class Dosage extends BackboneType
         json,
         'sequence',
         FhirInteger.fromJson,
+        '$objectPath.sequence',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
       additionalInstruction: (json['additionalInstruction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.additionalInstruction'}),
             ),
           )
           .toList(),
@@ -84,35 +92,45 @@ class Dosage extends BackboneType
         json,
         'patientInstruction',
         FhirString.fromJson,
+        '$objectPath.patientInstruction',
       ),
       timing: JsonParser.parseObject<Timing>(
         json,
         'timing',
         Timing.fromJson,
+        '$objectPath.timing',
       ),
-      asNeededX: JsonParser.parsePolymorphic<AsNeededXDosage>(json, {
-        'asNeededBoolean': FhirBoolean.fromJson,
-        'asNeededCodeableConcept': CodeableConcept.fromJson,
-      }),
+      asNeededX: JsonParser.parsePolymorphic<AsNeededXDosage>(
+        json,
+        {
+          'asNeededBoolean': FhirBoolean.fromJson,
+          'asNeededCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       site: JsonParser.parseObject<CodeableConcept>(
         json,
         'site',
         CodeableConcept.fromJson,
+        '$objectPath.site',
       ),
       route: JsonParser.parseObject<CodeableConcept>(
         json,
         'route',
         CodeableConcept.fromJson,
+        '$objectPath.route',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       doseAndRate: (json['doseAndRate'] as List<dynamic>?)
           ?.map<DosageDoseAndRate>(
             (v) => DosageDoseAndRate.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.doseAndRate'}),
             ),
           )
           .toList(),
@@ -120,16 +138,19 @@ class Dosage extends BackboneType
         json,
         'maxDosePerPeriod',
         Ratio.fromJson,
+        '$objectPath.maxDosePerPeriod',
       ),
       maxDosePerAdministration: JsonParser.parseObject<Quantity>(
         json,
         'maxDosePerAdministration',
         Quantity.fromJson,
+        '$objectPath.maxDosePerAdministration',
       ),
       maxDosePerLifetime: JsonParser.parseObject<Quantity>(
         json,
         'maxDosePerLifetime',
         Quantity.fromJson,
+        '$objectPath.maxDosePerLifetime',
       ),
     );
   }
@@ -346,22 +367,26 @@ class DosageDoseAndRate extends Element {
     this.doseX,
     this.rateX,
     super.disallowExtensions,
+    super.objectPath = 'DosageDoseAndRate',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DosageDoseAndRate.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'DosageDoseAndRate';
     return DosageDoseAndRate(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -369,16 +394,25 @@ class DosageDoseAndRate extends Element {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
-      doseX: JsonParser.parsePolymorphic<DoseXDosageDoseAndRate>(json, {
-        'doseRange': Range.fromJson,
-        'doseQuantity': Quantity.fromJson,
-      }),
-      rateX: JsonParser.parsePolymorphic<RateXDosageDoseAndRate>(json, {
-        'rateRatio': Ratio.fromJson,
-        'rateRange': Range.fromJson,
-        'rateQuantity': Quantity.fromJson,
-      }),
+      doseX: JsonParser.parsePolymorphic<DoseXDosageDoseAndRate>(
+        json,
+        {
+          'doseRange': Range.fromJson,
+          'doseQuantity': Quantity.fromJson,
+        },
+        objectPath,
+      ),
+      rateX: JsonParser.parsePolymorphic<RateXDosageDoseAndRate>(
+        json,
+        {
+          'rateRatio': Ratio.fromJson,
+          'rateRange': Range.fromJson,
+          'rateQuantity': Quantity.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

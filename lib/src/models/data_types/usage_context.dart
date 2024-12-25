@@ -27,22 +27,26 @@ class UsageContext extends DataType
     required this.code,
     required this.valueX,
     super.disallowExtensions,
+    super.objectPath = 'UsageContext',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory UsageContext.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'UsageContext';
     return UsageContext(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -50,13 +54,18 @@ class UsageContext extends DataType
         json,
         'code',
         Coding.fromJson,
+        '$objectPath.code',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXUsageContext>(json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-        'valueReference': Reference.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXUsageContext>(
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+          'valueReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 

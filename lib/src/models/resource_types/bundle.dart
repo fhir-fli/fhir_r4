@@ -21,6 +21,7 @@ class Bundle extends Resource {
     this.entry,
     this.signature,
   }) : super(
+          objectPath: 'Bundle',
           resourceType: R4ResourceType.Bundle,
         );
 
@@ -28,58 +29,69 @@ class Bundle extends Resource {
   factory Bundle.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle';
     return Bundle(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       type: JsonParser.parsePrimitive<BundleType>(
         json,
         'type',
         BundleType.fromJson,
+        '$objectPath.type',
       )!,
       timestamp: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'timestamp',
         FhirInstant.fromJson,
+        '$objectPath.timestamp',
       ),
       total: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'total',
         FhirUnsignedInt.fromJson,
+        '$objectPath.total',
       ),
       link: (json['link'] as List<dynamic>?)
           ?.map<BundleLink>(
             (v) => BundleLink.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.link'}),
             ),
           )
           .toList(),
       entry: (json['entry'] as List<dynamic>?)
           ?.map<BundleEntry>(
             (v) => BundleEntry.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entry'}),
             ),
           )
           .toList(),
@@ -87,6 +99,7 @@ class Bundle extends Resource {
         json,
         'signature',
         Signature.fromJson,
+        '$objectPath.signature',
       ),
     );
   }
@@ -259,29 +272,35 @@ class BundleLink extends BackboneElement {
     required this.relation,
     required this.url,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Bundle.link',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleLink.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle.link';
     return BundleLink(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -289,11 +308,13 @@ class BundleLink extends BackboneElement {
         json,
         'relation',
         FhirString.fromJson,
+        '$objectPath.relation',
       )!,
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       )!,
     );
   }
@@ -427,36 +448,43 @@ class BundleEntry extends BackboneElement {
     this.request,
     this.response,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Bundle.entry',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleEntry.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle.entry';
     return BundleEntry(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       link: (json['link'] as List<dynamic>?)
           ?.map<BundleLink>(
             (v) => BundleLink.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.link'}),
             ),
           )
           .toList(),
@@ -464,26 +492,31 @@ class BundleEntry extends BackboneElement {
         json,
         'fullUrl',
         FhirUri.fromJson,
+        '$objectPath.fullUrl',
       ),
       resource: JsonParser.parseObject<Resource>(
         json,
         'resource',
         Resource.fromJson,
+        '$objectPath.resource',
       ),
       search: JsonParser.parseObject<BundleSearch>(
         json,
         'search',
         BundleSearch.fromJson,
+        '$objectPath.search',
       ),
       request: JsonParser.parseObject<BundleRequest>(
         json,
         'request',
         BundleRequest.fromJson,
+        '$objectPath.request',
       ),
       response: JsonParser.parseObject<BundleResponse>(
         json,
         'response',
         BundleResponse.fromJson,
+        '$objectPath.response',
       ),
     );
   }
@@ -654,29 +687,35 @@ class BundleSearch extends BackboneElement {
     this.mode,
     this.score,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Bundle.entry.search',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleSearch.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle.entry.search';
     return BundleSearch(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -684,11 +723,13 @@ class BundleSearch extends BackboneElement {
         json,
         'mode',
         SearchEntryMode.fromJson,
+        '$objectPath.mode',
       ),
       score: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'score',
         FhirDecimal.fromJson,
+        '$objectPath.score',
       ),
     );
   }
@@ -824,29 +865,35 @@ class BundleRequest extends BackboneElement {
     this.ifMatch,
     this.ifNoneExist,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Bundle.entry.request',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleRequest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle.entry.request';
     return BundleRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -854,31 +901,37 @@ class BundleRequest extends BackboneElement {
         json,
         'method',
         HTTPVerb.fromJson,
+        '$objectPath.method',
       )!,
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       )!,
       ifNoneMatch: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifNoneMatch',
         FhirString.fromJson,
+        '$objectPath.ifNoneMatch',
       ),
       ifModifiedSince: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'ifModifiedSince',
         FhirInstant.fromJson,
+        '$objectPath.ifModifiedSince',
       ),
       ifMatch: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifMatch',
         FhirString.fromJson,
+        '$objectPath.ifMatch',
       ),
       ifNoneExist: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifNoneExist',
         FhirString.fromJson,
+        '$objectPath.ifNoneExist',
       ),
     );
   }
@@ -1049,29 +1102,35 @@ class BundleResponse extends BackboneElement {
     this.lastModified,
     this.outcome,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Bundle.entry.response',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Bundle.entry.response';
     return BundleResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1079,26 +1138,31 @@ class BundleResponse extends BackboneElement {
         json,
         'status',
         FhirString.fromJson,
+        '$objectPath.status',
       )!,
       location: JsonParser.parsePrimitive<FhirUri>(
         json,
         'location',
         FhirUri.fromJson,
+        '$objectPath.location',
       ),
       etag: JsonParser.parsePrimitive<FhirString>(
         json,
         'etag',
         FhirString.fromJson,
+        '$objectPath.etag',
       ),
       lastModified: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'lastModified',
         FhirInstant.fromJson,
+        '$objectPath.lastModified',
       ),
       outcome: JsonParser.parseObject<Resource>(
         json,
         'outcome',
         Resource.fromJson,
+        '$objectPath.outcome',
       ),
     );
   }

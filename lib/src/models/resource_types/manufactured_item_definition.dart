@@ -27,6 +27,7 @@ class ManufacturedItemDefinition extends DomainResource {
     this.ingredient,
     this.property,
   }) : super(
+          objectPath: 'ManufacturedItemDefinition',
           resourceType: R4ResourceType.ManufacturedItemDefinition,
         );
 
@@ -34,57 +35,67 @@ class ManufacturedItemDefinition extends DomainResource {
   factory ManufacturedItemDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ManufacturedItemDefinition';
     return ManufacturedItemDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -92,35 +103,41 @@ class ManufacturedItemDefinition extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       manufacturedDoseForm: JsonParser.parseObject<CodeableConcept>(
         json,
         'manufacturedDoseForm',
         CodeableConcept.fromJson,
+        '$objectPath.manufacturedDoseForm',
       )!,
       unitOfPresentation: JsonParser.parseObject<CodeableConcept>(
         json,
         'unitOfPresentation',
         CodeableConcept.fromJson,
+        '$objectPath.unitOfPresentation',
       ),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.manufacturer'}),
             ),
           )
           .toList(),
       ingredient: (json['ingredient'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.ingredient'}),
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<ManufacturedItemDefinitionProperty>(
             (v) => ManufacturedItemDefinitionProperty.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.property'}),
             ),
           )
           .toList(),
@@ -307,29 +324,35 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     required this.type,
     this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ManufacturedItemDefinition.property',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ManufacturedItemDefinitionProperty.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ManufacturedItemDefinition.property';
     return ManufacturedItemDefinitionProperty(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -337,16 +360,20 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       valueX:
           JsonParser.parsePolymorphic<ValueXManufacturedItemDefinitionProperty>(
-              json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueDate': FhirDate.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueAttachment': Attachment.fromJson,
-      }),
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueDate': FhirDate.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueAttachment': Attachment.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

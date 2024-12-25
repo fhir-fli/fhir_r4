@@ -59,6 +59,7 @@ class FhirBoolean extends PrimitiveType<bool>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Boolean',
   }) : super(input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -70,7 +71,8 @@ class FhirBoolean extends PrimitiveType<bool>
     final value = json['value'] as bool?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirBoolean(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirBoolean(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create a [FhirBoolean] from YAML

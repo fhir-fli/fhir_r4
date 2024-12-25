@@ -39,6 +39,7 @@ class FhirPositiveInt extends FhirNumber
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'PositiveInt',
   }) : super(input != null ? _validatePositiveInt(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -50,7 +51,12 @@ class FhirPositiveInt extends FhirNumber
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirPositiveInt(value?.toInt(), element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirPositiveInt(
+      value?.toInt(),
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create [FhirPositiveInt] from YAML input.

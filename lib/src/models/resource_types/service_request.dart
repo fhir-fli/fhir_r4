@@ -52,6 +52,7 @@ class ServiceRequest extends DomainResource {
     this.patientInstruction,
     this.relevantHistory,
   }) : super(
+          objectPath: 'ServiceRequest',
           resourceType: R4ResourceType.ServiceRequest,
         );
 
@@ -59,57 +60,67 @@ class ServiceRequest extends DomainResource {
   factory ServiceRequest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ServiceRequest';
     return ServiceRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -117,23 +128,27 @@ class ServiceRequest extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       replaces: (json['replaces'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.replaces'}),
             ),
           )
           .toList(),
@@ -141,21 +156,25 @@ class ServiceRequest extends DomainResource {
         json,
         'requisition',
         Identifier.fromJson,
+        '$objectPath.requisition',
       ),
       status: JsonParser.parsePrimitive<RequestStatus>(
         json,
         'status',
         RequestStatus.fromJson,
+        '$objectPath.status',
       )!,
       intent: JsonParser.parsePrimitive<RequestIntent>(
         json,
         'intent',
         RequestIntent.fromJson,
+        '$objectPath.intent',
       )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -163,131 +182,161 @@ class ServiceRequest extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
+        '$objectPath.doNotPerform',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       orderDetail: (json['orderDetail'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.orderDetail'}),
             ),
           )
           .toList(),
-      quantityX: JsonParser.parsePolymorphic<QuantityXServiceRequest>(json, {
-        'quantityQuantity': Quantity.fromJson,
-        'quantityRatio': Ratio.fromJson,
-        'quantityRange': Range.fromJson,
-      }),
+      quantityX: JsonParser.parsePolymorphic<QuantityXServiceRequest>(
+        json,
+        {
+          'quantityQuantity': Quantity.fromJson,
+          'quantityRatio': Ratio.fromJson,
+          'quantityRange': Range.fromJson,
+        },
+        objectPath,
+      ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
-      occurrenceX:
-          JsonParser.parsePolymorphic<OccurrenceXServiceRequest>(json, {
-        'occurrenceDateTime': FhirDateTime.fromJson,
-        'occurrencePeriod': Period.fromJson,
-        'occurrenceTiming': Timing.fromJson,
-      }),
-      asNeededX: JsonParser.parsePolymorphic<AsNeededXServiceRequest>(json, {
-        'asNeededBoolean': FhirBoolean.fromJson,
-        'asNeededCodeableConcept': CodeableConcept.fromJson,
-      }),
+      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXServiceRequest>(
+        json,
+        {
+          'occurrenceDateTime': FhirDateTime.fromJson,
+          'occurrencePeriod': Period.fromJson,
+          'occurrenceTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
+      asNeededX: JsonParser.parsePolymorphic<AsNeededXServiceRequest>(
+        json,
+        {
+          'asNeededBoolean': FhirBoolean.fromJson,
+          'asNeededCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authoredOn',
         FhirDateTime.fromJson,
+        '$objectPath.authoredOn',
       ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
         Reference.fromJson,
+        '$objectPath.requester',
       ),
       performerType: JsonParser.parseObject<CodeableConcept>(
         json,
         'performerType',
         CodeableConcept.fromJson,
+        '$objectPath.performerType',
       ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performer'}),
             ),
           )
           .toList(),
       locationCode: (json['locationCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.locationCode'}),
             ),
           )
           .toList(),
       locationReference: (json['locationReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.locationReference'}),
             ),
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.insurance'}),
             ),
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supportingInfo'}),
             ),
           )
           .toList(),
       specimen: (json['specimen'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specimen'}),
             ),
           )
           .toList(),
       bodySite: (json['bodySite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.bodySite'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -295,11 +344,13 @@ class ServiceRequest extends DomainResource {
         json,
         'patientInstruction',
         FhirString.fromJson,
+        '$objectPath.patientInstruction',
       ),
       relevantHistory: (json['relevantHistory'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relevantHistory'}),
             ),
           )
           .toList(),

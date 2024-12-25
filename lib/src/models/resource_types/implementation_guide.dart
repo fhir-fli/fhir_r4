@@ -42,6 +42,7 @@ class ImplementationGuide extends CanonicalResource {
     this.definition,
     this.manifest,
   }) : super(
+          objectPath: 'ImplementationGuide',
           resourceType: R4ResourceType.ImplementationGuide,
         );
 
@@ -49,50 +50,59 @@ class ImplementationGuide extends CanonicalResource {
   factory ImplementationGuide.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide';
     return ImplementationGuide(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -100,46 +110,55 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+        '$objectPath.url',
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -147,18 +166,21 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -166,33 +188,39 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       packageId: JsonParser.parsePrimitive<FhirId>(
         json,
         'packageId',
         FhirId.fromJson,
+        '$objectPath.packageId',
       )!,
       license: JsonParser.parsePrimitive<SPDXLicense>(
         json,
         'license',
         SPDXLicense.fromJson,
+        '$objectPath.license',
       ),
       fhirVersion: JsonParser.parsePrimitiveList<FHIRVersion>(
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
+        '$objectPath.fhirVersion',
       )!,
       dependsOn: (json['dependsOn'] as List<dynamic>?)
           ?.map<ImplementationGuideDependsOn>(
             (v) => ImplementationGuideDependsOn.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dependsOn'}),
             ),
           )
           .toList(),
       global: (json['global'] as List<dynamic>?)
           ?.map<ImplementationGuideGlobal>(
             (v) => ImplementationGuideGlobal.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.global'}),
             ),
           )
           .toList(),
@@ -200,11 +228,13 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'definition',
         ImplementationGuideDefinition.fromJson,
+        '$objectPath.definition',
       ),
       manifest: JsonParser.parseObject<ImplementationGuideManifest>(
         json,
         'manifest',
         ImplementationGuideManifest.fromJson,
+        '$objectPath.manifest',
       ),
     );
   }
@@ -453,29 +483,35 @@ class ImplementationGuideDependsOn extends BackboneElement {
     this.packageId,
     this.version,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.dependsOn',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDependsOn.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.dependsOn';
     return ImplementationGuideDependsOn(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -483,16 +519,19 @@ class ImplementationGuideDependsOn extends BackboneElement {
         json,
         'uri',
         FhirCanonical.fromJson,
+        '$objectPath.uri',
       )!,
       packageId: JsonParser.parsePrimitive<FhirId>(
         json,
         'packageId',
         FhirId.fromJson,
+        '$objectPath.packageId',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
     );
   }
@@ -630,29 +669,35 @@ class ImplementationGuideGlobal extends BackboneElement {
     required this.type,
     required this.profile,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.global',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGlobal.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.global';
     return ImplementationGuideGlobal(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -660,11 +705,13 @@ class ImplementationGuideGlobal extends BackboneElement {
         json,
         'type',
         FhirCode.fromJson,
+        '$objectPath.type',
       )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       )!,
     );
   }
@@ -796,43 +843,51 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.parameter,
     this.template,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition';
     return ImplementationGuideDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       grouping: (json['grouping'] as List<dynamic>?)
           ?.map<ImplementationGuideGrouping>(
             (v) => ImplementationGuideGrouping.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.grouping'}),
             ),
           )
           .toList(),
       resource: (json['resource'] as List<dynamic>)
           .map<ImplementationGuideResource>(
             (v) => ImplementationGuideResource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.resource'}),
             ),
           )
           .toList(),
@@ -840,18 +895,21 @@ class ImplementationGuideDefinition extends BackboneElement {
         json,
         'page',
         ImplementationGuidePage.fromJson,
+        '$objectPath.page',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<ImplementationGuideParameter>(
             (v) => ImplementationGuideParameter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parameter'}),
             ),
           )
           .toList(),
       template: (json['template'] as List<dynamic>?)
           ?.map<ImplementationGuideTemplate>(
             (v) => ImplementationGuideTemplate.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.template'}),
             ),
           )
           .toList(),
@@ -1008,29 +1066,35 @@ class ImplementationGuideGrouping extends BackboneElement {
     required this.name,
     this.description,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition.grouping',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGrouping.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition.grouping';
     return ImplementationGuideGrouping(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1038,11 +1102,13 @@ class ImplementationGuideGrouping extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
     );
   }
@@ -1178,29 +1244,35 @@ class ImplementationGuideResource extends BackboneElement {
     this.exampleX,
     this.groupingId,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition.resource',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition.resource';
     return ImplementationGuideResource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1208,32 +1280,40 @@ class ImplementationGuideResource extends BackboneElement {
         json,
         'reference',
         Reference.fromJson,
+        '$objectPath.reference',
       )!,
       fhirVersion: JsonParser.parsePrimitiveList<FHIRVersion>(
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
+        '$objectPath.fhirVersion',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       exampleX:
           JsonParser.parsePolymorphic<ExampleXImplementationGuideResource>(
-              json, {
-        'exampleBoolean': FhirBoolean.fromJson,
-        'exampleCanonical': FhirCanonical.fromJson,
-      }),
+        json,
+        {
+          'exampleBoolean': FhirBoolean.fromJson,
+          'exampleCanonical': FhirCanonical.fromJson,
+        },
+        objectPath,
+      ),
       groupingId: JsonParser.parsePrimitive<FhirId>(
         json,
         'groupingId',
         FhirId.fromJson,
+        '$objectPath.groupingId',
       ),
     );
   }
@@ -1403,50 +1483,63 @@ class ImplementationGuidePage extends BackboneElement {
     required this.generation,
     this.page,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition.page',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition.page';
     return ImplementationGuidePage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      nameX: JsonParser.parsePolymorphic<NameXImplementationGuidePage>(json, {
-        'nameUrl': FhirUrl.fromJson,
-        'nameReference': Reference.fromJson,
-      })!,
+      nameX: JsonParser.parsePolymorphic<NameXImplementationGuidePage>(
+        json,
+        {
+          'nameUrl': FhirUrl.fromJson,
+          'nameReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       )!,
       generation: JsonParser.parsePrimitive<GuidePageGeneration>(
         json,
         'generation',
         GuidePageGeneration.fromJson,
+        '$objectPath.generation',
       )!,
       page: (json['page'] as List<dynamic>?)
           ?.map<ImplementationGuidePage>(
             (v) => ImplementationGuidePage.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.page'}),
             ),
           )
           .toList(),
@@ -1593,29 +1686,35 @@ class ImplementationGuideParameter extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition.parameter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition.parameter';
     return ImplementationGuideParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1623,11 +1722,13 @@ class ImplementationGuideParameter extends BackboneElement {
         json,
         'code',
         GuideParameterCode.fromJson,
+        '$objectPath.code',
       )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -1758,29 +1859,35 @@ class ImplementationGuideTemplate extends BackboneElement {
     required this.source,
     this.scope,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.definition.template',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideTemplate.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.definition.template';
     return ImplementationGuideTemplate(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1788,16 +1895,19 @@ class ImplementationGuideTemplate extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       source: JsonParser.parsePrimitive<FhirString>(
         json,
         'source',
         FhirString.fromJson,
+        '$objectPath.source',
       )!,
       scope: JsonParser.parsePrimitive<FhirString>(
         json,
         'scope',
         FhirString.fromJson,
+        '$objectPath.scope',
       ),
     );
   }
@@ -1936,29 +2046,35 @@ class ImplementationGuideManifest extends BackboneElement {
     this.image,
     this.other,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.manifest',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideManifest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.manifest';
     return ImplementationGuideManifest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1966,18 +2082,21 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'rendering',
         FhirUrl.fromJson,
+        '$objectPath.rendering',
       ),
       resource: (json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource1>(
-            (v) => ImplementationGuideResource1.fromJson(
-              v as Map<String, dynamic>,
+          .map<ImplementationGuideResource>(
+            (v) => ImplementationGuideResource.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.resource'}),
             ),
           )
           .toList(),
       page: (json['page'] as List<dynamic>?)
-          ?.map<ImplementationGuidePage1>(
-            (v) => ImplementationGuidePage1.fromJson(
-              v as Map<String, dynamic>,
+          ?.map<ImplementationGuidePage>(
+            (v) => ImplementationGuidePage.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.page'}),
             ),
           )
           .toList(),
@@ -1985,11 +2104,13 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'image',
         FhirString.fromJson,
+        '$objectPath.image',
       ),
       other: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'other',
         FhirString.fromJson,
+        '$objectPath.other',
       ),
     );
   }
@@ -2046,11 +2167,11 @@ class ImplementationGuideManifest extends BackboneElement {
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource1> resource;
+  final List<ImplementationGuideResource> resource;
 
   /// [page]
   /// Information about a page within the IG.
-  final List<ImplementationGuidePage1>? page;
+  final List<ImplementationGuidePage>? page;
 
   /// [image]
   /// Indicates a relative path to an image that exists within the IG.
@@ -2109,8 +2230,8 @@ class ImplementationGuideManifest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? rendering,
-    List<ImplementationGuideResource1>? resource,
-    List<ImplementationGuidePage1>? page,
+    List<ImplementationGuideResource>? resource,
+    List<ImplementationGuidePage>? page,
     List<FhirString>? image,
     List<FhirString>? other,
     Map<String, Object?>? userData,
@@ -2148,29 +2269,35 @@ class ImplementationGuideResource1 extends BackboneElement {
     this.exampleX,
     this.relativePath,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.manifest.resource',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.manifest.resource';
     return ImplementationGuideResource1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2178,17 +2305,22 @@ class ImplementationGuideResource1 extends BackboneElement {
         json,
         'reference',
         Reference.fromJson,
+        '$objectPath.reference',
       )!,
       exampleX:
           JsonParser.parsePolymorphic<ExampleXImplementationGuideResource1>(
-              json, {
-        'exampleBoolean': FhirBoolean.fromJson,
-        'exampleCanonical': FhirCanonical.fromJson,
-      }),
+        json,
+        {
+          'exampleBoolean': FhirBoolean.fromJson,
+          'exampleCanonical': FhirCanonical.fromJson,
+        },
+        objectPath,
+      ),
       relativePath: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'relativePath',
         FhirUrl.fromJson,
+        '$objectPath.relativePath',
       ),
     );
   }
@@ -2330,29 +2462,35 @@ class ImplementationGuidePage1 extends BackboneElement {
     this.title,
     this.anchor,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ImplementationGuide.manifest.page',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage1.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ImplementationGuide.manifest.page';
     return ImplementationGuidePage1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2360,16 +2498,19 @@ class ImplementationGuidePage1 extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       anchor: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'anchor',
         FhirString.fromJson,
+        '$objectPath.anchor',
       ),
     );
   }

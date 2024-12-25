@@ -20,29 +20,34 @@ class MarketingStatus extends BackboneType {
     this.dateRange,
     this.restoreDate,
     super.disallowExtensions,
+    super.objectPath = 'MarketingStatus',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MarketingStatus.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'MarketingStatus';
     return MarketingStatus(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -50,26 +55,31 @@ class MarketingStatus extends BackboneType {
         json,
         'country',
         CodeableConcept.fromJson,
+        '$objectPath.country',
       ),
       jurisdiction: JsonParser.parseObject<CodeableConcept>(
         json,
         'jurisdiction',
         CodeableConcept.fromJson,
+        '$objectPath.jurisdiction',
       ),
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
         CodeableConcept.fromJson,
+        '$objectPath.status',
       )!,
       dateRange: JsonParser.parseObject<Period>(
         json,
         'dateRange',
         Period.fromJson,
+        '$objectPath.dateRange',
       ),
       restoreDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'restoreDate',
         FhirDateTime.fromJson,
+        '$objectPath.restoreDate',
       ),
     );
   }

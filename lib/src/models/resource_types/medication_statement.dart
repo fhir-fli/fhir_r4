@@ -58,6 +58,7 @@ class MedicationStatement extends DomainResource {
     this.note,
     this.dosage,
   }) : super(
+          objectPath: 'MedicationStatement',
           resourceType: R4ResourceType.MedicationStatement,
         );
 
@@ -65,71 +66,83 @@ class MedicationStatement extends DomainResource {
   factory MedicationStatement.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MedicationStatement';
     return MedicationStatement(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -137,11 +150,13 @@ class MedicationStatement extends DomainResource {
         json,
         'status',
         MedicationStatementStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       statusReason: (json['statusReason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.statusReason'}),
             ),
           )
           .toList(),
@@ -149,69 +164,85 @@ class MedicationStatement extends DomainResource {
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
-      medicationX:
-          JsonParser.parsePolymorphic<MedicationXMedicationStatement>(json, {
-        'medicationCodeableConcept': CodeableConcept.fromJson,
-        'medicationReference': Reference.fromJson,
-      })!,
+      medicationX: JsonParser.parsePolymorphic<MedicationXMedicationStatement>(
+        json,
+        {
+          'medicationCodeableConcept': CodeableConcept.fromJson,
+          'medicationReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
       context: JsonParser.parseObject<Reference>(
         json,
         'context',
         Reference.fromJson,
+        '$objectPath.context',
       ),
-      effectiveX:
-          JsonParser.parsePolymorphic<EffectiveXMedicationStatement>(json, {
-        'effectiveDateTime': FhirDateTime.fromJson,
-        'effectivePeriod': Period.fromJson,
-      }),
+      effectiveX: JsonParser.parsePolymorphic<EffectiveXMedicationStatement>(
+        json,
+        {
+          'effectiveDateTime': FhirDateTime.fromJson,
+          'effectivePeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       dateAsserted: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'dateAsserted',
         FhirDateTime.fromJson,
+        '$objectPath.dateAsserted',
       ),
       informationSource: JsonParser.parseObject<Reference>(
         json,
         'informationSource',
         Reference.fromJson,
+        '$objectPath.informationSource',
       ),
       derivedFrom: (json['derivedFrom'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.derivedFrom'}),
             ),
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       dosage: (json['dosage'] as List<dynamic>?)
           ?.map<Dosage>(
             (v) => Dosage.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dosage'}),
             ),
           )
           .toList(),

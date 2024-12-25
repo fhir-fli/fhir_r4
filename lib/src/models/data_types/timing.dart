@@ -46,29 +46,34 @@ class Timing extends BackboneType
     this.repeat,
     this.code,
     super.disallowExtensions,
+    super.objectPath = 'Timing',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Timing.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Timing';
     return Timing(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -76,16 +81,19 @@ class Timing extends BackboneType
         json,
         'event',
         FhirDateTime.fromJson,
+        '$objectPath.event',
       ),
       repeat: JsonParser.parseObject<TimingRepeat>(
         json,
         'repeat',
         TimingRepeat.fromJson,
+        '$objectPath.repeat',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
     );
   }
@@ -238,99 +246,121 @@ class TimingRepeat extends Element {
     this.when,
     this.offset,
     super.disallowExtensions,
+    super.objectPath = 'TimingRepeat',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TimingRepeat.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'TimingRepeat';
     return TimingRepeat(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
-      boundsX: JsonParser.parsePolymorphic<BoundsXTimingRepeat>(json, {
-        'boundsDuration': FhirDuration.fromJson,
-        'boundsRange': Range.fromJson,
-        'boundsPeriod': Period.fromJson,
-      }),
+      boundsX: JsonParser.parsePolymorphic<BoundsXTimingRepeat>(
+        json,
+        {
+          'boundsDuration': FhirDuration.fromJson,
+          'boundsRange': Range.fromJson,
+          'boundsPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       count: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'count',
         FhirPositiveInt.fromJson,
+        '$objectPath.count',
       ),
       countMax: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'countMax',
         FhirPositiveInt.fromJson,
+        '$objectPath.countMax',
       ),
       duration: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'duration',
         FhirDecimal.fromJson,
+        '$objectPath.duration',
       ),
       durationMax: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'durationMax',
         FhirDecimal.fromJson,
+        '$objectPath.durationMax',
       ),
       durationUnit: JsonParser.parsePrimitive<UnitsOfTime>(
         json,
         'durationUnit',
         UnitsOfTime.fromJson,
+        '$objectPath.durationUnit',
       ),
       frequency: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'frequency',
         FhirPositiveInt.fromJson,
+        '$objectPath.frequency',
       ),
       frequencyMax: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'frequencyMax',
         FhirPositiveInt.fromJson,
+        '$objectPath.frequencyMax',
       ),
       period: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'period',
         FhirDecimal.fromJson,
+        '$objectPath.period',
       ),
       periodMax: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'periodMax',
         FhirDecimal.fromJson,
+        '$objectPath.periodMax',
       ),
       periodUnit: JsonParser.parsePrimitive<UnitsOfTime>(
         json,
         'periodUnit',
         UnitsOfTime.fromJson,
+        '$objectPath.periodUnit',
       ),
       dayOfWeek: JsonParser.parsePrimitiveList<DaysOfWeek>(
         json,
         'dayOfWeek',
         DaysOfWeek.fromJson,
+        '$objectPath.dayOfWeek',
       ),
       timeOfDay: JsonParser.parsePrimitiveList<FhirTime>(
         json,
         'timeOfDay',
         FhirTime.fromJson,
+        '$objectPath.timeOfDay',
       ),
       when: JsonParser.parsePrimitiveList<EventTiming>(
         json,
         'when',
         EventTiming.fromJson,
+        '$objectPath.when',
       ),
       offset: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'offset',
         FhirUnsignedInt.fromJson,
+        '$objectPath.offset',
       ),
     );
   }

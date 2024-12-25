@@ -29,22 +29,26 @@ class Money extends DataType
     this.value,
     this.currency,
     super.disallowExtensions,
+    super.objectPath = 'Money',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Money.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Money';
     return Money(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -52,11 +56,13 @@ class Money extends DataType
         json,
         'value',
         FhirDecimal.fromJson,
+        '$objectPath.value',
       ),
       currency: JsonParser.parsePrimitive<FhirCode>(
         json,
         'currency',
         FhirCode.fromJson,
+        '$objectPath.currency',
       ),
     );
   }

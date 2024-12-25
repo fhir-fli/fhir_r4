@@ -46,6 +46,7 @@ class Device extends DomainResource {
     this.safety,
     this.parent,
   }) : super(
+          objectPath: 'Device',
           resourceType: R4ResourceType.Device,
         );
 
@@ -53,57 +54,67 @@ class Device extends DomainResource {
   factory Device.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device';
     return Device(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -111,11 +122,13 @@ class Device extends DomainResource {
         json,
         'definition',
         Reference.fromJson,
+        '$objectPath.definition',
       ),
       udiCarrier: (json['udiCarrier'] as List<dynamic>?)
           ?.map<DeviceUdiCarrier>(
             (v) => DeviceUdiCarrier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.udiCarrier'}),
             ),
           )
           .toList(),
@@ -123,11 +136,13 @@ class Device extends DomainResource {
         json,
         'status',
         FHIRDeviceStatus.fromJson,
+        '$objectPath.status',
       ),
       statusReason: (json['statusReason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.statusReason'}),
             ),
           )
           .toList(),
@@ -135,36 +150,43 @@ class Device extends DomainResource {
         json,
         'distinctIdentifier',
         FhirString.fromJson,
+        '$objectPath.distinctIdentifier',
       ),
       manufacturer: JsonParser.parsePrimitive<FhirString>(
         json,
         'manufacturer',
         FhirString.fromJson,
+        '$objectPath.manufacturer',
       ),
       manufactureDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'manufactureDate',
         FhirDateTime.fromJson,
+        '$objectPath.manufactureDate',
       ),
       expirationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'expirationDate',
         FhirDateTime.fromJson,
+        '$objectPath.expirationDate',
       ),
       lotNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'lotNumber',
         FhirString.fromJson,
+        '$objectPath.lotNumber',
       ),
       serialNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'serialNumber',
         FhirString.fromJson,
+        '$objectPath.serialNumber',
       ),
       deviceName: (json['deviceName'] as List<dynamic>?)
           ?.map<DeviceDeviceName>(
             (v) => DeviceDeviceName.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.deviceName'}),
             ),
           )
           .toList(),
@@ -172,35 +194,41 @@ class Device extends DomainResource {
         json,
         'modelNumber',
         FhirString.fromJson,
+        '$objectPath.modelNumber',
       ),
       partNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'partNumber',
         FhirString.fromJson,
+        '$objectPath.partNumber',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       specialization: (json['specialization'] as List<dynamic>?)
           ?.map<DeviceSpecialization>(
             (v) => DeviceSpecialization.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specialization'}),
             ),
           )
           .toList(),
       version: (json['version'] as List<dynamic>?)
           ?.map<DeviceVersion>(
             (v) => DeviceVersion.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.version'}),
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<DeviceProperty>(
             (v) => DeviceProperty.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.property'}),
             ),
           )
           .toList(),
@@ -208,16 +236,19 @@ class Device extends DomainResource {
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       ),
       owner: JsonParser.parseObject<Reference>(
         json,
         'owner',
         Reference.fromJson,
+        '$objectPath.owner',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -225,23 +256,27 @@ class Device extends DomainResource {
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       safety: (json['safety'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.safety'}),
             ),
           )
           .toList(),
@@ -249,6 +284,7 @@ class Device extends DomainResource {
         json,
         'parent',
         Reference.fromJson,
+        '$objectPath.parent',
       ),
     );
   }
@@ -585,29 +621,35 @@ class DeviceUdiCarrier extends BackboneElement {
     this.carrierHRF,
     this.entryType,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Device.udiCarrier',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceUdiCarrier.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device.udiCarrier';
     return DeviceUdiCarrier(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -615,31 +657,37 @@ class DeviceUdiCarrier extends BackboneElement {
         json,
         'deviceIdentifier',
         FhirString.fromJson,
+        '$objectPath.deviceIdentifier',
       ),
       issuer: JsonParser.parsePrimitive<FhirUri>(
         json,
         'issuer',
         FhirUri.fromJson,
+        '$objectPath.issuer',
       ),
       jurisdiction: JsonParser.parsePrimitive<FhirUri>(
         json,
         'jurisdiction',
         FhirUri.fromJson,
+        '$objectPath.jurisdiction',
       ),
       carrierAIDC: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'carrierAIDC',
         FhirBase64Binary.fromJson,
+        '$objectPath.carrierAIDC',
       ),
       carrierHRF: JsonParser.parsePrimitive<FhirString>(
         json,
         'carrierHRF',
         FhirString.fromJson,
+        '$objectPath.carrierHRF',
       ),
       entryType: JsonParser.parsePrimitive<UDIEntryType>(
         json,
         'entryType',
         UDIEntryType.fromJson,
+        '$objectPath.entryType',
       ),
     );
   }
@@ -817,29 +865,35 @@ class DeviceDeviceName extends BackboneElement {
     required this.name,
     required this.type,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Device.deviceName',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDeviceName.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device.deviceName';
     return DeviceDeviceName(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -847,11 +901,13 @@ class DeviceDeviceName extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       type: JsonParser.parsePrimitive<DeviceNameType>(
         json,
         'type',
         DeviceNameType.fromJson,
+        '$objectPath.type',
       )!,
     );
   }
@@ -983,29 +1039,35 @@ class DeviceSpecialization extends BackboneElement {
     required this.systemType,
     this.version,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Device.specialization',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceSpecialization.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device.specialization';
     return DeviceSpecialization(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1013,11 +1075,13 @@ class DeviceSpecialization extends BackboneElement {
         json,
         'systemType',
         CodeableConcept.fromJson,
+        '$objectPath.systemType',
       )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
     );
   }
@@ -1147,29 +1211,35 @@ class DeviceVersion extends BackboneElement {
     this.component,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Device.version',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceVersion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device.version';
     return DeviceVersion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1177,16 +1247,19 @@ class DeviceVersion extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       component: JsonParser.parseObject<Identifier>(
         json,
         'component',
         Identifier.fromJson,
+        '$objectPath.component',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -1323,29 +1396,35 @@ class DeviceProperty extends BackboneElement {
     this.valueQuantity,
     this.valueCode,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Device.property',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceProperty.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Device.property';
     return DeviceProperty(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1353,18 +1432,21 @@ class DeviceProperty extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       valueQuantity: (json['valueQuantity'] as List<dynamic>?)
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.valueQuantity'}),
             ),
           )
           .toList(),
       valueCode: (json['valueCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.valueCode'}),
             ),
           )
           .toList(),

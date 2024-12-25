@@ -30,6 +30,7 @@ class Slot extends DomainResource {
     this.overbooked,
     this.comment,
   }) : super(
+          objectPath: 'Slot',
           resourceType: R4ResourceType.Slot,
         );
 
@@ -37,78 +38,91 @@ class Slot extends DomainResource {
   factory Slot.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Slot';
     return Slot(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       serviceCategory: (json['serviceCategory'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.serviceCategory'}),
             ),
           )
           .toList(),
       serviceType: (json['serviceType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.serviceType'}),
             ),
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specialty'}),
             ),
           )
           .toList(),
@@ -116,36 +130,43 @@ class Slot extends DomainResource {
         json,
         'appointmentType',
         CodeableConcept.fromJson,
+        '$objectPath.appointmentType',
       ),
       schedule: JsonParser.parseObject<Reference>(
         json,
         'schedule',
         Reference.fromJson,
+        '$objectPath.schedule',
       )!,
       status: JsonParser.parsePrimitive<SlotStatus>(
         json,
         'status',
         SlotStatus.fromJson,
+        '$objectPath.status',
       )!,
       start: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'start',
         FhirInstant.fromJson,
+        '$objectPath.start',
       )!,
       end: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'end',
         FhirInstant.fromJson,
+        '$objectPath.end',
       )!,
       overbooked: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'overbooked',
         FhirBoolean.fromJson,
+        '$objectPath.overbooked',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
     );
   }

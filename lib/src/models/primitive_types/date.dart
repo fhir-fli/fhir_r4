@@ -80,6 +80,7 @@ class FhirDate extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath,
   });
 
   /// Factory constructor to create a [FhirDate] from a [String].

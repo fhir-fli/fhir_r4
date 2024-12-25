@@ -28,22 +28,26 @@ class ContactPoint extends DataType
     this.rank,
     this.period,
     super.disallowExtensions,
+    super.objectPath = 'ContactPoint',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContactPoint.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'ContactPoint';
     return ContactPoint(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -51,26 +55,31 @@ class ContactPoint extends DataType
         json,
         'system',
         ContactPointSystem.fromJson,
+        '$objectPath.system',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       ),
       use: JsonParser.parsePrimitive<ContactPointUse>(
         json,
         'use',
         ContactPointUse.fromJson,
+        '$objectPath.use',
       ),
       rank: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'rank',
         FhirPositiveInt.fromJson,
+        '$objectPath.rank',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }

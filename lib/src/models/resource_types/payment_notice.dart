@@ -31,6 +31,7 @@ class PaymentNotice extends DomainResource {
     required this.amount,
     this.paymentStatus,
   }) : super(
+          objectPath: 'PaymentNotice',
           resourceType: R4ResourceType.PaymentNotice,
         );
 
@@ -38,57 +39,67 @@ class PaymentNotice extends DomainResource {
   factory PaymentNotice.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'PaymentNotice';
     return PaymentNotice(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -96,56 +107,67 @@ class PaymentNotice extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
+        '$objectPath.request',
       ),
       response: JsonParser.parseObject<Reference>(
         json,
         'response',
         Reference.fromJson,
+        '$objectPath.response',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       )!,
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
+        '$objectPath.provider',
       ),
       payment: JsonParser.parseObject<Reference>(
         json,
         'payment',
         Reference.fromJson,
+        '$objectPath.payment',
       )!,
       paymentDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'paymentDate',
         FhirDate.fromJson,
+        '$objectPath.paymentDate',
       ),
       payee: JsonParser.parseObject<Reference>(
         json,
         'payee',
         Reference.fromJson,
+        '$objectPath.payee',
       ),
       recipient: JsonParser.parseObject<Reference>(
         json,
         'recipient',
         Reference.fromJson,
+        '$objectPath.recipient',
       )!,
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
+        '$objectPath.amount',
       )!,
       paymentStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'paymentStatus',
         CodeableConcept.fromJson,
+        '$objectPath.paymentStatus',
       ),
     );
   }

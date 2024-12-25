@@ -7,11 +7,13 @@ class JsonParser {
     Map<String, dynamic> json,
     String fieldName,
     T Function(Map<String, dynamic>) fromJson,
+    String objectPath,
   ) {
     if (json[fieldName] != null || json['_$fieldName'] != null) {
       return fromJson({
         'value': json[fieldName],
         '_value': json['_$fieldName'],
+        'objectPath': '$objectPath.$fieldName',
       });
     }
     return null;
@@ -22,6 +24,7 @@ class JsonParser {
     Map<String, dynamic> json,
     String fieldName,
     T Function(Map<String, dynamic>) fromJson,
+    String objectPath,
   ) {
     final values = json[fieldName] as List<dynamic>?;
     final extensions = json['_$fieldName'] as List<dynamic>?;
@@ -32,6 +35,7 @@ class JsonParser {
       (i) => fromJson({
         'value': values?[i],
         '_value': extensions?[i],
+        'objectPath': '$objectPath.$fieldName',
       }),
     );
   }
@@ -41,9 +45,13 @@ class JsonParser {
     Map<String, dynamic> json,
     String fieldName,
     T Function(Map<String, dynamic>) fromJson,
+    String objectPath,
   ) {
     return json[fieldName] != null
-        ? fromJson(json[fieldName] as Map<String, dynamic>)
+        ? fromJson(
+            (json[fieldName] as Map<String, dynamic>)
+              ..addAll({'objectPath': objectPath}),
+          )
         : null;
   }
 
@@ -51,6 +59,7 @@ class JsonParser {
   static T? parsePolymorphic<T>(
     Map<String, dynamic> json,
     Map<String, T Function(Map<String, dynamic>)> typeParsers,
+    String objectPath,
   ) {
     for (final entry in typeParsers.entries) {
       final jsonKey = entry.key;
@@ -58,11 +67,15 @@ class JsonParser {
 
       if (json[jsonKey] != null || json['_$jsonKey'] != null) {
         if (json[jsonKey] is Map<String, dynamic>) {
-          return parser(json[jsonKey] as Map<String, dynamic>);
+          return parser(
+            (json[jsonKey] as Map<String, dynamic>)
+              ..addAll({'objectPath': '$objectPath.$jsonKey'}),
+          );
         } else {
           return parser({
             'value': json[jsonKey],
             '_value': json['_$jsonKey'],
+            'objectPath': '$objectPath.$jsonKey',
           });
         }
       }

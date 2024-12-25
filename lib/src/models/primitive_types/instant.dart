@@ -73,6 +73,7 @@ class FhirInstant extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath,
   });
 
   /// Factory constructor to create a [FhirInstant] from a [String].

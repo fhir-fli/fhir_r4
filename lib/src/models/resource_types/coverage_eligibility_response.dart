@@ -34,6 +34,7 @@ class CoverageEligibilityResponse extends DomainResource {
     this.form,
     this.error,
   }) : super(
+          objectPath: 'CoverageEligibilityResponse',
           resourceType: R4ResourceType.CoverageEligibilityResponse,
         );
 
@@ -41,57 +42,67 @@ class CoverageEligibilityResponse extends DomainResource {
   factory CoverageEligibilityResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CoverageEligibilityResponse';
     return CoverageEligibilityResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -99,57 +110,70 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       purpose: JsonParser.parsePrimitiveList<EligibilityResponsePurpose>(
         json,
         'purpose',
         EligibilityResponsePurpose.fromJson,
+        '$objectPath.purpose',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       servicedX:
           JsonParser.parsePolymorphic<ServicedXCoverageEligibilityResponse>(
-              json, {
-        'servicedDate': FhirDate.fromJson,
-        'servicedPeriod': Period.fromJson,
-      }),
+        json,
+        {
+          'servicedDate': FhirDate.fromJson,
+          'servicedPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       )!,
       requestor: JsonParser.parseObject<Reference>(
         json,
         'requestor',
         Reference.fromJson,
+        '$objectPath.requestor',
       ),
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
+        '$objectPath.request',
       )!,
       outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
         json,
         'outcome',
         RemittanceOutcome.fromJson,
+        '$objectPath.outcome',
       )!,
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
+        '$objectPath.disposition',
       ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
+        '$objectPath.insurer',
       )!,
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<CoverageEligibilityResponseInsurance>(
             (v) => CoverageEligibilityResponseInsurance.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.insurance'}),
             ),
           )
           .toList(),
@@ -157,16 +181,19 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'preAuthRef',
         FhirString.fromJson,
+        '$objectPath.preAuthRef',
       ),
       form: JsonParser.parseObject<CodeableConcept>(
         json,
         'form',
         CodeableConcept.fromJson,
+        '$objectPath.form',
       ),
       error: (json['error'] as List<dynamic>?)
           ?.map<CoverageEligibilityResponseError>(
             (v) => CoverageEligibilityResponseError.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.error'}),
             ),
           )
           .toList(),
@@ -419,29 +446,35 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     this.benefitPeriod,
     this.item,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CoverageEligibilityResponse.insurance',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CoverageEligibilityResponse.insurance';
     return CoverageEligibilityResponseInsurance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -449,21 +482,25 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
         json,
         'coverage',
         Reference.fromJson,
+        '$objectPath.coverage',
       )!,
       inforce: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inforce',
         FhirBoolean.fromJson,
+        '$objectPath.inforce',
       ),
       benefitPeriod: JsonParser.parseObject<Period>(
         json,
         'benefitPeriod',
         Period.fromJson,
+        '$objectPath.benefitPeriod',
       ),
       item: (json['item'] as List<dynamic>?)
           ?.map<CoverageEligibilityResponseItem>(
             (v) => CoverageEligibilityResponseItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.item'}),
             ),
           )
           .toList(),
@@ -626,29 +663,35 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     this.authorizationSupporting,
     this.authorizationUrl,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CoverageEligibilityResponse.insurance.item',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CoverageEligibilityResponse.insurance.item';
     return CoverageEligibilityResponseItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -656,16 +699,19 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
+        '$objectPath.productOrService',
       ),
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifier'}),
             ),
           )
           .toList(),
@@ -673,41 +719,49 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'provider',
         Reference.fromJson,
+        '$objectPath.provider',
       ),
       excluded: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'excluded',
         FhirBoolean.fromJson,
+        '$objectPath.excluded',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       network: JsonParser.parseObject<CodeableConcept>(
         json,
         'network',
         CodeableConcept.fromJson,
+        '$objectPath.network',
       ),
       unit: JsonParser.parseObject<CodeableConcept>(
         json,
         'unit',
         CodeableConcept.fromJson,
+        '$objectPath.unit',
       ),
       term: JsonParser.parseObject<CodeableConcept>(
         json,
         'term',
         CodeableConcept.fromJson,
+        '$objectPath.term',
       ),
       benefit: (json['benefit'] as List<dynamic>?)
           ?.map<CoverageEligibilityResponseBenefit>(
             (v) => CoverageEligibilityResponseBenefit.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.benefit'}),
             ),
           )
           .toList(),
@@ -715,19 +769,22 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'authorizationRequired',
         FhirBoolean.fromJson,
+        '$objectPath.authorizationRequired',
       ),
-      authorizationSupporting:
-          (json['authorizationSupporting'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      authorizationSupporting: (json['authorizationSupporting']
+              as List<dynamic>?)
+          ?.map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.authorizationSupporting'}),
+            ),
+          )
+          .toList(),
       authorizationUrl: JsonParser.parsePrimitive<FhirUri>(
         json,
         'authorizationUrl',
         FhirUri.fromJson,
+        '$objectPath.authorizationUrl',
       ),
     );
   }
@@ -953,29 +1010,35 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     this.allowedX,
     this.usedX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CoverageEligibilityResponse.insurance.item.benefit',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseBenefit.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CoverageEligibilityResponse.insurance.item.benefit';
     return CoverageEligibilityResponseBenefit(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -983,20 +1046,28 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       allowedX: JsonParser.parsePolymorphic<
-          AllowedXCoverageEligibilityResponseBenefit>(json, {
-        'allowedUnsignedInt': FhirUnsignedInt.fromJson,
-        'allowedString': FhirString.fromJson,
-        'allowedMoney': Money.fromJson,
-      }),
+          AllowedXCoverageEligibilityResponseBenefit>(
+        json,
+        {
+          'allowedUnsignedInt': FhirUnsignedInt.fromJson,
+          'allowedString': FhirString.fromJson,
+          'allowedMoney': Money.fromJson,
+        },
+        objectPath,
+      ),
       usedX:
           JsonParser.parsePolymorphic<UsedXCoverageEligibilityResponseBenefit>(
-              json, {
-        'usedUnsignedInt': FhirUnsignedInt.fromJson,
-        'usedString': FhirString.fromJson,
-        'usedMoney': Money.fromJson,
-      }),
+        json,
+        {
+          'usedUnsignedInt': FhirUnsignedInt.fromJson,
+          'usedString': FhirString.fromJson,
+          'usedMoney': Money.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -1137,29 +1208,35 @@ class CoverageEligibilityResponseError extends BackboneElement {
     super.modifierExtension,
     required this.code,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CoverageEligibilityResponse.error',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseError.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CoverageEligibilityResponse.error';
     return CoverageEligibilityResponseError(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1167,6 +1244,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
     );
   }

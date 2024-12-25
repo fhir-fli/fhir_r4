@@ -43,6 +43,7 @@ class Communication extends DomainResource {
     this.payload,
     this.note,
   }) : super(
+          objectPath: 'Communication',
           resourceType: R4ResourceType.Communication,
         );
 
@@ -50,57 +51,67 @@ class Communication extends DomainResource {
   factory Communication.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Communication';
     return Communication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -108,30 +119,35 @@ class Communication extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
       inResponseTo: (json['inResponseTo'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.inResponseTo'}),
             ),
           )
           .toList(),
@@ -139,16 +155,19 @@ class Communication extends DomainResource {
         json,
         'status',
         EventStatus.fromJson,
+        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
+        '$objectPath.statusReason',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -156,11 +175,13 @@ class Communication extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
       medium: (json['medium'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.medium'}),
             ),
           )
           .toList(),
@@ -168,16 +189,19 @@ class Communication extends DomainResource {
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       topic: JsonParser.parseObject<CodeableConcept>(
         json,
         'topic',
         CodeableConcept.fromJson,
+        '$objectPath.topic',
       ),
       about: (json['about'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.about'}),
             ),
           )
           .toList(),
@@ -185,21 +209,25 @@ class Communication extends DomainResource {
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       sent: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'sent',
         FhirDateTime.fromJson,
+        '$objectPath.sent',
       ),
       received: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'received',
         FhirDateTime.fromJson,
+        '$objectPath.received',
       ),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.recipient'}),
             ),
           )
           .toList(),
@@ -207,32 +235,37 @@ class Communication extends DomainResource {
         json,
         'sender',
         Reference.fromJson,
+        '$objectPath.sender',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       payload: (json['payload'] as List<dynamic>?)
           ?.map<CommunicationPayload>(
             (v) => CommunicationPayload.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.payload'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -548,38 +581,47 @@ class CommunicationPayload extends BackboneElement {
     super.modifierExtension,
     required this.contentX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Communication.payload',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CommunicationPayload.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Communication.payload';
     return CommunicationPayload(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      contentX:
-          JsonParser.parsePolymorphic<ContentXCommunicationPayload>(json, {
-        'contentString': FhirString.fromJson,
-        'contentAttachment': Attachment.fromJson,
-        'contentReference': Reference.fromJson,
-      })!,
+      contentX: JsonParser.parsePolymorphic<ContentXCommunicationPayload>(
+        json,
+        {
+          'contentString': FhirString.fromJson,
+          'contentAttachment': Attachment.fromJson,
+          'contentReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 

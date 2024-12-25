@@ -117,6 +117,7 @@ class FhirDateTime extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'DateTime',
   });
 
   /// Factory constructor to create a [FhirDateTime] from a [String].
@@ -129,6 +130,7 @@ class FhirDateTime extends FhirDateTimeBase
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirDateTime>(
         input: input,
@@ -139,6 +141,7 @@ class FhirDateTime extends FhirDateTimeBase
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,
         annotations: annotations,
+        objectPath: objectPath,
       ) as FhirDateTime;
 
   /// Factory constructor to create a [FhirDateTime] from a [DateTime].
@@ -169,9 +172,14 @@ class FhirDateTime extends FhirDateTimeBase
     final element = json['_value'] is Map<String, dynamic>
         ? Element.fromJson(json['_value'] as Map<String, dynamic>)
         : null;
+    final objectPath = json['objectPath'] as String?;
 
     if (value is String) {
-      return FhirDateTime.fromString(value, element: element);
+      return FhirDateTime.fromString(
+        value,
+        element: element,
+        objectPath: objectPath,
+      );
     } else if (value is DateTime) {
       return FhirDateTime.fromDateTime(value, element: element);
     } else if (value == null) {

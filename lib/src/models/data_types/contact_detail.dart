@@ -24,22 +24,26 @@ class ContactDetail extends DataType
     this.name,
     this.telecom,
     super.disallowExtensions,
+    super.objectPath = 'ContactDetail',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContactDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'ContactDetail';
     return ContactDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -47,11 +51,13 @@ class ContactDetail extends DataType
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),

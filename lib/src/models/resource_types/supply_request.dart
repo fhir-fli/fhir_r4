@@ -34,6 +34,7 @@ class SupplyRequest extends DomainResource {
     this.deliverFrom,
     this.deliverTo,
   }) : super(
+          objectPath: 'SupplyRequest',
           resourceType: R4ResourceType.SupplyRequest,
         );
 
@@ -41,57 +42,67 @@ class SupplyRequest extends DomainResource {
   factory SupplyRequest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SupplyRequest';
     return SupplyRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -99,66 +110,84 @@ class SupplyRequest extends DomainResource {
         json,
         'status',
         SupplyRequestStatus.fromJson,
+        '$objectPath.status',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
+        '$objectPath.priority',
       ),
-      itemX: JsonParser.parsePolymorphic<ItemXSupplyRequest>(json, {
-        'itemCodeableConcept': CodeableConcept.fromJson,
-        'itemReference': Reference.fromJson,
-      })!,
+      itemX: JsonParser.parsePolymorphic<ItemXSupplyRequest>(
+        json,
+        {
+          'itemCodeableConcept': CodeableConcept.fromJson,
+          'itemReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       )!,
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<SupplyRequestParameter>(
             (v) => SupplyRequestParameter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parameter'}),
             ),
           )
           .toList(),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyRequest>(json, {
-        'occurrenceDateTime': FhirDateTime.fromJson,
-        'occurrencePeriod': Period.fromJson,
-        'occurrenceTiming': Timing.fromJson,
-      }),
+      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyRequest>(
+        json,
+        {
+          'occurrenceDateTime': FhirDateTime.fromJson,
+          'occurrencePeriod': Period.fromJson,
+          'occurrenceTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authoredOn',
         FhirDateTime.fromJson,
+        '$objectPath.authoredOn',
       ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
         Reference.fromJson,
+        '$objectPath.requester',
       ),
       supplier: (json['supplier'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supplier'}),
             ),
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
@@ -166,11 +195,13 @@ class SupplyRequest extends DomainResource {
         json,
         'deliverFrom',
         Reference.fromJson,
+        '$objectPath.deliverFrom',
       ),
       deliverTo: JsonParser.parseObject<Reference>(
         json,
         'deliverTo',
         Reference.fromJson,
+        '$objectPath.deliverTo',
       ),
     );
   }
@@ -419,29 +450,35 @@ class SupplyRequestParameter extends BackboneElement {
     this.code,
     this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SupplyRequest.parameter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequestParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SupplyRequest.parameter';
     return SupplyRequestParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -449,13 +486,18 @@ class SupplyRequestParameter extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
-      valueX: JsonParser.parsePolymorphic<ValueXSupplyRequestParameter>(json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXSupplyRequestParameter>(
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

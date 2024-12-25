@@ -45,6 +45,7 @@ class TerminologyCapabilities extends CanonicalResource {
     this.translation,
     this.closure,
   }) : super(
+          objectPath: 'TerminologyCapabilities',
           resourceType: R4ResourceType.TerminologyCapabilities,
         );
 
@@ -52,50 +53,59 @@ class TerminologyCapabilities extends CanonicalResource {
   factory TerminologyCapabilities.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities';
     return TerminologyCapabilities(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -103,46 +113,55 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+        '$objectPath.date',
+      )!,
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -150,18 +169,21 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -169,37 +191,44 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       kind: JsonParser.parsePrimitive<CapabilityStatementKind>(
         json,
         'kind',
         CapabilityStatementKind.fromJson,
+        '$objectPath.kind',
       )!,
       software: JsonParser.parseObject<TerminologyCapabilitiesSoftware>(
         json,
         'software',
         TerminologyCapabilitiesSoftware.fromJson,
+        '$objectPath.software',
       ),
       implementation:
           JsonParser.parseObject<TerminologyCapabilitiesImplementation>(
         json,
         'implementation',
         TerminologyCapabilitiesImplementation.fromJson,
+        '$objectPath.implementation',
       ),
       lockedDate: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'lockedDate',
         FhirBoolean.fromJson,
+        '$objectPath.lockedDate',
       ),
       codeSystem: (json['codeSystem'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesCodeSystem>(
             (v) => TerminologyCapabilitiesCodeSystem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.codeSystem'}),
             ),
           )
           .toList(),
@@ -207,26 +236,31 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'expansion',
         TerminologyCapabilitiesExpansion.fromJson,
+        '$objectPath.expansion',
       ),
       codeSearch: JsonParser.parsePrimitive<CodeSearchSupport>(
         json,
         'codeSearch',
         CodeSearchSupport.fromJson,
+        '$objectPath.codeSearch',
       ),
       validateCode: JsonParser.parseObject<TerminologyCapabilitiesValidateCode>(
         json,
         'validateCode',
         TerminologyCapabilitiesValidateCode.fromJson,
+        '$objectPath.validateCode',
       ),
       translation: JsonParser.parseObject<TerminologyCapabilitiesTranslation>(
         json,
         'translation',
         TerminologyCapabilitiesTranslation.fromJson,
+        '$objectPath.translation',
       ),
       closure: JsonParser.parseObject<TerminologyCapabilitiesClosure>(
         json,
         'closure',
         TerminologyCapabilitiesClosure.fromJson,
+        '$objectPath.closure',
       ),
     );
   }
@@ -506,29 +540,35 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     required this.name,
     this.version,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.software',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesSoftware.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.software';
     return TerminologyCapabilitiesSoftware(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -536,11 +576,13 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
     );
   }
@@ -670,29 +712,35 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     required this.description,
     this.url,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.implementation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesImplementation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.implementation';
     return TerminologyCapabilitiesImplementation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -700,11 +748,13 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       )!,
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
+        '$objectPath.url',
       ),
     );
   }
@@ -836,29 +886,35 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     this.version,
     this.subsumption,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.codeSystem',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesCodeSystem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.codeSystem';
     return TerminologyCapabilitiesCodeSystem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -866,11 +922,13 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'uri',
         FhirCanonical.fromJson,
+        '$objectPath.uri',
       ),
       version: (json['version'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesVersion>(
             (v) => TerminologyCapabilitiesVersion.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.version'}),
             ),
           )
           .toList(),
@@ -878,6 +936,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'subsumption',
         FhirBoolean.fromJson,
+        '$objectPath.subsumption',
       ),
     );
   }
@@ -1018,29 +1077,35 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     this.filter,
     this.property,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.codeSystem.version',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesVersion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.codeSystem.version';
     return TerminologyCapabilitiesVersion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1048,26 +1113,31 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'code',
         FhirString.fromJson,
+        '$objectPath.code',
       ),
       isDefault: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'isDefault',
         FhirBoolean.fromJson,
+        '$objectPath.isDefault',
       ),
       compositional: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'compositional',
         FhirBoolean.fromJson,
+        '$objectPath.compositional',
       ),
       language: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'language',
         FhirCode.fromJson,
+        '$objectPath.language',
       ),
       filter: (json['filter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesFilter>(
             (v) => TerminologyCapabilitiesFilter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.filter'}),
             ),
           )
           .toList(),
@@ -1075,6 +1145,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'property',
         FhirCode.fromJson,
+        '$objectPath.property',
       ),
     );
   }
@@ -1231,29 +1302,35 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     required this.code,
     required this.op,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.codeSystem.version.filter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesFilter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.codeSystem.version.filter';
     return TerminologyCapabilitiesFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1261,11 +1338,13 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       op: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'op',
         FhirCode.fromJson,
+        '$objectPath.op',
       )!,
     );
   }
@@ -1397,29 +1476,35 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     this.parameter,
     this.textFilter,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.expansion',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesExpansion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.expansion';
     return TerminologyCapabilitiesExpansion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1427,21 +1512,25 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'hierarchical',
         FhirBoolean.fromJson,
+        '$objectPath.hierarchical',
       ),
       paging: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'paging',
         FhirBoolean.fromJson,
+        '$objectPath.paging',
       ),
       incomplete: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'incomplete',
         FhirBoolean.fromJson,
+        '$objectPath.incomplete',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesParameter>(
             (v) => TerminologyCapabilitiesParameter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parameter'}),
             ),
           )
           .toList(),
@@ -1449,6 +1538,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'textFilter',
         FhirMarkdown.fromJson,
+        '$objectPath.textFilter',
       ),
     );
   }
@@ -1597,29 +1687,35 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     required this.name,
     this.documentation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.expansion.parameter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.expansion.parameter';
     return TerminologyCapabilitiesParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1627,11 +1723,13 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         json,
         'name',
         FhirCode.fromJson,
+        '$objectPath.name',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
     );
   }
@@ -1760,29 +1858,35 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.modifierExtension,
     required this.translations,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.validateCode',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesValidateCode.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.validateCode';
     return TerminologyCapabilitiesValidateCode(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1790,6 +1894,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
         json,
         'translations',
         FhirBoolean.fromJson,
+        '$objectPath.translations',
       )!,
     );
   }
@@ -1910,29 +2015,35 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.modifierExtension,
     required this.needsMap,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.translation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesTranslation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.translation';
     return TerminologyCapabilitiesTranslation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1940,6 +2051,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
         json,
         'needsMap',
         FhirBoolean.fromJson,
+        '$objectPath.needsMap',
       )!,
     );
   }
@@ -2059,29 +2171,35 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.modifierExtension,
     this.translation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'TerminologyCapabilities.closure',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesClosure.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'TerminologyCapabilities.closure';
     return TerminologyCapabilitiesClosure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2089,6 +2207,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         json,
         'translation',
         FhirBoolean.fromJson,
+        '$objectPath.translation',
       ),
     );
   }

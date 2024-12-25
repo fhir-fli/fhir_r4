@@ -42,6 +42,7 @@ class HealthcareService extends DomainResource {
     this.availabilityExceptions,
     this.endpoint,
   }) : super(
+          objectPath: 'HealthcareService',
           resourceType: R4ResourceType.HealthcareService,
         );
 
@@ -49,57 +50,67 @@ class HealthcareService extends DomainResource {
   factory HealthcareService.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'HealthcareService';
     return HealthcareService(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -107,37 +118,43 @@ class HealthcareService extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       providedBy: JsonParser.parseObject<Reference>(
         json,
         'providedBy',
         Reference.fromJson,
+        '$objectPath.providedBy',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.specialty'}),
             ),
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.location'}),
             ),
           )
           .toList(),
@@ -145,75 +162,87 @@ class HealthcareService extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
       extraDetails: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'extraDetails',
         FhirMarkdown.fromJson,
+        '$objectPath.extraDetails',
       ),
       photo: JsonParser.parseObject<Attachment>(
         json,
         'photo',
         Attachment.fromJson,
+        '$objectPath.photo',
       ),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.telecom'}),
             ),
           )
           .toList(),
       coverageArea: (json['coverageArea'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.coverageArea'}),
             ),
           )
           .toList(),
       serviceProvisionCode: (json['serviceProvisionCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.serviceProvisionCode'}),
             ),
           )
           .toList(),
       eligibility: (json['eligibility'] as List<dynamic>?)
           ?.map<HealthcareServiceEligibility>(
             (v) => HealthcareServiceEligibility.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.eligibility'}),
             ),
           )
           .toList(),
       program: (json['program'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.program'}),
             ),
           )
           .toList(),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.characteristic'}),
             ),
           )
           .toList(),
       communication: (json['communication'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.communication'}),
             ),
           )
           .toList(),
       referralMethod: (json['referralMethod'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.referralMethod'}),
             ),
           )
           .toList(),
@@ -221,18 +250,21 @@ class HealthcareService extends DomainResource {
         json,
         'appointmentRequired',
         FhirBoolean.fromJson,
+        '$objectPath.appointmentRequired',
       ),
       availableTime: (json['availableTime'] as List<dynamic>?)
           ?.map<HealthcareServiceAvailableTime>(
             (v) => HealthcareServiceAvailableTime.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.availableTime'}),
             ),
           )
           .toList(),
       notAvailable: (json['notAvailable'] as List<dynamic>?)
           ?.map<HealthcareServiceNotAvailable>(
             (v) => HealthcareServiceNotAvailable.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.notAvailable'}),
             ),
           )
           .toList(),
@@ -240,11 +272,13 @@ class HealthcareService extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
+        '$objectPath.availabilityExceptions',
       ),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endpoint'}),
             ),
           )
           .toList(),
@@ -570,29 +604,35 @@ class HealthcareServiceEligibility extends BackboneElement {
     this.code,
     this.comment,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'HealthcareService.eligibility',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceEligibility.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'HealthcareService.eligibility';
     return HealthcareServiceEligibility(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -600,11 +640,13 @@ class HealthcareServiceEligibility extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       comment: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'comment',
         FhirMarkdown.fromJson,
+        '$objectPath.comment',
       ),
     );
   }
@@ -734,29 +776,35 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     this.availableStartTime,
     this.availableEndTime,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'HealthcareService.availableTime',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceAvailableTime.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'HealthcareService.availableTime';
     return HealthcareServiceAvailableTime(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -764,21 +812,25 @@ class HealthcareServiceAvailableTime extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
+        '$objectPath.daysOfWeek',
       ),
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
+        '$objectPath.allDay',
       ),
       availableStartTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableStartTime',
         FhirTime.fromJson,
+        '$objectPath.availableStartTime',
       ),
       availableEndTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableEndTime',
         FhirTime.fromJson,
+        '$objectPath.availableEndTime',
       ),
     );
   }
@@ -925,29 +977,35 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     required this.description,
     this.during,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'HealthcareService.notAvailable',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceNotAvailable.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'HealthcareService.notAvailable';
     return HealthcareServiceNotAvailable(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -955,11 +1013,13 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       )!,
       during: JsonParser.parseObject<Period>(
         json,
         'during',
         Period.fromJson,
+        '$objectPath.during',
       ),
     );
   }

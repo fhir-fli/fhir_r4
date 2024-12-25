@@ -29,22 +29,26 @@ class HumanName extends DataType
     this.suffix,
     this.period,
     super.disallowExtensions,
+    super.objectPath = 'HumanName',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HumanName.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'HumanName';
     return HumanName(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -52,36 +56,43 @@ class HumanName extends DataType
         json,
         'use',
         NameUse.fromJson,
+        '$objectPath.use',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
+        '$objectPath.text',
       ),
       family: JsonParser.parsePrimitive<FhirString>(
         json,
         'family',
         FhirString.fromJson,
+        '$objectPath.family',
       ),
       given: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'given',
         FhirString.fromJson,
+        '$objectPath.given',
       ),
       prefix: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'prefix',
         FhirString.fromJson,
+        '$objectPath.prefix',
       ),
       suffix: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'suffix',
         FhirString.fromJson,
+        '$objectPath.suffix',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }

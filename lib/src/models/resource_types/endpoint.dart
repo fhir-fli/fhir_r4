@@ -32,6 +32,7 @@ class FhirEndpoint extends DomainResource {
     required this.address,
     this.header,
   }) : super(
+          objectPath: 'Endpoint',
           resourceType: R4ResourceType.FhirEndpoint,
         );
 
@@ -39,57 +40,67 @@ class FhirEndpoint extends DomainResource {
   factory FhirEndpoint.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Endpoint';
     return FhirEndpoint(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -97,26 +108,31 @@ class FhirEndpoint extends DomainResource {
         json,
         'status',
         EndpointStatus.fromJson,
+        '$objectPath.status',
       )!,
       connectionType: JsonParser.parseObject<Coding>(
         json,
         'connectionType',
         Coding.fromJson,
+        '$objectPath.connectionType',
       )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       managingOrganization: JsonParser.parseObject<Reference>(
         json,
         'managingOrganization',
         Reference.fromJson,
+        '$objectPath.managingOrganization',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -124,11 +140,13 @@ class FhirEndpoint extends DomainResource {
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       payloadType: (json['payloadType'] as List<dynamic>)
           .map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.payloadType'}),
             ),
           )
           .toList(),
@@ -136,16 +154,19 @@ class FhirEndpoint extends DomainResource {
         json,
         'payloadMimeType',
         FhirCode.fromJson,
+        '$objectPath.payloadMimeType',
       ),
       address: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'address',
         FhirUrl.fromJson,
+        '$objectPath.address',
       )!,
       header: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'header',
         FhirString.fromJson,
+        '$objectPath.header',
       ),
     );
   }

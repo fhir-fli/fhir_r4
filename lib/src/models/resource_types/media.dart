@@ -41,6 +41,7 @@ class Media extends DomainResource {
     required this.content,
     this.note,
   }) : super(
+          objectPath: 'Media',
           resourceType: R4ResourceType.Media,
         );
 
@@ -48,71 +49,83 @@ class Media extends DomainResource {
   factory Media.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Media';
     return Media(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -120,50 +133,63 @@ class Media extends DomainResource {
         json,
         'status',
         EventStatus.fromJson,
+        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       modality: JsonParser.parseObject<CodeableConcept>(
         json,
         'modality',
         CodeableConcept.fromJson,
+        '$objectPath.modality',
       ),
       view: JsonParser.parseObject<CodeableConcept>(
         json,
         'view',
         CodeableConcept.fromJson,
+        '$objectPath.view',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
-      createdX: JsonParser.parsePolymorphic<CreatedXMedia>(json, {
-        'createdDateTime': FhirDateTime.fromJson,
-        'createdPeriod': Period.fromJson,
-      }),
+      createdX: JsonParser.parsePolymorphic<CreatedXMedia>(
+        json,
+        {
+          'createdDateTime': FhirDateTime.fromJson,
+          'createdPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
       issued: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'issued',
         FhirInstant.fromJson,
+        '$objectPath.issued',
       ),
       operator_: JsonParser.parseObject<Reference>(
         json,
         'operator',
         Reference.fromJson,
+        '$objectPath.operator',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
@@ -171,46 +197,55 @@ class Media extends DomainResource {
         json,
         'bodySite',
         CodeableConcept.fromJson,
+        '$objectPath.bodySite',
       ),
       deviceName: JsonParser.parsePrimitive<FhirString>(
         json,
         'deviceName',
         FhirString.fromJson,
+        '$objectPath.deviceName',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
+        '$objectPath.device',
       ),
       height: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'height',
         FhirPositiveInt.fromJson,
+        '$objectPath.height',
       ),
       width: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'width',
         FhirPositiveInt.fromJson,
+        '$objectPath.width',
       ),
       frames: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'frames',
         FhirPositiveInt.fromJson,
+        '$objectPath.frames',
       ),
       duration: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'duration',
         FhirDecimal.fromJson,
+        '$objectPath.duration',
       ),
       content: JsonParser.parseObject<Attachment>(
         json,
         'content',
         Attachment.fromJson,
+        '$objectPath.content',
       )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),

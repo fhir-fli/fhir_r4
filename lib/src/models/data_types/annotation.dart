@@ -26,38 +26,48 @@ class Annotation extends DataType
     this.time,
     required this.text,
     super.disallowExtensions,
+    super.objectPath = 'Annotation',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Annotation.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Annotation';
     return Annotation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
-      authorX: JsonParser.parsePolymorphic<AuthorXAnnotation>(json, {
-        'authorReference': Reference.fromJson,
-        'authorString': FhirString.fromJson,
-      }),
+      authorX: JsonParser.parsePolymorphic<AuthorXAnnotation>(
+        json,
+        {
+          'authorReference': Reference.fromJson,
+          'authorString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       time: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'time',
         FhirDateTime.fromJson,
+        '$objectPath.time',
       ),
       text: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'text',
         FhirMarkdown.fromJson,
+        '$objectPath.text',
       )!,
     );
   }

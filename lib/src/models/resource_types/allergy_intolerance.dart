@@ -35,6 +35,7 @@ class AllergyIntolerance extends DomainResource {
     this.note,
     this.reaction,
   }) : super(
+          objectPath: 'AllergyIntolerance',
           resourceType: R4ResourceType.AllergyIntolerance,
         );
 
@@ -42,57 +43,67 @@ class AllergyIntolerance extends DomainResource {
   factory AllergyIntolerance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AllergyIntolerance';
     return AllergyIntolerance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -100,80 +111,98 @@ class AllergyIntolerance extends DomainResource {
         json,
         'clinicalStatus',
         CodeableConcept.fromJson,
+        '$objectPath.clinicalStatus',
       ),
       verificationStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'verificationStatus',
         CodeableConcept.fromJson,
+        '$objectPath.verificationStatus',
       ),
       type: JsonParser.parsePrimitive<AllergyIntoleranceType>(
         json,
         'type',
         AllergyIntoleranceType.fromJson,
+        '$objectPath.type',
       ),
       category: JsonParser.parsePrimitiveList<AllergyIntoleranceCategory>(
         json,
         'category',
         AllergyIntoleranceCategory.fromJson,
+        '$objectPath.category',
       ),
       criticality: JsonParser.parsePrimitive<AllergyIntoleranceCriticality>(
         json,
         'criticality',
         AllergyIntoleranceCriticality.fromJson,
+        '$objectPath.criticality',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
-      onsetX: JsonParser.parsePolymorphic<OnsetXAllergyIntolerance>(json, {
-        'onsetDateTime': FhirDateTime.fromJson,
-        'onsetAge': Age.fromJson,
-        'onsetPeriod': Period.fromJson,
-        'onsetRange': Range.fromJson,
-        'onsetString': FhirString.fromJson,
-      }),
+      onsetX: JsonParser.parsePolymorphic<OnsetXAllergyIntolerance>(
+        json,
+        {
+          'onsetDateTime': FhirDateTime.fromJson,
+          'onsetAge': Age.fromJson,
+          'onsetPeriod': Period.fromJson,
+          'onsetRange': Range.fromJson,
+          'onsetString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'recordedDate',
         FhirDateTime.fromJson,
+        '$objectPath.recordedDate',
       ),
       recorder: JsonParser.parseObject<Reference>(
         json,
         'recorder',
         Reference.fromJson,
+        '$objectPath.recorder',
       ),
       asserter: JsonParser.parseObject<Reference>(
         json,
         'asserter',
         Reference.fromJson,
+        '$objectPath.asserter',
       ),
       lastOccurrence: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastOccurrence',
         FhirDateTime.fromJson,
+        '$objectPath.lastOccurrence',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       reaction: (json['reaction'] as List<dynamic>?)
           ?.map<AllergyIntoleranceReaction>(
             (v) => AllergyIntoleranceReaction.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reaction'}),
             ),
           )
           .toList(),
@@ -455,29 +484,35 @@ class AllergyIntoleranceReaction extends BackboneElement {
     this.exposureRoute,
     this.note,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'AllergyIntolerance.reaction',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AllergyIntoleranceReaction.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AllergyIntolerance.reaction';
     return AllergyIntoleranceReaction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -485,11 +520,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
         json,
         'substance',
         CodeableConcept.fromJson,
+        '$objectPath.substance',
       ),
       manifestation: (json['manifestation'] as List<dynamic>)
           .map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.manifestation'}),
             ),
           )
           .toList(),
@@ -497,26 +534,31 @@ class AllergyIntoleranceReaction extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       onset: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'onset',
         FhirDateTime.fromJson,
+        '$objectPath.onset',
       ),
       severity: JsonParser.parsePrimitive<AllergyIntoleranceSeverity>(
         json,
         'severity',
         AllergyIntoleranceSeverity.fromJson,
+        '$objectPath.severity',
       ),
       exposureRoute: JsonParser.parseObject<CodeableConcept>(
         json,
         'exposureRoute',
         CodeableConcept.fromJson,
+        '$objectPath.exposureRoute',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),

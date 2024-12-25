@@ -47,6 +47,7 @@ class Claim extends DomainResource {
     this.item,
     this.total,
   }) : super(
+          objectPath: 'Claim',
           resourceType: R4ResourceType.Claim,
         );
 
@@ -54,57 +55,67 @@ class Claim extends DomainResource {
   factory Claim.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim';
     return Claim(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -112,66 +123,79 @@ class Claim extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
+        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       subType: JsonParser.parseObject<CodeableConcept>(
         json,
         'subType',
         CodeableConcept.fromJson,
+        '$objectPath.subType',
       ),
       use: JsonParser.parsePrimitive<Use>(
         json,
         'use',
         Use.fromJson,
+        '$objectPath.use',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       billablePeriod: JsonParser.parseObject<Period>(
         json,
         'billablePeriod',
         Period.fromJson,
+        '$objectPath.billablePeriod',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       )!,
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
+        '$objectPath.enterer',
       ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
+        '$objectPath.insurer',
       ),
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
+        '$objectPath.provider',
       )!,
       priority: JsonParser.parseObject<CodeableConcept>(
         json,
         'priority',
         CodeableConcept.fromJson,
+        '$objectPath.priority',
       )!,
       fundsReserve: JsonParser.parseObject<CodeableConcept>(
         json,
         'fundsReserve',
         CodeableConcept.fromJson,
+        '$objectPath.fundsReserve',
       ),
       related: (json['related'] as List<dynamic>?)
           ?.map<ClaimRelated>(
             (v) => ClaimRelated.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.related'}),
             ),
           )
           .toList(),
@@ -179,59 +203,69 @@ class Claim extends DomainResource {
         json,
         'prescription',
         Reference.fromJson,
+        '$objectPath.prescription',
       ),
       originalPrescription: JsonParser.parseObject<Reference>(
         json,
         'originalPrescription',
         Reference.fromJson,
+        '$objectPath.originalPrescription',
       ),
       payee: JsonParser.parseObject<ClaimPayee>(
         json,
         'payee',
         ClaimPayee.fromJson,
+        '$objectPath.payee',
       ),
       referral: JsonParser.parseObject<Reference>(
         json,
         'referral',
         Reference.fromJson,
+        '$objectPath.referral',
       ),
       facility: JsonParser.parseObject<Reference>(
         json,
         'facility',
         Reference.fromJson,
+        '$objectPath.facility',
       ),
       careTeam: (json['careTeam'] as List<dynamic>?)
           ?.map<ClaimCareTeam>(
             (v) => ClaimCareTeam.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.careTeam'}),
             ),
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
           ?.map<ClaimSupportingInfo>(
             (v) => ClaimSupportingInfo.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.supportingInfo'}),
             ),
           )
           .toList(),
       diagnosis: (json['diagnosis'] as List<dynamic>?)
           ?.map<ClaimDiagnosis>(
             (v) => ClaimDiagnosis.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.diagnosis'}),
             ),
           )
           .toList(),
       procedure: (json['procedure'] as List<dynamic>?)
           ?.map<ClaimProcedure>(
             (v) => ClaimProcedure.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.procedure'}),
             ),
           )
           .toList(),
       insurance: (json['insurance'] as List<dynamic>)
           .map<ClaimInsurance>(
             (v) => ClaimInsurance.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.insurance'}),
             ),
           )
           .toList(),
@@ -239,11 +273,13 @@ class Claim extends DomainResource {
         json,
         'accident',
         ClaimAccident.fromJson,
+        '$objectPath.accident',
       ),
       item: (json['item'] as List<dynamic>?)
           ?.map<ClaimItem>(
             (v) => ClaimItem.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.item'}),
             ),
           )
           .toList(),
@@ -251,6 +287,7 @@ class Claim extends DomainResource {
         json,
         'total',
         Money.fromJson,
+        '$objectPath.total',
       ),
     );
   }
@@ -591,29 +628,35 @@ class ClaimRelated extends BackboneElement {
     this.relationship,
     this.reference,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.related',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimRelated.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.related';
     return ClaimRelated(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -621,16 +664,19 @@ class ClaimRelated extends BackboneElement {
         json,
         'claim',
         Reference.fromJson,
+        '$objectPath.claim',
       ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
         CodeableConcept.fromJson,
+        '$objectPath.relationship',
       ),
       reference: JsonParser.parseObject<Identifier>(
         json,
         'reference',
         Identifier.fromJson,
+        '$objectPath.reference',
       ),
     );
   }
@@ -767,29 +813,35 @@ class ClaimPayee extends BackboneElement {
     required this.type,
     this.party,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.payee',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimPayee.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.payee';
     return ClaimPayee(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -797,11 +849,13 @@ class ClaimPayee extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       party: JsonParser.parseObject<Reference>(
         json,
         'party',
         Reference.fromJson,
+        '$objectPath.party',
       ),
     );
   }
@@ -933,29 +987,35 @@ class ClaimCareTeam extends BackboneElement {
     this.role,
     this.qualification,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.careTeam',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimCareTeam.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.careTeam';
     return ClaimCareTeam(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -963,26 +1023,31 @@ class ClaimCareTeam extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
+        '$objectPath.provider',
       )!,
       responsible: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'responsible',
         FhirBoolean.fromJson,
+        '$objectPath.responsible',
       ),
       role: JsonParser.parseObject<CodeableConcept>(
         json,
         'role',
         CodeableConcept.fromJson,
+        '$objectPath.role',
       ),
       qualification: JsonParser.parseObject<CodeableConcept>(
         json,
         'qualification',
         CodeableConcept.fromJson,
+        '$objectPath.qualification',
       ),
     );
   }
@@ -1139,29 +1204,35 @@ class ClaimSupportingInfo extends BackboneElement {
     this.valueX,
     this.reason,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.supportingInfo',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSupportingInfo.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.supportingInfo';
     return ClaimSupportingInfo(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1169,32 +1240,44 @@ class ClaimSupportingInfo extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
-      timingX: JsonParser.parsePolymorphic<TimingXClaimSupportingInfo>(json, {
-        'timingDate': FhirDate.fromJson,
-        'timingPeriod': Period.fromJson,
-      }),
-      valueX: JsonParser.parsePolymorphic<ValueXClaimSupportingInfo>(json, {
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueAttachment': Attachment.fromJson,
-        'valueReference': Reference.fromJson,
-      }),
+      timingX: JsonParser.parsePolymorphic<TimingXClaimSupportingInfo>(
+        json,
+        {
+          'timingDate': FhirDate.fromJson,
+          'timingPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXClaimSupportingInfo>(
+        json,
+        {
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueAttachment': Attachment.fromJson,
+          'valueReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       reason: JsonParser.parseObject<CodeableConcept>(
         json,
         'reason',
         CodeableConcept.fromJson,
+        '$objectPath.reason',
       ),
     );
   }
@@ -1367,29 +1450,35 @@ class ClaimDiagnosis extends BackboneElement {
     this.onAdmission,
     this.packageCode,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.diagnosis',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDiagnosis.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.diagnosis';
     return ClaimDiagnosis(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1397,15 +1486,21 @@ class ClaimDiagnosis extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
-      diagnosisX: JsonParser.parsePolymorphic<DiagnosisXClaimDiagnosis>(json, {
-        'diagnosisCodeableConcept': CodeableConcept.fromJson,
-        'diagnosisReference': Reference.fromJson,
-      })!,
+      diagnosisX: JsonParser.parsePolymorphic<DiagnosisXClaimDiagnosis>(
+        json,
+        {
+          'diagnosisCodeableConcept': CodeableConcept.fromJson,
+          'diagnosisReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
@@ -1413,11 +1508,13 @@ class ClaimDiagnosis extends BackboneElement {
         json,
         'onAdmission',
         CodeableConcept.fromJson,
+        '$objectPath.onAdmission',
       ),
       packageCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'packageCode',
         CodeableConcept.fromJson,
+        '$objectPath.packageCode',
       ),
     );
   }
@@ -1576,29 +1673,35 @@ class ClaimProcedure extends BackboneElement {
     required this.procedureX,
     this.udi,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.procedure',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimProcedure.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.procedure';
     return ClaimProcedure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1606,11 +1709,13 @@ class ClaimProcedure extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
@@ -1618,15 +1723,21 @@ class ClaimProcedure extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
-      procedureX: JsonParser.parsePolymorphic<ProcedureXClaimProcedure>(json, {
-        'procedureCodeableConcept': CodeableConcept.fromJson,
-        'procedureReference': Reference.fromJson,
-      })!,
+      procedureX: JsonParser.parsePolymorphic<ProcedureXClaimProcedure>(
+        json,
+        {
+          'procedureCodeableConcept': CodeableConcept.fromJson,
+          'procedureReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.udi'}),
             ),
           )
           .toList(),
@@ -1786,29 +1897,35 @@ class ClaimInsurance extends BackboneElement {
     this.preAuthRef,
     this.claimResponse,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.insurance',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.insurance';
     return ClaimInsurance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1816,36 +1933,43 @@ class ClaimInsurance extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       focal: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'focal',
         FhirBoolean.fromJson,
+        '$objectPath.focal',
       )!,
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       coverage: JsonParser.parseObject<Reference>(
         json,
         'coverage',
         Reference.fromJson,
+        '$objectPath.coverage',
       )!,
       businessArrangement: JsonParser.parsePrimitive<FhirString>(
         json,
         'businessArrangement',
         FhirString.fromJson,
+        '$objectPath.businessArrangement',
       ),
       preAuthRef: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'preAuthRef',
         FhirString.fromJson,
+        '$objectPath.preAuthRef',
       ),
       claimResponse: JsonParser.parseObject<Reference>(
         json,
         'claimResponse',
         Reference.fromJson,
+        '$objectPath.claimResponse',
       ),
     );
   }
@@ -2020,29 +2144,35 @@ class ClaimAccident extends BackboneElement {
     this.type,
     this.locationX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.accident',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimAccident.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.accident';
     return ClaimAccident(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2050,16 +2180,22 @@ class ClaimAccident extends BackboneElement {
         json,
         'date',
         FhirDate.fromJson,
+        '$objectPath.date',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
-      locationX: JsonParser.parsePolymorphic<LocationXClaimAccident>(json, {
-        'locationAddress': Address.fromJson,
-        'locationReference': Reference.fromJson,
-      }),
+      locationX: JsonParser.parsePolymorphic<LocationXClaimAccident>(
+        json,
+        {
+          'locationAddress': Address.fromJson,
+          'locationReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -2220,29 +2356,35 @@ class ClaimItem extends BackboneElement {
     this.encounter,
     this.detail,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.item',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.item';
     return ClaimItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2250,89 +2392,112 @@ class ClaimItem extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       careTeamSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'careTeamSequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.careTeamSequence',
       ),
       diagnosisSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'diagnosisSequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.diagnosisSequence',
       ),
       procedureSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'procedureSequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.procedureSequence',
       ),
       informationSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'informationSequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.informationSequence',
       ),
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
+        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
+        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifier'}),
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.programCode'}),
             ),
           )
           .toList(),
-      servicedX: JsonParser.parsePolymorphic<ServicedXClaimItem>(json, {
-        'servicedDate': FhirDate.fromJson,
-        'servicedPeriod': Period.fromJson,
-      }),
-      locationX: JsonParser.parsePolymorphic<LocationXClaimItem>(json, {
-        'locationCodeableConcept': CodeableConcept.fromJson,
-        'locationAddress': Address.fromJson,
-        'locationReference': Reference.fromJson,
-      }),
+      servicedX: JsonParser.parsePolymorphic<ServicedXClaimItem>(
+        json,
+        {
+          'servicedDate': FhirDate.fromJson,
+          'servicedPeriod': Period.fromJson,
+        },
+        objectPath,
+      ),
+      locationX: JsonParser.parsePolymorphic<LocationXClaimItem>(
+        json,
+        {
+          'locationCodeableConcept': CodeableConcept.fromJson,
+          'locationAddress': Address.fromJson,
+          'locationReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
+        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
+        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.udi'}),
             ),
           )
           .toList(),
@@ -2340,25 +2505,29 @@ class ClaimItem extends BackboneElement {
         json,
         'bodySite',
         CodeableConcept.fromJson,
+        '$objectPath.bodySite',
       ),
       subSite: (json['subSite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.subSite'}),
             ),
           )
           .toList(),
       encounter: (json['encounter'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.encounter'}),
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<ClaimDetail>(
             (v) => ClaimDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.detail'}),
             ),
           )
           .toList(),
@@ -2656,29 +2825,35 @@ class ClaimDetail extends BackboneElement {
     this.udi,
     this.subDetail,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.item.detail',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.item.detail';
     return ClaimDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2686,33 +2861,39 @@ class ClaimDetail extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
+        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
+        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifier'}),
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.programCode'}),
             ),
           )
           .toList(),
@@ -2720,33 +2901,39 @@ class ClaimDetail extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
+        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
+        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.udi'}),
             ),
           )
           .toList(),
       subDetail: (json['subDetail'] as List<dynamic>?)
           ?.map<ClaimSubDetail>(
             (v) => ClaimSubDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.subDetail'}),
             ),
           )
           .toList(),
@@ -2968,29 +3155,35 @@ class ClaimSubDetail extends BackboneElement {
     this.net,
     this.udi,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Claim.item.detail.subDetail',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSubDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Claim.item.detail.subDetail';
     return ClaimSubDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2998,33 +3191,39 @@ class ClaimSubDetail extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
+        '$objectPath.sequence',
       )!,
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
+        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
+        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifier'}),
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.programCode'}),
             ),
           )
           .toList(),
@@ -3032,26 +3231,31 @@ class ClaimSubDetail extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
+        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
+        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.udi'}),
             ),
           )
           .toList(),

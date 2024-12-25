@@ -37,6 +37,7 @@ class FamilyMemberHistory extends DomainResource {
     this.note,
     this.condition,
   }) : super(
+          objectPath: 'FamilyMemberHistory',
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
 
@@ -44,57 +45,67 @@ class FamilyMemberHistory extends DomainResource {
   factory FamilyMemberHistory.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'FamilyMemberHistory';
     return FamilyMemberHistory(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -102,95 +113,120 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       status: JsonParser.parsePrimitive<FamilyHistoryStatus>(
         json,
         'status',
         FamilyHistoryStatus.fromJson,
+        '$objectPath.status',
       )!,
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
+        '$objectPath.dataAbsentReason',
       ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
         CodeableConcept.fromJson,
+        '$objectPath.relationship',
       )!,
       sex: JsonParser.parseObject<CodeableConcept>(
         json,
         'sex',
         CodeableConcept.fromJson,
+        '$objectPath.sex',
       ),
-      bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistory>(json, {
-        'bornPeriod': Period.fromJson,
-        'bornDate': FhirDate.fromJson,
-        'bornString': FhirString.fromJson,
-      }),
-      ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistory>(json, {
-        'ageAge': Age.fromJson,
-        'ageRange': Range.fromJson,
-        'ageString': FhirString.fromJson,
-      }),
+      bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistory>(
+        json,
+        {
+          'bornPeriod': Period.fromJson,
+          'bornDate': FhirDate.fromJson,
+          'bornString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
+      ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistory>(
+        json,
+        {
+          'ageAge': Age.fromJson,
+          'ageRange': Range.fromJson,
+          'ageString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       estimatedAge: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'estimatedAge',
         FhirBoolean.fromJson,
+        '$objectPath.estimatedAge',
       ),
-      deceasedX:
-          JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(json, {
-        'deceasedBoolean': FhirBoolean.fromJson,
-        'deceasedAge': Age.fromJson,
-        'deceasedRange': Range.fromJson,
-        'deceasedDate': FhirDate.fromJson,
-        'deceasedString': FhirString.fromJson,
-      }),
+      deceasedX: JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(
+        json,
+        {
+          'deceasedBoolean': FhirBoolean.fromJson,
+          'deceasedAge': Age.fromJson,
+          'deceasedRange': Range.fromJson,
+          'deceasedDate': FhirDate.fromJson,
+          'deceasedString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<FamilyMemberHistoryCondition>(
             (v) => FamilyMemberHistoryCondition.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.condition'}),
             ),
           )
           .toList(),
@@ -486,29 +522,35 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     this.onsetX,
     this.note,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'FamilyMemberHistory.condition',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistoryCondition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'FamilyMemberHistory.condition';
     return FamilyMemberHistoryCondition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -516,28 +558,35 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       outcome: JsonParser.parseObject<CodeableConcept>(
         json,
         'outcome',
         CodeableConcept.fromJson,
+        '$objectPath.outcome',
       ),
       contributedToDeath: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'contributedToDeath',
         FhirBoolean.fromJson,
+        '$objectPath.contributedToDeath',
       ),
       onsetX: JsonParser.parsePolymorphic<OnsetXFamilyMemberHistoryCondition>(
-          json, {
-        'onsetAge': Age.fromJson,
-        'onsetRange': Range.fromJson,
-        'onsetPeriod': Period.fromJson,
-        'onsetString': FhirString.fromJson,
-      }),
+        json,
+        {
+          'onsetAge': Age.fromJson,
+          'onsetRange': Range.fromJson,
+          'onsetPeriod': Period.fromJson,
+          'onsetString': FhirString.fromJson,
+        },
+        objectPath,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),

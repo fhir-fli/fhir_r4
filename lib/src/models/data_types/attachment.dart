@@ -50,22 +50,26 @@ class Attachment extends DataType
     this.title,
     this.creation,
     super.disallowExtensions,
+    super.objectPath = 'Attachment',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Attachment.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Attachment';
     return Attachment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -73,41 +77,49 @@ class Attachment extends DataType
         json,
         'contentType',
         FhirCode.fromJson,
+        '$objectPath.contentType',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
+        '$objectPath.data',
       ),
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
+        '$objectPath.url',
       ),
       size: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'size',
         FhirUnsignedInt.fromJson,
+        '$objectPath.size',
       ),
       hash: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'hash',
         FhirBase64Binary.fromJson,
+        '$objectPath.hash',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       creation: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'creation',
         FhirDateTime.fromJson,
+        '$objectPath.creation',
       ),
     );
   }

@@ -18,6 +18,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Xhtml',
   }) : super(input != null ? _validateXhtml(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -38,7 +39,8 @@ class FhirXhtml extends PrimitiveType<String?> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirXhtml(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirXhtml(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirXhtml] from YAML.

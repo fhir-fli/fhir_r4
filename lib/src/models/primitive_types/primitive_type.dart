@@ -9,6 +9,7 @@ abstract class PrimitiveType<T> extends DataType {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'PrimitiveType',
   });
 
   @override

@@ -25,22 +25,26 @@ class RatioRange extends DataType
     this.highNumerator,
     this.denominator,
     super.disallowExtensions,
+    super.objectPath = 'RatioRange',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RatioRange.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'RatioRange';
     return RatioRange(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -48,16 +52,19 @@ class RatioRange extends DataType
         json,
         'lowNumerator',
         Quantity.fromJson,
+        '$objectPath.lowNumerator',
       ),
       highNumerator: JsonParser.parseObject<Quantity>(
         json,
         'highNumerator',
         Quantity.fromJson,
+        '$objectPath.highNumerator',
       ),
       denominator: JsonParser.parseObject<Quantity>(
         json,
         'denominator',
         Quantity.fromJson,
+        '$objectPath.denominator',
       ),
     );
   }

@@ -32,6 +32,7 @@ class CatalogEntry extends DomainResource {
     this.additionalClassification,
     this.relatedEntry,
   }) : super(
+          objectPath: 'CatalogEntry',
           resourceType: R4ResourceType.CatalogEntry,
         );
 
@@ -39,57 +40,67 @@ class CatalogEntry extends DomainResource {
   factory CatalogEntry.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CatalogEntry';
     return CatalogEntry(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -97,28 +108,33 @@ class CatalogEntry extends DomainResource {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       orderable: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'orderable',
         FhirBoolean.fromJson,
+        '$objectPath.orderable',
       )!,
       referencedItem: JsonParser.parseObject<Reference>(
         json,
         'referencedItem',
         Reference.fromJson,
+        '$objectPath.referencedItem',
       )!,
       additionalIdentifier: (json['additionalIdentifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.additionalIdentifier'}),
             ),
           )
           .toList(),
       classification: (json['classification'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.classification'}),
             ),
           )
           .toList(),
@@ -126,27 +142,33 @@ class CatalogEntry extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       ),
       validityPeriod: JsonParser.parseObject<Period>(
         json,
         'validityPeriod',
         Period.fromJson,
+        '$objectPath.validityPeriod',
       ),
       validTo: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'validTo',
         FhirDateTime.fromJson,
+        '$objectPath.validTo',
       ),
       lastUpdated: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastUpdated',
         FhirDateTime.fromJson,
+        '$objectPath.lastUpdated',
       ),
       additionalCharacteristic:
           (json['additionalCharacteristic'] as List<dynamic>?)
               ?.map<CodeableConcept>(
                 (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                        {'objectPath': '$objectPath.additionalCharacteristic'}),
                 ),
               )
               .toList(),
@@ -154,14 +176,17 @@ class CatalogEntry extends DomainResource {
           (json['additionalClassification'] as List<dynamic>?)
               ?.map<CodeableConcept>(
                 (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
+                  (v as Map<String, dynamic>)
+                    ..addAll(
+                        {'objectPath': '$objectPath.additionalClassification'}),
                 ),
               )
               .toList(),
       relatedEntry: (json['relatedEntry'] as List<dynamic>?)
           ?.map<CatalogEntryRelatedEntry>(
             (v) => CatalogEntryRelatedEntry.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedEntry'}),
             ),
           )
           .toList(),
@@ -391,29 +416,35 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     required this.relationtype,
     required this.item,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CatalogEntry.relatedEntry',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CatalogEntryRelatedEntry.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CatalogEntry.relatedEntry';
     return CatalogEntryRelatedEntry(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -421,11 +452,13 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         json,
         'relationtype',
         CatalogEntryRelationType.fromJson,
+        '$objectPath.relationtype',
       )!,
       item: JsonParser.parseObject<Reference>(
         json,
         'item',
         Reference.fromJson,
+        '$objectPath.item',
       )!,
     );
   }

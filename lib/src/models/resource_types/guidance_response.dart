@@ -35,6 +35,7 @@ class GuidanceResponse extends DomainResource {
     this.result,
     this.dataRequirement,
   }) : super(
+          objectPath: 'GuidanceResponse',
           resourceType: R4ResourceType.GuidanceResponse,
         );
 
@@ -42,50 +43,59 @@ class GuidanceResponse extends DomainResource {
   factory GuidanceResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'GuidanceResponse';
     return GuidanceResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -93,69 +103,84 @@ class GuidanceResponse extends DomainResource {
         json,
         'requestIdentifier',
         Identifier.fromJson,
+        '$objectPath.requestIdentifier',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
-      moduleX: JsonParser.parsePolymorphic<ModuleXGuidanceResponse>(json, {
-        'moduleUri': FhirUri.fromJson,
-        'moduleCanonical': FhirCanonical.fromJson,
-        'moduleCodeableConcept': CodeableConcept.fromJson,
-      })!,
+      moduleX: JsonParser.parsePolymorphic<ModuleXGuidanceResponse>(
+        json,
+        {
+          'moduleUri': FhirUri.fromJson,
+          'moduleCanonical': FhirCanonical.fromJson,
+          'moduleCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      )!,
       status: JsonParser.parsePrimitive<GuidanceResponseStatus>(
         json,
         'status',
         GuidanceResponseStatus.fromJson,
+        '$objectPath.status',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       occurrenceDateTime: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'occurrenceDateTime',
         FhirDateTime.fromJson,
+        '$objectPath.occurrenceDateTime',
       ),
       performer: JsonParser.parseObject<Reference>(
         json,
         'performer',
         Reference.fromJson,
+        '$objectPath.performer',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       evaluationMessage: (json['evaluationMessage'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.evaluationMessage'}),
             ),
           )
           .toList(),
@@ -163,16 +188,19 @@ class GuidanceResponse extends DomainResource {
         json,
         'outputParameters',
         Reference.fromJson,
+        '$objectPath.outputParameters',
       ),
       result: JsonParser.parseObject<Reference>(
         json,
         'result',
         Reference.fromJson,
+        '$objectPath.result',
       ),
       dataRequirement: (json['dataRequirement'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.dataRequirement'}),
             ),
           )
           .toList(),

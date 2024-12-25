@@ -33,22 +33,26 @@ class Identifier extends DataType
     this.period,
     this.assigner,
     super.disallowExtensions,
+    super.objectPath = 'Identifier',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Identifier.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Identifier';
     return Identifier(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -56,31 +60,37 @@ class Identifier extends DataType
         json,
         'use',
         IdentifierUse.fromJson,
+        '$objectPath.use',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
+        '$objectPath.system',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       assigner: JsonParser.parseObject<Reference>(
         json,
         'assigner',
         Reference.fromJson,
+        '$objectPath.assigner',
       ),
     );
   }

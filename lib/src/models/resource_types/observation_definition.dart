@@ -32,6 +32,7 @@ class ObservationDefinition extends DomainResource {
     this.abnormalCodedValueSet,
     this.criticalCodedValueSet,
   }) : super(
+          objectPath: 'ObservationDefinition',
           resourceType: R4ResourceType.ObservationDefinition,
         );
 
@@ -39,57 +40,67 @@ class ObservationDefinition extends DomainResource {
   factory ObservationDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ObservationDefinition';
     return ObservationDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -97,11 +108,13 @@ class ObservationDefinition extends DomainResource {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -109,32 +122,38 @@ class ObservationDefinition extends DomainResource {
         json,
         'permittedDataType',
         ObservationDataType.fromJson,
+        '$objectPath.permittedDataType',
       ),
       multipleResultsAllowed: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleResultsAllowed',
         FhirBoolean.fromJson,
+        '$objectPath.multipleResultsAllowed',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       preferredReportName: JsonParser.parsePrimitive<FhirString>(
         json,
         'preferredReportName',
         FhirString.fromJson,
+        '$objectPath.preferredReportName',
       ),
       quantitativeDetails:
           JsonParser.parseObject<ObservationDefinitionQuantitativeDetails>(
         json,
         'quantitativeDetails',
         ObservationDefinitionQuantitativeDetails.fromJson,
+        '$objectPath.quantitativeDetails',
       ),
       qualifiedInterval: (json['qualifiedInterval'] as List<dynamic>?)
           ?.map<ObservationDefinitionQualifiedInterval>(
             (v) => ObservationDefinitionQualifiedInterval.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.qualifiedInterval'}),
             ),
           )
           .toList(),
@@ -142,21 +161,25 @@ class ObservationDefinition extends DomainResource {
         json,
         'validCodedValueSet',
         Reference.fromJson,
+        '$objectPath.validCodedValueSet',
       ),
       normalCodedValueSet: JsonParser.parseObject<Reference>(
         json,
         'normalCodedValueSet',
         Reference.fromJson,
+        '$objectPath.normalCodedValueSet',
       ),
       abnormalCodedValueSet: JsonParser.parseObject<Reference>(
         json,
         'abnormalCodedValueSet',
         Reference.fromJson,
+        '$objectPath.abnormalCodedValueSet',
       ),
       criticalCodedValueSet: JsonParser.parseObject<Reference>(
         json,
         'criticalCodedValueSet',
         Reference.fromJson,
+        '$objectPath.criticalCodedValueSet',
       ),
     );
   }
@@ -391,29 +414,35 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     this.conversionFactor,
     this.decimalPrecision,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ObservationDefinition.quantitativeDetails',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQuantitativeDetails.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ObservationDefinition.quantitativeDetails';
     return ObservationDefinitionQuantitativeDetails(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -421,21 +450,25 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
         json,
         'customaryUnit',
         CodeableConcept.fromJson,
+        '$objectPath.customaryUnit',
       ),
       unit: JsonParser.parseObject<CodeableConcept>(
         json,
         'unit',
         CodeableConcept.fromJson,
+        '$objectPath.unit',
       ),
       conversionFactor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'conversionFactor',
         FhirDecimal.fromJson,
+        '$objectPath.conversionFactor',
       ),
       decimalPrecision: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'decimalPrecision',
         FhirInteger.fromJson,
+        '$objectPath.decimalPrecision',
       ),
     );
   }
@@ -589,29 +622,35 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     this.gestationalAge,
     this.condition,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ObservationDefinition.qualifiedInterval',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQualifiedInterval.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ObservationDefinition.qualifiedInterval';
     return ObservationDefinitionQualifiedInterval(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -619,21 +658,25 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'category',
         ObservationRangeCategory.fromJson,
+        '$objectPath.category',
       ),
       range: JsonParser.parseObject<Range>(
         json,
         'range',
         Range.fromJson,
+        '$objectPath.range',
       ),
       context: JsonParser.parseObject<CodeableConcept>(
         json,
         'context',
         CodeableConcept.fromJson,
+        '$objectPath.context',
       ),
       appliesTo: (json['appliesTo'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.appliesTo'}),
             ),
           )
           .toList(),
@@ -641,21 +684,25 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'gender',
         AdministrativeGender.fromJson,
+        '$objectPath.gender',
       ),
       age: JsonParser.parseObject<Range>(
         json,
         'age',
         Range.fromJson,
+        '$objectPath.age',
       ),
       gestationalAge: JsonParser.parseObject<Range>(
         json,
         'gestationalAge',
         Range.fromJson,
+        '$objectPath.gestationalAge',
       ),
       condition: JsonParser.parsePrimitive<FhirString>(
         json,
         'condition',
         FhirString.fromJson,
+        '$objectPath.condition',
       ),
     );
   }

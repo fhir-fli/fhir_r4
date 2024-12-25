@@ -29,6 +29,7 @@ class DeviceMetric extends DomainResource {
     this.measurementPeriod,
     this.calibration,
   }) : super(
+          objectPath: 'DeviceMetric',
           resourceType: R4ResourceType.DeviceMetric,
         );
 
@@ -36,57 +37,67 @@ class DeviceMetric extends DomainResource {
   factory DeviceMetric.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'DeviceMetric';
     return DeviceMetric(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -94,47 +105,56 @@ class DeviceMetric extends DomainResource {
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       unit: JsonParser.parseObject<CodeableConcept>(
         json,
         'unit',
         CodeableConcept.fromJson,
+        '$objectPath.unit',
       ),
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
         Reference.fromJson,
+        '$objectPath.source',
       ),
       parent: JsonParser.parseObject<Reference>(
         json,
         'parent',
         Reference.fromJson,
+        '$objectPath.parent',
       ),
       operationalStatus:
           JsonParser.parsePrimitive<DeviceMetricOperationalStatus>(
         json,
         'operationalStatus',
         DeviceMetricOperationalStatus.fromJson,
+        '$objectPath.operationalStatus',
       ),
       color: JsonParser.parsePrimitive<DeviceMetricColor>(
         json,
         'color',
         DeviceMetricColor.fromJson,
+        '$objectPath.color',
       ),
       category: JsonParser.parsePrimitive<DeviceMetricCategory>(
         json,
         'category',
         DeviceMetricCategory.fromJson,
+        '$objectPath.category',
       )!,
       measurementPeriod: JsonParser.parseObject<Timing>(
         json,
         'measurementPeriod',
         Timing.fromJson,
+        '$objectPath.measurementPeriod',
       ),
       calibration: (json['calibration'] as List<dynamic>?)
           ?.map<DeviceMetricCalibration>(
             (v) => DeviceMetricCalibration.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.calibration'}),
             ),
           )
           .toList(),
@@ -364,29 +384,35 @@ class DeviceMetricCalibration extends BackboneElement {
     this.state,
     this.time,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'DeviceMetric.calibration',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceMetricCalibration.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'DeviceMetric.calibration';
     return DeviceMetricCalibration(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -394,16 +420,19 @@ class DeviceMetricCalibration extends BackboneElement {
         json,
         'type',
         DeviceMetricCalibrationType.fromJson,
+        '$objectPath.type',
       ),
       state: JsonParser.parsePrimitive<DeviceMetricCalibrationState>(
         json,
         'state',
         DeviceMetricCalibrationState.fromJson,
+        '$objectPath.state',
       ),
       time: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'time',
         FhirInstant.fromJson,
+        '$objectPath.time',
       ),
     );
   }

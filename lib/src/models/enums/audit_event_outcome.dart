@@ -11,6 +11,7 @@ class AuditEventOutcome extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Code',
   });
 
   /// Factory constructor to create [AuditEventOutcome] from JSON.

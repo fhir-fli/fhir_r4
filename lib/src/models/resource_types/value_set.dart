@@ -39,6 +39,7 @@ class ValueSet extends CanonicalResource {
     this.compose,
     this.expansion,
   }) : super(
+          objectPath: 'ValueSet',
           resourceType: R4ResourceType.ValueSet,
         );
 
@@ -46,50 +47,59 @@ class ValueSet extends CanonicalResource {
   factory ValueSet.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet';
     return ValueSet(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -97,11 +107,13 @@ class ValueSet extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -109,41 +121,49 @@ class ValueSet extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -151,18 +171,21 @@ class ValueSet extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -170,26 +193,31 @@ class ValueSet extends CanonicalResource {
         json,
         'immutable',
         FhirBoolean.fromJson,
+        '$objectPath.immutable',
       ),
       purpose: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       compose: JsonParser.parseObject<ValueSetCompose>(
         json,
         'compose',
         ValueSetCompose.fromJson,
+        '$objectPath.compose',
       ),
       expansion: JsonParser.parseObject<ValueSetExpansion>(
         json,
         'expansion',
         ValueSetExpansion.fromJson,
+        '$objectPath.expansion',
       ),
     );
   }
@@ -423,29 +451,35 @@ class ValueSetCompose extends BackboneElement {
     required this.include,
     this.exclude,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.compose',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetCompose.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.compose';
     return ValueSetCompose(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -453,23 +487,27 @@ class ValueSetCompose extends BackboneElement {
         json,
         'lockedDate',
         FhirDate.fromJson,
+        '$objectPath.lockedDate',
       ),
       inactive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inactive',
         FhirBoolean.fromJson,
+        '$objectPath.inactive',
       ),
       include: (json['include'] as List<dynamic>)
           .map<ValueSetInclude>(
             (v) => ValueSetInclude.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.include'}),
             ),
           )
           .toList(),
       exclude: (json['exclude'] as List<dynamic>?)
           ?.map<ValueSetInclude>(
             (v) => ValueSetInclude.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.exclude'}),
             ),
           )
           .toList(),
@@ -625,29 +663,35 @@ class ValueSetInclude extends BackboneElement {
     this.filter,
     this.valueSet,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.compose.include',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetInclude.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.compose.include';
     return ValueSetInclude(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -655,23 +699,27 @@ class ValueSetInclude extends BackboneElement {
         json,
         'system',
         FhirUri.fromJson,
+        '$objectPath.system',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       concept: (json['concept'] as List<dynamic>?)
           ?.map<ValueSetConcept>(
             (v) => ValueSetConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.concept'}),
             ),
           )
           .toList(),
       filter: (json['filter'] as List<dynamic>?)
           ?.map<ValueSetFilter>(
             (v) => ValueSetFilter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.filter'}),
             ),
           )
           .toList(),
@@ -679,6 +727,7 @@ class ValueSetInclude extends BackboneElement {
         json,
         'valueSet',
         FhirCanonical.fromJson,
+        '$objectPath.valueSet',
       ),
     );
   }
@@ -836,29 +885,35 @@ class ValueSetConcept extends BackboneElement {
     this.display,
     this.designation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.compose.include.concept',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetConcept.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.compose.include.concept';
     return ValueSetConcept(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -866,16 +921,19 @@ class ValueSetConcept extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       designation: (json['designation'] as List<dynamic>?)
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.designation'}),
             ),
           )
           .toList(),
@@ -1019,29 +1077,35 @@ class ValueSetDesignation extends BackboneElement {
     this.use,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.compose.include.concept.designation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetDesignation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.compose.include.concept.designation';
     return ValueSetDesignation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1049,16 +1113,19 @@ class ValueSetDesignation extends BackboneElement {
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       use: JsonParser.parseObject<Coding>(
         json,
         'use',
         Coding.fromJson,
+        '$objectPath.use',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -1197,29 +1264,35 @@ class ValueSetFilter extends BackboneElement {
     required this.op,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.compose.include.filter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetFilter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.compose.include.filter';
     return ValueSetFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1227,16 +1300,19 @@ class ValueSetFilter extends BackboneElement {
         json,
         'property',
         FhirCode.fromJson,
+        '$objectPath.property',
       )!,
       op: JsonParser.parsePrimitive<FilterOperator>(
         json,
         'op',
         FilterOperator.fromJson,
+        '$objectPath.op',
       )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -1383,29 +1459,35 @@ class ValueSetExpansion extends BackboneElement {
     this.parameter,
     this.contains,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.expansion',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetExpansion.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.expansion';
     return ValueSetExpansion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1413,33 +1495,39 @@ class ValueSetExpansion extends BackboneElement {
         json,
         'identifier',
         FhirUri.fromJson,
+        '$objectPath.identifier',
       ),
       timestamp: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'timestamp',
         FhirDateTime.fromJson,
+        '$objectPath.timestamp',
       )!,
       total: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'total',
         FhirInteger.fromJson,
+        '$objectPath.total',
       ),
       offset: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'offset',
         FhirInteger.fromJson,
+        '$objectPath.offset',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<ValueSetParameter>(
             (v) => ValueSetParameter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.parameter'}),
             ),
           )
           .toList(),
       contains: (json['contains'] as List<dynamic>?)
           ?.map<ValueSetContains>(
             (v) => ValueSetContains.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contains'}),
             ),
           )
           .toList(),
@@ -1610,29 +1698,35 @@ class ValueSetParameter extends BackboneElement {
     required this.name,
     this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.expansion.parameter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.expansion.parameter';
     return ValueSetParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1640,16 +1734,21 @@ class ValueSetParameter extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXValueSetParameter>(json, {
-        'valueString': FhirString.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-        'valueUri': FhirUri.fromJson,
-        'valueCode': FhirCode.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-      }),
+      valueX: JsonParser.parsePolymorphic<ValueXValueSetParameter>(
+        json,
+        {
+          'valueString': FhirString.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+          'valueUri': FhirUri.fromJson,
+          'valueCode': FhirCode.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 
@@ -1788,29 +1887,35 @@ class ValueSetContains extends BackboneElement {
     this.designation,
     this.contains,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ValueSet.expansion.contains',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetContains.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ValueSet.expansion.contains';
     return ValueSetContains(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1818,43 +1923,51 @@ class ValueSetContains extends BackboneElement {
         json,
         'system',
         FhirUri.fromJson,
+        '$objectPath.system',
       ),
       abstract_: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'abstract',
         FhirBoolean.fromJson,
+        '$objectPath.abstract',
       ),
       inactive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inactive',
         FhirBoolean.fromJson,
+        '$objectPath.inactive',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       designation: (json['designation'] as List<dynamic>?)
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.designation'}),
             ),
           )
           .toList(),
       contains: (json['contains'] as List<dynamic>?)
           ?.map<ValueSetContains>(
             (v) => ValueSetContains.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contains'}),
             ),
           )
           .toList(),

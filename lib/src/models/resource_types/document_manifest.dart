@@ -31,6 +31,7 @@ class DocumentManifest extends DomainResource {
     required this.content,
     this.related,
   }) : super(
+          objectPath: 'DocumentManifest',
           resourceType: R4ResourceType.DocumentManifest,
         );
 
@@ -38,50 +39,59 @@ class DocumentManifest extends DomainResource {
   factory DocumentManifest.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'DocumentManifest';
     return DocumentManifest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -89,11 +99,13 @@ class DocumentManifest extends DomainResource {
         json,
         'masterIdentifier',
         Identifier.fromJson,
+        '$objectPath.masterIdentifier',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -101,33 +113,39 @@ class DocumentManifest extends DomainResource {
         json,
         'status',
         DocumentReferenceStatus.fromJson,
+        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
+        '$objectPath.created',
       ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.recipient'}),
             ),
           )
           .toList(),
@@ -135,23 +153,27 @@ class DocumentManifest extends DomainResource {
         json,
         'source',
         FhirUri.fromJson,
+        '$objectPath.source',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       content: (json['content'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.content'}),
             ),
           )
           .toList(),
       related: (json['related'] as List<dynamic>?)
           ?.map<DocumentManifestRelated>(
             (v) => DocumentManifestRelated.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.related'}),
             ),
           )
           .toList(),
@@ -381,29 +403,35 @@ class DocumentManifestRelated extends BackboneElement {
     this.identifier,
     this.ref,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'DocumentManifest.related',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifestRelated.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'DocumentManifest.related';
     return DocumentManifestRelated(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -411,11 +439,13 @@ class DocumentManifestRelated extends BackboneElement {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       ref: JsonParser.parseObject<Reference>(
         json,
         'ref',
         Reference.fromJson,
+        '$objectPath.ref',
       ),
     );
   }

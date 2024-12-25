@@ -26,29 +26,34 @@ class ProdCharacteristic extends BackboneType {
     this.image,
     this.scoring,
     super.disallowExtensions,
+    super.objectPath = 'ProdCharacteristic',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProdCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'ProdCharacteristic';
     return ProdCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -56,51 +61,61 @@ class ProdCharacteristic extends BackboneType {
         json,
         'height',
         Quantity.fromJson,
+        '$objectPath.height',
       ),
       width: JsonParser.parseObject<Quantity>(
         json,
         'width',
         Quantity.fromJson,
+        '$objectPath.width',
       ),
       depth: JsonParser.parseObject<Quantity>(
         json,
         'depth',
         Quantity.fromJson,
+        '$objectPath.depth',
       ),
       weight: JsonParser.parseObject<Quantity>(
         json,
         'weight',
         Quantity.fromJson,
+        '$objectPath.weight',
       ),
       nominalVolume: JsonParser.parseObject<Quantity>(
         json,
         'nominalVolume',
         Quantity.fromJson,
+        '$objectPath.nominalVolume',
       ),
       externalDiameter: JsonParser.parseObject<Quantity>(
         json,
         'externalDiameter',
         Quantity.fromJson,
+        '$objectPath.externalDiameter',
       ),
       shape: JsonParser.parsePrimitive<FhirString>(
         json,
         'shape',
         FhirString.fromJson,
+        '$objectPath.shape',
       ),
       color: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'color',
         FhirString.fromJson,
+        '$objectPath.color',
       ),
       imprint: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'imprint',
         FhirString.fromJson,
+        '$objectPath.imprint',
       ),
       image: (json['image'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.image'}),
             ),
           )
           .toList(),
@@ -108,6 +123,7 @@ class ProdCharacteristic extends BackboneType {
         json,
         'scoring',
         CodeableConcept.fromJson,
+        '$objectPath.scoring',
       ),
     );
   }

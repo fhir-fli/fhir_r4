@@ -39,22 +39,26 @@ class FhirDuration extends Quantity
     super.system,
     super.code,
     super.disallowExtensions,
+    super.objectPath = 'FhirDuration',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirDuration.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'FhirDuration';
     return FhirDuration(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -62,26 +66,31 @@ class FhirDuration extends Quantity
         json,
         'value',
         FhirDecimal.fromJson,
+        '$objectPath.value',
       ),
       comparator: JsonParser.parsePrimitive<QuantityComparator>(
         json,
         'comparator',
         QuantityComparator.fromJson,
+        '$objectPath.comparator',
       ),
       unit: JsonParser.parsePrimitive<FhirString>(
         json,
         'unit',
         FhirString.fromJson,
+        '$objectPath.unit',
       ),
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
+        '$objectPath.system',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
     );
   }

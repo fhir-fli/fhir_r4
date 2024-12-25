@@ -37,6 +37,7 @@ class Goal extends DomainResource {
     this.outcomeCode,
     this.outcomeReference,
   }) : super(
+          objectPath: 'Goal',
           resourceType: R4ResourceType.Goal,
         );
 
@@ -44,57 +45,67 @@ class Goal extends DomainResource {
   factory Goal.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Goal';
     return Goal(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -102,16 +113,19 @@ class Goal extends DomainResource {
         json,
         'lifecycleStatus',
         GoalLifecycleStatus.fromJson,
+        '$objectPath.lifecycleStatus',
       )!,
       achievementStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'achievementStatus',
         CodeableConcept.fromJson,
+        '$objectPath.achievementStatus',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -119,25 +133,33 @@ class Goal extends DomainResource {
         json,
         'priority',
         CodeableConcept.fromJson,
+        '$objectPath.priority',
       ),
       description: JsonParser.parseObject<CodeableConcept>(
         json,
         'description',
         CodeableConcept.fromJson,
+        '$objectPath.description',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
-      startX: JsonParser.parsePolymorphic<StartXGoal>(json, {
-        'startDate': FhirDate.fromJson,
-        'startCodeableConcept': CodeableConcept.fromJson,
-      }),
+      startX: JsonParser.parsePolymorphic<StartXGoal>(
+        json,
+        {
+          'startDate': FhirDate.fromJson,
+          'startCodeableConcept': CodeableConcept.fromJson,
+        },
+        objectPath,
+      ),
       target: (json['target'] as List<dynamic>?)
           ?.map<GoalTarget>(
             (v) => GoalTarget.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
@@ -145,42 +167,49 @@ class Goal extends DomainResource {
         json,
         'statusDate',
         FhirDate.fromJson,
+        '$objectPath.statusDate',
       ),
       statusReason: JsonParser.parsePrimitive<FhirString>(
         json,
         'statusReason',
         FhirString.fromJson,
+        '$objectPath.statusReason',
       ),
       expressedBy: JsonParser.parseObject<Reference>(
         json,
         'expressedBy',
         Reference.fromJson,
+        '$objectPath.expressedBy',
       ),
       addresses: (json['addresses'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.addresses'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       outcomeCode: (json['outcomeCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.outcomeCode'}),
             ),
           )
           .toList(),
       outcomeReference: (json['outcomeReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.outcomeReference'}),
             ),
           )
           .toList(),
@@ -439,29 +468,35 @@ class GoalTarget extends BackboneElement {
     this.detailX,
     this.dueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Goal.target',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GoalTarget.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Goal.target';
     return GoalTarget(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -469,20 +504,29 @@ class GoalTarget extends BackboneElement {
         json,
         'measure',
         CodeableConcept.fromJson,
+        '$objectPath.measure',
       ),
-      detailX: JsonParser.parsePolymorphic<DetailXGoalTarget>(json, {
-        'detailQuantity': Quantity.fromJson,
-        'detailRange': Range.fromJson,
-        'detailCodeableConcept': CodeableConcept.fromJson,
-        'detailString': FhirString.fromJson,
-        'detailBoolean': FhirBoolean.fromJson,
-        'detailInteger': FhirInteger.fromJson,
-        'detailRatio': Ratio.fromJson,
-      }),
-      dueX: JsonParser.parsePolymorphic<DueXGoalTarget>(json, {
-        'dueDate': FhirDate.fromJson,
-        'dueDuration': FhirDuration.fromJson,
-      }),
+      detailX: JsonParser.parsePolymorphic<DetailXGoalTarget>(
+        json,
+        {
+          'detailQuantity': Quantity.fromJson,
+          'detailRange': Range.fromJson,
+          'detailCodeableConcept': CodeableConcept.fromJson,
+          'detailString': FhirString.fromJson,
+          'detailBoolean': FhirBoolean.fromJson,
+          'detailInteger': FhirInteger.fromJson,
+          'detailRatio': Ratio.fromJson,
+        },
+        objectPath,
+      ),
+      dueX: JsonParser.parsePolymorphic<DueXGoalTarget>(
+        json,
+        {
+          'dueDate': FhirDate.fromJson,
+          'dueDuration': FhirDuration.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

@@ -37,6 +37,7 @@ class FhirUnsignedInt extends FhirNumber
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'UnsignedInt',
   }) : super(input != null ? _validateUnsignedInt(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -48,7 +49,12 @@ class FhirUnsignedInt extends FhirNumber
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirUnsignedInt(value?.toInt(), element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirUnsignedInt(
+      value?.toInt(),
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create [FhirUnsignedInt] from YAML input.

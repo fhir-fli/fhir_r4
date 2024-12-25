@@ -44,6 +44,7 @@ class MessageDefinition extends CanonicalResource {
     this.allowedResponse,
     this.graph,
   }) : super(
+          objectPath: 'MessageDefinition',
           resourceType: R4ResourceType.MessageDefinition,
         );
 
@@ -51,50 +52,59 @@ class MessageDefinition extends CanonicalResource {
   factory MessageDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageDefinition';
     return MessageDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -102,11 +112,13 @@ class MessageDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -114,46 +126,55 @@ class MessageDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       replaces: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'replaces',
         FhirCanonical.fromJson,
+        '$objectPath.replaces',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+        '$objectPath.date',
+      )!,
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -161,18 +182,21 @@ class MessageDefinition extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -180,35 +204,45 @@ class MessageDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       base: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'base',
         FhirCanonical.fromJson,
+        '$objectPath.base',
       ),
       parent: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'parent',
         FhirCanonical.fromJson,
+        '$objectPath.parent',
       ),
-      eventX: JsonParser.parsePolymorphic<EventXMessageDefinition>(json, {
-        'eventCoding': Coding.fromJson,
-        'eventUri': FhirUri.fromJson,
-      })!,
+      eventX: JsonParser.parsePolymorphic<EventXMessageDefinition>(
+        json,
+        {
+          'eventCoding': Coding.fromJson,
+          'eventUri': FhirUri.fromJson,
+        },
+        objectPath,
+      )!,
       category: JsonParser.parsePrimitive<MessageSignificanceCategory>(
         json,
         'category',
         MessageSignificanceCategory.fromJson,
+        '$objectPath.category',
       ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<MessageDefinitionFocus>(
             (v) => MessageDefinitionFocus.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.focus'}),
             ),
           )
           .toList(),
@@ -216,11 +250,13 @@ class MessageDefinition extends CanonicalResource {
         json,
         'responseRequired',
         MessageheaderResponseRequest.fromJson,
+        '$objectPath.responseRequired',
       ),
       allowedResponse: (json['allowedResponse'] as List<dynamic>?)
           ?.map<MessageDefinitionAllowedResponse>(
             (v) => MessageDefinitionAllowedResponse.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.allowedResponse'}),
             ),
           )
           .toList(),
@@ -228,6 +264,7 @@ class MessageDefinition extends CanonicalResource {
         json,
         'graph',
         FhirCanonical.fromJson,
+        '$objectPath.graph',
       ),
     );
   }
@@ -508,29 +545,35 @@ class MessageDefinitionFocus extends BackboneElement {
     required this.min,
     this.max,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MessageDefinition.focus',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageDefinitionFocus.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageDefinition.focus';
     return MessageDefinitionFocus(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -538,21 +581,25 @@ class MessageDefinitionFocus extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
       min: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'min',
         FhirUnsignedInt.fromJson,
+        '$objectPath.min',
       )!,
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
+        '$objectPath.max',
       ),
     );
   }
@@ -700,29 +747,35 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     required this.message,
     this.situation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MessageDefinition.allowedResponse',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageDefinitionAllowedResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageDefinition.allowedResponse';
     return MessageDefinitionAllowedResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -730,11 +783,13 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
         json,
         'message',
         FhirCanonical.fromJson,
+        '$objectPath.message',
       )!,
       situation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'situation',
         FhirMarkdown.fromJson,
+        '$objectPath.situation',
       ),
     );
   }

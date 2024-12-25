@@ -39,6 +39,7 @@ class EvidenceReport extends DomainResource {
     this.relatesTo,
     this.section,
   }) : super(
+          objectPath: 'EvidenceReport',
           resourceType: R4ResourceType.EvidenceReport,
         );
 
@@ -46,50 +47,59 @@ class EvidenceReport extends DomainResource {
   factory EvidenceReport.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceReport';
     return EvidenceReport(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -97,53 +107,65 @@ class EvidenceReport extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       relatedIdentifier: (json['relatedIdentifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedIdentifier'}),
             ),
           )
           .toList(),
-      citeAsX: JsonParser.parsePolymorphic<CiteAsXEvidenceReport>(json, {
-        'citeAsReference': Reference.fromJson,
-        'citeAsMarkdown': FhirMarkdown.fromJson,
-      }),
+      citeAsX: JsonParser.parsePolymorphic<CiteAsXEvidenceReport>(
+        json,
+        {
+          'citeAsReference': Reference.fromJson,
+          'citeAsMarkdown': FhirMarkdown.fromJson,
+        },
+        objectPath,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatedArtifact'}),
             ),
           )
           .toList(),
@@ -151,58 +173,67 @@ class EvidenceReport extends DomainResource {
         json,
         'subject',
         EvidenceReportSubject.fromJson,
+        '$objectPath.subject',
       )!,
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.editor'}),
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reviewer'}),
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.endorser'}),
             ),
           )
           .toList(),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
           ?.map<EvidenceReportRelatesTo>(
             (v) => EvidenceReportRelatesTo.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatesTo'}),
             ),
           )
           .toList(),
       section: (json['section'] as List<dynamic>?)
           ?.map<EvidenceReportSection>(
             (v) => EvidenceReportSection.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.section'}),
             ),
           )
           .toList(),
@@ -488,43 +519,51 @@ class EvidenceReportSubject extends BackboneElement {
     this.characteristic,
     this.note,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceReport.subject',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportSubject.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceReport.subject';
     return EvidenceReportSubject(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<EvidenceReportCharacteristic>(
             (v) => EvidenceReportCharacteristic.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.characteristic'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
@@ -656,29 +695,35 @@ class EvidenceReportCharacteristic extends BackboneElement {
     this.exclude,
     this.period,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceReport.subject.characteristic',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceReport.subject.characteristic';
     return EvidenceReportCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -686,24 +731,30 @@ class EvidenceReportCharacteristic extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
       valueX: JsonParser.parsePolymorphic<ValueXEvidenceReportCharacteristic>(
-          json, {
-        'valueReference': Reference.fromJson,
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-      })!,
+        json,
+        {
+          'valueReference': Reference.fromJson,
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+        },
+        objectPath,
+      )!,
       exclude: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'exclude',
         FhirBoolean.fromJson,
+        '$objectPath.exclude',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }
@@ -848,29 +899,35 @@ class EvidenceReportRelatesTo extends BackboneElement {
     required this.code,
     required this.targetX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceReport.relatesTo',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportRelatesTo.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceReport.relatesTo';
     return EvidenceReportRelatesTo(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -878,12 +935,16 @@ class EvidenceReportRelatesTo extends BackboneElement {
         json,
         'code',
         ReportRelationshipType.fromJson,
+        '$objectPath.code',
       )!,
-      targetX:
-          JsonParser.parsePolymorphic<TargetXEvidenceReportRelatesTo>(json, {
-        'targetIdentifier': Identifier.fromJson,
-        'targetReference': Reference.fromJson,
-      })!,
+      targetX: JsonParser.parsePolymorphic<TargetXEvidenceReportRelatesTo>(
+        json,
+        {
+          'targetIdentifier': Identifier.fromJson,
+          'targetReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 
@@ -1023,29 +1084,35 @@ class EvidenceReportSection extends BackboneElement {
     this.emptyReason,
     this.section,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'EvidenceReport.section',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportSection.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'EvidenceReport.section';
     return EvidenceReportSection(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1053,21 +1120,25 @@ class EvidenceReportSection extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       focus: JsonParser.parseObject<CodeableConcept>(
         json,
         'focus',
         CodeableConcept.fromJson,
+        '$objectPath.focus',
       ),
       focusReference: JsonParser.parseObject<Reference>(
         json,
         'focusReference',
         Reference.fromJson,
+        '$objectPath.focusReference',
       ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
@@ -1075,35 +1146,41 @@ class EvidenceReportSection extends BackboneElement {
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       mode: JsonParser.parsePrimitive<ListMode>(
         json,
         'mode',
         ListMode.fromJson,
+        '$objectPath.mode',
       ),
       orderedBy: JsonParser.parseObject<CodeableConcept>(
         json,
         'orderedBy',
         CodeableConcept.fromJson,
+        '$objectPath.orderedBy',
       ),
       entryClassifier: (json['entryClassifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entryClassifier'}),
             ),
           )
           .toList(),
       entryReference: (json['entryReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entryReference'}),
             ),
           )
           .toList(),
       entryQuantity: (json['entryQuantity'] as List<dynamic>?)
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entryQuantity'}),
             ),
           )
           .toList(),
@@ -1111,11 +1188,13 @@ class EvidenceReportSection extends BackboneElement {
         json,
         'emptyReason',
         CodeableConcept.fromJson,
+        '$objectPath.emptyReason',
       ),
       section: (json['section'] as List<dynamic>?)
           ?.map<EvidenceReportSection>(
             (v) => EvidenceReportSection.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.section'}),
             ),
           )
           .toList(),

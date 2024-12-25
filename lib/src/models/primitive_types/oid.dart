@@ -27,6 +27,7 @@ class FhirOid extends PrimitiveType<String>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Oid',
   }) : super(_validateOid(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -38,7 +39,8 @@ class FhirOid extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirOid(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirOid(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirOid] from YAML.

@@ -33,6 +33,7 @@ class VerificationResult extends DomainResource {
     this.attestation,
     this.validator,
   }) : super(
+          objectPath: 'VerificationResult',
           resourceType: R4ResourceType.VerificationResult,
         );
 
@@ -40,57 +41,67 @@ class VerificationResult extends DomainResource {
   factory VerificationResult.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VerificationResult';
     return VerificationResult(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
@@ -98,31 +109,37 @@ class VerificationResult extends DomainResource {
         json,
         'targetLocation',
         FhirString.fromJson,
+        '$objectPath.targetLocation',
       ),
       need: JsonParser.parseObject<CodeableConcept>(
         json,
         'need',
         CodeableConcept.fromJson,
+        '$objectPath.need',
       ),
       status: JsonParser.parsePrimitive<Status>(
         json,
         'status',
         Status.fromJson,
+        '$objectPath.status',
       )!,
       statusDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'statusDate',
         FhirDateTime.fromJson,
+        '$objectPath.statusDate',
       ),
       validationType: JsonParser.parseObject<CodeableConcept>(
         json,
         'validationType',
         CodeableConcept.fromJson,
+        '$objectPath.validationType',
       ),
       validationProcess: (json['validationProcess'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.validationProcess'}),
             ),
           )
           .toList(),
@@ -130,26 +147,31 @@ class VerificationResult extends DomainResource {
         json,
         'frequency',
         Timing.fromJson,
+        '$objectPath.frequency',
       ),
       lastPerformed: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastPerformed',
         FhirDateTime.fromJson,
+        '$objectPath.lastPerformed',
       ),
       nextScheduled: JsonParser.parsePrimitive<FhirDate>(
         json,
         'nextScheduled',
         FhirDate.fromJson,
+        '$objectPath.nextScheduled',
       ),
       failureAction: JsonParser.parseObject<CodeableConcept>(
         json,
         'failureAction',
         CodeableConcept.fromJson,
+        '$objectPath.failureAction',
       ),
       primarySource: (json['primarySource'] as List<dynamic>?)
           ?.map<VerificationResultPrimarySource>(
             (v) => VerificationResultPrimarySource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.primarySource'}),
             ),
           )
           .toList(),
@@ -157,11 +179,13 @@ class VerificationResult extends DomainResource {
         json,
         'attestation',
         VerificationResultAttestation.fromJson,
+        '$objectPath.attestation',
       ),
       validator: (json['validator'] as List<dynamic>?)
           ?.map<VerificationResultValidator>(
             (v) => VerificationResultValidator.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.validator'}),
             ),
           )
           .toList(),
@@ -401,29 +425,35 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.canPushUpdates,
     this.pushTypeAvailable,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'VerificationResult.primarySource',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultPrimarySource.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VerificationResult.primarySource';
     return VerificationResultPrimarySource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -431,18 +461,21 @@ class VerificationResultPrimarySource extends BackboneElement {
         json,
         'who',
         Reference.fromJson,
+        '$objectPath.who',
       ),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.type'}),
             ),
           )
           .toList(),
       communicationMethod: (json['communicationMethod'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.communicationMethod'}),
             ),
           )
           .toList(),
@@ -450,21 +483,25 @@ class VerificationResultPrimarySource extends BackboneElement {
         json,
         'validationStatus',
         CodeableConcept.fromJson,
+        '$objectPath.validationStatus',
       ),
       validationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'validationDate',
         FhirDateTime.fromJson,
+        '$objectPath.validationDate',
       ),
       canPushUpdates: JsonParser.parseObject<CodeableConcept>(
         json,
         'canPushUpdates',
         CodeableConcept.fromJson,
+        '$objectPath.canPushUpdates',
       ),
       pushTypeAvailable: (json['pushTypeAvailable'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.pushTypeAvailable'}),
             ),
           )
           .toList(),
@@ -640,29 +677,35 @@ class VerificationResultAttestation extends BackboneElement {
     this.proxySignature,
     this.sourceSignature,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'VerificationResult.attestation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultAttestation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VerificationResult.attestation';
     return VerificationResultAttestation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -670,41 +713,49 @@ class VerificationResultAttestation extends BackboneElement {
         json,
         'who',
         Reference.fromJson,
+        '$objectPath.who',
       ),
       onBehalfOf: JsonParser.parseObject<Reference>(
         json,
         'onBehalfOf',
         Reference.fromJson,
+        '$objectPath.onBehalfOf',
       ),
       communicationMethod: JsonParser.parseObject<CodeableConcept>(
         json,
         'communicationMethod',
         CodeableConcept.fromJson,
+        '$objectPath.communicationMethod',
       ),
       date: JsonParser.parsePrimitive<FhirDate>(
         json,
         'date',
         FhirDate.fromJson,
+        '$objectPath.date',
       ),
       sourceIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
         json,
         'sourceIdentityCertificate',
         FhirString.fromJson,
+        '$objectPath.sourceIdentityCertificate',
       ),
       proxyIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
         json,
         'proxyIdentityCertificate',
         FhirString.fromJson,
+        '$objectPath.proxyIdentityCertificate',
       ),
       proxySignature: JsonParser.parseObject<Signature>(
         json,
         'proxySignature',
         Signature.fromJson,
+        '$objectPath.proxySignature',
       ),
       sourceSignature: JsonParser.parseObject<Signature>(
         json,
         'sourceSignature',
         Signature.fromJson,
+        '$objectPath.sourceSignature',
       ),
     );
   }
@@ -883,29 +934,35 @@ class VerificationResultValidator extends BackboneElement {
     this.identityCertificate,
     this.attestationSignature,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'VerificationResult.validator',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultValidator.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'VerificationResult.validator';
     return VerificationResultValidator(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -913,16 +970,19 @@ class VerificationResultValidator extends BackboneElement {
         json,
         'organization',
         Reference.fromJson,
+        '$objectPath.organization',
       )!,
       identityCertificate: JsonParser.parsePrimitive<FhirString>(
         json,
         'identityCertificate',
         FhirString.fromJson,
+        '$objectPath.identityCertificate',
       ),
       attestationSignature: JsonParser.parseObject<Signature>(
         json,
         'attestationSignature',
         Signature.fromJson,
+        '$objectPath.attestationSignature',
       ),
     );
   }

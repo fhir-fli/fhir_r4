@@ -35,22 +35,26 @@ class Coding extends DataType
     this.display,
     this.userSelected,
     super.disallowExtensions,
+    super.objectPath = 'Coding',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Coding.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Coding';
     return Coding(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -58,26 +62,31 @@ class Coding extends DataType
         json,
         'system',
         FhirUri.fromJson,
+        '$objectPath.system',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       userSelected: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'userSelected',
         FhirBoolean.fromJson,
+        '$objectPath.userSelected',
       ),
     );
   }

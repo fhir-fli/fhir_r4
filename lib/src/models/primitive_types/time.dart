@@ -39,6 +39,7 @@ class FhirTime extends PrimitiveType<String>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'Time',
   }) : super(_validateTime(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -71,7 +72,8 @@ class FhirTime extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirTime(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirTime(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirTime] from YAML.

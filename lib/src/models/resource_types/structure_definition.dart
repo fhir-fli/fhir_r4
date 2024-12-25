@@ -47,6 +47,7 @@ class StructureDefinition extends CanonicalResource {
     this.snapshot,
     this.differential,
   }) : super(
+          objectPath: 'StructureDefinition',
           resourceType: R4ResourceType.StructureDefinition,
         );
 
@@ -54,50 +55,59 @@ class StructureDefinition extends CanonicalResource {
   factory StructureDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureDefinition';
     return StructureDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -105,11 +115,13 @@ class StructureDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+        '$objectPath.url',
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -117,41 +129,49 @@ class StructureDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -159,18 +179,21 @@ class StructureDefinition extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -178,16 +201,19 @@ class StructureDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       keyword: (json['keyword'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.keyword'}),
             ),
           )
           .toList(),
@@ -195,11 +221,13 @@ class StructureDefinition extends CanonicalResource {
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
+        '$objectPath.fhirVersion',
       ),
       mapping: (json['mapping'] as List<dynamic>?)
           ?.map<StructureDefinitionMapping>(
             (v) => StructureDefinitionMapping.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.mapping'}),
             ),
           )
           .toList(),
@@ -207,16 +235,19 @@ class StructureDefinition extends CanonicalResource {
         json,
         'kind',
         StructureDefinitionKind.fromJson,
+        '$objectPath.kind',
       )!,
       abstract_: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'abstract',
         FhirBoolean.fromJson,
+        '$objectPath.abstract',
       )!,
       context: (json['context'] as List<dynamic>?)
           ?.map<StructureDefinitionContext>(
             (v) => StructureDefinitionContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.context'}),
             ),
           )
           .toList(),
@@ -224,31 +255,37 @@ class StructureDefinition extends CanonicalResource {
         json,
         'contextInvariant',
         FhirString.fromJson,
+        '$objectPath.contextInvariant',
       ),
       type: JsonParser.parsePrimitive<FhirUri>(
         json,
         'type',
         FhirUri.fromJson,
+        '$objectPath.type',
       )!,
       baseDefinition: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'baseDefinition',
         FhirCanonical.fromJson,
+        '$objectPath.baseDefinition',
       ),
       derivation: JsonParser.parsePrimitive<TypeDerivationRule>(
         json,
         'derivation',
         TypeDerivationRule.fromJson,
+        '$objectPath.derivation',
       ),
       snapshot: JsonParser.parseObject<StructureDefinitionSnapshot>(
         json,
         'snapshot',
         StructureDefinitionSnapshot.fromJson,
+        '$objectPath.snapshot',
       ),
       differential: JsonParser.parseObject<StructureDefinitionDifferential>(
         json,
         'differential',
         StructureDefinitionDifferential.fromJson,
+        '$objectPath.differential',
       ),
     );
   }
@@ -558,29 +595,35 @@ class StructureDefinitionMapping extends BackboneElement {
     this.name,
     this.comment,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureDefinition.mapping',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionMapping.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureDefinition.mapping';
     return StructureDefinitionMapping(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -588,21 +631,25 @@ class StructureDefinitionMapping extends BackboneElement {
         json,
         'identity',
         FhirId.fromJson,
+        '$objectPath.identity',
       )!,
       uri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'uri',
         FhirUri.fromJson,
+        '$objectPath.uri',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
+        '$objectPath.comment',
       ),
     );
   }
@@ -748,29 +795,35 @@ class StructureDefinitionContext extends BackboneElement {
     required this.type,
     required this.expression,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureDefinition.context',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionContext.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureDefinition.context';
     return StructureDefinitionContext(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -778,11 +831,13 @@ class StructureDefinitionContext extends BackboneElement {
         json,
         'type',
         ExtensionContextType.fromJson,
+        '$objectPath.type',
       )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       )!,
     );
   }
@@ -911,36 +966,43 @@ class StructureDefinitionSnapshot extends BackboneElement {
     super.modifierExtension,
     required this.element,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureDefinition.snapshot',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionSnapshot.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureDefinition.snapshot';
     return StructureDefinitionSnapshot(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       element: (json['element'] as List<dynamic>)
           .map<ElementDefinition>(
             (v) => ElementDefinition.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.element'}),
             ),
           )
           .toList(),
@@ -1063,36 +1125,43 @@ class StructureDefinitionDifferential extends BackboneElement {
     super.modifierExtension,
     required this.element,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'StructureDefinition.differential',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionDifferential.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'StructureDefinition.differential';
     return StructureDefinitionDifferential(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       element: (json['element'] as List<dynamic>)
           .map<ElementDefinition>(
             (v) => ElementDefinition.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.element'}),
             ),
           )
           .toList(),

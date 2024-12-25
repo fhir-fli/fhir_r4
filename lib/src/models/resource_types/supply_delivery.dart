@@ -29,6 +29,7 @@ class SupplyDelivery extends DomainResource {
     this.destination,
     this.receiver,
   }) : super(
+          objectPath: 'SupplyDelivery',
           resourceType: R4ResourceType.SupplyDelivery,
         );
 
@@ -36,71 +37,83 @@ class SupplyDelivery extends DomainResource {
   factory SupplyDelivery.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SupplyDelivery';
     return SupplyDelivery(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -108,42 +121,52 @@ class SupplyDelivery extends DomainResource {
         json,
         'status',
         SupplyDeliveryStatus.fromJson,
+        '$objectPath.status',
       ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       ),
       suppliedItem: JsonParser.parseObject<SupplyDeliverySuppliedItem>(
         json,
         'suppliedItem',
         SupplyDeliverySuppliedItem.fromJson,
+        '$objectPath.suppliedItem',
       ),
-      occurrenceX:
-          JsonParser.parsePolymorphic<OccurrenceXSupplyDelivery>(json, {
-        'occurrenceDateTime': FhirDateTime.fromJson,
-        'occurrencePeriod': Period.fromJson,
-        'occurrenceTiming': Timing.fromJson,
-      }),
+      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyDelivery>(
+        json,
+        {
+          'occurrenceDateTime': FhirDateTime.fromJson,
+          'occurrencePeriod': Period.fromJson,
+          'occurrenceTiming': Timing.fromJson,
+        },
+        objectPath,
+      ),
       supplier: JsonParser.parseObject<Reference>(
         json,
         'supplier',
         Reference.fromJson,
+        '$objectPath.supplier',
       ),
       destination: JsonParser.parseObject<Reference>(
         json,
         'destination',
         Reference.fromJson,
+        '$objectPath.destination',
       ),
       receiver: (json['receiver'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.receiver'}),
             ),
           )
           .toList(),
@@ -363,29 +386,35 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     this.quantity,
     this.itemX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'SupplyDelivery.suppliedItem',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyDeliverySuppliedItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'SupplyDelivery.suppliedItem';
     return SupplyDeliverySuppliedItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -393,12 +422,16 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
-      itemX:
-          JsonParser.parsePolymorphic<ItemXSupplyDeliverySuppliedItem>(json, {
-        'itemCodeableConcept': CodeableConcept.fromJson,
-        'itemReference': Reference.fromJson,
-      }),
+      itemX: JsonParser.parsePolymorphic<ItemXSupplyDeliverySuppliedItem>(
+        json,
+        {
+          'itemCodeableConcept': CodeableConcept.fromJson,
+          'itemReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
     );
   }
 

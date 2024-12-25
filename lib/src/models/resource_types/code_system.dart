@@ -46,6 +46,7 @@ class CodeSystem extends CanonicalResource {
     this.property,
     this.concept,
   }) : super(
+          objectPath: 'CodeSystem',
           resourceType: R4ResourceType.CodeSystem,
         );
 
@@ -53,50 +54,59 @@ class CodeSystem extends CanonicalResource {
   factory CodeSystem.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem';
     return CodeSystem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -104,11 +114,13 @@ class CodeSystem extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -116,41 +128,49 @@ class CodeSystem extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -158,18 +178,21 @@ class CodeSystem extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -177,70 +200,83 @@ class CodeSystem extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       caseSensitive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'caseSensitive',
         FhirBoolean.fromJson,
+        '$objectPath.caseSensitive',
       ),
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
+        '$objectPath.valueSet',
       ),
       hierarchyMeaning: JsonParser.parsePrimitive<CodeSystemHierarchyMeaning>(
         json,
         'hierarchyMeaning',
         CodeSystemHierarchyMeaning.fromJson,
+        '$objectPath.hierarchyMeaning',
       ),
       compositional: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'compositional',
         FhirBoolean.fromJson,
+        '$objectPath.compositional',
       ),
       versionNeeded: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'versionNeeded',
         FhirBoolean.fromJson,
+        '$objectPath.versionNeeded',
       ),
       content: JsonParser.parsePrimitive<CodeSystemContentMode>(
         json,
         'content',
         CodeSystemContentMode.fromJson,
+        '$objectPath.content',
       )!,
       supplements: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'supplements',
         FhirCanonical.fromJson,
+        '$objectPath.supplements',
       ),
       count: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'count',
         FhirUnsignedInt.fromJson,
+        '$objectPath.count',
       ),
       filter: (json['filter'] as List<dynamic>?)
           ?.map<CodeSystemFilter>(
             (v) => CodeSystemFilter.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.filter'}),
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<CodeSystemProperty>(
             (v) => CodeSystemProperty.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.property'}),
             ),
           )
           .toList(),
       concept: (json['concept'] as List<dynamic>?)
           ?.map<CodeSystemConcept>(
             (v) => CodeSystemConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.concept'}),
             ),
           )
           .toList(),
@@ -537,29 +573,35 @@ class CodeSystemFilter extends BackboneElement {
     required this.operator_,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CodeSystem.filter',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemFilter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem.filter';
     return CodeSystemFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -567,21 +609,25 @@ class CodeSystemFilter extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       operator_: JsonParser.parsePrimitiveList<FilterOperator>(
         json,
         'operator',
         FilterOperator.fromJson,
+        '$objectPath.operator',
       )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -727,29 +773,35 @@ class CodeSystemProperty extends BackboneElement {
     this.description,
     required this.type,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CodeSystem.property',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemProperty.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem.property';
     return CodeSystemProperty(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -757,21 +809,25 @@ class CodeSystemProperty extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       uri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'uri',
         FhirUri.fromJson,
+        '$objectPath.uri',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       type: JsonParser.parsePrimitive<PropertyTypeEnum>(
         json,
         'type',
         PropertyTypeEnum.fromJson,
+        '$objectPath.type',
       )!,
     );
   }
@@ -926,29 +982,35 @@ class CodeSystemConcept extends BackboneElement {
     this.property,
     this.concept,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CodeSystem.concept',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemConcept.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem.concept';
     return CodeSystemConcept(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -956,35 +1018,41 @@ class CodeSystemConcept extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
+        '$objectPath.display',
       ),
       definition: JsonParser.parsePrimitive<FhirString>(
         json,
         'definition',
         FhirString.fromJson,
+        '$objectPath.definition',
       ),
       designation: (json['designation'] as List<dynamic>?)
           ?.map<CodeSystemDesignation>(
             (v) => CodeSystemDesignation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.designation'}),
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<CodeSystemProperty1>(
             (v) => CodeSystemProperty1.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.property'}),
             ),
           )
           .toList(),
       concept: (json['concept'] as List<dynamic>?)
           ?.map<CodeSystemConcept>(
             (v) => CodeSystemConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.concept'}),
             ),
           )
           .toList(),
@@ -1152,29 +1220,35 @@ class CodeSystemDesignation extends BackboneElement {
     this.use,
     required this.value,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CodeSystem.concept.designation',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemDesignation.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem.concept.designation';
     return CodeSystemDesignation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1182,16 +1256,19 @@ class CodeSystemDesignation extends BackboneElement {
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       use: JsonParser.parseObject<Coding>(
         json,
         'use',
         Coding.fromJson,
+        '$objectPath.use',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
+        '$objectPath.value',
       )!,
     );
   }
@@ -1326,29 +1403,35 @@ class CodeSystemProperty1 extends BackboneElement {
     required this.code,
     required this.valueX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CodeSystem.concept.property',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemProperty1.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CodeSystem.concept.property';
     return CodeSystemProperty1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1356,16 +1439,21 @@ class CodeSystemProperty1 extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXCodeSystemProperty>(json, {
-        'valueCode': FhirCode.fromJson,
-        'valueCoding': Coding.fromJson,
-        'valueString': FhirString.fromJson,
-        'valueInteger': FhirInteger.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueDateTime': FhirDateTime.fromJson,
-        'valueDecimal': FhirDecimal.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXCodeSystemProperty>(
+        json,
+        {
+          'valueCode': FhirCode.fromJson,
+          'valueCoding': Coding.fromJson,
+          'valueString': FhirString.fromJson,
+          'valueInteger': FhirInteger.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueDateTime': FhirDateTime.fromJson,
+          'valueDecimal': FhirDecimal.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 

@@ -33,6 +33,7 @@ class MessageHeader extends DomainResource {
     this.focus,
     this.definition,
   }) : super(
+          objectPath: 'MessageHeader',
           resourceType: R4ResourceType.MessageHeader,
         );
 
@@ -40,61 +41,75 @@ class MessageHeader extends DomainResource {
   factory MessageHeader.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageHeader';
     return MessageHeader(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
-      eventX: JsonParser.parsePolymorphic<EventXMessageHeader>(json, {
-        'eventCoding': Coding.fromJson,
-        'eventUri': FhirUri.fromJson,
-      })!,
+      eventX: JsonParser.parsePolymorphic<EventXMessageHeader>(
+        json,
+        {
+          'eventCoding': Coding.fromJson,
+          'eventUri': FhirUri.fromJson,
+        },
+        objectPath,
+      )!,
       destination: (json['destination'] as List<dynamic>?)
           ?.map<MessageHeaderDestination>(
             (v) => MessageHeaderDestination.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.destination'}),
             ),
           )
           .toList(),
@@ -102,41 +117,49 @@ class MessageHeader extends DomainResource {
         json,
         'sender',
         Reference.fromJson,
+        '$objectPath.sender',
       ),
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
+        '$objectPath.enterer',
       ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
         Reference.fromJson,
+        '$objectPath.author',
       ),
       source: JsonParser.parseObject<MessageHeaderSource>(
         json,
         'source',
         MessageHeaderSource.fromJson,
+        '$objectPath.source',
       )!,
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
         Reference.fromJson,
+        '$objectPath.responsible',
       ),
       reason: JsonParser.parseObject<CodeableConcept>(
         json,
         'reason',
         CodeableConcept.fromJson,
+        '$objectPath.reason',
       ),
       response: JsonParser.parseObject<MessageHeaderResponse>(
         json,
         'response',
         MessageHeaderResponse.fromJson,
+        '$objectPath.response',
       ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.focus'}),
             ),
           )
           .toList(),
@@ -144,6 +167,7 @@ class MessageHeader extends DomainResource {
         json,
         'definition',
         FhirCanonical.fromJson,
+        '$objectPath.definition',
       ),
     );
   }
@@ -368,29 +392,35 @@ class MessageHeaderDestination extends BackboneElement {
     required this.endpoint,
     this.receiver,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MessageHeader.destination',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderDestination.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageHeader.destination';
     return MessageHeaderDestination(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -398,21 +428,25 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       target: JsonParser.parseObject<Reference>(
         json,
         'target',
         Reference.fromJson,
+        '$objectPath.target',
       ),
       endpoint: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'endpoint',
         FhirUrl.fromJson,
+        '$objectPath.endpoint',
       )!,
       receiver: JsonParser.parseObject<Reference>(
         json,
         'receiver',
         Reference.fromJson,
+        '$objectPath.receiver',
       ),
     );
   }
@@ -560,29 +594,35 @@ class MessageHeaderSource extends BackboneElement {
     this.contact,
     required this.endpoint,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MessageHeader.source',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderSource.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageHeader.source';
     return MessageHeaderSource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -590,26 +630,31 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       software: JsonParser.parsePrimitive<FhirString>(
         json,
         'software',
         FhirString.fromJson,
+        '$objectPath.software',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       contact: JsonParser.parseObject<ContactPoint>(
         json,
         'contact',
         ContactPoint.fromJson,
+        '$objectPath.contact',
       ),
       endpoint: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'endpoint',
         FhirUrl.fromJson,
+        '$objectPath.endpoint',
       )!,
     );
   }
@@ -762,29 +807,35 @@ class MessageHeaderResponse extends BackboneElement {
     required this.code,
     this.details,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MessageHeader.response',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderResponse.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MessageHeader.response';
     return MessageHeaderResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -792,16 +843,19 @@ class MessageHeaderResponse extends BackboneElement {
         json,
         'identifier',
         FhirId.fromJson,
+        '$objectPath.identifier',
       )!,
       code: JsonParser.parsePrimitive<ResponseType>(
         json,
         'code',
         ResponseType.fromJson,
+        '$objectPath.code',
       )!,
       details: JsonParser.parseObject<Reference>(
         json,
         'details',
         Reference.fromJson,
+        '$objectPath.details',
       ),
     );
   }

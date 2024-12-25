@@ -36,22 +36,26 @@ class Ratio extends DataType
     this.numerator,
     this.denominator,
     super.disallowExtensions,
+    super.objectPath = 'Ratio',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ratio.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Ratio';
     return Ratio(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -59,11 +63,13 @@ class Ratio extends DataType
         json,
         'numerator',
         Quantity.fromJson,
+        '$objectPath.numerator',
       ),
       denominator: JsonParser.parseObject<Quantity>(
         json,
         'denominator',
         Quantity.fromJson,
+        '$objectPath.denominator',
       ),
     );
   }

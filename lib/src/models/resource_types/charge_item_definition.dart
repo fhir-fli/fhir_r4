@@ -45,6 +45,7 @@ class ChargeItemDefinition extends DomainResource {
     this.applicability,
     this.propertyGroup,
   }) : super(
+          objectPath: 'ChargeItemDefinition',
           resourceType: R4ResourceType.ChargeItemDefinition,
         );
 
@@ -52,50 +53,59 @@ class ChargeItemDefinition extends DomainResource {
   factory ChargeItemDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItemDefinition';
     return ChargeItemDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -103,11 +113,13 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -115,51 +127,61 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       derivedFromUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'derivedFromUri',
         FhirUri.fromJson,
+        '$objectPath.derivedFromUri',
       ),
       partOf: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'partOf',
         FhirCanonical.fromJson,
+        '$objectPath.partOf',
       ),
       replaces: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'replaces',
         FhirCanonical.fromJson,
+        '$objectPath.replaces',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -167,18 +189,21 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -186,45 +211,53 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
+        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
+        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
+        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
+        '$objectPath.effectivePeriod',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       instance: (json['instance'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.instance'}),
             ),
           )
           .toList(),
       applicability: (json['applicability'] as List<dynamic>?)
           ?.map<ChargeItemDefinitionApplicability>(
             (v) => ChargeItemDefinitionApplicability.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.applicability'}),
             ),
           )
           .toList(),
       propertyGroup: (json['propertyGroup'] as List<dynamic>?)
           ?.map<ChargeItemDefinitionPropertyGroup>(
             (v) => ChargeItemDefinitionPropertyGroup.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.propertyGroup'}),
             ),
           )
           .toList(),
@@ -565,29 +598,35 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     this.language,
     this.expression,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ChargeItemDefinition.applicability',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionApplicability.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItemDefinition.applicability';
     return ChargeItemDefinitionApplicability(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -595,16 +634,19 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       language: JsonParser.parsePrimitive<FhirString>(
         json,
         'language',
         FhirString.fromJson,
+        '$objectPath.language',
       ),
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       ),
     );
   }
@@ -747,43 +789,51 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     this.applicability,
     this.priceComponent,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ChargeItemDefinition.propertyGroup',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPropertyGroup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItemDefinition.propertyGroup';
     return ChargeItemDefinitionPropertyGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       applicability: (json['applicability'] as List<dynamic>?)
           ?.map<ChargeItemDefinitionApplicability>(
             (v) => ChargeItemDefinitionApplicability.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.applicability'}),
             ),
           )
           .toList(),
       priceComponent: (json['priceComponent'] as List<dynamic>?)
           ?.map<ChargeItemDefinitionPriceComponent>(
             (v) => ChargeItemDefinitionPriceComponent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.priceComponent'}),
             ),
           )
           .toList(),
@@ -926,29 +976,35 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     this.factor,
     this.amount,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'ChargeItemDefinition.propertyGroup.priceComponent',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPriceComponent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ChargeItemDefinition.propertyGroup.priceComponent';
     return ChargeItemDefinitionPriceComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -956,21 +1012,25 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
         json,
         'type',
         InvoicePriceComponentType.fromJson,
+        '$objectPath.type',
       )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
+        '$objectPath.amount',
       ),
     );
   }

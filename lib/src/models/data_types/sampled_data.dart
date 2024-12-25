@@ -32,22 +32,26 @@ class SampledData extends DataType
     required this.dimensions,
     this.data,
     super.disallowExtensions,
+    super.objectPath = 'SampledData',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SampledData.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'SampledData';
     return SampledData(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -55,36 +59,43 @@ class SampledData extends DataType
         json,
         'origin',
         Quantity.fromJson,
+        '$objectPath.origin',
       )!,
       period: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'period',
         FhirDecimal.fromJson,
+        '$objectPath.period',
       )!,
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
+        '$objectPath.factor',
       ),
       lowerLimit: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'lowerLimit',
         FhirDecimal.fromJson,
+        '$objectPath.lowerLimit',
       ),
       upperLimit: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'upperLimit',
         FhirDecimal.fromJson,
+        '$objectPath.upperLimit',
       ),
       dimensions: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'dimensions',
         FhirPositiveInt.fromJson,
+        '$objectPath.dimensions',
       )!,
       data: JsonParser.parsePrimitive<FhirString>(
         json,
         'data',
         FhirString.fromJson,
+        '$objectPath.data',
       ),
     );
   }

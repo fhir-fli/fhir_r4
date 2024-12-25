@@ -71,6 +71,7 @@ class FhirString extends PrimitiveType<String>
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.objectPath = 'String',
   }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -82,7 +83,8 @@ class FhirString extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirString(value, element: element);
+    final objectPath = json['objectPath'] as String?;
+    return FhirString(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirString] from YAML.

@@ -27,6 +27,7 @@ class ResearchSubject extends DomainResource {
     this.actualArm,
     this.consent,
   }) : super(
+          objectPath: 'ResearchSubject',
           resourceType: R4ResourceType.ResearchSubject,
         );
 
@@ -34,57 +35,67 @@ class ResearchSubject extends DomainResource {
   factory ResearchSubject.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'ResearchSubject';
     return ResearchSubject(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -92,36 +103,43 @@ class ResearchSubject extends DomainResource {
         json,
         'status',
         ResearchSubjectStatus.fromJson,
+        '$objectPath.status',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       study: JsonParser.parseObject<Reference>(
         json,
         'study',
         Reference.fromJson,
+        '$objectPath.study',
       )!,
       individual: JsonParser.parseObject<Reference>(
         json,
         'individual',
         Reference.fromJson,
+        '$objectPath.individual',
       )!,
       assignedArm: JsonParser.parsePrimitive<FhirString>(
         json,
         'assignedArm',
         FhirString.fromJson,
+        '$objectPath.assignedArm',
       ),
       actualArm: JsonParser.parsePrimitive<FhirString>(
         json,
         'actualArm',
         FhirString.fromJson,
+        '$objectPath.actualArm',
       ),
       consent: JsonParser.parseObject<Reference>(
         json,
         'consent',
         Reference.fromJson,
+        '$objectPath.consent',
       ),
     );
   }

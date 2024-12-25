@@ -54,22 +54,26 @@ class Range extends DataType
     this.low,
     this.high,
     super.disallowExtensions,
+    super.objectPath = 'Range',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Range.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'Range';
     return Range(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -77,11 +81,13 @@ class Range extends DataType
         json,
         'low',
         Quantity.fromJson,
+        '$objectPath.low',
       ),
       high: JsonParser.parseObject<Quantity>(
         json,
         'high',
         Quantity.fromJson,
+        '$objectPath.high',
       ),
     );
   }

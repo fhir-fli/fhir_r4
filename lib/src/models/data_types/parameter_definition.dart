@@ -32,22 +32,26 @@ class ParameterDefinition extends DataType
     required this.type,
     this.profile,
     super.disallowExtensions,
+    super.objectPath = 'ParameterDefinition',
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ParameterDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    final objectPath = json['resourceType'] as String? ?? 'ParameterDefinition';
     return ParameterDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
@@ -55,36 +59,43 @@ class ParameterDefinition extends DataType
         json,
         'name',
         FhirCode.fromJson,
+        '$objectPath.name',
       ),
       use: JsonParser.parsePrimitive<OperationParameterUse>(
         json,
         'use',
         OperationParameterUse.fromJson,
+        '$objectPath.use',
       )!,
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
+        '$objectPath.min',
       ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
+        '$objectPath.max',
       ),
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
       type: JsonParser.parsePrimitive<FHIRAllTypes>(
         json,
         'type',
         FHIRAllTypes.fromJson,
+        '$objectPath.type',
       )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
     );
   }

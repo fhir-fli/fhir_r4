@@ -48,6 +48,7 @@ class Procedure extends DomainResource {
     this.usedReference,
     this.usedCode,
   }) : super(
+          objectPath: 'Procedure',
           resourceType: R4ResourceType.Procedure,
         );
 
@@ -55,57 +56,67 @@ class Procedure extends DomainResource {
   factory Procedure.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Procedure';
     return Procedure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -113,23 +124,27 @@ class Procedure extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
+        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
+        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.basedOn'}),
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.partOf'}),
             ),
           )
           .toList(),
@@ -137,53 +152,66 @@ class Procedure extends DomainResource {
         json,
         'status',
         EventStatus.fromJson,
+        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
+        '$objectPath.statusReason',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
+        '$objectPath.category',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
-      performedX: JsonParser.parsePolymorphic<PerformedXProcedure>(json, {
-        'performedDateTime': FhirDateTime.fromJson,
-        'performedPeriod': Period.fromJson,
-        'performedString': FhirString.fromJson,
-        'performedAge': Age.fromJson,
-        'performedRange': Range.fromJson,
-      }),
+      performedX: JsonParser.parsePolymorphic<PerformedXProcedure>(
+        json,
+        {
+          'performedDateTime': FhirDateTime.fromJson,
+          'performedPeriod': Period.fromJson,
+          'performedString': FhirString.fromJson,
+          'performedAge': Age.fromJson,
+          'performedRange': Range.fromJson,
+        },
+        objectPath,
+      ),
       recorder: JsonParser.parseObject<Reference>(
         json,
         'recorder',
         Reference.fromJson,
+        '$objectPath.recorder',
       ),
       asserter: JsonParser.parseObject<Reference>(
         json,
         'asserter',
         Reference.fromJson,
+        '$objectPath.asserter',
       ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<ProcedurePerformer>(
             (v) => ProcedurePerformer.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performer'}),
             ),
           )
           .toList(),
@@ -191,25 +219,29 @@ class Procedure extends DomainResource {
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonCode'}),
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.reasonReference'}),
             ),
           )
           .toList(),
       bodySite: (json['bodySite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.bodySite'}),
             ),
           )
           .toList(),
@@ -217,60 +249,69 @@ class Procedure extends DomainResource {
         json,
         'outcome',
         CodeableConcept.fromJson,
+        '$objectPath.outcome',
       ),
       report: (json['report'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.report'}),
             ),
           )
           .toList(),
       complication: (json['complication'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.complication'}),
             ),
           )
           .toList(),
       complicationDetail: (json['complicationDetail'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.complicationDetail'}),
             ),
           )
           .toList(),
       followUp: (json['followUp'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.followUp'}),
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.note'}),
             ),
           )
           .toList(),
       focalDevice: (json['focalDevice'] as List<dynamic>?)
           ?.map<ProcedureFocalDevice>(
             (v) => ProcedureFocalDevice.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.focalDevice'}),
             ),
           )
           .toList(),
       usedReference: (json['usedReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.usedReference'}),
             ),
           )
           .toList(),
       usedCode: (json['usedCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.usedCode'}),
             ),
           )
           .toList(),
@@ -634,29 +675,35 @@ class ProcedurePerformer extends BackboneElement {
     required this.actor,
     this.onBehalfOf,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Procedure.performer',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedurePerformer.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Procedure.performer';
     return ProcedurePerformer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -664,16 +711,19 @@ class ProcedurePerformer extends BackboneElement {
         json,
         'function',
         CodeableConcept.fromJson,
+        '$objectPath.function',
       ),
       actor: JsonParser.parseObject<Reference>(
         json,
         'actor',
         Reference.fromJson,
+        '$objectPath.actor',
       )!,
       onBehalfOf: JsonParser.parseObject<Reference>(
         json,
         'onBehalfOf',
         Reference.fromJson,
+        '$objectPath.onBehalfOf',
       ),
     );
   }
@@ -811,29 +861,35 @@ class ProcedureFocalDevice extends BackboneElement {
     this.action,
     required this.manipulated,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Procedure.focalDevice',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedureFocalDevice.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Procedure.focalDevice';
     return ProcedureFocalDevice(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -841,11 +897,13 @@ class ProcedureFocalDevice extends BackboneElement {
         json,
         'action',
         CodeableConcept.fromJson,
+        '$objectPath.action',
       ),
       manipulated: JsonParser.parseObject<Reference>(
         json,
         'manipulated',
         Reference.fromJson,
+        '$objectPath.manipulated',
       )!,
     );
   }

@@ -34,6 +34,7 @@ class MolecularSequence extends DomainResource {
     this.pointer,
     this.structureVariant,
   }) : super(
+          objectPath: 'MolecularSequence',
           resourceType: R4ResourceType.MolecularSequence,
         );
 
@@ -41,57 +42,67 @@ class MolecularSequence extends DomainResource {
   factory MolecularSequence.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence';
     return MolecularSequence(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -99,46 +110,55 @@ class MolecularSequence extends DomainResource {
         json,
         'type',
         SequenceType.fromJson,
+        '$objectPath.type',
       ),
       coordinateSystem: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'coordinateSystem',
         FhirInteger.fromJson,
+        '$objectPath.coordinateSystem',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       ),
       specimen: JsonParser.parseObject<Reference>(
         json,
         'specimen',
         Reference.fromJson,
+        '$objectPath.specimen',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
+        '$objectPath.device',
       ),
       performer: JsonParser.parseObject<Reference>(
         json,
         'performer',
         Reference.fromJson,
+        '$objectPath.performer',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
+        '$objectPath.quantity',
       ),
       referenceSeq: JsonParser.parseObject<MolecularSequenceReferenceSeq>(
         json,
         'referenceSeq',
         MolecularSequenceReferenceSeq.fromJson,
+        '$objectPath.referenceSeq',
       ),
       variant: (json['variant'] as List<dynamic>?)
           ?.map<MolecularSequenceVariant>(
             (v) => MolecularSequenceVariant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.variant'}),
             ),
           )
           .toList(),
@@ -146,11 +166,13 @@ class MolecularSequence extends DomainResource {
         json,
         'observedSeq',
         FhirString.fromJson,
+        '$objectPath.observedSeq',
       ),
       quality: (json['quality'] as List<dynamic>?)
           ?.map<MolecularSequenceQuality>(
             (v) => MolecularSequenceQuality.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.quality'}),
             ),
           )
           .toList(),
@@ -158,25 +180,29 @@ class MolecularSequence extends DomainResource {
         json,
         'readCoverage',
         FhirInteger.fromJson,
+        '$objectPath.readCoverage',
       ),
       repository: (json['repository'] as List<dynamic>?)
           ?.map<MolecularSequenceRepository>(
             (v) => MolecularSequenceRepository.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.repository'}),
             ),
           )
           .toList(),
       pointer: (json['pointer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.pointer'}),
             ),
           )
           .toList(),
       structureVariant: (json['structureVariant'] as List<dynamic>?)
           ?.map<MolecularSequenceStructureVariant>(
             (v) => MolecularSequenceStructureVariant.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.structureVariant'}),
             ),
           )
           .toList(),
@@ -442,29 +468,35 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     this.windowStart,
     this.windowEnd,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.referenceSeq',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceReferenceSeq.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.referenceSeq';
     return MolecularSequenceReferenceSeq(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -472,46 +504,55 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
         json,
         'chromosome',
         CodeableConcept.fromJson,
+        '$objectPath.chromosome',
       ),
       genomeBuild: JsonParser.parsePrimitive<FhirString>(
         json,
         'genomeBuild',
         FhirString.fromJson,
+        '$objectPath.genomeBuild',
       ),
       orientation: JsonParser.parsePrimitive<OrientationType>(
         json,
         'orientation',
         OrientationType.fromJson,
+        '$objectPath.orientation',
       ),
       referenceSeqId: JsonParser.parseObject<CodeableConcept>(
         json,
         'referenceSeqId',
         CodeableConcept.fromJson,
+        '$objectPath.referenceSeqId',
       ),
       referenceSeqPointer: JsonParser.parseObject<Reference>(
         json,
         'referenceSeqPointer',
         Reference.fromJson,
+        '$objectPath.referenceSeqPointer',
       ),
       referenceSeqString: JsonParser.parsePrimitive<FhirString>(
         json,
         'referenceSeqString',
         FhirString.fromJson,
+        '$objectPath.referenceSeqString',
       ),
       strand: JsonParser.parsePrimitive<StrandType>(
         json,
         'strand',
         StrandType.fromJson,
+        '$objectPath.strand',
       ),
       windowStart: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'windowStart',
         FhirInteger.fromJson,
+        '$objectPath.windowStart',
       ),
       windowEnd: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'windowEnd',
         FhirInteger.fromJson,
+        '$objectPath.windowEnd',
       ),
     );
   }
@@ -714,29 +755,35 @@ class MolecularSequenceVariant extends BackboneElement {
     this.cigar,
     this.variantPointer,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.variant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceVariant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.variant';
     return MolecularSequenceVariant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -744,31 +791,37 @@ class MolecularSequenceVariant extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
+        '$objectPath.end',
       ),
       observedAllele: JsonParser.parsePrimitive<FhirString>(
         json,
         'observedAllele',
         FhirString.fromJson,
+        '$objectPath.observedAllele',
       ),
       referenceAllele: JsonParser.parsePrimitive<FhirString>(
         json,
         'referenceAllele',
         FhirString.fromJson,
+        '$objectPath.referenceAllele',
       ),
       cigar: JsonParser.parsePrimitive<FhirString>(
         json,
         'cigar',
         FhirString.fromJson,
+        '$objectPath.cigar',
       ),
       variantPointer: JsonParser.parseObject<Reference>(
         json,
         'variantPointer',
         Reference.fromJson,
+        '$objectPath.variantPointer',
       ),
     );
   }
@@ -958,29 +1011,35 @@ class MolecularSequenceQuality extends BackboneElement {
     this.fScore,
     this.roc,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.quality',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceQuality.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.quality';
     return MolecularSequenceQuality(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -988,76 +1047,91 @@ class MolecularSequenceQuality extends BackboneElement {
         json,
         'type',
         QualityType.fromJson,
+        '$objectPath.type',
       )!,
       standardSequence: JsonParser.parseObject<CodeableConcept>(
         json,
         'standardSequence',
         CodeableConcept.fromJson,
+        '$objectPath.standardSequence',
       ),
       start: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'start',
         FhirInteger.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
+        '$objectPath.end',
       ),
       score: JsonParser.parseObject<Quantity>(
         json,
         'score',
         Quantity.fromJson,
+        '$objectPath.score',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
       truthTP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'truthTP',
         FhirDecimal.fromJson,
+        '$objectPath.truthTP',
       ),
       queryTP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'queryTP',
         FhirDecimal.fromJson,
+        '$objectPath.queryTP',
       ),
       truthFN: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'truthFN',
         FhirDecimal.fromJson,
+        '$objectPath.truthFN',
       ),
       queryFP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'queryFP',
         FhirDecimal.fromJson,
+        '$objectPath.queryFP',
       ),
       gtFP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'gtFP',
         FhirDecimal.fromJson,
+        '$objectPath.gtFP',
       ),
       precision: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'precision',
         FhirDecimal.fromJson,
+        '$objectPath.precision',
       ),
       recall: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'recall',
         FhirDecimal.fromJson,
+        '$objectPath.recall',
       ),
       fScore: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'fScore',
         FhirDecimal.fromJson,
+        '$objectPath.fScore',
       ),
       roc: JsonParser.parseObject<MolecularSequenceRoc>(
         json,
         'roc',
         MolecularSequenceRoc.fromJson,
+        '$objectPath.roc',
       ),
     );
   }
@@ -1304,29 +1378,35 @@ class MolecularSequenceRoc extends BackboneElement {
     this.sensitivity,
     this.fMeasure,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.quality.roc',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRoc.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.quality.roc';
     return MolecularSequenceRoc(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1334,36 +1414,43 @@ class MolecularSequenceRoc extends BackboneElement {
         json,
         'score',
         FhirInteger.fromJson,
+        '$objectPath.score',
       ),
       numTP: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numTP',
         FhirInteger.fromJson,
+        '$objectPath.numTP',
       ),
       numFP: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numFP',
         FhirInteger.fromJson,
+        '$objectPath.numFP',
       ),
       numFN: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numFN',
         FhirInteger.fromJson,
+        '$objectPath.numFN',
       ),
       precision: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'precision',
         FhirDecimal.fromJson,
+        '$objectPath.precision',
       ),
       sensitivity: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'sensitivity',
         FhirDecimal.fromJson,
+        '$objectPath.sensitivity',
       ),
       fMeasure: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'fMeasure',
         FhirDecimal.fromJson,
+        '$objectPath.fMeasure',
       ),
     );
   }
@@ -1538,29 +1625,35 @@ class MolecularSequenceRepository extends BackboneElement {
     this.variantsetId,
     this.readsetId,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.repository',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRepository.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.repository';
     return MolecularSequenceRepository(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1568,31 +1661,37 @@ class MolecularSequenceRepository extends BackboneElement {
         json,
         'type',
         RepositoryType.fromJson,
+        '$objectPath.type',
       )!,
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       datasetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'datasetId',
         FhirString.fromJson,
+        '$objectPath.datasetId',
       ),
       variantsetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'variantsetId',
         FhirString.fromJson,
+        '$objectPath.variantsetId',
       ),
       readsetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'readsetId',
         FhirString.fromJson,
+        '$objectPath.readsetId',
       ),
     );
   }
@@ -1758,29 +1857,35 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     this.outer,
     this.inner,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.structureVariant',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceStructureVariant.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.structureVariant';
     return MolecularSequenceStructureVariant(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1788,26 +1893,31 @@ class MolecularSequenceStructureVariant extends BackboneElement {
         json,
         'variantType',
         CodeableConcept.fromJson,
+        '$objectPath.variantType',
       ),
       exact: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'exact',
         FhirBoolean.fromJson,
+        '$objectPath.exact',
       ),
       length: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'length',
         FhirInteger.fromJson,
+        '$objectPath.length',
       ),
       outer: JsonParser.parseObject<MolecularSequenceOuter>(
         json,
         'outer',
         MolecularSequenceOuter.fromJson,
+        '$objectPath.outer',
       ),
       inner: JsonParser.parseObject<MolecularSequenceInner>(
         json,
         'inner',
         MolecularSequenceInner.fromJson,
+        '$objectPath.inner',
       ),
     );
   }
@@ -1957,29 +2067,35 @@ class MolecularSequenceOuter extends BackboneElement {
     this.start,
     this.end,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.structureVariant.outer',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceOuter.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.structureVariant.outer';
     return MolecularSequenceOuter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1987,11 +2103,13 @@ class MolecularSequenceOuter extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
+        '$objectPath.end',
       ),
     );
   }
@@ -2123,29 +2241,35 @@ class MolecularSequenceInner extends BackboneElement {
     this.start,
     this.end,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'MolecularSequence.structureVariant.inner',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceInner.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'MolecularSequence.structureVariant.inner';
     return MolecularSequenceInner(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -2153,11 +2277,13 @@ class MolecularSequenceInner extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
+        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
+        '$objectPath.end',
       ),
     );
   }

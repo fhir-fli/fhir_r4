@@ -33,6 +33,7 @@ class CompartmentDefinition extends DomainResource {
     required this.search,
     this.resource,
   }) : super(
+          objectPath: 'CompartmentDefinition',
           resourceType: R4ResourceType.CompartmentDefinition,
         );
 
@@ -40,50 +41,59 @@ class CompartmentDefinition extends DomainResource {
   factory CompartmentDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CompartmentDefinition';
     return CompartmentDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -91,41 +101,49 @@ class CompartmentDefinition extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
+        '$objectPath.status',
       )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -133,11 +151,13 @@ class CompartmentDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
@@ -145,21 +165,25 @@ class CompartmentDefinition extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       code: JsonParser.parsePrimitive<CompartmentType>(
         json,
         'code',
         CompartmentType.fromJson,
+        '$objectPath.code',
       )!,
       search: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'search',
         FhirBoolean.fromJson,
+        '$objectPath.search',
       )!,
       resource: (json['resource'] as List<dynamic>?)
           ?.map<CompartmentDefinitionResource>(
             (v) => CompartmentDefinitionResource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.resource'}),
             ),
           )
           .toList(),
@@ -419,29 +443,35 @@ class CompartmentDefinitionResource extends BackboneElement {
     this.param,
     this.documentation,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'CompartmentDefinition.resource',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompartmentDefinitionResource.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'CompartmentDefinition.resource';
     return CompartmentDefinitionResource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -449,16 +479,19 @@ class CompartmentDefinitionResource extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
+        '$objectPath.code',
       )!,
       param: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'param',
         FhirString.fromJson,
+        '$objectPath.param',
       ),
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
+        '$objectPath.documentation',
       ),
     );
   }

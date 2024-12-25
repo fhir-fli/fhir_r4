@@ -36,6 +36,7 @@ class GraphDefinition extends CanonicalResource {
     this.profile,
     this.link,
   }) : super(
+          objectPath: 'GraphDefinition',
           resourceType: R4ResourceType.GraphDefinition,
         );
 
@@ -43,50 +44,59 @@ class GraphDefinition extends CanonicalResource {
   factory GraphDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'GraphDefinition';
     return GraphDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -94,41 +104,49 @@ class GraphDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
+        '$objectPath.url',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
+        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+        '$objectPath.status',
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
+        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
+        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contact'}),
             ),
           )
           .toList(),
@@ -136,18 +154,21 @@ class GraphDefinition extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
+        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.useContext'}),
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.jurisdiction'}),
             ),
           )
           .toList(),
@@ -155,21 +176,25 @@ class GraphDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
+        '$objectPath.purpose',
       ),
       start: JsonParser.parsePrimitive<FhirCode>(
         json,
         'start',
         FhirCode.fromJson,
+        '$objectPath.start',
       )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
       link: (json['link'] as List<dynamic>?)
           ?.map<GraphDefinitionLink>(
             (v) => GraphDefinitionLink.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.link'}),
             ),
           )
           .toList(),
@@ -373,29 +398,35 @@ class GraphDefinitionLink extends BackboneElement {
     this.description,
     this.target,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'GraphDefinition.link',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionLink.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'GraphDefinition.link';
     return GraphDefinitionLink(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -403,31 +434,37 @@ class GraphDefinitionLink extends BackboneElement {
         json,
         'path',
         FhirString.fromJson,
+        '$objectPath.path',
       ),
       sliceName: JsonParser.parsePrimitive<FhirString>(
         json,
         'sliceName',
         FhirString.fromJson,
+        '$objectPath.sliceName',
       ),
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
+        '$objectPath.min',
       ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
+        '$objectPath.max',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
       target: (json['target'] as List<dynamic>?)
           ?.map<GraphDefinitionTarget>(
             (v) => GraphDefinitionTarget.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.target'}),
             ),
           )
           .toList(),
@@ -590,29 +627,35 @@ class GraphDefinitionTarget extends BackboneElement {
     this.compartment,
     this.link,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'GraphDefinition.link.target',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionTarget.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'GraphDefinition.link.target';
     return GraphDefinitionTarget(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -620,28 +663,33 @@ class GraphDefinitionTarget extends BackboneElement {
         json,
         'type',
         FhirCode.fromJson,
+        '$objectPath.type',
       )!,
       params: JsonParser.parsePrimitive<FhirString>(
         json,
         'params',
         FhirString.fromJson,
+        '$objectPath.params',
       ),
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
+        '$objectPath.profile',
       ),
       compartment: (json['compartment'] as List<dynamic>?)
           ?.map<GraphDefinitionCompartment>(
             (v) => GraphDefinitionCompartment.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.compartment'}),
             ),
           )
           .toList(),
       link: (json['link'] as List<dynamic>?)
           ?.map<GraphDefinitionLink>(
             (v) => GraphDefinitionLink.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.link'}),
             ),
           )
           .toList(),
@@ -795,29 +843,35 @@ class GraphDefinitionCompartment extends BackboneElement {
     this.expression,
     this.description,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'GraphDefinition.link.target.compartment',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionCompartment.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'GraphDefinition.link.target.compartment';
     return GraphDefinitionCompartment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -825,26 +879,31 @@ class GraphDefinitionCompartment extends BackboneElement {
         json,
         'use',
         GraphCompartmentUse.fromJson,
+        '$objectPath.use',
       )!,
       code: JsonParser.parsePrimitive<CompartmentType>(
         json,
         'code',
         CompartmentType.fromJson,
+        '$objectPath.code',
       )!,
       rule: JsonParser.parsePrimitive<GraphCompartmentRule>(
         json,
         'rule',
         GraphCompartmentRule.fromJson,
+        '$objectPath.rule',
       )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
+        '$objectPath.expression',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
+        '$objectPath.description',
       ),
     );
   }

@@ -34,6 +34,7 @@ class Consent extends DomainResource {
     this.verification,
     this.provision,
   }) : super(
+          objectPath: 'Consent',
           resourceType: R4ResourceType.Consent,
         );
 
@@ -41,57 +42,67 @@ class Consent extends DomainResource {
   factory Consent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent';
     return Consent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -99,16 +110,19 @@ class Consent extends DomainResource {
         json,
         'status',
         ConsentState.fromJson,
+        '$objectPath.status',
       )!,
       scope: JsonParser.parseObject<CodeableConcept>(
         json,
         'scope',
         CodeableConcept.fromJson,
+        '$objectPath.scope',
       )!,
       category: (json['category'] as List<dynamic>)
           .map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -116,34 +130,43 @@ class Consent extends DomainResource {
         json,
         'patient',
         Reference.fromJson,
+        '$objectPath.patient',
       ),
       dateTime: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'dateTime',
         FhirDateTime.fromJson,
+        '$objectPath.dateTime',
       ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.performer'}),
             ),
           )
           .toList(),
       organization: (json['organization'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.organization'}),
             ),
           )
           .toList(),
-      sourceX: JsonParser.parsePolymorphic<SourceXConsent>(json, {
-        'sourceAttachment': Attachment.fromJson,
-        'sourceReference': Reference.fromJson,
-      }),
+      sourceX: JsonParser.parsePolymorphic<SourceXConsent>(
+        json,
+        {
+          'sourceAttachment': Attachment.fromJson,
+          'sourceReference': Reference.fromJson,
+        },
+        objectPath,
+      ),
       policy: (json['policy'] as List<dynamic>?)
           ?.map<ConsentPolicy>(
             (v) => ConsentPolicy.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.policy'}),
             ),
           )
           .toList(),
@@ -151,11 +174,13 @@ class Consent extends DomainResource {
         json,
         'policyRule',
         CodeableConcept.fromJson,
+        '$objectPath.policyRule',
       ),
       verification: (json['verification'] as List<dynamic>?)
           ?.map<ConsentVerification>(
             (v) => ConsentVerification.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.verification'}),
             ),
           )
           .toList(),
@@ -163,6 +188,7 @@ class Consent extends DomainResource {
         json,
         'provision',
         ConsentProvision.fromJson,
+        '$objectPath.provision',
       ),
     );
   }
@@ -404,29 +430,35 @@ class ConsentPolicy extends BackboneElement {
     this.authority,
     this.uri,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Consent.policy',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentPolicy.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent.policy';
     return ConsentPolicy(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -434,11 +466,13 @@ class ConsentPolicy extends BackboneElement {
         json,
         'authority',
         FhirUri.fromJson,
+        '$objectPath.authority',
       ),
       uri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'uri',
         FhirUri.fromJson,
+        '$objectPath.uri',
       ),
     );
   }
@@ -572,29 +606,35 @@ class ConsentVerification extends BackboneElement {
     this.verifiedWith,
     this.verificationDate,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Consent.verification',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentVerification.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent.verification';
     return ConsentVerification(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -602,16 +642,19 @@ class ConsentVerification extends BackboneElement {
         json,
         'verified',
         FhirBoolean.fromJson,
+        '$objectPath.verified',
       )!,
       verifiedWith: JsonParser.parseObject<Reference>(
         json,
         'verifiedWith',
         Reference.fromJson,
+        '$objectPath.verifiedWith',
       ),
       verificationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'verificationDate',
         FhirDateTime.fromJson,
+        '$objectPath.verificationDate',
       ),
     );
   }
@@ -757,29 +800,35 @@ class ConsentProvision extends BackboneElement {
     this.data,
     this.provision,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Consent.provision',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentProvision.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent.provision';
     return ConsentProvision(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -787,51 +836,59 @@ class ConsentProvision extends BackboneElement {
         json,
         'type',
         ConsentProvisionType.fromJson,
+        '$objectPath.type',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       actor: (json['actor'] as List<dynamic>?)
           ?.map<ConsentActor>(
             (v) => ConsentActor.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.actor'}),
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.action'}),
             ),
           )
           .toList(),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.securityLabel'}),
             ),
           )
           .toList(),
       purpose: (json['purpose'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.purpose'}),
             ),
           )
           .toList(),
       class_: (json['class'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.class'}),
             ),
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.code'}),
             ),
           )
           .toList(),
@@ -839,18 +896,21 @@ class ConsentProvision extends BackboneElement {
         json,
         'dataPeriod',
         Period.fromJson,
+        '$objectPath.dataPeriod',
       ),
       data: (json['data'] as List<dynamic>?)
           ?.map<ConsentData>(
             (v) => ConsentData.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.data'}),
             ),
           )
           .toList(),
       provision: (json['provision'] as List<dynamic>?)
           ?.map<ConsentProvision>(
             (v) => ConsentProvision.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.provision'}),
             ),
           )
           .toList(),
@@ -1052,29 +1112,35 @@ class ConsentActor extends BackboneElement {
     required this.role,
     required this.reference,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Consent.provision.actor',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentActor.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent.provision.actor';
     return ConsentActor(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1082,11 +1148,13 @@ class ConsentActor extends BackboneElement {
         json,
         'role',
         CodeableConcept.fromJson,
+        '$objectPath.role',
       )!,
       reference: JsonParser.parseObject<Reference>(
         json,
         'reference',
         Reference.fromJson,
+        '$objectPath.reference',
       )!,
     );
   }
@@ -1218,29 +1286,35 @@ class ConsentData extends BackboneElement {
     required this.meaning,
     required this.reference,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Consent.provision.data',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentData.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Consent.provision.data';
     return ConsentData(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -1248,11 +1322,13 @@ class ConsentData extends BackboneElement {
         json,
         'meaning',
         ConsentDataMeaning.fromJson,
+        '$objectPath.meaning',
       )!,
       reference: JsonParser.parseObject<Reference>(
         json,
         'reference',
         Reference.fromJson,
+        '$objectPath.reference',
       )!,
     );
   }

@@ -41,6 +41,7 @@ class AdverseEvent extends DomainResource {
     this.referenceDocument,
     this.study,
   }) : super(
+          objectPath: 'AdverseEvent',
           resourceType: R4ResourceType.AdverseEvent,
         );
 
@@ -48,50 +49,59 @@ class AdverseEvent extends DomainResource {
   factory AdverseEvent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdverseEvent';
     return AdverseEvent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -99,16 +109,19 @@ class AdverseEvent extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       actuality: JsonParser.parsePrimitive<AdverseEventActuality>(
         json,
         'actuality',
         AdverseEventActuality.fromJson,
+        '$objectPath.actuality',
       )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -116,36 +129,43 @@ class AdverseEvent extends DomainResource {
         json,
         'event',
         CodeableConcept.fromJson,
+        '$objectPath.event',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       ),
       detected: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'detected',
         FhirDateTime.fromJson,
+        '$objectPath.detected',
       ),
       recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'recordedDate',
         FhirDateTime.fromJson,
+        '$objectPath.recordedDate',
       ),
       resultingCondition: (json['resultingCondition'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.resultingCondition'}),
             ),
           )
           .toList(),
@@ -153,59 +173,69 @@ class AdverseEvent extends DomainResource {
         json,
         'location',
         Reference.fromJson,
+        '$objectPath.location',
       ),
       seriousness: JsonParser.parseObject<CodeableConcept>(
         json,
         'seriousness',
         CodeableConcept.fromJson,
+        '$objectPath.seriousness',
       ),
       severity: JsonParser.parseObject<CodeableConcept>(
         json,
         'severity',
         CodeableConcept.fromJson,
+        '$objectPath.severity',
       ),
       outcome: JsonParser.parseObject<CodeableConcept>(
         json,
         'outcome',
         CodeableConcept.fromJson,
+        '$objectPath.outcome',
       ),
       recorder: JsonParser.parseObject<Reference>(
         json,
         'recorder',
         Reference.fromJson,
+        '$objectPath.recorder',
       ),
       contributor: (json['contributor'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contributor'}),
             ),
           )
           .toList(),
       suspectEntity: (json['suspectEntity'] as List<dynamic>?)
           ?.map<AdverseEventSuspectEntity>(
             (v) => AdverseEventSuspectEntity.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.suspectEntity'}),
             ),
           )
           .toList(),
       subjectMedicalHistory: (json['subjectMedicalHistory'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.subjectMedicalHistory'}),
             ),
           )
           .toList(),
       referenceDocument: (json['referenceDocument'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.referenceDocument'}),
             ),
           )
           .toList(),
       study: (json['study'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.study'}),
             ),
           )
           .toList(),
@@ -497,29 +527,35 @@ class AdverseEventSuspectEntity extends BackboneElement {
     required this.instance,
     this.causality,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'AdverseEvent.suspectEntity',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventSuspectEntity.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdverseEvent.suspectEntity';
     return AdverseEventSuspectEntity(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -527,11 +563,13 @@ class AdverseEventSuspectEntity extends BackboneElement {
         json,
         'instance',
         Reference.fromJson,
+        '$objectPath.instance',
       )!,
       causality: (json['causality'] as List<dynamic>?)
           ?.map<AdverseEventCausality>(
             (v) => AdverseEventCausality.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.causality'}),
             ),
           )
           .toList(),
@@ -665,29 +703,35 @@ class AdverseEventCausality extends BackboneElement {
     this.author,
     this.method,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'AdverseEvent.suspectEntity.causality',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventCausality.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'AdverseEvent.suspectEntity.causality';
     return AdverseEventCausality(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -695,21 +739,25 @@ class AdverseEventCausality extends BackboneElement {
         json,
         'assessment',
         CodeableConcept.fromJson,
+        '$objectPath.assessment',
       ),
       productRelatedness: JsonParser.parsePrimitive<FhirString>(
         json,
         'productRelatedness',
         FhirString.fromJson,
+        '$objectPath.productRelatedness',
       ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
         Reference.fromJson,
+        '$objectPath.author',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
+        '$objectPath.method',
       ),
     );
   }

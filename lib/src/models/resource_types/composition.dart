@@ -42,6 +42,7 @@ class Composition extends DomainResource {
     this.event,
     this.section,
   }) : super(
+          objectPath: 'Composition',
           resourceType: R4ResourceType.Composition,
         );
 
@@ -49,50 +50,59 @@ class Composition extends DomainResource {
   factory Composition.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Composition';
     return Composition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -100,21 +110,25 @@ class Composition extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
+        '$objectPath.identifier',
       ),
       status: JsonParser.parsePrimitive<CompositionStatus>(
         json,
         'status',
         CompositionStatus.fromJson,
+        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
+        '$objectPath.type',
       )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.category'}),
             ),
           )
           .toList(),
@@ -122,21 +136,25 @@ class Composition extends DomainResource {
         json,
         'subject',
         Reference.fromJson,
+        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
+        '$objectPath.encounter',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
+        '$objectPath.date',
       )!,
       author: (json['author'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
@@ -144,16 +162,19 @@ class Composition extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       )!,
       confidentiality: JsonParser.parsePrimitive<FhirCode>(
         json,
         'confidentiality',
         FhirCode.fromJson,
+        '$objectPath.confidentiality',
       ),
       attester: (json['attester'] as List<dynamic>?)
           ?.map<CompositionAttester>(
             (v) => CompositionAttester.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.attester'}),
             ),
           )
           .toList(),
@@ -161,25 +182,29 @@ class Composition extends DomainResource {
         json,
         'custodian',
         Reference.fromJson,
+        '$objectPath.custodian',
       ),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
           ?.map<CompositionRelatesTo>(
             (v) => CompositionRelatesTo.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.relatesTo'}),
             ),
           )
           .toList(),
       event: (json['event'] as List<dynamic>?)
           ?.map<CompositionEvent>(
             (v) => CompositionEvent.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.event'}),
             ),
           )
           .toList(),
       section: (json['section'] as List<dynamic>?)
           ?.map<CompositionSection>(
             (v) => CompositionSection.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.section'}),
             ),
           )
           .toList(),
@@ -434,29 +459,35 @@ class CompositionAttester extends BackboneElement {
     this.time,
     this.party,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Composition.attester',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionAttester.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Composition.attester';
     return CompositionAttester(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -464,16 +495,19 @@ class CompositionAttester extends BackboneElement {
         json,
         'mode',
         CompositionAttestationMode.fromJson,
+        '$objectPath.mode',
       )!,
       time: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'time',
         FhirDateTime.fromJson,
+        '$objectPath.time',
       ),
       party: JsonParser.parseObject<Reference>(
         json,
         'party',
         Reference.fromJson,
+        '$objectPath.party',
       ),
     );
   }
@@ -609,29 +643,35 @@ class CompositionRelatesTo extends BackboneElement {
     required this.code,
     required this.targetX,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Composition.relatesTo',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionRelatesTo.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Composition.relatesTo';
     return CompositionRelatesTo(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -639,11 +679,16 @@ class CompositionRelatesTo extends BackboneElement {
         json,
         'code',
         DocumentRelationshipType.fromJson,
+        '$objectPath.code',
       )!,
-      targetX: JsonParser.parsePolymorphic<TargetXCompositionRelatesTo>(json, {
-        'targetIdentifier': Identifier.fromJson,
-        'targetReference': Reference.fromJson,
-      })!,
+      targetX: JsonParser.parsePolymorphic<TargetXCompositionRelatesTo>(
+        json,
+        {
+          'targetIdentifier': Identifier.fromJson,
+          'targetReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
     );
   }
 
@@ -775,36 +820,43 @@ class CompositionEvent extends BackboneElement {
     this.period,
     this.detail,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Composition.event',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionEvent.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Composition.event';
     return CompositionEvent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.code'}),
             ),
           )
           .toList(),
@@ -812,11 +864,13 @@ class CompositionEvent extends BackboneElement {
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.detail'}),
             ),
           )
           .toList(),
@@ -969,29 +1023,35 @@ class CompositionSection extends BackboneElement {
     this.emptyReason,
     this.section,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Composition.section',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionSection.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Composition.section';
     return CompositionSection(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -999,16 +1059,19 @@ class CompositionSection extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
+        '$objectPath.title',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.author'}),
             ),
           )
           .toList(),
@@ -1016,26 +1079,31 @@ class CompositionSection extends BackboneElement {
         json,
         'focus',
         Reference.fromJson,
+        '$objectPath.focus',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       mode: JsonParser.parsePrimitive<ListMode>(
         json,
         'mode',
         ListMode.fromJson,
+        '$objectPath.mode',
       ),
       orderedBy: JsonParser.parseObject<CodeableConcept>(
         json,
         'orderedBy',
         CodeableConcept.fromJson,
+        '$objectPath.orderedBy',
       ),
       entry: (json['entry'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.entry'}),
             ),
           )
           .toList(),
@@ -1043,11 +1111,13 @@ class CompositionSection extends BackboneElement {
         json,
         'emptyReason',
         CodeableConcept.fromJson,
+        '$objectPath.emptyReason',
       ),
       section: (json['section'] as List<dynamic>?)
           ?.map<CompositionSection>(
             (v) => CompositionSection.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.section'}),
             ),
           )
           .toList(),

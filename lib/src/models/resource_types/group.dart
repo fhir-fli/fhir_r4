@@ -31,6 +31,7 @@ class FhirGroup extends DomainResource {
     this.characteristic,
     this.member,
   }) : super(
+          objectPath: 'Group',
           resourceType: R4ResourceType.FhirGroup,
         );
 
@@ -38,57 +39,67 @@ class FhirGroup extends DomainResource {
   factory FhirGroup.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Group';
     return FhirGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
+        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
+        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
+        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
+        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.contained'}),
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.identifier'}),
             ),
           )
           .toList(),
@@ -96,48 +107,57 @@ class FhirGroup extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
+        '$objectPath.active',
       ),
       type: JsonParser.parsePrimitive<GroupType>(
         json,
         'type',
         GroupType.fromJson,
+        '$objectPath.type',
       )!,
       actual: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'actual',
         FhirBoolean.fromJson,
+        '$objectPath.actual',
       )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
+        '$objectPath.name',
       ),
       quantity: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'quantity',
         FhirUnsignedInt.fromJson,
+        '$objectPath.quantity',
       ),
       managingEntity: JsonParser.parseObject<Reference>(
         json,
         'managingEntity',
         Reference.fromJson,
+        '$objectPath.managingEntity',
       ),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<GroupCharacteristic>(
             (v) => GroupCharacteristic.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.characteristic'}),
             ),
           )
           .toList(),
       member: (json['member'] as List<dynamic>?)
           ?.map<GroupMember>(
             (v) => GroupMember.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.member'}),
             ),
           )
           .toList(),
@@ -349,29 +369,35 @@ class GroupCharacteristic extends BackboneElement {
     required this.exclude,
     this.period,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Group.characteristic',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Group.characteristic';
     return GroupCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -379,23 +405,30 @@ class GroupCharacteristic extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
+        '$objectPath.code',
       )!,
-      valueX: JsonParser.parsePolymorphic<ValueXGroupCharacteristic>(json, {
-        'valueCodeableConcept': CodeableConcept.fromJson,
-        'valueBoolean': FhirBoolean.fromJson,
-        'valueQuantity': Quantity.fromJson,
-        'valueRange': Range.fromJson,
-        'valueReference': Reference.fromJson,
-      })!,
+      valueX: JsonParser.parsePolymorphic<ValueXGroupCharacteristic>(
+        json,
+        {
+          'valueCodeableConcept': CodeableConcept.fromJson,
+          'valueBoolean': FhirBoolean.fromJson,
+          'valueQuantity': Quantity.fromJson,
+          'valueRange': Range.fromJson,
+          'valueReference': Reference.fromJson,
+        },
+        objectPath,
+      )!,
       exclude: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'exclude',
         FhirBoolean.fromJson,
+        '$objectPath.exclude',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
     );
   }
@@ -543,29 +576,35 @@ class GroupMember extends BackboneElement {
     this.period,
     this.inactive,
     super.disallowExtensions,
-  });
+  }) : super(
+          objectPath: 'Group.member',
+        );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupMember.fromJson(
     Map<String, dynamic> json,
   ) {
+    const objectPath = 'Group.member';
     return GroupMember(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
+        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.extension'}),
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              v as Map<String, dynamic>,
+              (v as Map<String, dynamic>)
+                ..addAll({'objectPath': '$objectPath.modifierExtension'}),
             ),
           )
           .toList(),
@@ -573,16 +612,19 @@ class GroupMember extends BackboneElement {
         json,
         'entity',
         Reference.fromJson,
+        '$objectPath.entity',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
+        '$objectPath.period',
       ),
       inactive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inactive',
         FhirBoolean.fromJson,
+        '$objectPath.inactive',
       ),
     );
   }
