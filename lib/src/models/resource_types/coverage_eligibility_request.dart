@@ -410,7 +410,7 @@ class CoverageEligibilityRequest extends DomainResource {
       'priority',
       'purpose',
       'patient',
-      'servicedXCoverageEligibilityRequest',
+      'servicedX',
       'created',
       'enterer',
       'provider',
@@ -1890,7 +1890,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'diagnosisXCoverageEligibilityRequestDiagnosis',
+      'diagnosisX',
     ];
   }
 

@@ -1146,7 +1146,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
       'cap',
       'description',
       'capacity',
-      'minimumVolumeXSpecimenDefinitionContainer',
+      'minimumVolumeX',
       'additive',
       'preparation',
     ];
@@ -1466,7 +1466,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'additiveXSpecimenDefinitionAdditive',
+      'additiveX',
     ];
   }
 

@@ -1231,7 +1231,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'description',
-      'definitionXEvidenceVariableCharacteristic',
+      'definitionX',
       'method',
       'device',
       'exclude',
@@ -1882,7 +1882,7 @@ class EvidenceVariableCategory extends BackboneElement {
       'extension',
       'modifierExtension',
       'name',
-      'valueXEvidenceVariableCategory',
+      'valueX',
     ];
   }
 

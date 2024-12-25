@@ -712,8 +712,8 @@ class MedicationRequest extends DomainResource {
       'category',
       'priority',
       'doNotPerform',
-      'reportedXMedicationRequest',
-      'medicationXMedicationRequest',
+      'reportedX',
+      'medicationX',
       'subject',
       'encounter',
       'supportingInformation',
@@ -2024,7 +2024,7 @@ class MedicationRequestSubstitution extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'allowedXMedicationRequestSubstitution',
+      'allowedX',
       'reason',
     ];
   }

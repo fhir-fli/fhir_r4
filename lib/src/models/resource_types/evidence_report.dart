@@ -516,7 +516,7 @@ class EvidenceReport extends DomainResource {
       'useContext',
       'identifier',
       'relatedIdentifier',
-      'citeAsXEvidenceReport',
+      'citeAsX',
       'type',
       'note',
       'relatedArtifact',
@@ -1337,7 +1337,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'valueXEvidenceReportCharacteristic',
+      'valueX',
       'exclude',
       'period',
     ];
@@ -1639,7 +1639,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'targetXEvidenceReportRelatesTo',
+      'targetX',
     ];
   }
 

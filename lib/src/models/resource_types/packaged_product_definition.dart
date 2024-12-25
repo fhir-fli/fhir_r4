@@ -1711,7 +1711,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'periodXPackagedProductDefinitionShelfLifeStorage',
+      'periodX',
       'specialPrecautionsForStorage',
     ];
   }
@@ -2002,7 +2002,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXPackagedProductDefinitionProperty',
+      'valueX',
     ];
   }
 

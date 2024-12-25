@@ -451,7 +451,7 @@ class Goal extends DomainResource {
       'priority',
       'description',
       'subject',
-      'startXGoal',
+      'startX',
       'target',
       'statusDate',
       'statusReason',
@@ -950,8 +950,8 @@ class GoalTarget extends BackboneElement {
       'extension',
       'modifierExtension',
       'measure',
-      'detailXGoalTarget',
-      'dueXGoalTarget',
+      'detailX',
+      'dueX',
     ];
   }
 

@@ -205,7 +205,7 @@ class FhirExtension extends DataType {
       'id',
       'extension',
       'url',
-      'valueXExtension',
+      'valueX',
     ];
   }
 

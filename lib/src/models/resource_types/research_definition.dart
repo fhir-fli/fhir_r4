@@ -737,7 +737,7 @@ class ResearchDefinition extends DomainResource {
       'subtitle',
       'status',
       'experimental',
-      'subjectXResearchDefinition',
+      'subjectX',
       'date',
       'publisher',
       'contact',

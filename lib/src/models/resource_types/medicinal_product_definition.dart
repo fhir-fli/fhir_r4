@@ -3044,7 +3044,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXMedicinalProductDefinitionCharacteristic',
+      'valueX',
     ];
   }
 

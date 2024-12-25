@@ -357,7 +357,7 @@ class MessageHeader extends DomainResource {
       'contained',
       'extension',
       'modifierExtension',
-      'eventXMessageHeader',
+      'eventX',
       'destination',
       'sender',
       'enterer',

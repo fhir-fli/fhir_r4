@@ -406,7 +406,7 @@ class DeviceUseStatement extends DomainResource {
       'status',
       'subject',
       'derivedFrom',
-      'timingXDeviceUseStatement',
+      'timingX',
       'recordedOn',
       'source',
       'device',

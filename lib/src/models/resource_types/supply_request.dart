@@ -424,10 +424,10 @@ class SupplyRequest extends DomainResource {
       'status',
       'category',
       'priority',
-      'itemXSupplyRequest',
+      'itemX',
       'quantity',
       'parameter',
-      'occurrenceXSupplyRequest',
+      'occurrenceX',
       'authoredOn',
       'requester',
       'supplier',
@@ -893,7 +893,7 @@ class SupplyRequestParameter extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'valueXSupplyRequestParameter',
+      'valueX',
     ];
   }
 

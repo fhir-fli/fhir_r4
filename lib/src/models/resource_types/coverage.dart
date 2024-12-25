@@ -1219,7 +1219,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXCoverageCostToBeneficiary',
+      'valueX',
       'exception',
     ];
   }

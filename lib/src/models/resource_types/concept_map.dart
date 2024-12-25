@@ -431,8 +431,8 @@ class ConceptMap extends CanonicalResource {
       'jurisdiction',
       'purpose',
       'copyright',
-      'sourceXConceptMap',
-      'targetXConceptMap',
+      'sourceX',
+      'targetX',
       'group',
     ];
   }

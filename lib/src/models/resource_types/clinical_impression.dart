@@ -516,7 +516,7 @@ class ClinicalImpression extends DomainResource {
       'description',
       'subject',
       'encounter',
-      'effectiveXClinicalImpression',
+      'effectiveX',
       'date',
       'assessor',
       'previous',

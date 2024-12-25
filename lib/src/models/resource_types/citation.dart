@@ -2127,7 +2127,7 @@ class CitationRelatesTo extends BackboneElement {
       'modifierExtension',
       'relationshipType',
       'targetClassifier',
-      'targetXCitationRelatesTo',
+      'targetX',
     ];
   }
 
@@ -4520,7 +4520,7 @@ class CitationRelatesTo1 extends BackboneElement {
       'modifierExtension',
       'relationshipType',
       'targetClassifier',
-      'targetXCitationRelatesTo1',
+      'targetX',
     ];
   }
 

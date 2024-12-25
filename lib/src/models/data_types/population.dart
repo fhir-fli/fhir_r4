@@ -193,7 +193,7 @@ class Population extends BackboneType {
       'id',
       'extension',
       'modifierExtension',
-      'ageXPopulation',
+      'ageX',
       'gender',
       'race',
       'physiologicalCondition',

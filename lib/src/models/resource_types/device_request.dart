@@ -581,11 +581,11 @@ class DeviceRequest extends DomainResource {
       'status',
       'intent',
       'priority',
-      'codeXDeviceRequest',
+      'codeX',
       'parameter',
       'subject',
       'encounter',
-      'occurrenceXDeviceRequest',
+      'occurrenceX',
       'authoredOn',
       'requester',
       'performerType',
@@ -1161,7 +1161,7 @@ class DeviceRequestParameter extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'valueXDeviceRequestParameter',
+      'valueX',
     ];
   }
 

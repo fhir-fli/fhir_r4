@@ -801,7 +801,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       'modifierExtension',
       'collector',
       'source',
-      'collectedXBiologicallyDerivedProductCollection',
+      'collectedX',
     ];
   }
 
@@ -1111,7 +1111,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       'description',
       'procedure',
       'additive',
-      'timeXBiologicallyDerivedProductProcessing',
+      'timeX',
     ];
   }
 
@@ -1404,7 +1404,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       'extension',
       'modifierExtension',
       'description',
-      'timeXBiologicallyDerivedProductManipulation',
+      'timeX',
     ];
   }
 

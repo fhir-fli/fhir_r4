@@ -368,7 +368,7 @@ class SupplyDelivery extends DomainResource {
       'patient',
       'type',
       'suppliedItem',
-      'occurrenceXSupplyDelivery',
+      'occurrenceX',
       'supplier',
       'destination',
       'receiver',
@@ -787,7 +787,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       'extension',
       'modifierExtension',
       'quantity',
-      'itemXSupplyDeliverySuppliedItem',
+      'itemX',
     ];
   }
 

@@ -451,7 +451,7 @@ class RiskAssessment extends DomainResource {
       'code',
       'subject',
       'encounter',
-      'occurrenceXRiskAssessment',
+      'occurrenceX',
       'condition',
       'performer',
       'reasonCode',
@@ -988,10 +988,10 @@ class RiskAssessmentPrediction extends BackboneElement {
       'extension',
       'modifierExtension',
       'outcome',
-      'probabilityXRiskAssessmentPrediction',
+      'probabilityX',
       'qualitativeRisk',
       'relativeRisk',
-      'whenXRiskAssessmentPrediction',
+      'whenX',
       'rationale',
     ];
   }

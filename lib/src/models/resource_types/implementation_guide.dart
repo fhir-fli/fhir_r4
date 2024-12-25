@@ -2190,7 +2190,7 @@ class ImplementationGuideResource extends BackboneElement {
       'fhirVersion',
       'name',
       'description',
-      'exampleXImplementationGuideResource',
+      'exampleX',
       'groupingId',
     ];
   }
@@ -2530,7 +2530,7 @@ class ImplementationGuidePage extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'nameXImplementationGuidePage',
+      'nameX',
       'title',
       'generation',
       'page',
@@ -3742,7 +3742,7 @@ class ImplementationGuideResource1 extends BackboneElement {
       'extension',
       'modifierExtension',
       'reference',
-      'exampleXImplementationGuideResource1',
+      'exampleX',
       'relativePath',
     ];
   }

@@ -410,7 +410,7 @@ class CoverageEligibilityResponse extends DomainResource {
       'status',
       'purpose',
       'patient',
-      'servicedXCoverageEligibilityResponse',
+      'servicedX',
       'created',
       'requestor',
       'request',
@@ -1764,8 +1764,8 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'allowedXCoverageEligibilityResponseBenefit',
-      'usedXCoverageEligibilityResponseBenefit',
+      'allowedX',
+      'usedX',
     ];
   }
 

@@ -2689,7 +2689,7 @@ class NutritionOrderAdministration extends BackboneElement {
       'modifierExtension',
       'schedule',
       'quantity',
-      'rateXNutritionOrderAdministration',
+      'rateX',
     ];
   }
 

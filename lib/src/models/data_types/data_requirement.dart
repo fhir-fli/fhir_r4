@@ -278,7 +278,7 @@ class DataRequirement extends DataType
       'extension',
       'type',
       'profile',
-      'subjectXDataRequirement',
+      'subjectX',
       'mustSupport',
       'codeFilter',
       'dateFilter',
@@ -938,7 +938,7 @@ class DataRequirementDateFilter extends Element {
       'extension',
       'path',
       'searchParam',
-      'valueXDataRequirementDateFilter',
+      'valueX',
     ];
   }
 

@@ -778,7 +778,7 @@ class Measure extends CanonicalResource {
       'subtitle',
       'status',
       'experimental',
-      'subjectXMeasure',
+      'subjectX',
       'date',
       'publisher',
       'contact',

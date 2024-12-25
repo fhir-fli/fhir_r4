@@ -512,7 +512,7 @@ class DiagnosticReport extends DomainResource {
       'code',
       'subject',
       'encounter',
-      'effectiveXDiagnosticReport',
+      'effectiveX',
       'issued',
       'performer',
       'resultsInterpreter',

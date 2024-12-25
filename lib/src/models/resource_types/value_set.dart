@@ -2846,7 +2846,7 @@ class ValueSetParameter extends BackboneElement {
       'extension',
       'modifierExtension',
       'name',
-      'valueXValueSetParameter',
+      'valueX',
     ];
   }
 

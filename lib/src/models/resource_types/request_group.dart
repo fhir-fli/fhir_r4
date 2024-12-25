@@ -1231,7 +1231,7 @@ class RequestGroupAction extends BackboneElement {
       'documentation',
       'condition',
       'relatedAction',
-      'timingXRequestGroupAction',
+      'timingX',
       'participant',
       'type',
       'groupingBehavior',
@@ -1982,7 +1982,7 @@ class RequestGroupRelatedAction extends BackboneElement {
       'modifierExtension',
       'actionId',
       'relationship',
-      'offsetXRequestGroupRelatedAction',
+      'offsetX',
     ];
   }
 

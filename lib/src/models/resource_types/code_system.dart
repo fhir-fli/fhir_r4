@@ -2393,7 +2393,7 @@ class CodeSystemProperty1 extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'valueXCodeSystemProperty',
+      'valueX',
     ];
   }
 

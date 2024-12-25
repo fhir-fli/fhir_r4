@@ -903,7 +903,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
       'identifier',
       'type',
       'status',
-      'dateXRegulatedAuthorizationCase',
+      'dateX',
       'application',
     ];
   }

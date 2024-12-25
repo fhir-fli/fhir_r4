@@ -1682,7 +1682,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'itemXMedicationKnowledgeIngredient',
+      'itemX',
       'isActive',
       'strength',
     ];
@@ -2535,7 +2535,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       'extension',
       'modifierExtension',
       'dosage',
-      'indicationXMedicationKnowledgeAdministrationGuidelines',
+      'indicationX',
       'patientCharacteristics',
     ];
   }
@@ -3099,7 +3099,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'characteristicXMedicationKnowledgePatientCharacteristics',
+      'characteristicX',
       'value',
     ];
   }
@@ -3919,7 +3919,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXMedicationKnowledgeDrugCharacteristic',
+      'valueX',
     ];
   }
 

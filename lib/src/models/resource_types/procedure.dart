@@ -669,7 +669,7 @@ class Procedure extends DomainResource {
       'code',
       'subject',
       'encounter',
-      'performedXProcedure',
+      'performedX',
       'recorder',
       'asserter',
       'performer',

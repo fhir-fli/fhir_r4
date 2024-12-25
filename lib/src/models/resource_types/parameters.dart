@@ -498,7 +498,7 @@ class ParametersParameter extends BackboneElement {
       'extension',
       'modifierExtension',
       'name',
-      'valueXParametersParameter',
+      'valueX',
       'resource',
       'part',
     ];

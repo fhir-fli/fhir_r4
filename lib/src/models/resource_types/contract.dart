@@ -758,7 +758,7 @@ class Contract extends DomainResource {
       'alias',
       'author',
       'scope',
-      'topicXContract',
+      'topicX',
       'type',
       'subType',
       'contentDefinition',
@@ -769,7 +769,7 @@ class Contract extends DomainResource {
       'friendly',
       'legal',
       'rule',
-      'legallyBindingXContract',
+      'legallyBindingX',
     ];
   }
 
@@ -1934,7 +1934,7 @@ class ContractTerm extends BackboneElement {
       'identifier',
       'issued',
       'applies',
-      'topicXContractTerm',
+      'topicX',
       'type',
       'subType',
       'text',
@@ -3408,7 +3408,7 @@ class ContractAnswer extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'valueXContractAnswer',
+      'valueX',
     ];
   }
 
@@ -4818,7 +4818,7 @@ class ContractValuedItem extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'entityXContractValuedItem',
+      'entityX',
       'identifier',
       'effectiveTime',
       'quantity',
@@ -5511,7 +5511,7 @@ class ContractAction extends BackboneElement {
       'status',
       'context',
       'contextLinkId',
-      'occurrenceXContractAction',
+      'occurrenceX',
       'requester',
       'requesterLinkId',
       'performerType',
@@ -6570,7 +6570,7 @@ class ContractFriendly extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'contentXContractFriendly',
+      'contentX',
     ];
   }
 
@@ -6818,7 +6818,7 @@ class ContractLegal extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'contentXContractLegal',
+      'contentX',
     ];
   }
 
@@ -7068,7 +7068,7 @@ class ContractRule extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'contentXContractRule',
+      'contentX',
     ];
   }
 

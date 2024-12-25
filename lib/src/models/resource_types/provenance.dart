@@ -366,7 +366,7 @@ class Provenance extends DomainResource {
       'extension',
       'modifierExtension',
       'target',
-      'occurredXProvenance',
+      'occurredX',
       'recorded',
       'policy',
       'location',

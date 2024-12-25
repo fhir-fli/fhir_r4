@@ -1321,7 +1321,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXNutritionProductProductCharacteristic',
+      'valueX',
     ];
   }
 

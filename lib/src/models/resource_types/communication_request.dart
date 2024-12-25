@@ -561,7 +561,7 @@ class CommunicationRequest extends DomainResource {
       'about',
       'encounter',
       'payload',
-      'occurrenceXCommunicationRequest',
+      'occurrenceX',
       'authoredOn',
       'requester',
       'recipient',
@@ -1092,7 +1092,7 @@ class CommunicationRequestPayload extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'contentXCommunicationRequestPayload',
+      'contentX',
     ];
   }
 

@@ -654,7 +654,7 @@ class TimingRepeat extends Element {
     return [
       'id',
       'extension',
-      'boundsXTimingRepeat',
+      'boundsX',
       'count',
       'countMax',
       'duration',

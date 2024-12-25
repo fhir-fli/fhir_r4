@@ -648,7 +648,7 @@ class Library extends CanonicalResource {
       'status',
       'experimental',
       'type',
-      'subjectXLibrary',
+      'subjectX',
       'date',
       'publisher',
       'contact',

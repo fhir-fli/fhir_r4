@@ -592,7 +592,7 @@ class EventDefinition extends CanonicalResource {
       'subtitle',
       'status',
       'experimental',
-      'subjectXEventDefinition',
+      'subjectX',
       'date',
       'publisher',
       'contact',

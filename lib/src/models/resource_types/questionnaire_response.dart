@@ -1132,7 +1132,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'valueXQuestionnaireResponseAnswer',
+      'valueX',
       'item',
     ];
   }

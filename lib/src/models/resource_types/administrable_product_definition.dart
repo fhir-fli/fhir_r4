@@ -810,7 +810,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXAdministrableProductDefinitionProperty',
+      'valueX',
       'status',
     ];
   }

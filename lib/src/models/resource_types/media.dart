@@ -517,7 +517,7 @@ class Media extends DomainResource {
       'view',
       'subject',
       'encounter',
-      'createdXMedia',
+      'createdX',
       'issued',
       'operator',
       'reasonCode',

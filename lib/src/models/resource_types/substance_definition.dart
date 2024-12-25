@@ -1120,7 +1120,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       'stereochemistry',
       'opticalActivity',
       'molecularFormula',
-      'amountXSubstanceDefinitionMoiety',
+      'amountX',
       'measurementType',
     ];
   }
@@ -1450,7 +1450,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXSubstanceDefinitionProperty',
+      'valueX',
     ];
   }
 
@@ -4007,10 +4007,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'substanceDefinitionXSubstanceDefinitionRelationship',
+      'substanceDefinitionX',
       'type',
       'isDefining',
-      'amountXSubstanceDefinitionRelationship',
+      'amountX',
       'ratioHighLimitAmount',
       'comparator',
       'source',

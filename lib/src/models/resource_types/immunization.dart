@@ -615,7 +615,7 @@ class Immunization extends DomainResource {
       'vaccineCode',
       'patient',
       'encounter',
-      'occurrenceXImmunization',
+      'occurrenceX',
       'recorded',
       'primarySource',
       'reportOrigin',
@@ -2124,8 +2124,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
       'series',
       'authority',
       'targetDisease',
-      'doseNumberXImmunizationProtocolApplied',
-      'seriesDosesXImmunizationProtocolApplied',
+      'doseNumberX',
+      'seriesDosesX',
     ];
   }
 

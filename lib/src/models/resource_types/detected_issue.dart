@@ -384,7 +384,7 @@ class DetectedIssue extends DomainResource {
       'code',
       'severity',
       'patient',
-      'identifiedXDetectedIssue',
+      'identifiedX',
       'author',
       'implicated',
       'evidence',

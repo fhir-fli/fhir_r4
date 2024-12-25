@@ -919,12 +919,12 @@ class SpecimenCollection extends BackboneElement {
       'extension',
       'modifierExtension',
       'collector',
-      'collectedXSpecimenCollection',
+      'collectedX',
       'duration',
       'quantity',
       'method',
       'bodySite',
-      'fastingStatusXSpecimenCollection',
+      'fastingStatusX',
     ];
   }
 
@@ -1279,7 +1279,7 @@ class SpecimenProcessing extends BackboneElement {
       'description',
       'procedure',
       'additive',
-      'timeXSpecimenProcessing',
+      'timeX',
     ];
   }
 
@@ -1637,7 +1637,7 @@ class SpecimenContainer extends BackboneElement {
       'type',
       'capacity',
       'specimenQuantity',
-      'additiveXSpecimenContainer',
+      'additiveX',
     ];
   }
 

@@ -789,8 +789,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       'dateCriterion',
       'description',
       'series',
-      'doseNumberXImmunizationRecommendationRecommendation',
-      'seriesDosesXImmunizationRecommendationRecommendation',
+      'doseNumberX',
+      'seriesDosesX',
       'supportingImmunization',
       'supportingPatientInformation',
     ];

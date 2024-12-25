@@ -652,7 +652,7 @@ class PlanDefinition extends CanonicalResource {
       'type',
       'status',
       'experimental',
-      'subjectXPlanDefinition',
+      'subjectX',
       'date',
       'publisher',
       'contact',
@@ -1735,7 +1735,7 @@ class PlanDefinitionTarget extends BackboneElement {
       'extension',
       'modifierExtension',
       'measure',
-      'detailXPlanDefinitionTarget',
+      'detailX',
       'due',
     ];
   }
@@ -2451,13 +2451,13 @@ class PlanDefinitionAction extends BackboneElement {
       'reason',
       'documentation',
       'goalId',
-      'subjectXPlanDefinitionAction',
+      'subjectX',
       'trigger',
       'condition',
       'input',
       'output',
       'relatedAction',
-      'timingXPlanDefinitionAction',
+      'timingX',
       'participant',
       'type',
       'groupingBehavior',
@@ -2465,7 +2465,7 @@ class PlanDefinitionAction extends BackboneElement {
       'requiredBehavior',
       'precheckBehavior',
       'cardinalityBehavior',
-      'definitionXPlanDefinitionAction',
+      'definitionX',
       'transform',
       'dynamicValue',
       'action',
@@ -3318,7 +3318,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       'modifierExtension',
       'actionId',
       'relationship',
-      'offsetXPlanDefinitionRelatedAction',
+      'offsetX',
     ];
   }
 

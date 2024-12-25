@@ -1183,7 +1183,7 @@ class InvoiceLineItem extends BackboneElement {
       'extension',
       'modifierExtension',
       'sequence',
-      'chargeItemXInvoiceLineItem',
+      'chargeItemX',
       'priceComponent',
     ];
   }

@@ -169,7 +169,7 @@ class UsageContext extends DataType
       'id',
       'extension',
       'code',
-      'valueXUsageContext',
+      'valueX',
     ];
   }
 

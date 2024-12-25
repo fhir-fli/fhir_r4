@@ -176,7 +176,7 @@ class Annotation extends DataType
     return [
       'id',
       'extension',
-      'authorXAnnotation',
+      'authorX',
       'time',
       'text',
     ];

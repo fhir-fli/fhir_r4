@@ -269,7 +269,7 @@ class FHIRPathEngine {
     var name = oldName;
     if (allowPolymorphicNames) {
       // we'll look to see whether we hav a polymorphic name
-      for (final p in item.listChildren()) {
+      for (final p in item.children()) {
         if (p.getName().endsWith('[x]')) {
           final n = p.getName().substring(0, p.getName().length - 3);
           if (name.startsWith(n)) {

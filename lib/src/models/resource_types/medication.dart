@@ -703,7 +703,7 @@ class MedicationIngredient extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'itemXMedicationIngredient',
+      'itemX',
       'isActive',
       'strength',
     ];

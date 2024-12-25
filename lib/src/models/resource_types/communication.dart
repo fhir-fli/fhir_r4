@@ -1125,7 +1125,7 @@ class CommunicationPayload extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'contentXCommunicationPayload',
+      'contentX',
     ];
   }
 

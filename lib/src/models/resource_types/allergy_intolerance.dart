@@ -448,7 +448,7 @@ class AllergyIntolerance extends DomainResource {
       'code',
       'patient',
       'encounter',
-      'onsetXAllergyIntolerance',
+      'onsetX',
       'recordedDate',
       'recorder',
       'asserter',

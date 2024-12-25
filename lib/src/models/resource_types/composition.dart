@@ -1169,7 +1169,7 @@ class CompositionRelatesTo extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'targetXCompositionRelatesTo',
+      'targetX',
     ];
   }
 

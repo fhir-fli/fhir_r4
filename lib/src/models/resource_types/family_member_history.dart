@@ -490,10 +490,10 @@ class FamilyMemberHistory extends DomainResource {
       'name',
       'relationship',
       'sex',
-      'bornXFamilyMemberHistory',
-      'ageXFamilyMemberHistory',
+      'bornX',
+      'ageX',
       'estimatedAge',
-      'deceasedXFamilyMemberHistory',
+      'deceasedX',
       'reasonCode',
       'reasonReference',
       'note',
@@ -1061,7 +1061,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       'code',
       'outcome',
       'contributedToDeath',
-      'onsetXFamilyMemberHistoryCondition',
+      'onsetX',
       'note',
     ];
   }

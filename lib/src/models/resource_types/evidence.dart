@@ -609,7 +609,7 @@ class Evidence extends DomainResource {
       'identifier',
       'version',
       'title',
-      'citeAsXEvidence',
+      'citeAsX',
       'status',
       'date',
       'useContext',

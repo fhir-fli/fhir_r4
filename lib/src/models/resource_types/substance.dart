@@ -961,7 +961,7 @@ class SubstanceIngredient extends BackboneElement {
       'extension',
       'modifierExtension',
       'quantity',
-      'substanceXSubstanceIngredient',
+      'substanceX',
     ];
   }
 

@@ -446,7 +446,7 @@ class GuidanceResponse extends DomainResource {
       'modifierExtension',
       'requestIdentifier',
       'identifier',
-      'moduleXGuidanceResponse',
+      'moduleX',
       'status',
       'subject',
       'encounter',

@@ -2532,8 +2532,8 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       'sequence',
       'category',
       'code',
-      'timingXExplanationOfBenefitSupportingInfo',
-      'valueXExplanationOfBenefitSupportingInfo',
+      'timingX',
+      'valueX',
       'reason',
     ];
   }
@@ -2899,7 +2899,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       'extension',
       'modifierExtension',
       'sequence',
-      'diagnosisXExplanationOfBenefitDiagnosis',
+      'diagnosisX',
       'type',
       'onAdmission',
       'packageCode',
@@ -3254,7 +3254,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
       'sequence',
       'type',
       'date',
-      'procedureXExplanationOfBenefitProcedure',
+      'procedureX',
       'udi',
     ];
   }
@@ -3869,7 +3869,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       'modifierExtension',
       'date',
       'type',
-      'locationXExplanationOfBenefitAccident',
+      'locationX',
     ];
   }
 
@@ -4479,8 +4479,8 @@ class ExplanationOfBenefitItem extends BackboneElement {
       'productOrService',
       'modifier',
       'programCode',
-      'servicedXExplanationOfBenefitItem',
-      'locationXExplanationOfBenefitItem',
+      'servicedX',
+      'locationX',
       'quantity',
       'unitPrice',
       'factor',
@@ -6721,8 +6721,8 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       'productOrService',
       'modifier',
       'programCode',
-      'servicedXExplanationOfBenefitAddItem',
-      'locationXExplanationOfBenefitAddItem',
+      'servicedX',
+      'locationX',
       'quantity',
       'unitPrice',
       'factor',
@@ -9426,8 +9426,8 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'allowedXExplanationOfBenefitFinancial',
-      'usedXExplanationOfBenefitFinancial',
+      'allowedX',
+      'usedX',
     ];
   }
 

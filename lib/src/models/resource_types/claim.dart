@@ -2102,8 +2102,8 @@ class ClaimSupportingInfo extends BackboneElement {
       'sequence',
       'category',
       'code',
-      'timingXClaimSupportingInfo',
-      'valueXClaimSupportingInfo',
+      'timingX',
+      'valueX',
       'reason',
     ];
   }
@@ -2468,7 +2468,7 @@ class ClaimDiagnosis extends BackboneElement {
       'extension',
       'modifierExtension',
       'sequence',
-      'diagnosisXClaimDiagnosis',
+      'diagnosisX',
       'type',
       'onAdmission',
       'packageCode',
@@ -2822,7 +2822,7 @@ class ClaimProcedure extends BackboneElement {
       'sequence',
       'type',
       'date',
-      'procedureXClaimProcedure',
+      'procedureX',
       'udi',
     ];
   }
@@ -3526,7 +3526,7 @@ class ClaimAccident extends BackboneElement {
       'modifierExtension',
       'date',
       'type',
-      'locationXClaimAccident',
+      'locationX',
     ];
   }
 
@@ -4102,8 +4102,8 @@ class ClaimItem extends BackboneElement {
       'productOrService',
       'modifier',
       'programCode',
-      'servicedXClaimItem',
-      'locationXClaimItem',
+      'servicedX',
+      'locationX',
       'quantity',
       'unitPrice',
       'factor',

@@ -334,7 +334,7 @@ class Dosage extends BackboneType
       'additionalInstruction',
       'patientInstruction',
       'timing',
-      'asNeededXDosage',
+      'asNeededX',
       'site',
       'route',
       'method',
@@ -723,8 +723,8 @@ class DosageDoseAndRate extends Element {
       'id',
       'extension',
       'type',
-      'doseXDosageDoseAndRate',
-      'rateXDosageDoseAndRate',
+      'doseX',
+      'rateX',
     ];
   }
 

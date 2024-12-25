@@ -415,7 +415,7 @@ class Consent extends DomainResource {
       'dateTime',
       'performer',
       'organization',
-      'sourceXConsent',
+      'sourceX',
       'policy',
       'policyRule',
       'verification',

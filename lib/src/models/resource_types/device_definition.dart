@@ -549,7 +549,7 @@ class DeviceDefinition extends DomainResource {
       'modifierExtension',
       'identifier',
       'udiDeviceIdentifier',
-      'manufacturerXDeviceDefinition',
+      'manufacturerX',
       'deviceName',
       'modelNumber',
       'type',

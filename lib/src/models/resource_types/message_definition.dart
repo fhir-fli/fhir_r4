@@ -516,7 +516,7 @@ class MessageDefinition extends CanonicalResource {
       'copyright',
       'base',
       'parent',
-      'eventXMessageDefinition',
+      'eventX',
       'category',
       'focus',
       'responseRequired',

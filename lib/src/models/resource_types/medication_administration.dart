@@ -524,11 +524,11 @@ class MedicationAdministration extends DomainResource {
       'status',
       'statusReason',
       'category',
-      'medicationXMedicationAdministration',
+      'medicationX',
       'subject',
       'context',
       'supportingInformation',
-      'effectiveXMedicationAdministration',
+      'effectiveX',
       'performer',
       'reasonCode',
       'reasonReference',
@@ -1376,7 +1376,7 @@ class MedicationAdministrationDosage extends BackboneElement {
       'route',
       'method',
       'dose',
-      'rateXMedicationAdministrationDosage',
+      'rateX',
     ];
   }
 

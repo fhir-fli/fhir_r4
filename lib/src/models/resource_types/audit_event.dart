@@ -2253,7 +2253,7 @@ class AuditEventDetail extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXAuditEventDetail',
+      'valueX',
     ];
   }
 

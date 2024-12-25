@@ -766,7 +766,7 @@ class GroupCharacteristic extends BackboneElement {
       'extension',
       'modifierExtension',
       'code',
-      'valueXGroupCharacteristic',
+      'valueX',
       'exclude',
       'period',
     ];

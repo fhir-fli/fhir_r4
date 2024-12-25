@@ -216,7 +216,7 @@ class TriggerDefinition extends DataType
       'extension',
       'type',
       'name',
-      'timingXTriggerDefinition',
+      'timingX',
       'data',
       'condition',
     ];

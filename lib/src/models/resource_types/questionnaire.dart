@@ -1685,7 +1685,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
       'modifierExtension',
       'question',
       'operator',
-      'answerXQuestionnaireEnableWhen',
+      'answerX',
     ];
   }
 
@@ -1996,7 +1996,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'valueXQuestionnaireAnswerOption',
+      'valueX',
       'initialSelected',
     ];
   }
@@ -2281,7 +2281,7 @@ class QuestionnaireInitial extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'valueXQuestionnaireInitial',
+      'valueX',
     ];
   }
 

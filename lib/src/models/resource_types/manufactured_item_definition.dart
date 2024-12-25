@@ -683,7 +683,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXManufacturedItemDefinitionProperty',
+      'valueX',
     ];
   }
 

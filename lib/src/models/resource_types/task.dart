@@ -1618,7 +1618,7 @@ class TaskInput extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXTaskInput',
+      'valueX',
     ];
   }
 
@@ -2126,7 +2126,7 @@ class TaskOutput extends BackboneElement {
       'extension',
       'modifierExtension',
       'type',
-      'valueXTaskOutput',
+      'valueX',
     ];
   }
 

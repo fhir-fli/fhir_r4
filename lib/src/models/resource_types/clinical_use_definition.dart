@@ -1483,7 +1483,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       'diseaseStatus',
       'comorbidity',
       'intendedEffect',
-      'durationXClinicalUseDefinitionIndication',
+      'durationX',
       'undesirableEffect',
       'otherTherapy',
     ];
@@ -2151,7 +2151,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'itemXClinicalUseDefinitionInteractant',
+      'itemX',
     ];
   }
 

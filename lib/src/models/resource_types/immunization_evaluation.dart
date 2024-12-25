@@ -391,8 +391,8 @@ class ImmunizationEvaluation extends DomainResource {
       'doseStatusReason',
       'description',
       'series',
-      'doseNumberXImmunizationEvaluation',
-      'seriesDosesXImmunizationEvaluation',
+      'doseNumberX',
+      'seriesDosesX',
     ];
   }
 

@@ -878,14 +878,14 @@ class ElementDefinition extends BackboneType {
       'base',
       'contentReference',
       'type',
-      'defaultValueXElementDefinition',
+      'defaultValueX',
       'meaningWhenMissing',
       'orderMeaning',
-      'fixedXElementDefinition',
-      'patternXElementDefinition',
+      'fixedX',
+      'patternX',
       'example',
-      'minValueXElementDefinition',
-      'maxValueXElementDefinition',
+      'minValueX',
+      'maxValueX',
       'maxLength',
       'condition',
       'constraint',
@@ -3308,7 +3308,7 @@ class ElementDefinitionExample extends Element {
       'id',
       'extension',
       'label',
-      'valueXElementDefinitionExample',
+      'valueX',
     ];
   }
 

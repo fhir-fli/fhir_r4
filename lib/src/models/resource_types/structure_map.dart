@@ -2433,7 +2433,7 @@ class StructureMapSource extends BackboneElement {
       'min',
       'max',
       'type',
-      'defaultValueXStructureMapSource',
+      'defaultValueX',
       'element',
       'listMode',
       'variable',
@@ -3378,7 +3378,7 @@ class StructureMapParameter extends BackboneElement {
       'id',
       'extension',
       'modifierExtension',
-      'valueXStructureMapParameter',
+      'valueX',
     ];
   }
 
