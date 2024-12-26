@@ -271,11 +271,11 @@ class Invoice extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Invoice.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -594,7 +594,7 @@ class Invoice extends DomainResource {
     Money? totalGross,
     FhirMarkdown? paymentTerms,
     List<Annotation>? note,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -825,11 +825,11 @@ class InvoiceParticipant extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return InvoiceParticipant.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -949,7 +949,7 @@ class InvoiceParticipant extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? role,
     Reference? actor,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1105,11 +1105,11 @@ class InvoiceLineItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return InvoiceLineItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1253,7 +1253,7 @@ class InvoiceLineItem extends BackboneElement {
     FhirPositiveInt? sequence,
     ChargeItemXInvoiceLineItem? chargeItemX,
     List<InvoicePriceComponent>? priceComponent,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1419,11 +1419,11 @@ class InvoicePriceComponent extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return InvoicePriceComponent.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1564,7 +1564,7 @@ class InvoicePriceComponent extends BackboneElement {
     CodeableConcept? code,
     FhirDecimal? factor,
     Money? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

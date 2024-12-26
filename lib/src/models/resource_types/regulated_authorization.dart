@@ -253,11 +253,11 @@ class RegulatedAuthorization extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return RegulatedAuthorization.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -561,7 +561,7 @@ class RegulatedAuthorization extends DomainResource {
     Reference? holder,
     Reference? regulator,
     RegulatedAuthorizationCase? case_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -815,11 +815,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return RegulatedAuthorizationCase.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -983,7 +983,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     CodeableConcept? status,
     DateXRegulatedAuthorizationCase? dateX,
     List<RegulatedAuthorizationCase>? application,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

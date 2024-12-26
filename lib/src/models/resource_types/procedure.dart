@@ -421,11 +421,11 @@ class Procedure extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Procedure.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -912,7 +912,7 @@ class Procedure extends DomainResource {
     List<ProcedureFocalDevice>? focalDevice,
     List<Reference>? usedReference,
     List<CodeableConcept>? usedCode,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1246,11 +1246,11 @@ class ProcedurePerformer extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ProcedurePerformer.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1379,7 +1379,7 @@ class ProcedurePerformer extends BackboneElement {
     CodeableConcept? function_,
     Reference? actor,
     Reference? onBehalfOf,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1524,11 +1524,11 @@ class ProcedureFocalDevice extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ProcedureFocalDevice.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1645,7 +1645,7 @@ class ProcedureFocalDevice extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? action,
     Reference? manipulated,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

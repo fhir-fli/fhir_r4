@@ -287,11 +287,11 @@ class Goal extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Goal.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -612,7 +612,7 @@ class Goal extends DomainResource {
     List<Annotation>? note,
     List<CodeableConcept>? outcomeCode,
     List<Reference>? outcomeReference,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -867,11 +867,11 @@ class GoalTarget extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return GoalTarget.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1044,7 +1044,7 @@ class GoalTarget extends BackboneElement {
     CodeableConcept? measure,
     DetailXGoalTarget? detailX,
     DueXGoalTarget? dueX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

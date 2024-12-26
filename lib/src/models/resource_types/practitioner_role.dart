@@ -281,11 +281,11 @@ class PractitionerRole extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PractitionerRole.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -582,7 +582,7 @@ class PractitionerRole extends DomainResource {
     List<PractitionerRoleNotAvailable>? notAvailable,
     FhirString? availabilityExceptions,
     List<Reference>? endpoint,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -836,11 +836,11 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PractitionerRoleAvailableTime.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -985,7 +985,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     FhirBoolean? allDay,
     FhirTime? availableStartTime,
     FhirTime? availableEndTime,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1137,11 +1137,11 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PractitionerRoleNotAvailable.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1260,7 +1260,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? description,
     Period? during,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

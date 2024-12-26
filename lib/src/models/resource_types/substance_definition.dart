@@ -340,11 +340,11 @@ class SubstanceDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -695,7 +695,7 @@ class SubstanceDefinition extends DomainResource {
     List<SubstanceDefinitionName>? name,
     List<SubstanceDefinitionRelationship>? relationship,
     SubstanceDefinitionSourceMaterial? sourceMaterial,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1014,11 +1014,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionMoiety.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1215,7 +1215,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     FhirString? molecularFormula,
     AmountXSubstanceDefinitionMoiety? amountX,
     CodeableConcept? measurementType,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1383,11 +1383,11 @@ class SubstanceDefinitionProperty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionProperty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1524,7 +1524,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     ValueXSubstanceDefinitionProperty? valueX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1671,11 +1671,11 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionMolecularWeight.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1807,7 +1807,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     CodeableConcept? method,
     CodeableConcept? type,
     Quantity? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2011,11 +2011,11 @@ class SubstanceDefinitionStructure extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionStructure.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2204,7 +2204,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
     List<CodeableConcept>? technique,
     List<Reference>? sourceDocument,
     List<SubstanceDefinitionRepresentation>? representation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2393,11 +2393,11 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionRepresentation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2543,7 +2543,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     FhirString? representation,
     CodeableConcept? format,
     Reference? document,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2723,11 +2723,11 @@ class SubstanceDefinitionCode extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionCode.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2880,7 +2880,7 @@ class SubstanceDefinitionCode extends BackboneElement {
     FhirDateTime? statusDate,
     List<Annotation>? note,
     List<Reference>? source,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3144,11 +3144,11 @@ class SubstanceDefinitionName extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionName.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3366,7 +3366,7 @@ class SubstanceDefinitionName extends BackboneElement {
     List<SubstanceDefinitionName>? translation,
     List<SubstanceDefinitionOfficial>? official,
     List<Reference>? source,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3576,11 +3576,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionOfficial.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3711,7 +3711,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     CodeableConcept? authority,
     CodeableConcept? status,
     FhirDateTime? date,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3903,11 +3903,11 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionRelationship.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3984,7 +3984,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
     }
 
     addField('type', type);
@@ -4108,7 +4108,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     Ratio? ratioHighLimitAmount,
     CodeableConcept? comparator,
     List<Reference>? source,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4298,11 +4298,11 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubstanceDefinitionSourceMaterial.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4457,7 +4457,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     CodeableConcept? species,
     CodeableConcept? part_,
     List<CodeableConcept>? countryOfOrigin,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

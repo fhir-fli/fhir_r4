@@ -176,12 +176,12 @@ String _withEscapes(String s) => s
     .replaceAll('', '\x9D');
 
 /// Converts a YAML string to JSON.
-Map<String, Object?> yamlToJson(String yaml) {
-  return loadYaml(yaml) as Map<String, Object?>;
+Map<String, dynamic> yamlToJson(String yaml) {
+  return loadYaml(yaml) as Map<String, dynamic>;
 }
 
 /// Converts a YamlMap directly to JSON.
-Map<String, Object?> yamlMapToJson(YamlMap yamlMap) {
+Map<String, dynamic> yamlMapToJson(YamlMap yamlMap) {
   // Handle YAML-to-JSON conversion directly
   return yamlMap.map((key, value) => MapEntry(key.toString(), value));
 }

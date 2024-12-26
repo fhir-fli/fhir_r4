@@ -289,11 +289,11 @@ class ExampleScenario extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenario.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -645,7 +645,7 @@ class ExampleScenario extends DomainResource {
     List<ExampleScenarioInstance>? instance,
     List<ExampleScenarioProcess>? process,
     List<FhirCanonical>? workflow,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -906,11 +906,11 @@ class ExampleScenarioActor extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioActor.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1047,7 +1047,7 @@ class ExampleScenarioActor extends BackboneElement {
     ExampleScenarioActorType? type,
     FhirString? name,
     FhirMarkdown? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1234,11 +1234,11 @@ class ExampleScenarioInstance extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioInstance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1398,7 +1398,7 @@ class ExampleScenarioInstance extends BackboneElement {
     FhirMarkdown? description,
     List<ExampleScenarioVersion>? version,
     List<ExampleScenarioContainedInstance>? containedInstance,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1561,11 +1561,11 @@ class ExampleScenarioVersion extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioVersion.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1680,7 +1680,7 @@ class ExampleScenarioVersion extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? versionId,
     FhirMarkdown? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1820,11 +1820,11 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioContainedInstance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1941,7 +1941,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? resourceId,
     FhirString? versionId,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2107,11 +2107,11 @@ class ExampleScenarioProcess extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioProcess.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2261,7 +2261,7 @@ class ExampleScenarioProcess extends BackboneElement {
     FhirMarkdown? preConditions,
     FhirMarkdown? postConditions,
     List<ExampleScenarioStep>? step,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2442,11 +2442,11 @@ class ExampleScenarioStep extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioStep.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2588,7 +2588,7 @@ class ExampleScenarioStep extends BackboneElement {
     FhirBoolean? pause,
     ExampleScenarioOperation? operation,
     List<ExampleScenarioAlternative>? alternative,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2799,11 +2799,11 @@ class ExampleScenarioOperation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioOperation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3008,7 +3008,7 @@ class ExampleScenarioOperation extends BackboneElement {
     FhirBoolean? receiverActive,
     ExampleScenarioContainedInstance? request,
     ExampleScenarioContainedInstance? response,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3193,11 +3193,11 @@ class ExampleScenarioAlternative extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ExampleScenarioAlternative.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3327,7 +3327,7 @@ class ExampleScenarioAlternative extends BackboneElement {
     FhirString? title,
     FhirMarkdown? description,
     List<ExampleScenarioStep>? step,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

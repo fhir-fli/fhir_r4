@@ -233,11 +233,11 @@ class ClinicalUseDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -496,7 +496,7 @@ class ClinicalUseDefinition extends DomainResource {
     List<Reference>? population,
     ClinicalUseDefinitionUndesirableEffect? undesirableEffect,
     ClinicalUseDefinitionWarning? warning,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -742,11 +742,11 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionContraindication.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -901,7 +901,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     List<CodeableReference>? comorbidity,
     List<Reference>? indication,
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1065,11 +1065,11 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionOtherTherapy.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1186,7 +1186,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     CodeableReference? therapy,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1381,11 +1381,11 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionIndication.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1574,7 +1574,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     DurationXClinicalUseDefinitionIndication? durationX,
     List<Reference>? undesirableEffect,
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1778,11 +1778,11 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionInteraction.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1937,7 +1937,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     CodeableReference? effect,
     CodeableConcept? incidence,
     List<CodeableConcept>? management,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2092,11 +2092,11 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionInteractant.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2210,7 +2210,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ItemXClinicalUseDefinitionInteractant? itemX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2353,11 +2353,11 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionUndesirableEffect.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2487,7 +2487,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     CodeableReference? symptomConditionEffect,
     CodeableConcept? classification,
     CodeableConcept? frequencyOfOccurrence,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2633,11 +2633,11 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClinicalUseDefinitionWarning.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2756,7 +2756,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
     CodeableConcept? code,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

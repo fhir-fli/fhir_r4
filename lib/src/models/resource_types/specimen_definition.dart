@@ -188,11 +188,11 @@ class SpecimenDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SpecimenDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -392,7 +392,7 @@ class SpecimenDefinition extends DomainResource {
     FhirString? timeAspect,
     List<CodeableConcept>? collection,
     List<SpecimenDefinitionTypeTested>? typeTested,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -630,11 +630,11 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SpecimenDefinitionTypeTested.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -821,7 +821,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     FhirDuration? retentionTime,
     List<CodeableConcept>? rejectionCriterion,
     List<SpecimenDefinitionHandling>? handling,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1043,11 +1043,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SpecimenDefinitionContainer.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1242,7 +1242,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX,
     List<SpecimenDefinitionAdditive>? additive,
     FhirString? preparation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1406,11 +1406,11 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SpecimenDefinitionAdditive.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1525,7 +1525,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     AdditiveXSpecimenDefinitionAdditive? additiveX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1675,11 +1675,11 @@ class SpecimenDefinitionHandling extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SpecimenDefinitionHandling.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1824,7 +1824,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
     Range? temperatureRange,
     FhirDuration? maxDuration,
     FhirString? instruction,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

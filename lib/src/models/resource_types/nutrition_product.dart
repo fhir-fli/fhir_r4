@@ -240,11 +240,11 @@ class NutritionProduct extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return NutritionProduct.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -490,7 +490,7 @@ class NutritionProduct extends DomainResource {
     List<NutritionProductProductCharacteristic>? productCharacteristic,
     NutritionProductInstance? instance,
     List<Annotation>? note,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -711,11 +711,11 @@ class NutritionProductNutrient extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return NutritionProductNutrient.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -835,7 +835,7 @@ class NutritionProductNutrient extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableReference? item,
     List<Ratio>? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -984,11 +984,11 @@ class NutritionProductIngredient extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return NutritionProductIngredient.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1105,7 +1105,7 @@ class NutritionProductIngredient extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableReference? item,
     List<Ratio>? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1255,11 +1255,11 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return NutritionProductProductCharacteristic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1399,7 +1399,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     ValueXNutritionProductProductCharacteristic? valueX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1566,11 +1566,11 @@ class NutritionProductInstance extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return NutritionProductInstance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1725,7 +1725,7 @@ class NutritionProductInstance extends BackboneElement {
     FhirString? lotNumber,
     FhirDateTime? expiry,
     FhirDateTime? useBy,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

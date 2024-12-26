@@ -161,7 +161,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       };
 
   /// Map representation
-  Map<String, Object?> toMap() => <String, Object?>{
+  Map<String, dynamic> toMap() => <String, Object?>{
         'year': year,
         'month': month,
         'day': day,
@@ -372,7 +372,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -383,7 +383,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     if (input == null) {
       return _constructor<T>({}, null, true, element);
     }
-    Map<String, Object?>? dateTimeMap;
+    Map<String, dynamic>? dateTimeMap;
     String? value;
 
     if (input is String) {
@@ -416,13 +416,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }
 
   static FhirDateTimeBase _constructor<T>(
-    Map<String, Object?> dateTimeMap,
+    Map<String, dynamic> dateTimeMap,
     String? exception,
     bool regexpValid, [
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -871,7 +871,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   );
 
   /// Formats a date-time string into a map of date-time parts.
-  static Map<String, Object?> formatDateTimeString<T>(String dateTimeString) {
+  static Map<String, dynamic> formatDateTimeString<T>(String dateTimeString) {
     final dateTimeRegExp = dateTimeExp.firstMatch(dateTimeString);
     final fractionString = dateTimeRegExp?.namedGroup('fraction');
     return <String, Object?>{

@@ -202,11 +202,11 @@ class Dosage extends BackboneType
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Dosage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -460,7 +460,7 @@ class Dosage extends BackboneType
     Ratio? maxDosePerPeriod,
     Quantity? maxDosePerAdministration,
     Quantity? maxDosePerLifetime,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -649,11 +649,11 @@ class DosageDoseAndRate extends Element {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DosageDoseAndRate.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -796,7 +796,7 @@ class DosageDoseAndRate extends Element {
     CodeableConcept? type,
     DoseXDosageDoseAndRate? doseX,
     RateXDosageDoseAndRate? rateX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

@@ -331,11 +331,11 @@ class EvidenceReport extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceReport.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -693,7 +693,7 @@ class EvidenceReport extends DomainResource {
     List<ContactDetail>? endorser,
     List<EvidenceReportRelatesTo>? relatesTo,
     List<EvidenceReportSection>? section,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -973,11 +973,11 @@ class EvidenceReportSubject extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceReportSubject.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1096,7 +1096,7 @@ class EvidenceReportSubject extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<EvidenceReportCharacteristic>? characteristic,
     List<Annotation>? note,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1262,11 +1262,11 @@ class EvidenceReportCharacteristic extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceReportCharacteristic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1423,7 +1423,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
     ValueXEvidenceReportCharacteristic? valueX,
     FhirBoolean? exclude,
     Period? period,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1573,11 +1573,11 @@ class EvidenceReportRelatesTo extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceReportRelatesTo.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1701,7 +1701,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     ReportRelationshipType? code,
     TargetXEvidenceReportRelatesTo? targetX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1940,11 +1940,11 @@ class EvidenceReportSection extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceReportSection.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2187,7 +2187,7 @@ class EvidenceReportSection extends BackboneElement {
     List<Quantity>? entryQuantity,
     CodeableConcept? emptyReason,
     List<EvidenceReportSection>? section,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

@@ -152,7 +152,7 @@ class CapabilityStatement extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -164,7 +164,7 @@ class CapabilityStatement extends CanonicalResource {
         'date',
         FhirDateTime.fromJson,
         '$objectPath.date',
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
@@ -349,11 +349,11 @@ class CapabilityStatement extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatement.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -752,7 +752,7 @@ class CapabilityStatement extends CanonicalResource {
     List<CapabilityStatementRest>? rest,
     List<CapabilityStatementMessaging>? messaging,
     List<CapabilityStatementDocument>? document,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1056,11 +1056,11 @@ class CapabilityStatementSoftware extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementSoftware.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1188,7 +1188,7 @@ class CapabilityStatementSoftware extends BackboneElement {
     FhirString? name,
     FhirString? version,
     FhirDateTime? releaseDate,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1340,11 +1340,11 @@ class CapabilityStatementImplementation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementImplementation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1475,7 +1475,7 @@ class CapabilityStatementImplementation extends BackboneElement {
     FhirString? description,
     FhirUrl? url,
     Reference? custodian,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1684,11 +1684,11 @@ class CapabilityStatementRest extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementRest.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1881,7 +1881,7 @@ class CapabilityStatementRest extends BackboneElement {
     List<CapabilityStatementSearchParam>? searchParam,
     List<CapabilityStatementOperation>? operation,
     List<FhirCanonical>? compartment,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2078,11 +2078,11 @@ class CapabilityStatementSecurity extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementSecurity.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2213,7 +2213,7 @@ class CapabilityStatementSecurity extends BackboneElement {
     FhirBoolean? cors,
     List<CodeableConcept>? service,
     FhirMarkdown? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2484,11 +2484,11 @@ class CapabilityStatementResource extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementResource.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2795,7 +2795,7 @@ class CapabilityStatementResource extends BackboneElement {
     List<FhirString>? searchRevInclude,
     List<CapabilityStatementSearchParam>? searchParam,
     List<CapabilityStatementOperation>? operation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3022,11 +3022,11 @@ class CapabilityStatementInteraction extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementInteraction.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3145,7 +3145,7 @@ class CapabilityStatementInteraction extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     TypeRestfulInteraction? code,
     FhirMarkdown? documentation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3300,11 +3300,11 @@ class CapabilityStatementSearchParam extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementSearchParam.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3449,7 +3449,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
     FhirCanonical? definition,
     SearchParamType? type,
     FhirMarkdown? documentation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3606,11 +3606,11 @@ class CapabilityStatementOperation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementOperation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3748,7 +3748,7 @@ class CapabilityStatementOperation extends BackboneElement {
     FhirString? name,
     FhirCanonical? definition,
     FhirMarkdown? documentation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3891,11 +3891,11 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementInteraction1.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4014,7 +4014,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     SystemRestfulInteraction? code,
     FhirMarkdown? documentation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4179,11 +4179,11 @@ class CapabilityStatementMessaging extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementMessaging.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4331,7 +4331,7 @@ class CapabilityStatementMessaging extends BackboneElement {
     FhirUnsignedInt? reliableCache,
     FhirMarkdown? documentation,
     List<CapabilityStatementSupportedMessage>? supportedMessage,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4487,11 +4487,11 @@ class CapabilityStatementEndpoint extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementEndpoint.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4608,7 +4608,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Coding? protocol,
     FhirUrl? address,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4748,11 +4748,11 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementSupportedMessage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4869,7 +4869,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     EventCapabilityMode? mode,
     FhirCanonical? definition,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -5015,11 +5015,11 @@ class CapabilityStatementDocument extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CapabilityStatementDocument.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -5149,7 +5149,7 @@ class CapabilityStatementDocument extends BackboneElement {
     DocumentMode? mode,
     FhirMarkdown? documentation,
     FhirCanonical? profile,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

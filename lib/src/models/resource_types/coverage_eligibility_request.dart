@@ -257,11 +257,11 @@ class CoverageEligibilityRequest extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CoverageEligibilityRequest.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -557,7 +557,7 @@ class CoverageEligibilityRequest extends DomainResource {
     List<CoverageEligibilityRequestSupportingInfo>? supportingInfo,
     List<CoverageEligibilityRequestInsurance>? insurance,
     List<CoverageEligibilityRequestItem>? item,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -788,11 +788,11 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CoverageEligibilityRequestSupportingInfo.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -922,7 +922,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     FhirPositiveInt? sequence,
     Reference? information,
     FhirBoolean? appliesToAll,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1073,11 +1073,11 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CoverageEligibilityRequestInsurance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1210,7 +1210,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     FhirBoolean? focal,
     Reference? coverage,
     FhirString? businessArrangement,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1429,11 +1429,11 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CoverageEligibilityRequestItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1645,7 +1645,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     Reference? facility,
     List<CoverageEligibilityRequestDiagnosis>? diagnosis,
     List<Reference>? detail,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1828,11 +1828,11 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CoverageEligibilityRequestDiagnosis.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1949,7 +1949,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

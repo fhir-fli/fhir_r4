@@ -135,7 +135,7 @@ class GraphDefinition extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -260,11 +260,11 @@ class GraphDefinition extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return GraphDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -521,7 +521,7 @@ class GraphDefinition extends CanonicalResource {
     FhirCode? start,
     FhirCanonical? profile,
     List<GraphDefinitionLink>? link,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -778,11 +778,11 @@ class GraphDefinitionLink extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return GraphDefinitionLink.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -947,7 +947,7 @@ class GraphDefinitionLink extends BackboneElement {
     FhirString? max,
     FhirString? description,
     List<GraphDefinitionTarget>? target,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1139,11 +1139,11 @@ class GraphDefinitionTarget extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return GraphDefinitionTarget.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1293,7 +1293,7 @@ class GraphDefinitionTarget extends BackboneElement {
     FhirCanonical? profile,
     List<GraphDefinitionCompartment>? compartment,
     List<GraphDefinitionLink>? link,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1473,11 +1473,11 @@ class GraphDefinitionCompartment extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return GraphDefinitionCompartment.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1625,7 +1625,7 @@ class GraphDefinitionCompartment extends BackboneElement {
     GraphCompartmentRule? rule,
     FhirString? expression,
     FhirString? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

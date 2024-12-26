@@ -189,7 +189,7 @@ class ActivityDefinition extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -567,11 +567,11 @@ class ActivityDefinition extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ActivityDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1268,7 +1268,7 @@ class ActivityDefinition extends CanonicalResource {
     List<Reference>? observationResultRequirement,
     FhirCanonical? transform,
     List<ActivityDefinitionDynamicValue>? dynamicValue,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1671,11 +1671,11 @@ class ActivityDefinitionParticipant extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ActivityDefinitionParticipant.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1793,7 +1793,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     ActionParticipantType? type,
     CodeableConcept? role,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1936,11 +1936,11 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ActivityDefinitionDynamicValue.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2063,7 +2063,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? path,
     FhirExpression? expression,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

@@ -122,7 +122,7 @@ class SubscriptionTopic extends CanonicalResource {
         'url',
         FhirUri.fromJson,
         '$objectPath.url',
-      )!,
+      ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -158,7 +158,7 @@ class SubscriptionTopic extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -331,11 +331,11 @@ class SubscriptionTopic extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -690,7 +690,7 @@ class SubscriptionTopic extends CanonicalResource {
     List<SubscriptionTopicEventTrigger>? eventTrigger,
     List<SubscriptionTopicCanFilterBy>? canFilterBy,
     List<SubscriptionTopicNotificationShape>? notificationShape,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -987,11 +987,11 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopicResourceTrigger.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1153,7 +1153,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     List<InteractionTrigger>? supportedInteraction,
     SubscriptionTopicQueryCriteria? queryCriteria,
     FhirString? fhirPathCriteria,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1330,11 +1330,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopicQueryCriteria.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1492,7 +1492,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     FhirString? current,
     CriteriaNotExistsBehavior? resultForDelete,
     FhirBoolean? requireBoth,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1650,11 +1650,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopicEventTrigger.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1790,7 +1790,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     FhirMarkdown? description,
     CodeableConcept? event,
     FhirUri? resource,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1957,11 +1957,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopicCanFilterBy.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2124,7 +2124,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     FhirString? filterParameter,
     FhirUri? filterDefinition,
     List<SubscriptionSearchModifier>? modifier,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2287,11 +2287,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SubscriptionTopicNotificationShape.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2432,7 +2432,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     FhirUri? resource,
     List<FhirString>? include,
     List<FhirString>? revInclude,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

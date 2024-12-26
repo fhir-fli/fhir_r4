@@ -126,7 +126,7 @@ class SearchParameter extends CanonicalResource {
         'url',
         FhirUri.fromJson,
         '$objectPath.url',
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
@@ -150,7 +150,7 @@ class SearchParameter extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -186,7 +186,7 @@ class SearchParameter extends CanonicalResource {
         'description',
         FhirMarkdown.fromJson,
         '$objectPath.description',
-      )!,
+      ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
@@ -335,11 +335,11 @@ class SearchParameter extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SearchParameter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -731,7 +731,7 @@ class SearchParameter extends CanonicalResource {
     List<SearchModifierCode>? modifier,
     List<FhirString>? chain,
     List<SearchParameterComponent>? component,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1018,11 +1018,11 @@ class SearchParameterComponent extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SearchParameterComponent.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1138,7 +1138,7 @@ class SearchParameterComponent extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCanonical? definition,
     FhirString? expression,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

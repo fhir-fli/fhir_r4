@@ -239,11 +239,11 @@ class BiologicallyDerivedProduct extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BiologicallyDerivedProduct.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -506,7 +506,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     List<BiologicallyDerivedProductProcessing>? processing,
     BiologicallyDerivedProductManipulation? manipulation,
     List<BiologicallyDerivedProductStorage>? storage,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -727,11 +727,11 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BiologicallyDerivedProductCollection.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -870,7 +870,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     Reference? collector,
     Reference? source,
     CollectedXBiologicallyDerivedProductCollection? collectedX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1032,11 +1032,11 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BiologicallyDerivedProductProcessing.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1185,7 +1185,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     CodeableConcept? procedure,
     Reference? additive,
     TimeXBiologicallyDerivedProductProcessing? timeX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1337,11 +1337,11 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BiologicallyDerivedProductManipulation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1468,7 +1468,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? description,
     TimeXBiologicallyDerivedProductManipulation? timeX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1621,11 +1621,11 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BiologicallyDerivedProductStorage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1766,7 +1766,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     FhirDecimal? temperature,
     BiologicallyDerivedProductStorageScale? scale,
     Period? duration,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

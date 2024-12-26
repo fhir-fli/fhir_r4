@@ -372,11 +372,11 @@ class ClaimResponse extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponse.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -811,7 +811,7 @@ class ClaimResponse extends DomainResource {
     List<Reference>? communicationRequest,
     List<ClaimResponseInsurance>? insurance,
     List<ClaimResponseError>? error,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1129,11 +1129,11 @@ class ClaimResponseItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1274,7 +1274,7 @@ class ClaimResponseItem extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
     List<ClaimResponseDetail>? detail,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1449,11 +1449,11 @@ class ClaimResponseAdjudication extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseAdjudication.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1599,7 +1599,7 @@ class ClaimResponseAdjudication extends BackboneElement {
     CodeableConcept? reason,
     Money? amount,
     FhirDecimal? value,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1773,11 +1773,11 @@ class ClaimResponseDetail extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseDetail.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1915,7 +1915,7 @@ class ClaimResponseDetail extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
     List<ClaimResponseSubDetail>? subDetail,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2087,11 +2087,11 @@ class ClaimResponseSubDetail extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseSubDetail.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2220,7 +2220,7 @@ class ClaimResponseSubDetail extends BackboneElement {
     FhirPositiveInt? subDetailSequence,
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2525,11 +2525,11 @@ class ClaimResponseAddItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseAddItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2855,7 +2855,7 @@ class ClaimResponseAddItem extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
     List<ClaimResponseDetail>? detail,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3165,11 +3165,11 @@ class ClaimResponseDetail1 extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseDetail1.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3371,7 +3371,7 @@ class ClaimResponseDetail1 extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
     List<ClaimResponseSubDetail>? subDetail,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3608,11 +3608,11 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseSubDetail1.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3803,7 +3803,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     Money? net,
     List<FhirPositiveInt>? noteNumber,
     List<ClaimResponseAdjudication>? adjudication,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3978,11 +3978,11 @@ class ClaimResponseTotal extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseTotal.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4101,7 +4101,7 @@ class ClaimResponseTotal extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? category,
     Money? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4268,11 +4268,11 @@ class ClaimResponsePayment extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponsePayment.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4434,7 +4434,7 @@ class ClaimResponsePayment extends BackboneElement {
     FhirDate? date,
     Money? amount,
     Identifier? identifier,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4604,11 +4604,11 @@ class ClaimResponseProcessNote extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseProcessNote.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4747,7 +4747,7 @@ class ClaimResponseProcessNote extends BackboneElement {
     NoteType? type,
     FhirString? text,
     CodeableConcept? language,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -4916,11 +4916,11 @@ class ClaimResponseInsurance extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseInsurance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -5073,7 +5073,7 @@ class ClaimResponseInsurance extends BackboneElement {
     Reference? coverage,
     FhirString? businessArrangement,
     Reference? claimResponse,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -5238,11 +5238,11 @@ class ClaimResponseError extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ClaimResponseError.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -5388,7 +5388,7 @@ class ClaimResponseError extends BackboneElement {
     FhirPositiveInt? detailSequence,
     FhirPositiveInt? subDetailSequence,
     CodeableConcept? code,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

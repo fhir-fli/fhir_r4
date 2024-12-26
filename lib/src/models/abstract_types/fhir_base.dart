@@ -15,7 +15,7 @@ abstract class FhirBase {
   });
 
   /// User data map for storing additional information.
-  final Map<String, Object?>? userData;
+  final Map<String, dynamic>? userData;
 
   /// List of comments to be added before the element.
   final List<String>? formatCommentsPre;
@@ -69,7 +69,7 @@ abstract class FhirBase {
   FhirBase setUserData(String name, dynamic value) {
     final updatedUserData = userData == null
         ? <String, Object?>{}
-        : Map<String, Object?>.from(userData!);
+        : Map<String, dynamic>.from(userData!);
     updatedUserData[name] = value;
     return copyWith(userData: updatedUserData);
   }
@@ -77,7 +77,7 @@ abstract class FhirBase {
   /// Clears user data for a given key.
   FhirBase clearUserData(String name) {
     if (userData != null && userData!.containsKey(name)) {
-      final updatedUserData = Map<String, Object?>.from(userData!);
+      final updatedUserData = Map<String, dynamic>.from(userData!);
       // ignore: cascade_invocations
       updatedUserData.remove(name);
       return copyWith(userData: updatedUserData);
@@ -196,7 +196,7 @@ abstract class FhirBase {
 
   /// Copies the object with new values.
   FhirBase copyWith({
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

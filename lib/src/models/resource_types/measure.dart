@@ -182,7 +182,7 @@ class Measure extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -495,11 +495,11 @@ class Measure extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Measure.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -749,7 +749,7 @@ class Measure extends CanonicalResource {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement);
+        'clinicalRecommendationStatement', clinicalRecommendationStatement,);
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);
@@ -1094,7 +1094,7 @@ class Measure extends CanonicalResource {
     FhirMarkdown? guidance,
     List<MeasureGroup>? group,
     List<MeasureSupplementalData>? supplementalData,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1492,11 +1492,11 @@ class MeasureGroup extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MeasureGroup.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1641,7 +1641,7 @@ class MeasureGroup extends BackboneElement {
     FhirString? description,
     List<MeasurePopulation>? population,
     List<MeasureStratifier>? stratifier,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1803,11 +1803,11 @@ class MeasurePopulation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MeasurePopulation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1936,7 +1936,7 @@ class MeasurePopulation extends BackboneElement {
     CodeableConcept? code,
     FhirString? description,
     FhirExpression? criteria,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2101,11 +2101,11 @@ class MeasureStratifier extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MeasureStratifier.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2253,7 +2253,7 @@ class MeasureStratifier extends BackboneElement {
     FhirString? description,
     FhirExpression? criteria,
     List<MeasureComponent>? component,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2413,11 +2413,11 @@ class MeasureComponent extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MeasureComponent.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2551,7 +2551,7 @@ class MeasureComponent extends BackboneElement {
     CodeableConcept? code,
     FhirString? description,
     FhirExpression? criteria,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2716,11 +2716,11 @@ class MeasureSupplementalData extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MeasureSupplementalData.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2870,7 +2870,7 @@ class MeasureSupplementalData extends BackboneElement {
     List<CodeableConcept>? usage,
     FhirString? description,
     FhirExpression? criteria,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

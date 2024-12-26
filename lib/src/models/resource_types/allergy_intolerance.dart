@@ -264,11 +264,11 @@ class AllergyIntolerance extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AllergyIntolerance.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -623,7 +623,7 @@ class AllergyIntolerance extends DomainResource {
     FhirDateTime? lastOccurrence,
     List<Annotation>? note,
     List<AllergyIntoleranceReaction>? reaction,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -898,11 +898,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AllergyIntoleranceReaction.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1089,7 +1089,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     AllergyIntoleranceSeverity? severity,
     CodeableConcept? exposureRoute,
     List<Annotation>? note,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

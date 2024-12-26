@@ -251,11 +251,11 @@ class VerificationResult extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return VerificationResult.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -545,7 +545,7 @@ class VerificationResult extends DomainResource {
     List<VerificationResultPrimarySource>? primarySource,
     VerificationResultAttestation? attestation,
     List<VerificationResultValidator>? validator,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -821,11 +821,11 @@ class VerificationResultPrimarySource extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return VerificationResultPrimarySource.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1004,7 +1004,7 @@ class VerificationResultPrimarySource extends BackboneElement {
     FhirDateTime? validationDate,
     CodeableConcept? canPushUpdates,
     List<CodeableConcept>? pushTypeAvailable,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1217,11 +1217,11 @@ class VerificationResultAttestation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return VerificationResultAttestation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1412,7 +1412,7 @@ class VerificationResultAttestation extends BackboneElement {
     FhirString? proxyIdentityCertificate,
     Signature? proxySignature,
     Signature? sourceSignature,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1582,11 +1582,11 @@ class VerificationResultValidator extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return VerificationResultValidator.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1715,7 +1715,7 @@ class VerificationResultValidator extends BackboneElement {
     Reference? organization,
     FhirString? identityCertificate,
     Signature? attestationSignature,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

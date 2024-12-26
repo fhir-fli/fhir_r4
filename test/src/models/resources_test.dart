@@ -32,8 +32,9 @@ List<String> r4Validation() {
     print(file.path);
     filePath = file.path;
     final contents = File(file.path).readAsStringSync();
+    final contentJson1 = jsonDecode(contents) as Map<String, dynamic>;
     final contentJson = jsonDecode(contents) as Map<String, dynamic>;
-    final resource = Resource.fromJson(contentJson);
+    final resource = Resource.fromJson(contentJson1);
     try {
       if (!const DeepCollectionEquality()
           .equals(contentJson, resource.toJson())) {

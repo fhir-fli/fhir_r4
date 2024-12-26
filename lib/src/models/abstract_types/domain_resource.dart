@@ -24,8 +24,8 @@ abstract class DomainResource extends Resource {
   });
 
   /// Factory constructor for [DomainResource] that takes in a
-  /// [Map<String, Object?>] and returns a [DomainResource]
-  factory DomainResource.fromJson(Map<String, Object?> json) =>
+  /// [Map<String, dynamic>] and returns a [DomainResource]
+  factory DomainResource.fromJson(Map<String, dynamic> json) =>
       Resource.fromJson(json) as DomainResource;
 
   @override
@@ -62,9 +62,9 @@ abstract class DomainResource extends Resource {
   /// (including cannot change the meaning of modifierExtension itself).",
   final List<FhirExtension>? modifierExtension;
 
-  /// Returns a [Map<String, Object?>] of the [DomainResource]
+  /// Returns a [Map<String, dynamic>] of the [DomainResource]
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final val = <String, Object?>{};
 
     void writeNotNull(String key, dynamic value) {
@@ -97,11 +97,11 @@ abstract class DomainResource extends Resource {
   /// Factory constructor for [DomainResource] that takes in a [YamlMap] and
   static DomainResource fromYaml(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         ) as DomainResource
       : yaml is YamlMap
           ? Resource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             ) as DomainResource
           : throw ArgumentError(
               'DomainResource cannot be constructed from input provided,'
@@ -112,7 +112,7 @@ abstract class DomainResource extends Resource {
   /// to get data from a [String]
   static DomainResource fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Resource.fromJson(json) as DomainResource;
     } else {
       throw FormatException('FormatException: You passed $json '
@@ -137,7 +137,7 @@ abstract class DomainResource extends Resource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

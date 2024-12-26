@@ -47,12 +47,13 @@ class JsonParser {
     T Function(Map<String, dynamic>) fromJson,
     String objectPath,
   ) {
-    return json[fieldName] != null
+    final result = json[fieldName] != null
         ? fromJson(
-            (json[fieldName] as Map<String, dynamic>)
+            (Map<String, dynamic>.from(json[fieldName] as Map<String, dynamic>))
               ..addAll({'objectPath': objectPath}),
           )
         : null;
+    return result;
   }
 
   /// Parse polymorphic fields.
@@ -68,7 +69,7 @@ class JsonParser {
       if (json[jsonKey] != null || json['_$jsonKey'] != null) {
         if (json[jsonKey] is Map<String, dynamic>) {
           return parser(
-            (json[jsonKey] as Map<String, dynamic>)
+            (Map<String, dynamic>.from(json[jsonKey] as Map<String, dynamic>))
               ..addAll({'objectPath': '$objectPath.$jsonKey'}),
           );
         } else {

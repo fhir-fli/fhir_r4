@@ -20,7 +20,7 @@ abstract class BackboneType extends DataType {
   });
 
   /// FromJson Factory Constructor for [BackboneType]
-  factory BackboneType.fromJson(Map<String, Object?> json) {
+  factory BackboneType.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('BackboneType.fromJson $json');
   }
 
@@ -73,7 +73,7 @@ abstract class BackboneType extends DataType {
   }
 
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
@@ -92,11 +92,11 @@ abstract class BackboneType extends DataType {
   /// Factory constructor for [BackboneType] that takes in a [YamlMap]
   static BackboneType fromYaml(dynamic yaml) => yaml is String
       ? BackboneType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         )
       : yaml is YamlMap
           ? BackboneType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
               'BackboneType cannot be constructed from input provided,'
@@ -107,7 +107,7 @@ abstract class BackboneType extends DataType {
   /// to get data from a [String]
   static BackboneType fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BackboneType.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
@@ -120,7 +120,7 @@ abstract class BackboneType extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

@@ -427,11 +427,11 @@ class MedicationRequest extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MedicationRequest.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -973,7 +973,7 @@ class MedicationRequest extends DomainResource {
     Reference? priorPrescription,
     List<Reference>? detectedIssue,
     List<Reference>? eventHistory,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1340,11 +1340,11 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MedicationRequestDispenseRequest.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1530,7 +1530,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     Quantity? quantity,
     FhirDuration? expectedSupplyDuration,
     Reference? performer,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1690,11 +1690,11 @@ class MedicationRequestInitialFill extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MedicationRequestInitialFill.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1813,7 +1813,7 @@ class MedicationRequestInitialFill extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
     FhirDuration? duration,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1958,11 +1958,11 @@ class MedicationRequestSubstitution extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MedicationRequestSubstitution.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2089,7 +2089,7 @@ class MedicationRequestSubstitution extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     AllowedXMedicationRequestSubstitution? allowedX,
     CodeableConcept? reason,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

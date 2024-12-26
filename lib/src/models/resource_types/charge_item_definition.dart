@@ -335,11 +335,11 @@ class ChargeItemDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ChargeItemDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -768,7 +768,7 @@ class ChargeItemDefinition extends DomainResource {
     List<Reference>? instance,
     List<ChargeItemDefinitionApplicability>? applicability,
     List<ChargeItemDefinitionPropertyGroup>? propertyGroup,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1054,11 +1054,11 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ChargeItemDefinitionApplicability.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1194,7 +1194,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     FhirString? description,
     FhirString? language,
     FhirString? expression,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1351,11 +1351,11 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ChargeItemDefinitionPropertyGroup.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1480,7 +1480,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<ChargeItemDefinitionApplicability>? applicability,
     List<ChargeItemDefinitionPriceComponent>? priceComponent,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1646,11 +1646,11 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ChargeItemDefinitionPriceComponent.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1791,7 +1791,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     CodeableConcept? code,
     FhirDecimal? factor,
     Money? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

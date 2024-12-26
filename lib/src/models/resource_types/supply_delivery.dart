@@ -232,11 +232,11 @@ class SupplyDelivery extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SupplyDelivery.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -509,7 +509,7 @@ class SupplyDelivery extends DomainResource {
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -718,11 +718,11 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return SupplyDeliverySuppliedItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -851,7 +851,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
     ItemXSupplyDeliverySuppliedItem? itemX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

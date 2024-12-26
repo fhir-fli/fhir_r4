@@ -150,7 +150,7 @@ class OperationDefinition extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       kind: JsonParser.parsePrimitive<OperationKind>(
         json,
         'kind',

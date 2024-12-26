@@ -167,7 +167,7 @@ class MessageDefinition extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -179,7 +179,7 @@ class MessageDefinition extends CanonicalResource {
         'date',
         FhirDateTime.fromJson,
         '$objectPath.date',
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
@@ -336,11 +336,11 @@ class MessageDefinition extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MessageDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -720,7 +720,7 @@ class MessageDefinition extends CanonicalResource {
     MessageheaderResponseRequest? responseRequired,
     List<MessageDefinitionAllowedResponse>? allowedResponse,
     List<FhirCanonical>? graph,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1015,11 +1015,11 @@ class MessageDefinitionFocus extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MessageDefinitionFocus.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1161,7 +1161,7 @@ class MessageDefinitionFocus extends BackboneElement {
     FhirCanonical? profile,
     FhirUnsignedInt? min,
     FhirString? max,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1309,11 +1309,11 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MessageDefinitionAllowedResponse.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1432,7 +1432,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCanonical? message,
     FhirMarkdown? situation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

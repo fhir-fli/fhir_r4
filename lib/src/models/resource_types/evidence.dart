@@ -381,11 +381,11 @@ class Evidence extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Evidence.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -829,7 +829,7 @@ class Evidence extends DomainResource {
     CodeableConcept? studyType,
     List<EvidenceStatistic>? statistic,
     List<EvidenceCertainty>? certainty,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1158,11 +1158,11 @@ class EvidenceVariableDefinition extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceVariableDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1325,7 +1325,7 @@ class EvidenceVariableDefinition extends BackboneElement {
     Reference? observed,
     Reference? intended,
     CodeableConcept? directnessMatch,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1558,11 +1558,11 @@ class EvidenceStatistic extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceStatistic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1774,7 +1774,7 @@ class EvidenceStatistic extends BackboneElement {
     EvidenceSampleSize? sampleSize,
     List<EvidenceAttributeEstimate>? attributeEstimate,
     List<EvidenceModelCharacteristic>? modelCharacteristic,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1984,11 +1984,11 @@ class EvidenceSampleSize extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceSampleSize.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2141,7 +2141,7 @@ class EvidenceSampleSize extends BackboneElement {
     FhirUnsignedInt? numberOfStudies,
     FhirUnsignedInt? numberOfParticipants,
     FhirUnsignedInt? knownDataCount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2344,11 +2344,11 @@ class EvidenceAttributeEstimate extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceAttributeEstimate.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2525,7 +2525,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
     FhirDecimal? level,
     Range? range,
     List<EvidenceAttributeEstimate>? attributeEstimate,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2718,11 +2718,11 @@ class EvidenceModelCharacteristic extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceModelCharacteristic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2862,7 +2862,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
     Quantity? value,
     List<EvidenceModelCharacteristicVariable>? variable,
     List<EvidenceAttributeEstimate>? attributeEstimate,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3056,11 +3056,11 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceModelCharacteristicVariable.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3210,7 +3210,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     List<CodeableConcept>? valueCategory,
     List<Quantity>? valueQuantity,
     List<Range>? valueRange,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3414,11 +3414,11 @@ class EvidenceCertainty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return EvidenceCertainty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3581,7 +3581,7 @@ class EvidenceCertainty extends BackboneElement {
     CodeableConcept? rating,
     FhirString? rater,
     List<EvidenceCertainty>? subcomponent,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

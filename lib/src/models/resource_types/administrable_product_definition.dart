@@ -236,11 +236,11 @@ class AdministrableProductDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AdministrableProductDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -514,7 +514,7 @@ class AdministrableProductDefinition extends DomainResource {
     List<AdministrableProductDefinitionProperty>? property,
     List<AdministrableProductDefinitionRouteOfAdministration>?
         routeOfAdministration,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -738,11 +738,11 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionProperty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -890,7 +890,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     CodeableConcept? type,
     ValueXAdministrableProductDefinitionProperty? valueX,
     CodeableConcept? status,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1078,11 +1078,11 @@ class AdministrableProductDefinitionRouteOfAdministration
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionRouteOfAdministration.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1259,7 +1259,7 @@ class AdministrableProductDefinitionRouteOfAdministration
     Ratio? maxDosePerTreatmentPeriod,
     FhirDuration? maxTreatmentPeriod,
     List<AdministrableProductDefinitionTargetSpecies>? targetSpecies,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1430,11 +1430,11 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionTargetSpecies.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1553,7 +1553,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1706,11 +1706,11 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionWithdrawalPeriod.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1838,7 +1838,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     CodeableConcept? tissue,
     Quantity? value,
     FhirString? supportingInformation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

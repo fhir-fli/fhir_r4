@@ -106,7 +106,7 @@ class ExpressionLanguage extends FhirCode {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

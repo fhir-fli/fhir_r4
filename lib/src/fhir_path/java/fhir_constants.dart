@@ -53,7 +53,7 @@ class FHIRConstant extends FhirBase {
 
   @override
   FhirBase copyWith({
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

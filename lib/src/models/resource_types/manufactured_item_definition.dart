@@ -203,11 +203,11 @@ class ManufacturedItemDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ManufacturedItemDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -419,7 +419,7 @@ class ManufacturedItemDefinition extends DomainResource {
     List<Reference>? manufacturer,
     List<CodeableConcept>? ingredient,
     List<ManufacturedItemDefinitionProperty>? property,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -616,11 +616,11 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ManufacturedItemDefinitionProperty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -757,7 +757,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     ValueXManufacturedItemDefinitionProperty? valueX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

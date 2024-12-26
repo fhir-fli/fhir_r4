@@ -268,11 +268,11 @@ class PackagedProductDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -586,7 +586,7 @@ class PackagedProductDefinition extends DomainResource {
     FhirBoolean? copackagedIndicator,
     List<Reference>? manufacturer,
     PackagedProductDefinitionPackage? package,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -818,11 +818,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinitionLegalStatusOfSupply.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -944,7 +944,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     CodeableConcept? jurisdiction,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1189,11 +1189,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinitionPackage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1407,7 +1407,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     List<PackagedProductDefinitionProperty>? property,
     List<PackagedProductDefinitionContainedItem>? containedItem,
     List<PackagedProductDefinitionPackage>? package,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1628,11 +1628,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinitionShelfLifeStorage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1782,7 +1782,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     CodeableConcept? type,
     PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
     List<CodeableConcept>? specialPrecautionsForStorage,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1935,11 +1935,11 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinitionProperty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2076,7 +2076,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     ValueXPackagedProductDefinitionProperty? valueX,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2215,11 +2215,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return PackagedProductDefinitionContainedItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2343,7 +2343,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableReference? item,
     Quantity? amount,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

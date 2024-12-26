@@ -239,11 +239,11 @@ class ObservationDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ObservationDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -526,7 +526,7 @@ class ObservationDefinition extends DomainResource {
     Reference? normalCodedValueSet,
     Reference? abnormalCodedValueSet,
     Reference? criticalCodedValueSet,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -755,11 +755,11 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ObservationDefinitionQuantitativeDetails.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -905,7 +905,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     CodeableConcept? unit,
     FhirDecimal? conversionFactor,
     FhirInteger? decimalPrecision,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1101,11 +1101,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ObservationDefinitionQualifiedInterval.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1296,7 +1296,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     Range? age,
     Range? gestationalAge,
     FhirString? condition,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

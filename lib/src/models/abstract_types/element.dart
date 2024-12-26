@@ -21,18 +21,18 @@ class Element extends FhirBase {
   /// a [Element]
   factory Element.fromYaml(dynamic yaml) => yaml is String
       ? Element.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         )
       : yaml is YamlMap
           ? Element.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
               'Element cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
   /// FromJson Factory Constructor for [Element]
-  factory Element.fromJson(Map<String, Object?> json) {
+  factory Element.fromJson(Map<String, dynamic> json) {
     return Element(
       id: (json['id'] as String?)?.toFhirString,
       extension_: json['extension'] == null
@@ -40,7 +40,7 @@ class Element extends FhirBase {
           : List<FhirExtension>.from(
               (json['extension']! as List<dynamic>).map(
                 (dynamic e) =>
-                    FhirExtension.fromJson(e as Map<String, Object?>),
+                    FhirExtension.fromJson(e as Map<String, dynamic>),
               ),
             ),
     );
@@ -51,7 +51,7 @@ class Element extends FhirBase {
   /// to get data from a [String]
   factory Element.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return Element.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
@@ -78,7 +78,7 @@ class Element extends FhirBase {
   Element copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -235,7 +235,7 @@ class Element extends FhirBase {
   }
 
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;

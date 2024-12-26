@@ -150,7 +150,7 @@ class TerminologyCapabilities extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -162,7 +162,7 @@ class TerminologyCapabilities extends CanonicalResource {
         'date',
         FhirDateTime.fromJson,
         '$objectPath.date',
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
@@ -324,11 +324,11 @@ class TerminologyCapabilities extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilities.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -703,7 +703,7 @@ class TerminologyCapabilities extends CanonicalResource {
     TerminologyCapabilitiesValidateCode? validateCode,
     TerminologyCapabilitiesTranslation? translation,
     TerminologyCapabilitiesClosure? closure,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -964,11 +964,11 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesSoftware.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1085,7 +1085,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     FhirString? version,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1226,11 +1226,11 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesImplementation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1348,7 +1348,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? description,
     FhirUrl? url,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1502,11 +1502,11 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesCodeSystem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1637,7 +1637,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     FhirCanonical? uri,
     List<TerminologyCapabilitiesVersion>? version,
     FhirBoolean? subsumption,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1819,11 +1819,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesVersion.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1987,7 +1987,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     List<FhirCode>? language,
     List<TerminologyCapabilitiesFilter>? filter,
     List<FhirCode>? property,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2154,11 +2154,11 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesFilter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2273,7 +2273,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
     List<FhirCode>? op,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2444,11 +2444,11 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesExpansion.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2600,7 +2600,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     FhirBoolean? incomplete,
     List<TerminologyCapabilitiesParameter>? parameter,
     FhirMarkdown? textFilter,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2755,11 +2755,11 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesParameter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2876,7 +2876,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCode? name,
     FhirString? documentation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3010,11 +3010,11 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesValidateCode.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3120,7 +3120,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? translations,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3249,11 +3249,11 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesTranslation.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3359,7 +3359,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? needsMap,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3487,11 +3487,11 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return TerminologyCapabilitiesClosure.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3599,7 +3599,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? translation,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

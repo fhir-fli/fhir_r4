@@ -18,7 +18,7 @@ abstract class DataType extends Element {
   });
 
   /// FromJson Factory Constructor for [DataType]
-  factory DataType.fromJson(Map<String, Object?> json) {
+  factory DataType.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('DataType.fromJson $json');
   }
 
@@ -26,7 +26,7 @@ abstract class DataType extends Element {
   String get fhirType => 'DataType';
 
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
@@ -42,11 +42,11 @@ abstract class DataType extends Element {
   /// a [DataType]
   static DataType fromYaml(dynamic yaml) => yaml is String
       ? DataType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         )
       : yaml is YamlMap
           ? DataType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
               'DataType cannot be constructed from input provided,'
@@ -56,7 +56,7 @@ abstract class DataType extends Element {
   DataType copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

@@ -392,11 +392,11 @@ class HealthcareService extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return HealthcareService.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -817,7 +817,7 @@ class HealthcareService extends DomainResource {
     List<HealthcareServiceNotAvailable>? notAvailable,
     FhirString? availabilityExceptions,
     List<Reference>? endpoint,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1125,11 +1125,11 @@ class HealthcareServiceEligibility extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return HealthcareServiceEligibility.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1248,7 +1248,7 @@ class HealthcareServiceEligibility extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     FhirMarkdown? comment,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1401,11 +1401,11 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return HealthcareServiceAvailableTime.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1550,7 +1550,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     FhirBoolean? allDay,
     FhirTime? availableStartTime,
     FhirTime? availableEndTime,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1702,11 +1702,11 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return HealthcareServiceNotAvailable.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1825,7 +1825,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? description,
     Period? during,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

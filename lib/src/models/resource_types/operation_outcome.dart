@@ -142,11 +142,11 @@ class OperationOutcome extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationOutcome.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -289,7 +289,7 @@ class OperationOutcome extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<OperationOutcomeIssue>? issue,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -473,11 +473,11 @@ class OperationOutcomeIssue extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationOutcomeIssue.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -651,7 +651,7 @@ class OperationOutcomeIssue extends BackboneElement {
     FhirString? diagnostics,
     List<FhirString>? location,
     List<FhirString>? expression,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

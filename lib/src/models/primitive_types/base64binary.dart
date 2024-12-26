@@ -50,11 +50,11 @@ class FhirBase64Binary extends PrimitiveType<String?>
   /// Factory constructor to create from YAML
   static FhirBase64Binary fromYaml(dynamic yaml) => yaml is String
       ? FhirBase64Binary.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         )
       : yaml is YamlMap
           ? FhirBase64Binary.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
               'FhirBase64Binary cannot be constructed from the provided input,'
@@ -198,7 +198,7 @@ class FhirBase64Binary extends PrimitiveType<String?>
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

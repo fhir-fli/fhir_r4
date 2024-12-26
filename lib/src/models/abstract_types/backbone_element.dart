@@ -19,7 +19,7 @@ abstract class BackboneElement extends DataType {
   });
 
   /// FromJson Factory Constructor for [BackboneElement]
-  factory BackboneElement.fromJson(Map<String, Object?> json) {
+  factory BackboneElement.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('BackboneElement.fromJson $json');
   }
 
@@ -75,7 +75,7 @@ abstract class BackboneElement extends DataType {
   }
 
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
@@ -94,11 +94,11 @@ abstract class BackboneElement extends DataType {
   /// Factory constructor for [BackboneElement] that takes in a [dynamic]
   static BackboneElement fromYaml(dynamic yaml) => yaml is String
       ? BackboneElement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         )
       : yaml is YamlMap
           ? BackboneElement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
               'BackboneElement cannot be constructed from input provided,'
@@ -109,7 +109,7 @@ abstract class BackboneElement extends DataType {
   /// to get data from a [String]
   static BackboneElement fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return BackboneElement.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
@@ -122,7 +122,7 @@ abstract class BackboneElement extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

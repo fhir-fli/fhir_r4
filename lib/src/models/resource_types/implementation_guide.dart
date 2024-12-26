@@ -123,7 +123,7 @@ class ImplementationGuide extends CanonicalResource {
         'url',
         FhirUri.fromJson,
         '$objectPath.url',
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
@@ -147,7 +147,7 @@ class ImplementationGuide extends CanonicalResource {
         'status',
         PublicationStatus.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
@@ -302,11 +302,11 @@ class ImplementationGuide extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuide.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -629,7 +629,7 @@ class ImplementationGuide extends CanonicalResource {
     List<ImplementationGuideGlobal>? global,
     ImplementationGuideDefinition? definition,
     ImplementationGuideManifest? manifest,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -889,11 +889,11 @@ class ImplementationGuideDependsOn extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideDependsOn.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1023,7 +1023,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
     FhirCanonical? uri,
     FhirId? packageId,
     FhirString? version,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1167,11 +1167,11 @@ class ImplementationGuideGlobal extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideGlobal.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1286,7 +1286,7 @@ class ImplementationGuideGlobal extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCode? type,
     FhirCanonical? profile,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1471,11 +1471,11 @@ class ImplementationGuideDefinition extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1630,7 +1630,7 @@ class ImplementationGuideDefinition extends BackboneElement {
     ImplementationGuidePage? page,
     List<ImplementationGuideParameter>? parameter,
     List<ImplementationGuideTemplate>? template,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1798,11 +1798,11 @@ class ImplementationGuideGrouping extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideGrouping.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1920,7 +1920,7 @@ class ImplementationGuideGrouping extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     FhirString? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2093,11 +2093,11 @@ class ImplementationGuideResource extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideResource.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2273,7 +2273,7 @@ class ImplementationGuideResource extends BackboneElement {
     FhirString? description,
     ExampleXImplementationGuideResource? exampleX,
     FhirId? groupingId,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2455,11 +2455,11 @@ class ImplementationGuidePage extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuidePage.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2603,7 +2603,7 @@ class ImplementationGuidePage extends BackboneElement {
     FhirString? title,
     GuidePageGeneration? generation,
     List<ImplementationGuidePage>? page,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2754,11 +2754,11 @@ class ImplementationGuideParameter extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideParameter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2875,7 +2875,7 @@ class ImplementationGuideParameter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     GuideParameterCode? code,
     FhirString? value,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3021,11 +3021,11 @@ class ImplementationGuideTemplate extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideTemplate.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3151,7 +3151,7 @@ class ImplementationGuideTemplate extends BackboneElement {
     FhirCode? code,
     FhirString? source,
     FhirString? scope,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3259,8 +3259,8 @@ class ImplementationGuideManifest extends BackboneElement {
         '$objectPath.rendering',
       ),
       resource: (json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>(
-            (v) => ImplementationGuideResource.fromJson(
+          .map<ImplementationGuideResource1>(
+            (v) => ImplementationGuideResource1.fromJson(
               (v as Map<String, dynamic>)
                 ..addAll(
                   {
@@ -3271,8 +3271,8 @@ class ImplementationGuideManifest extends BackboneElement {
           )
           .toList(),
       page: (json['page'] as List<dynamic>?)
-          ?.map<ImplementationGuidePage>(
-            (v) => ImplementationGuidePage.fromJson(
+          ?.map<ImplementationGuidePage1>(
+            (v) => ImplementationGuidePage1.fromJson(
               (v as Map<String, dynamic>)
                 ..addAll(
                   {
@@ -3328,11 +3328,11 @@ class ImplementationGuideManifest extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideManifest.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3349,11 +3349,11 @@ class ImplementationGuideManifest extends BackboneElement {
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource> resource;
+  final List<ImplementationGuideResource1> resource;
 
   /// [page]
   /// Information about a page within the IG.
-  final List<ImplementationGuidePage>? page;
+  final List<ImplementationGuidePage1>? page;
 
   /// [image]
   /// Indicates a relative path to an image that exists within the IG.
@@ -3484,11 +3484,11 @@ class ImplementationGuideManifest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? rendering,
-    List<ImplementationGuideResource>? resource,
-    List<ImplementationGuidePage>? page,
+    List<ImplementationGuideResource1>? resource,
+    List<ImplementationGuidePage1>? page,
     List<FhirString>? image,
     List<FhirString>? other,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3668,11 +3668,11 @@ class ImplementationGuideResource1 extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuideResource1.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3810,7 +3810,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     Reference? reference,
     ExampleXImplementationGuideResource1? exampleX,
     FhirUrl? relativePath,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3960,11 +3960,11 @@ class ImplementationGuidePage1 extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ImplementationGuidePage1.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -4092,7 +4092,7 @@ class ImplementationGuidePage1 extends BackboneElement {
     FhirString? name,
     FhirString? title,
     List<FhirString>? anchor,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

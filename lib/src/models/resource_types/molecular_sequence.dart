@@ -276,11 +276,11 @@ class MolecularSequence extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequence.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -601,7 +601,7 @@ class MolecularSequence extends DomainResource {
     List<MolecularSequenceRepository>? repository,
     List<Reference>? pointer,
     List<MolecularSequenceStructureVariant>? structureVariant,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -886,11 +886,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceReferenceSeq.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1104,7 +1104,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     StrandType? strand,
     FhirInteger? windowStart,
     FhirInteger? windowEnd,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1303,11 +1303,11 @@ class MolecularSequenceVariant extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceVariant.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1489,7 +1489,7 @@ class MolecularSequenceVariant extends BackboneElement {
     FhirString? referenceAllele,
     FhirString? cigar,
     Reference? variantPointer,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1737,11 +1737,11 @@ class MolecularSequenceQuality extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceQuality.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2023,7 +2023,7 @@ class MolecularSequenceQuality extends BackboneElement {
     FhirDecimal? recall,
     FhirDecimal? fScore,
     MolecularSequenceRoc? roc,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2250,11 +2250,11 @@ class MolecularSequenceRoc extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceRoc.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2435,7 +2435,7 @@ class MolecularSequenceRoc extends BackboneElement {
     List<FhirDecimal>? precision,
     List<FhirDecimal>? sensitivity,
     List<FhirDecimal>? fMeasure,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2651,11 +2651,11 @@ class MolecularSequenceRepository extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceRepository.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2823,7 +2823,7 @@ class MolecularSequenceRepository extends BackboneElement {
     FhirString? datasetId,
     FhirString? variantsetId,
     FhirString? readsetId,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2999,11 +2999,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceStructureVariant.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3156,7 +3156,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     FhirInteger? length,
     MolecularSequenceOuter? outer,
     MolecularSequenceInner? inner,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3307,11 +3307,11 @@ class MolecularSequenceOuter extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceOuter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3434,7 +3434,7 @@ class MolecularSequenceOuter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? start,
     FhirInteger? end,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -3573,11 +3573,11 @@ class MolecularSequenceInner extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return MolecularSequenceInner.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -3700,7 +3700,7 @@ class MolecularSequenceInner extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? start,
     FhirInteger? end,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

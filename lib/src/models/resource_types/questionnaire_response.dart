@@ -225,11 +225,11 @@ class QuestionnaireResponse extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return QuestionnaireResponse.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -494,7 +494,7 @@ class QuestionnaireResponse extends DomainResource {
     Reference? author,
     Reference? source,
     List<QuestionnaireResponseItem>? item,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -731,11 +731,11 @@ class QuestionnaireResponseItem extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return QuestionnaireResponseItem.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -888,7 +888,7 @@ class QuestionnaireResponseItem extends BackboneElement {
     FhirString? text,
     List<QuestionnaireResponseAnswer>? answer,
     List<QuestionnaireResponseItem>? item,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1065,11 +1065,11 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return QuestionnaireResponseAnswer.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1237,7 +1237,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     ValueXQuestionnaireResponseAnswer? valueX,
     List<QuestionnaireResponseItem>? item,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

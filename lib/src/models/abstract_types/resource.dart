@@ -20,8 +20,8 @@ abstract class Resource extends FhirBase {
   });
 
   /// Acts like a constructor, returns a [Resource], accepts a
-  /// [Map<String, Object?>] as an argument
-  factory Resource.fromJson(Map<String, Object?> json) =>
+  /// [Map<String, dynamic>] as an argument
+  factory Resource.fromJson(Map<String, dynamic> json) =>
       resourceFromJson(json);
 
   @override
@@ -53,7 +53,7 @@ abstract class Resource extends FhirBase {
   /// [String] as an argument, mostly because I got tired of typing it out
   static T fromJsonString<T extends Resource>(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return resourceFromJson(json) as T;
     } else {
       throw FormatException('FormatException:\nYou passed $json\n'
@@ -64,19 +64,19 @@ abstract class Resource extends FhirBase {
   /// Returns a Resource, accepts a [String] in YAML format as an argument
   static T fromYaml<T extends Resource>(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         ) as T
       : yaml is YamlMap
           ? Resource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             ) as T
           : throw ArgumentError(
               'Resource cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// Returns a [Map<String, Object?>] of the [Resource]
+  /// Returns a [Map<String, dynamic>] of the [Resource]
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final val = <String, Object?>{};
 
     void writeNotNull(String key, dynamic value) {
@@ -130,7 +130,7 @@ abstract class Resource extends FhirBase {
     FhirMeta? meta,
     FhirUri? implicitRules,
     CommonLanguages? language,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

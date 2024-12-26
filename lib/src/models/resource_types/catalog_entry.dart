@@ -258,11 +258,11 @@ class CatalogEntry extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CatalogEntry.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -538,7 +538,7 @@ class CatalogEntry extends DomainResource {
     List<CodeableConcept>? additionalCharacteristic,
     List<CodeableConcept>? additionalClassification,
     List<CatalogEntryRelatedEntry>? relatedEntry,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -762,11 +762,11 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return CatalogEntryRelatedEntry.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -882,7 +882,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CatalogEntryRelationType? relationtype,
     Reference? item,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

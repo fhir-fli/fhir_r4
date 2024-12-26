@@ -428,11 +428,11 @@ class ResearchElementDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ResearchElementDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -993,7 +993,7 @@ class ResearchElementDefinition extends DomainResource {
     ResearchElementType? type,
     VariableType? variableType,
     List<ResearchElementDefinitionCharacteristic>? characteristic,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1416,11 +1416,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return ResearchElementDefinitionCharacteristic.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1529,17 +1529,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
+        'participantEffectiveDescription', participantEffectiveDescription,);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX);
+          participantEffectiveX,);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
     return json;
   }
 
@@ -1708,7 +1708,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         participantEffectiveX,
     FhirDuration? participantEffectiveTimeFromStart,
     GroupMeasure? participantEffectiveGroupMeasure,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

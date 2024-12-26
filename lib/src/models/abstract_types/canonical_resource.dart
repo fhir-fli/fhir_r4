@@ -34,8 +34,8 @@ abstract class CanonicalResource extends DomainResource {
   });
 
   /// Factory constructor for [CanonicalResource] that takes in a
-  /// [Map<String, Object?>] and returns a [CanonicalResource]
-  factory CanonicalResource.fromJson(Map<String, Object?> json) =>
+  /// [Map<String, dynamic>] and returns a [CanonicalResource]
+  factory CanonicalResource.fromJson(Map<String, dynamic> json) =>
       DomainResource.fromJson(json) as CanonicalResource;
 
   @override
@@ -72,9 +72,9 @@ abstract class CanonicalResource extends DomainResource {
   /// to be used.
   final List<CodeableConcept>? jurisdiction;
 
-  /// Converts a [CanonicalResource] into a [Map<String, Object?>].
+  /// Converts a [CanonicalResource] into a [Map<String, dynamic>].
   @override
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     final val = super.toJson();
 
     void writeNotNull(String key, dynamic value) {
@@ -99,11 +99,11 @@ abstract class CanonicalResource extends DomainResource {
   /// Factory constructor for [CanonicalResource] that takes in a [YamlMap].
   static CanonicalResource fromYaml(dynamic yaml) => yaml is String
       ? DomainResource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
         ) as CanonicalResource
       : yaml is YamlMap
           ? DomainResource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             ) as CanonicalResource
           : throw ArgumentError(
               'CanonicalResource cannot be constructed from input provided,'
@@ -112,7 +112,7 @@ abstract class CanonicalResource extends DomainResource {
   /// Factory constructor for [CanonicalResource] from a JSON-encoded string.
   static CanonicalResource fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DomainResource.fromJson(json) as CanonicalResource;
     } else {
       throw FormatException('FormatException: You passed $json '
@@ -147,7 +147,7 @@ abstract class CanonicalResource extends DomainResource {
     FhirMarkdown? description,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,

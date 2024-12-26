@@ -14,7 +14,7 @@ List<StructureDefinition> getStructureDefinitions() {
   return sds;
 }
 
-final patient = Patient.fromJson({
+final patient = Patient.fromJson(<String, dynamic>{
   'resourceType': 'Patient',
   'id': 'example',
   'text': {

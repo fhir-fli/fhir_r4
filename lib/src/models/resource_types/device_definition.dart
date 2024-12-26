@@ -357,11 +357,11 @@ class DeviceDefinition extends DomainResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -757,7 +757,7 @@ class DeviceDefinition extends DomainResource {
     Quantity? quantity,
     Reference? parentDevice,
     List<DeviceDefinitionMaterial>? material,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1054,11 +1054,11 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionUdiDeviceIdentifier.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1184,7 +1184,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     FhirString? deviceIdentifier,
     FhirUri? issuer,
     FhirUri? jurisdiction,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1327,11 +1327,11 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionDeviceName.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1448,7 +1448,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     DeviceNameType? type,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1589,11 +1589,11 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionSpecialization.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1710,7 +1710,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? systemType,
     FhirString? version,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1855,11 +1855,11 @@ class DeviceDefinitionCapability extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionCapability.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1976,7 +1976,7 @@ class DeviceDefinitionCapability extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     List<CodeableConcept>? description,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2139,11 +2139,11 @@ class DeviceDefinitionProperty extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionProperty.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2272,7 +2272,7 @@ class DeviceDefinitionProperty extends BackboneElement {
     CodeableConcept? type,
     List<Quantity>? valueQuantity,
     List<CodeableConcept>? valueCode,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -2430,11 +2430,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return DeviceDefinitionMaterial.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2562,7 +2562,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
     CodeableConcept? substance,
     FhirBoolean? alternate,
     FhirBoolean? allergenicIndicator,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
