@@ -86,48 +86,40 @@ class Encounter extends DomainResource {
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contained',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contained',
+              },
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.identifier',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.identifier',
+              },
             ),
           )
           .toList(),
@@ -140,12 +132,10 @@ class Encounter extends DomainResource {
       statusHistory: (json['statusHistory'] as List<dynamic>?)
           ?.map<EncounterStatusHistory>(
             (v) => EncounterStatusHistory.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.statusHistory',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.statusHistory',
+              },
             ),
           )
           .toList(),
@@ -158,24 +148,20 @@ class Encounter extends DomainResource {
       classHistory: (json['classHistory'] as List<dynamic>?)
           ?.map<EncounterClassHistory>(
             (v) => EncounterClassHistory.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.classHistory',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.classHistory',
+              },
             ),
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.type',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.type',
+              },
             ),
           )
           .toList(),
@@ -200,48 +186,40 @@ class Encounter extends DomainResource {
       episodeOfCare: (json['episodeOfCare'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.episodeOfCare',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.episodeOfCare',
+              },
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.basedOn',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.basedOn',
+              },
             ),
           )
           .toList(),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<EncounterParticipant>(
             (v) => EncounterParticipant.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.participant',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.participant',
+              },
             ),
           )
           .toList(),
       appointment: (json['appointment'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.appointment',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.appointment',
+              },
             ),
           )
           .toList(),
@@ -260,48 +238,40 @@ class Encounter extends DomainResource {
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.reasonCode',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.reasonCode',
+              },
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.reasonReference',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.reasonReference',
+              },
             ),
           )
           .toList(),
       diagnosis: (json['diagnosis'] as List<dynamic>?)
           ?.map<EncounterDiagnosis>(
             (v) => EncounterDiagnosis.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.diagnosis',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.diagnosis',
+              },
             ),
           )
           .toList(),
       account: (json['account'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.account',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.account',
+              },
             ),
           )
           .toList(),
@@ -314,12 +284,10 @@ class Encounter extends DomainResource {
       location: (json['location'] as List<dynamic>?)
           ?.map<EncounterLocation>(
             (v) => EncounterLocation.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.location',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.location',
+              },
             ),
           )
           .toList(),
@@ -1011,24 +979,20 @@ class EncounterStatusHistory extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1276,24 +1240,20 @@ class EncounterClassHistory extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1535,36 +1495,30 @@ class EncounterParticipant extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.type',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.type',
+              },
             ),
           )
           .toList(),
@@ -1831,24 +1785,20 @@ class EncounterDiagnosis extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -2123,24 +2073,20 @@ class EncounterHospitalization extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -2171,36 +2117,30 @@ class EncounterHospitalization extends BackboneElement {
       dietPreference: (json['dietPreference'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.dietPreference',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.dietPreference',
+              },
             ),
           )
           .toList(),
       specialCourtesy: (json['specialCourtesy'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.specialCourtesy',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.specialCourtesy',
+              },
             ),
           )
           .toList(),
       specialArrangement: (json['specialArrangement'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.specialArrangement',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.specialArrangement',
+              },
             ),
           )
           .toList(),
@@ -2565,24 +2505,20 @@ class EncounterLocation extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),

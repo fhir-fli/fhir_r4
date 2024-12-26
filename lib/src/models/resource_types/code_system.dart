@@ -89,36 +89,30 @@ class CodeSystem extends CanonicalResource {
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contained',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contained',
+              },
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -131,12 +125,10 @@ class CodeSystem extends CanonicalResource {
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.identifier',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.identifier',
+              },
             ),
           )
           .toList(),
@@ -185,12 +177,10 @@ class CodeSystem extends CanonicalResource {
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contact',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contact',
+              },
             ),
           )
           .toList(),
@@ -203,24 +193,20 @@ class CodeSystem extends CanonicalResource {
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.useContext',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.useContext',
+              },
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.jurisdiction',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.jurisdiction',
+              },
             ),
           )
           .toList(),
@@ -287,36 +273,30 @@ class CodeSystem extends CanonicalResource {
       filter: (json['filter'] as List<dynamic>?)
           ?.map<CodeSystemFilter>(
             (v) => CodeSystemFilter.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.filter',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.filter',
+              },
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<CodeSystemProperty>(
             (v) => CodeSystemProperty.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.property',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.property',
+              },
             ),
           )
           .toList(),
       concept: (json['concept'] as List<dynamic>?)
           ?.map<CodeSystemConcept>(
             (v) => CodeSystemConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.concept',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.concept',
+              },
             ),
           )
           .toList(),
@@ -970,24 +950,20 @@ class CodeSystemFilter extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1276,24 +1252,20 @@ class CodeSystemProperty extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1589,24 +1561,20 @@ class CodeSystemConcept extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1631,36 +1599,30 @@ class CodeSystemConcept extends BackboneElement {
       designation: (json['designation'] as List<dynamic>?)
           ?.map<CodeSystemDesignation>(
             (v) => CodeSystemDesignation.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.designation',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.designation',
+              },
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<CodeSystemProperty1>(
             (v) => CodeSystemProperty1.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.property',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.property',
+              },
             ),
           )
           .toList(),
       concept: (json['concept'] as List<dynamic>?)
           ?.map<CodeSystemConcept>(
             (v) => CodeSystemConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.concept',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.concept',
+              },
             ),
           )
           .toList(),
@@ -1973,24 +1935,20 @@ class CodeSystemDesignation extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -2254,24 +2212,20 @@ class CodeSystemProperty1 extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),

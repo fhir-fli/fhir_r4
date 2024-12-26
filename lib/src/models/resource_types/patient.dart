@@ -78,48 +78,40 @@ class Patient extends DomainResource {
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contained',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contained',
+              },
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.identifier',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.identifier',
+              },
             ),
           )
           .toList(),
@@ -132,24 +124,20 @@ class Patient extends DomainResource {
       name: (json['name'] as List<dynamic>?)
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.name',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.name',
+              },
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.telecom',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.telecom',
+              },
             ),
           )
           .toList(),
@@ -176,12 +164,10 @@ class Patient extends DomainResource {
       address: (json['address'] as List<dynamic>?)
           ?.map<Address>(
             (v) => Address.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.address',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.address',
+              },
             ),
           )
           .toList(),
@@ -202,48 +188,40 @@ class Patient extends DomainResource {
       photo: (json['photo'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.photo',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.photo',
+              },
             ),
           )
           .toList(),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<PatientContact>(
             (v) => PatientContact.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contact',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contact',
+              },
             ),
           )
           .toList(),
       communication: (json['communication'] as List<dynamic>?)
           ?.map<PatientCommunication>(
             (v) => PatientCommunication.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.communication',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.communication',
+              },
             ),
           )
           .toList(),
       generalPractitioner: (json['generalPractitioner'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.generalPractitioner',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.generalPractitioner',
+              },
             ),
           )
           .toList(),
@@ -256,12 +234,10 @@ class Patient extends DomainResource {
       link: (json['link'] as List<dynamic>?)
           ?.map<PatientLink>(
             (v) => PatientLink.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.link',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.link',
+              },
             ),
           )
           .toList(),
@@ -825,36 +801,30 @@ class PatientContact extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
       relationship: (json['relationship'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.relationship',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.relationship',
+              },
             ),
           )
           .toList(),
@@ -867,12 +837,10 @@ class PatientContact extends BackboneElement {
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.telecom',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.telecom',
+              },
             ),
           )
           .toList(),
@@ -1218,24 +1186,20 @@ class PatientCommunication extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1482,24 +1446,20 @@ class PatientLink extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),

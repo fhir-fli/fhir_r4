@@ -96,36 +96,30 @@ class PlanDefinition extends CanonicalResource {
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contained',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contained',
+              },
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -138,12 +132,10 @@ class PlanDefinition extends CanonicalResource {
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.identifier',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.identifier',
+              },
             ),
           )
           .toList(),
@@ -213,12 +205,10 @@ class PlanDefinition extends CanonicalResource {
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contact',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contact',
+              },
             ),
           )
           .toList(),
@@ -231,24 +221,20 @@ class PlanDefinition extends CanonicalResource {
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.useContext',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.useContext',
+              },
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.jurisdiction',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.jurisdiction',
+              },
             ),
           )
           .toList(),
@@ -291,72 +277,60 @@ class PlanDefinition extends CanonicalResource {
       topic: (json['topic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.topic',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.topic',
+              },
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.author',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.author',
+              },
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.editor',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.editor',
+              },
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.reviewer',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.reviewer',
+              },
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.endorser',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.endorser',
+              },
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.relatedArtifact',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.relatedArtifact',
+              },
             ),
           )
           .toList(),
@@ -369,24 +343,20 @@ class PlanDefinition extends CanonicalResource {
       goal: (json['goal'] as List<dynamic>?)
           ?.map<PlanDefinitionGoal>(
             (v) => PlanDefinitionGoal.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.goal',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.goal',
+              },
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
           ?.map<PlanDefinitionAction>(
             (v) => PlanDefinitionAction.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.action',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.action',
+              },
             ),
           )
           .toList(),
@@ -1176,24 +1146,20 @@ class PlanDefinitionGoal extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1224,36 +1190,30 @@ class PlanDefinitionGoal extends BackboneElement {
       addresses: (json['addresses'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.addresses',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.addresses',
+              },
             ),
           )
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.documentation',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.documentation',
+              },
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
           ?.map<PlanDefinitionTarget>(
             (v) => PlanDefinitionTarget.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.target',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.target',
+              },
             ),
           )
           .toList(),
@@ -1579,24 +1539,20 @@ class PlanDefinitionTarget extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1914,24 +1870,20 @@ class PlanDefinitionAction extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1968,36 +1920,30 @@ class PlanDefinitionAction extends BackboneElement {
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.code',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.code',
+              },
             ),
           )
           .toList(),
       reason: (json['reason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.reason',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.reason',
+              },
             ),
           )
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.documentation',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.documentation',
+              },
             ),
           )
           .toList(),
@@ -2019,60 +1965,50 @@ class PlanDefinitionAction extends BackboneElement {
       trigger: (json['trigger'] as List<dynamic>?)
           ?.map<TriggerDefinition>(
             (v) => TriggerDefinition.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.trigger',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.trigger',
+              },
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<PlanDefinitionCondition>(
             (v) => PlanDefinitionCondition.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.condition',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.condition',
+              },
             ),
           )
           .toList(),
       input: (json['input'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.input',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.input',
+              },
             ),
           )
           .toList(),
       output: (json['output'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.output',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.output',
+              },
             ),
           )
           .toList(),
       relatedAction: (json['relatedAction'] as List<dynamic>?)
           ?.map<PlanDefinitionRelatedAction>(
             (v) => PlanDefinitionRelatedAction.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.relatedAction',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.relatedAction',
+              },
             ),
           )
           .toList(),
@@ -2091,12 +2027,10 @@ class PlanDefinitionAction extends BackboneElement {
       participant: (json['participant'] as List<dynamic>?)
           ?.map<PlanDefinitionParticipant>(
             (v) => PlanDefinitionParticipant.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.participant',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.participant',
+              },
             ),
           )
           .toList(),
@@ -2153,24 +2087,20 @@ class PlanDefinitionAction extends BackboneElement {
       dynamicValue: (json['dynamicValue'] as List<dynamic>?)
           ?.map<PlanDefinitionDynamicValue>(
             (v) => PlanDefinitionDynamicValue.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.dynamicValue',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.dynamicValue',
+              },
             ),
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
           ?.map<PlanDefinitionAction>(
             (v) => PlanDefinitionAction.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.action',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.action',
+              },
             ),
           )
           .toList(),
@@ -2906,24 +2836,20 @@ class PlanDefinitionCondition extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -3169,24 +3095,20 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -3459,24 +3381,20 @@ class PlanDefinitionParticipant extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -3724,24 +3642,20 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),

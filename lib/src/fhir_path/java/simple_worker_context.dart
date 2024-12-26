@@ -12,7 +12,6 @@ class SimpleWorkerContext extends IWorkerContext {
 
   @override
   List<StructureDefinition> getStructures() {
-    print('SDs ${_structures.keys.toList()}');
     return _structures.values.toList();
   }
 

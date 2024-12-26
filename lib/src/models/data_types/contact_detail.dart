@@ -42,12 +42,10 @@ class ContactDetail extends DataType
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
@@ -60,12 +58,10 @@ class ContactDetail extends DataType
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.telecom',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.telecom',
+              },
             ),
           )
           .toList(),

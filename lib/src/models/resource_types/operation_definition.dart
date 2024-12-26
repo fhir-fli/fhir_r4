@@ -88,36 +88,30 @@ class OperationDefinition extends CanonicalResource {
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contained',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contained',
+              },
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -178,12 +172,10 @@ class OperationDefinition extends CanonicalResource {
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.contact',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.contact',
+              },
             ),
           )
           .toList(),
@@ -196,24 +188,20 @@ class OperationDefinition extends CanonicalResource {
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.useContext',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.useContext',
+              },
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.jurisdiction',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.jurisdiction',
+              },
             ),
           )
           .toList(),
@@ -286,24 +274,20 @@ class OperationDefinition extends CanonicalResource {
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<OperationDefinitionParameter>(
             (v) => OperationDefinitionParameter.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.parameter',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.parameter',
+              },
             ),
           )
           .toList(),
       overload: (json['overload'] as List<dynamic>?)
           ?.map<OperationDefinitionOverload>(
             (v) => OperationDefinitionOverload.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.overload',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.overload',
+              },
             ),
           )
           .toList(),
@@ -341,11 +325,11 @@ class OperationDefinition extends CanonicalResource {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationDefinition.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -728,7 +712,7 @@ class OperationDefinition extends CanonicalResource {
     FhirCanonical? outputProfile,
     List<OperationDefinitionParameter>? parameter,
     List<OperationDefinitionOverload>? overload,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -945,24 +929,20 @@ class OperationDefinitionParameter extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1023,24 +1003,20 @@ class OperationDefinitionParameter extends BackboneElement {
       referencedFrom: (json['referencedFrom'] as List<dynamic>?)
           ?.map<OperationDefinitionReferencedFrom>(
             (v) => OperationDefinitionReferencedFrom.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.referencedFrom',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.referencedFrom',
+              },
             ),
           )
           .toList(),
       part_: (json['part'] as List<dynamic>?)
           ?.map<OperationDefinitionParameter>(
             (v) => OperationDefinitionParameter.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.part',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.part',
+              },
             ),
           )
           .toList(),
@@ -1078,11 +1054,11 @@ class OperationDefinitionParameter extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationDefinitionParameter.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1304,7 +1280,7 @@ class OperationDefinitionParameter extends BackboneElement {
     OperationDefinitionBinding? binding,
     List<OperationDefinitionReferencedFrom>? referencedFrom,
     List<OperationDefinitionParameter>? part_,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1425,24 +1401,20 @@ class OperationDefinitionBinding extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1492,11 +1464,11 @@ class OperationDefinitionBinding extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationDefinitionBinding.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1614,7 +1586,7 @@ class OperationDefinitionBinding extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     BindingStrength? strength,
     FhirCanonical? valueSet,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1687,24 +1659,20 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -1754,11 +1722,11 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationDefinitionReferencedFrom.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -1878,7 +1846,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? source,
     FhirString? sourceId,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
@@ -1952,24 +1920,20 @@ class OperationDefinitionOverload extends BackboneElement {
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.extension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              (v as Map<String, dynamic>)
-                ..addAll(
-                  {
-                    'objectPath': '$objectPath.modifierExtension',
-                  },
-                ),
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.modifierExtension',
+              },
             ),
           )
           .toList(),
@@ -2019,11 +1983,11 @@ class OperationDefinitionOverload extends BackboneElement {
     String source,
   ) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, dynamic>) {
       return OperationDefinitionOverload.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
+          'This does not properly decode to a Map<String, dynamic>.');
     }
   }
 
@@ -2142,7 +2106,7 @@ class OperationDefinitionOverload extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<FhirString>? parameterName,
     FhirString? comment,
-    Map<String, Object?>? userData,
+    Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
