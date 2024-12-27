@@ -103,6 +103,7 @@ class FhirDateTime extends FhirDateTimeBase
 
   /// Constructor from base units, required by [FhirDateTimeBase].
   FhirDateTime.fromBase({
+    required super.value,
     required super.year,
     required super.month,
     required super.day,
@@ -277,7 +278,7 @@ class FhirDateTime extends FhirDateTimeBase
   /// Creates a modified copy with updated properties.
   @override
   FhirDateTime copyWith({
-    DateTime? newValue,
+    String? newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,

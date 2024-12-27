@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void instantTest() {
   final offset =
       DateTime(2020).timeZoneOffset.inHours.toDouble().timeZoneOffsetToString;
 
@@ -25,7 +25,7 @@ void main() {
   test('Valid FhirInstant String', () {
     final fhirInstant = FhirInstant.fromString('2023-12-22T12:34:56.789Z');
 
-    expect(fhirInstant.value, isA<DateTime>());
+    expect(fhirInstant.value, isA<String>());
     expect(fhirInstant.year, 2023);
     expect(fhirInstant.month, 12);
     expect(fhirInstant.day, 22);

@@ -1,10 +1,11 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
-abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
+abstract class FhirDateTimeBase extends PrimitiveType<String>
     implements Comparable<FhirDateTimeBase> {
   /// Constructor with validation logic
   FhirDateTimeBase({
+    String? value,
     required this.year,
     required this.isUtc,
     this.month,
@@ -20,7 +21,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'DateTimeBase',
-  }) : super(null) {
+  }) : super(value) {
     _validateDateTimeComponents();
   }
 
@@ -58,9 +59,6 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   @override
   String get fhirType => 'dateTimeBase';
 
-  @override
-  DateTime? get value => valueDateTime;
-
   /// Returns the value as a [DateTime] object.
   DateTime? get valueDateTime => year == null
       ? null
@@ -97,24 +95,62 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   String? get primitiveValue => value?.toString();
 
   /// Formatting functions
-  String? get _formattedString {
+  String? get _formattedString => _buildString(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+        microsecond,
+        timeZoneOffset,
+        isUtc,
+      );
+
+  static String? _formattedStringFromMap(Map<String, dynamic> map) =>
+      _buildString(
+        map['year'] as num?,
+        map['month'] as num?,
+        map['day'] as num?,
+        map['hour'] as num?,
+        map['minute'] as num?,
+        map['second'] as num?,
+        map['millisecond'] as num?,
+        map['microsecond'] as String?,
+        map['timeZoneOffset'] as num?,
+        map['isUtc'] == 0,
+      );
+
+  static String? _buildString(
+    num? year,
+    num? month,
+    num? day,
+    num? hour,
+    num? minute,
+    num? second,
+    num? millisecond,
+    String? microsecond,
+    num? timeZoneOffset,
+    bool isUtc,
+  ) {
     if (year == null) {
       return null;
     }
     final buffer = StringBuffer('$year');
 
     if (month != null) {
-      buffer.write('-${month!.toString().padLeft(2, '0')}');
+      buffer.write('-${month.toString().padLeft(2, '0')}');
     }
     if (day != null) {
-      buffer.write('-${day!.toString().padLeft(2, '0')}');
+      buffer.write('-${day.toString().padLeft(2, '0')}');
     }
     if (hour != null) {
-      buffer.write('T${hour!.toString().padLeft(2, '0')}');
+      buffer.write('T${hour.toString().padLeft(2, '0')}');
       if (minute != null) {
-        buffer.write(':${minute!.toString().padLeft(2, '0')}');
+        buffer.write(':${minute.toString().padLeft(2, '0')}');
         if (second != null) {
-          buffer.write(':${second!.toString().padLeft(2, '0')}');
+          buffer.write(':${second.toString().padLeft(2, '0')}');
           if (millisecond != null || microsecond != null) {
             buffer
               ..write('.')
@@ -142,8 +178,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         buffer.write('T');
       }
       buffer.write(
-        '${timeZoneOffset! >= 0 ? '+' : '-'}'
-        '${timeZoneOffset!.toInt().abs().toString().padLeft(2, '0')}:00',
+        '${timeZoneOffset >= 0 ? '+' : '-'}'
+        '${timeZoneOffset.toInt().abs().toString().padLeft(2, '0')}:00',
       );
     }
 
@@ -433,6 +469,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     if (T == FhirDateTime) {
       if (dateTimeMap.isEmpty) {
         return FhirDateTime.fromBase(
+          value: null,
           year: null,
           month: null,
           day: null,
@@ -451,6 +488,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         throw ArgumentError('Year is required for FhirDateTime');
       }
       return FhirDateTime.fromBase(
+        value: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -468,6 +506,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
         return FhirDate.fromBase(
+          value: null,
           year: null,
           month: null,
           day: null,
@@ -480,6 +519,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         throw ArgumentError('Year is required for FhirDate');
       }
       return FhirDate.fromBase(
+        value: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year'] as int?,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -492,6 +532,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
         return FhirInstant.fromBase(
+          value: null,
           year: null,
           month: null,
           day: null,
@@ -518,6 +559,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         );
       }
       final instant = FhirInstant.fromBase(
+        value: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month']! as int,
         day: dateTimeMap['day']! as int,
@@ -872,30 +914,40 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Formats a date-time string into a map of date-time parts.
   static Map<String, dynamic> formatDateTimeString<T>(String dateTimeString) {
-    final dateTimeRegExp = dateTimeExp.firstMatch(dateTimeString);
-    final fractionString = dateTimeRegExp?.namedGroup('fraction');
+    // Match the input string against the regex
+    final match = dateTimeExp.firstMatch(dateTimeString);
+    if (match == null) {
+      throw ArgumentError('Invalid date-time string: $dateTimeString');
+    }
+
+    // Extract the fractional seconds part
+    final fractionString = match.namedGroup('fraction');
+    int? millisecond;
+    String? microsecond;
+
+    if (fractionString != null) {
+      if (fractionString.length >= 3) {
+        millisecond = int.tryParse(fractionString.substring(0, 3));
+      } else {
+        millisecond = int.tryParse(fractionString.padRight(3, '0'));
+      }
+
+      if (fractionString.length > 3) {
+        microsecond = fractionString.substring(3, fractionString.length);
+      }
+    }
+
     return <String, Object?>{
-      'year': int.tryParse(dateTimeRegExp?.namedGroup('year') ?? ''),
-      'month': int.tryParse(dateTimeRegExp?.namedGroup('month') ?? ''),
-      'day': int.tryParse(dateTimeRegExp?.namedGroup('day') ?? ''),
-      'hour': int.tryParse(dateTimeRegExp?.namedGroup('hour') ?? ''),
-      'minute': int.tryParse(dateTimeRegExp?.namedGroup('minute') ?? ''),
-      'second': int.tryParse(dateTimeRegExp?.namedGroup('second') ?? ''),
-      'millisecond': fractionString == null
-          ? null
-          : fractionString.length >= 3
-              ? int.tryParse(fractionString.substring(0, 3))
-              : int.tryParse(fractionString),
-      'microsecond': fractionString == null
-          ? null
-          : fractionString.length > 3
-              ? fractionString.substring(3, fractionString.length)
-              : null,
-      'timeZoneOffset':
-          dateTimeRegExp?.namedGroup('timezone')?.stringToTimeZoneOffset,
-      'isUtc': (dateTimeRegExp?.namedGroup('timezone')?.contains('Z') ?? false)
-          ? 0
-          : 1,
+      'year': int.tryParse(match.namedGroup('year') ?? ''),
+      'month': int.tryParse(match.namedGroup('month') ?? ''),
+      'day': int.tryParse(match.namedGroup('day') ?? ''),
+      'hour': int.tryParse(match.namedGroup('hour') ?? ''),
+      'minute': int.tryParse(match.namedGroup('minute') ?? ''),
+      'second': int.tryParse(match.namedGroup('second') ?? ''),
+      'millisecond': millisecond,
+      'microsecond': microsecond,
+      'timeZoneOffset': match.namedGroup('timezone')?.stringToTimeZoneOffset,
+      'isUtc': (match.namedGroup('timezone')?.contains('Z') ?? false) ? 0 : 1,
     };
   }
 

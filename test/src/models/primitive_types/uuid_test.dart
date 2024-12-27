@@ -2,7 +2,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:uuid/uuid.dart';
 
-void main() {
+void uuidTest() {
   group('FhirUuid Tests', () {
     const validUuidString = '550e8400-e29b-41d4-a716-446655440000';
     const invalidUuidString = 'invalid-uuid';

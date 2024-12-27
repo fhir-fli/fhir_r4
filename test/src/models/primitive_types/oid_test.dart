@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void oidTest() {
   group('FhirOid Tests', () {
     const validOid = 'urn:oid:1.2.3.4.5';
     const invalidOid = 'urn:oid:1.2. 3.4.5'; // Invalid because of the space

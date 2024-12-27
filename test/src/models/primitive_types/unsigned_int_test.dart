@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void unsignedIntTest() {
   group('FhirUnsignedInt Tests', () {
     const validInteger = 123;
     const otherInteger = 100;
@@ -73,8 +73,10 @@ void main() {
 
     // Numeric methods inherited from FhirNumber
     test('FhirUnsignedInt absolute value', () {
-      final fhirInteger = FhirUnsignedInt(-validInteger);
-      expect(fhirInteger.abs(), equals(validInteger));
+      expect(
+        () => FhirUnsignedInt(-validInteger),
+        throwsA(isA<FormatException>()),
+      );
     });
 
     test('FhirUnsignedInt rounding', () {

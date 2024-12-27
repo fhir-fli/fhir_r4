@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void base64BinaryTest() {
   group('Base64Binary', () {
     test('Valid Base64Binary Input', () {
       expect(FhirBase64Binary('2020').toString(), '2020');

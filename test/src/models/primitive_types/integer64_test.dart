@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void integer64Test() {
   group('FhirInteger64 Tests', () {
     const validInt = 1234567890123456;
     const validBigIntString = '1234567890123456789012345678901234567890';

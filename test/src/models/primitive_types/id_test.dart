@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void idTest() {
   group('FhirId Tests', () {
     const validCode = 'ABC123';
     const invalidCode = 'ABC 123'; // Invalid because of the space

@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void integerTest() {
   group('FhirInteger Tests', () {
     const validInteger = 123;
     const otherInteger = 100;

@@ -71,6 +71,7 @@ class FhirDate extends FhirDateTimeBase
 
   /// Constructor from base units, used internally.
   FhirDate.fromBase({
+    required super.value,
     required super.year,
     required super.month,
     required super.day,
@@ -80,7 +81,7 @@ class FhirDate extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
+    super.objectPath = 'Date',
   });
 
   /// Factory constructor to create a [FhirDate] from a [String].
@@ -93,6 +94,7 @@ class FhirDate extends FhirDateTimeBase
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirDate>(
         input: input,
@@ -103,6 +105,7 @@ class FhirDate extends FhirDateTimeBase
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,
         annotations: annotations,
+        objectPath: objectPath,
       ) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a [DateTime].
@@ -232,7 +235,7 @@ class FhirDate extends FhirDateTimeBase
   /// metadata.
   @override
   FhirDate copyWith({
-    DateTime? newValue,
+    String? newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,

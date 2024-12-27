@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void xhtmlTest() {
   group('FhirXhtml Tests', () {
     const validXhtml = '''
       <div xmlns="http://www.w3.org/1999/xhtml">

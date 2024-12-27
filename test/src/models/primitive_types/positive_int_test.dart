@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void positiveIntTest() {
   group('FhirPositiveInt Tests', () {
     const validInteger = 123;
     const otherInteger = 100;
@@ -72,9 +72,11 @@ void main() {
     });
 
     // Numeric methods inherited from FhirNumber
-    test('FhirPositiveInt absolute value', () {
-      final fhirInteger = FhirPositiveInt(-validInteger);
-      expect(fhirInteger.abs(), equals(validInteger));
+    test('FhirPostiveInt absolute value', () {
+      expect(
+        () => FhirPositiveInt(-validInteger),
+        throwsA(isA<FormatException>()),
+      );
     });
 
     test('FhirPositiveInt rounding', () {

@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void booleanTest() {
   group('FhirBoolean Tests', () {
     test('True Boolean Value', () {
       final fhirBool = FhirBoolean(true);

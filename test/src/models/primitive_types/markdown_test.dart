@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void markdownTest() {
   group('FhirMarkdown Tests', () {
     const validCode = 'ABC123';
     const validCode2 = 'ABC 123';

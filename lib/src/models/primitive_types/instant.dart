@@ -59,6 +59,7 @@ class FhirInstant extends FhirDateTimeBase
 
   /// Constructor to create a [FhirInstant] from base values.
   FhirInstant.fromBase({
+    required super.value,
     required super.year,
     required super.month,
     required super.day,
@@ -73,7 +74,7 @@ class FhirInstant extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
+    super.objectPath = 'Instant',
   });
 
   /// Factory constructor to create a [FhirInstant] from a [String].
@@ -86,6 +87,7 @@ class FhirInstant extends FhirDateTimeBase
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
         input: input,
@@ -96,6 +98,7 @@ class FhirInstant extends FhirDateTimeBase
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,
         annotations: annotations,
+        objectPath: objectPath,
       ) as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from a [DateTime].
@@ -221,7 +224,7 @@ class FhirInstant extends FhirDateTimeBase
   /// Creates a copy of the [FhirInstant], allowing modifications to properties.
   @override
   FhirInstant copyWith({
-    DateTime? newValue,
+    String? newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,

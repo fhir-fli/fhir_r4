@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void urlTest() {
   group('FhirUrl Tests', () {
     test('Valid Canonical URI', () {
       const validCanonicalString = 'http://example.com/Patient/123';

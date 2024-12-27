@@ -3,7 +3,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void timeTest() {
   group('FhirTime Tests', () {
     test('Valid FhirTime String', () {
       final fhirTime = FhirTime('08:30:00.123');

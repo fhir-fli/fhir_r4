@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void decimalTest() {
   group('FhirDecimal Tests', () {
     const validDecimal = 123.45;
     const validInteger = 123;

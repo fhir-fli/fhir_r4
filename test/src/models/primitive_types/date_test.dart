@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 // ignore_for_file: always_specify_types
 
-void main() {
+void dateTest() {
   group('FhirDate', () {
     final offset =
         DateTime(2020).timeZoneOffset.inHours.toDouble().timeZoneOffsetToString;
