@@ -110,9 +110,12 @@ class FHIRPathEngine {
         work.addAll(work2);
 
       case ExpressionNodeKind.constant:
+      print('Constant: ${exp.constant}');
+      print('Work: $work');
         work.addAll(
           resolveConstantWithBase(context, exp.constant, false, exp, true),
         );
+      print('Work: $work');
 
       case ExpressionNodeKind.group:
         final work2 = execute(context, focus, exp.group!, false);
@@ -120,6 +123,8 @@ class FHIRPathEngine {
 
       case null:
     }
+
+    print('Work: $work');
 
     // Inner evaluation
     if (exp.inner != null) {
@@ -2934,6 +2939,7 @@ class FHIRPathEngine {
         explicitConstant,
       );
     } else if (c.value.startsWith('@')) {
+      print('Processing date constant');
       return [
         processDateConstant(context.appInfo, c.value.substring(1), expr),
       ];
@@ -3034,6 +3040,8 @@ class FHIRPathEngine {
       }
     }
 
+    print('date: $date, time: $time');
+
     // Process the time component
     if (time != null) {
       var i = time.indexOf('-');
@@ -3061,6 +3069,8 @@ class FHIRPathEngine {
       }
     }
 
+    print('tz: $tz');
+
     // Handle cases based on the presence of date and time
     if (date == null) {
       if (tz != null) {
@@ -3083,6 +3093,7 @@ class FHIRPathEngine {
       }
       return dt.noExtensions();
     } else {
+      print('date: $date');
       return FhirDate.fromString(date).noExtensions();
     }
   }
@@ -3133,6 +3144,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opEquals: $left == $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3145,7 +3157,9 @@ class FHIRPathEngine {
     var nil = false;
 
     for (var i = 0; i < left.length; i++) {
+      print('left[i]: ${left[i]} == right[i]: ${right[i]}');
       final eq = doEquals(left[i], right[i]);
+      print('eq: $eq');
       if (eq == null) {
         nil = true;
       } else if (!eq) {
@@ -3153,6 +3167,8 @@ class FHIRPathEngine {
         break;
       }
     }
+
+    print('res: $res');
 
     if (!res) {
       return makeBoolean(false);
@@ -3201,14 +3217,17 @@ class FHIRPathEngine {
     if (s.noString()) {
       return '';
     }
+
     var i = s.length - 1;
     var done = false;
     var dot = false;
 
+    // Traverse the string from the end
     while (i > 0 && !done) {
       if (s[i] == '.') {
-        i--;
         dot = true;
+        i--;
+        done = true; // Stop if a dot is encountered
       } else if (!dot && s[i] == '0') {
         i--;
       } else {
@@ -3216,18 +3235,26 @@ class FHIRPathEngine {
       }
     }
 
+    // If no dot is encountered, return the original string
+    if (!dot) {
+      return s;
+    }
+
+    // Otherwise, return the processed substring
     return s.substring(0, i + 1);
   }
 
   bool decEqual(String left, String right) {
+    print('${removeTrailingZeros(left)} == ${removeTrailingZeros(right)}');
     return removeTrailingZeros(left) == removeTrailingZeros(right);
   }
 
   bool? datesEqual(FhirDateTimeBase left, FhirDateTimeBase right) {
-    return left.equals(right);
+    return left.isEqual(right);
   }
 
   bool? doEquals(FhirBase left, FhirBase right) {
+    print('doEquals: $left == $right');
     if (left is Quantity && right is Quantity) {
       return qtyEqual(left, right);
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {

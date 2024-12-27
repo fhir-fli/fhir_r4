@@ -297,9 +297,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     }
 
     final lhs = constructor<FhirDateTime>(input: this) as FhirDateTime;
-    final rhs = o is FhirDateTimeBase || o is DateTime || o is String
-        ? constructor<FhirDateTime>(input: o) as FhirDateTime
-        : null;
+    final rhs = o is FhirDateTimeBase
+        ? constructor<FhirDateTime>(input: o.value) as FhirDateTime
+        : o is DateTime || o is String
+            ? constructor<FhirDateTime>(input: o) as FhirDateTime
+            : null;
 
     if (rhs == null) {
       return false;
@@ -309,10 +311,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     return _comparatorResult(comparator, comparisonResult);
   }
 
-  int _compareWithPrecision(FhirDateTimeBase lhs, FhirDateTimeBase rhs) {
+  int? _compareWithPrecision(FhirDateTimeBase lhs, FhirDateTimeBase rhs) {
     if (lhs.year != null || rhs.year != null) {
       if (lhs.year == null || rhs.year == null) {
-        return 0;
+        return null;
       }
       if (lhs.year != rhs.year) {
         return lhs.year!.compareTo(rhs.year!);
@@ -321,7 +323,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
     if (lhs.month != null || rhs.month != null) {
       if (lhs.month == null || rhs.month == null) {
-        return 0;
+        return null;
       }
       if (lhs.month != rhs.month) {
         return lhs.month!.compareTo(rhs.month!);
@@ -330,7 +332,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
     if (lhs.day != null || rhs.day != null) {
       if (lhs.day == null || rhs.day == null) {
-        return 0;
+        return null;
       }
       if (lhs.day != rhs.day) {
         return lhs.day!.compareTo(rhs.day!);
@@ -338,7 +340,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     }
     if (lhs.hour != null || rhs.hour != null) {
       if (lhs.hour == null || rhs.hour == null) {
-        return 0;
+        return null;
       }
       if (lhs.hour != rhs.hour) {
         return lhs.hour!.compareTo(rhs.hour!);
@@ -347,7 +349,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
     if (lhs.minute != null || rhs.minute != null) {
       if (lhs.minute == null || rhs.minute == null) {
-        return 0;
+        return null;
       }
       if (lhs.minute != rhs.minute) {
         return lhs.minute!.compareTo(rhs.minute!);
@@ -356,7 +358,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
     if (lhs.second != null || rhs.second != null) {
       if (lhs.second == null || rhs.second == null) {
-        return 0;
+        return null;
       }
       if (lhs.second != rhs.second) {
         return lhs.second!.compareTo(rhs.second!);
@@ -364,28 +366,26 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     }
 
     if (lhs.millisecond != null || rhs.millisecond != null) {
-      if (lhs.millisecond == null || rhs.millisecond == null) {
-        return 0;
-      }
-      if (lhs.millisecond != rhs.millisecond) {
-        return lhs.millisecond!.compareTo(rhs.millisecond!);
-      }
-    }
-
-    if (lhs.microsecond != null || rhs.microsecond != null) {
-      if (lhs.microsecond == null || rhs.microsecond == null) {
-        return 0;
-      }
-      // Apply normalization here to both microsecond values before comparison
-      final lhsNum = num.parse('.${lhs.microsecond!.padRight(6, '0')}');
-      final rhsNum = num.parse('.${rhs.microsecond!.padRight(6, '0')}');
-      return lhsNum.compareTo(rhsNum);
+      final lhsMilliseconds = lhs.millisecond == null || lhs.millisecond == 0
+          ? '000'
+          : lhs.millisecond!.toString().padLeft(3, '0');
+      final rhsMilliseconds = rhs.millisecond == null || rhs.millisecond == 0
+          ? '000'
+          : rhs.millisecond!.toString().padLeft(3, '0');
+      final lhsMicroseconds = lhs.microsecond?.padRight(6, '0') ?? '000000';
+      final rhsMicroseconds = rhs.microsecond?.padRight(6, '0') ?? '000000';
+      final lhsPartialSeconds = int.parse('$lhsMilliseconds$lhsMicroseconds');
+      final rhsPartialSeconds = int.parse('$rhsMilliseconds$rhsMicroseconds');
+      return lhsPartialSeconds.compareTo(rhsPartialSeconds);
     }
 
     return 0;
   }
 
-  bool? _comparatorResult(Comparator comparator, int comparisonResult) {
+  bool? _comparatorResult(Comparator comparator, int? comparisonResult) {
+    if (comparisonResult == null) {
+      return null;
+    }
     switch (comparator) {
       case Comparator.equal:
         return comparisonResult == 0;

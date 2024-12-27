@@ -214,3 +214,120 @@ final patient2 = Patient(
     ),
   ],
 );
+
+final patient3 = Patient(
+  telecom: [
+    ContactPoint(
+      system: ContactPointSystem.email,
+      use: ContactPointUse.mobile,
+      rank: FhirPositiveInt(3),
+    ),
+  ],
+  address: [
+    Address(
+      period: Period(
+        extension_: [
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'Mg'.toFhirString),
+          ),
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'mL'.toFhirString),
+          ),
+        ],
+      ),
+    ),
+    Address(
+      period: Period(
+        extension_: [
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            extension_: [
+              FhirExtension(
+                url: 'www.mayjuun.com'.toFhirString,
+                extension_: [
+                  FhirExtension(
+                    url: 'www.mayjuun.com'.toFhirString,
+                    extension_: [
+                      FhirExtension(
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueX: Count(unit: 'Kg'.toFhirString),
+                      ),
+                      FhirExtension(
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueX: Count(unit: 'Km'.toFhirString),
+                      ),
+                    ],
+                    valueX: Count(unit: 'Kg'.toFhirString),
+                  ),
+                  FhirExtension(
+                    url: 'www.mayjuun.com'.toFhirString,
+                    valueX: Count(unit: 'Km'.toFhirString),
+                  ),
+                ],
+                valueX: Count(unit: 'Kg'.toFhirString),
+              ),
+              FhirExtension(
+                url: 'www.mayjuun.com'.toFhirString,
+                valueX: Count(unit: 'Km'.toFhirString),
+              ),
+            ],
+            valueX: Count(unit: 'Kg'.toFhirString),
+          ),
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'Km'.toFhirString),
+          ),
+        ],
+      ),
+    ),
+    Address(
+      period: Period(
+        extension_: [
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'Feet'.toFhirString),
+          ),
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueX: Count(unit: 'inches'.toFhirString),
+          ),
+        ],
+      ),
+    ),
+  ],
+  deceasedX: FhirBoolean(false),
+  name: [
+    HumanName(
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
+      given: [
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+      ],
+    ),
+    HumanName(
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
+      given: [
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+      ],
+    ),
+    HumanName(
+      family: 'Niel'.toFhirString,
+      given: [
+        'Kristin'.toFhirString,
+      ],
+    ),
+    HumanName(
+      family: 'Smith'.toFhirString,
+      given: [
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
+      ],
+    ),
+  ],
+);

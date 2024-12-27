@@ -37,6 +37,9 @@ class FHIRConstant extends FhirBase {
   String? idBase;
 
   @override
+  String toString() => value;
+
+  @override
   String get fhirType => '%constant';
 
   @override
