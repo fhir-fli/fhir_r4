@@ -340,7 +340,7 @@ extension StringExtensionForFHIR on String {
     var exponentLength = 0;
     var length = 0;
 
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < this.length; i++) {
       final char = this[i];
 
       if (char == '.') {

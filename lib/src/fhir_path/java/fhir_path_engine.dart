@@ -190,6 +190,7 @@ class FHIRPathEngine {
         exp.name != null &&
         exp.name!.isNotEmpty &&
         exp.name![0].toUpperCase() == exp.name![0]) {
+      print('Special case for type checks');
       // Special case for type checks
       var sd = worker.fetchTypeDefinition(item.fhirType);
       while (sd != null) {
@@ -201,6 +202,7 @@ class FHIRPathEngine {
             as StructureDefinition?;
       }
     } else {
+      print(item);
       getChildrenByName(item, exp.name!, result);
     }
 
@@ -267,8 +269,9 @@ class FHIRPathEngine {
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
     String? tn;
     var name = oldName;
+    print('Old name: $oldName');
     if (allowPolymorphicNames) {
-      // we'll look to see whether we hav a polymorphic name
+      // we'll look to see whether we have a polymorphic name
       for (final p in item.children()) {
         if (p.endsWith('X')) {
           final n = p.substring(0, p.length - 1);
@@ -284,7 +287,7 @@ class FHIRPathEngine {
     if (list.isNotEmpty) {
       for (final v in list) {
         if (tn == null || v.fhirType.equalsIgnoreCase(tn)) {
-          // result.add(filterIdType(v));
+          result.add(v);
         }
       }
     }
@@ -308,6 +311,7 @@ class FHIRPathEngine {
 
   ExpressionNode parseLexer(FHIRLexer lexer) {
     final result = _parseExpression(lexer, true);
+    result.printExpressionTree();
     if (!lexer.done()) {
       throw lexer.error('Unexpected token "${lexer.current}"');
     }
@@ -1328,20 +1332,27 @@ class FHIRPathEngine {
   }
 
   FhirBase? processConstant(FHIRLexer lexer) {
+    print('Current: ${lexer.current}');
     if (lexer.isStringConstant()) {
+      print('String constant');
       return FhirString(processConstantString(lexer.take(), lexer))
           .noExtensions();
     } else if (lexer.current?.isInteger ?? false) {
+      print('Integer constant');
       return FhirInteger(int.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.isDecimal() ?? false) {
+      print('Decimal constant');
       return FhirDecimal(double.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.existsInList({'true', 'false'}) ?? false) {
+      print('Boolean constant');
       return FhirBoolean(lexer.take() == 'true').noExtensions();
     } else if (lexer.current == '{}') {
+      print('Empty constant');
       lexer.take();
       return null;
     } else if ((lexer.current?.startsWith('%') ?? false) ||
         (lexer.current?.startsWith('@') ?? false)) {
+      print('Constant reference');
       return FHIRConstant(lexer.take());
     } else {
       throw lexer.error('Invalid Constant ${lexer.current}');
@@ -1350,12 +1361,18 @@ class FHIRPathEngine {
 
   String processConstantString(String s, FHIRLexer lexer) {
     final buffer = StringBuffer();
-    var i = 1;
+    var i = 1; // Start after the opening quote
 
     while (i < s.length - 1) {
+      // Stop before the closing quote
       final ch = s[i];
       if (ch == r'\') {
         i++;
+        if (i >= s.length - 1) {
+          // Treat incomplete escape sequence as literal backslash
+          buffer.write(r'\');
+          break;
+        }
         switch (s[i]) {
           case 't':
             buffer.write('\t');
@@ -1376,18 +1393,30 @@ class FHIRPathEngine {
           case '/':
             buffer.write('/');
           case 'u':
-            i++;
-            final unicodeValue = int.parse(s.substring(i, i + 4), radix: 16);
-            buffer.write(String.fromCharCode(unicodeValue));
-            i += 3;
+            // Check for a complete Unicode sequence (\uXXXX)
+            if (i + 4 < s.length - 1) {
+              final unicodeValue =
+                  int.tryParse(s.substring(i + 1, i + 5), radix: 16);
+              if (unicodeValue != null) {
+                buffer.write(String.fromCharCode(unicodeValue));
+                i += 4; // Skip the Unicode sequence
+              } else {
+                // Ignore the backslash and the 'u' for invalid sequences
+                buffer.write('u');
+              }
+            } else {
+              // Ignore the backslash for incomplete sequences
+              buffer.write('u');
+            }
           default:
-            throw lexer.error('Unknown character escape \\${s[i]}');
+            // Ignore the backslash for unrecognized escape sequences
+            buffer.write(s[i]);
+            break;
         }
-        i++;
       } else {
         buffer.write(ch);
-        i++;
       }
+      i++;
     }
 
     return buffer.toString();

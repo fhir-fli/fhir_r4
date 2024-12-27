@@ -4,7 +4,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/extensions/extensions.dart';
 
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 class FHIRLexer {
   FHIRLexer({

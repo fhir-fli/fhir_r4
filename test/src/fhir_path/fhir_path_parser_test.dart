@@ -16,7 +16,6 @@ void main() {
 
     test('Parse path with constant', () {
       final node = engine.parse('Patient.age = 30');
-      node.printExpressionTree();
 
       // Top-level node: "Patient"
       expect(node.name, equals('Patient'));
@@ -31,7 +30,6 @@ void main() {
     test('Parse simple arithmetic expression (with precedence)', () {
       // Expression: 5 + 3 * 2
       final node = engine.parse('5 + 3 * 2');
-      node.printExpressionTree();
 
       // Top-level node = constant(5), with operation "+"
       expect(node.constant?.toString(), equals('5'));
@@ -54,7 +52,6 @@ void main() {
     test('Parse comparison expression', () {
       // Expression: Patient.age >= 18
       final node = engine.parse('Patient.age >= 18');
-      node.printExpressionTree();
 
       // Top-level node is "Patient" with .inner = "age"
       expect(node.name, equals('Patient'));
@@ -71,12 +68,13 @@ void main() {
       // Expression: Patient.age >= 18 and Patient.gender = 'male'
       final node =
           engine.parse("Patient.age >= 18 and Patient.gender = 'male'");
-      node.printExpressionTree();
 
       // Because ">=" has higher precedence than "and," the parse often yields:
       // node = "Patient.age" (operation=GreaterOrEqual) -> opNext="18"
-      // then that '18' node might carry "and" as its operation -> opNext="Patient.gender..."
-      // or your engine might reorder them. The official Java engine typically keeps them in a chain.
+      // then that '18' node might carry "and" as its operation -> 
+      //  opNext="Patient.gender..."
+      // or your engine might reorder them. The official Java engine typically 
+      // keeps them in a chain.
 
       // Let's check step by step:
 
@@ -104,7 +102,6 @@ void main() {
     test('Parse function call expression', () {
       // Expression: Patient.name.first()
       final node = engine.parse('Patient.name.first()');
-      node.printExpressionTree();
 
       // "Patient" is the top-level
       expect(node.name, equals('Patient'));
@@ -117,7 +114,6 @@ void main() {
 
     test('Parse nested expression', () {
       final node = engine.parse('(Patient.age + 2) * 3');
-      node.printExpressionTree();
 
       // Top-level node has operation = "*"
       expect(node.operation, equals(FpOperation.Times));
@@ -142,7 +138,6 @@ void main() {
     test('Parse chained access expression', () {
       // Expression: Patient.address.city
       final node = engine.parse('Patient.address.city');
-      node.printExpressionTree();
 
       expect(node.name, equals('Patient'));
       expect(node.inner?.name, equals('address'));

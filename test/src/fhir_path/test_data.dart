@@ -1,6 +1,13 @@
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
+final worker = SimpleWorkerContext()
+  ..loadStructureDefinitions(getStructureDefinitions());
+final engine = FHIRPathEngine(worker);
+List<dynamic> toJsonList(List<FhirBase> list) =>
+    list.map((e) => e is PrimitiveType ? e.value : e.toJson()).toList();
 
 List<StructureDefinition> getStructureDefinitions() {
   final sdListStrings =
@@ -14,7 +21,7 @@ List<StructureDefinition> getStructureDefinitions() {
   return sds;
 }
 
-final patient = Patient.fromJson(<String, dynamic>{
+final patient1 = Patient.fromJson(<String, dynamic>{
   'resourceType': 'Patient',
   'id': 'example',
   'text': {
@@ -137,7 +144,7 @@ final patient = Patient.fromJson(<String, dynamic>{
   'managingOrganization': {'reference': 'Organization/1'},
 });
 
-final resource = Patient(
+final patient2 = Patient(
   address: [
     Address(
       period: Period(
