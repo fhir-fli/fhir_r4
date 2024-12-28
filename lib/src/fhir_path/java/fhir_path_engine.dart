@@ -3070,6 +3070,7 @@ class FHIRPathEngine {
     print('VALUE: $value');
     if (value.startsWith('T')) {
       result = FhirTime.tryParse(value.replaceFirst('T', ''));
+      print('TIME: ${result?.toJson()}');
     } else {
       result = FhirDate.tryParse(value) ??
           FhirDateTime.tryParse(value) ??
@@ -3493,13 +3494,43 @@ class FHIRPathEngine {
         } else if (l is FhirNumber && r is FhirNumber) {
           return makeBoolean(l < r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l.compareTo(r);
-          return makeBoolean(comparison < 0);
+          final comparison = l < r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l < r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
-          throw makeException(expr, 'FHIRPATH_CANT_COMPARE', [
-            l.fhirType,
-            r.fhirType,
-          ]);
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opLessThan(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opLessThan(dl, dr, expr);
+          }
         }
       }
     }
@@ -3683,7 +3714,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opGreater: $left > $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3699,13 +3729,12 @@ class FHIRPathEngine {
         } else if (l is FhirNumber && r is FhirNumber) {
           return makeBoolean(l > r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          print('l: ${l.toJson()}, r: ${r.toJson()}');
           final comparison = l > r;
           return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
+          print('l: ${l.toJson()} > r: ${r.toJson()}');
           final comparison = l > r;
-          print('Comparison: $comparison');
-          print('lTime: ${l.toJson()}, rTime: ${r.toJson()}');
+          print('time comparison: $comparison');
           return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
           throw makeException(
@@ -3715,99 +3744,14 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        print('l1: ${l.toJson()}, r: ${r.toJson()}');
-        var lUnit = l.listChildrenByName('unit');
+        var lUnit = l.listChildrenByName('code');
         if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('code');
+          lUnit = l.listChildrenByName('unit');
         }
-        var rUnit = r.listChildrenByName('unit');
+        var rUnit = r.listChildrenByName('code');
         if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('code');
+          rUnit = r.listChildrenByName('unit');
         }
-        print('lUnit: $lUnit, rUnit: $rUnit');
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
-          print('l2: ${l.toJson()}, r: ${r.toJson()}');
-          return opGreater(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
-            expr,
-          );
-        } else {
-          print('l3: ${l.toJson()}, r: ${r.toJson()}');
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreaterLists(dl, dr, expr);
-          }
-        }
-      }
-    }
-    return [];
-  }
-
-  List<FhirBase> opGreaterLists(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length == 1 && right.length == 1) {
-      final l = left.first;
-      final r = right.first;
-
-      if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
-        } else if ([
-              'integer',
-              'decimal',
-              'unsignedInt',
-              'positiveInt',
-            ].contains(l.fhirType) &&
-            [
-              'integer',
-              'decimal',
-              'unsignedInt',
-              'positiveInt',
-            ].contains(r.fhirType)) {
-          return makeBoolean(
-            double.parse(l.primitiveValue.toString()) >
-                double.parse(r.primitiveValue.toString()),
-          );
-        } else if ([
-              'date',
-              'dateTime',
-              'instant',
-            ].contains(l.fhirType) &&
-            [
-              'date',
-              'dateTime',
-              'instant',
-            ].contains(r.fhirType)) {
-          final comparison = compareDateTimeElements(l, r, false);
-          return comparison == null ? makeNull() : makeBoolean(comparison > 0);
-        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
-          final comparison = compareTimeElements(l, r, false);
-          return comparison == null ? makeNull() : makeBoolean(comparison > 0);
-        } else {
-          throw makeException(
-            expr,
-            'FHIRPATH_CANT_COMPARE',
-            [l.fhirType, r.fhirType],
-          );
-        }
-      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        final lUnit = l.listChildrenByName('unit');
-        final rUnit = r.listChildrenByName('unit');
-
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opGreater(
             l.listChildrenByName('value'),
@@ -3822,12 +3766,11 @@ class FHIRPathEngine {
             final rQuantity = qtyToCanonicalDecimal(r as Quantity);
             final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
             final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreaterLists(dl, dr, expr);
+            return opGreater(dl, dr, expr);
           }
         }
       }
     }
-
     return [];
   }
 
@@ -3843,6 +3786,7 @@ class FHIRPathEngine {
     if (left.length == 1 && right.length == 1) {
       final l = left.first;
       final r = right.first;
+      print('opLessOrEqual: ${l.toJson()} <= ${r.toJson()}');
 
       if (l is PrimitiveType && r is PrimitiveType) {
         if (FHIR_TYPES_STRING.contains(l.fhirType) &&
@@ -3851,14 +3795,11 @@ class FHIRPathEngine {
         } else if (l is FhirNumber && r is FhirNumber) {
           return makeBoolean(l <= r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l.compareTo(r);
-          return makeBoolean(comparison <= 0);
-        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
-          final comparison = compareTimeElements(l, r, false);
-          if (comparison == null) {
-            return makeNull();
-          }
-          return makeBoolean(comparison <= 0);
+          final comparison = l <= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l <= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3867,12 +3808,15 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        final lUnits = l.listChildrenByName('unit');
-        final rUnits = r.listChildrenByName('unit');
-        final lUnit = lUnits.isNotEmpty ? lUnits.first.primitiveValue : null;
-        final rUnit = rUnits.isNotEmpty ? rUnits.first.primitiveValue : null;
-
-        if ((lUnit == null && rUnit == null) || lUnit == rUnit) {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opLessOrEqual(
             l.listChildrenByName('value'),
             r.listChildrenByName('value'),
@@ -4275,46 +4219,30 @@ class FHIRPathEngine {
         if (FHIR_TYPES_STRING.contains(l.fhirType) &&
             FHIR_TYPES_STRING.contains(r.fhirType)) {
           return makeBoolean(l.toString().compareTo(r.toString()) >= 0);
-        } else if ([
-              'integer',
-              'decimal',
-              'unsignedInt',
-              'positiveInt',
-            ].contains(l.fhirType) &&
-            [
-              'integer',
-              'decimal',
-              'unsignedInt',
-              'positiveInt',
-            ].contains(r.fhirType)) {
-          return makeBoolean(
-            double.parse(l.primitiveValue.toString()) >=
-                double.parse(r.primitiveValue.toString()),
-          );
-        } else if ([
-              'date',
-              'dateTime',
-              'instant',
-            ].contains(l.fhirType) &&
-            [
-              'date',
-              'dateTime',
-              'instant',
-            ].contains(r.fhirType)) {
-          final comparison = compareDateTimeElements(l, r, false);
-          return comparison == null ? makeNull() : makeBoolean(comparison >= 0);
-        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
-          final comparison = compareTimeElements(l, r, false);
-          return comparison == null ? makeNull() : makeBoolean(comparison >= 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l >= r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l >= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l >= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
-          throw makeException(expr, 'FHIRPATH_CANT_COMPARE', [
-            l.fhirType,
-            r.fhirType,
-          ]);
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        final lUnit = l.listChildrenByName('unit');
-        final rUnit = r.listChildrenByName('unit');
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opGreaterOrEqual(
             l.listChildrenByName('value'),
@@ -4325,16 +4253,15 @@ class FHIRPathEngine {
           if (worker.ucumService == null) {
             return makeBoolean(false);
           } else {
-            final dl = qtyToCanonicalDecimal(l as Quantity);
-            final dr = qtyToCanonicalDecimal(r as Quantity);
-            final lList = dl == null ? <FhirDecimal>[] : [dl];
-            final rList = dr == null ? <FhirDecimal>[] : [dr];
-            return opGreaterOrEqual(lList, rList, expr);
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opGreaterOrEqual(dl, dr, expr);
           }
         }
       }
     }
-
     return [];
   }
 

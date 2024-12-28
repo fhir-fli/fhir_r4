@@ -216,7 +216,7 @@ class FhirTime extends PrimitiveType<String>
     final rhs = other is FhirTime
         ? other
         : other is String
-            ? FhirTime(other)
+            ? FhirTime.tryParse(other)
             : null;
 
     if (rhs == null) {
@@ -229,7 +229,7 @@ class FhirTime extends PrimitiveType<String>
 
     final lhsParts = value!.split(':');
     final rhsParts = rhs.value!.split(':');
-    if(lhsParts.length != rhsParts.length) {
+    if (lhsParts.length != rhsParts.length) {
       return null;
     }
 
@@ -243,37 +243,39 @@ class FhirTime extends PrimitiveType<String>
             return false;
           }
         case Comparator.equivalent:
-          if (lhsValue == rhsValue) {
-            return true;
+          if (lhsValue != rhsValue) {
+            return false;
           }
         case Comparator.greaterThan:
-          if (lhsValue > rhsValue) {
-            return true;
-          }
           if (lhsValue < rhsValue) {
             return false;
+          } else if (lhsValue > rhsValue) {
+            return true;
           }
         case Comparator.lessThan:
-          if (lhsValue < rhsValue) {
-            return true;
-          }
           if (lhsValue > rhsValue) {
             return false;
+          } else if (lhsValue < rhsValue) {
+            return true;
           }
         case Comparator.greaterThanEqual:
-          if (lhsValue >= rhsValue) {
+          if (lhsValue < rhsValue) {
+            return false;
+          }else if(lhsValue > rhsValue){
             return true;
           }
-          return false;
         case Comparator.lessThanEqual:
-          if (lhsValue <= rhsValue) {
+          if (lhsValue > rhsValue) {
+            return false;
+          }else if(lhsValue < rhsValue){
             return true;
           }
-          return false;
       }
     }
     return comparator == Comparator.equal ||
-        comparator == Comparator.equivalent;
+        comparator == Comparator.equivalent ||
+        comparator == Comparator.greaterThanEqual ||
+        comparator == Comparator.lessThanEqual;
   }
 
   /// Hash code for the [FhirTime] based on the value.

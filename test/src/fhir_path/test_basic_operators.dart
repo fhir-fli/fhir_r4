@@ -744,250 +744,212 @@ void main() {
       );
     });
 
-    // test('< : ', () {
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T12:25 < @T12:25',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T12:27 < @T12:25',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'String' < 'String'",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'String' < 'string'",
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'string' < 'String'",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '10 < 5 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '10 < 5.0 // false; note the 10 is converted to a decimal to perform the comparison',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'abc' < 'ABC' // false",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           "4 'm' < 4 'cm' // true (or { } if the implementation does not support unit conversion)",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03-01 < @2018-01-01 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03 < @2018-03-01 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '@2018-03-01T10:30:00 < @2018-03-01T10:00:00 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03-01T10 < @2018-03-01T10:30 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '@2018-03-01T10:30:00 < @2018-03-01T10:30:00.0 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10:30:00 < @T10:00:00 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10 < @T10:30 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10:30:00 < @T10:30:00.0 // false',
-    //     ),
-    //     [false],
-    //   );
-    // });
-    // test('<= : >', () {
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T12:25 <= @T12:25',
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T12:27 <= @T12:25',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'String' <= 'String'",
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'string' <= 'String'",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '10 <= 5 // true',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '10 <= 5.0 // false; note the 10 is converted to a decimal to perform the comparison',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: "'abc' <= 'ABC' // false",
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           "4 'm' >= 4 'cm' // true (or { } if the implementation does not support unit conversion)",
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03-01 <= @2018-01-01 // false',
-    //     ),
-    //     [false],
-    //   );
+    test('< : ', () {
+      final node = engine.parse('@T12:25 < @T12:25');
+      expect(
+        engine.evaluate(patient3, node),
+        [false.toFhirBoolean],
+      );
 
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03 <= @2018-03-01 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '@2018-03-01T10:30:00 <= @2018-03-01T10:00:00 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@2018-03-01T10 <= @2018-03-01T10:30 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression:
-    //           '@2018-03-01T10:30:00 <= @2018-03-01T10:30:00.0 // true',
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10:30:00 <= @T10:00:00 // false',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10 <= @T10:30 // empty ({ })',
-    //     ),
-    //     [],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '@T10:30:00 <= @T10:30:00.0 // true',
-    //     ),
-    //     [true],
-    //   );
-    // });
+      final node1 = engine.parse('@T12:27 < @T12:25');
+      expect(
+        engine.evaluate(patient3, node1),
+        [false.toFhirBoolean],
+      );
+
+      final node2 = engine.parse("'String' < 'String'");
+      expect(
+        engine.evaluate(patient3, node2),
+        [false.toFhirBoolean],
+      );
+
+      final node3 = engine.parse("'String' < 'string'");
+      expect(
+        engine.evaluate(patient3, node3),
+        [true.toFhirBoolean],
+      );
+
+      final node4 = engine.parse("'string' < 'String'");
+      expect(
+        engine.evaluate(patient3, node4),
+        [false.toFhirBoolean],
+      );
+
+      final node5 = engine.parse('10 < 5');
+      expect(
+        engine.evaluate(patient3, node5),
+        [false.toFhirBoolean],
+      );
+
+      final node6 = engine.parse('10 < 5.0');
+      expect(
+        engine.evaluate(patient3, node6),
+        [false.toFhirBoolean],
+      );
+
+      final node7 = engine.parse("'abc' < 'ABC'");
+      expect(
+        engine.evaluate(patient3, node7),
+        [false.toFhirBoolean],
+      );
+
+      final node8 = engine.parse("4 'm' < 4 'cm'");
+      expect(
+        engine.evaluate(patient3, node8),
+        [false.toFhirBoolean],
+      );
+
+      final node9 = engine.parse('@2018-03-01 < @2018-01-01');
+      expect(
+        engine.evaluate(patient3, node9),
+        [false.toFhirBoolean],
+      );
+
+      final node10 = engine.parse('@2018-03 < @2018-03-01');
+      expect(
+        engine.evaluate(patient3, node10),
+        <FhirBase>[],
+      );
+
+      final node11 =
+          engine.parse('@2018-03-01T10:30:00 < @2018-03-01T10:00:00');
+      expect(
+        engine.evaluate(patient3, node11),
+        [false.toFhirBoolean],
+      );
+
+      final node12 = engine.parse('@2018-03-01T10 < @2018-03-01T10:30');
+      expect(
+        engine.evaluate(patient3, node12),
+        <FhirBase>[],
+      );
+
+      final node13 =
+          engine.parse('@2018-03-01T10:30:00 < @2018-03-01T10:30:00.0');
+      expect(
+        engine.evaluate(patient3, node13),
+        [false.toFhirBoolean],
+      );
+
+      final node14 = engine.parse('@T10:30:00 < @T10:00:00');
+      expect(
+        engine.evaluate(patient3, node14),
+        [false.toFhirBoolean],
+      );
+
+      final node15 = engine.parse('@T10 < @T10:30');
+      expect(
+        engine.evaluate(patient3, node15),
+        <FhirBase>[],
+      );
+
+      final node16 = engine.parse('@T10:30:00 < @T10:30:00.0');
+      expect(
+        engine.evaluate(patient3, node16),
+        [false.toFhirBoolean],
+      );
+    });
+
+    test('<= : ', () {
+      final node = engine.parse('@T12:25 <= @T12:25');
+      expect(
+        engine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+
+      final node1 = engine.parse('@T12:27 <= @T12:25');
+      expect(
+        engine.evaluate(patient3, node1),
+        [false.toFhirBoolean],
+      );
+
+      final node2 = engine.parse("'String' <= 'String'");
+      expect(
+        engine.evaluate(patient3, node2),
+        [true.toFhirBoolean],
+      );
+
+      final node3 = engine.parse("'string' <= 'String'");
+      expect(
+        engine.evaluate(patient3, node3),
+        [false.toFhirBoolean],
+      );
+
+      final node4 = engine.parse('10 <= 5');
+      expect(
+        engine.evaluate(patient3, node4),
+        [false.toFhirBoolean],
+      );
+
+      final node5 = engine.parse('10 <= 5.0');
+      expect(
+        engine.evaluate(patient3, node5),
+        [false.toFhirBoolean],
+      );
+
+      final node6 = engine.parse("'abc' <= 'ABC'");
+      expect(
+        engine.evaluate(patient3, node6),
+        [false.toFhirBoolean],
+      );
+
+      final node7 = engine.parse("4 'm' <= 4 'cm'");
+      expect(
+        engine.evaluate(patient3, node7),
+        [false.toFhirBoolean],
+      );
+
+      final node8 = engine.parse('@2018-03-01 <= @2018-01-01');
+      expect(
+        engine.evaluate(patient3, node8),
+        [false.toFhirBoolean],
+      );
+
+      final node9 = engine.parse('@2018-03 <= @2018-03-01');
+      expect(
+        engine.evaluate(patient3, node9),
+        <FhirBase>[],
+      );
+
+      final node10 =
+          engine.parse('@2018-03-01T10:30:00 <= @2018-03-01T10:00:00');
+      expect(
+        engine.evaluate(patient3, node10),
+        [false.toFhirBoolean],
+      );
+
+      final node11 = engine.parse('@2018-03-01T10 <= @2018-03-01T10:30');
+      expect(
+        engine.evaluate(patient3, node11),
+        <FhirBase>[],
+      );
+
+      final node12 =
+          engine.parse('@2018-03-01T10:30:00 <= @2018-03-01T10:30:00.0');
+      expect(
+        engine.evaluate(patient3, node12),
+        [true.toFhirBoolean],
+      );
+
+      final node13 = engine.parse('@T10:30:00 <= @T10:00:00');
+      expect(
+        engine.evaluate(patient3, node13),
+        [false.toFhirBoolean],
+      );
+
+      final node14 = engine.parse('@T10 <= @T10:30');
+      expect(
+        engine.evaluate(patient3, node14),
+        <FhirBase>[],
+      );
+
+      final node15 = engine.parse('@T10:30:00 <= @T10:30:00.0');
+      expect(
+        engine.evaluate(patient3, node15),
+        [true.toFhirBoolean],
+      );
+    });
+
     // test('>= : ', () {
     //   expect(
     //     walkFhirPath(
