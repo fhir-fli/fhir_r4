@@ -555,6 +555,89 @@ class FhirGroup extends DomainResource {
           this.member,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! FhirGroup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (actual != o.actual) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (managingEntity != o.managingEntity) {
+      return false;
+    }
+    if (!listEquals<GroupCharacteristic>(
+      characteristic,
+      o.characteristic,
+    )) {
+      return false;
+    }
+    if (!listEquals<GroupMember>(
+      member,
+      o.member,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [GroupCharacteristic]
@@ -880,6 +963,44 @@ class GroupCharacteristic extends BackboneElement {
           this.period,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! GroupCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (exclude != o.exclude) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [GroupMember]
@@ -1160,5 +1281,40 @@ class GroupMember extends BackboneElement {
           ) ??
           this.inactive,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! GroupMember) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (entity != o.entity) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (inactive != o.inactive) {
+      return false;
+    }
+    return true;
   }
 }

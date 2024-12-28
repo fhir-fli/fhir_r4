@@ -818,6 +818,131 @@ class AdverseEvent extends DomainResource {
           this.study,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdverseEvent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (actuality != o.actuality) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (event != o.event) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (detected != o.detected) {
+      return false;
+    }
+    if (recordedDate != o.recordedDate) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      resultingCondition,
+      o.resultingCondition,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (seriousness != o.seriousness) {
+      return false;
+    }
+    if (severity != o.severity) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (recorder != o.recorder) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      contributor,
+      o.contributor,
+    )) {
+      return false;
+    }
+    if (!listEquals<AdverseEventSuspectEntity>(
+      suspectEntity,
+      o.suspectEntity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      subjectMedicalHistory,
+      o.subjectMedicalHistory,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      referenceDocument,
+      o.referenceDocument,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      study,
+      o.study,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AdverseEventSuspectEntity]
@@ -1084,6 +1209,41 @@ class AdverseEventSuspectEntity extends BackboneElement {
               .toList() ??
           this.causality,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdverseEventSuspectEntity) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (instance != o.instance) {
+      return false;
+    }
+    if (!listEquals<AdverseEventCausality>(
+      causality,
+      o.causality,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1386,5 +1546,43 @@ class AdverseEventCausality extends BackboneElement {
           ) ??
           this.method,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdverseEventCausality) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (assessment != o.assessment) {
+      return false;
+    }
+    if (productRelatedness != o.productRelatedness) {
+      return false;
+    }
+    if (author != o.author) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    return true;
   }
 }

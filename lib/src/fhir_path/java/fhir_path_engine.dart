@@ -3777,11 +3777,11 @@ class FHIRPathEngine {
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
         print('l1: ${l.toJson()}, r: ${r.toJson()}');
         var lUnit = l.listChildrenByName('unit');
-        if(lUnit.isEmpty) {
+        if (lUnit.isEmpty) {
           lUnit = l.listChildrenByName('code');
         }
         var rUnit = r.listChildrenByName('unit');
-        if(rUnit.isEmpty) {
+        if (rUnit.isEmpty) {
           rUnit = r.listChildrenByName('code');
         }
         print('lUnit: $lUnit, rUnit: $rUnit');

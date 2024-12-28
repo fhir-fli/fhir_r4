@@ -319,6 +319,44 @@ class Timing extends BackboneType
           this.code,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Timing) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirDateTime>(
+      event,
+      o.event,
+    )) {
+      return false;
+    }
+    if (repeat != o.repeat) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TimingRepeat]
@@ -883,5 +921,79 @@ class TimingRepeat extends Element {
           ) ??
           this.offset,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TimingRepeat) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (boundsX != o.boundsX) {
+      return false;
+    }
+    if (count != o.count) {
+      return false;
+    }
+    if (countMax != o.countMax) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    if (durationMax != o.durationMax) {
+      return false;
+    }
+    if (durationUnit != o.durationUnit) {
+      return false;
+    }
+    if (frequency != o.frequency) {
+      return false;
+    }
+    if (frequencyMax != o.frequencyMax) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (periodMax != o.periodMax) {
+      return false;
+    }
+    if (periodUnit != o.periodUnit) {
+      return false;
+    }
+    if (!listEquals<DaysOfWeek>(
+      dayOfWeek,
+      o.dayOfWeek,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirTime>(
+      timeOfDay,
+      o.timeOfDay,
+    )) {
+      return false;
+    }
+    if (!listEquals<EventTiming>(
+      when,
+      o.when,
+    )) {
+      return false;
+    }
+    if (offset != o.offset) {
+      return false;
+    }
+    return true;
   }
 }

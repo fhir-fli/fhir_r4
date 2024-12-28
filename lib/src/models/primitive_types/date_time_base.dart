@@ -320,7 +320,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         return lhs.year!.compareTo(rhs.year!);
       }
     }
-    
+
     if (lhs.month != null || rhs.month != null) {
       if (lhs.month == null || rhs.month == null) {
         return null;

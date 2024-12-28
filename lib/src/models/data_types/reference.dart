@@ -381,4 +381,36 @@ class Reference extends DataType
           this.display,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Reference) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    return true;
+  }
 }

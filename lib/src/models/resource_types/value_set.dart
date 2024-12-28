@@ -709,6 +709,116 @@ class ValueSet extends CanonicalResource {
           this.expansion,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSet) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (immutable != o.immutable) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (compose != o.compose) {
+      return false;
+    }
+    if (expansion != o.expansion) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ValueSetCompose]
@@ -1036,6 +1146,50 @@ class ValueSetCompose extends BackboneElement {
               .toList() ??
           this.exclude,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetCompose) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (lockedDate != o.lockedDate) {
+      return false;
+    }
+    if (inactive != o.inactive) {
+      return false;
+    }
+    if (!listEquals<ValueSetInclude>(
+      include,
+      o.include,
+    )) {
+      return false;
+    }
+    if (!listEquals<ValueSetInclude>(
+      exclude,
+      o.exclude,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1389,6 +1543,56 @@ class ValueSetInclude extends BackboneElement {
           this.valueSet,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetInclude) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (!listEquals<ValueSetConcept>(
+      concept,
+      o.concept,
+    )) {
+      return false;
+    }
+    if (!listEquals<ValueSetFilter>(
+      filter,
+      o.filter,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      valueSet,
+      o.valueSet,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ValueSetConcept]
@@ -1679,6 +1883,44 @@ class ValueSetConcept extends BackboneElement {
           this.designation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetConcept) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (!listEquals<ValueSetDesignation>(
+      designation,
+      o.designation,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ValueSetDesignation]
@@ -1958,6 +2200,41 @@ class ValueSetDesignation extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetDesignation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2241,6 +2518,41 @@ class ValueSetFilter extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetFilter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (property != o.property) {
+      return false;
+    }
+    if (op != o.op) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2615,6 +2927,56 @@ class ValueSetExpansion extends BackboneElement {
           this.contains,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetExpansion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (timestamp != o.timestamp) {
+      return false;
+    }
+    if (total != o.total) {
+      return false;
+    }
+    if (offset != o.offset) {
+      return false;
+    }
+    if (!listEquals<ValueSetParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    if (!listEquals<ValueSetContains>(
+      contains,
+      o.contains,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ValueSetParameter]
@@ -2909,6 +3271,38 @@ class ValueSetParameter extends BackboneElement {
           ) as ValueXValueSetParameter? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3331,5 +3725,61 @@ class ValueSetContains extends BackboneElement {
               .toList() ??
           this.contains,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ValueSetContains) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (abstract_ != o.abstract_) {
+      return false;
+    }
+    if (inactive != o.inactive) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (!listEquals<ValueSetDesignation>(
+      designation,
+      o.designation,
+    )) {
+      return false;
+    }
+    if (!listEquals<ValueSetContains>(
+      contains,
+      o.contains,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

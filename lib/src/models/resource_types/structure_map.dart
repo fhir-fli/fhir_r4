@@ -720,6 +720,125 @@ class StructureMap extends CanonicalResource {
           this.group,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMap) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (!listEquals<StructureMapStructure>(
+      structure,
+      o.structure,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      import_,
+      o.import_,
+    )) {
+      return false;
+    }
+    if (!listEquals<StructureMapGroup>(
+      group,
+      o.group,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [StructureMapStructure]
@@ -1019,6 +1138,44 @@ class StructureMapStructure extends BackboneElement {
           ) ??
           this.documentation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapStructure) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (alias != o.alias) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1378,6 +1535,56 @@ class StructureMapGroup extends BackboneElement {
           this.rule,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapGroup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (extends_ != o.extends_) {
+      return false;
+    }
+    if (typeMode != o.typeMode) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    if (!listEquals<StructureMapInput>(
+      input,
+      o.input,
+    )) {
+      return false;
+    }
+    if (!listEquals<StructureMapRule>(
+      rule,
+      o.rule,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [StructureMapInput]
@@ -1676,6 +1883,44 @@ class StructureMapInput extends BackboneElement {
           ) ??
           this.documentation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapInput) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2050,6 +2295,62 @@ class StructureMapRule extends BackboneElement {
           ) ??
           this.documentation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapRule) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<StructureMapSource>(
+      source,
+      o.source,
+    )) {
+      return false;
+    }
+    if (!listEquals<StructureMapTarget>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    if (!listEquals<StructureMapRule>(
+      rule,
+      o.rule,
+    )) {
+      return false;
+    }
+    if (!listEquals<StructureMapDependent>(
+      dependent,
+      o.dependent,
+    )) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2762,6 +3063,65 @@ class StructureMapSource extends BackboneElement {
           this.logMessage,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapSource) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    if (min != o.min) {
+      return false;
+    }
+    if (max != o.max) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (defaultValueX != o.defaultValueX) {
+      return false;
+    }
+    if (element != o.element) {
+      return false;
+    }
+    if (listMode != o.listMode) {
+      return false;
+    }
+    if (variable != o.variable) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    if (check != o.check) {
+      return false;
+    }
+    if (logMessage != o.logMessage) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [StructureMapTarget]
@@ -3164,6 +3524,62 @@ class StructureMapTarget extends BackboneElement {
           this.parameter,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapTarget) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    if (contextType != o.contextType) {
+      return false;
+    }
+    if (element != o.element) {
+      return false;
+    }
+    if (variable != o.variable) {
+      return false;
+    }
+    if (!listEquals<StructureMapTargetListMode>(
+      listMode,
+      o.listMode,
+    )) {
+      return false;
+    }
+    if (listRuleId != o.listRuleId) {
+      return false;
+    }
+    if (transform != o.transform) {
+      return false;
+    }
+    if (!listEquals<StructureMapParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [StructureMapParameter]
@@ -3423,6 +3839,35 @@ class StructureMapParameter extends BackboneElement {
           this.valueX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [StructureMapDependent]
@@ -3680,5 +4125,40 @@ class StructureMapDependent extends BackboneElement {
               .toList() ??
           this.variable,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! StructureMapDependent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      variable,
+      o.variable,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

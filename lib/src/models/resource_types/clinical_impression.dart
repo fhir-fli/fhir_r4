@@ -843,6 +843,137 @@ class ClinicalImpression extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalImpression) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (effectiveX != o.effectiveX) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (assessor != o.assessor) {
+      return false;
+    }
+    if (previous != o.previous) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      problem,
+      o.problem,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClinicalImpressionInvestigation>(
+      investigation,
+      o.investigation,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      protocol,
+      o.protocol,
+    )) {
+      return false;
+    }
+    if (summary != o.summary) {
+      return false;
+    }
+    if (!listEquals<ClinicalImpressionFinding>(
+      finding,
+      o.finding,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      prognosisCodeableConcept,
+      o.prognosisCodeableConcept,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      prognosisReference,
+      o.prognosisReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInfo,
+      o.supportingInfo,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalImpressionInvestigation]
@@ -1113,6 +1244,41 @@ class ClinicalImpressionInvestigation extends BackboneElement {
               .toList() ??
           this.item,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalImpressionInvestigation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1396,5 +1562,40 @@ class ClinicalImpressionFinding extends BackboneElement {
           ) ??
           this.basis,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalImpressionFinding) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemCodeableConcept != o.itemCodeableConcept) {
+      return false;
+    }
+    if (itemReference != o.itemReference) {
+      return false;
+    }
+    if (basis != o.basis) {
+      return false;
+    }
+    return true;
   }
 }

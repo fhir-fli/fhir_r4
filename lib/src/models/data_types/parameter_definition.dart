@@ -355,4 +355,45 @@ class ParameterDefinition extends DataType
           this.profile,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ParameterDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (min != o.min) {
+      return false;
+    }
+    if (max != o.max) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (profile != o.profile) {
+      return false;
+    }
+    return true;
+  }
 }

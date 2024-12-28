@@ -398,4 +398,48 @@ class Attachment extends DataType
           this.creation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Attachment) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (contentType != o.contentType) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (data != o.data) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (size != o.size) {
+      return false;
+    }
+    if (hash != o.hash) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (creation != o.creation) {
+      return false;
+    }
+    return true;
+  }
 }

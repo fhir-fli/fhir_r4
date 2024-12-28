@@ -846,6 +846,140 @@ class ImagingStudy extends DomainResource {
           this.series,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImagingStudy) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      modality,
+      o.modality,
+    )) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (started != o.started) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (referrer != o.referrer) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      interpreter,
+      o.interpreter,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      endpoint,
+      o.endpoint,
+    )) {
+      return false;
+    }
+    if (numberOfSeries != o.numberOfSeries) {
+      return false;
+    }
+    if (numberOfInstances != o.numberOfInstances) {
+      return false;
+    }
+    if (procedureReference != o.procedureReference) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      procedureCode,
+      o.procedureCode,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<ImagingStudySeries>(
+      series,
+      o.series,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImagingStudySeries]
@@ -1366,6 +1500,80 @@ class ImagingStudySeries extends BackboneElement {
           this.instance,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImagingStudySeries) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (uid != o.uid) {
+      return false;
+    }
+    if (number != o.number) {
+      return false;
+    }
+    if (modality != o.modality) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (numberOfInstances != o.numberOfInstances) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      endpoint,
+      o.endpoint,
+    )) {
+      return false;
+    }
+    if (bodySite != o.bodySite) {
+      return false;
+    }
+    if (laterality != o.laterality) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      specimen,
+      o.specimen,
+    )) {
+      return false;
+    }
+    if (started != o.started) {
+      return false;
+    }
+    if (!listEquals<ImagingStudyPerformer>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImagingStudyInstance>(
+      instance,
+      o.instance,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImagingStudyPerformer]
@@ -1621,6 +1829,38 @@ class ImagingStudyPerformer extends BackboneElement {
           ) ??
           this.actor,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImagingStudyPerformer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (function_ != o.function_) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1920,5 +2160,43 @@ class ImagingStudyInstance extends BackboneElement {
           ) ??
           this.title,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImagingStudyInstance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (uid != o.uid) {
+      return false;
+    }
+    if (sopClass != o.sopClass) {
+      return false;
+    }
+    if (number != o.number) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    return true;
   }
 }

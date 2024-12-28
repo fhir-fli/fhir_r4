@@ -913,6 +913,149 @@ class CodeSystem extends CanonicalResource {
           this.concept,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (caseSensitive != o.caseSensitive) {
+      return false;
+    }
+    if (valueSet != o.valueSet) {
+      return false;
+    }
+    if (hierarchyMeaning != o.hierarchyMeaning) {
+      return false;
+    }
+    if (compositional != o.compositional) {
+      return false;
+    }
+    if (versionNeeded != o.versionNeeded) {
+      return false;
+    }
+    if (content != o.content) {
+      return false;
+    }
+    if (supplements != o.supplements) {
+      return false;
+    }
+    if (count != o.count) {
+      return false;
+    }
+    if (!listEquals<CodeSystemFilter>(
+      filter,
+      o.filter,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeSystemProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeSystemConcept>(
+      concept,
+      o.concept,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CodeSystemFilter]
@@ -1214,6 +1357,47 @@ class CodeSystemFilter extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystemFilter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<FilterOperator>(
+      operator_,
+      o.operator_,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1520,6 +1704,44 @@ class CodeSystemProperty extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystemProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (uri != o.uri) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1899,6 +2121,59 @@ class CodeSystemConcept extends BackboneElement {
           this.concept,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystemConcept) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (!listEquals<CodeSystemDesignation>(
+      designation,
+      o.designation,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeSystemProperty1>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeSystemConcept>(
+      concept,
+      o.concept,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CodeSystemDesignation]
@@ -2177,6 +2452,41 @@ class CodeSystemDesignation extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystemDesignation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2466,5 +2776,37 @@ class CodeSystemProperty1 extends BackboneElement {
           ) as ValueXCodeSystemProperty? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeSystemProperty1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

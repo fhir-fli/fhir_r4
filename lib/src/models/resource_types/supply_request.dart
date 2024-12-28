@@ -704,6 +704,110 @@ class SupplyRequest extends DomainResource {
           this.deliverTo,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SupplyRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (itemX != o.itemX) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<SupplyRequestParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (requester != o.requester) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supplier,
+      o.supplier,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (deliverFrom != o.deliverFrom) {
+      return false;
+    }
+    if (deliverTo != o.deliverTo) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SupplyRequestParameter]
@@ -982,5 +1086,37 @@ class SupplyRequestParameter extends BackboneElement {
           ) as ValueXSupplyRequestParameter? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SupplyRequestParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

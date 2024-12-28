@@ -777,6 +777,131 @@ class RequestGroup extends DomainResource {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RequestGroup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      replaces,
+      o.replaces,
+    )) {
+      return false;
+    }
+    if (groupIdentifier != o.groupIdentifier) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (author != o.author) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<RequestGroupAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [RequestGroupAction]
@@ -1499,6 +1624,107 @@ class RequestGroupAction extends BackboneElement {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RequestGroupAction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (prefix != o.prefix) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (textEquivalent != o.textEquivalent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      documentation,
+      o.documentation,
+    )) {
+      return false;
+    }
+    if (!listEquals<RequestGroupCondition>(
+      condition,
+      o.condition,
+    )) {
+      return false;
+    }
+    if (!listEquals<RequestGroupRelatedAction>(
+      relatedAction,
+      o.relatedAction,
+    )) {
+      return false;
+    }
+    if (timingX != o.timingX) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (groupingBehavior != o.groupingBehavior) {
+      return false;
+    }
+    if (selectionBehavior != o.selectionBehavior) {
+      return false;
+    }
+    if (requiredBehavior != o.requiredBehavior) {
+      return false;
+    }
+    if (precheckBehavior != o.precheckBehavior) {
+      return false;
+    }
+    if (cardinalityBehavior != o.cardinalityBehavior) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (!listEquals<RequestGroupAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [RequestGroupCondition]
@@ -1756,6 +1982,38 @@ class RequestGroupCondition extends BackboneElement {
           ) ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RequestGroupCondition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (kind != o.kind) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2044,5 +2302,40 @@ class RequestGroupRelatedAction extends BackboneElement {
           ) as OffsetXRequestGroupRelatedAction? ??
           this.offsetX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RequestGroupRelatedAction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (actionId != o.actionId) {
+      return false;
+    }
+    if (relationship != o.relationship) {
+      return false;
+    }
+    if (offsetX != o.offsetX) {
+      return false;
+    }
+    return true;
   }
 }

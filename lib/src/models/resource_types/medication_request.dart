@@ -1171,6 +1171,185 @@ class MedicationRequest extends DomainResource {
           this.eventHistory,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (doNotPerform != o.doNotPerform) {
+      return false;
+    }
+    if (reportedX != o.reportedX) {
+      return false;
+    }
+    if (medicationX != o.medicationX) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInformation,
+      o.supportingInformation,
+    )) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (requester != o.requester) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    if (performerType != o.performerType) {
+      return false;
+    }
+    if (recorder != o.recorder) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (groupIdentifier != o.groupIdentifier) {
+      return false;
+    }
+    if (courseOfTherapyType != o.courseOfTherapyType) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Dosage>(
+      dosageInstruction,
+      o.dosageInstruction,
+    )) {
+      return false;
+    }
+    if (dispenseRequest != o.dispenseRequest) {
+      return false;
+    }
+    if (substitution != o.substitution) {
+      return false;
+    }
+    if (priorPrescription != o.priorPrescription) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      detectedIssue,
+      o.detectedIssue,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      eventHistory,
+      o.eventHistory,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationRequestDispenseRequest]
@@ -1556,6 +1735,53 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           this.performer,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationRequestDispenseRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (initialFill != o.initialFill) {
+      return false;
+    }
+    if (dispenseInterval != o.dispenseInterval) {
+      return false;
+    }
+    if (validityPeriod != o.validityPeriod) {
+      return false;
+    }
+    if (numberOfRepeatsAllowed != o.numberOfRepeatsAllowed) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (expectedSupplyDuration != o.expectedSupplyDuration) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationRequestInitialFill]
@@ -1814,6 +2040,38 @@ class MedicationRequestInitialFill extends BackboneElement {
           ) ??
           this.duration,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationRequestInitialFill) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2086,5 +2344,37 @@ class MedicationRequestSubstitution extends BackboneElement {
           ) ??
           this.reason,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationRequestSubstitution) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (allowedX != o.allowedX) {
+      return false;
+    }
+    if (reason != o.reason) {
+      return false;
+    }
+    return true;
   }
 }

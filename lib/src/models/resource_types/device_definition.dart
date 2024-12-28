@@ -913,6 +913,155 @@ class DeviceDefinition extends DomainResource {
           this.material,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionUdiDeviceIdentifier>(
+      udiDeviceIdentifier,
+      o.udiDeviceIdentifier,
+    )) {
+      return false;
+    }
+    if (manufacturerX != o.manufacturerX) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionDeviceName>(
+      deviceName,
+      o.deviceName,
+    )) {
+      return false;
+    }
+    if (modelNumber != o.modelNumber) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionSpecialization>(
+      specialization,
+      o.specialization,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      version,
+      o.version,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      safety,
+      o.safety,
+    )) {
+      return false;
+    }
+    if (!listEquals<ProductShelfLife>(
+      shelfLifeStorage,
+      o.shelfLifeStorage,
+    )) {
+      return false;
+    }
+    if (physicalCharacteristics != o.physicalCharacteristics) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      languageCode,
+      o.languageCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionCapability>(
+      capability,
+      o.capability,
+    )) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (owner != o.owner) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (onlineInformation != o.onlineInformation) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (parentDevice != o.parentDevice) {
+      return false;
+    }
+    if (!listEquals<DeviceDefinitionMaterial>(
+      material,
+      o.material,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceDefinitionUdiDeviceIdentifier]
@@ -1192,6 +1341,41 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           this.jurisdiction,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionUdiDeviceIdentifier) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (deviceIdentifier != o.deviceIdentifier) {
+      return false;
+    }
+    if (issuer != o.issuer) {
+      return false;
+    }
+    if (jurisdiction != o.jurisdiction) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceDefinitionDeviceName]
@@ -1447,6 +1631,38 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionDeviceName) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1705,6 +1921,38 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           ) ??
           this.version,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionSpecialization) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (systemType != o.systemType) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1969,6 +2217,41 @@ class DeviceDefinitionCapability extends BackboneElement {
               .toList() ??
           this.description,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionCapability) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      description,
+      o.description,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2266,6 +2549,47 @@ class DeviceDefinitionProperty extends BackboneElement {
           this.valueCode,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      valueQuantity,
+      o.valueQuantity,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      valueCode,
+      o.valueCode,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceDefinitionMaterial]
@@ -2543,5 +2867,40 @@ class DeviceDefinitionMaterial extends BackboneElement {
           ) ??
           this.allergenicIndicator,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDefinitionMaterial) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (substance != o.substance) {
+      return false;
+    }
+    if (alternate != o.alternate) {
+      return false;
+    }
+    if (allergenicIndicator != o.allergenicIndicator) {
+      return false;
+    }
+    return true;
   }
 }

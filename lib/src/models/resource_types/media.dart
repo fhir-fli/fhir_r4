@@ -852,4 +852,129 @@ class Media extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Media) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (modality != o.modality) {
+      return false;
+    }
+    if (view != o.view) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (createdX != o.createdX) {
+      return false;
+    }
+    if (issued != o.issued) {
+      return false;
+    }
+    if (operator_ != o.operator_) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (bodySite != o.bodySite) {
+      return false;
+    }
+    if (deviceName != o.deviceName) {
+      return false;
+    }
+    if (device != o.device) {
+      return false;
+    }
+    if (height != o.height) {
+      return false;
+    }
+    if (width != o.width) {
+      return false;
+    }
+    if (frames != o.frames) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    if (content != o.content) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

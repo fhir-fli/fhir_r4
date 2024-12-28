@@ -584,4 +584,96 @@ class FhirEndpoint extends DomainResource {
           this.header,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! FhirEndpoint) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (connectionType != o.connectionType) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (managingOrganization != o.managingOrganization) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      payloadType,
+      o.payloadType,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      payloadMimeType,
+      o.payloadMimeType,
+    )) {
+      return false;
+    }
+    if (address != o.address) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      header,
+      o.header,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

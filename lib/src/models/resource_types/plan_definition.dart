@@ -1103,6 +1103,182 @@ class PlanDefinition extends CanonicalResource {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (subtitle != o.subtitle) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (subjectX != o.subjectX) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (usage != o.usage) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (approvalDate != o.approvalDate) {
+      return false;
+    }
+    if (lastReviewDate != o.lastReviewDate) {
+      return false;
+    }
+    if (effectivePeriod != o.effectivePeriod) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      topic,
+      o.topic,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      editor,
+      o.editor,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      reviewer,
+      o.reviewer,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      endorser,
+      o.endorser,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      relatedArtifact,
+      o.relatedArtifact,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      library_,
+      o.library_,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionGoal>(
+      goal,
+      o.goal,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PlanDefinitionGoal]
@@ -1504,6 +1680,62 @@ class PlanDefinitionGoal extends BackboneElement {
           this.target,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionGoal) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      addresses,
+      o.addresses,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      documentation,
+      o.documentation,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionTarget>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PlanDefinitionTarget]
@@ -1806,6 +2038,41 @@ class PlanDefinitionTarget extends BackboneElement {
           ) ??
           this.due,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionTarget) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (measure != o.measure) {
+      return false;
+    }
+    if (detailX != o.detailX) {
+      return false;
+    }
+    if (due != o.due) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2801,6 +3068,149 @@ class PlanDefinitionAction extends BackboneElement {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionAction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (prefix != o.prefix) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (textEquivalent != o.textEquivalent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reason,
+      o.reason,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      documentation,
+      o.documentation,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirId>(
+      goalId,
+      o.goalId,
+    )) {
+      return false;
+    }
+    if (subjectX != o.subjectX) {
+      return false;
+    }
+    if (!listEquals<TriggerDefinition>(
+      trigger,
+      o.trigger,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionCondition>(
+      condition,
+      o.condition,
+    )) {
+      return false;
+    }
+    if (!listEquals<DataRequirement>(
+      input,
+      o.input,
+    )) {
+      return false;
+    }
+    if (!listEquals<DataRequirement>(
+      output,
+      o.output,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionRelatedAction>(
+      relatedAction,
+      o.relatedAction,
+    )) {
+      return false;
+    }
+    if (timingX != o.timingX) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (groupingBehavior != o.groupingBehavior) {
+      return false;
+    }
+    if (selectionBehavior != o.selectionBehavior) {
+      return false;
+    }
+    if (requiredBehavior != o.requiredBehavior) {
+      return false;
+    }
+    if (precheckBehavior != o.precheckBehavior) {
+      return false;
+    }
+    if (cardinalityBehavior != o.cardinalityBehavior) {
+      return false;
+    }
+    if (definitionX != o.definitionX) {
+      return false;
+    }
+    if (transform != o.transform) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionDynamicValue>(
+      dynamicValue,
+      o.dynamicValue,
+    )) {
+      return false;
+    }
+    if (!listEquals<PlanDefinitionAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PlanDefinitionCondition]
@@ -3058,6 +3468,38 @@ class PlanDefinitionCondition extends BackboneElement {
           ) ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionCondition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (kind != o.kind) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3347,6 +3789,41 @@ class PlanDefinitionRelatedAction extends BackboneElement {
           this.offsetX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionRelatedAction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (actionId != o.actionId) {
+      return false;
+    }
+    if (relationship != o.relationship) {
+      return false;
+    }
+    if (offsetX != o.offsetX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PlanDefinitionParticipant]
@@ -3603,6 +4080,38 @@ class PlanDefinitionParticipant extends BackboneElement {
           ) ??
           this.role,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3873,5 +4382,37 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           ) ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PlanDefinitionDynamicValue) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    return true;
   }
 }

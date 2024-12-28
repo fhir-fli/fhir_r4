@@ -838,6 +838,143 @@ class SubscriptionTopic extends CanonicalResource {
           this.notificationShape,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      derivedFrom,
+      o.derivedFrom,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (approvalDate != o.approvalDate) {
+      return false;
+    }
+    if (lastReviewDate != o.lastReviewDate) {
+      return false;
+    }
+    if (effectivePeriod != o.effectivePeriod) {
+      return false;
+    }
+    if (!listEquals<SubscriptionTopicResourceTrigger>(
+      resourceTrigger,
+      o.resourceTrigger,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubscriptionTopicEventTrigger>(
+      eventTrigger,
+      o.eventTrigger,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubscriptionTopicCanFilterBy>(
+      canFilterBy,
+      o.canFilterBy,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubscriptionTopicNotificationShape>(
+      notificationShape,
+      o.notificationShape,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionTopicResourceTrigger]
@@ -1181,6 +1318,50 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           this.fhirPathCriteria,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopicResourceTrigger) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (!listEquals<InteractionTrigger>(
+      supportedInteraction,
+      o.supportedInteraction,
+    )) {
+      return false;
+    }
+    if (queryCriteria != o.queryCriteria) {
+      return false;
+    }
+    if (fhirPathCriteria != o.fhirPathCriteria) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionTopicQueryCriteria]
@@ -1512,6 +1693,47 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           this.requireBoth,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopicQueryCriteria) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (previous != o.previous) {
+      return false;
+    }
+    if (resultForCreate != o.resultForCreate) {
+      return false;
+    }
+    if (current != o.current) {
+      return false;
+    }
+    if (resultForDelete != o.resultForDelete) {
+      return false;
+    }
+    if (requireBoth != o.requireBoth) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionTopicEventTrigger]
@@ -1797,6 +2019,41 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           ) ??
           this.resource,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopicEventTrigger) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (event != o.event) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2140,6 +2397,50 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           this.modifier,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopicCanFilterBy) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (filterParameter != o.filterParameter) {
+      return false;
+    }
+    if (filterDefinition != o.filterDefinition) {
+      return false;
+    }
+    if (!listEquals<SubscriptionSearchModifier>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionTopicNotificationShape]
@@ -2439,5 +2740,46 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
               .toList() ??
           this.revInclude,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionTopicNotificationShape) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      include,
+      o.include,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      revInclude,
+      o.revInclude,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

@@ -993,6 +993,161 @@ class Evidence extends DomainResource {
           this.certainty,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Evidence) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (citeAsX != o.citeAsX) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (approvalDate != o.approvalDate) {
+      return false;
+    }
+    if (lastReviewDate != o.lastReviewDate) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      editor,
+      o.editor,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      reviewer,
+      o.reviewer,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      endorser,
+      o.endorser,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      relatedArtifact,
+      o.relatedArtifact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (assertion != o.assertion) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<EvidenceVariableDefinition>(
+      variableDefinition,
+      o.variableDefinition,
+    )) {
+      return false;
+    }
+    if (synthesisType != o.synthesisType) {
+      return false;
+    }
+    if (studyType != o.studyType) {
+      return false;
+    }
+    if (!listEquals<EvidenceStatistic>(
+      statistic,
+      o.statistic,
+    )) {
+      return false;
+    }
+    if (!listEquals<EvidenceCertainty>(
+      certainty,
+      o.certainty,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceVariableDefinition]
@@ -1346,6 +1501,53 @@ class EvidenceVariableDefinition extends BackboneElement {
           ) ??
           this.directnessMatch,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceVariableDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (variableRole != o.variableRole) {
+      return false;
+    }
+    if (observed != o.observed) {
+      return false;
+    }
+    if (intended != o.intended) {
+      return false;
+    }
+    if (directnessMatch != o.directnessMatch) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1810,6 +2012,71 @@ class EvidenceStatistic extends BackboneElement {
           this.modelCharacteristic,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceStatistic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (statisticType != o.statisticType) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (numberOfEvents != o.numberOfEvents) {
+      return false;
+    }
+    if (numberAffected != o.numberAffected) {
+      return false;
+    }
+    if (sampleSize != o.sampleSize) {
+      return false;
+    }
+    if (!listEquals<EvidenceAttributeEstimate>(
+      attributeEstimate,
+      o.attributeEstimate,
+    )) {
+      return false;
+    }
+    if (!listEquals<EvidenceModelCharacteristic>(
+      modelCharacteristic,
+      o.modelCharacteristic,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceSampleSize]
@@ -2142,6 +2409,50 @@ class EvidenceSampleSize extends BackboneElement {
           ) ??
           this.knownDataCount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceSampleSize) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (numberOfStudies != o.numberOfStudies) {
+      return false;
+    }
+    if (numberOfParticipants != o.numberOfParticipants) {
+      return false;
+    }
+    if (knownDataCount != o.knownDataCount) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2531,6 +2842,59 @@ class EvidenceAttributeEstimate extends BackboneElement {
           this.attributeEstimate,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceAttributeEstimate) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (level != o.level) {
+      return false;
+    }
+    if (range != o.range) {
+      return false;
+    }
+    if (!listEquals<EvidenceAttributeEstimate>(
+      attributeEstimate,
+      o.attributeEstimate,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceModelCharacteristic]
@@ -2847,6 +3211,50 @@ class EvidenceModelCharacteristic extends BackboneElement {
               .toList() ??
           this.attributeEstimate,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceModelCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (!listEquals<EvidenceModelCharacteristicVariable>(
+      variable,
+      o.variable,
+    )) {
+      return false;
+    }
+    if (!listEquals<EvidenceAttributeEstimate>(
+      attributeEstimate,
+      o.attributeEstimate,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3193,6 +3601,56 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
               .toList() ??
           this.valueRange,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceModelCharacteristicVariable) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (variableDefinition != o.variableDefinition) {
+      return false;
+    }
+    if (handling != o.handling) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      valueCategory,
+      o.valueCategory,
+    )) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      valueQuantity,
+      o.valueQuantity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Range>(
+      valueRange,
+      o.valueRange,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3556,5 +4014,55 @@ class EvidenceCertainty extends BackboneElement {
               .toList() ??
           this.subcomponent,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceCertainty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (rating != o.rating) {
+      return false;
+    }
+    if (rater != o.rater) {
+      return false;
+    }
+    if (!listEquals<EvidenceCertainty>(
+      subcomponent,
+      o.subcomponent,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

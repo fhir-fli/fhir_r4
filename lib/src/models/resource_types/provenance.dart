@@ -591,6 +591,98 @@ class Provenance extends DomainResource {
           this.signature,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Provenance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    if (occurredX != o.occurredX) {
+      return false;
+    }
+    if (recorded != o.recorded) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      policy,
+      o.policy,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reason,
+      o.reason,
+    )) {
+      return false;
+    }
+    if (activity != o.activity) {
+      return false;
+    }
+    if (!listEquals<ProvenanceAgent>(
+      agent,
+      o.agent,
+    )) {
+      return false;
+    }
+    if (!listEquals<ProvenanceEntity>(
+      entity,
+      o.entity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Signature>(
+      signature,
+      o.signature,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ProvenanceAgent]
@@ -901,6 +993,47 @@ class ProvenanceAgent extends BackboneElement {
           this.onBehalfOf,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ProvenanceAgent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      role,
+      o.role,
+    )) {
+      return false;
+    }
+    if (who != o.who) {
+      return false;
+    }
+    if (onBehalfOf != o.onBehalfOf) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ProvenanceEntity]
@@ -1188,5 +1321,43 @@ class ProvenanceEntity extends BackboneElement {
               .toList() ??
           this.agent,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ProvenanceEntity) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (what != o.what) {
+      return false;
+    }
+    if (!listEquals<ProvenanceAgent>(
+      agent,
+      o.agent,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

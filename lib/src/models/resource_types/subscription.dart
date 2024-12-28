@@ -469,6 +469,74 @@ class Subscription extends DomainResource {
           this.channel,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Subscription) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    if (reason != o.reason) {
+      return false;
+    }
+    if (criteria != o.criteria) {
+      return false;
+    }
+    if (error != o.error) {
+      return false;
+    }
+    if (channel != o.channel) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionChannel]
@@ -776,5 +844,46 @@ class SubscriptionChannel extends BackboneElement {
               .toList() ??
           this.header,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionChannel) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (endpoint != o.endpoint) {
+      return false;
+    }
+    if (payload != o.payload) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      header,
+      o.header,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

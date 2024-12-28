@@ -390,6 +390,56 @@ class Bundle extends Resource {
           this.signature,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Bundle) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (timestamp != o.timestamp) {
+      return false;
+    }
+    if (total != o.total) {
+      return false;
+    }
+    if (!listEquals<BundleLink>(
+      link,
+      o.link,
+    )) {
+      return false;
+    }
+    if (!listEquals<BundleEntry>(
+      entry,
+      o.entry,
+    )) {
+      return false;
+    }
+    if (signature != o.signature) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [BundleLink]
@@ -644,6 +694,38 @@ class BundleLink extends BackboneElement {
           ) ??
           this.url,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BundleLink) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (relation != o.relation) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1011,6 +1093,53 @@ class BundleEntry extends BackboneElement {
           this.response,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BundleEntry) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<BundleLink>(
+      link,
+      o.link,
+    )) {
+      return false;
+    }
+    if (fullUrl != o.fullUrl) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (search != o.search) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (response != o.response) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [BundleSearch]
@@ -1271,6 +1400,38 @@ class BundleSearch extends BackboneElement {
           ) ??
           this.score,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BundleSearch) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (score != o.score) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1626,6 +1787,50 @@ class BundleRequest extends BackboneElement {
           this.ifNoneExist,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BundleRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (ifNoneMatch != o.ifNoneMatch) {
+      return false;
+    }
+    if (ifModifiedSince != o.ifModifiedSince) {
+      return false;
+    }
+    if (ifMatch != o.ifMatch) {
+      return false;
+    }
+    if (ifNoneExist != o.ifNoneExist) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [BundleResponse]
@@ -1953,5 +2158,46 @@ class BundleResponse extends BackboneElement {
           this.lastModified,
       outcome: outcome ?? this.outcome,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BundleResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (etag != o.etag) {
+      return false;
+    }
+    if (lastModified != o.lastModified) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    return true;
   }
 }

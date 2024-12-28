@@ -371,4 +371,54 @@ class HumanName extends DataType
           this.period,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! HumanName) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (family != o.family) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      given,
+      o.given,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      prefix,
+      o.prefix,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      suffix,
+      o.suffix,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
+  }
 }

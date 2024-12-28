@@ -427,6 +427,71 @@ class ImmunizationRecommendation extends DomainResource {
           this.recommendation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationRecommendation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (authority != o.authority) {
+      return false;
+    }
+    if (!listEquals<ImmunizationRecommendationRecommendation>(
+      recommendation,
+      o.recommendation,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImmunizationRecommendationRecommendation]
@@ -984,6 +1049,86 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           this.supportingPatientInformation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationRecommendationRecommendation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      vaccineCode,
+      o.vaccineCode,
+    )) {
+      return false;
+    }
+    if (targetDisease != o.targetDisease) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      contraindicatedVaccineCode,
+      o.contraindicatedVaccineCode,
+    )) {
+      return false;
+    }
+    if (forecastStatus != o.forecastStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      forecastReason,
+      o.forecastReason,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImmunizationRecommendationDateCriterion>(
+      dateCriterion,
+      o.dateCriterion,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (series != o.series) {
+      return false;
+    }
+    if (doseNumberX != o.doseNumberX) {
+      return false;
+    }
+    if (seriesDosesX != o.seriesDosesX) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingImmunization,
+      o.supportingImmunization,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingPatientInformation,
+      o.supportingPatientInformation,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImmunizationRecommendationDateCriterion]
@@ -1240,5 +1385,37 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationRecommendationDateCriterion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }

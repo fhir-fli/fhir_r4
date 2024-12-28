@@ -739,6 +739,119 @@ class RiskAssessment extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RiskAssessment) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (basedOn != o.basedOn) {
+      return false;
+    }
+    if (parent != o.parent) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basis,
+      o.basis,
+    )) {
+      return false;
+    }
+    if (!listEquals<RiskAssessmentPrediction>(
+      prediction,
+      o.prediction,
+    )) {
+      return false;
+    }
+    if (mitigation != o.mitigation) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [RiskAssessmentPrediction]
@@ -1111,5 +1224,49 @@ class RiskAssessmentPrediction extends BackboneElement {
           ) ??
           this.rationale,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RiskAssessmentPrediction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (probabilityX != o.probabilityX) {
+      return false;
+    }
+    if (qualitativeRisk != o.qualitativeRisk) {
+      return false;
+    }
+    if (relativeRisk != o.relativeRisk) {
+      return false;
+    }
+    if (whenX != o.whenX) {
+      return false;
+    }
+    if (rationale != o.rationale) {
+      return false;
+    }
+    return true;
   }
 }

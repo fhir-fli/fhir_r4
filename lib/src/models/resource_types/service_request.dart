@@ -1246,4 +1246,201 @@ class ServiceRequest extends DomainResource {
           this.relevantHistory,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ServiceRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      replaces,
+      o.replaces,
+    )) {
+      return false;
+    }
+    if (requisition != o.requisition) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (doNotPerform != o.doNotPerform) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      orderDetail,
+      o.orderDetail,
+    )) {
+      return false;
+    }
+    if (quantityX != o.quantityX) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (asNeededX != o.asNeededX) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (requester != o.requester) {
+      return false;
+    }
+    if (performerType != o.performerType) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      locationCode,
+      o.locationCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      locationReference,
+      o.locationReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInfo,
+      o.supportingInfo,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      specimen,
+      o.specimen,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      bodySite,
+      o.bodySite,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (patientInstruction != o.patientInstruction) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      relevantHistory,
+      o.relevantHistory,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

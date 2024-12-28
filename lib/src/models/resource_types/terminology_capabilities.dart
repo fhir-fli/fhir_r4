@@ -847,6 +847,134 @@ class TerminologyCapabilities extends CanonicalResource {
           this.closure,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilities) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (kind != o.kind) {
+      return false;
+    }
+    if (software != o.software) {
+      return false;
+    }
+    if (implementation != o.implementation) {
+      return false;
+    }
+    if (lockedDate != o.lockedDate) {
+      return false;
+    }
+    if (!listEquals<TerminologyCapabilitiesCodeSystem>(
+      codeSystem,
+      o.codeSystem,
+    )) {
+      return false;
+    }
+    if (expansion != o.expansion) {
+      return false;
+    }
+    if (codeSearch != o.codeSearch) {
+      return false;
+    }
+    if (validateCode != o.validateCode) {
+      return false;
+    }
+    if (translation != o.translation) {
+      return false;
+    }
+    if (closure != o.closure) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TerminologyCapabilitiesSoftware]
@@ -1104,6 +1232,38 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
           ) ??
           this.version,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesSoftware) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1363,6 +1523,38 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
           ) ??
           this.url,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesImplementation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1654,6 +1846,44 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
           ) ??
           this.subsumption,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesCodeSystem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (uri != o.uri) {
+      return false;
+    }
+    if (!listEquals<TerminologyCapabilitiesVersion>(
+      version,
+      o.version,
+    )) {
+      return false;
+    }
+    if (subsumption != o.subsumption) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2019,6 +2249,59 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           this.property,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesVersion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (isDefault != o.isDefault) {
+      return false;
+    }
+    if (compositional != o.compositional) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      language,
+      o.language,
+    )) {
+      return false;
+    }
+    if (!listEquals<TerminologyCapabilitiesFilter>(
+      filter,
+      o.filter,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TerminologyCapabilitiesFilter]
@@ -2276,6 +2559,41 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
               .toList() ??
           this.op,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesFilter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      op,
+      o.op,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2610,6 +2928,50 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
           this.textFilter,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesExpansion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (hierarchical != o.hierarchical) {
+      return false;
+    }
+    if (paging != o.paging) {
+      return false;
+    }
+    if (incomplete != o.incomplete) {
+      return false;
+    }
+    if (!listEquals<TerminologyCapabilitiesParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    if (textFilter != o.textFilter) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TerminologyCapabilitiesParameter]
@@ -2866,6 +3228,38 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
           this.documentation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (documentation != o.documentation) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TerminologyCapabilitiesValidateCode]
@@ -3102,6 +3496,35 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
           this.translations,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesValidateCode) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (translations != o.translations) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TerminologyCapabilitiesTranslation]
@@ -3336,6 +3759,35 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
           ) ??
           this.needsMap,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesTranslation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (needsMap != o.needsMap) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3572,5 +4024,34 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
           ) ??
           this.translation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TerminologyCapabilitiesClosure) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (translation != o.translation) {
+      return false;
+    }
+    return true;
   }
 }

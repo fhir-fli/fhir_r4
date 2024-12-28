@@ -584,6 +584,92 @@ class QuestionnaireResponse extends DomainResource {
           this.item,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (questionnaire != o.questionnaire) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (authored != o.authored) {
+      return false;
+    }
+    if (author != o.author) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireResponseItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [QuestionnaireResponseItem]
@@ -926,6 +1012,53 @@ class QuestionnaireResponseItem extends BackboneElement {
           this.item,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireResponseItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (linkId != o.linkId) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireResponseAnswer>(
+      answer,
+      o.answer,
+    )) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireResponseItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [QuestionnaireResponseAnswer]
@@ -1252,5 +1385,40 @@ class QuestionnaireResponseAnswer extends BackboneElement {
               .toList() ??
           this.item,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireResponseAnswer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireResponseItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

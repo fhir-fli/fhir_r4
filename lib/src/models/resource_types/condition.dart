@@ -793,6 +793,119 @@ class Condition extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Condition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (clinicalStatus != o.clinicalStatus) {
+      return false;
+    }
+    if (verificationStatus != o.verificationStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (severity != o.severity) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      bodySite,
+      o.bodySite,
+    )) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (onsetX != o.onsetX) {
+      return false;
+    }
+    if (abatementX != o.abatementX) {
+      return false;
+    }
+    if (recordedDate != o.recordedDate) {
+      return false;
+    }
+    if (recorder != o.recorder) {
+      return false;
+    }
+    if (asserter != o.asserter) {
+      return false;
+    }
+    if (!listEquals<ConditionStage>(
+      stage,
+      o.stage,
+    )) {
+      return false;
+    }
+    if (!listEquals<ConditionEvidence>(
+      evidence,
+      o.evidence,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConditionStage]
@@ -1084,6 +1197,44 @@ class ConditionStage extends BackboneElement {
           this.type,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConditionStage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (summary != o.summary) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      assessment,
+      o.assessment,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConditionEvidence]
@@ -1359,5 +1510,43 @@ class ConditionEvidence extends BackboneElement {
               .toList() ??
           this.detail,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConditionEvidence) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

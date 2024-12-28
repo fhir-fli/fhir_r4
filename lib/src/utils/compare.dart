@@ -1,7 +1,20 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
+/// Compares two lists for equality.
+bool listEquals<T>(List<FhirBase>? list1, List<FhirBase>? list2) {
+  if (list1 == null && list2 == null) return true;
+  if (list1 == null || list2 == null) return false;
+  if (list1.length != list2.length) return false;
+  for (var i = 0; i < list1.length; i++) {
+    if (!list1[i].equalsDeep(list2[i])) return false;
+  }
+  return true;
+}
+
+/// Compares two [dynamic] objects deeply.
 bool deepCompare(dynamic json1, dynamic json2) {
   if (const DeepCollectionEquality().equals(json1, json2)) {
     return true;
@@ -26,27 +39,31 @@ int _listSort(dynamic a, dynamic b) {
   return strA.compareTo(strB);
 }
 
+/// Custom equality for [Object]s, mostly used in testing.
 class CustomBaseEquality extends DefaultEquality<Object?> {
+  /// Default constructor.
   const CustomBaseEquality();
 
   @override
-  bool equals(Object? o1, Object? o2) {
-    if (o1 is String && o2 is String) {
-      return const CustomStringEquality().equals(o1, o2);
+  bool equals(Object? e1, Object? e2) {
+    if (e1 is String && e2 is String) {
+      return const CustomStringEquality().equals(e1, e2);
     }
-    return super.equals(o1, o2);
+    return super.equals(e1, e2);
   }
 
   @override
-  int hash(Object? o) {
-    if (o is String) {
-      return const CustomStringEquality().hash(o);
+  int hash(Object? e) {
+    if (e is String) {
+      return const CustomStringEquality().hash(e);
     }
-    return super.hash(o);
+    return super.hash(e);
   }
 }
 
+/// Custom equality for [String]s, mostly used in testing.
 class CustomStringEquality implements Equality<String> {
+  /// Default constructor.
   const CustomStringEquality();
 
   @override

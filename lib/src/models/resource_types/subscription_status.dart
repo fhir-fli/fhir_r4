@@ -479,6 +479,77 @@ class SubscriptionStatus extends DomainResource {
           this.error,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionStatus) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (eventsSinceSubscriptionStart != o.eventsSinceSubscriptionStart) {
+      return false;
+    }
+    if (!listEquals<SubscriptionStatusNotificationEvent>(
+      notificationEvent,
+      o.notificationEvent,
+    )) {
+      return false;
+    }
+    if (subscription != o.subscription) {
+      return false;
+    }
+    if (topic != o.topic) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      error,
+      o.error,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubscriptionStatusNotificationEvent]
@@ -793,5 +864,46 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
               .toList() ??
           this.additionalContext,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubscriptionStatusNotificationEvent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (eventNumber != o.eventNumber) {
+      return false;
+    }
+    if (timestamp != o.timestamp) {
+      return false;
+    }
+    if (focus != o.focus) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      additionalContext,
+      o.additionalContext,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

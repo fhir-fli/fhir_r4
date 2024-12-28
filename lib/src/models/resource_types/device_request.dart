@@ -962,6 +962,158 @@ class DeviceRequest extends DomainResource {
           this.relevantHistory,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceRequest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      priorRequest,
+      o.priorRequest,
+    )) {
+      return false;
+    }
+    if (groupIdentifier != o.groupIdentifier) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (codeX != o.codeX) {
+      return false;
+    }
+    if (!listEquals<DeviceRequestParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (requester != o.requester) {
+      return false;
+    }
+    if (performerType != o.performerType) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInfo,
+      o.supportingInfo,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      relevantHistory,
+      o.relevantHistory,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceRequestParameter]
@@ -1240,5 +1392,37 @@ class DeviceRequestParameter extends BackboneElement {
           ) as ValueXDeviceRequestParameter? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceRequestParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

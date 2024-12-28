@@ -440,4 +440,57 @@ class Address extends DataType
           this.period,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Address) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      line,
+      o.line,
+    )) {
+      return false;
+    }
+    if (city != o.city) {
+      return false;
+    }
+    if (district != o.district) {
+      return false;
+    }
+    if (state != o.state) {
+      return false;
+    }
+    if (postalCode != o.postalCode) {
+      return false;
+    }
+    if (country != o.country) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
+  }
 }

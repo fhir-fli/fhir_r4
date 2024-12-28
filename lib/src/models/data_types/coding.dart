@@ -324,4 +324,39 @@ class Coding extends DataType
           this.userSelected,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Coding) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (userSelected != o.userSelected) {
+      return false;
+    }
+    return true;
+  }
 }

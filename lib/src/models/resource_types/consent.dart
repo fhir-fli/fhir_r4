@@ -661,6 +661,107 @@ class Consent extends DomainResource {
           this.provision,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Consent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (scope != o.scope) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (dateTime != o.dateTime) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      organization,
+      o.organization,
+    )) {
+      return false;
+    }
+    if (sourceX != o.sourceX) {
+      return false;
+    }
+    if (!listEquals<ConsentPolicy>(
+      policy,
+      o.policy,
+    )) {
+      return false;
+    }
+    if (policyRule != o.policyRule) {
+      return false;
+    }
+    if (!listEquals<ConsentVerification>(
+      verification,
+      o.verification,
+    )) {
+      return false;
+    }
+    if (provision != o.provision) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConsentPolicy]
@@ -923,6 +1024,38 @@ class ConsentPolicy extends BackboneElement {
           ) ??
           this.uri,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConsentPolicy) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (authority != o.authority) {
+      return false;
+    }
+    if (uri != o.uri) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1204,6 +1337,41 @@ class ConsentVerification extends BackboneElement {
           ) ??
           this.verificationDate,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConsentVerification) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (verified != o.verified) {
+      return false;
+    }
+    if (verifiedWith != o.verifiedWith) {
+      return false;
+    }
+    if (verificationDate != o.verificationDate) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1734,6 +1902,89 @@ class ConsentProvision extends BackboneElement {
           this.provision,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConsentProvision) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<ConsentActor>(
+      actor,
+      o.actor,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      securityLabel,
+      o.securityLabel,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      purpose,
+      o.purpose,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      class_,
+      o.class_,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (dataPeriod != o.dataPeriod) {
+      return false;
+    }
+    if (!listEquals<ConsentData>(
+      data,
+      o.data,
+    )) {
+      return false;
+    }
+    if (!listEquals<ConsentProvision>(
+      provision,
+      o.provision,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConsentActor]
@@ -1992,6 +2243,38 @@ class ConsentActor extends BackboneElement {
           this.reference,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConsentActor) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConsentData]
@@ -2248,5 +2531,37 @@ class ConsentData extends BackboneElement {
           ) ??
           this.reference,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConsentData) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (meaning != o.meaning) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    return true;
   }
 }

@@ -498,4 +498,72 @@ class ProdCharacteristic extends BackboneType {
           this.scoring,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ProdCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (height != o.height) {
+      return false;
+    }
+    if (width != o.width) {
+      return false;
+    }
+    if (depth != o.depth) {
+      return false;
+    }
+    if (weight != o.weight) {
+      return false;
+    }
+    if (nominalVolume != o.nominalVolume) {
+      return false;
+    }
+    if (externalDiameter != o.externalDiameter) {
+      return false;
+    }
+    if (shape != o.shape) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      color,
+      o.color,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      imprint,
+      o.imprint,
+    )) {
+      return false;
+    }
+    if (!listEquals<Attachment>(
+      image,
+      o.image,
+    )) {
+      return false;
+    }
+    if (scoring != o.scoring) {
+      return false;
+    }
+    return true;
+  }
 }

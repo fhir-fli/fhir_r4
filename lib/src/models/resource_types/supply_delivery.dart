@@ -601,6 +601,95 @@ class SupplyDelivery extends DomainResource {
           this.receiver,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SupplyDelivery) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (suppliedItem != o.suppliedItem) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (supplier != o.supplier) {
+      return false;
+    }
+    if (destination != o.destination) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      receiver,
+      o.receiver,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SupplyDeliverySuppliedItem]
@@ -870,5 +959,37 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
           ) as ItemXSupplyDeliverySuppliedItem? ??
           this.itemX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SupplyDeliverySuppliedItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (itemX != o.itemX) {
+      return false;
+    }
+    return true;
   }
 }

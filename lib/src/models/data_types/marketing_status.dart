@@ -343,4 +343,45 @@ class MarketingStatus extends BackboneType {
           this.restoreDate,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MarketingStatus) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (country != o.country) {
+      return false;
+    }
+    if (jurisdiction != o.jurisdiction) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (dateRange != o.dateRange) {
+      return false;
+    }
+    if (restoreDate != o.restoreDate) {
+      return false;
+    }
+    return true;
+  }
 }

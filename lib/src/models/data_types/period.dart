@@ -292,4 +292,30 @@ class Period extends DataType
           this.end,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Period) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    return true;
+  }
 }

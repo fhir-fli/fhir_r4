@@ -634,6 +634,107 @@ class EpisodeOfCare extends DomainResource {
           this.account,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EpisodeOfCare) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<EpisodeOfCareStatusHistory>(
+      statusHistory,
+      o.statusHistory,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (!listEquals<EpisodeOfCareDiagnosis>(
+      diagnosis,
+      o.diagnosis,
+    )) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (managingOrganization != o.managingOrganization) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      referralRequest,
+      o.referralRequest,
+    )) {
+      return false;
+    }
+    if (careManager != o.careManager) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      team,
+      o.team,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      account,
+      o.account,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EpisodeOfCareStatusHistory]
@@ -888,6 +989,38 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EpisodeOfCareStatusHistory) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1168,5 +1301,40 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
           ) ??
           this.rank,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EpisodeOfCareDiagnosis) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (rank != o.rank) {
+      return false;
+    }
+    return true;
   }
 }

@@ -335,6 +335,56 @@ class OperationOutcome extends DomainResource {
           this.issue,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! OperationOutcome) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<OperationOutcomeIssue>(
+      issue,
+      o.issue,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [OperationOutcomeIssue]
@@ -700,5 +750,55 @@ class OperationOutcomeIssue extends BackboneElement {
               .toList() ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! OperationOutcomeIssue) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (severity != o.severity) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (details != o.details) {
+      return false;
+    }
+    if (diagnostics != o.diagnostics) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      location,
+      o.location,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      expression,
+      o.expression,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

@@ -271,4 +271,30 @@ class Range extends DataType
           this.high,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Range) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (low != o.low) {
+      return false;
+    }
+    if (high != o.high) {
+      return false;
+    }
+    return true;
+  }
 }

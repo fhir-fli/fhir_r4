@@ -730,6 +730,119 @@ class Goal extends DomainResource {
           this.outcomeReference,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Goal) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (lifecycleStatus != o.lifecycleStatus) {
+      return false;
+    }
+    if (achievementStatus != o.achievementStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (startX != o.startX) {
+      return false;
+    }
+    if (!listEquals<GoalTarget>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (expressedBy != o.expressedBy) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      addresses,
+      o.addresses,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      outcomeCode,
+      o.outcomeCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      outcomeReference,
+      o.outcomeReference,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [GoalTarget]
@@ -1061,5 +1174,40 @@ class GoalTarget extends BackboneElement {
           ) as DueXGoalTarget? ??
           this.dueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! GoalTarget) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (measure != o.measure) {
+      return false;
+    }
+    if (detailX != o.detailX) {
+      return false;
+    }
+    if (dueX != o.dueX) {
+      return false;
+    }
+    return true;
   }
 }

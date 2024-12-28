@@ -600,6 +600,98 @@ class BiologicallyDerivedProduct extends DomainResource {
           this.storage,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BiologicallyDerivedProduct) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (productCategory != o.productCategory) {
+      return false;
+    }
+    if (productCode != o.productCode) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      request,
+      o.request,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      parent,
+      o.parent,
+    )) {
+      return false;
+    }
+    if (collection != o.collection) {
+      return false;
+    }
+    if (!listEquals<BiologicallyDerivedProductProcessing>(
+      processing,
+      o.processing,
+    )) {
+      return false;
+    }
+    if (manipulation != o.manipulation) {
+      return false;
+    }
+    if (!listEquals<BiologicallyDerivedProductStorage>(
+      storage,
+      o.storage,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [BiologicallyDerivedProductCollection]
@@ -891,6 +983,41 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
           ) as CollectedXBiologicallyDerivedProductCollection? ??
           this.collectedX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BiologicallyDerivedProductCollection) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (collector != o.collector) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (collectedX != o.collectedX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1207,6 +1334,44 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           this.timeX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BiologicallyDerivedProductProcessing) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (procedure != o.procedure) {
+      return false;
+    }
+    if (additive != o.additive) {
+      return false;
+    }
+    if (timeX != o.timeX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [BiologicallyDerivedProductManipulation]
@@ -1477,6 +1642,38 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
           ) as TimeXBiologicallyDerivedProductManipulation? ??
           this.timeX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BiologicallyDerivedProductManipulation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (timeX != o.timeX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1779,5 +1976,43 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
           ) ??
           this.duration,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! BiologicallyDerivedProductStorage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (temperature != o.temperature) {
+      return false;
+    }
+    if (scale != o.scale) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    return true;
   }
 }

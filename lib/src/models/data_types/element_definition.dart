@@ -1960,6 +1960,158 @@ class ElementDefinition extends BackboneType {
           this.mapping,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (!listEquals<PropertyRepresentation>(
+      representation,
+      o.representation,
+    )) {
+      return false;
+    }
+    if (sliceName != o.sliceName) {
+      return false;
+    }
+    if (sliceIsConstraining != o.sliceIsConstraining) {
+      return false;
+    }
+    if (label != o.label) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (slicing != o.slicing) {
+      return false;
+    }
+    if (short != o.short) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    if (requirements != o.requirements) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      alias,
+      o.alias,
+    )) {
+      return false;
+    }
+    if (min != o.min) {
+      return false;
+    }
+    if (max != o.max) {
+      return false;
+    }
+    if (base != o.base) {
+      return false;
+    }
+    if (contentReference != o.contentReference) {
+      return false;
+    }
+    if (!listEquals<ElementDefinitionType>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (defaultValueX != o.defaultValueX) {
+      return false;
+    }
+    if (meaningWhenMissing != o.meaningWhenMissing) {
+      return false;
+    }
+    if (orderMeaning != o.orderMeaning) {
+      return false;
+    }
+    if (fixedX != o.fixedX) {
+      return false;
+    }
+    if (patternX != o.patternX) {
+      return false;
+    }
+    if (!listEquals<ElementDefinitionExample>(
+      example,
+      o.example,
+    )) {
+      return false;
+    }
+    if (minValueX != o.minValueX) {
+      return false;
+    }
+    if (maxValueX != o.maxValueX) {
+      return false;
+    }
+    if (maxLength != o.maxLength) {
+      return false;
+    }
+    if (!listEquals<FhirId>(
+      condition,
+      o.condition,
+    )) {
+      return false;
+    }
+    if (!listEquals<ElementDefinitionConstraint>(
+      constraint,
+      o.constraint,
+    )) {
+      return false;
+    }
+    if (mustSupport != o.mustSupport) {
+      return false;
+    }
+    if (isModifier != o.isModifier) {
+      return false;
+    }
+    if (isModifierReason != o.isModifierReason) {
+      return false;
+    }
+    if (isSummary != o.isSummary) {
+      return false;
+    }
+    if (binding != o.binding) {
+      return false;
+    }
+    if (!listEquals<ElementDefinitionMapping>(
+      mapping,
+      o.mapping,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ElementDefinitionSlicing]
@@ -2258,6 +2410,41 @@ class ElementDefinitionSlicing extends Element {
           this.rules,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionSlicing) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<ElementDefinitionDiscriminator>(
+      discriminator,
+      o.discriminator,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (ordered != o.ordered) {
+      return false;
+    }
+    if (rules != o.rules) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ElementDefinitionDiscriminator]
@@ -2491,6 +2678,32 @@ class ElementDefinitionDiscriminator extends Element {
           ) ??
           this.path,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionDiscriminator) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2750,6 +2963,35 @@ class ElementDefinitionBase extends Element {
           ) ??
           this.max,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionBase) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (min != o.min) {
+      return false;
+    }
+    if (max != o.max) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3079,6 +3321,50 @@ class ElementDefinitionType extends Element {
           ) ??
           this.versioning,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionType) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      profile,
+      o.profile,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      targetProfile,
+      o.targetProfile,
+    )) {
+      return false;
+    }
+    if (!listEquals<AggregationMode>(
+      aggregation,
+      o.aggregation,
+    )) {
+      return false;
+    }
+    if (versioning != o.versioning) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3565,6 +3851,32 @@ class ElementDefinitionExample extends Element {
           this.valueX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionExample) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (label != o.label) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ElementDefinitionConstraint]
@@ -3909,6 +4221,47 @@ class ElementDefinitionConstraint extends Element {
           this.source,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionConstraint) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (key != o.key) {
+      return false;
+    }
+    if (requirements != o.requirements) {
+      return false;
+    }
+    if (severity != o.severity) {
+      return false;
+    }
+    if (human != o.human) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    if (xpath != o.xpath) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ElementDefinitionBinding]
@@ -4164,6 +4517,35 @@ class ElementDefinitionBinding extends Element {
           ) ??
           this.valueSet,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionBinding) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (strength != o.strength) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (valueSet != o.valueSet) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -4438,5 +4820,37 @@ class ElementDefinitionMapping extends Element {
           ) ??
           this.comment,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ElementDefinitionMapping) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (identity != o.identity) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (map != o.map) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    return true;
   }
 }

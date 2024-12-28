@@ -880,6 +880,149 @@ class MessageDefinition extends CanonicalResource {
           this.graph,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      replaces,
+      o.replaces,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (base != o.base) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      parent,
+      o.parent,
+    )) {
+      return false;
+    }
+    if (eventX != o.eventX) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (!listEquals<MessageDefinitionFocus>(
+      focus,
+      o.focus,
+    )) {
+      return false;
+    }
+    if (responseRequired != o.responseRequired) {
+      return false;
+    }
+    if (!listEquals<MessageDefinitionAllowedResponse>(
+      allowedResponse,
+      o.allowedResponse,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      graph,
+      o.graph,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MessageDefinitionFocus]
@@ -1185,6 +1328,44 @@ class MessageDefinitionFocus extends BackboneElement {
           this.max,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageDefinitionFocus) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (profile != o.profile) {
+      return false;
+    }
+    if (min != o.min) {
+      return false;
+    }
+    if (max != o.max) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MessageDefinitionAllowedResponse]
@@ -1443,5 +1624,37 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
           ) ??
           this.situation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageDefinitionAllowedResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (message != o.message) {
+      return false;
+    }
+    if (situation != o.situation) {
+      return false;
+    }
+    return true;
   }
 }

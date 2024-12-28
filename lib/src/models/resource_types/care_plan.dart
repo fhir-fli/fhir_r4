@@ -936,6 +936,161 @@ class CarePlan extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CarePlan) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      replaces,
+      o.replaces,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (author != o.author) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      contributor,
+      o.contributor,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      careTeam,
+      o.careTeam,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      addresses,
+      o.addresses,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInfo,
+      o.supportingInfo,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      goal,
+      o.goal,
+    )) {
+      return false;
+    }
+    if (!listEquals<CarePlanActivity>(
+      activity,
+      o.activity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CarePlanActivity]
@@ -1294,6 +1449,56 @@ class CarePlanActivity extends BackboneElement {
           ) ??
           this.detail,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CarePlanActivity) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      outcomeCodeableConcept,
+      o.outcomeCodeableConcept,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      outcomeReference,
+      o.outcomeReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      progress,
+      o.progress,
+    )) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    if (detail != o.detail) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1973,5 +2178,100 @@ class CarePlanDetail extends BackboneElement {
           ) ??
           this.description,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CarePlanDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (kind != o.kind) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      goal,
+      o.goal,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (doNotPerform != o.doNotPerform) {
+      return false;
+    }
+    if (scheduledX != o.scheduledX) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (productX != o.productX) {
+      return false;
+    }
+    if (dailyAmount != o.dailyAmount) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    return true;
   }
 }

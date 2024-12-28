@@ -977,6 +977,158 @@ class ClaimResponse extends DomainResource {
           this.error,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (subType != o.subType) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (insurer != o.insurer) {
+      return false;
+    }
+    if (requestor != o.requestor) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (disposition != o.disposition) {
+      return false;
+    }
+    if (preAuthRef != o.preAuthRef) {
+      return false;
+    }
+    if (preAuthPeriod != o.preAuthPeriod) {
+      return false;
+    }
+    if (payeeType != o.payeeType) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAddItem>(
+      addItem,
+      o.addItem,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseTotal>(
+      total,
+      o.total,
+    )) {
+      return false;
+    }
+    if (payment != o.payment) {
+      return false;
+    }
+    if (fundsReserve != o.fundsReserve) {
+      return false;
+    }
+    if (formCode != o.formCode) {
+      return false;
+    }
+    if (form != o.form) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseProcessNote>(
+      processNote,
+      o.processNote,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      communicationRequest,
+      o.communicationRequest,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseInsurance>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseError>(
+      error,
+      o.error,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseItem]
@@ -1300,6 +1452,53 @@ class ClaimResponseItem extends BackboneElement {
           this.detail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemSequence != o.itemSequence) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseDetail>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseAdjudication]
@@ -1608,6 +1807,44 @@ class ClaimResponseAdjudication extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseAdjudication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (reason != o.reason) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1929,6 +2166,53 @@ class ClaimResponseDetail extends BackboneElement {
           this.subDetail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (detailSequence != o.detailSequence) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseSubDetail>(
+      subDetail,
+      o.subDetail,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseSubDetail]
@@ -2219,6 +2503,47 @@ class ClaimResponseSubDetail extends BackboneElement {
               .toList() ??
           this.adjudication,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseSubDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (subDetailSequence != o.subDetailSequence) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2931,6 +3256,116 @@ class ClaimResponseAddItem extends BackboneElement {
           this.detail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseAddItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      itemSequence,
+      o.itemSequence,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      detailSequence,
+      o.detailSequence,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      subdetailSequence,
+      o.subdetailSequence,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      provider,
+      o.provider,
+    )) {
+      return false;
+    }
+    if (productOrService != o.productOrService) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      programCode,
+      o.programCode,
+    )) {
+      return false;
+    }
+    if (servicedX != o.servicedX) {
+      return false;
+    }
+    if (locationX != o.locationX) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (unitPrice != o.unitPrice) {
+      return false;
+    }
+    if (factor != o.factor) {
+      return false;
+    }
+    if (net != o.net) {
+      return false;
+    }
+    if (bodySite != o.bodySite) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      subSite,
+      o.subSite,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseDetail>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseDetail1]
@@ -3377,6 +3812,71 @@ class ClaimResponseDetail1 extends BackboneElement {
           this.subDetail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseDetail1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (productOrService != o.productOrService) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (unitPrice != o.unitPrice) {
+      return false;
+    }
+    if (factor != o.factor) {
+      return false;
+    }
+    if (net != o.net) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseSubDetail>(
+      subDetail,
+      o.subDetail,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseSubDetail1]
@@ -3793,6 +4293,65 @@ class ClaimResponseSubDetail1 extends BackboneElement {
           this.adjudication,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseSubDetail1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (productOrService != o.productOrService) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (unitPrice != o.unitPrice) {
+      return false;
+    }
+    if (factor != o.factor) {
+      return false;
+    }
+    if (net != o.net) {
+      return false;
+    }
+    if (!listEquals<FhirPositiveInt>(
+      noteNumber,
+      o.noteNumber,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClaimResponseAdjudication>(
+      adjudication,
+      o.adjudication,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseTotal]
@@ -4050,6 +4609,38 @@ class ClaimResponseTotal extends BackboneElement {
           ) ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseTotal) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -4396,6 +4987,50 @@ class ClaimResponsePayment extends BackboneElement {
           this.identifier,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponsePayment) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (adjustment != o.adjustment) {
+      return false;
+    }
+    if (adjustmentReason != o.adjustmentReason) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseProcessNote]
@@ -4696,6 +5331,44 @@ class ClaimResponseProcessNote extends BackboneElement {
           ) ??
           this.language,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseProcessNote) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (number != o.number) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -5023,6 +5696,47 @@ class ClaimResponseInsurance extends BackboneElement {
           this.claimResponse,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseInsurance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (sequence != o.sequence) {
+      return false;
+    }
+    if (focal != o.focal) {
+      return false;
+    }
+    if (coverage != o.coverage) {
+      return false;
+    }
+    if (businessArrangement != o.businessArrangement) {
+      return false;
+    }
+    if (claimResponse != o.claimResponse) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClaimResponseError]
@@ -5329,5 +6043,43 @@ class ClaimResponseError extends BackboneElement {
           ) ??
           this.code,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClaimResponseError) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemSequence != o.itemSequence) {
+      return false;
+    }
+    if (detailSequence != o.detailSequence) {
+      return false;
+    }
+    if (subDetailSequence != o.subDetailSequence) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
   }
 }

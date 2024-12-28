@@ -578,6 +578,92 @@ class MeasureReport extends DomainResource {
           this.evaluatedResource,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReport) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (measure != o.measure) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (reporter != o.reporter) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (improvementNotation != o.improvementNotation) {
+      return false;
+    }
+    if (!listEquals<MeasureReportGroup>(
+      group,
+      o.group,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      evaluatedResource,
+      o.evaluatedResource,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MeasureReportGroup]
@@ -902,6 +988,50 @@ class MeasureReportGroup extends BackboneElement {
           this.stratifier,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportGroup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<MeasureReportPopulation>(
+      population,
+      o.population,
+    )) {
+      return false;
+    }
+    if (measureScore != o.measureScore) {
+      return false;
+    }
+    if (!listEquals<MeasureReportStratifier>(
+      stratifier,
+      o.stratifier,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MeasureReportPopulation]
@@ -1184,6 +1314,41 @@ class MeasureReportPopulation extends BackboneElement {
           this.subjectResults,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportPopulation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (count != o.count) {
+      return false;
+    }
+    if (subjectResults != o.subjectResults) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MeasureReportStratifier]
@@ -1460,6 +1625,44 @@ class MeasureReportStratifier extends BackboneElement {
               .toList() ??
           this.stratum,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportStratifier) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<MeasureReportStratum>(
+      stratum,
+      o.stratum,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1786,6 +1989,50 @@ class MeasureReportStratum extends BackboneElement {
           this.measureScore,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportStratum) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (!listEquals<MeasureReportComponent>(
+      component,
+      o.component,
+    )) {
+      return false;
+    }
+    if (!listEquals<MeasureReportPopulation>(
+      population,
+      o.population,
+    )) {
+      return false;
+    }
+    if (measureScore != o.measureScore) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MeasureReportComponent]
@@ -2039,6 +2286,38 @@ class MeasureReportComponent extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportComponent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2321,5 +2600,40 @@ class MeasureReportPopulation1 extends BackboneElement {
           ) ??
           this.subjectResults,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MeasureReportPopulation1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (count != o.count) {
+      return false;
+    }
+    if (subjectResults != o.subjectResults) {
+      return false;
+    }
+    return true;
   }
 }

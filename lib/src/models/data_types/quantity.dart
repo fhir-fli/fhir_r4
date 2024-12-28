@@ -351,4 +351,39 @@ class Quantity extends DataType
           this.code,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Quantity) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (comparator != o.comparator) {
+      return false;
+    }
+    if (unit != o.unit) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
+  }
 }

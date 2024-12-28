@@ -708,6 +708,113 @@ class Invoice extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Invoice) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (cancelledReason != o.cancelledReason) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (recipient != o.recipient) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (!listEquals<InvoiceParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (issuer != o.issuer) {
+      return false;
+    }
+    if (account != o.account) {
+      return false;
+    }
+    if (!listEquals<InvoiceLineItem>(
+      lineItem,
+      o.lineItem,
+    )) {
+      return false;
+    }
+    if (!listEquals<InvoicePriceComponent>(
+      totalPriceComponent,
+      o.totalPriceComponent,
+    )) {
+      return false;
+    }
+    if (totalNet != o.totalNet) {
+      return false;
+    }
+    if (totalGross != o.totalGross) {
+      return false;
+    }
+    if (paymentTerms != o.paymentTerms) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InvoiceParticipant]
@@ -966,6 +1073,38 @@ class InvoiceParticipant extends BackboneElement {
           ) ??
           this.actor,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InvoiceParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1273,6 +1412,44 @@ class InvoiceLineItem extends BackboneElement {
           this.priceComponent,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InvoiceLineItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (sequence != o.sequence) {
+      return false;
+    }
+    if (chargeItemX != o.chargeItemX) {
+      return false;
+    }
+    if (!listEquals<InvoicePriceComponent>(
+      priceComponent,
+      o.priceComponent,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InvoicePriceComponent]
@@ -1579,5 +1756,43 @@ class InvoicePriceComponent extends BackboneElement {
           ) ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InvoicePriceComponent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (factor != o.factor) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
   }
 }

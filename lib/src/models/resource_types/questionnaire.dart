@@ -823,6 +823,140 @@ class Questionnaire extends CanonicalResource {
           this.item,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Questionnaire) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      derivedFrom,
+      o.derivedFrom,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      subjectType,
+      o.subjectType,
+    )) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (approvalDate != o.approvalDate) {
+      return false;
+    }
+    if (lastReviewDate != o.lastReviewDate) {
+      return false;
+    }
+    if (effectivePeriod != o.effectivePeriod) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [QuestionnaireItem]
@@ -1460,6 +1594,95 @@ class QuestionnaireItem extends BackboneElement {
           this.item,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (linkId != o.linkId) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (prefix != o.prefix) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireEnableWhen>(
+      enableWhen,
+      o.enableWhen,
+    )) {
+      return false;
+    }
+    if (enableBehavior != o.enableBehavior) {
+      return false;
+    }
+    if (required_ != o.required_) {
+      return false;
+    }
+    if (repeats != o.repeats) {
+      return false;
+    }
+    if (readOnly != o.readOnly) {
+      return false;
+    }
+    if (maxLength != o.maxLength) {
+      return false;
+    }
+    if (answerValueSet != o.answerValueSet) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireAnswerOption>(
+      answerOption,
+      o.answerOption,
+    )) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireInitial>(
+      initial,
+      o.initial,
+    )) {
+      return false;
+    }
+    if (!listEquals<QuestionnaireItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [QuestionnaireEnableWhen]
@@ -1788,6 +2011,41 @@ class QuestionnaireEnableWhen extends BackboneElement {
           this.answerX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireEnableWhen) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (question != o.question) {
+      return false;
+    }
+    if (operator_ != o.operator_) {
+      return false;
+    }
+    if (answerX != o.answerX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [QuestionnaireAnswerOption]
@@ -2074,6 +2332,38 @@ class QuestionnaireAnswerOption extends BackboneElement {
           ) ??
           this.initialSelected,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireAnswerOption) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (initialSelected != o.initialSelected) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2369,5 +2659,34 @@ class QuestionnaireInitial extends BackboneElement {
           ) as ValueXQuestionnaireInitial? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! QuestionnaireInitial) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

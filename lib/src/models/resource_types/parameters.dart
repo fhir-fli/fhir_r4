@@ -248,6 +248,35 @@ class Parameters extends Resource {
           this.parameter,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Parameters) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (!listEquals<ParametersParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ParametersParameter]
@@ -802,5 +831,46 @@ class ParametersParameter extends BackboneElement {
               .toList() ??
           this.part_,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ParametersParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    if (!listEquals<ParametersParameter>(
+      part_,
+      o.part_,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

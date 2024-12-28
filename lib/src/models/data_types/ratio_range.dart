@@ -263,4 +263,33 @@ class RatioRange extends DataType
           this.denominator,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RatioRange) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (lowNumerator != o.lowNumerator) {
+      return false;
+    }
+    if (highNumerator != o.highNumerator) {
+      return false;
+    }
+    if (denominator != o.denominator) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -491,6 +491,80 @@ class VisionPrescription extends DomainResource {
           this.lensSpecification,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VisionPrescription) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (dateWritten != o.dateWritten) {
+      return false;
+    }
+    if (prescriber != o.prescriber) {
+      return false;
+    }
+    if (!listEquals<VisionPrescriptionLensSpecification>(
+      lensSpecification,
+      o.lensSpecification,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [VisionPrescriptionLensSpecification]
@@ -1028,6 +1102,80 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VisionPrescriptionLensSpecification) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (product != o.product) {
+      return false;
+    }
+    if (eye != o.eye) {
+      return false;
+    }
+    if (sphere != o.sphere) {
+      return false;
+    }
+    if (cylinder != o.cylinder) {
+      return false;
+    }
+    if (axis != o.axis) {
+      return false;
+    }
+    if (!listEquals<VisionPrescriptionPrism>(
+      prism,
+      o.prism,
+    )) {
+      return false;
+    }
+    if (add != o.add) {
+      return false;
+    }
+    if (power != o.power) {
+      return false;
+    }
+    if (backCurve != o.backCurve) {
+      return false;
+    }
+    if (diameter != o.diameter) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    if (color != o.color) {
+      return false;
+    }
+    if (brand != o.brand) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [VisionPrescriptionPrism]
@@ -1281,5 +1429,37 @@ class VisionPrescriptionPrism extends BackboneElement {
           ) ??
           this.base,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VisionPrescriptionPrism) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (base != o.base) {
+      return false;
+    }
+    return true;
   }
 }

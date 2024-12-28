@@ -717,6 +717,116 @@ class MolecularSequence extends DomainResource {
           this.structureVariant,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequence) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (coordinateSystem != o.coordinateSystem) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (specimen != o.specimen) {
+      return false;
+    }
+    if (device != o.device) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (referenceSeq != o.referenceSeq) {
+      return false;
+    }
+    if (!listEquals<MolecularSequenceVariant>(
+      variant,
+      o.variant,
+    )) {
+      return false;
+    }
+    if (observedSeq != o.observedSeq) {
+      return false;
+    }
+    if (!listEquals<MolecularSequenceQuality>(
+      quality,
+      o.quality,
+    )) {
+      return false;
+    }
+    if (readCoverage != o.readCoverage) {
+      return false;
+    }
+    if (!listEquals<MolecularSequenceRepository>(
+      repository,
+      o.repository,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      pointer,
+      o.pointer,
+    )) {
+      return false;
+    }
+    if (!listEquals<MolecularSequenceStructureVariant>(
+      structureVariant,
+      o.structureVariant,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceReferenceSeq]
@@ -1148,6 +1258,59 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           this.windowEnd,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceReferenceSeq) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (chromosome != o.chromosome) {
+      return false;
+    }
+    if (genomeBuild != o.genomeBuild) {
+      return false;
+    }
+    if (orientation != o.orientation) {
+      return false;
+    }
+    if (referenceSeqId != o.referenceSeqId) {
+      return false;
+    }
+    if (referenceSeqPointer != o.referenceSeqPointer) {
+      return false;
+    }
+    if (referenceSeqString != o.referenceSeqString) {
+      return false;
+    }
+    if (strand != o.strand) {
+      return false;
+    }
+    if (windowStart != o.windowStart) {
+      return false;
+    }
+    if (windowEnd != o.windowEnd) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceVariant]
@@ -1516,6 +1679,50 @@ class MolecularSequenceVariant extends BackboneElement {
           ) ??
           this.variantPointer,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceVariant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    if (observedAllele != o.observedAllele) {
+      return false;
+    }
+    if (referenceAllele != o.referenceAllele) {
+      return false;
+    }
+    if (cigar != o.cigar) {
+      return false;
+    }
+    if (variantPointer != o.variantPointer) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2083,6 +2290,77 @@ class MolecularSequenceQuality extends BackboneElement {
           this.roc,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceQuality) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (standardSequence != o.standardSequence) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    if (score != o.score) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (truthTP != o.truthTP) {
+      return false;
+    }
+    if (queryTP != o.queryTP) {
+      return false;
+    }
+    if (truthFN != o.truthFN) {
+      return false;
+    }
+    if (queryFP != o.queryFP) {
+      return false;
+    }
+    if (gtFP != o.gtFP) {
+      return false;
+    }
+    if (precision != o.precision) {
+      return false;
+    }
+    if (recall != o.recall) {
+      return false;
+    }
+    if (fScore != o.fScore) {
+      return false;
+    }
+    if (roc != o.roc) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceRoc]
@@ -2487,6 +2765,74 @@ class MolecularSequenceRoc extends BackboneElement {
           this.fMeasure,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceRoc) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirInteger>(
+      score,
+      o.score,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirInteger>(
+      numTP,
+      o.numTP,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirInteger>(
+      numFP,
+      o.numFP,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirInteger>(
+      numFN,
+      o.numFN,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirDecimal>(
+      precision,
+      o.precision,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirDecimal>(
+      sensitivity,
+      o.sensitivity,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirDecimal>(
+      fMeasure,
+      o.fMeasure,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceRepository]
@@ -2839,6 +3185,50 @@ class MolecularSequenceRepository extends BackboneElement {
           this.readsetId,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceRepository) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (datasetId != o.datasetId) {
+      return false;
+    }
+    if (variantsetId != o.variantsetId) {
+      return false;
+    }
+    if (readsetId != o.readsetId) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceStructureVariant]
@@ -3164,6 +3554,47 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           this.inner,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceStructureVariant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (variantType != o.variantType) {
+      return false;
+    }
+    if (exact != o.exact) {
+      return false;
+    }
+    if (length != o.length) {
+      return false;
+    }
+    if (outer != o.outer) {
+      return false;
+    }
+    if (inner != o.inner) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceOuter]
@@ -3426,6 +3857,38 @@ class MolecularSequenceOuter extends BackboneElement {
           this.end,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceOuter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MolecularSequenceInner]
@@ -3687,5 +4150,37 @@ class MolecularSequenceInner extends BackboneElement {
           ) ??
           this.end,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MolecularSequenceInner) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    return true;
   }
 }

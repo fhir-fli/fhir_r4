@@ -529,4 +529,87 @@ class Schedule extends DomainResource {
           this.comment,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Schedule) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceCategory,
+      o.serviceCategory,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceType,
+      o.serviceType,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialty,
+      o.specialty,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      actor,
+      o.actor,
+    )) {
+      return false;
+    }
+    if (planningHorizon != o.planningHorizon) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    return true;
+  }
 }

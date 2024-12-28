@@ -985,6 +985,170 @@ class HealthcareService extends DomainResource {
           this.endpoint,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! HealthcareService) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (providedBy != o.providedBy) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialty,
+      o.specialty,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      location,
+      o.location,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    if (extraDetails != o.extraDetails) {
+      return false;
+    }
+    if (photo != o.photo) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      coverageArea,
+      o.coverageArea,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceProvisionCode,
+      o.serviceProvisionCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<HealthcareServiceEligibility>(
+      eligibility,
+      o.eligibility,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      program,
+      o.program,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      characteristic,
+      o.characteristic,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      communication,
+      o.communication,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      referralMethod,
+      o.referralMethod,
+    )) {
+      return false;
+    }
+    if (appointmentRequired != o.appointmentRequired) {
+      return false;
+    }
+    if (!listEquals<HealthcareServiceAvailableTime>(
+      availableTime,
+      o.availableTime,
+    )) {
+      return false;
+    }
+    if (!listEquals<HealthcareServiceNotAvailable>(
+      notAvailable,
+      o.notAvailable,
+    )) {
+      return false;
+    }
+    if (availabilityExceptions != o.availabilityExceptions) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      endpoint,
+      o.endpoint,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [HealthcareServiceEligibility]
@@ -1243,6 +1407,38 @@ class HealthcareServiceEligibility extends BackboneElement {
           ) ??
           this.comment,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! HealthcareServiceEligibility) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1554,6 +1750,47 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           this.availableEndTime,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! HealthcareServiceAvailableTime) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<DaysOfWeek>(
+      daysOfWeek,
+      o.daysOfWeek,
+    )) {
+      return false;
+    }
+    if (allDay != o.allDay) {
+      return false;
+    }
+    if (availableStartTime != o.availableStartTime) {
+      return false;
+    }
+    if (availableEndTime != o.availableEndTime) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [HealthcareServiceNotAvailable]
@@ -1812,5 +2049,37 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           ) ??
           this.during,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! HealthcareServiceNotAvailable) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (during != o.during) {
+      return false;
+    }
+    return true;
   }
 }

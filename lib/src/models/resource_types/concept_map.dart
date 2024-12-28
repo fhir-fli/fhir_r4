@@ -726,6 +726,116 @@ class ConceptMap extends CanonicalResource {
           this.group,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMap) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (sourceX != o.sourceX) {
+      return false;
+    }
+    if (targetX != o.targetX) {
+      return false;
+    }
+    if (!listEquals<ConceptMapGroup>(
+      group,
+      o.group,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConceptMapGroup]
@@ -1085,6 +1195,53 @@ class ConceptMapGroup extends BackboneElement {
           this.unmapped,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMapGroup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (sourceVersion != o.sourceVersion) {
+      return false;
+    }
+    if (target != o.target) {
+      return false;
+    }
+    if (targetVersion != o.targetVersion) {
+      return false;
+    }
+    if (!listEquals<ConceptMapElement>(
+      element,
+      o.element,
+    )) {
+      return false;
+    }
+    if (unmapped != o.unmapped) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConceptMapElement]
@@ -1374,6 +1531,44 @@ class ConceptMapElement extends BackboneElement {
               .toList() ??
           this.target,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMapElement) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (!listEquals<ConceptMapTarget>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1745,6 +1940,56 @@ class ConceptMapTarget extends BackboneElement {
           this.product,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMapTarget) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (equivalence != o.equivalence) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    if (!listEquals<ConceptMapDependsOn>(
+      dependsOn,
+      o.dependsOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<ConceptMapDependsOn>(
+      product,
+      o.product,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ConceptMapDependsOn]
@@ -2050,6 +2295,44 @@ class ConceptMapDependsOn extends BackboneElement {
           ) ??
           this.display,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMapDependsOn) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (property != o.property) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2361,5 +2644,43 @@ class ConceptMapUnmapped extends BackboneElement {
           ) ??
           this.url,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ConceptMapUnmapped) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    return true;
   }
 }

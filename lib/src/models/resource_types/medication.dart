@@ -510,6 +510,80 @@ class Medication extends DomainResource {
           this.batch,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Medication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (manufacturer != o.manufacturer) {
+      return false;
+    }
+    if (form != o.form) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (!listEquals<MedicationIngredient>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (batch != o.batch) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationIngredient]
@@ -802,6 +876,41 @@ class MedicationIngredient extends BackboneElement {
           this.strength,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationIngredient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemX != o.itemX) {
+      return false;
+    }
+    if (isActive != o.isActive) {
+      return false;
+    }
+    if (strength != o.strength) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationBatch]
@@ -1059,5 +1168,37 @@ class MedicationBatch extends BackboneElement {
           ) ??
           this.expirationDate,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationBatch) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (lotNumber != o.lotNumber) {
+      return false;
+    }
+    if (expirationDate != o.expirationDate) {
+      return false;
+    }
+    return true;
   }
 }

@@ -230,4 +230,30 @@ class Narrative extends DataType {
           this.div,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Narrative) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (div != o.div) {
+      return false;
+    }
+    return true;
+  }
 }

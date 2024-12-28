@@ -903,6 +903,155 @@ class SearchParameter extends CanonicalResource {
           this.component,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SearchParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (derivedFrom != o.derivedFrom) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      base,
+      o.base,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    if (xpath != o.xpath) {
+      return false;
+    }
+    if (xpathUsage != o.xpathUsage) {
+      return false;
+    }
+    if (!listEquals<FhirCode>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    if (multipleOr != o.multipleOr) {
+      return false;
+    }
+    if (multipleAnd != o.multipleAnd) {
+      return false;
+    }
+    if (!listEquals<SearchComparator>(
+      comparator,
+      o.comparator,
+    )) {
+      return false;
+    }
+    if (!listEquals<SearchModifierCode>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      chain,
+      o.chain,
+    )) {
+      return false;
+    }
+    if (!listEquals<SearchParameterComponent>(
+      component,
+      o.component,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SearchParameterComponent]
@@ -1157,5 +1306,37 @@ class SearchParameterComponent extends BackboneElement {
           ) ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SearchParameterComponent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    return true;
   }
 }

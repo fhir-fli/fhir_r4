@@ -657,6 +657,104 @@ class PaymentReconciliation extends DomainResource {
           this.processNote,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PaymentReconciliation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (paymentIssuer != o.paymentIssuer) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (requestor != o.requestor) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (disposition != o.disposition) {
+      return false;
+    }
+    if (paymentDate != o.paymentDate) {
+      return false;
+    }
+    if (paymentAmount != o.paymentAmount) {
+      return false;
+    }
+    if (paymentIdentifier != o.paymentIdentifier) {
+      return false;
+    }
+    if (!listEquals<PaymentReconciliationDetail>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    if (formCode != o.formCode) {
+      return false;
+    }
+    if (!listEquals<PaymentReconciliationProcessNote>(
+      processNote,
+      o.processNote,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PaymentReconciliationDetail]
@@ -1095,6 +1193,62 @@ class PaymentReconciliationDetail extends BackboneElement {
           this.amount,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PaymentReconciliationDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (predecessor != o.predecessor) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (submitter != o.submitter) {
+      return false;
+    }
+    if (response != o.response) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (responsible != o.responsible) {
+      return false;
+    }
+    if (payee != o.payee) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PaymentReconciliationProcessNote]
@@ -1353,5 +1507,37 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           ) ??
           this.text,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PaymentReconciliationProcessNote) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    return true;
   }
 }

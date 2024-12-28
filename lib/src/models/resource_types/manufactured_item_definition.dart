@@ -495,6 +495,83 @@ class ManufacturedItemDefinition extends DomainResource {
           this.property,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ManufacturedItemDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (manufacturedDoseForm != o.manufacturedDoseForm) {
+      return false;
+    }
+    if (unitOfPresentation != o.unitOfPresentation) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      manufacturer,
+      o.manufacturer,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (!listEquals<ManufacturedItemDefinitionProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ManufacturedItemDefinitionProperty]
@@ -776,5 +853,37 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
           ) as ValueXManufacturedItemDefinitionProperty? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ManufacturedItemDefinitionProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

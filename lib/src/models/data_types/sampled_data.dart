@@ -358,4 +358,45 @@ class SampledData extends DataType
           this.data,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SampledData) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (origin != o.origin) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (factor != o.factor) {
+      return false;
+    }
+    if (lowerLimit != o.lowerLimit) {
+      return false;
+    }
+    if (upperLimit != o.upperLimit) {
+      return false;
+    }
+    if (dimensions != o.dimensions) {
+      return false;
+    }
+    if (data != o.data) {
+      return false;
+    }
+    return true;
+  }
 }

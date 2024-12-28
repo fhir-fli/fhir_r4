@@ -630,6 +630,107 @@ class RelatedPerson extends DomainResource {
           this.communication,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RelatedPerson) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      relationship,
+      o.relationship,
+    )) {
+      return false;
+    }
+    if (!listEquals<HumanName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (birthDate != o.birthDate) {
+      return false;
+    }
+    if (!listEquals<Address>(
+      address,
+      o.address,
+    )) {
+      return false;
+    }
+    if (!listEquals<Attachment>(
+      photo,
+      o.photo,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<RelatedPersonCommunication>(
+      communication,
+      o.communication,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [RelatedPersonCommunication]
@@ -890,5 +991,37 @@ class RelatedPersonCommunication extends BackboneElement {
           ) ??
           this.preferred,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RelatedPersonCommunication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (preferred != o.preferred) {
+      return false;
+    }
+    return true;
   }
 }

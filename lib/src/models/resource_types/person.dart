@@ -568,6 +568,95 @@ class Person extends DomainResource {
           this.link,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Person) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<HumanName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (birthDate != o.birthDate) {
+      return false;
+    }
+    if (!listEquals<Address>(
+      address,
+      o.address,
+    )) {
+      return false;
+    }
+    if (photo != o.photo) {
+      return false;
+    }
+    if (managingOrganization != o.managingOrganization) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (!listEquals<PersonLink>(
+      link,
+      o.link,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PersonLink]
@@ -824,5 +913,37 @@ class PersonLink extends BackboneElement {
           ) ??
           this.assurance,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PersonLink) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (target != o.target) {
+      return false;
+    }
+    if (assurance != o.assurance) {
+      return false;
+    }
+    return true;
   }
 }

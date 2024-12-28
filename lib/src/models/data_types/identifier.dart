@@ -337,4 +337,42 @@ class Identifier extends DataType
           this.assigner,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Identifier) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (assigner != o.assigner) {
+      return false;
+    }
+    return true;
+  }
 }

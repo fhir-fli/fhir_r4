@@ -240,4 +240,30 @@ class CodeableReference extends DataType
           this.reference,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeableReference) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (concept != o.concept) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    return true;
+  }
 }

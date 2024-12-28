@@ -570,4 +570,87 @@ class PaymentNotice extends DomainResource {
           this.paymentStatus,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PaymentNotice) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (response != o.response) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (provider != o.provider) {
+      return false;
+    }
+    if (payment != o.payment) {
+      return false;
+    }
+    if (paymentDate != o.paymentDate) {
+      return false;
+    }
+    if (payee != o.payee) {
+      return false;
+    }
+    if (recipient != o.recipient) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (paymentStatus != o.paymentStatus) {
+      return false;
+    }
+    return true;
+  }
 }

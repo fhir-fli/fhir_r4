@@ -6,8 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:universal_io/io.dart';
 
-import '../deep_compare.dart';
-
 void main() {
   group(
     'Validation',

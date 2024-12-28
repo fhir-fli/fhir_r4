@@ -606,6 +606,98 @@ class AdministrableProductDefinition extends DomainResource {
           this.routeOfAdministration,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdministrableProductDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      formOf,
+      o.formOf,
+    )) {
+      return false;
+    }
+    if (administrableDoseForm != o.administrableDoseForm) {
+      return false;
+    }
+    if (unitOfPresentation != o.unitOfPresentation) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      producedFrom,
+      o.producedFrom,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (device != o.device) {
+      return false;
+    }
+    if (!listEquals<AdministrableProductDefinitionProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (!listEquals<AdministrableProductDefinitionRouteOfAdministration>(
+      routeOfAdministration,
+      o.routeOfAdministration,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AdministrableProductDefinitionProperty]
@@ -909,6 +1001,41 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
           ) ??
           this.status,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdministrableProductDefinitionProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1293,6 +1420,56 @@ class AdministrableProductDefinitionRouteOfAdministration
           this.targetSpecies,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdministrableProductDefinitionRouteOfAdministration) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (firstDose != o.firstDose) {
+      return false;
+    }
+    if (maxSingleDose != o.maxSingleDose) {
+      return false;
+    }
+    if (maxDosePerDay != o.maxDosePerDay) {
+      return false;
+    }
+    if (maxDosePerTreatmentPeriod != o.maxDosePerTreatmentPeriod) {
+      return false;
+    }
+    if (maxTreatmentPeriod != o.maxTreatmentPeriod) {
+      return false;
+    }
+    if (!listEquals<AdministrableProductDefinitionTargetSpecies>(
+      targetSpecies,
+      o.targetSpecies,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AdministrableProductDefinitionTargetSpecies]
@@ -1560,6 +1737,41 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
               .toList() ??
           this.withdrawalPeriod,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdministrableProductDefinitionTargetSpecies) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<AdministrableProductDefinitionWithdrawalPeriod>(
+      withdrawalPeriod,
+      o.withdrawalPeriod,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1841,5 +2053,40 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
           ) ??
           this.supportingInformation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AdministrableProductDefinitionWithdrawalPeriod) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (tissue != o.tissue) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (supportingInformation != o.supportingInformation) {
+      return false;
+    }
+    return true;
   }
 }

@@ -725,6 +725,116 @@ class DocumentReference extends DomainResource {
           this.context,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentReference) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (masterIdentifier != o.masterIdentifier) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (docStatus != o.docStatus) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (authenticator != o.authenticator) {
+      return false;
+    }
+    if (custodian != o.custodian) {
+      return false;
+    }
+    if (!listEquals<DocumentReferenceRelatesTo>(
+      relatesTo,
+      o.relatesTo,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      securityLabel,
+      o.securityLabel,
+    )) {
+      return false;
+    }
+    if (!listEquals<DocumentReferenceContent>(
+      content,
+      o.content,
+    )) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DocumentReferenceRelatesTo]
@@ -979,6 +1089,38 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           ) ??
           this.target,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentReferenceRelatesTo) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (target != o.target) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1239,6 +1381,38 @@ class DocumentReferenceContent extends BackboneElement {
           ) ??
           this.format,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentReferenceContent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (attachment != o.attachment) {
+      return false;
+    }
+    if (format != o.format) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1639,5 +1813,61 @@ class DocumentReferenceContext extends BackboneElement {
               .toList() ??
           this.related,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentReferenceContext) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      encounter,
+      o.encounter,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      event,
+      o.event,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (facilityType != o.facilityType) {
+      return false;
+    }
+    if (practiceSetting != o.practiceSetting) {
+      return false;
+    }
+    if (sourcePatientInfo != o.sourcePatientInfo) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      related,
+      o.related,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

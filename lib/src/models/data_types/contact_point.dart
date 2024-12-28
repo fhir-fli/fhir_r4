@@ -312,4 +312,39 @@ class ContactPoint extends DataType
           this.period,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ContactPoint) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (system != o.system) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (rank != o.rank) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
+  }
 }

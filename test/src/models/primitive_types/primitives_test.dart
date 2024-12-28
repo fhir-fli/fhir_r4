@@ -20,7 +20,7 @@ import 'url_test.dart';
 import 'uuid_test.dart';
 import 'xhtml_test.dart';
 
-void main(){
+void main() {
   base64BinaryTest();
   booleanTest();
   canonicalTest();

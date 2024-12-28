@@ -992,6 +992,161 @@ class ChargeItem extends DomainResource {
           this.supportingInformation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ChargeItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      definitionUri,
+      o.definitionUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      definitionCanonical,
+      o.definitionCanonical,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (!listEquals<ChargeItemPerformer>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (performingOrganization != o.performingOrganization) {
+      return false;
+    }
+    if (requestingOrganization != o.requestingOrganization) {
+      return false;
+    }
+    if (costCenter != o.costCenter) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      bodysite,
+      o.bodysite,
+    )) {
+      return false;
+    }
+    if (factorOverride != o.factorOverride) {
+      return false;
+    }
+    if (priceOverride != o.priceOverride) {
+      return false;
+    }
+    if (overrideReason != o.overrideReason) {
+      return false;
+    }
+    if (enterer != o.enterer) {
+      return false;
+    }
+    if (enteredDate != o.enteredDate) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reason,
+      o.reason,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      service,
+      o.service,
+    )) {
+      return false;
+    }
+    if (productX != o.productX) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      account,
+      o.account,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInformation,
+      o.supportingInformation,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ChargeItemPerformer]
@@ -1249,5 +1404,37 @@ class ChargeItemPerformer extends BackboneElement {
           ) ??
           this.actor,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ChargeItemPerformer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (function_ != o.function_) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    return true;
   }
 }

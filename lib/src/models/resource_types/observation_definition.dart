@@ -628,6 +628,101 @@ class ObservationDefinition extends DomainResource {
           this.criticalCodedValueSet,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ObservationDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<ObservationDataType>(
+      permittedDataType,
+      o.permittedDataType,
+    )) {
+      return false;
+    }
+    if (multipleResultsAllowed != o.multipleResultsAllowed) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (preferredReportName != o.preferredReportName) {
+      return false;
+    }
+    if (quantitativeDetails != o.quantitativeDetails) {
+      return false;
+    }
+    if (!listEquals<ObservationDefinitionQualifiedInterval>(
+      qualifiedInterval,
+      o.qualifiedInterval,
+    )) {
+      return false;
+    }
+    if (validCodedValueSet != o.validCodedValueSet) {
+      return false;
+    }
+    if (normalCodedValueSet != o.normalCodedValueSet) {
+      return false;
+    }
+    if (abnormalCodedValueSet != o.abnormalCodedValueSet) {
+      return false;
+    }
+    if (criticalCodedValueSet != o.criticalCodedValueSet) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ObservationDefinitionQuantitativeDetails]
@@ -934,6 +1029,44 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
           ) ??
           this.decimalPrecision,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ObservationDefinitionQuantitativeDetails) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (customaryUnit != o.customaryUnit) {
+      return false;
+    }
+    if (unit != o.unit) {
+      return false;
+    }
+    if (conversionFactor != o.conversionFactor) {
+      return false;
+    }
+    if (decimalPrecision != o.decimalPrecision) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1339,5 +1472,58 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
           ) ??
           this.condition,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ObservationDefinitionQualifiedInterval) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (range != o.range) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      appliesTo,
+      o.appliesTo,
+    )) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (age != o.age) {
+      return false;
+    }
+    if (gestationalAge != o.gestationalAge) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    return true;
   }
 }

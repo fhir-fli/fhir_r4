@@ -696,6 +696,113 @@ class PackagedProductDefinition extends DomainResource {
           this.package,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      packageFor,
+      o.packageFor,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      containedItemQuantity,
+      o.containedItemQuantity,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<PackagedProductDefinitionLegalStatusOfSupply>(
+      legalStatusOfSupply,
+      o.legalStatusOfSupply,
+    )) {
+      return false;
+    }
+    if (!listEquals<MarketingStatus>(
+      marketingStatus,
+      o.marketingStatus,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      characteristic,
+      o.characteristic,
+    )) {
+      return false;
+    }
+    if (copackagedIndicator != o.copackagedIndicator) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      manufacturer,
+      o.manufacturer,
+    )) {
+      return false;
+    }
+    if (package != o.package) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PackagedProductDefinitionLegalStatusOfSupply]
@@ -957,6 +1064,38 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
           ) ??
           this.jurisdiction,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinitionLegalStatusOfSupply) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (jurisdiction != o.jurisdiction) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1465,6 +1604,86 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           this.package,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinitionPackage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      material,
+      o.material,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      alternateMaterial,
+      o.alternateMaterial,
+    )) {
+      return false;
+    }
+    if (!listEquals<PackagedProductDefinitionShelfLifeStorage>(
+      shelfLifeStorage,
+      o.shelfLifeStorage,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      manufacturer,
+      o.manufacturer,
+    )) {
+      return false;
+    }
+    if (!listEquals<PackagedProductDefinitionProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (!listEquals<PackagedProductDefinitionContainedItem>(
+      containedItem,
+      o.containedItem,
+    )) {
+      return false;
+    }
+    if (!listEquals<PackagedProductDefinitionPackage>(
+      package,
+      o.package,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PackagedProductDefinitionShelfLifeStorage]
@@ -1777,6 +1996,44 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           this.specialPrecautionsForStorage,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinitionShelfLifeStorage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (periodX != o.periodX) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialPrecautionsForStorage,
+      o.specialPrecautionsForStorage,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PackagedProductDefinitionProperty]
@@ -2059,6 +2316,38 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           this.valueX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinitionProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PackagedProductDefinitionContainedItem]
@@ -2321,5 +2610,37 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           ) ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PackagedProductDefinitionContainedItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (item != o.item) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
   }
 }

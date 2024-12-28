@@ -656,6 +656,110 @@ class Specimen extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Specimen) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (accessionIdentifier != o.accessionIdentifier) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (receivedTime != o.receivedTime) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      parent,
+      o.parent,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      request,
+      o.request,
+    )) {
+      return false;
+    }
+    if (collection != o.collection) {
+      return false;
+    }
+    if (!listEquals<SpecimenProcessing>(
+      processing,
+      o.processing,
+    )) {
+      return false;
+    }
+    if (!listEquals<SpecimenContainer>(
+      container,
+      o.container,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      condition,
+      o.condition,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SpecimenCollection]
@@ -1051,6 +1155,53 @@ class SpecimenCollection extends BackboneElement {
           this.fastingStatusX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenCollection) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (collector != o.collector) {
+      return false;
+    }
+    if (collectedX != o.collectedX) {
+      return false;
+    }
+    if (duration != o.duration) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (bodySite != o.bodySite) {
+      return false;
+    }
+    if (fastingStatusX != o.fastingStatusX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SpecimenProcessing]
@@ -1372,6 +1523,47 @@ class SpecimenProcessing extends BackboneElement {
           ) as TimeXSpecimenProcessing? ??
           this.timeX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenProcessing) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (procedure != o.procedure) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      additive,
+      o.additive,
+    )) {
+      return false;
+    }
+    if (timeX != o.timeX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1742,5 +1934,52 @@ class SpecimenContainer extends BackboneElement {
           ) as AdditiveXSpecimenContainer? ??
           this.additiveX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenContainer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (capacity != o.capacity) {
+      return false;
+    }
+    if (specimenQuantity != o.specimenQuantity) {
+      return false;
+    }
+    if (additiveX != o.additiveX) {
+      return false;
+    }
+    return true;
   }
 }

@@ -670,6 +670,107 @@ class CoverageEligibilityResponse extends DomainResource {
           this.error,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CoverageEligibilityResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<EligibilityResponsePurpose>(
+      purpose,
+      o.purpose,
+    )) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (servicedX != o.servicedX) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (requestor != o.requestor) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (disposition != o.disposition) {
+      return false;
+    }
+    if (insurer != o.insurer) {
+      return false;
+    }
+    if (!listEquals<CoverageEligibilityResponseInsurance>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (preAuthRef != o.preAuthRef) {
+      return false;
+    }
+    if (form != o.form) {
+      return false;
+    }
+    if (!listEquals<CoverageEligibilityResponseError>(
+      error,
+      o.error,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CoverageEligibilityResponseInsurance]
@@ -984,6 +1085,47 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
               .toList() ??
           this.item,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CoverageEligibilityResponseInsurance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (coverage != o.coverage) {
+      return false;
+    }
+    if (inforce != o.inforce) {
+      return false;
+    }
+    if (benefitPeriod != o.benefitPeriod) {
+      return false;
+    }
+    if (!listEquals<CoverageEligibilityResponseItem>(
+      item,
+      o.item,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1544,6 +1686,83 @@ class CoverageEligibilityResponseItem extends BackboneElement {
           this.authorizationUrl,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CoverageEligibilityResponseItem) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (productOrService != o.productOrService) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      modifier,
+      o.modifier,
+    )) {
+      return false;
+    }
+    if (provider != o.provider) {
+      return false;
+    }
+    if (excluded != o.excluded) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (network != o.network) {
+      return false;
+    }
+    if (unit != o.unit) {
+      return false;
+    }
+    if (term != o.term) {
+      return false;
+    }
+    if (!listEquals<CoverageEligibilityResponseBenefit>(
+      benefit,
+      o.benefit,
+    )) {
+      return false;
+    }
+    if (authorizationRequired != o.authorizationRequired) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      authorizationSupporting,
+      o.authorizationSupporting,
+    )) {
+      return false;
+    }
+    if (authorizationUrl != o.authorizationUrl) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CoverageEligibilityResponseBenefit]
@@ -1854,6 +2073,41 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
           this.usedX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CoverageEligibilityResponseBenefit) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (allowedX != o.allowedX) {
+      return false;
+    }
+    if (usedX != o.usedX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CoverageEligibilityResponseError]
@@ -2088,5 +2342,34 @@ class CoverageEligibilityResponseError extends BackboneElement {
           ) ??
           this.code,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CoverageEligibilityResponseError) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
   }
 }

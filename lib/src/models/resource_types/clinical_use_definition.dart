@@ -588,6 +588,95 @@ class ClinicalUseDefinition extends DomainResource {
           this.warning,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      subject,
+      o.subject,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (contraindication != o.contraindication) {
+      return false;
+    }
+    if (indication != o.indication) {
+      return false;
+    }
+    if (interaction != o.interaction) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      population,
+      o.population,
+    )) {
+      return false;
+    }
+    if (undesirableEffect != o.undesirableEffect) {
+      return false;
+    }
+    if (warning != o.warning) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalUseDefinitionContraindication]
@@ -939,6 +1028,56 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
           this.otherTherapy,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionContraindication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (diseaseSymptomProcedure != o.diseaseSymptomProcedure) {
+      return false;
+    }
+    if (diseaseStatus != o.diseaseStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableReference>(
+      comorbidity,
+      o.comorbidity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      indication,
+      o.indication,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClinicalUseDefinitionOtherTherapy>(
+      otherTherapy,
+      o.otherTherapy,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalUseDefinitionOtherTherapy]
@@ -1195,6 +1334,38 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
           ) ??
           this.therapy,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionOtherTherapy) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (relationshipType != o.relationshipType) {
+      return false;
+    }
+    if (therapy != o.therapy) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1606,6 +1777,62 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           this.otherTherapy,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionIndication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (diseaseSymptomProcedure != o.diseaseSymptomProcedure) {
+      return false;
+    }
+    if (diseaseStatus != o.diseaseStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableReference>(
+      comorbidity,
+      o.comorbidity,
+    )) {
+      return false;
+    }
+    if (intendedEffect != o.intendedEffect) {
+      return false;
+    }
+    if (durationX != o.durationX) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      undesirableEffect,
+      o.undesirableEffect,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClinicalUseDefinitionOtherTherapy>(
+      otherTherapy,
+      o.otherTherapy,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalUseDefinitionInteraction]
@@ -1949,6 +2176,53 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
           this.management,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionInteraction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<ClinicalUseDefinitionInteractant>(
+      interactant,
+      o.interactant,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (effect != o.effect) {
+      return false;
+    }
+    if (incidence != o.incidence) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      management,
+      o.management,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalUseDefinitionInteractant]
@@ -2193,6 +2467,35 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           ) as ItemXClinicalUseDefinitionInteractant? ??
           this.itemX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionInteractant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemX != o.itemX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2475,6 +2778,41 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
           this.frequencyOfOccurrence,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionUndesirableEffect) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (symptomConditionEffect != o.symptomConditionEffect) {
+      return false;
+    }
+    if (classification != o.classification) {
+      return false;
+    }
+    if (frequencyOfOccurrence != o.frequencyOfOccurrence) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ClinicalUseDefinitionWarning]
@@ -2735,5 +3073,37 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
           ) ??
           this.code,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ClinicalUseDefinitionWarning) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
   }
 }

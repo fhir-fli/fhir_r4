@@ -581,4 +581,93 @@ class Slot extends DomainResource {
           this.comment,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Slot) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceCategory,
+      o.serviceCategory,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceType,
+      o.serviceType,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialty,
+      o.specialty,
+    )) {
+      return false;
+    }
+    if (appointmentType != o.appointmentType) {
+      return false;
+    }
+    if (schedule != o.schedule) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    if (overbooked != o.overbooked) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    return true;
+  }
 }

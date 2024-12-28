@@ -293,4 +293,36 @@ class Binary extends Resource {
           this.data,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Binary) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (contentType != o.contentType) {
+      return false;
+    }
+    if (securityContext != o.securityContext) {
+      return false;
+    }
+    if (data != o.data) {
+      return false;
+    }
+    return true;
+  }
 }

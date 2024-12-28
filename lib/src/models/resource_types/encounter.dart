@@ -943,6 +943,158 @@ class Encounter extends DomainResource {
           this.partOf,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Encounter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<EncounterStatusHistory>(
+      statusHistory,
+      o.statusHistory,
+    )) {
+      return false;
+    }
+    if (class_ != o.class_) {
+      return false;
+    }
+    if (!listEquals<EncounterClassHistory>(
+      classHistory,
+      o.classHistory,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (serviceType != o.serviceType) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      episodeOfCare,
+      o.episodeOfCare,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<EncounterParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      appointment,
+      o.appointment,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (length != o.length) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<EncounterDiagnosis>(
+      diagnosis,
+      o.diagnosis,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      account,
+      o.account,
+    )) {
+      return false;
+    }
+    if (hospitalization != o.hospitalization) {
+      return false;
+    }
+    if (!listEquals<EncounterLocation>(
+      location,
+      o.location,
+    )) {
+      return false;
+    }
+    if (serviceProvider != o.serviceProvider) {
+      return false;
+    }
+    if (partOf != o.partOf) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EncounterStatusHistory]
@@ -1199,6 +1351,38 @@ class EncounterStatusHistory extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterStatusHistory) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1459,6 +1643,38 @@ class EncounterClassHistory extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterClassHistory) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (class_ != o.class_) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1750,6 +1966,44 @@ class EncounterParticipant extends BackboneElement {
           this.individual,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (individual != o.individual) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EncounterDiagnosis]
@@ -2031,6 +2285,41 @@ class EncounterDiagnosis extends BackboneElement {
           ) ??
           this.rank,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterDiagnosis) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    if (use != o.use) {
+      return false;
+    }
+    if (rank != o.rank) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2469,6 +2758,68 @@ class EncounterHospitalization extends BackboneElement {
           this.dischargeDisposition,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterHospitalization) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (preAdmissionIdentifier != o.preAdmissionIdentifier) {
+      return false;
+    }
+    if (origin != o.origin) {
+      return false;
+    }
+    if (admitSource != o.admitSource) {
+      return false;
+    }
+    if (reAdmission != o.reAdmission) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      dietPreference,
+      o.dietPreference,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialCourtesy,
+      o.specialCourtesy,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialArrangement,
+      o.specialArrangement,
+    )) {
+      return false;
+    }
+    if (destination != o.destination) {
+      return false;
+    }
+    if (dischargeDisposition != o.dischargeDisposition) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EncounterLocation]
@@ -2771,5 +3122,43 @@ class EncounterLocation extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EncounterLocation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (physicalType != o.physicalType) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }

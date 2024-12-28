@@ -584,6 +584,101 @@ class NutritionProduct extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionProduct) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      manufacturer,
+      o.manufacturer,
+    )) {
+      return false;
+    }
+    if (!listEquals<NutritionProductNutrient>(
+      nutrient,
+      o.nutrient,
+    )) {
+      return false;
+    }
+    if (!listEquals<NutritionProductIngredient>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableReference>(
+      knownAllergen,
+      o.knownAllergen,
+    )) {
+      return false;
+    }
+    if (!listEquals<NutritionProductProductCharacteristic>(
+      productCharacteristic,
+      o.productCharacteristic,
+    )) {
+      return false;
+    }
+    if (instance != o.instance) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [NutritionProductNutrient]
@@ -851,6 +946,41 @@ class NutritionProductNutrient extends BackboneElement {
           this.amount,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionProductNutrient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (item != o.item) {
+      return false;
+    }
+    if (!listEquals<Ratio>(
+      amount,
+      o.amount,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [NutritionProductIngredient]
@@ -1114,6 +1244,41 @@ class NutritionProductIngredient extends BackboneElement {
               .toList() ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionProductIngredient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (item != o.item) {
+      return false;
+    }
+    if (!listEquals<Ratio>(
+      amount,
+      o.amount,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1400,6 +1565,38 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           ) as ValueXNutritionProductProductCharacteristic? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionProductProductCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1736,5 +1933,49 @@ class NutritionProductInstance extends BackboneElement {
           ) ??
           this.useBy,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionProductInstance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (lotNumber != o.lotNumber) {
+      return false;
+    }
+    if (expiry != o.expiry) {
+      return false;
+    }
+    if (useBy != o.useBy) {
+      return false;
+    }
+    return true;
   }
 }

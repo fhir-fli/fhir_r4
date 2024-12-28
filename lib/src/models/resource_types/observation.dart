@@ -1039,6 +1039,158 @@ class Observation extends DomainResource {
           this.component,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Observation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      focus,
+      o.focus,
+    )) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (effectiveX != o.effectiveX) {
+      return false;
+    }
+    if (issued != o.issued) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (dataAbsentReason != o.dataAbsentReason) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      interpretation,
+      o.interpretation,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (bodySite != o.bodySite) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (specimen != o.specimen) {
+      return false;
+    }
+    if (device != o.device) {
+      return false;
+    }
+    if (!listEquals<ObservationReferenceRange>(
+      referenceRange,
+      o.referenceRange,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      hasMember,
+      o.hasMember,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      derivedFrom,
+      o.derivedFrom,
+    )) {
+      return false;
+    }
+    if (!listEquals<ObservationComponent>(
+      component,
+      o.component,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ObservationReferenceRange]
@@ -1411,6 +1563,53 @@ class ObservationReferenceRange extends BackboneElement {
           ) ??
           this.text,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ObservationReferenceRange) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (low != o.low) {
+      return false;
+    }
+    if (high != o.high) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      appliesTo,
+      o.appliesTo,
+    )) {
+      return false;
+    }
+    if (age != o.age) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1813,5 +2012,52 @@ class ObservationComponent extends BackboneElement {
               .toList() ??
           this.referenceRange,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ObservationComponent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    if (dataAbsentReason != o.dataAbsentReason) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      interpretation,
+      o.interpretation,
+    )) {
+      return false;
+    }
+    if (!listEquals<ObservationReferenceRange>(
+      referenceRange,
+      o.referenceRange,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

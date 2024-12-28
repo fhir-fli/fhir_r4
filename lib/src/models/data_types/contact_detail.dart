@@ -250,4 +250,33 @@ class ContactDetail extends DataType
           this.telecom,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ContactDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -1115,6 +1115,185 @@ class MedicinalProductDefinition extends DomainResource {
           this.characteristic,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (domain != o.domain) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (combinedPharmaceuticalDoseForm != o.combinedPharmaceuticalDoseForm) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      route,
+      o.route,
+    )) {
+      return false;
+    }
+    if (indication != o.indication) {
+      return false;
+    }
+    if (legalStatusOfSupply != o.legalStatusOfSupply) {
+      return false;
+    }
+    if (additionalMonitoringIndicator != o.additionalMonitoringIndicator) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialMeasures,
+      o.specialMeasures,
+    )) {
+      return false;
+    }
+    if (pediatricUseIndicator != o.pediatricUseIndicator) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      classification,
+      o.classification,
+    )) {
+      return false;
+    }
+    if (!listEquals<MarketingStatus>(
+      marketingStatus,
+      o.marketingStatus,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      packagedMedicinalProduct,
+      o.packagedMedicinalProduct,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableReference>(
+      impurity,
+      o.impurity,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      attachedDocument,
+      o.attachedDocument,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      masterFile,
+      o.masterFile,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionContact>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      clinicalTrial,
+      o.clinicalTrial,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionCrossReference>(
+      crossReference,
+      o.crossReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionOperation>(
+      operation,
+      o.operation,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionCharacteristic>(
+      characteristic,
+      o.characteristic,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicinalProductDefinitionContact]
@@ -1371,6 +1550,38 @@ class MedicinalProductDefinitionContact extends BackboneElement {
           ) ??
           this.contact,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionContact) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (contact != o.contact) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1689,6 +1900,50 @@ class MedicinalProductDefinitionName extends BackboneElement {
           this.countryLanguage,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionName) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (productName != o.productName) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionNamePart>(
+      namePart,
+      o.namePart,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicinalProductDefinitionCountryLanguage>(
+      countryLanguage,
+      o.countryLanguage,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicinalProductDefinitionNamePart]
@@ -1942,6 +2197,38 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionNamePart) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (part_ != o.part_) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2222,6 +2509,41 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
           this.language,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionCountryLanguage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (country != o.country) {
+      return false;
+    }
+    if (jurisdiction != o.jurisdiction) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicinalProductDefinitionCrossReference]
@@ -2482,6 +2804,38 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionCrossReference) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (product != o.product) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2799,6 +3153,47 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
           this.confidentialityIndicator,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionOperation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (effectiveDate != o.effectiveDate) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      organization,
+      o.organization,
+    )) {
+      return false;
+    }
+    if (confidentialityIndicator != o.confidentialityIndicator) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicinalProductDefinitionCharacteristic]
@@ -3082,5 +3477,37 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
           ) as ValueXMedicinalProductDefinitionCharacteristic? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicinalProductDefinitionCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

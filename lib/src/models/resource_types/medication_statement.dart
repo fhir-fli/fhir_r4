@@ -811,4 +811,126 @@ class MedicationStatement extends DomainResource {
           this.dosage,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationStatement) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      statusReason,
+      o.statusReason,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (medicationX != o.medicationX) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (context != o.context) {
+      return false;
+    }
+    if (effectiveX != o.effectiveX) {
+      return false;
+    }
+    if (dateAsserted != o.dateAsserted) {
+      return false;
+    }
+    if (informationSource != o.informationSource) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      derivedFrom,
+      o.derivedFrom,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Dosage>(
+      dosage,
+      o.dosage,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

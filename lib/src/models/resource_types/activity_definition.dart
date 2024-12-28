@@ -1529,6 +1529,242 @@ class ActivityDefinition extends CanonicalResource {
           this.dynamicValue,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ActivityDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (subtitle != o.subtitle) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (subjectX != o.subjectX) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (usage != o.usage) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (approvalDate != o.approvalDate) {
+      return false;
+    }
+    if (lastReviewDate != o.lastReviewDate) {
+      return false;
+    }
+    if (effectivePeriod != o.effectivePeriod) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      topic,
+      o.topic,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      editor,
+      o.editor,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      reviewer,
+      o.reviewer,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      endorser,
+      o.endorser,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      relatedArtifact,
+      o.relatedArtifact,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      library_,
+      o.library_,
+    )) {
+      return false;
+    }
+    if (kind != o.kind) {
+      return false;
+    }
+    if (profile != o.profile) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (doNotPerform != o.doNotPerform) {
+      return false;
+    }
+    if (timingX != o.timingX) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<ActivityDefinitionParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (productX != o.productX) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (!listEquals<Dosage>(
+      dosage,
+      o.dosage,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      bodySite,
+      o.bodySite,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      specimenRequirement,
+      o.specimenRequirement,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      observationRequirement,
+      o.observationRequirement,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      observationResultRequirement,
+      o.observationResultRequirement,
+    )) {
+      return false;
+    }
+    if (transform != o.transform) {
+      return false;
+    }
+    if (!listEquals<ActivityDefinitionDynamicValue>(
+      dynamicValue,
+      o.dynamicValue,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ActivityDefinitionParticipant]
@@ -1785,6 +2021,38 @@ class ActivityDefinitionParticipant extends BackboneElement {
           ) ??
           this.role,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ActivityDefinitionParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2051,5 +2319,37 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           ) ??
           this.expression,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ActivityDefinitionDynamicValue) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    return true;
   }
 }

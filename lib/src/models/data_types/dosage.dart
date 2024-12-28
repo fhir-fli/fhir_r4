@@ -542,6 +542,77 @@ class Dosage extends BackboneType
           this.maxDosePerLifetime,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Dosage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (sequence != o.sequence) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      additionalInstruction,
+      o.additionalInstruction,
+    )) {
+      return false;
+    }
+    if (patientInstruction != o.patientInstruction) {
+      return false;
+    }
+    if (timing != o.timing) {
+      return false;
+    }
+    if (asNeededX != o.asNeededX) {
+      return false;
+    }
+    if (site != o.site) {
+      return false;
+    }
+    if (route != o.route) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (!listEquals<DosageDoseAndRate>(
+      doseAndRate,
+      o.doseAndRate,
+    )) {
+      return false;
+    }
+    if (maxDosePerPeriod != o.maxDosePerPeriod) {
+      return false;
+    }
+    if (maxDosePerAdministration != o.maxDosePerAdministration) {
+      return false;
+    }
+    if (maxDosePerLifetime != o.maxDosePerLifetime) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DosageDoseAndRate]
@@ -819,5 +890,34 @@ class DosageDoseAndRate extends Element {
           ) as RateXDosageDoseAndRate? ??
           this.rateX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DosageDoseAndRate) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (doseX != o.doseX) {
+      return false;
+    }
+    if (rateX != o.rateX) {
+      return false;
+    }
+    return true;
   }
 }

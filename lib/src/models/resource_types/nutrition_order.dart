@@ -759,6 +759,128 @@ class NutritionOrder extends DomainResource {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrder) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiates,
+      o.instantiates,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (dateTime != o.dateTime) {
+      return false;
+    }
+    if (orderer != o.orderer) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      allergyIntolerance,
+      o.allergyIntolerance,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      foodPreferenceModifier,
+      o.foodPreferenceModifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      excludeFoodModifier,
+      o.excludeFoodModifier,
+    )) {
+      return false;
+    }
+    if (oralDiet != o.oralDiet) {
+      return false;
+    }
+    if (!listEquals<NutritionOrderSupplement>(
+      supplement,
+      o.supplement,
+    )) {
+      return false;
+    }
+    if (enteralFormula != o.enteralFormula) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [NutritionOrderOralDiet]
@@ -1152,6 +1274,65 @@ class NutritionOrderOralDiet extends BackboneElement {
           this.instruction,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderOralDiet) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (!listEquals<Timing>(
+      schedule,
+      o.schedule,
+    )) {
+      return false;
+    }
+    if (!listEquals<NutritionOrderNutrient>(
+      nutrient,
+      o.nutrient,
+    )) {
+      return false;
+    }
+    if (!listEquals<NutritionOrderTexture>(
+      texture,
+      o.texture,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      fluidConsistencyType,
+      o.fluidConsistencyType,
+    )) {
+      return false;
+    }
+    if (instruction != o.instruction) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [NutritionOrderNutrient]
@@ -1410,6 +1591,38 @@ class NutritionOrderNutrient extends BackboneElement {
           ) ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderNutrient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (modifier != o.modifier) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1671,6 +1884,38 @@ class NutritionOrderTexture extends BackboneElement {
           ) ??
           this.foodType,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderTexture) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (modifier != o.modifier) {
+      return false;
+    }
+    if (foodType != o.foodType) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2009,6 +2254,50 @@ class NutritionOrderSupplement extends BackboneElement {
           ) ??
           this.instruction,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderSupplement) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (productName != o.productName) {
+      return false;
+    }
+    if (!listEquals<Timing>(
+      schedule,
+      o.schedule,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (instruction != o.instruction) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2447,6 +2736,62 @@ class NutritionOrderEnteralFormula extends BackboneElement {
           this.administrationInstruction,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderEnteralFormula) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (baseFormulaType != o.baseFormulaType) {
+      return false;
+    }
+    if (baseFormulaProductName != o.baseFormulaProductName) {
+      return false;
+    }
+    if (additiveType != o.additiveType) {
+      return false;
+    }
+    if (additiveProductName != o.additiveProductName) {
+      return false;
+    }
+    if (caloricDensity != o.caloricDensity) {
+      return false;
+    }
+    if (routeofAdministration != o.routeofAdministration) {
+      return false;
+    }
+    if (!listEquals<NutritionOrderAdministration>(
+      administration,
+      o.administration,
+    )) {
+      return false;
+    }
+    if (maxVolumeToDeliver != o.maxVolumeToDeliver) {
+      return false;
+    }
+    if (administrationInstruction != o.administrationInstruction) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [NutritionOrderAdministration]
@@ -2743,5 +3088,40 @@ class NutritionOrderAdministration extends BackboneElement {
           ) as RateXNutritionOrderAdministration? ??
           this.rateX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! NutritionOrderAdministration) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (schedule != o.schedule) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (rateX != o.rateX) {
+      return false;
+    }
+    return true;
   }
 }

@@ -246,4 +246,30 @@ class Money extends DataType
           this.currency,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Money) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (currency != o.currency) {
+      return false;
+    }
+    return true;
+  }
 }

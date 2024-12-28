@@ -665,6 +665,104 @@ class RegulatedAuthorization extends DomainResource {
           this.case_,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RegulatedAuthorization) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      subject,
+      o.subject,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      region,
+      o.region,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (validityPeriod != o.validityPeriod) {
+      return false;
+    }
+    if (indication != o.indication) {
+      return false;
+    }
+    if (intendedUse != o.intendedUse) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      basis,
+      o.basis,
+    )) {
+      return false;
+    }
+    if (holder != o.holder) {
+      return false;
+    }
+    if (regulator != o.regulator) {
+      return false;
+    }
+    if (case_ != o.case_) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [RegulatedAuthorizationCase]
@@ -1016,5 +1114,49 @@ class RegulatedAuthorizationCase extends BackboneElement {
               .toList() ??
           this.application,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RegulatedAuthorizationCase) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (dateX != o.dateX) {
+      return false;
+    }
+    if (!listEquals<RegulatedAuthorizationCase>(
+      application,
+      o.application,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

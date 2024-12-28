@@ -726,4 +726,111 @@ class GuidanceResponse extends DomainResource {
           this.dataRequirement,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! GuidanceResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (requestIdentifier != o.requestIdentifier) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (moduleX != o.moduleX) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (occurrenceDateTime != o.occurrenceDateTime) {
+      return false;
+    }
+    if (performer != o.performer) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      evaluationMessage,
+      o.evaluationMessage,
+    )) {
+      return false;
+    }
+    if (outputParameters != o.outputParameters) {
+      return false;
+    }
+    if (result != o.result) {
+      return false;
+    }
+    if (!listEquals<DataRequirement>(
+      dataRequirement,
+      o.dataRequirement,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

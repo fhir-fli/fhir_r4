@@ -692,6 +692,119 @@ class InsurancePlan extends DomainResource {
           this.plan,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlan) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      alias,
+      o.alias,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (ownedBy != o.ownedBy) {
+      return false;
+    }
+    if (administeredBy != o.administeredBy) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      coverageArea,
+      o.coverageArea,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanContact>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      endpoint,
+      o.endpoint,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      network,
+      o.network,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanCoverage>(
+      coverage,
+      o.coverage,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanPlan>(
+      plan,
+      o.plan,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanContact]
@@ -1003,6 +1116,47 @@ class InsurancePlanContact extends BackboneElement {
           this.address,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanContact) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (address != o.address) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanCoverage]
@@ -1296,6 +1450,47 @@ class InsurancePlanCoverage extends BackboneElement {
           this.benefit,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanCoverage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      network,
+      o.network,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanBenefit>(
+      benefit,
+      o.benefit,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanBenefit]
@@ -1582,6 +1777,44 @@ class InsurancePlanBenefit extends BackboneElement {
           this.limit,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanBenefit) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (requirement != o.requirement) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanLimit>(
+      limit,
+      o.limit,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanLimit]
@@ -1840,6 +2073,38 @@ class InsurancePlanLimit extends BackboneElement {
           ) ??
           this.code,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanLimit) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2230,6 +2495,65 @@ class InsurancePlanPlan extends BackboneElement {
           this.specificCost,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanPlan) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      coverageArea,
+      o.coverageArea,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      network,
+      o.network,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanGeneralCost>(
+      generalCost,
+      o.generalCost,
+    )) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanSpecificCost>(
+      specificCost,
+      o.specificCost,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanGeneralCost]
@@ -2533,6 +2857,44 @@ class InsurancePlanGeneralCost extends BackboneElement {
           this.comment,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanGeneralCost) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (groupSize != o.groupSize) {
+      return false;
+    }
+    if (cost != o.cost) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanSpecificCost]
@@ -2798,6 +3160,41 @@ class InsurancePlanSpecificCost extends BackboneElement {
           this.benefit,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanSpecificCost) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanBenefit>(
+      benefit,
+      o.benefit,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [InsurancePlanBenefit1]
@@ -3062,6 +3459,41 @@ class InsurancePlanBenefit1 extends BackboneElement {
               .toList() ??
           this.cost,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanBenefit1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<InsurancePlanCost>(
+      cost,
+      o.cost,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3374,5 +3806,46 @@ class InsurancePlanCost extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! InsurancePlanCost) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (applicability != o.applicability) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      qualifiers,
+      o.qualifiers,
+    )) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }

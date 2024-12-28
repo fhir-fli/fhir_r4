@@ -587,6 +587,92 @@ class TestReport extends DomainResource {
           this.teardown,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReport) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (testScript != o.testScript) {
+      return false;
+    }
+    if (result != o.result) {
+      return false;
+    }
+    if (score != o.score) {
+      return false;
+    }
+    if (tester != o.tester) {
+      return false;
+    }
+    if (issued != o.issued) {
+      return false;
+    }
+    if (!listEquals<TestReportParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (setup != o.setup) {
+      return false;
+    }
+    if (!listEquals<TestReportTest>(
+      test,
+      o.test,
+    )) {
+      return false;
+    }
+    if (teardown != o.teardown) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportParticipant]
@@ -864,6 +950,41 @@ class TestReportParticipant extends BackboneElement {
           this.display,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (uri != o.uri) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportSetup]
@@ -1106,6 +1227,38 @@ class TestReportSetup extends BackboneElement {
               .toList() ??
           this.action,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportSetup) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<TestReportAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1364,6 +1517,38 @@ class TestReportAction extends BackboneElement {
           ) ??
           this.assert_,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportAction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (operation != o.operation) {
+      return false;
+    }
+    if (assert_ != o.assert_) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1643,6 +1828,41 @@ class TestReportOperation extends BackboneElement {
           this.detail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportOperation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (result != o.result) {
+      return false;
+    }
+    if (message != o.message) {
+      return false;
+    }
+    if (detail != o.detail) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportAssert]
@@ -1920,6 +2140,41 @@ class TestReportAssert extends BackboneElement {
           ) ??
           this.detail,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportAssert) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (result != o.result) {
+      return false;
+    }
+    if (message != o.message) {
+      return false;
+    }
+    if (detail != o.detail) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2209,6 +2464,44 @@ class TestReportTest extends BackboneElement {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportTest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<TestReportAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportAction1]
@@ -2467,6 +2760,38 @@ class TestReportAction1 extends BackboneElement {
           this.assert_,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportAction1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (operation != o.operation) {
+      return false;
+    }
+    if (assert_ != o.assert_) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportTeardown]
@@ -2710,6 +3035,38 @@ class TestReportTeardown extends BackboneElement {
           this.action,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportTeardown) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<TestReportAction>(
+      action,
+      o.action,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TestReportAction2]
@@ -2943,5 +3300,34 @@ class TestReportAction2 extends BackboneElement {
           ) ??
           this.operation,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TestReportAction2) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (operation != o.operation) {
+      return false;
+    }
+    return true;
   }
 }

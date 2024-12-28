@@ -915,6 +915,149 @@ class Appointment extends DomainResource {
           this.requestedPeriod,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Appointment) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (cancelationReason != o.cancelationReason) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceCategory,
+      o.serviceCategory,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      serviceType,
+      o.serviceType,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialty,
+      o.specialty,
+    )) {
+      return false;
+    }
+    if (appointmentType != o.appointmentType) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supportingInformation,
+      o.supportingInformation,
+    )) {
+      return false;
+    }
+    if (start != o.start) {
+      return false;
+    }
+    if (end != o.end) {
+      return false;
+    }
+    if (minutesDuration != o.minutesDuration) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      slot,
+      o.slot,
+    )) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    if (patientInstruction != o.patientInstruction) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<AppointmentParticipant>(
+      participant,
+      o.participant,
+    )) {
+      return false;
+    }
+    if (!listEquals<Period>(
+      requestedPeriod,
+      o.requestedPeriod,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AppointmentParticipant]
@@ -1247,5 +1390,49 @@ class AppointmentParticipant extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AppointmentParticipant) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    if (required_ != o.required_) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }

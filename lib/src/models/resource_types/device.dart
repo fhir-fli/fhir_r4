@@ -977,6 +977,158 @@ class Device extends DomainResource {
           this.parent,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Device) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (!listEquals<DeviceUdiCarrier>(
+      udiCarrier,
+      o.udiCarrier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      statusReason,
+      o.statusReason,
+    )) {
+      return false;
+    }
+    if (distinctIdentifier != o.distinctIdentifier) {
+      return false;
+    }
+    if (manufacturer != o.manufacturer) {
+      return false;
+    }
+    if (manufactureDate != o.manufactureDate) {
+      return false;
+    }
+    if (expirationDate != o.expirationDate) {
+      return false;
+    }
+    if (lotNumber != o.lotNumber) {
+      return false;
+    }
+    if (serialNumber != o.serialNumber) {
+      return false;
+    }
+    if (!listEquals<DeviceDeviceName>(
+      deviceName,
+      o.deviceName,
+    )) {
+      return false;
+    }
+    if (modelNumber != o.modelNumber) {
+      return false;
+    }
+    if (partNumber != o.partNumber) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<DeviceSpecialization>(
+      specialization,
+      o.specialization,
+    )) {
+      return false;
+    }
+    if (!listEquals<DeviceVersion>(
+      version,
+      o.version,
+    )) {
+      return false;
+    }
+    if (!listEquals<DeviceProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (owner != o.owner) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      safety,
+      o.safety,
+    )) {
+      return false;
+    }
+    if (parent != o.parent) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceUdiCarrier]
@@ -1345,6 +1497,50 @@ class DeviceUdiCarrier extends BackboneElement {
           this.entryType,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceUdiCarrier) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (deviceIdentifier != o.deviceIdentifier) {
+      return false;
+    }
+    if (issuer != o.issuer) {
+      return false;
+    }
+    if (jurisdiction != o.jurisdiction) {
+      return false;
+    }
+    if (carrierAIDC != o.carrierAIDC) {
+      return false;
+    }
+    if (carrierHRF != o.carrierHRF) {
+      return false;
+    }
+    if (entryType != o.entryType) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceDeviceName]
@@ -1604,6 +1800,38 @@ class DeviceDeviceName extends BackboneElement {
           this.type,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceDeviceName) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceSpecialization]
@@ -1861,6 +2089,38 @@ class DeviceSpecialization extends BackboneElement {
           ) ??
           this.version,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceSpecialization) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (systemType != o.systemType) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2140,6 +2400,41 @@ class DeviceVersion extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceVersion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (component != o.component) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2436,5 +2731,46 @@ class DeviceProperty extends BackboneElement {
               .toList() ??
           this.valueCode,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      valueQuantity,
+      o.valueQuantity,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      valueCode,
+      o.valueCode,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

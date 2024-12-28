@@ -312,4 +312,39 @@ class FhirExpression extends DataType
           this.reference,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! FhirExpression) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (expression != o.expression) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    return true;
+  }
 }

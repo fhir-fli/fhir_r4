@@ -964,6 +964,155 @@ class EvidenceVariable extends DomainResource {
           this.category,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceVariable) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (shortTitle != o.shortTitle) {
+      return false;
+    }
+    if (subtitle != o.subtitle) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      editor,
+      o.editor,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      reviewer,
+      o.reviewer,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      endorser,
+      o.endorser,
+    )) {
+      return false;
+    }
+    if (!listEquals<RelatedArtifact>(
+      relatedArtifact,
+      o.relatedArtifact,
+    )) {
+      return false;
+    }
+    if (actual != o.actual) {
+      return false;
+    }
+    if (characteristicCombination != o.characteristicCombination) {
+      return false;
+    }
+    if (!listEquals<EvidenceVariableCharacteristic>(
+      characteristic,
+      o.characteristic,
+    )) {
+      return false;
+    }
+    if (handling != o.handling) {
+      return false;
+    }
+    if (!listEquals<EvidenceVariableCategory>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceVariableCharacteristic]
@@ -1359,6 +1508,53 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           this.groupMeasure,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceVariableCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (definitionX != o.definitionX) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (device != o.device) {
+      return false;
+    }
+    if (exclude != o.exclude) {
+      return false;
+    }
+    if (timeFromStart != o.timeFromStart) {
+      return false;
+    }
+    if (groupMeasure != o.groupMeasure) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceVariableTimeFromStart]
@@ -1672,6 +1868,47 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           this.note,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceVariableTimeFromStart) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (range != o.range) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [EvidenceVariableCategory]
@@ -1945,5 +2182,37 @@ class EvidenceVariableCategory extends BackboneElement {
           ) as ValueXEvidenceVariableCategory? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EvidenceVariableCategory) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

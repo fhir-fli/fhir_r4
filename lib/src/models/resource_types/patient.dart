@@ -762,6 +762,125 @@ class Patient extends DomainResource {
           this.link,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Patient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (!listEquals<HumanName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (birthDate != o.birthDate) {
+      return false;
+    }
+    if (deceasedX != o.deceasedX) {
+      return false;
+    }
+    if (!listEquals<Address>(
+      address,
+      o.address,
+    )) {
+      return false;
+    }
+    if (maritalStatus != o.maritalStatus) {
+      return false;
+    }
+    if (multipleBirthX != o.multipleBirthX) {
+      return false;
+    }
+    if (!listEquals<Attachment>(
+      photo,
+      o.photo,
+    )) {
+      return false;
+    }
+    if (!listEquals<PatientContact>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<PatientCommunication>(
+      communication,
+      o.communication,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      generalPractitioner,
+      o.generalPractitioner,
+    )) {
+      return false;
+    }
+    if (managingOrganization != o.managingOrganization) {
+      return false;
+    }
+    if (!listEquals<PatientLink>(
+      link,
+      o.link,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PatientContact]
@@ -1151,6 +1270,59 @@ class PatientContact extends BackboneElement {
           this.period,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PatientContact) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      relationship,
+      o.relationship,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (address != o.address) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (organization != o.organization) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PatientCommunication]
@@ -1412,6 +1584,38 @@ class PatientCommunication extends BackboneElement {
           this.preferred,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PatientCommunication) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (preferred != o.preferred) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PatientLink]
@@ -1666,5 +1870,37 @@ class PatientLink extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PatientLink) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (other != o.other) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }

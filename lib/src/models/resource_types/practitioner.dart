@@ -589,6 +589,101 @@ class Practitioner extends DomainResource {
           this.communication,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Practitioner) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (!listEquals<HumanName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (!listEquals<Address>(
+      address,
+      o.address,
+    )) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (birthDate != o.birthDate) {
+      return false;
+    }
+    if (!listEquals<Attachment>(
+      photo,
+      o.photo,
+    )) {
+      return false;
+    }
+    if (!listEquals<PractitionerQualification>(
+      qualification,
+      o.qualification,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      communication,
+      o.communication,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PractitionerQualification]
@@ -899,5 +994,46 @@ class PractitionerQualification extends BackboneElement {
           ) ??
           this.issuer,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PractitionerQualification) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (issuer != o.issuer) {
+      return false;
+    }
+    return true;
   }
 }

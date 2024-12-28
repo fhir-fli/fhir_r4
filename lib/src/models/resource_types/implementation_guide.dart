@@ -763,6 +763,128 @@ class ImplementationGuide extends CanonicalResource {
           this.manifest,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuide) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (packageId != o.packageId) {
+      return false;
+    }
+    if (license != o.license) {
+      return false;
+    }
+    if (!listEquals<FHIRVersion>(
+      fhirVersion,
+      o.fhirVersion,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideDependsOn>(
+      dependsOn,
+      o.dependsOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideGlobal>(
+      global,
+      o.global,
+    )) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    if (manifest != o.manifest) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuideDependsOn]
@@ -1045,6 +1167,41 @@ class ImplementationGuideDependsOn extends BackboneElement {
           this.version,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideDependsOn) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (uri != o.uri) {
+      return false;
+    }
+    if (packageId != o.packageId) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuideGlobal]
@@ -1299,6 +1456,38 @@ class ImplementationGuideGlobal extends BackboneElement {
           ) ??
           this.profile,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideGlobal) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (profile != o.profile) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1660,6 +1849,59 @@ class ImplementationGuideDefinition extends BackboneElement {
           this.template,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideGrouping>(
+      grouping,
+      o.grouping,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideResource>(
+      resource,
+      o.resource,
+    )) {
+      return false;
+    }
+    if (page != o.page) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideParameter>(
+      parameter,
+      o.parameter,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideTemplate>(
+      template,
+      o.template,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuideGrouping]
@@ -1917,6 +2159,38 @@ class ImplementationGuideGrouping extends BackboneElement {
           ) ??
           this.description,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideGrouping) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2287,6 +2561,53 @@ class ImplementationGuideResource extends BackboneElement {
           this.groupingId,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideResource) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    if (!listEquals<FHIRVersion>(
+      fhirVersion,
+      o.fhirVersion,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (exampleX != o.exampleX) {
+      return false;
+    }
+    if (groupingId != o.groupingId) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuidePage]
@@ -2603,6 +2924,47 @@ class ImplementationGuidePage extends BackboneElement {
           this.page,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuidePage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (nameX != o.nameX) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (generation != o.generation) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuidePage>(
+      page,
+      o.page,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuideParameter]
@@ -2858,6 +3220,38 @@ class ImplementationGuideParameter extends BackboneElement {
           ) ??
           this.value,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideParameter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (value != o.value) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3134,6 +3528,41 @@ class ImplementationGuideTemplate extends BackboneElement {
           ) ??
           this.scope,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideTemplate) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (scope != o.scope) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3488,6 +3917,59 @@ class ImplementationGuideManifest extends BackboneElement {
           this.other,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideManifest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (rendering != o.rendering) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuideResource>(
+      resource,
+      o.resource,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImplementationGuidePage>(
+      page,
+      o.page,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      image,
+      o.image,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      other,
+      o.other,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuideResource1]
@@ -3782,6 +4264,41 @@ class ImplementationGuideResource1 extends BackboneElement {
           this.relativePath,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuideResource1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    if (exampleX != o.exampleX) {
+      return false;
+    }
+    if (relativePath != o.relativePath) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImplementationGuidePage1]
@@ -4063,5 +4580,43 @@ class ImplementationGuidePage1 extends BackboneElement {
               .toList() ??
           this.anchor,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImplementationGuidePage1) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      anchor,
+      o.anchor,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

@@ -837,6 +837,146 @@ class SubstanceDefinition extends DomainResource {
           this.sourceMaterial,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      classification,
+      o.classification,
+    )) {
+      return false;
+    }
+    if (domain != o.domain) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      grade,
+      o.grade,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      informationSource,
+      o.informationSource,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      manufacturer,
+      o.manufacturer,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      supplier,
+      o.supplier,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionMoiety>(
+      moiety,
+      o.moiety,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionProperty>(
+      property,
+      o.property,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionMolecularWeight>(
+      molecularWeight,
+      o.molecularWeight,
+    )) {
+      return false;
+    }
+    if (structure != o.structure) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionCode>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionName>(
+      name,
+      o.name,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionRelationship>(
+      relationship,
+      o.relationship,
+    )) {
+      return false;
+    }
+    if (sourceMaterial != o.sourceMaterial) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubstanceDefinitionMoiety]
@@ -1241,6 +1381,56 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           this.measurementType,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionMoiety) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (stereochemistry != o.stereochemistry) {
+      return false;
+    }
+    if (opticalActivity != o.opticalActivity) {
+      return false;
+    }
+    if (molecularFormula != o.molecularFormula) {
+      return false;
+    }
+    if (amountX != o.amountX) {
+      return false;
+    }
+    if (measurementType != o.measurementType) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubstanceDefinitionProperty]
@@ -1521,6 +1711,38 @@ class SubstanceDefinitionProperty extends BackboneElement {
           ) as ValueXSubstanceDefinitionProperty? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionProperty) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1804,6 +2026,41 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           ) ??
           this.amount,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionMolecularWeight) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (method != o.method) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2224,6 +2481,65 @@ class SubstanceDefinitionStructure extends BackboneElement {
           this.representation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionStructure) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (stereochemistry != o.stereochemistry) {
+      return false;
+    }
+    if (opticalActivity != o.opticalActivity) {
+      return false;
+    }
+    if (molecularFormula != o.molecularFormula) {
+      return false;
+    }
+    if (molecularFormulaByMoiety != o.molecularFormulaByMoiety) {
+      return false;
+    }
+    if (molecularWeight != o.molecularWeight) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      technique,
+      o.technique,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      sourceDocument,
+      o.sourceDocument,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionRepresentation>(
+      representation,
+      o.representation,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubstanceDefinitionRepresentation]
@@ -2530,6 +2846,44 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           ) ??
           this.document,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionRepresentation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (representation != o.representation) {
+      return false;
+    }
+    if (format != o.format) {
+      return false;
+    }
+    if (document != o.document) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2871,6 +3225,53 @@ class SubstanceDefinitionCode extends BackboneElement {
               .toList() ??
           this.source,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionCode) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      source,
+      o.source,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3384,6 +3785,86 @@ class SubstanceDefinitionName extends BackboneElement {
           this.source,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionName) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (preferred != o.preferred) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      language,
+      o.language,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      domain,
+      o.domain,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionName>(
+      synonym,
+      o.synonym,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionName>(
+      translation,
+      o.translation,
+    )) {
+      return false;
+    }
+    if (!listEquals<SubstanceDefinitionOfficial>(
+      official,
+      o.official,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      source,
+      o.source,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubstanceDefinitionOfficial]
@@ -3664,6 +4145,41 @@ class SubstanceDefinitionOfficial extends BackboneElement {
           ) ??
           this.date,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionOfficial) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (authority != o.authority) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -4078,6 +4594,56 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           this.source,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionRelationship) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (substanceDefinitionX != o.substanceDefinitionX) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (isDefining != o.isDefining) {
+      return false;
+    }
+    if (amountX != o.amountX) {
+      return false;
+    }
+    if (ratioHighLimitAmount != o.ratioHighLimitAmount) {
+      return false;
+    }
+    if (comparator != o.comparator) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      source,
+      o.source,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SubstanceDefinitionSourceMaterial]
@@ -4412,5 +4978,49 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
               .toList() ??
           this.countryOfOrigin,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SubstanceDefinitionSourceMaterial) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (genus != o.genus) {
+      return false;
+    }
+    if (species != o.species) {
+      return false;
+    }
+    if (part_ != o.part_) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      countryOfOrigin,
+      o.countryOfOrigin,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

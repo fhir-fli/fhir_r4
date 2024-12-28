@@ -698,6 +698,113 @@ class Composition extends DomainResource {
           this.section,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Composition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (confidentiality != o.confidentiality) {
+      return false;
+    }
+    if (!listEquals<CompositionAttester>(
+      attester,
+      o.attester,
+    )) {
+      return false;
+    }
+    if (custodian != o.custodian) {
+      return false;
+    }
+    if (!listEquals<CompositionRelatesTo>(
+      relatesTo,
+      o.relatesTo,
+    )) {
+      return false;
+    }
+    if (!listEquals<CompositionEvent>(
+      event,
+      o.event,
+    )) {
+      return false;
+    }
+    if (!listEquals<CompositionSection>(
+      section,
+      o.section,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CompositionAttester]
@@ -977,6 +1084,41 @@ class CompositionAttester extends BackboneElement {
           this.party,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CompositionAttester) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (time != o.time) {
+      return false;
+    }
+    if (party != o.party) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CompositionRelatesTo]
@@ -1242,6 +1384,38 @@ class CompositionRelatesTo extends BackboneElement {
           ) as TargetXCompositionRelatesTo? ??
           this.targetX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CompositionRelatesTo) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (targetX != o.targetX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1547,6 +1721,47 @@ class CompositionEvent extends BackboneElement {
               .toList() ??
           this.detail,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CompositionEvent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2026,5 +2241,70 @@ class CompositionSection extends BackboneElement {
               .toList() ??
           this.section,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CompositionSection) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (focus != o.focus) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (orderedBy != o.orderedBy) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      entry,
+      o.entry,
+    )) {
+      return false;
+    }
+    if (emptyReason != o.emptyReason) {
+      return false;
+    }
+    if (!listEquals<CompositionSection>(
+      section,
+      o.section,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

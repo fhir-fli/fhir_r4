@@ -618,6 +618,98 @@ class FhirList extends DomainResource {
           this.emptyReason,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! FhirList) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (mode != o.mode) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (orderedBy != o.orderedBy) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<ListEntry>(
+      entry,
+      o.entry,
+    )) {
+      return false;
+    }
+    if (emptyReason != o.emptyReason) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ListEntry]
@@ -918,5 +1010,43 @@ class ListEntry extends BackboneElement {
           ) ??
           this.item,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ListEntry) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (flag != o.flag) {
+      return false;
+    }
+    if (deleted != o.deleted) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (item != o.item) {
+      return false;
+    }
+    return true;
   }
 }

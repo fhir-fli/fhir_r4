@@ -436,6 +436,65 @@ class DataRequirement extends DataType
           this.sort,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DataRequirement) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      profile,
+      o.profile,
+    )) {
+      return false;
+    }
+    if (subjectX != o.subjectX) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      mustSupport,
+      o.mustSupport,
+    )) {
+      return false;
+    }
+    if (!listEquals<DataRequirementCodeFilter>(
+      codeFilter,
+      o.codeFilter,
+    )) {
+      return false;
+    }
+    if (!listEquals<DataRequirementDateFilter>(
+      dateFilter,
+      o.dateFilter,
+    )) {
+      return false;
+    }
+    if (limit != o.limit) {
+      return false;
+    }
+    if (!listEquals<DataRequirementSort>(
+      sort,
+      o.sort,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DataRequirementCodeFilter]
@@ -739,6 +798,41 @@ class DataRequirementCodeFilter extends Element {
           this.code,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DataRequirementCodeFilter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (searchParam != o.searchParam) {
+      return false;
+    }
+    if (valueSet != o.valueSet) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DataRequirementDateFilter]
@@ -1026,6 +1120,35 @@ class DataRequirementDateFilter extends Element {
           this.valueX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DataRequirementDateFilter) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (searchParam != o.searchParam) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DataRequirementSort]
@@ -1256,5 +1379,31 @@ class DataRequirementSort extends Element {
           ) ??
           this.direction,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DataRequirementSort) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (path != o.path) {
+      return false;
+    }
+    if (direction != o.direction) {
+      return false;
+    }
+    return true;
   }
 }

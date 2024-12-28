@@ -626,4 +626,93 @@ class ImmunizationEvaluation extends DomainResource {
           this.seriesDosesX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationEvaluation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (authority != o.authority) {
+      return false;
+    }
+    if (targetDisease != o.targetDisease) {
+      return false;
+    }
+    if (immunizationEvent != o.immunizationEvent) {
+      return false;
+    }
+    if (doseStatus != o.doseStatus) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      doseStatusReason,
+      o.doseStatusReason,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (series != o.series) {
+      return false;
+    }
+    if (doseNumberX != o.doseNumberX) {
+      return false;
+    }
+    if (seriesDosesX != o.seriesDosesX) {
+      return false;
+    }
+    return true;
+  }
 }

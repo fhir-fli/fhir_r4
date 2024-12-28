@@ -340,4 +340,42 @@ class TriggerDefinition extends DataType
           this.condition,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TriggerDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (timingX != o.timingX) {
+      return false;
+    }
+    if (!listEquals<DataRequirement>(
+      data,
+      o.data,
+    )) {
+      return false;
+    }
+    if (condition != o.condition) {
+      return false;
+    }
+    return true;
+  }
 }

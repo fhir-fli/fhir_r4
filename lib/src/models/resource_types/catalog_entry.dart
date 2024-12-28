@@ -642,6 +642,107 @@ class CatalogEntry extends DomainResource {
           this.relatedEntry,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CatalogEntry) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (orderable != o.orderable) {
+      return false;
+    }
+    if (referencedItem != o.referencedItem) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      additionalIdentifier,
+      o.additionalIdentifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      classification,
+      o.classification,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (validityPeriod != o.validityPeriod) {
+      return false;
+    }
+    if (validTo != o.validTo) {
+      return false;
+    }
+    if (lastUpdated != o.lastUpdated) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      additionalCharacteristic,
+      o.additionalCharacteristic,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      additionalClassification,
+      o.additionalClassification,
+    )) {
+      return false;
+    }
+    if (!listEquals<CatalogEntryRelatedEntry>(
+      relatedEntry,
+      o.relatedEntry,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [CatalogEntryRelatedEntry]
@@ -897,5 +998,37 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           ) ??
           this.item,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CatalogEntryRelatedEntry) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (relationtype != o.relationtype) {
+      return false;
+    }
+    if (item != o.item) {
+      return false;
+    }
+    return true;
   }
 }

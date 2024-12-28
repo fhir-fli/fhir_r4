@@ -312,4 +312,42 @@ class Population extends BackboneType {
           this.physiologicalCondition,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Population) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (ageX != o.ageX) {
+      return false;
+    }
+    if (gender != o.gender) {
+      return false;
+    }
+    if (race != o.race) {
+      return false;
+    }
+    if (physiologicalCondition != o.physiologicalCondition) {
+      return false;
+    }
+    return true;
+  }
 }

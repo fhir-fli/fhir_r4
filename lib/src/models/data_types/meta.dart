@@ -359,4 +359,51 @@ class FhirMeta extends DataType
           this.tag,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! FhirMeta) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (versionId != o.versionId) {
+      return false;
+    }
+    if (lastUpdated != o.lastUpdated) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      profile,
+      o.profile,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      security,
+      o.security,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      tag,
+      o.tag,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }

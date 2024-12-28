@@ -577,6 +577,95 @@ class AuditEvent extends DomainResource {
           this.entity,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEvent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      subtype,
+      o.subtype,
+    )) {
+      return false;
+    }
+    if (action != o.action) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (recorded != o.recorded) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (outcomeDesc != o.outcomeDesc) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      purposeOfEvent,
+      o.purposeOfEvent,
+    )) {
+      return false;
+    }
+    if (!listEquals<AuditEventAgent>(
+      agent,
+      o.agent,
+    )) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (!listEquals<AuditEventEntity>(
+      entity,
+      o.entity,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AuditEventAgent]
@@ -1064,6 +1153,74 @@ class AuditEventAgent extends BackboneElement {
           this.purposeOfUse,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEventAgent) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      role,
+      o.role,
+    )) {
+      return false;
+    }
+    if (who != o.who) {
+      return false;
+    }
+    if (altId != o.altId) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (requestor != o.requestor) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      policy,
+      o.policy,
+    )) {
+      return false;
+    }
+    if (media != o.media) {
+      return false;
+    }
+    if (network != o.network) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      purposeOfUse,
+      o.purposeOfUse,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AuditEventNetwork]
@@ -1324,6 +1481,38 @@ class AuditEventNetwork extends BackboneElement {
           ) ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEventNetwork) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (address != o.address) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1612,6 +1801,44 @@ class AuditEventSource extends BackboneElement {
               .toList() ??
           this.type,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEventSource) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (site != o.site) {
+      return false;
+    }
+    if (observer != o.observer) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2044,6 +2271,65 @@ class AuditEventEntity extends BackboneElement {
           this.detail,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEventEntity) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (what != o.what) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (role != o.role) {
+      return false;
+    }
+    if (lifecycle != o.lifecycle) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      securityLabel,
+      o.securityLabel,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (query != o.query) {
+      return false;
+    }
+    if (!listEquals<AuditEventDetail>(
+      detail,
+      o.detail,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [AuditEventDetail]
@@ -2308,5 +2594,37 @@ class AuditEventDetail extends BackboneElement {
           ) as ValueXAuditEventDetail? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! AuditEventDetail) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

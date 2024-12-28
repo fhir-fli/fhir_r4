@@ -462,6 +462,77 @@ class SpecimenDefinition extends DomainResource {
           this.typeTested,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenDefinition) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (typeCollected != o.typeCollected) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      patientPreparation,
+      o.patientPreparation,
+    )) {
+      return false;
+    }
+    if (timeAspect != o.timeAspect) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      collection,
+      o.collection,
+    )) {
+      return false;
+    }
+    if (!listEquals<SpecimenDefinitionTypeTested>(
+      typeTested,
+      o.typeTested,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SpecimenDefinitionTypeTested]
@@ -870,6 +941,62 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
               .toList() ??
           this.handling,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenDefinitionTypeTested) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (isDerived != o.isDerived) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (preference != o.preference) {
+      return false;
+    }
+    if (container != o.container) {
+      return false;
+    }
+    if (requirement != o.requirement) {
+      return false;
+    }
+    if (retentionTime != o.retentionTime) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      rejectionCriterion,
+      o.rejectionCriterion,
+    )) {
+      return false;
+    }
+    if (!listEquals<SpecimenDefinitionHandling>(
+      handling,
+      o.handling,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1282,6 +1409,59 @@ class SpecimenDefinitionContainer extends BackboneElement {
           this.preparation,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenDefinitionContainer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (material != o.material) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (cap != o.cap) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (capacity != o.capacity) {
+      return false;
+    }
+    if (minimumVolumeX != o.minimumVolumeX) {
+      return false;
+    }
+    if (!listEquals<SpecimenDefinitionAdditive>(
+      additive,
+      o.additive,
+    )) {
+      return false;
+    }
+    if (preparation != o.preparation) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [SpecimenDefinitionAdditive]
@@ -1528,6 +1708,35 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           ) as AdditiveXSpecimenDefinitionAdditive? ??
           this.additiveX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenDefinitionAdditive) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (additiveX != o.additiveX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1835,5 +2044,43 @@ class SpecimenDefinitionHandling extends BackboneElement {
           ) ??
           this.instruction,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! SpecimenDefinitionHandling) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (temperatureQualifier != o.temperatureQualifier) {
+      return false;
+    }
+    if (temperatureRange != o.temperatureRange) {
+      return false;
+    }
+    if (maxDuration != o.maxDuration) {
+      return false;
+    }
+    if (instruction != o.instruction) {
+      return false;
+    }
+    return true;
   }
 }

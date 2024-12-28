@@ -492,4 +492,75 @@ class EnrollmentResponse extends DomainResource {
           this.requestProvider,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! EnrollmentResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (disposition != o.disposition) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (organization != o.organization) {
+      return false;
+    }
+    if (requestProvider != o.requestProvider) {
+      return false;
+    }
+    return true;
+  }
 }

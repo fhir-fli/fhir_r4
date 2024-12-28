@@ -821,6 +821,137 @@ class DiagnosticReport extends DomainResource {
           this.presentedForm,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DiagnosticReport) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      category,
+      o.category,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (effectiveX != o.effectiveX) {
+      return false;
+    }
+    if (issued != o.issued) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      resultsInterpreter,
+      o.resultsInterpreter,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      specimen,
+      o.specimen,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      result,
+      o.result,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      imagingStudy,
+      o.imagingStudy,
+    )) {
+      return false;
+    }
+    if (!listEquals<DiagnosticReportMedia>(
+      media,
+      o.media,
+    )) {
+      return false;
+    }
+    if (conclusion != o.conclusion) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      conclusionCode,
+      o.conclusionCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Attachment>(
+      presentedForm,
+      o.presentedForm,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DiagnosticReportMedia]
@@ -1080,5 +1211,37 @@ class DiagnosticReportMedia extends BackboneElement {
           ) ??
           this.link,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DiagnosticReportMedia) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (comment != o.comment) {
+      return false;
+    }
+    if (link != o.link) {
+      return false;
+    }
+    return true;
   }
 }

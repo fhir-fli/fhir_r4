@@ -1079,6 +1079,170 @@ class Task extends DomainResource {
           this.output,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Task) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (instantiatesCanonical != o.instantiatesCanonical) {
+      return false;
+    }
+    if (instantiatesUri != o.instantiatesUri) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (groupIdentifier != o.groupIdentifier) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (businessStatus != o.businessStatus) {
+      return false;
+    }
+    if (intent != o.intent) {
+      return false;
+    }
+    if (priority != o.priority) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (focus != o.focus) {
+      return false;
+    }
+    if (for_ != o.for_) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (executionPeriod != o.executionPeriod) {
+      return false;
+    }
+    if (authoredOn != o.authoredOn) {
+      return false;
+    }
+    if (lastModified != o.lastModified) {
+      return false;
+    }
+    if (requester != o.requester) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      performerType,
+      o.performerType,
+    )) {
+      return false;
+    }
+    if (owner != o.owner) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (reasonCode != o.reasonCode) {
+      return false;
+    }
+    if (reasonReference != o.reasonReference) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      insurance,
+      o.insurance,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      relevantHistory,
+      o.relevantHistory,
+    )) {
+      return false;
+    }
+    if (restriction != o.restriction) {
+      return false;
+    }
+    if (!listEquals<TaskInput>(
+      input,
+      o.input,
+    )) {
+      return false;
+    }
+    if (!listEquals<TaskOutput>(
+      output,
+      o.output,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TaskRestriction]
@@ -1370,6 +1534,44 @@ class TaskRestriction extends BackboneElement {
               .toList() ??
           this.recipient,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TaskRestriction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (repetitions != o.repetitions) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      recipient,
+      o.recipient,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1876,6 +2078,38 @@ class TaskInput extends BackboneElement {
           this.valueX,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TaskInput) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [TaskOutput]
@@ -2379,5 +2613,37 @@ class TaskOutput extends BackboneElement {
           ) as ValueXTaskOutput? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TaskOutput) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }

@@ -933,6 +933,161 @@ class MedicationKnowledge extends DomainResource {
           this.kinetics,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledge) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (manufacturer != o.manufacturer) {
+      return false;
+    }
+    if (doseForm != o.doseForm) {
+      return false;
+    }
+    if (amount != o.amount) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      synonym,
+      o.synonym,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeRelatedMedicationKnowledge>(
+      relatedMedicationKnowledge,
+      o.relatedMedicationKnowledge,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      associatedMedication,
+      o.associatedMedication,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      productType,
+      o.productType,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeMonograph>(
+      monograph,
+      o.monograph,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeIngredient>(
+      ingredient,
+      o.ingredient,
+    )) {
+      return false;
+    }
+    if (preparationInstruction != o.preparationInstruction) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      intendedRoute,
+      o.intendedRoute,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeCost>(
+      cost,
+      o.cost,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeMonitoringProgram>(
+      monitoringProgram,
+      o.monitoringProgram,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeAdministrationGuidelines>(
+      administrationGuidelines,
+      o.administrationGuidelines,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeMedicineClassification>(
+      medicineClassification,
+      o.medicineClassification,
+    )) {
+      return false;
+    }
+    if (packaging != o.packaging) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeDrugCharacteristic>(
+      drugCharacteristic,
+      o.drugCharacteristic,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      contraindication,
+      o.contraindication,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeRegulatory>(
+      regulatory,
+      o.regulatory,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeKinetics>(
+      kinetics,
+      o.kinetics,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeRelatedMedicationKnowledge]
@@ -1196,6 +1351,41 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
           this.reference,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeRelatedMedicationKnowledge) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reference,
+      o.reference,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeMonograph]
@@ -1454,6 +1644,38 @@ class MedicationKnowledgeMonograph extends BackboneElement {
           ) ??
           this.source,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeMonograph) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1747,6 +1969,41 @@ class MedicationKnowledgeIngredient extends BackboneElement {
           this.strength,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeIngredient) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (itemX != o.itemX) {
+      return false;
+    }
+    if (isActive != o.isActive) {
+      return false;
+    }
+    if (strength != o.strength) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeCost]
@@ -2024,6 +2281,41 @@ class MedicationKnowledgeCost extends BackboneElement {
           this.cost,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeCost) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (cost != o.cost) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeMonitoringProgram]
@@ -2281,6 +2573,38 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
           ) ??
           this.name,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeMonitoringProgram) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2592,6 +2916,47 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
           this.patientCharacteristics,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeAdministrationGuidelines) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeDosage>(
+      dosage,
+      o.dosage,
+    )) {
+      return false;
+    }
+    if (indicationX != o.indicationX) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgePatientCharacteristics>(
+      patientCharacteristics,
+      o.patientCharacteristics,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeDosage]
@@ -2854,6 +3219,41 @@ class MedicationKnowledgeDosage extends BackboneElement {
               .toList() ??
           this.dosage,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeDosage) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<Dosage>(
+      dosage,
+      o.dosage,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3133,6 +3533,41 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
           this.value,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgePatientCharacteristics) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (characteristicX != o.characteristicX) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      value,
+      o.value,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeMedicineClassification]
@@ -3401,6 +3836,41 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
           this.classification,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeMedicineClassification) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      classification,
+      o.classification,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgePackaging]
@@ -3659,6 +4129,38 @@ class MedicationKnowledgePackaging extends BackboneElement {
           ) ??
           this.quantity,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgePackaging) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3940,6 +4442,38 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
           ) as ValueXMedicationKnowledgeDrugCharacteristic? ??
           this.valueX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeDrugCharacteristic) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (valueX != o.valueX) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -4259,6 +4793,50 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
           this.maxDispense,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeRegulatory) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (regulatoryAuthority != o.regulatoryAuthority) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeSubstitution>(
+      substitution,
+      o.substitution,
+    )) {
+      return false;
+    }
+    if (!listEquals<MedicationKnowledgeSchedule>(
+      schedule,
+      o.schedule,
+    )) {
+      return false;
+    }
+    if (maxDispense != o.maxDispense) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeSubstitution]
@@ -4515,6 +5093,38 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
           this.allowed,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeSubstitution) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (allowed != o.allowed) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MedicationKnowledgeSchedule]
@@ -4748,6 +5358,35 @@ class MedicationKnowledgeSchedule extends BackboneElement {
           ) ??
           this.schedule,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeSchedule) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (schedule != o.schedule) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -5005,6 +5644,38 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
           ) ??
           this.period,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeMaxDispense) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (quantity != o.quantity) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -5303,5 +5974,46 @@ class MedicationKnowledgeKinetics extends BackboneElement {
           ) ??
           this.halfLifePeriod,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MedicationKnowledgeKinetics) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      areaUnderCurve,
+      o.areaUnderCurve,
+    )) {
+      return false;
+    }
+    if (!listEquals<Quantity>(
+      lethalDose50,
+      o.lethalDose50,
+    )) {
+      return false;
+    }
+    if (halfLifePeriod != o.halfLifePeriod) {
+      return false;
+    }
+    return true;
   }
 }

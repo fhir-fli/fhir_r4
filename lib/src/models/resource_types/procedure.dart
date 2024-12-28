@@ -1102,6 +1102,185 @@ class Procedure extends DomainResource {
           this.usedCode,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Procedure) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      instantiatesCanonical,
+      o.instantiatesCanonical,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirUri>(
+      instantiatesUri,
+      o.instantiatesUri,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      basedOn,
+      o.basedOn,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      partOf,
+      o.partOf,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (performedX != o.performedX) {
+      return false;
+    }
+    if (recorder != o.recorder) {
+      return false;
+    }
+    if (asserter != o.asserter) {
+      return false;
+    }
+    if (!listEquals<ProcedurePerformer>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      bodySite,
+      o.bodySite,
+    )) {
+      return false;
+    }
+    if (outcome != o.outcome) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      report,
+      o.report,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      complication,
+      o.complication,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      complicationDetail,
+      o.complicationDetail,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      followUp,
+      o.followUp,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<ProcedureFocalDevice>(
+      focalDevice,
+      o.focalDevice,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      usedReference,
+      o.usedReference,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      usedCode,
+      o.usedCode,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ProcedurePerformer]
@@ -1381,6 +1560,41 @@ class ProcedurePerformer extends BackboneElement {
           this.onBehalfOf,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ProcedurePerformer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (function_ != o.function_) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    if (onBehalfOf != o.onBehalfOf) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ProcedureFocalDevice]
@@ -1638,5 +1852,37 @@ class ProcedureFocalDevice extends BackboneElement {
           ) ??
           this.manipulated,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ProcedureFocalDevice) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (action != o.action) {
+      return false;
+    }
+    if (manipulated != o.manipulated) {
+      return false;
+    }
+    return true;
   }
 }

@@ -653,6 +653,107 @@ class VerificationResult extends DomainResource {
           this.validator,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VerificationResult) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      target,
+      o.target,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirString>(
+      targetLocation,
+      o.targetLocation,
+    )) {
+      return false;
+    }
+    if (need != o.need) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusDate != o.statusDate) {
+      return false;
+    }
+    if (validationType != o.validationType) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      validationProcess,
+      o.validationProcess,
+    )) {
+      return false;
+    }
+    if (frequency != o.frequency) {
+      return false;
+    }
+    if (lastPerformed != o.lastPerformed) {
+      return false;
+    }
+    if (nextScheduled != o.nextScheduled) {
+      return false;
+    }
+    if (failureAction != o.failureAction) {
+      return false;
+    }
+    if (!listEquals<VerificationResultPrimarySource>(
+      primarySource,
+      o.primarySource,
+    )) {
+      return false;
+    }
+    if (attestation != o.attestation) {
+      return false;
+    }
+    if (!listEquals<VerificationResultValidator>(
+      validator,
+      o.validator,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [VerificationResultPrimarySource]
@@ -1050,6 +1151,62 @@ class VerificationResultPrimarySource extends BackboneElement {
           this.pushTypeAvailable,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VerificationResultPrimarySource) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (who != o.who) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      communicationMethod,
+      o.communicationMethod,
+    )) {
+      return false;
+    }
+    if (validationStatus != o.validationStatus) {
+      return false;
+    }
+    if (validationDate != o.validationDate) {
+      return false;
+    }
+    if (canPushUpdates != o.canPushUpdates) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      pushTypeAvailable,
+      o.pushTypeAvailable,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [VerificationResultAttestation]
@@ -1446,6 +1603,56 @@ class VerificationResultAttestation extends BackboneElement {
           this.sourceSignature,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VerificationResultAttestation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (who != o.who) {
+      return false;
+    }
+    if (onBehalfOf != o.onBehalfOf) {
+      return false;
+    }
+    if (communicationMethod != o.communicationMethod) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (sourceIdentityCertificate != o.sourceIdentityCertificate) {
+      return false;
+    }
+    if (proxyIdentityCertificate != o.proxyIdentityCertificate) {
+      return false;
+    }
+    if (proxySignature != o.proxySignature) {
+      return false;
+    }
+    if (sourceSignature != o.sourceSignature) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [VerificationResultValidator]
@@ -1724,5 +1931,40 @@ class VerificationResultValidator extends BackboneElement {
           ) ??
           this.attestationSignature,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! VerificationResultValidator) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (organization != o.organization) {
+      return false;
+    }
+    if (identityCertificate != o.identityCertificate) {
+      return false;
+    }
+    if (attestationSignature != o.attestationSignature) {
+      return false;
+    }
+    return true;
   }
 }

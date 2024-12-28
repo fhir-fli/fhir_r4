@@ -320,4 +320,33 @@ class CodeableConcept extends DataType
           this.text,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! CodeableConcept) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<Coding>(
+      coding,
+      o.coding,
+    )) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    return true;
+  }
 }

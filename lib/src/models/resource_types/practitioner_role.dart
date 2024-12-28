@@ -696,6 +696,119 @@ class PractitionerRole extends DomainResource {
           this.endpoint,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PractitionerRole) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (active != o.active) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (practitioner != o.practitioner) {
+      return false;
+    }
+    if (organization != o.organization) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      code,
+      o.code,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      specialty,
+      o.specialty,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      location,
+      o.location,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      healthcareService,
+      o.healthcareService,
+    )) {
+      return false;
+    }
+    if (!listEquals<ContactPoint>(
+      telecom,
+      o.telecom,
+    )) {
+      return false;
+    }
+    if (!listEquals<PractitionerRoleAvailableTime>(
+      availableTime,
+      o.availableTime,
+    )) {
+      return false;
+    }
+    if (!listEquals<PractitionerRoleNotAvailable>(
+      notAvailable,
+      o.notAvailable,
+    )) {
+      return false;
+    }
+    if (availabilityExceptions != o.availabilityExceptions) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      endpoint,
+      o.endpoint,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PractitionerRoleAvailableTime]
@@ -1007,6 +1120,47 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           this.availableEndTime,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PractitionerRoleAvailableTime) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<DaysOfWeek>(
+      daysOfWeek,
+      o.daysOfWeek,
+    )) {
+      return false;
+    }
+    if (allDay != o.allDay) {
+      return false;
+    }
+    if (availableStartTime != o.availableStartTime) {
+      return false;
+    }
+    if (availableEndTime != o.availableEndTime) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [PractitionerRoleNotAvailable]
@@ -1265,5 +1419,37 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           ) ??
           this.during,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! PractitionerRoleNotAvailable) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (during != o.during) {
+      return false;
+    }
+    return true;
   }
 }

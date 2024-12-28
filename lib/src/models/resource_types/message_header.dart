@@ -587,6 +587,89 @@ class MessageHeader extends DomainResource {
           this.definition,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageHeader) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (eventX != o.eventX) {
+      return false;
+    }
+    if (!listEquals<MessageHeaderDestination>(
+      destination,
+      o.destination,
+    )) {
+      return false;
+    }
+    if (sender != o.sender) {
+      return false;
+    }
+    if (enterer != o.enterer) {
+      return false;
+    }
+    if (author != o.author) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (responsible != o.responsible) {
+      return false;
+    }
+    if (reason != o.reason) {
+      return false;
+    }
+    if (response != o.response) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      focus,
+      o.focus,
+    )) {
+      return false;
+    }
+    if (definition != o.definition) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MessageHeaderDestination]
@@ -889,6 +972,44 @@ class MessageHeaderDestination extends BackboneElement {
           ) ??
           this.receiver,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageHeaderDestination) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (target != o.target) {
+      return false;
+    }
+    if (endpoint != o.endpoint) {
+      return false;
+    }
+    if (receiver != o.receiver) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1214,6 +1335,47 @@ class MessageHeaderSource extends BackboneElement {
           this.endpoint,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageHeaderSource) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (software != o.software) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (contact != o.contact) {
+      return false;
+    }
+    if (endpoint != o.endpoint) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [MessageHeaderResponse]
@@ -1492,5 +1654,40 @@ class MessageHeaderResponse extends BackboneElement {
           ) ??
           this.details,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! MessageHeaderResponse) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (code != o.code) {
+      return false;
+    }
+    if (details != o.details) {
+      return false;
+    }
+    return true;
   }
 }

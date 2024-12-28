@@ -1021,6 +1021,164 @@ class Immunization extends DomainResource {
           this.protocolApplied,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! Immunization) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (statusReason != o.statusReason) {
+      return false;
+    }
+    if (vaccineCode != o.vaccineCode) {
+      return false;
+    }
+    if (patient != o.patient) {
+      return false;
+    }
+    if (encounter != o.encounter) {
+      return false;
+    }
+    if (occurrenceX != o.occurrenceX) {
+      return false;
+    }
+    if (recorded != o.recorded) {
+      return false;
+    }
+    if (primarySource != o.primarySource) {
+      return false;
+    }
+    if (reportOrigin != o.reportOrigin) {
+      return false;
+    }
+    if (location != o.location) {
+      return false;
+    }
+    if (manufacturer != o.manufacturer) {
+      return false;
+    }
+    if (lotNumber != o.lotNumber) {
+      return false;
+    }
+    if (expirationDate != o.expirationDate) {
+      return false;
+    }
+    if (site != o.site) {
+      return false;
+    }
+    if (route != o.route) {
+      return false;
+    }
+    if (doseQuantity != o.doseQuantity) {
+      return false;
+    }
+    if (!listEquals<ImmunizationPerformer>(
+      performer,
+      o.performer,
+    )) {
+      return false;
+    }
+    if (!listEquals<Annotation>(
+      note,
+      o.note,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      reasonCode,
+      o.reasonCode,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      reasonReference,
+      o.reasonReference,
+    )) {
+      return false;
+    }
+    if (isSubpotent != o.isSubpotent) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      subpotentReason,
+      o.subpotentReason,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImmunizationEducation>(
+      education,
+      o.education,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      programEligibility,
+      o.programEligibility,
+    )) {
+      return false;
+    }
+    if (fundingSource != o.fundingSource) {
+      return false;
+    }
+    if (!listEquals<ImmunizationReaction>(
+      reaction,
+      o.reaction,
+    )) {
+      return false;
+    }
+    if (!listEquals<ImmunizationProtocolApplied>(
+      protocolApplied,
+      o.protocolApplied,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImmunizationPerformer]
@@ -1277,6 +1435,38 @@ class ImmunizationPerformer extends BackboneElement {
           ) ??
           this.actor,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationPerformer) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (function_ != o.function_) {
+      return false;
+    }
+    if (actor != o.actor) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1582,6 +1772,44 @@ class ImmunizationEducation extends BackboneElement {
           this.presentationDate,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationEducation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (documentType != o.documentType) {
+      return false;
+    }
+    if (reference != o.reference) {
+      return false;
+    }
+    if (publicationDate != o.publicationDate) {
+      return false;
+    }
+    if (presentationDate != o.presentationDate) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ImmunizationReaction]
@@ -1862,6 +2090,41 @@ class ImmunizationReaction extends BackboneElement {
           ) ??
           this.reported,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationReaction) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (detail != o.detail) {
+      return false;
+    }
+    if (reported != o.reported) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2217,5 +2480,49 @@ class ImmunizationProtocolApplied extends BackboneElement {
           ) as SeriesDosesXImmunizationProtocolApplied? ??
           this.seriesDosesX,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ImmunizationProtocolApplied) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (series != o.series) {
+      return false;
+    }
+    if (authority != o.authority) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      targetDisease,
+      o.targetDisease,
+    )) {
+      return false;
+    }
+    if (doseNumberX != o.doseNumberX) {
+      return false;
+    }
+    if (seriesDosesX != o.seriesDosesX) {
+      return false;
+    }
+    return true;
   }
 }

@@ -771,6 +771,125 @@ class ExampleScenario extends DomainResource {
           this.workflow,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenario) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (version != o.version) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (experimental != o.experimental) {
+      return false;
+    }
+    if (date != o.date) {
+      return false;
+    }
+    if (publisher != o.publisher) {
+      return false;
+    }
+    if (!listEquals<ContactDetail>(
+      contact,
+      o.contact,
+    )) {
+      return false;
+    }
+    if (!listEquals<UsageContext>(
+      useContext,
+      o.useContext,
+    )) {
+      return false;
+    }
+    if (!listEquals<CodeableConcept>(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
+      return false;
+    }
+    if (copyright != o.copyright) {
+      return false;
+    }
+    if (purpose != o.purpose) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioActor>(
+      actor,
+      o.actor,
+    )) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioInstance>(
+      instance,
+      o.instance,
+    )) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioProcess>(
+      process,
+      o.process,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirCanonical>(
+      workflow,
+      o.workflow,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ExampleScenarioActor]
@@ -1068,6 +1187,44 @@ class ExampleScenarioActor extends BackboneElement {
           ) ??
           this.description,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioActor) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (actorId != o.actorId) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1428,6 +1585,56 @@ class ExampleScenarioInstance extends BackboneElement {
           this.containedInstance,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioInstance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (resourceId != o.resourceId) {
+      return false;
+    }
+    if (resourceType != o.resourceType) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioVersion>(
+      version,
+      o.version,
+    )) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioContainedInstance>(
+      containedInstance,
+      o.containedInstance,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ExampleScenarioVersion]
@@ -1681,6 +1888,38 @@ class ExampleScenarioVersion extends BackboneElement {
           ) ??
           this.description,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioVersion) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (versionId != o.versionId) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -1938,6 +2177,38 @@ class ExampleScenarioContainedInstance extends BackboneElement {
           ) ??
           this.versionId,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioContainedInstance) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (resourceId != o.resourceId) {
+      return false;
+    }
+    if (versionId != o.versionId) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -2269,6 +2540,50 @@ class ExampleScenarioProcess extends BackboneElement {
           this.step,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioProcess) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (preConditions != o.preConditions) {
+      return false;
+    }
+    if (postConditions != o.postConditions) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioStep>(
+      step,
+      o.step,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ExampleScenarioStep]
@@ -2587,6 +2902,50 @@ class ExampleScenarioStep extends BackboneElement {
               .toList() ??
           this.alternative,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioStep) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioProcess>(
+      process,
+      o.process,
+    )) {
+      return false;
+    }
+    if (pause != o.pause) {
+      return false;
+    }
+    if (operation != o.operation) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioAlternative>(
+      alternative,
+      o.alternative,
+    )) {
+      return false;
+    }
+    return true;
   }
 }
 
@@ -3020,6 +3379,62 @@ class ExampleScenarioOperation extends BackboneElement {
           this.response,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioOperation) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (number != o.number) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (name != o.name) {
+      return false;
+    }
+    if (initiator != o.initiator) {
+      return false;
+    }
+    if (receiver != o.receiver) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (initiatorActive != o.initiatorActive) {
+      return false;
+    }
+    if (receiverActive != o.receiverActive) {
+      return false;
+    }
+    if (request != o.request) {
+      return false;
+    }
+    if (response != o.response) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [ExampleScenarioAlternative]
@@ -3308,5 +3723,43 @@ class ExampleScenarioAlternative extends BackboneElement {
               .toList() ??
           this.step,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ExampleScenarioAlternative) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (title != o.title) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<ExampleScenarioStep>(
+      step,
+      o.step,
+    )) {
+      return false;
+    }
+    return true;
   }
 }

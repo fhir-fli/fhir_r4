@@ -356,4 +356,45 @@ class RelatedArtifact extends DataType
           this.resource,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! RelatedArtifact) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (label != o.label) {
+      return false;
+    }
+    if (display != o.display) {
+      return false;
+    }
+    if (citation != o.citation) {
+      return false;
+    }
+    if (url != o.url) {
+      return false;
+    }
+    if (document != o.document) {
+      return false;
+    }
+    if (resource != o.resource) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -565,6 +565,86 @@ class DeviceMetric extends DomainResource {
           this.calibration,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceMetric) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (unit != o.unit) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (parent != o.parent) {
+      return false;
+    }
+    if (operationalStatus != o.operationalStatus) {
+      return false;
+    }
+    if (color != o.color) {
+      return false;
+    }
+    if (category != o.category) {
+      return false;
+    }
+    if (measurementPeriod != o.measurementPeriod) {
+      return false;
+    }
+    if (!listEquals<DeviceMetricCalibration>(
+      calibration,
+      o.calibration,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DeviceMetricCalibration]
@@ -845,5 +925,40 @@ class DeviceMetricCalibration extends BackboneElement {
           ) ??
           this.time,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DeviceMetricCalibration) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (state != o.state) {
+      return false;
+    }
+    if (time != o.time) {
+      return false;
+    }
+    return true;
   }
 }

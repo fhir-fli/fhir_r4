@@ -620,6 +620,101 @@ class DocumentManifest extends DomainResource {
           this.related,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentManifest) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (masterIdentifier != o.masterIdentifier) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (type != o.type) {
+      return false;
+    }
+    if (subject != o.subject) {
+      return false;
+    }
+    if (created != o.created) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      author,
+      o.author,
+    )) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      recipient,
+      o.recipient,
+    )) {
+      return false;
+    }
+    if (source != o.source) {
+      return false;
+    }
+    if (description != o.description) {
+      return false;
+    }
+    if (!listEquals<Reference>(
+      content,
+      o.content,
+    )) {
+      return false;
+    }
+    if (!listEquals<DocumentManifestRelated>(
+      related,
+      o.related,
+    )) {
+      return false;
+    }
+    return true;
+  }
 }
 
 /// [DocumentManifestRelated]
@@ -879,5 +974,37 @@ class DocumentManifestRelated extends BackboneElement {
           ) ??
           this.ref,
     );
+  }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! DocumentManifestRelated) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (identifier != o.identifier) {
+      return false;
+    }
+    if (ref != o.ref) {
+      return false;
+    }
+    return true;
   }
 }

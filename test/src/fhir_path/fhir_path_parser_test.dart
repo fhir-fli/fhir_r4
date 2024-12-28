@@ -71,9 +71,9 @@ void main() {
 
       // Because ">=" has higher precedence than "and," the parse often yields:
       // node = "Patient.age" (operation=GreaterOrEqual) -> opNext="18"
-      // then that '18' node might carry "and" as its operation -> 
+      // then that '18' node might carry "and" as its operation ->
       //  opNext="Patient.gender..."
-      // or your engine might reorder them. The official Java engine typically 
+      // or your engine might reorder them. The official Java engine typically
       // keeps them in a chain.
 
       // Let's check step by step:

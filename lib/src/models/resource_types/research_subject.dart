@@ -487,4 +487,75 @@ class ResearchSubject extends DomainResource {
           this.consent,
     );
   }
+
+  /// Performs a deep comparison between two instances.
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! ResearchSubject) {
+      return false;
+    }
+    if (identical(this, o)) return true;
+    if (runtimeType != o.runtimeType) return false;
+    if (id != o.id) {
+      return false;
+    }
+    if (meta != o.meta) {
+      return false;
+    }
+    if (implicitRules != o.implicitRules) {
+      return false;
+    }
+    if (language != o.language) {
+      return false;
+    }
+    if (text != o.text) {
+      return false;
+    }
+    if (!listEquals<Resource>(
+      contained,
+      o.contained,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      extension_,
+      o.extension_,
+    )) {
+      return false;
+    }
+    if (!listEquals<FhirExtension>(
+      modifierExtension,
+      o.modifierExtension,
+    )) {
+      return false;
+    }
+    if (!listEquals<Identifier>(
+      identifier,
+      o.identifier,
+    )) {
+      return false;
+    }
+    if (status != o.status) {
+      return false;
+    }
+    if (period != o.period) {
+      return false;
+    }
+    if (study != o.study) {
+      return false;
+    }
+    if (individual != o.individual) {
+      return false;
+    }
+    if (assignedArm != o.assignedArm) {
+      return false;
+    }
+    if (actualArm != o.actualArm) {
+      return false;
+    }
+    if (consent != o.consent) {
+      return false;
+    }
+    return true;
+  }
 }
