@@ -55,9 +55,7 @@ abstract class FhirBase {
 
   /// Checks if the object is empty.
   bool isEmpty() =>
-      (userData?.isEmpty ?? true) &&
-      (formatCommentsPre?.isEmpty ?? true) &&
-      (formatCommentsPost?.isEmpty ?? true);
+      this is PrimitiveType && (this as PrimitiveType).value == null;
 
   /// Checks if the object has user data for a given key.
   bool hasUserData(String name) => userData?.containsKey(name) ?? false;
@@ -197,13 +195,16 @@ abstract class FhirBase {
     if (allowNull) {
       final noLeft = e1 == null || e1.isEmpty();
       final noRight = e2 == null || e2.isEmpty();
+
       if (noLeft && noRight) {
         return true;
       }
     }
+
     if (e1 == null || e2 == null) {
       return false;
     }
+
     if (e2.isMetadataBased && !e1.isMetadataBased) {
       return e2.equalsDeep(e1);
     } else {

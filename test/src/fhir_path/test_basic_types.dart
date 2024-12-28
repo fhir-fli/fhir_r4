@@ -168,6 +168,7 @@ void main() {
         parseExpression(r"'\u005'").constant,
         'u005'.toFhirString,
       ); // '\u005' -> 'u005'
+      // TODO(Dokotela): Uncomment when escape sequences are supported
       // expect(parseExpression(r"'\'").constant, ''.toFhirString); // '\'' -> ''
     });
   });

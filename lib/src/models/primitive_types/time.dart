@@ -229,6 +229,9 @@ class FhirTime extends PrimitiveType<String>
 
     final lhsParts = value!.split(':');
     final rhsParts = rhs.value!.split(':');
+    if(lhsParts.length != rhsParts.length) {
+      return null;
+    }
 
     for (var i = 0; i < lhsParts.length; i++) {
       final lhsValue = double.parse(lhsParts[i]);

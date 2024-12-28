@@ -3,7 +3,6 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-import '../deep_compare.dart';
 import 'test_data.dart';
 
 List<dynamic> parseAndEvaluate(String expression, [FhirBase? context]) {

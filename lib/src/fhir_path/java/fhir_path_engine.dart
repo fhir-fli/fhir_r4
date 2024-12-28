@@ -3066,81 +3066,21 @@ class FHIRPathEngine {
     String value,
     ExpressionNode expr,
   ) {
-    String? date;
-    String? time;
-    String? tz;
-
-    TemporalPrecisionEnum? temp;
-
-    // Determine date and time components
+    FhirBase? result;
+    print('VALUE: $value');
     if (value.startsWith('T')) {
-      time = value.substring(1);
-    } else if (!value.contains('T')) {
-      date = value;
+      result = FhirTime.tryParse(value.replaceFirst('T', ''));
     } else {
-      final parts = value.split('T');
-      date = parts[0];
-      if (parts.length > 1) {
-        time = parts[1];
-      }
+      result = FhirDate.tryParse(value) ??
+          FhirDateTime.tryParse(value) ??
+          FhirTime.tryParse(value);
     }
-
-    print('date: $date, time: $time');
-
-    // Process the time component
-    if (time != null) {
-      var i = time.indexOf('-');
-      if (i == -1) {
-        i = time.indexOf('+');
-      }
-      if (i == -1) {
-        i = time.indexOf('Z');
-      }
-      if (i > -1) {
-        tz = time.substring(i);
-        time = time.substring(0, i);
-      }
-
-      if (time.length == 2) {
-        time += ':00:00';
-        temp = TemporalPrecisionEnum.minute;
-      } else if (time.length == 5) {
-        temp = TemporalPrecisionEnum.minute;
-        time += ':00';
-      } else if (time.contains('.')) {
-        temp = TemporalPrecisionEnum.millisecond;
-      } else {
-        temp = TemporalPrecisionEnum.second;
-      }
-    }
-
-    print('tz: $tz');
-
-    // Handle cases based on the presence of date and time
-    if (date == null) {
-      if (tz != null) {
-        throw makeException(
-          expr,
-          'FHIRPATH_UNKNOWN_CONTEXT',
-          [value],
-        );
-      } else {
-        var tt = FhirTime(time);
-        if (temp != null) {
-          tt = tt.adjustToPrecision(temp);
-        }
-        return tt.noExtensions();
-      }
-    } else if (time != null) {
-      var dt = FhirDateTime.fromString("${date}T$time${tz ?? ""}");
-      if (temp != null) {
-        dt = dt.adjustToPrecision(temp) as FhirDateTime;
-      }
-      return dt.noExtensions();
-    } else {
-      print('date: $date');
-      return FhirDate.fromString(date).noExtensions();
-    }
+    if (result != null) return result;
+    throw makeException(
+      expr,
+      'FHIRPATH_INVALID_DATE',
+      [value],
+    );
   }
 
   List<FhirBase> opIs(
@@ -3759,14 +3699,14 @@ class FHIRPathEngine {
         } else if (l is FhirNumber && r is FhirNumber) {
           return makeBoolean(l > r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l.compareTo(r);
-          return makeBoolean(comparison > 0);
-        } else if (l.fhirType == 'time' && r.fhirType == 'time') {
-          final comparison = compareTimeElements(l, r, false);
-          if (comparison == null) {
-            return makeNull();
-          }
-          return makeBoolean(comparison > 0);
+          print('l: ${l.toJson()}, r: ${r.toJson()}');
+          final comparison = l > r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l > r;
+          print('Comparison: $comparison');
+          print('lTime: ${l.toJson()}, rTime: ${r.toJson()}');
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3793,7 +3733,7 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          print('l2: ${l.toJson()}, r: ${r.toJson()}');
+          print('l3: ${l.toJson()}, r: ${r.toJson()}');
           if (worker.ucumService == null) {
             return makeBoolean(false);
           } else {

@@ -214,81 +214,46 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
   @override
   int compareTo(FhirDateTimeBase other) {
     var result = _compareParts(year, other.year);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(month, other.month);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(day, other.day);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(hour, other.hour);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(minute, other.minute);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(second, other.second);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
     result = _compareParts(millisecond, other.millisecond);
-    if (result != null) {
-      return result;
-    }
+    if (result != 0) return result;
 
-    int? compareMicrosecondStrings(String? micro1, String? micro2) {
-      if (micro1 == null && micro2 == null) {
-        return null;
-      }
-      if (micro1 == null) {
-        return -1;
-      }
-      if (micro2 == null) {
-        return 1;
-      }
-
-      // Normalize both strings to be 6 characters for comparison
-      final paddedMicro1 = micro1.padRight(6, '0');
-      final paddedMicro2 = micro2.padRight(6, '0');
-
-      return paddedMicro1.compareTo(paddedMicro2);
-    }
-
-    result = compareMicrosecondStrings(microsecond, other.microsecond);
-    if (result != null) {
-      return result;
-    }
-
-    if (result != null) {
-      return result;
-    }
-
-    return 0;
+    return _compareMicroseconds(microsecond, other.microsecond);
   }
 
-  int? _compareParts(num? part1, num? part2) {
-    if (part1 == null && part2 == null) {
-      return null;
-    }
-    if (part1 == null) {
-      return -1;
-    }
-    if (part2 == null) {
-      return 1;
-    }
-    return part1.compareTo(part2);
+  int _compareParts(num? part1, num? part2) {
+    if (part1 == null && part2 == null) return 0; // Both unspecified
+    if (part1 == null) return -1; // Only part1 unspecified
+    if (part2 == null) return 1; // Only part2 unspecified
+    return part1.compareTo(part2); // Compare specified parts
+  }
+
+  int _compareMicroseconds(String? micro1, String? micro2) {
+    if (micro1 == null && micro2 == null) return 0; // Both unspecified
+    if (micro1 == null) return -1; // Only micro1 unspecified
+    if (micro2 == null) return 1; // Only micro2 unspecified
+
+    // Normalize both strings to 6 characters for comparison
+    final paddedMicro1 = micro1.trim().padRight(6, '0');
+    final paddedMicro2 = micro2.trim().padRight(6, '0');
+
+    return paddedMicro1.compareTo(paddedMicro2);
   }
 
   bool? _compare(Comparator comparator, Object o) {
@@ -922,6 +887,22 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     final match = dateTimeExp.firstMatch(dateTimeString);
     if (match == null) {
       throw ArgumentError('Invalid date-time string: $dateTimeString');
+    } else if (T == FhirDate) {
+      if (match.namedGroup('hour') != null ||
+          match.namedGroup('minute') != null ||
+          match.namedGroup('second') != null ||
+          match.namedGroup('fraction') != null) {
+        throw ArgumentError('Invalid date-time string: $dateTimeString');
+      }
+    }else if(T == FhirInstant){
+      if (match.namedGroup('year') == null ||
+          match.namedGroup('month') == null ||
+          match.namedGroup('day') == null ||
+          match.namedGroup('hour') == null ||
+          match.namedGroup('minute') == null ||
+          match.namedGroup('second') == null) {
+        throw ArgumentError('Invalid date-time string: $dateTimeString');
+      }
     }
 
     // Extract the fractional seconds part
