@@ -615,19 +615,19 @@ class AdministrableProductDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -654,7 +654,7 @@ class AdministrableProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -663,10 +663,10 @@ class AdministrableProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (administrableDoseForm != o.administrableDoseForm) {
+    if (!equalsDeepWithNull(administrableDoseForm, o.administrableDoseForm)) {
       return false;
     }
-    if (unitOfPresentation != o.unitOfPresentation) {
+    if (!equalsDeepWithNull(unitOfPresentation, o.unitOfPresentation)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -681,7 +681,7 @@ class AdministrableProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (device != o.device) {
+    if (!equalsDeepWithNull(device, o.device)) {
       return false;
     }
     if (!listEquals<AdministrableProductDefinitionProperty>(
@@ -1011,7 +1011,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1026,13 +1026,13 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     return true;
@@ -1429,7 +1429,7 @@ class AdministrableProductDefinitionRouteOfAdministration
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1444,22 +1444,23 @@ class AdministrableProductDefinitionRouteOfAdministration
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (firstDose != o.firstDose) {
+    if (!equalsDeepWithNull(firstDose, o.firstDose)) {
       return false;
     }
-    if (maxSingleDose != o.maxSingleDose) {
+    if (!equalsDeepWithNull(maxSingleDose, o.maxSingleDose)) {
       return false;
     }
-    if (maxDosePerDay != o.maxDosePerDay) {
+    if (!equalsDeepWithNull(maxDosePerDay, o.maxDosePerDay)) {
       return false;
     }
-    if (maxDosePerTreatmentPeriod != o.maxDosePerTreatmentPeriod) {
+    if (!equalsDeepWithNull(
+        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
       return false;
     }
-    if (maxTreatmentPeriod != o.maxTreatmentPeriod) {
+    if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
       return false;
     }
     if (!listEquals<AdministrableProductDefinitionTargetSpecies>(
@@ -1747,7 +1748,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1762,7 +1763,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<AdministrableProductDefinitionWithdrawalPeriod>(
@@ -2063,7 +2064,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2078,13 +2079,13 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     )) {
       return false;
     }
-    if (tissue != o.tissue) {
+    if (!equalsDeepWithNull(tissue, o.tissue)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (supportingInformation != o.supportingInformation) {
+    if (!equalsDeepWithNull(supportingInformation, o.supportingInformation)) {
       return false;
     }
     return true;

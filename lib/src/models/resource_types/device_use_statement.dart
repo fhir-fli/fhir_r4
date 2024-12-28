@@ -668,19 +668,19 @@ class DeviceUseStatement extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -713,10 +713,10 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -725,16 +725,16 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (timingX != o.timingX) {
+    if (!equalsDeepWithNull(timingX, o.timingX)) {
       return false;
     }
-    if (recordedOn != o.recordedOn) {
+    if (!equalsDeepWithNull(recordedOn, o.recordedOn)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (device != o.device) {
+    if (!equalsDeepWithNull(device, o.device)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -749,7 +749,7 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
     if (!listEquals<Annotation>(

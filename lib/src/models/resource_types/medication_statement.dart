@@ -820,19 +820,19 @@ class MedicationStatement extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -871,7 +871,7 @@ class MedicationStatement extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -880,25 +880,25 @@ class MedicationStatement extends DomainResource {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (medicationX != o.medicationX) {
+    if (!equalsDeepWithNull(medicationX, o.medicationX)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
-    if (effectiveX != o.effectiveX) {
+    if (!equalsDeepWithNull(effectiveX, o.effectiveX)) {
       return false;
     }
-    if (dateAsserted != o.dateAsserted) {
+    if (!equalsDeepWithNull(dateAsserted, o.dateAsserted)) {
       return false;
     }
-    if (informationSource != o.informationSource) {
+    if (!equalsDeepWithNull(informationSource, o.informationSource)) {
       return false;
     }
     if (!listEquals<Reference>(

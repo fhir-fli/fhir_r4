@@ -321,7 +321,7 @@ class Population extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -336,16 +336,16 @@ class Population extends BackboneType {
     )) {
       return false;
     }
-    if (ageX != o.ageX) {
+    if (!equalsDeepWithNull(ageX, o.ageX)) {
       return false;
     }
-    if (gender != o.gender) {
+    if (!equalsDeepWithNull(gender, o.gender)) {
       return false;
     }
-    if (race != o.race) {
+    if (!equalsDeepWithNull(race, o.race)) {
       return false;
     }
-    if (physiologicalCondition != o.physiologicalCondition) {
+    if (!equalsDeepWithNull(physiologicalCondition, o.physiologicalCondition)) {
       return false;
     }
     return true;

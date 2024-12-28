@@ -590,19 +590,19 @@ class Slot extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -647,25 +647,25 @@ class Slot extends DomainResource {
     )) {
       return false;
     }
-    if (appointmentType != o.appointmentType) {
+    if (!equalsDeepWithNull(appointmentType, o.appointmentType)) {
       return false;
     }
-    if (schedule != o.schedule) {
+    if (!equalsDeepWithNull(schedule, o.schedule)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
-    if (overbooked != o.overbooked) {
+    if (!equalsDeepWithNull(overbooked, o.overbooked)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;

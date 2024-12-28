@@ -993,19 +993,19 @@ class ResearchStudy extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1032,7 +1032,7 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1047,13 +1047,13 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (primaryPurposeType != o.primaryPurposeType) {
+    if (!equalsDeepWithNull(primaryPurposeType, o.primaryPurposeType)) {
       return false;
     }
-    if (phase != o.phase) {
+    if (!equalsDeepWithNull(phase, o.phase)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1098,7 +1098,7 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1107,13 +1107,13 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (sponsor != o.sponsor) {
+    if (!equalsDeepWithNull(sponsor, o.sponsor)) {
       return false;
     }
-    if (principalInvestigator != o.principalInvestigator) {
+    if (!equalsDeepWithNull(principalInvestigator, o.principalInvestigator)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1122,7 +1122,7 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (reasonStopped != o.reasonStopped) {
+    if (!equalsDeepWithNull(reasonStopped, o.reasonStopped)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1436,7 +1436,7 @@ class ResearchStudyArm extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1451,13 +1451,13 @@ class ResearchStudyArm extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;
@@ -1731,7 +1731,7 @@ class ResearchStudyObjective extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1746,10 +1746,10 @@ class ResearchStudyObjective extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     return true;

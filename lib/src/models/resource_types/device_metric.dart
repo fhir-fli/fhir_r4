@@ -574,19 +574,19 @@ class DeviceMetric extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -613,28 +613,28 @@ class DeviceMetric extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (unit != o.unit) {
+    if (!equalsDeepWithNull(unit, o.unit)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (parent != o.parent) {
+    if (!equalsDeepWithNull(parent, o.parent)) {
       return false;
     }
-    if (operationalStatus != o.operationalStatus) {
+    if (!equalsDeepWithNull(operationalStatus, o.operationalStatus)) {
       return false;
     }
-    if (color != o.color) {
+    if (!equalsDeepWithNull(color, o.color)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (measurementPeriod != o.measurementPeriod) {
+    if (!equalsDeepWithNull(measurementPeriod, o.measurementPeriod)) {
       return false;
     }
     if (!listEquals<DeviceMetricCalibration>(
@@ -935,7 +935,7 @@ class DeviceMetricCalibration extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -950,13 +950,13 @@ class DeviceMetricCalibration extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (state != o.state) {
+    if (!equalsDeepWithNull(state, o.state)) {
       return false;
     }
-    if (time != o.time) {
+    if (!equalsDeepWithNull(time, o.time)) {
       return false;
     }
     return true;

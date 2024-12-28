@@ -748,19 +748,19 @@ class RiskAssessment extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -787,34 +787,34 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (basedOn != o.basedOn) {
+    if (!equalsDeepWithNull(basedOn, o.basedOn)) {
       return false;
     }
-    if (parent != o.parent) {
+    if (!equalsDeepWithNull(parent, o.parent)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (condition != o.condition) {
+    if (!equalsDeepWithNull(condition, o.condition)) {
       return false;
     }
-    if (performer != o.performer) {
+    if (!equalsDeepWithNull(performer, o.performer)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -841,7 +841,7 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (mitigation != o.mitigation) {
+    if (!equalsDeepWithNull(mitigation, o.mitigation)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1234,7 +1234,7 @@ class RiskAssessmentPrediction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1249,22 +1249,22 @@ class RiskAssessmentPrediction extends BackboneElement {
     )) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (probabilityX != o.probabilityX) {
+    if (!equalsDeepWithNull(probabilityX, o.probabilityX)) {
       return false;
     }
-    if (qualitativeRisk != o.qualitativeRisk) {
+    if (!equalsDeepWithNull(qualitativeRisk, o.qualitativeRisk)) {
       return false;
     }
-    if (relativeRisk != o.relativeRisk) {
+    if (!equalsDeepWithNull(relativeRisk, o.relativeRisk)) {
       return false;
     }
-    if (whenX != o.whenX) {
+    if (!equalsDeepWithNull(whenX, o.whenX)) {
       return false;
     }
-    if (rationale != o.rationale) {
+    if (!equalsDeepWithNull(rationale, o.rationale)) {
       return false;
     }
     return true;

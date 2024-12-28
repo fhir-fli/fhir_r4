@@ -750,19 +750,19 @@ class Location extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -789,13 +789,13 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (operationalStatus != o.operationalStatus) {
+    if (!equalsDeepWithNull(operationalStatus, o.operationalStatus)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -804,10 +804,10 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (mode != o.mode) {
+    if (!equalsDeepWithNull(mode, o.mode)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -822,19 +822,19 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (address != o.address) {
+    if (!equalsDeepWithNull(address, o.address)) {
       return false;
     }
-    if (physicalType != o.physicalType) {
+    if (!equalsDeepWithNull(physicalType, o.physicalType)) {
       return false;
     }
-    if (position != o.position) {
+    if (!equalsDeepWithNull(position, o.position)) {
       return false;
     }
-    if (managingOrganization != o.managingOrganization) {
+    if (!equalsDeepWithNull(managingOrganization, o.managingOrganization)) {
       return false;
     }
-    if (partOf != o.partOf) {
+    if (!equalsDeepWithNull(partOf, o.partOf)) {
       return false;
     }
     if (!listEquals<LocationHoursOfOperation>(
@@ -843,7 +843,7 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (availabilityExceptions != o.availabilityExceptions) {
+    if (!equalsDeepWithNull(availabilityExceptions, o.availabilityExceptions)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1143,7 +1143,7 @@ class LocationPosition extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1158,13 +1158,13 @@ class LocationPosition extends BackboneElement {
     )) {
       return false;
     }
-    if (longitude != o.longitude) {
+    if (!equalsDeepWithNull(longitude, o.longitude)) {
       return false;
     }
-    if (latitude != o.latitude) {
+    if (!equalsDeepWithNull(latitude, o.latitude)) {
       return false;
     }
-    if (altitude != o.altitude) {
+    if (!equalsDeepWithNull(altitude, o.altitude)) {
       return false;
     }
     return true;
@@ -1485,7 +1485,7 @@ class LocationHoursOfOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1506,13 +1506,13 @@ class LocationHoursOfOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (allDay != o.allDay) {
+    if (!equalsDeepWithNull(allDay, o.allDay)) {
       return false;
     }
-    if (openingTime != o.openingTime) {
+    if (!equalsDeepWithNull(openingTime, o.openingTime)) {
       return false;
     }
-    if (closingTime != o.closingTime) {
+    if (!equalsDeepWithNull(closingTime, o.closingTime)) {
       return false;
     }
     return true;

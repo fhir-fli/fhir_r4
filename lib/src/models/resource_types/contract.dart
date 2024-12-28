@@ -1228,19 +1228,19 @@ class Contract extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1267,34 +1267,34 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (legalState != o.legalState) {
+    if (!equalsDeepWithNull(legalState, o.legalState)) {
       return false;
     }
-    if (instantiatesCanonical != o.instantiatesCanonical) {
+    if (!equalsDeepWithNull(instantiatesCanonical, o.instantiatesCanonical)) {
       return false;
     }
-    if (instantiatesUri != o.instantiatesUri) {
+    if (!equalsDeepWithNull(instantiatesUri, o.instantiatesUri)) {
       return false;
     }
-    if (contentDerivative != o.contentDerivative) {
+    if (!equalsDeepWithNull(contentDerivative, o.contentDerivative)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
-    if (applies != o.applies) {
+    if (!equalsDeepWithNull(applies, o.applies)) {
       return false;
     }
-    if (expirationType != o.expirationType) {
+    if (!equalsDeepWithNull(expirationType, o.expirationType)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1321,13 +1321,13 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (subtitle != o.subtitle) {
+    if (!equalsDeepWithNull(subtitle, o.subtitle)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -1336,16 +1336,16 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (author != o.author) {
+    if (!equalsDeepWithNull(author, o.author)) {
       return false;
     }
-    if (scope != o.scope) {
+    if (!equalsDeepWithNull(scope, o.scope)) {
       return false;
     }
-    if (topicX != o.topicX) {
+    if (!equalsDeepWithNull(topicX, o.topicX)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1354,7 +1354,7 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (contentDefinition != o.contentDefinition) {
+    if (!equalsDeepWithNull(contentDefinition, o.contentDefinition)) {
       return false;
     }
     if (!listEquals<ContractTerm>(
@@ -1399,7 +1399,7 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (legallyBindingX != o.legallyBindingX) {
+    if (!equalsDeepWithNull(legallyBindingX, o.legallyBindingX)) {
       return false;
     }
     return true;
@@ -1768,7 +1768,7 @@ class ContractContentDefinition extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1783,22 +1783,22 @@ class ContractContentDefinition extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (subType != o.subType) {
+    if (!equalsDeepWithNull(subType, o.subType)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
-    if (publicationDate != o.publicationDate) {
+    if (!equalsDeepWithNull(publicationDate, o.publicationDate)) {
       return false;
     }
-    if (publicationStatus != o.publicationStatus) {
+    if (!equalsDeepWithNull(publicationStatus, o.publicationStatus)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
     return true;
@@ -2338,7 +2338,7 @@ class ContractTerm extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2353,25 +2353,25 @@ class ContractTerm extends BackboneElement {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
-    if (applies != o.applies) {
+    if (!equalsDeepWithNull(applies, o.applies)) {
       return false;
     }
-    if (topicX != o.topicX) {
+    if (!equalsDeepWithNull(topicX, o.topicX)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (subType != o.subType) {
+    if (!equalsDeepWithNull(subType, o.subType)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<ContractSecurityLabel>(
@@ -2380,7 +2380,7 @@ class ContractTerm extends BackboneElement {
     )) {
       return false;
     }
-    if (offer != o.offer) {
+    if (!equalsDeepWithNull(offer, o.offer)) {
       return false;
     }
     if (!listEquals<ContractAsset>(
@@ -2737,7 +2737,7 @@ class ContractSecurityLabel extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2758,7 +2758,7 @@ class ContractSecurityLabel extends BackboneElement {
     )) {
       return false;
     }
-    if (classification != o.classification) {
+    if (!equalsDeepWithNull(classification, o.classification)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -3263,7 +3263,7 @@ class ContractOffer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3290,13 +3290,13 @@ class ContractOffer extends BackboneElement {
     )) {
       return false;
     }
-    if (topic != o.topic) {
+    if (!equalsDeepWithNull(topic, o.topic)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (decision != o.decision) {
+    if (!equalsDeepWithNull(decision, o.decision)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3311,7 +3311,7 @@ class ContractOffer extends BackboneElement {
     )) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -3599,7 +3599,7 @@ class ContractParty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3620,7 +3620,7 @@ class ContractParty extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
     return true;
@@ -3931,7 +3931,7 @@ class ContractAnswer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3946,7 +3946,7 @@ class ContractAnswer extends BackboneElement {
     )) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -4590,7 +4590,7 @@ class ContractAsset extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4605,7 +4605,7 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (scope != o.scope) {
+    if (!equalsDeepWithNull(scope, o.scope)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4626,7 +4626,7 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (relationship != o.relationship) {
+    if (!equalsDeepWithNull(relationship, o.relationship)) {
       return false;
     }
     if (!listEquals<ContractContext>(
@@ -4635,7 +4635,7 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (condition != o.condition) {
+    if (!equalsDeepWithNull(condition, o.condition)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4656,7 +4656,7 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -4985,7 +4985,7 @@ class ContractContext extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5000,7 +5000,7 @@ class ContractContext extends BackboneElement {
     )) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -5009,7 +5009,7 @@ class ContractContext extends BackboneElement {
     )) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;
@@ -5578,7 +5578,7 @@ class ContractValuedItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5593,40 +5593,40 @@ class ContractValuedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (entityX != o.entityX) {
+    if (!equalsDeepWithNull(entityX, o.entityX)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (effectiveTime != o.effectiveTime) {
+    if (!equalsDeepWithNull(effectiveTime, o.effectiveTime)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (points != o.points) {
+    if (!equalsDeepWithNull(points, o.points)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
-    if (payment != o.payment) {
+    if (!equalsDeepWithNull(payment, o.payment)) {
       return false;
     }
-    if (paymentDate != o.paymentDate) {
+    if (!equalsDeepWithNull(paymentDate, o.paymentDate)) {
       return false;
     }
-    if (responsible != o.responsible) {
+    if (!equalsDeepWithNull(responsible, o.responsible)) {
       return false;
     }
-    if (recipient != o.recipient) {
+    if (!equalsDeepWithNull(recipient, o.recipient)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -6433,7 +6433,7 @@ class ContractAction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6448,10 +6448,10 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (doNotPerform != o.doNotPerform) {
+    if (!equalsDeepWithNull(doNotPerform, o.doNotPerform)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<ContractSubject>(
@@ -6460,7 +6460,7 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (intent != o.intent) {
+    if (!equalsDeepWithNull(intent, o.intent)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -6469,10 +6469,10 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -6481,7 +6481,7 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -6502,10 +6502,10 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (performerRole != o.performerRole) {
+    if (!equalsDeepWithNull(performerRole, o.performerRole)) {
       return false;
     }
-    if (performer != o.performer) {
+    if (!equalsDeepWithNull(performer, o.performer)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -6825,7 +6825,7 @@ class ContractSubject extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6846,7 +6846,7 @@ class ContractSubject extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
     return true;
@@ -7145,7 +7145,7 @@ class ContractSigner extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7160,10 +7160,10 @@ class ContractSigner extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (party != o.party) {
+    if (!equalsDeepWithNull(party, o.party)) {
       return false;
     }
     if (!listEquals<Signature>(
@@ -7435,7 +7435,7 @@ class ContractFriendly extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7450,7 +7450,7 @@ class ContractFriendly extends BackboneElement {
     )) {
       return false;
     }
-    if (contentX != o.contentX) {
+    if (!equalsDeepWithNull(contentX, o.contentX)) {
       return false;
     }
     return true;
@@ -7708,7 +7708,7 @@ class ContractLegal extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7723,7 +7723,7 @@ class ContractLegal extends BackboneElement {
     )) {
       return false;
     }
-    if (contentX != o.contentX) {
+    if (!equalsDeepWithNull(contentX, o.contentX)) {
       return false;
     }
     return true;
@@ -7983,7 +7983,7 @@ class ContractRule extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7998,7 +7998,7 @@ class ContractRule extends BackboneElement {
     )) {
       return false;
     }
-    if (contentX != o.contentX) {
+    if (!equalsDeepWithNull(contentX, o.contentX)) {
       return false;
     }
     return true;

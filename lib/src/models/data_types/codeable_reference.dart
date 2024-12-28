@@ -249,7 +249,7 @@ class CodeableReference extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -258,10 +258,10 @@ class CodeableReference extends DataType
     )) {
       return false;
     }
-    if (concept != o.concept) {
+    if (!equalsDeepWithNull(concept, o.concept)) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
     return true;

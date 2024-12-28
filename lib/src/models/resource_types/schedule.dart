@@ -538,19 +538,19 @@ class Schedule extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -577,7 +577,7 @@ class Schedule extends DomainResource {
     )) {
       return false;
     }
-    if (active != o.active) {
+    if (!equalsDeepWithNull(active, o.active)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -604,10 +604,10 @@ class Schedule extends DomainResource {
     )) {
       return false;
     }
-    if (planningHorizon != o.planningHorizon) {
+    if (!equalsDeepWithNull(planningHorizon, o.planningHorizon)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;

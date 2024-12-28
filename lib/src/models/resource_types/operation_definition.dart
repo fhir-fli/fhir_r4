@@ -895,19 +895,19 @@ class OperationDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -928,31 +928,31 @@ class OperationDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (kind != o.kind) {
+    if (!equalsDeepWithNull(kind, o.kind)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -961,7 +961,7 @@ class OperationDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -976,19 +976,19 @@ class OperationDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (affectsState != o.affectsState) {
+    if (!equalsDeepWithNull(affectsState, o.affectsState)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
-    if (base != o.base) {
+    if (!equalsDeepWithNull(base, o.base)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -997,19 +997,19 @@ class OperationDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (instance != o.instance) {
+    if (!equalsDeepWithNull(instance, o.instance)) {
       return false;
     }
-    if (inputProfile != o.inputProfile) {
+    if (!equalsDeepWithNull(inputProfile, o.inputProfile)) {
       return false;
     }
-    if (outputProfile != o.outputProfile) {
+    if (!equalsDeepWithNull(outputProfile, o.outputProfile)) {
       return false;
     }
     if (!listEquals<OperationDefinitionParameter>(
@@ -1515,7 +1515,7 @@ class OperationDefinitionParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1530,22 +1530,22 @@ class OperationDefinitionParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (min != o.min) {
+    if (!equalsDeepWithNull(min, o.min)) {
       return false;
     }
-    if (max != o.max) {
+    if (!equalsDeepWithNull(max, o.max)) {
       return false;
     }
-    if (documentation != o.documentation) {
+    if (!equalsDeepWithNull(documentation, o.documentation)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -1554,10 +1554,10 @@ class OperationDefinitionParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (searchType != o.searchType) {
+    if (!equalsDeepWithNull(searchType, o.searchType)) {
       return false;
     }
-    if (binding != o.binding) {
+    if (!equalsDeepWithNull(binding, o.binding)) {
       return false;
     }
     if (!listEquals<OperationDefinitionReferencedFrom>(
@@ -1841,7 +1841,7 @@ class OperationDefinitionBinding extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1856,10 +1856,10 @@ class OperationDefinitionBinding extends BackboneElement {
     )) {
       return false;
     }
-    if (strength != o.strength) {
+    if (!equalsDeepWithNull(strength, o.strength)) {
       return false;
     }
-    if (valueSet != o.valueSet) {
+    if (!equalsDeepWithNull(valueSet, o.valueSet)) {
       return false;
     }
     return true;
@@ -2133,7 +2133,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2148,10 +2148,10 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     )) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (sourceId != o.sourceId) {
+    if (!equalsDeepWithNull(sourceId, o.sourceId)) {
       return false;
     }
     return true;
@@ -2429,7 +2429,7 @@ class OperationDefinitionOverload extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2450,7 +2450,7 @@ class OperationDefinitionOverload extends BackboneElement {
     )) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;

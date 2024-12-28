@@ -889,19 +889,19 @@ class MessageDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -922,7 +922,7 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -931,13 +931,13 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -946,16 +946,16 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -964,7 +964,7 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -979,13 +979,13 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (base != o.base) {
+    if (!equalsDeepWithNull(base, o.base)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -994,10 +994,10 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (eventX != o.eventX) {
+    if (!equalsDeepWithNull(eventX, o.eventX)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
     if (!listEquals<MessageDefinitionFocus>(
@@ -1006,7 +1006,7 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (responseRequired != o.responseRequired) {
+    if (!equalsDeepWithNull(responseRequired, o.responseRequired)) {
       return false;
     }
     if (!listEquals<MessageDefinitionAllowedResponse>(
@@ -1337,7 +1337,7 @@ class MessageDefinitionFocus extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1352,16 +1352,16 @@ class MessageDefinitionFocus extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (profile != o.profile) {
+    if (!equalsDeepWithNull(profile, o.profile)) {
       return false;
     }
-    if (min != o.min) {
+    if (!equalsDeepWithNull(min, o.min)) {
       return false;
     }
-    if (max != o.max) {
+    if (!equalsDeepWithNull(max, o.max)) {
       return false;
     }
     return true;
@@ -1634,7 +1634,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1649,10 +1649,10 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     )) {
       return false;
     }
-    if (message != o.message) {
+    if (!equalsDeepWithNull(message, o.message)) {
       return false;
     }
-    if (situation != o.situation) {
+    if (!equalsDeepWithNull(situation, o.situation)) {
       return false;
     }
     return true;

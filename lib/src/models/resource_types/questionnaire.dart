@@ -832,19 +832,19 @@ class Questionnaire extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -865,7 +865,7 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -874,13 +874,13 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -889,10 +889,10 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -901,10 +901,10 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -913,7 +913,7 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -928,19 +928,19 @@ class Questionnaire extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (approvalDate != o.approvalDate) {
+    if (!equalsDeepWithNull(approvalDate, o.approvalDate)) {
       return false;
     }
-    if (lastReviewDate != o.lastReviewDate) {
+    if (!equalsDeepWithNull(lastReviewDate, o.lastReviewDate)) {
       return false;
     }
-    if (effectivePeriod != o.effectivePeriod) {
+    if (!equalsDeepWithNull(effectivePeriod, o.effectivePeriod)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1603,7 +1603,7 @@ class QuestionnaireItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1618,10 +1618,10 @@ class QuestionnaireItem extends BackboneElement {
     )) {
       return false;
     }
-    if (linkId != o.linkId) {
+    if (!equalsDeepWithNull(linkId, o.linkId)) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1630,13 +1630,13 @@ class QuestionnaireItem extends BackboneElement {
     )) {
       return false;
     }
-    if (prefix != o.prefix) {
+    if (!equalsDeepWithNull(prefix, o.prefix)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<QuestionnaireEnableWhen>(
@@ -1645,22 +1645,22 @@ class QuestionnaireItem extends BackboneElement {
     )) {
       return false;
     }
-    if (enableBehavior != o.enableBehavior) {
+    if (!equalsDeepWithNull(enableBehavior, o.enableBehavior)) {
       return false;
     }
-    if (required_ != o.required_) {
+    if (!equalsDeepWithNull(required_, o.required_)) {
       return false;
     }
-    if (repeats != o.repeats) {
+    if (!equalsDeepWithNull(repeats, o.repeats)) {
       return false;
     }
-    if (readOnly != o.readOnly) {
+    if (!equalsDeepWithNull(readOnly, o.readOnly)) {
       return false;
     }
-    if (maxLength != o.maxLength) {
+    if (!equalsDeepWithNull(maxLength, o.maxLength)) {
       return false;
     }
-    if (answerValueSet != o.answerValueSet) {
+    if (!equalsDeepWithNull(answerValueSet, o.answerValueSet)) {
       return false;
     }
     if (!listEquals<QuestionnaireAnswerOption>(
@@ -2020,7 +2020,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2035,13 +2035,13 @@ class QuestionnaireEnableWhen extends BackboneElement {
     )) {
       return false;
     }
-    if (question != o.question) {
+    if (!equalsDeepWithNull(question, o.question)) {
       return false;
     }
-    if (operator_ != o.operator_) {
+    if (!equalsDeepWithNull(operator_, o.operator_)) {
       return false;
     }
-    if (answerX != o.answerX) {
+    if (!equalsDeepWithNull(answerX, o.answerX)) {
       return false;
     }
     return true;
@@ -2342,7 +2342,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2357,10 +2357,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
     )) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (initialSelected != o.initialSelected) {
+    if (!equalsDeepWithNull(initialSelected, o.initialSelected)) {
       return false;
     }
     return true;
@@ -2669,7 +2669,7 @@ class QuestionnaireInitial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2684,7 +2684,7 @@ class QuestionnaireInitial extends BackboneElement {
     )) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;

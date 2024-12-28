@@ -333,7 +333,7 @@ class Coding extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -342,19 +342,19 @@ class Coding extends DataType
     )) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
-    if (userSelected != o.userSelected) {
+    if (!equalsDeepWithNull(userSelected, o.userSelected)) {
       return false;
     }
     return true;

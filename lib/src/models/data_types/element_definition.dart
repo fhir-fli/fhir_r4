@@ -1969,7 +1969,7 @@ class ElementDefinition extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1984,7 +1984,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
     if (!listEquals<PropertyRepresentation>(
@@ -1993,13 +1993,13 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (sliceName != o.sliceName) {
+    if (!equalsDeepWithNull(sliceName, o.sliceName)) {
       return false;
     }
-    if (sliceIsConstraining != o.sliceIsConstraining) {
+    if (!equalsDeepWithNull(sliceIsConstraining, o.sliceIsConstraining)) {
       return false;
     }
-    if (label != o.label) {
+    if (!equalsDeepWithNull(label, o.label)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -2008,19 +2008,19 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (slicing != o.slicing) {
+    if (!equalsDeepWithNull(slicing, o.slicing)) {
       return false;
     }
-    if (short != o.short) {
+    if (!equalsDeepWithNull(short, o.short)) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
-    if (requirements != o.requirements) {
+    if (!equalsDeepWithNull(requirements, o.requirements)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -2029,16 +2029,16 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (min != o.min) {
+    if (!equalsDeepWithNull(min, o.min)) {
       return false;
     }
-    if (max != o.max) {
+    if (!equalsDeepWithNull(max, o.max)) {
       return false;
     }
-    if (base != o.base) {
+    if (!equalsDeepWithNull(base, o.base)) {
       return false;
     }
-    if (contentReference != o.contentReference) {
+    if (!equalsDeepWithNull(contentReference, o.contentReference)) {
       return false;
     }
     if (!listEquals<ElementDefinitionType>(
@@ -2047,19 +2047,19 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (defaultValueX != o.defaultValueX) {
+    if (!equalsDeepWithNull(defaultValueX, o.defaultValueX)) {
       return false;
     }
-    if (meaningWhenMissing != o.meaningWhenMissing) {
+    if (!equalsDeepWithNull(meaningWhenMissing, o.meaningWhenMissing)) {
       return false;
     }
-    if (orderMeaning != o.orderMeaning) {
+    if (!equalsDeepWithNull(orderMeaning, o.orderMeaning)) {
       return false;
     }
-    if (fixedX != o.fixedX) {
+    if (!equalsDeepWithNull(fixedX, o.fixedX)) {
       return false;
     }
-    if (patternX != o.patternX) {
+    if (!equalsDeepWithNull(patternX, o.patternX)) {
       return false;
     }
     if (!listEquals<ElementDefinitionExample>(
@@ -2068,13 +2068,13 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (minValueX != o.minValueX) {
+    if (!equalsDeepWithNull(minValueX, o.minValueX)) {
       return false;
     }
-    if (maxValueX != o.maxValueX) {
+    if (!equalsDeepWithNull(maxValueX, o.maxValueX)) {
       return false;
     }
-    if (maxLength != o.maxLength) {
+    if (!equalsDeepWithNull(maxLength, o.maxLength)) {
       return false;
     }
     if (!listEquals<FhirId>(
@@ -2089,19 +2089,19 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (mustSupport != o.mustSupport) {
+    if (!equalsDeepWithNull(mustSupport, o.mustSupport)) {
       return false;
     }
-    if (isModifier != o.isModifier) {
+    if (!equalsDeepWithNull(isModifier, o.isModifier)) {
       return false;
     }
-    if (isModifierReason != o.isModifierReason) {
+    if (!equalsDeepWithNull(isModifierReason, o.isModifierReason)) {
       return false;
     }
-    if (isSummary != o.isSummary) {
+    if (!equalsDeepWithNull(isSummary, o.isSummary)) {
       return false;
     }
-    if (binding != o.binding) {
+    if (!equalsDeepWithNull(binding, o.binding)) {
       return false;
     }
     if (!listEquals<ElementDefinitionMapping>(
@@ -2419,7 +2419,7 @@ class ElementDefinitionSlicing extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2434,13 +2434,13 @@ class ElementDefinitionSlicing extends Element {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (ordered != o.ordered) {
+    if (!equalsDeepWithNull(ordered, o.ordered)) {
       return false;
     }
-    if (rules != o.rules) {
+    if (!equalsDeepWithNull(rules, o.rules)) {
       return false;
     }
     return true;
@@ -2688,7 +2688,7 @@ class ElementDefinitionDiscriminator extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2697,10 +2697,10 @@ class ElementDefinitionDiscriminator extends Element {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
     return true;
@@ -2973,7 +2973,7 @@ class ElementDefinitionBase extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2982,13 +2982,13 @@ class ElementDefinitionBase extends Element {
     )) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (min != o.min) {
+    if (!equalsDeepWithNull(min, o.min)) {
       return false;
     }
-    if (max != o.max) {
+    if (!equalsDeepWithNull(max, o.max)) {
       return false;
     }
     return true;
@@ -3331,7 +3331,7 @@ class ElementDefinitionType extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3340,7 +3340,7 @@ class ElementDefinitionType extends Element {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -3361,7 +3361,7 @@ class ElementDefinitionType extends Element {
     )) {
       return false;
     }
-    if (versioning != o.versioning) {
+    if (!equalsDeepWithNull(versioning, o.versioning)) {
       return false;
     }
     return true;
@@ -3860,7 +3860,7 @@ class ElementDefinitionExample extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3869,10 +3869,10 @@ class ElementDefinitionExample extends Element {
     )) {
       return false;
     }
-    if (label != o.label) {
+    if (!equalsDeepWithNull(label, o.label)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -4230,7 +4230,7 @@ class ElementDefinitionConstraint extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4239,25 +4239,25 @@ class ElementDefinitionConstraint extends Element {
     )) {
       return false;
     }
-    if (key != o.key) {
+    if (!equalsDeepWithNull(key, o.key)) {
       return false;
     }
-    if (requirements != o.requirements) {
+    if (!equalsDeepWithNull(requirements, o.requirements)) {
       return false;
     }
-    if (severity != o.severity) {
+    if (!equalsDeepWithNull(severity, o.severity)) {
       return false;
     }
-    if (human != o.human) {
+    if (!equalsDeepWithNull(human, o.human)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
-    if (xpath != o.xpath) {
+    if (!equalsDeepWithNull(xpath, o.xpath)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
     return true;
@@ -4527,7 +4527,7 @@ class ElementDefinitionBinding extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4536,13 +4536,13 @@ class ElementDefinitionBinding extends Element {
     )) {
       return false;
     }
-    if (strength != o.strength) {
+    if (!equalsDeepWithNull(strength, o.strength)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (valueSet != o.valueSet) {
+    if (!equalsDeepWithNull(valueSet, o.valueSet)) {
       return false;
     }
     return true;
@@ -4830,7 +4830,7 @@ class ElementDefinitionMapping extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4839,16 +4839,16 @@ class ElementDefinitionMapping extends Element {
     )) {
       return false;
     }
-    if (identity != o.identity) {
+    if (!equalsDeepWithNull(identity, o.identity)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (map != o.map) {
+    if (!equalsDeepWithNull(map, o.map)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;

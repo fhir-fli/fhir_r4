@@ -390,7 +390,7 @@ class Reference extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -399,16 +399,16 @@ class Reference extends DataType
     )) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     return true;

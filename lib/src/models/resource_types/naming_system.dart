@@ -645,19 +645,19 @@ class NamingSystem extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -678,19 +678,19 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (kind != o.kind) {
+    if (!equalsDeepWithNull(kind, o.kind)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -699,13 +699,13 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (responsible != o.responsible) {
+    if (!equalsDeepWithNull(responsible, o.responsible)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -720,7 +720,7 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (usage != o.usage) {
+    if (!equalsDeepWithNull(usage, o.usage)) {
       return false;
     }
     if (!listEquals<NamingSystemUniqueId>(
@@ -1066,7 +1066,7 @@ class NamingSystemUniqueId extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1081,19 +1081,19 @@ class NamingSystemUniqueId extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (preferred != o.preferred) {
+    if (!equalsDeepWithNull(preferred, o.preferred)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

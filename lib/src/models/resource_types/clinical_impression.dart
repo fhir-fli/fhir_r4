@@ -852,19 +852,19 @@ class ClinicalImpression extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -891,34 +891,34 @@ class ClinicalImpression extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (effectiveX != o.effectiveX) {
+    if (!equalsDeepWithNull(effectiveX, o.effectiveX)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (assessor != o.assessor) {
+    if (!equalsDeepWithNull(assessor, o.assessor)) {
       return false;
     }
-    if (previous != o.previous) {
+    if (!equalsDeepWithNull(previous, o.previous)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -939,7 +939,7 @@ class ClinicalImpression extends DomainResource {
     )) {
       return false;
     }
-    if (summary != o.summary) {
+    if (!equalsDeepWithNull(summary, o.summary)) {
       return false;
     }
     if (!listEquals<ClinicalImpressionFinding>(
@@ -1254,7 +1254,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1269,7 +1269,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1572,7 +1572,7 @@ class ClinicalImpressionFinding extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1587,13 +1587,13 @@ class ClinicalImpressionFinding extends BackboneElement {
     )) {
       return false;
     }
-    if (itemCodeableConcept != o.itemCodeableConcept) {
+    if (!equalsDeepWithNull(itemCodeableConcept, o.itemCodeableConcept)) {
       return false;
     }
-    if (itemReference != o.itemReference) {
+    if (!equalsDeepWithNull(itemReference, o.itemReference)) {
       return false;
     }
-    if (basis != o.basis) {
+    if (!equalsDeepWithNull(basis, o.basis)) {
       return false;
     }
     return true;

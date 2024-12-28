@@ -666,19 +666,19 @@ class PaymentReconciliation extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -705,37 +705,37 @@ class PaymentReconciliation extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (paymentIssuer != o.paymentIssuer) {
+    if (!equalsDeepWithNull(paymentIssuer, o.paymentIssuer)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (requestor != o.requestor) {
+    if (!equalsDeepWithNull(requestor, o.requestor)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (disposition != o.disposition) {
+    if (!equalsDeepWithNull(disposition, o.disposition)) {
       return false;
     }
-    if (paymentDate != o.paymentDate) {
+    if (!equalsDeepWithNull(paymentDate, o.paymentDate)) {
       return false;
     }
-    if (paymentAmount != o.paymentAmount) {
+    if (!equalsDeepWithNull(paymentAmount, o.paymentAmount)) {
       return false;
     }
-    if (paymentIdentifier != o.paymentIdentifier) {
+    if (!equalsDeepWithNull(paymentIdentifier, o.paymentIdentifier)) {
       return false;
     }
     if (!listEquals<PaymentReconciliationDetail>(
@@ -744,7 +744,7 @@ class PaymentReconciliation extends DomainResource {
     )) {
       return false;
     }
-    if (formCode != o.formCode) {
+    if (!equalsDeepWithNull(formCode, o.formCode)) {
       return false;
     }
     if (!listEquals<PaymentReconciliationProcessNote>(
@@ -1202,7 +1202,7 @@ class PaymentReconciliationDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1217,34 +1217,34 @@ class PaymentReconciliationDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (predecessor != o.predecessor) {
+    if (!equalsDeepWithNull(predecessor, o.predecessor)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (submitter != o.submitter) {
+    if (!equalsDeepWithNull(submitter, o.submitter)) {
       return false;
     }
-    if (response != o.response) {
+    if (!equalsDeepWithNull(response, o.response)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (responsible != o.responsible) {
+    if (!equalsDeepWithNull(responsible, o.responsible)) {
       return false;
     }
-    if (payee != o.payee) {
+    if (!equalsDeepWithNull(payee, o.payee)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;
@@ -1517,7 +1517,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1532,10 +1532,10 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;

@@ -827,19 +827,19 @@ class AdverseEvent extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -860,10 +860,10 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (actuality != o.actuality) {
+    if (!equalsDeepWithNull(actuality, o.actuality)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -872,22 +872,22 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (event != o.event) {
+    if (!equalsDeepWithNull(event, o.event)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (detected != o.detected) {
+    if (!equalsDeepWithNull(detected, o.detected)) {
       return false;
     }
-    if (recordedDate != o.recordedDate) {
+    if (!equalsDeepWithNull(recordedDate, o.recordedDate)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -896,19 +896,19 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
-    if (seriousness != o.seriousness) {
+    if (!equalsDeepWithNull(seriousness, o.seriousness)) {
       return false;
     }
-    if (severity != o.severity) {
+    if (!equalsDeepWithNull(severity, o.severity)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (recorder != o.recorder) {
+    if (!equalsDeepWithNull(recorder, o.recorder)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1219,7 +1219,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1234,7 +1234,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (instance != o.instance) {
+    if (!equalsDeepWithNull(instance, o.instance)) {
       return false;
     }
     if (!listEquals<AdverseEventCausality>(
@@ -1556,7 +1556,7 @@ class AdverseEventCausality extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1571,16 +1571,16 @@ class AdverseEventCausality extends BackboneElement {
     )) {
       return false;
     }
-    if (assessment != o.assessment) {
+    if (!equalsDeepWithNull(assessment, o.assessment)) {
       return false;
     }
-    if (productRelatedness != o.productRelatedness) {
+    if (!equalsDeepWithNull(productRelatedness, o.productRelatedness)) {
       return false;
     }
-    if (author != o.author) {
+    if (!equalsDeepWithNull(author, o.author)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
     return true;

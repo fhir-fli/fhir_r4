@@ -675,19 +675,19 @@ class CareTeam extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -714,7 +714,7 @@ class CareTeam extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -723,16 +723,16 @@ class CareTeam extends DomainResource {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     if (!listEquals<CareTeamParticipant>(
@@ -1097,7 +1097,7 @@ class CareTeamParticipant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1118,13 +1118,13 @@ class CareTeamParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (member != o.member) {
+    if (!equalsDeepWithNull(member, o.member)) {
       return false;
     }
-    if (onBehalfOf != o.onBehalfOf) {
+    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

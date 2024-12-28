@@ -942,19 +942,19 @@ class MedicationKnowledge extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -975,19 +975,19 @@ class MedicationKnowledge extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (manufacturer != o.manufacturer) {
+    if (!equalsDeepWithNull(manufacturer, o.manufacturer)) {
       return false;
     }
-    if (doseForm != o.doseForm) {
+    if (!equalsDeepWithNull(doseForm, o.doseForm)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -1026,7 +1026,7 @@ class MedicationKnowledge extends DomainResource {
     )) {
       return false;
     }
-    if (preparationInstruction != o.preparationInstruction) {
+    if (!equalsDeepWithNull(preparationInstruction, o.preparationInstruction)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1059,7 +1059,7 @@ class MedicationKnowledge extends DomainResource {
     )) {
       return false;
     }
-    if (packaging != o.packaging) {
+    if (!equalsDeepWithNull(packaging, o.packaging)) {
       return false;
     }
     if (!listEquals<MedicationKnowledgeDrugCharacteristic>(
@@ -1360,7 +1360,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1375,7 +1375,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1654,7 +1654,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1669,10 +1669,10 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
     return true;
@@ -1978,7 +1978,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1993,13 +1993,13 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     )) {
       return false;
     }
-    if (itemX != o.itemX) {
+    if (!equalsDeepWithNull(itemX, o.itemX)) {
       return false;
     }
-    if (isActive != o.isActive) {
+    if (!equalsDeepWithNull(isActive, o.isActive)) {
       return false;
     }
-    if (strength != o.strength) {
+    if (!equalsDeepWithNull(strength, o.strength)) {
       return false;
     }
     return true;
@@ -2290,7 +2290,7 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2305,13 +2305,13 @@ class MedicationKnowledgeCost extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (cost != o.cost) {
+    if (!equalsDeepWithNull(cost, o.cost)) {
       return false;
     }
     return true;
@@ -2583,7 +2583,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2598,10 +2598,10 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     return true;
@@ -2925,7 +2925,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2946,7 +2946,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     )) {
       return false;
     }
-    if (indicationX != o.indicationX) {
+    if (!equalsDeepWithNull(indicationX, o.indicationX)) {
       return false;
     }
     if (!listEquals<MedicationKnowledgePatientCharacteristics>(
@@ -3229,7 +3229,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3244,7 +3244,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Dosage>(
@@ -3542,7 +3542,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3557,7 +3557,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     )) {
       return false;
     }
-    if (characteristicX != o.characteristicX) {
+    if (!equalsDeepWithNull(characteristicX, o.characteristicX)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -3845,7 +3845,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3860,7 +3860,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4139,7 +4139,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4154,10 +4154,10 @@ class MedicationKnowledgePackaging extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     return true;
@@ -4452,7 +4452,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4467,10 +4467,10 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -4802,7 +4802,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4817,7 +4817,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     )) {
       return false;
     }
-    if (regulatoryAuthority != o.regulatoryAuthority) {
+    if (!equalsDeepWithNull(regulatoryAuthority, o.regulatoryAuthority)) {
       return false;
     }
     if (!listEquals<MedicationKnowledgeSubstitution>(
@@ -4832,7 +4832,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     )) {
       return false;
     }
-    if (maxDispense != o.maxDispense) {
+    if (!equalsDeepWithNull(maxDispense, o.maxDispense)) {
       return false;
     }
     return true;
@@ -5102,7 +5102,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5117,10 +5117,10 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (allowed != o.allowed) {
+    if (!equalsDeepWithNull(allowed, o.allowed)) {
       return false;
     }
     return true;
@@ -5368,7 +5368,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5383,7 +5383,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     )) {
       return false;
     }
-    if (schedule != o.schedule) {
+    if (!equalsDeepWithNull(schedule, o.schedule)) {
       return false;
     }
     return true;
@@ -5654,7 +5654,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5669,10 +5669,10 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -5984,7 +5984,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6011,7 +6011,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     )) {
       return false;
     }
-    if (halfLifePeriod != o.halfLifePeriod) {
+    if (!equalsDeepWithNull(halfLifePeriod, o.halfLifePeriod)) {
       return false;
     }
     return true;

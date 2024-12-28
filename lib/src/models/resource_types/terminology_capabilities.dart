@@ -856,19 +856,19 @@ class TerminologyCapabilities extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -889,28 +889,28 @@ class TerminologyCapabilities extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -919,7 +919,7 @@ class TerminologyCapabilities extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -934,22 +934,22 @@ class TerminologyCapabilities extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (kind != o.kind) {
+    if (!equalsDeepWithNull(kind, o.kind)) {
       return false;
     }
-    if (software != o.software) {
+    if (!equalsDeepWithNull(software, o.software)) {
       return false;
     }
-    if (implementation != o.implementation) {
+    if (!equalsDeepWithNull(implementation, o.implementation)) {
       return false;
     }
-    if (lockedDate != o.lockedDate) {
+    if (!equalsDeepWithNull(lockedDate, o.lockedDate)) {
       return false;
     }
     if (!listEquals<TerminologyCapabilitiesCodeSystem>(
@@ -958,19 +958,19 @@ class TerminologyCapabilities extends CanonicalResource {
     )) {
       return false;
     }
-    if (expansion != o.expansion) {
+    if (!equalsDeepWithNull(expansion, o.expansion)) {
       return false;
     }
-    if (codeSearch != o.codeSearch) {
+    if (!equalsDeepWithNull(codeSearch, o.codeSearch)) {
       return false;
     }
-    if (validateCode != o.validateCode) {
+    if (!equalsDeepWithNull(validateCode, o.validateCode)) {
       return false;
     }
-    if (translation != o.translation) {
+    if (!equalsDeepWithNull(translation, o.translation)) {
       return false;
     }
-    if (closure != o.closure) {
+    if (!equalsDeepWithNull(closure, o.closure)) {
       return false;
     }
     return true;
@@ -1242,7 +1242,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1257,10 +1257,10 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
     return true;
@@ -1533,7 +1533,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1548,10 +1548,10 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     return true;
@@ -1856,7 +1856,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1871,7 +1871,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     )) {
       return false;
     }
-    if (uri != o.uri) {
+    if (!equalsDeepWithNull(uri, o.uri)) {
       return false;
     }
     if (!listEquals<TerminologyCapabilitiesVersion>(
@@ -1880,7 +1880,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     )) {
       return false;
     }
-    if (subsumption != o.subsumption) {
+    if (!equalsDeepWithNull(subsumption, o.subsumption)) {
       return false;
     }
     return true;
@@ -2258,7 +2258,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2273,13 +2273,13 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (isDefault != o.isDefault) {
+    if (!equalsDeepWithNull(isDefault, o.isDefault)) {
       return false;
     }
-    if (compositional != o.compositional) {
+    if (!equalsDeepWithNull(compositional, o.compositional)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -2569,7 +2569,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2584,7 +2584,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -2937,7 +2937,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2952,13 +2952,13 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     )) {
       return false;
     }
-    if (hierarchical != o.hierarchical) {
+    if (!equalsDeepWithNull(hierarchical, o.hierarchical)) {
       return false;
     }
-    if (paging != o.paging) {
+    if (!equalsDeepWithNull(paging, o.paging)) {
       return false;
     }
-    if (incomplete != o.incomplete) {
+    if (!equalsDeepWithNull(incomplete, o.incomplete)) {
       return false;
     }
     if (!listEquals<TerminologyCapabilitiesParameter>(
@@ -2967,7 +2967,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     )) {
       return false;
     }
-    if (textFilter != o.textFilter) {
+    if (!equalsDeepWithNull(textFilter, o.textFilter)) {
       return false;
     }
     return true;
@@ -3237,7 +3237,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3252,10 +3252,10 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (documentation != o.documentation) {
+    if (!equalsDeepWithNull(documentation, o.documentation)) {
       return false;
     }
     return true;
@@ -3505,7 +3505,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3520,7 +3520,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     )) {
       return false;
     }
-    if (translations != o.translations) {
+    if (!equalsDeepWithNull(translations, o.translations)) {
       return false;
     }
     return true;
@@ -3769,7 +3769,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3784,7 +3784,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     )) {
       return false;
     }
-    if (needsMap != o.needsMap) {
+    if (!equalsDeepWithNull(needsMap, o.needsMap)) {
       return false;
     }
     return true;
@@ -4034,7 +4034,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4049,7 +4049,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     )) {
       return false;
     }
-    if (translation != o.translation) {
+    if (!equalsDeepWithNull(translation, o.translation)) {
       return false;
     }
     return true;

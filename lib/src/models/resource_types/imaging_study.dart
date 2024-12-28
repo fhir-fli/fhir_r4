@@ -855,19 +855,19 @@ class ImagingStudy extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -894,7 +894,7 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -903,13 +903,13 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (started != o.started) {
+    if (!equalsDeepWithNull(started, o.started)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -918,7 +918,7 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (referrer != o.referrer) {
+    if (!equalsDeepWithNull(referrer, o.referrer)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -933,13 +933,13 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (numberOfSeries != o.numberOfSeries) {
+    if (!equalsDeepWithNull(numberOfSeries, o.numberOfSeries)) {
       return false;
     }
-    if (numberOfInstances != o.numberOfInstances) {
+    if (!equalsDeepWithNull(numberOfInstances, o.numberOfInstances)) {
       return false;
     }
-    if (procedureReference != o.procedureReference) {
+    if (!equalsDeepWithNull(procedureReference, o.procedureReference)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -948,7 +948,7 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -969,7 +969,7 @@ class ImagingStudy extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<ImagingStudySeries>(
@@ -1509,7 +1509,7 @@ class ImagingStudySeries extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1524,19 +1524,19 @@ class ImagingStudySeries extends BackboneElement {
     )) {
       return false;
     }
-    if (uid != o.uid) {
+    if (!equalsDeepWithNull(uid, o.uid)) {
       return false;
     }
-    if (number != o.number) {
+    if (!equalsDeepWithNull(number, o.number)) {
       return false;
     }
-    if (modality != o.modality) {
+    if (!equalsDeepWithNull(modality, o.modality)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (numberOfInstances != o.numberOfInstances) {
+    if (!equalsDeepWithNull(numberOfInstances, o.numberOfInstances)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1545,10 +1545,10 @@ class ImagingStudySeries extends BackboneElement {
     )) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
-    if (laterality != o.laterality) {
+    if (!equalsDeepWithNull(laterality, o.laterality)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1557,7 +1557,7 @@ class ImagingStudySeries extends BackboneElement {
     )) {
       return false;
     }
-    if (started != o.started) {
+    if (!equalsDeepWithNull(started, o.started)) {
       return false;
     }
     if (!listEquals<ImagingStudyPerformer>(
@@ -1839,7 +1839,7 @@ class ImagingStudyPerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1854,10 +1854,10 @@ class ImagingStudyPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;
@@ -2170,7 +2170,7 @@ class ImagingStudyInstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2185,16 +2185,16 @@ class ImagingStudyInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (uid != o.uid) {
+    if (!equalsDeepWithNull(uid, o.uid)) {
       return false;
     }
-    if (sopClass != o.sopClass) {
+    if (!equalsDeepWithNull(sopClass, o.sopClass)) {
       return false;
     }
-    if (number != o.number) {
+    if (!equalsDeepWithNull(number, o.number)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
     return true;

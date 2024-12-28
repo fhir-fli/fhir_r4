@@ -1001,19 +1001,19 @@ class ChargeItem extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1052,7 +1052,7 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1061,16 +1061,16 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
     if (!listEquals<ChargeItemPerformer>(
@@ -1079,16 +1079,16 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (performingOrganization != o.performingOrganization) {
+    if (!equalsDeepWithNull(performingOrganization, o.performingOrganization)) {
       return false;
     }
-    if (requestingOrganization != o.requestingOrganization) {
+    if (!equalsDeepWithNull(requestingOrganization, o.requestingOrganization)) {
       return false;
     }
-    if (costCenter != o.costCenter) {
+    if (!equalsDeepWithNull(costCenter, o.costCenter)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1097,19 +1097,19 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (factorOverride != o.factorOverride) {
+    if (!equalsDeepWithNull(factorOverride, o.factorOverride)) {
       return false;
     }
-    if (priceOverride != o.priceOverride) {
+    if (!equalsDeepWithNull(priceOverride, o.priceOverride)) {
       return false;
     }
-    if (overrideReason != o.overrideReason) {
+    if (!equalsDeepWithNull(overrideReason, o.overrideReason)) {
       return false;
     }
-    if (enterer != o.enterer) {
+    if (!equalsDeepWithNull(enterer, o.enterer)) {
       return false;
     }
-    if (enteredDate != o.enteredDate) {
+    if (!equalsDeepWithNull(enteredDate, o.enteredDate)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1124,7 +1124,7 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (productX != o.productX) {
+    if (!equalsDeepWithNull(productX, o.productX)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1414,7 +1414,7 @@ class ChargeItemPerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1429,10 +1429,10 @@ class ChargeItemPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;

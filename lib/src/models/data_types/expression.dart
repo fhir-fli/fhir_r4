@@ -321,7 +321,7 @@ class FhirExpression extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -330,19 +330,19 @@ class FhirExpression extends DataType
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
     return true;

@@ -262,7 +262,7 @@ class Ratio extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -271,10 +271,10 @@ class Ratio extends DataType
     )) {
       return false;
     }
-    if (numerator != o.numerator) {
+    if (!equalsDeepWithNull(numerator, o.numerator)) {
       return false;
     }
-    if (denominator != o.denominator) {
+    if (!equalsDeepWithNull(denominator, o.denominator)) {
       return false;
     }
     return true;

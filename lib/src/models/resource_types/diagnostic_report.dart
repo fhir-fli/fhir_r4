@@ -830,19 +830,19 @@ class DiagnosticReport extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -875,7 +875,7 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -884,19 +884,19 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (effectiveX != o.effectiveX) {
+    if (!equalsDeepWithNull(effectiveX, o.effectiveX)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -935,7 +935,7 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (conclusion != o.conclusion) {
+    if (!equalsDeepWithNull(conclusion, o.conclusion)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1221,7 +1221,7 @@ class DiagnosticReportMedia extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1236,10 +1236,10 @@ class DiagnosticReportMedia extends BackboneElement {
     )) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
-    if (link != o.link) {
+    if (!equalsDeepWithNull(link, o.link)) {
       return false;
     }
     return true;

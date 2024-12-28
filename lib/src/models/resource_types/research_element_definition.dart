@@ -1204,19 +1204,19 @@ class ResearchElementDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1237,7 +1237,7 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -1246,34 +1246,34 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (shortTitle != o.shortTitle) {
+    if (!equalsDeepWithNull(shortTitle, o.shortTitle)) {
       return false;
     }
-    if (subtitle != o.subtitle) {
+    if (!equalsDeepWithNull(subtitle, o.subtitle)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (subjectX != o.subjectX) {
+    if (!equalsDeepWithNull(subjectX, o.subjectX)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1282,7 +1282,7 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -1303,22 +1303,22 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (usage != o.usage) {
+    if (!equalsDeepWithNull(usage, o.usage)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (approvalDate != o.approvalDate) {
+    if (!equalsDeepWithNull(approvalDate, o.approvalDate)) {
       return false;
     }
-    if (lastReviewDate != o.lastReviewDate) {
+    if (!equalsDeepWithNull(lastReviewDate, o.lastReviewDate)) {
       return false;
     }
-    if (effectivePeriod != o.effectivePeriod) {
+    if (!equalsDeepWithNull(effectivePeriod, o.effectivePeriod)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1363,10 +1363,10 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (variableType != o.variableType) {
+    if (!equalsDeepWithNull(variableType, o.variableType)) {
       return false;
     }
     if (!listEquals<ResearchElementDefinitionCharacteristic>(
@@ -1677,25 +1677,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -1958,7 +1950,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1973,7 +1965,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (definitionX != o.definitionX) {
+    if (!equalsDeepWithNull(definitionX, o.definitionX)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1982,36 +1974,40 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (exclude != o.exclude) {
+    if (!equalsDeepWithNull(exclude, o.exclude)) {
       return false;
     }
-    if (unitOfMeasure != o.unitOfMeasure) {
+    if (!equalsDeepWithNull(unitOfMeasure, o.unitOfMeasure)) {
       return false;
     }
-    if (studyEffectiveDescription != o.studyEffectiveDescription) {
+    if (!equalsDeepWithNull(
+        studyEffectiveDescription, o.studyEffectiveDescription)) {
       return false;
     }
-    if (studyEffectiveX != o.studyEffectiveX) {
+    if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
-    if (studyEffectiveTimeFromStart != o.studyEffectiveTimeFromStart) {
+    if (!equalsDeepWithNull(
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart)) {
       return false;
     }
-    if (studyEffectiveGroupMeasure != o.studyEffectiveGroupMeasure) {
+    if (!equalsDeepWithNull(
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure)) {
       return false;
     }
-    if (participantEffectiveDescription != o.participantEffectiveDescription) {
+    if (!equalsDeepWithNull(
+        participantEffectiveDescription, o.participantEffectiveDescription)) {
       return false;
     }
-    if (participantEffectiveX != o.participantEffectiveX) {
+    if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (participantEffectiveTimeFromStart !=
-        o.participantEffectiveTimeFromStart) {
+    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
+        o.participantEffectiveTimeFromStart)) {
       return false;
     }
-    if (participantEffectiveGroupMeasure !=
-        o.participantEffectiveGroupMeasure) {
+    if (!equalsDeepWithNull(
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure)) {
       return false;
     }
     return true;

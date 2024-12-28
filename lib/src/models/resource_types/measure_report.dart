@@ -587,19 +587,19 @@ class MeasureReport extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -626,28 +626,28 @@ class MeasureReport extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (measure != o.measure) {
+    if (!equalsDeepWithNull(measure, o.measure)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (reporter != o.reporter) {
+    if (!equalsDeepWithNull(reporter, o.reporter)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (improvementNotation != o.improvementNotation) {
+    if (!equalsDeepWithNull(improvementNotation, o.improvementNotation)) {
       return false;
     }
     if (!listEquals<MeasureReportGroup>(
@@ -997,7 +997,7 @@ class MeasureReportGroup extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1012,7 +1012,7 @@ class MeasureReportGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<MeasureReportPopulation>(
@@ -1021,7 +1021,7 @@ class MeasureReportGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (measureScore != o.measureScore) {
+    if (!equalsDeepWithNull(measureScore, o.measureScore)) {
       return false;
     }
     if (!listEquals<MeasureReportStratifier>(
@@ -1323,7 +1323,7 @@ class MeasureReportPopulation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1338,13 +1338,13 @@ class MeasureReportPopulation extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (count != o.count) {
+    if (!equalsDeepWithNull(count, o.count)) {
       return false;
     }
-    if (subjectResults != o.subjectResults) {
+    if (!equalsDeepWithNull(subjectResults, o.subjectResults)) {
       return false;
     }
     return true;
@@ -1635,7 +1635,7 @@ class MeasureReportStratifier extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1998,7 +1998,7 @@ class MeasureReportStratum extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2013,7 +2013,7 @@ class MeasureReportStratum extends BackboneElement {
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     if (!listEquals<MeasureReportComponent>(
@@ -2028,7 +2028,7 @@ class MeasureReportStratum extends BackboneElement {
     )) {
       return false;
     }
-    if (measureScore != o.measureScore) {
+    if (!equalsDeepWithNull(measureScore, o.measureScore)) {
       return false;
     }
     return true;
@@ -2296,7 +2296,7 @@ class MeasureReportComponent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2311,10 +2311,10 @@ class MeasureReportComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -2610,7 +2610,7 @@ class MeasureReportPopulation1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2625,13 +2625,13 @@ class MeasureReportPopulation1 extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (count != o.count) {
+    if (!equalsDeepWithNull(count, o.count)) {
       return false;
     }
-    if (subjectResults != o.subjectResults) {
+    if (!equalsDeepWithNull(subjectResults, o.subjectResults)) {
       return false;
     }
     return true;

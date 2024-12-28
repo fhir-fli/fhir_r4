@@ -519,19 +519,19 @@ class Medication extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -558,19 +558,19 @@ class Medication extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (manufacturer != o.manufacturer) {
+    if (!equalsDeepWithNull(manufacturer, o.manufacturer)) {
       return false;
     }
-    if (form != o.form) {
+    if (!equalsDeepWithNull(form, o.form)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     if (!listEquals<MedicationIngredient>(
@@ -579,7 +579,7 @@ class Medication extends DomainResource {
     )) {
       return false;
     }
-    if (batch != o.batch) {
+    if (!equalsDeepWithNull(batch, o.batch)) {
       return false;
     }
     return true;
@@ -885,7 +885,7 @@ class MedicationIngredient extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -900,13 +900,13 @@ class MedicationIngredient extends BackboneElement {
     )) {
       return false;
     }
-    if (itemX != o.itemX) {
+    if (!equalsDeepWithNull(itemX, o.itemX)) {
       return false;
     }
-    if (isActive != o.isActive) {
+    if (!equalsDeepWithNull(isActive, o.isActive)) {
       return false;
     }
-    if (strength != o.strength) {
+    if (!equalsDeepWithNull(strength, o.strength)) {
       return false;
     }
     return true;
@@ -1178,7 +1178,7 @@ class MedicationBatch extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1193,10 +1193,10 @@ class MedicationBatch extends BackboneElement {
     )) {
       return false;
     }
-    if (lotNumber != o.lotNumber) {
+    if (!equalsDeepWithNull(lotNumber, o.lotNumber)) {
       return false;
     }
-    if (expirationDate != o.expirationDate) {
+    if (!equalsDeepWithNull(expirationDate, o.expirationDate)) {
       return false;
     }
     return true;

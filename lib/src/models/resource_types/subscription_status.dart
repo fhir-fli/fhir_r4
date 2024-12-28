@@ -488,19 +488,19 @@ class SubscriptionStatus extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -521,13 +521,14 @@ class SubscriptionStatus extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (eventsSinceSubscriptionStart != o.eventsSinceSubscriptionStart) {
+    if (!equalsDeepWithNull(
+        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart)) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(
@@ -536,10 +537,10 @@ class SubscriptionStatus extends DomainResource {
     )) {
       return false;
     }
-    if (subscription != o.subscription) {
+    if (!equalsDeepWithNull(subscription, o.subscription)) {
       return false;
     }
-    if (topic != o.topic) {
+    if (!equalsDeepWithNull(topic, o.topic)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -874,7 +875,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -889,13 +890,13 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     )) {
       return false;
     }
-    if (eventNumber != o.eventNumber) {
+    if (!equalsDeepWithNull(eventNumber, o.eventNumber)) {
       return false;
     }
-    if (timestamp != o.timestamp) {
+    if (!equalsDeepWithNull(timestamp, o.timestamp)) {
       return false;
     }
-    if (focus != o.focus) {
+    if (!equalsDeepWithNull(focus, o.focus)) {
       return false;
     }
     if (!listEquals<Reference>(

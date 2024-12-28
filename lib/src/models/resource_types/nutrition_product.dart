@@ -593,19 +593,19 @@ class NutritionProduct extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -626,7 +626,7 @@ class NutritionProduct extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -635,7 +635,7 @@ class NutritionProduct extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -668,7 +668,7 @@ class NutritionProduct extends DomainResource {
     )) {
       return false;
     }
-    if (instance != o.instance) {
+    if (!equalsDeepWithNull(instance, o.instance)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -955,7 +955,7 @@ class NutritionProductNutrient extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -970,7 +970,7 @@ class NutritionProductNutrient extends BackboneElement {
     )) {
       return false;
     }
-    if (item != o.item) {
+    if (!equalsDeepWithNull(item, o.item)) {
       return false;
     }
     if (!listEquals<Ratio>(
@@ -1254,7 +1254,7 @@ class NutritionProductIngredient extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1269,7 +1269,7 @@ class NutritionProductIngredient extends BackboneElement {
     )) {
       return false;
     }
-    if (item != o.item) {
+    if (!equalsDeepWithNull(item, o.item)) {
       return false;
     }
     if (!listEquals<Ratio>(
@@ -1575,7 +1575,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1590,10 +1590,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -1943,7 +1943,7 @@ class NutritionProductInstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1958,7 +1958,7 @@ class NutritionProductInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -1967,13 +1967,13 @@ class NutritionProductInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (lotNumber != o.lotNumber) {
+    if (!equalsDeepWithNull(lotNumber, o.lotNumber)) {
       return false;
     }
-    if (expiry != o.expiry) {
+    if (!equalsDeepWithNull(expiry, o.expiry)) {
       return false;
     }
-    if (useBy != o.useBy) {
+    if (!equalsDeepWithNull(useBy, o.useBy)) {
       return false;
     }
     return true;

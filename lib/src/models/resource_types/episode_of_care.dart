@@ -643,19 +643,19 @@ class EpisodeOfCare extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -682,7 +682,7 @@ class EpisodeOfCare extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<EpisodeOfCareStatusHistory>(
@@ -703,13 +703,13 @@ class EpisodeOfCare extends DomainResource {
     )) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (managingOrganization != o.managingOrganization) {
+    if (!equalsDeepWithNull(managingOrganization, o.managingOrganization)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -718,7 +718,7 @@ class EpisodeOfCare extends DomainResource {
     )) {
       return false;
     }
-    if (careManager != o.careManager) {
+    if (!equalsDeepWithNull(careManager, o.careManager)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -999,7 +999,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1014,10 +1014,10 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -1311,7 +1311,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1326,13 +1326,13 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     )) {
       return false;
     }
-    if (condition != o.condition) {
+    if (!equalsDeepWithNull(condition, o.condition)) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (rank != o.rank) {
+    if (!equalsDeepWithNull(rank, o.rank)) {
       return false;
     }
     return true;

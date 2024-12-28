@@ -637,19 +637,19 @@ class ObservationDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -676,7 +676,7 @@ class ObservationDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -691,16 +691,16 @@ class ObservationDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (multipleResultsAllowed != o.multipleResultsAllowed) {
+    if (!equalsDeepWithNull(multipleResultsAllowed, o.multipleResultsAllowed)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (preferredReportName != o.preferredReportName) {
+    if (!equalsDeepWithNull(preferredReportName, o.preferredReportName)) {
       return false;
     }
-    if (quantitativeDetails != o.quantitativeDetails) {
+    if (!equalsDeepWithNull(quantitativeDetails, o.quantitativeDetails)) {
       return false;
     }
     if (!listEquals<ObservationDefinitionQualifiedInterval>(
@@ -709,16 +709,16 @@ class ObservationDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (validCodedValueSet != o.validCodedValueSet) {
+    if (!equalsDeepWithNull(validCodedValueSet, o.validCodedValueSet)) {
       return false;
     }
-    if (normalCodedValueSet != o.normalCodedValueSet) {
+    if (!equalsDeepWithNull(normalCodedValueSet, o.normalCodedValueSet)) {
       return false;
     }
-    if (abnormalCodedValueSet != o.abnormalCodedValueSet) {
+    if (!equalsDeepWithNull(abnormalCodedValueSet, o.abnormalCodedValueSet)) {
       return false;
     }
-    if (criticalCodedValueSet != o.criticalCodedValueSet) {
+    if (!equalsDeepWithNull(criticalCodedValueSet, o.criticalCodedValueSet)) {
       return false;
     }
     return true;
@@ -1039,7 +1039,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1054,16 +1054,16 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     )) {
       return false;
     }
-    if (customaryUnit != o.customaryUnit) {
+    if (!equalsDeepWithNull(customaryUnit, o.customaryUnit)) {
       return false;
     }
-    if (unit != o.unit) {
+    if (!equalsDeepWithNull(unit, o.unit)) {
       return false;
     }
-    if (conversionFactor != o.conversionFactor) {
+    if (!equalsDeepWithNull(conversionFactor, o.conversionFactor)) {
       return false;
     }
-    if (decimalPrecision != o.decimalPrecision) {
+    if (!equalsDeepWithNull(decimalPrecision, o.decimalPrecision)) {
       return false;
     }
     return true;
@@ -1482,7 +1482,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1497,13 +1497,13 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (range != o.range) {
+    if (!equalsDeepWithNull(range, o.range)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1512,16 +1512,16 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     )) {
       return false;
     }
-    if (gender != o.gender) {
+    if (!equalsDeepWithNull(gender, o.gender)) {
       return false;
     }
-    if (age != o.age) {
+    if (!equalsDeepWithNull(age, o.age)) {
       return false;
     }
-    if (gestationalAge != o.gestationalAge) {
+    if (!equalsDeepWithNull(gestationalAge, o.gestationalAge)) {
       return false;
     }
-    if (condition != o.condition) {
+    if (!equalsDeepWithNull(condition, o.condition)) {
       return false;
     }
     return true;

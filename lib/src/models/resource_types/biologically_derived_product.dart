@@ -609,19 +609,19 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -648,13 +648,13 @@ class BiologicallyDerivedProduct extends DomainResource {
     )) {
       return false;
     }
-    if (productCategory != o.productCategory) {
+    if (!equalsDeepWithNull(productCategory, o.productCategory)) {
       return false;
     }
-    if (productCode != o.productCode) {
+    if (!equalsDeepWithNull(productCode, o.productCode)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -663,7 +663,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -672,7 +672,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     )) {
       return false;
     }
-    if (collection != o.collection) {
+    if (!equalsDeepWithNull(collection, o.collection)) {
       return false;
     }
     if (!listEquals<BiologicallyDerivedProductProcessing>(
@@ -681,7 +681,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     )) {
       return false;
     }
-    if (manipulation != o.manipulation) {
+    if (!equalsDeepWithNull(manipulation, o.manipulation)) {
       return false;
     }
     if (!listEquals<BiologicallyDerivedProductStorage>(
@@ -993,7 +993,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1008,13 +1008,13 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     )) {
       return false;
     }
-    if (collector != o.collector) {
+    if (!equalsDeepWithNull(collector, o.collector)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (collectedX != o.collectedX) {
+    if (!equalsDeepWithNull(collectedX, o.collectedX)) {
       return false;
     }
     return true;
@@ -1343,7 +1343,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1358,16 +1358,16 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (procedure != o.procedure) {
+    if (!equalsDeepWithNull(procedure, o.procedure)) {
       return false;
     }
-    if (additive != o.additive) {
+    if (!equalsDeepWithNull(additive, o.additive)) {
       return false;
     }
-    if (timeX != o.timeX) {
+    if (!equalsDeepWithNull(timeX, o.timeX)) {
       return false;
     }
     return true;
@@ -1652,7 +1652,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1667,10 +1667,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (timeX != o.timeX) {
+    if (!equalsDeepWithNull(timeX, o.timeX)) {
       return false;
     }
     return true;
@@ -1986,7 +1986,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2001,16 +2001,16 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (temperature != o.temperature) {
+    if (!equalsDeepWithNull(temperature, o.temperature)) {
       return false;
     }
-    if (scale != o.scale) {
+    if (!equalsDeepWithNull(scale, o.scale)) {
       return false;
     }
-    if (duration != o.duration) {
+    if (!equalsDeepWithNull(duration, o.duration)) {
       return false;
     }
     return true;

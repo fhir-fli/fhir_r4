@@ -328,7 +328,7 @@ class Timing extends BackboneType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -349,10 +349,10 @@ class Timing extends BackboneType
     )) {
       return false;
     }
-    if (repeat != o.repeat) {
+    if (!equalsDeepWithNull(repeat, o.repeat)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     return true;
@@ -931,7 +931,7 @@ class TimingRepeat extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -940,37 +940,37 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (boundsX != o.boundsX) {
+    if (!equalsDeepWithNull(boundsX, o.boundsX)) {
       return false;
     }
-    if (count != o.count) {
+    if (!equalsDeepWithNull(count, o.count)) {
       return false;
     }
-    if (countMax != o.countMax) {
+    if (!equalsDeepWithNull(countMax, o.countMax)) {
       return false;
     }
-    if (duration != o.duration) {
+    if (!equalsDeepWithNull(duration, o.duration)) {
       return false;
     }
-    if (durationMax != o.durationMax) {
+    if (!equalsDeepWithNull(durationMax, o.durationMax)) {
       return false;
     }
-    if (durationUnit != o.durationUnit) {
+    if (!equalsDeepWithNull(durationUnit, o.durationUnit)) {
       return false;
     }
-    if (frequency != o.frequency) {
+    if (!equalsDeepWithNull(frequency, o.frequency)) {
       return false;
     }
-    if (frequencyMax != o.frequencyMax) {
+    if (!equalsDeepWithNull(frequencyMax, o.frequencyMax)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (periodMax != o.periodMax) {
+    if (!equalsDeepWithNull(periodMax, o.periodMax)) {
       return false;
     }
-    if (periodUnit != o.periodUnit) {
+    if (!equalsDeepWithNull(periodUnit, o.periodUnit)) {
       return false;
     }
     if (!listEquals<DaysOfWeek>(
@@ -991,7 +991,7 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (offset != o.offset) {
+    if (!equalsDeepWithNull(offset, o.offset)) {
       return false;
     }
     return true;

@@ -679,19 +679,19 @@ class CoverageEligibilityResponse extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -718,7 +718,7 @@ class CoverageEligibilityResponse extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<EligibilityResponsePurpose>(
@@ -727,28 +727,28 @@ class CoverageEligibilityResponse extends DomainResource {
     )) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (servicedX != o.servicedX) {
+    if (!equalsDeepWithNull(servicedX, o.servicedX)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (requestor != o.requestor) {
+    if (!equalsDeepWithNull(requestor, o.requestor)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (disposition != o.disposition) {
+    if (!equalsDeepWithNull(disposition, o.disposition)) {
       return false;
     }
-    if (insurer != o.insurer) {
+    if (!equalsDeepWithNull(insurer, o.insurer)) {
       return false;
     }
     if (!listEquals<CoverageEligibilityResponseInsurance>(
@@ -757,10 +757,10 @@ class CoverageEligibilityResponse extends DomainResource {
     )) {
       return false;
     }
-    if (preAuthRef != o.preAuthRef) {
+    if (!equalsDeepWithNull(preAuthRef, o.preAuthRef)) {
       return false;
     }
-    if (form != o.form) {
+    if (!equalsDeepWithNull(form, o.form)) {
       return false;
     }
     if (!listEquals<CoverageEligibilityResponseError>(
@@ -1095,7 +1095,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1110,13 +1110,13 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     )) {
       return false;
     }
-    if (coverage != o.coverage) {
+    if (!equalsDeepWithNull(coverage, o.coverage)) {
       return false;
     }
-    if (inforce != o.inforce) {
+    if (!equalsDeepWithNull(inforce, o.inforce)) {
       return false;
     }
-    if (benefitPeriod != o.benefitPeriod) {
+    if (!equalsDeepWithNull(benefitPeriod, o.benefitPeriod)) {
       return false;
     }
     if (!listEquals<CoverageEligibilityResponseItem>(
@@ -1695,7 +1695,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1710,10 +1710,10 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1722,25 +1722,25 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (provider != o.provider) {
+    if (!equalsDeepWithNull(provider, o.provider)) {
       return false;
     }
-    if (excluded != o.excluded) {
+    if (!equalsDeepWithNull(excluded, o.excluded)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (network != o.network) {
+    if (!equalsDeepWithNull(network, o.network)) {
       return false;
     }
-    if (unit != o.unit) {
+    if (!equalsDeepWithNull(unit, o.unit)) {
       return false;
     }
-    if (term != o.term) {
+    if (!equalsDeepWithNull(term, o.term)) {
       return false;
     }
     if (!listEquals<CoverageEligibilityResponseBenefit>(
@@ -1749,7 +1749,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (authorizationRequired != o.authorizationRequired) {
+    if (!equalsDeepWithNull(authorizationRequired, o.authorizationRequired)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1758,7 +1758,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (authorizationUrl != o.authorizationUrl) {
+    if (!equalsDeepWithNull(authorizationUrl, o.authorizationUrl)) {
       return false;
     }
     return true;
@@ -2082,7 +2082,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2097,13 +2097,13 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (allowedX != o.allowedX) {
+    if (!equalsDeepWithNull(allowedX, o.allowedX)) {
       return false;
     }
-    if (usedX != o.usedX) {
+    if (!equalsDeepWithNull(usedX, o.usedX)) {
       return false;
     }
     return true;
@@ -2352,7 +2352,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2367,7 +2367,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     return true;

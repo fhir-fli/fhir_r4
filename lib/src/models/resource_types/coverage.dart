@@ -741,19 +741,19 @@ class Coverage extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -780,31 +780,31 @@ class Coverage extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (policyHolder != o.policyHolder) {
+    if (!equalsDeepWithNull(policyHolder, o.policyHolder)) {
       return false;
     }
-    if (subscriber != o.subscriber) {
+    if (!equalsDeepWithNull(subscriber, o.subscriber)) {
       return false;
     }
-    if (subscriberId != o.subscriberId) {
+    if (!equalsDeepWithNull(subscriberId, o.subscriberId)) {
       return false;
     }
-    if (beneficiary != o.beneficiary) {
+    if (!equalsDeepWithNull(beneficiary, o.beneficiary)) {
       return false;
     }
-    if (dependent != o.dependent) {
+    if (!equalsDeepWithNull(dependent, o.dependent)) {
       return false;
     }
-    if (relationship != o.relationship) {
+    if (!equalsDeepWithNull(relationship, o.relationship)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -819,10 +819,10 @@ class Coverage extends DomainResource {
     )) {
       return false;
     }
-    if (order != o.order) {
+    if (!equalsDeepWithNull(order, o.order)) {
       return false;
     }
-    if (network != o.network) {
+    if (!equalsDeepWithNull(network, o.network)) {
       return false;
     }
     if (!listEquals<CoverageCostToBeneficiary>(
@@ -831,7 +831,7 @@ class Coverage extends DomainResource {
     )) {
       return false;
     }
-    if (subrogation != o.subrogation) {
+    if (!equalsDeepWithNull(subrogation, o.subrogation)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1129,7 +1129,7 @@ class CoverageClass extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1144,13 +1144,13 @@ class CoverageClass extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     return true;
@@ -1463,7 +1463,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1478,10 +1478,10 @@ class CoverageCostToBeneficiary extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     if (!listEquals<CoverageException>(
@@ -1758,7 +1758,7 @@ class CoverageException extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1773,10 +1773,10 @@ class CoverageException extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

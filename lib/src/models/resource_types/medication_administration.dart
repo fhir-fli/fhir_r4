@@ -859,19 +859,19 @@ class MedicationAdministration extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -910,7 +910,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -919,16 +919,16 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (medicationX != o.medicationX) {
+    if (!equalsDeepWithNull(medicationX, o.medicationX)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -937,7 +937,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (effectiveX != o.effectiveX) {
+    if (!equalsDeepWithNull(effectiveX, o.effectiveX)) {
       return false;
     }
     if (!listEquals<MedicationAdministrationPerformer>(
@@ -958,7 +958,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -973,7 +973,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (dosage != o.dosage) {
+    if (!equalsDeepWithNull(dosage, o.dosage)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1251,7 +1251,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1266,10 +1266,10 @@ class MedicationAdministrationPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;
@@ -1655,7 +1655,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1670,22 +1670,22 @@ class MedicationAdministrationDosage extends BackboneElement {
     )) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (site != o.site) {
+    if (!equalsDeepWithNull(site, o.site)) {
       return false;
     }
-    if (route != o.route) {
+    if (!equalsDeepWithNull(route, o.route)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (dose != o.dose) {
+    if (!equalsDeepWithNull(dose, o.dose)) {
       return false;
     }
-    if (rateX != o.rateX) {
+    if (!equalsDeepWithNull(rateX, o.rateX)) {
       return false;
     }
     return true;

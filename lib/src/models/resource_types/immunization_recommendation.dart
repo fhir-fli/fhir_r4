@@ -436,19 +436,19 @@ class ImmunizationRecommendation extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -475,13 +475,13 @@ class ImmunizationRecommendation extends DomainResource {
     )) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (authority != o.authority) {
+    if (!equalsDeepWithNull(authority, o.authority)) {
       return false;
     }
     if (!listEquals<ImmunizationRecommendationRecommendation>(
@@ -1058,7 +1058,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1079,7 +1079,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     )) {
       return false;
     }
-    if (targetDisease != o.targetDisease) {
+    if (!equalsDeepWithNull(targetDisease, o.targetDisease)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1088,7 +1088,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     )) {
       return false;
     }
-    if (forecastStatus != o.forecastStatus) {
+    if (!equalsDeepWithNull(forecastStatus, o.forecastStatus)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1103,16 +1103,16 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (series != o.series) {
+    if (!equalsDeepWithNull(series, o.series)) {
       return false;
     }
-    if (doseNumberX != o.doseNumberX) {
+    if (!equalsDeepWithNull(doseNumberX, o.doseNumberX)) {
       return false;
     }
-    if (seriesDosesX != o.seriesDosesX) {
+    if (!equalsDeepWithNull(seriesDosesX, o.seriesDosesX)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1395,7 +1395,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1410,10 +1410,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;

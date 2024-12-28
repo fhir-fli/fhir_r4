@@ -302,25 +302,25 @@ class Binary extends Resource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (contentType != o.contentType) {
+    if (!equalsDeepWithNull(contentType, o.contentType)) {
       return false;
     }
-    if (securityContext != o.securityContext) {
+    if (!equalsDeepWithNull(securityContext, o.securityContext)) {
       return false;
     }
-    if (data != o.data) {
+    if (!equalsDeepWithNull(data, o.data)) {
       return false;
     }
     return true;

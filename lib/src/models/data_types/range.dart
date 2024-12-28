@@ -280,7 +280,7 @@ class Range extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -289,10 +289,10 @@ class Range extends DataType
     )) {
       return false;
     }
-    if (low != o.low) {
+    if (!equalsDeepWithNull(low, o.low)) {
       return false;
     }
-    if (high != o.high) {
+    if (!equalsDeepWithNull(high, o.high)) {
       return false;
     }
     return true;

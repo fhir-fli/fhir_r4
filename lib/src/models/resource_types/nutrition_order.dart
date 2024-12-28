@@ -768,19 +768,19 @@ class NutritionOrder extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -825,22 +825,22 @@ class NutritionOrder extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (intent != o.intent) {
+    if (!equalsDeepWithNull(intent, o.intent)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (dateTime != o.dateTime) {
+    if (!equalsDeepWithNull(dateTime, o.dateTime)) {
       return false;
     }
-    if (orderer != o.orderer) {
+    if (!equalsDeepWithNull(orderer, o.orderer)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -861,7 +861,7 @@ class NutritionOrder extends DomainResource {
     )) {
       return false;
     }
-    if (oralDiet != o.oralDiet) {
+    if (!equalsDeepWithNull(oralDiet, o.oralDiet)) {
       return false;
     }
     if (!listEquals<NutritionOrderSupplement>(
@@ -870,7 +870,7 @@ class NutritionOrder extends DomainResource {
     )) {
       return false;
     }
-    if (enteralFormula != o.enteralFormula) {
+    if (!equalsDeepWithNull(enteralFormula, o.enteralFormula)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1283,7 +1283,7 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1328,7 +1328,7 @@ class NutritionOrderOralDiet extends BackboneElement {
     )) {
       return false;
     }
-    if (instruction != o.instruction) {
+    if (!equalsDeepWithNull(instruction, o.instruction)) {
       return false;
     }
     return true;
@@ -1601,7 +1601,7 @@ class NutritionOrderNutrient extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1616,10 +1616,10 @@ class NutritionOrderNutrient extends BackboneElement {
     )) {
       return false;
     }
-    if (modifier != o.modifier) {
+    if (!equalsDeepWithNull(modifier, o.modifier)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;
@@ -1894,7 +1894,7 @@ class NutritionOrderTexture extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1909,10 +1909,10 @@ class NutritionOrderTexture extends BackboneElement {
     )) {
       return false;
     }
-    if (modifier != o.modifier) {
+    if (!equalsDeepWithNull(modifier, o.modifier)) {
       return false;
     }
-    if (foodType != o.foodType) {
+    if (!equalsDeepWithNull(foodType, o.foodType)) {
       return false;
     }
     return true;
@@ -2264,7 +2264,7 @@ class NutritionOrderSupplement extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2279,10 +2279,10 @@ class NutritionOrderSupplement extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (productName != o.productName) {
+    if (!equalsDeepWithNull(productName, o.productName)) {
       return false;
     }
     if (!listEquals<Timing>(
@@ -2291,10 +2291,10 @@ class NutritionOrderSupplement extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (instruction != o.instruction) {
+    if (!equalsDeepWithNull(instruction, o.instruction)) {
       return false;
     }
     return true;
@@ -2745,7 +2745,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2760,22 +2760,22 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     )) {
       return false;
     }
-    if (baseFormulaType != o.baseFormulaType) {
+    if (!equalsDeepWithNull(baseFormulaType, o.baseFormulaType)) {
       return false;
     }
-    if (baseFormulaProductName != o.baseFormulaProductName) {
+    if (!equalsDeepWithNull(baseFormulaProductName, o.baseFormulaProductName)) {
       return false;
     }
-    if (additiveType != o.additiveType) {
+    if (!equalsDeepWithNull(additiveType, o.additiveType)) {
       return false;
     }
-    if (additiveProductName != o.additiveProductName) {
+    if (!equalsDeepWithNull(additiveProductName, o.additiveProductName)) {
       return false;
     }
-    if (caloricDensity != o.caloricDensity) {
+    if (!equalsDeepWithNull(caloricDensity, o.caloricDensity)) {
       return false;
     }
-    if (routeofAdministration != o.routeofAdministration) {
+    if (!equalsDeepWithNull(routeofAdministration, o.routeofAdministration)) {
       return false;
     }
     if (!listEquals<NutritionOrderAdministration>(
@@ -2784,10 +2784,11 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     )) {
       return false;
     }
-    if (maxVolumeToDeliver != o.maxVolumeToDeliver) {
+    if (!equalsDeepWithNull(maxVolumeToDeliver, o.maxVolumeToDeliver)) {
       return false;
     }
-    if (administrationInstruction != o.administrationInstruction) {
+    if (!equalsDeepWithNull(
+        administrationInstruction, o.administrationInstruction)) {
       return false;
     }
     return true;
@@ -3098,7 +3099,7 @@ class NutritionOrderAdministration extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3113,13 +3114,13 @@ class NutritionOrderAdministration extends BackboneElement {
     )) {
       return false;
     }
-    if (schedule != o.schedule) {
+    if (!equalsDeepWithNull(schedule, o.schedule)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (rateX != o.rateX) {
+    if (!equalsDeepWithNull(rateX, o.rateX)) {
       return false;
     }
     return true;

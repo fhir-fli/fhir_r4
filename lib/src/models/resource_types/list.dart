@@ -627,19 +627,19 @@ class FhirList extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -666,31 +666,31 @@ class FhirList extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (mode != o.mode) {
+    if (!equalsDeepWithNull(mode, o.mode)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (orderedBy != o.orderedBy) {
+    if (!equalsDeepWithNull(orderedBy, o.orderedBy)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -705,7 +705,7 @@ class FhirList extends DomainResource {
     )) {
       return false;
     }
-    if (emptyReason != o.emptyReason) {
+    if (!equalsDeepWithNull(emptyReason, o.emptyReason)) {
       return false;
     }
     return true;
@@ -1020,7 +1020,7 @@ class ListEntry extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1035,16 +1035,16 @@ class ListEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (flag != o.flag) {
+    if (!equalsDeepWithNull(flag, o.flag)) {
       return false;
     }
-    if (deleted != o.deleted) {
+    if (!equalsDeepWithNull(deleted, o.deleted)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (item != o.item) {
+    if (!equalsDeepWithNull(item, o.item)) {
       return false;
     }
     return true;

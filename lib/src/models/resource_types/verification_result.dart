@@ -662,19 +662,19 @@ class VerificationResult extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -707,16 +707,16 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (need != o.need) {
+    if (!equalsDeepWithNull(need, o.need)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusDate != o.statusDate) {
+    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
       return false;
     }
-    if (validationType != o.validationType) {
+    if (!equalsDeepWithNull(validationType, o.validationType)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -725,16 +725,16 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (frequency != o.frequency) {
+    if (!equalsDeepWithNull(frequency, o.frequency)) {
       return false;
     }
-    if (lastPerformed != o.lastPerformed) {
+    if (!equalsDeepWithNull(lastPerformed, o.lastPerformed)) {
       return false;
     }
-    if (nextScheduled != o.nextScheduled) {
+    if (!equalsDeepWithNull(nextScheduled, o.nextScheduled)) {
       return false;
     }
-    if (failureAction != o.failureAction) {
+    if (!equalsDeepWithNull(failureAction, o.failureAction)) {
       return false;
     }
     if (!listEquals<VerificationResultPrimarySource>(
@@ -743,7 +743,7 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (attestation != o.attestation) {
+    if (!equalsDeepWithNull(attestation, o.attestation)) {
       return false;
     }
     if (!listEquals<VerificationResultValidator>(
@@ -1160,7 +1160,7 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1175,7 +1175,7 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (who != o.who) {
+    if (!equalsDeepWithNull(who, o.who)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1190,13 +1190,13 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (validationStatus != o.validationStatus) {
+    if (!equalsDeepWithNull(validationStatus, o.validationStatus)) {
       return false;
     }
-    if (validationDate != o.validationDate) {
+    if (!equalsDeepWithNull(validationDate, o.validationDate)) {
       return false;
     }
-    if (canPushUpdates != o.canPushUpdates) {
+    if (!equalsDeepWithNull(canPushUpdates, o.canPushUpdates)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1612,7 +1612,7 @@ class VerificationResultAttestation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1627,28 +1627,30 @@ class VerificationResultAttestation extends BackboneElement {
     )) {
       return false;
     }
-    if (who != o.who) {
+    if (!equalsDeepWithNull(who, o.who)) {
       return false;
     }
-    if (onBehalfOf != o.onBehalfOf) {
+    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
       return false;
     }
-    if (communicationMethod != o.communicationMethod) {
+    if (!equalsDeepWithNull(communicationMethod, o.communicationMethod)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (sourceIdentityCertificate != o.sourceIdentityCertificate) {
+    if (!equalsDeepWithNull(
+        sourceIdentityCertificate, o.sourceIdentityCertificate)) {
       return false;
     }
-    if (proxyIdentityCertificate != o.proxyIdentityCertificate) {
+    if (!equalsDeepWithNull(
+        proxyIdentityCertificate, o.proxyIdentityCertificate)) {
       return false;
     }
-    if (proxySignature != o.proxySignature) {
+    if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
       return false;
     }
-    if (sourceSignature != o.sourceSignature) {
+    if (!equalsDeepWithNull(sourceSignature, o.sourceSignature)) {
       return false;
     }
     return true;
@@ -1941,7 +1943,7 @@ class VerificationResultValidator extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1956,13 +1958,13 @@ class VerificationResultValidator extends BackboneElement {
     )) {
       return false;
     }
-    if (organization != o.organization) {
+    if (!equalsDeepWithNull(organization, o.organization)) {
       return false;
     }
-    if (identityCertificate != o.identityCertificate) {
+    if (!equalsDeepWithNull(identityCertificate, o.identityCertificate)) {
       return false;
     }
-    if (attestationSignature != o.attestationSignature) {
+    if (!equalsDeepWithNull(attestationSignature, o.attestationSignature)) {
       return false;
     }
     return true;

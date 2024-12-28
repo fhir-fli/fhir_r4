@@ -1030,19 +1030,19 @@ class Immunization extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1069,52 +1069,52 @@ class Immunization extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (vaccineCode != o.vaccineCode) {
+    if (!equalsDeepWithNull(vaccineCode, o.vaccineCode)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (recorded != o.recorded) {
+    if (!equalsDeepWithNull(recorded, o.recorded)) {
       return false;
     }
-    if (primarySource != o.primarySource) {
+    if (!equalsDeepWithNull(primarySource, o.primarySource)) {
       return false;
     }
-    if (reportOrigin != o.reportOrigin) {
+    if (!equalsDeepWithNull(reportOrigin, o.reportOrigin)) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
-    if (manufacturer != o.manufacturer) {
+    if (!equalsDeepWithNull(manufacturer, o.manufacturer)) {
       return false;
     }
-    if (lotNumber != o.lotNumber) {
+    if (!equalsDeepWithNull(lotNumber, o.lotNumber)) {
       return false;
     }
-    if (expirationDate != o.expirationDate) {
+    if (!equalsDeepWithNull(expirationDate, o.expirationDate)) {
       return false;
     }
-    if (site != o.site) {
+    if (!equalsDeepWithNull(site, o.site)) {
       return false;
     }
-    if (route != o.route) {
+    if (!equalsDeepWithNull(route, o.route)) {
       return false;
     }
-    if (doseQuantity != o.doseQuantity) {
+    if (!equalsDeepWithNull(doseQuantity, o.doseQuantity)) {
       return false;
     }
     if (!listEquals<ImmunizationPerformer>(
@@ -1141,7 +1141,7 @@ class Immunization extends DomainResource {
     )) {
       return false;
     }
-    if (isSubpotent != o.isSubpotent) {
+    if (!equalsDeepWithNull(isSubpotent, o.isSubpotent)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1162,7 +1162,7 @@ class Immunization extends DomainResource {
     )) {
       return false;
     }
-    if (fundingSource != o.fundingSource) {
+    if (!equalsDeepWithNull(fundingSource, o.fundingSource)) {
       return false;
     }
     if (!listEquals<ImmunizationReaction>(
@@ -1445,7 +1445,7 @@ class ImmunizationPerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1460,10 +1460,10 @@ class ImmunizationPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;
@@ -1781,7 +1781,7 @@ class ImmunizationEducation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1796,16 +1796,16 @@ class ImmunizationEducation extends BackboneElement {
     )) {
       return false;
     }
-    if (documentType != o.documentType) {
+    if (!equalsDeepWithNull(documentType, o.documentType)) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
-    if (publicationDate != o.publicationDate) {
+    if (!equalsDeepWithNull(publicationDate, o.publicationDate)) {
       return false;
     }
-    if (presentationDate != o.presentationDate) {
+    if (!equalsDeepWithNull(presentationDate, o.presentationDate)) {
       return false;
     }
     return true;
@@ -2100,7 +2100,7 @@ class ImmunizationReaction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2115,13 +2115,13 @@ class ImmunizationReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (detail != o.detail) {
+    if (!equalsDeepWithNull(detail, o.detail)) {
       return false;
     }
-    if (reported != o.reported) {
+    if (!equalsDeepWithNull(reported, o.reported)) {
       return false;
     }
     return true;
@@ -2490,7 +2490,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2505,10 +2505,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
     )) {
       return false;
     }
-    if (series != o.series) {
+    if (!equalsDeepWithNull(series, o.series)) {
       return false;
     }
-    if (authority != o.authority) {
+    if (!equalsDeepWithNull(authority, o.authority)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2517,10 +2517,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
     )) {
       return false;
     }
-    if (doseNumberX != o.doseNumberX) {
+    if (!equalsDeepWithNull(doseNumberX, o.doseNumberX)) {
       return false;
     }
-    if (seriesDosesX != o.seriesDosesX) {
+    if (!equalsDeepWithNull(seriesDosesX, o.seriesDosesX)) {
       return false;
     }
     return true;

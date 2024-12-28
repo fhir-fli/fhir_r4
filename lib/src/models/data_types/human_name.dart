@@ -380,7 +380,7 @@ class HumanName extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -389,13 +389,13 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (family != o.family) {
+    if (!equalsDeepWithNull(family, o.family)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -416,7 +416,7 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

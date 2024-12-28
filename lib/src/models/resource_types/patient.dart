@@ -771,19 +771,19 @@ class Patient extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -810,7 +810,7 @@ class Patient extends DomainResource {
     )) {
       return false;
     }
-    if (active != o.active) {
+    if (!equalsDeepWithNull(active, o.active)) {
       return false;
     }
     if (!listEquals<HumanName>(
@@ -825,13 +825,13 @@ class Patient extends DomainResource {
     )) {
       return false;
     }
-    if (gender != o.gender) {
+    if (!equalsDeepWithNull(gender, o.gender)) {
       return false;
     }
-    if (birthDate != o.birthDate) {
+    if (!equalsDeepWithNull(birthDate, o.birthDate)) {
       return false;
     }
-    if (deceasedX != o.deceasedX) {
+    if (!equalsDeepWithNull(deceasedX, o.deceasedX)) {
       return false;
     }
     if (!listEquals<Address>(
@@ -840,10 +840,10 @@ class Patient extends DomainResource {
     )) {
       return false;
     }
-    if (maritalStatus != o.maritalStatus) {
+    if (!equalsDeepWithNull(maritalStatus, o.maritalStatus)) {
       return false;
     }
-    if (multipleBirthX != o.multipleBirthX) {
+    if (!equalsDeepWithNull(multipleBirthX, o.multipleBirthX)) {
       return false;
     }
     if (!listEquals<Attachment>(
@@ -870,7 +870,7 @@ class Patient extends DomainResource {
     )) {
       return false;
     }
-    if (managingOrganization != o.managingOrganization) {
+    if (!equalsDeepWithNull(managingOrganization, o.managingOrganization)) {
       return false;
     }
     if (!listEquals<PatientLink>(
@@ -1279,7 +1279,7 @@ class PatientContact extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1300,7 +1300,7 @@ class PatientContact extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -1309,16 +1309,16 @@ class PatientContact extends BackboneElement {
     )) {
       return false;
     }
-    if (address != o.address) {
+    if (!equalsDeepWithNull(address, o.address)) {
       return false;
     }
-    if (gender != o.gender) {
+    if (!equalsDeepWithNull(gender, o.gender)) {
       return false;
     }
-    if (organization != o.organization) {
+    if (!equalsDeepWithNull(organization, o.organization)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -1593,7 +1593,7 @@ class PatientCommunication extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1608,10 +1608,10 @@ class PatientCommunication extends BackboneElement {
     )) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (preferred != o.preferred) {
+    if (!equalsDeepWithNull(preferred, o.preferred)) {
       return false;
     }
     return true;
@@ -1880,7 +1880,7 @@ class PatientLink extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1895,10 +1895,10 @@ class PatientLink extends BackboneElement {
     )) {
       return false;
     }
-    if (other != o.other) {
+    if (!equalsDeepWithNull(other, o.other)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     return true;

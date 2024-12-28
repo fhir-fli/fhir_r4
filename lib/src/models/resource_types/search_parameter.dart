@@ -912,19 +912,19 @@ class SearchParameter extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -945,28 +945,28 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (derivedFrom != o.derivedFrom) {
+    if (!equalsDeepWithNull(derivedFrom, o.derivedFrom)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -975,7 +975,7 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -990,10 +990,10 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -1002,16 +1002,16 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
-    if (xpath != o.xpath) {
+    if (!equalsDeepWithNull(xpath, o.xpath)) {
       return false;
     }
-    if (xpathUsage != o.xpathUsage) {
+    if (!equalsDeepWithNull(xpathUsage, o.xpathUsage)) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -1020,10 +1020,10 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (multipleOr != o.multipleOr) {
+    if (!equalsDeepWithNull(multipleOr, o.multipleOr)) {
       return false;
     }
-    if (multipleAnd != o.multipleAnd) {
+    if (!equalsDeepWithNull(multipleAnd, o.multipleAnd)) {
       return false;
     }
     if (!listEquals<SearchComparator>(
@@ -1316,7 +1316,7 @@ class SearchParameterComponent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1331,10 +1331,10 @@ class SearchParameterComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
     return true;

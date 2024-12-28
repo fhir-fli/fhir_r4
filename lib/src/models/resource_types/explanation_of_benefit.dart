@@ -1392,19 +1392,19 @@ class ExplanationOfBenefit extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1431,43 +1431,43 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (subType != o.subType) {
+    if (!equalsDeepWithNull(subType, o.subType)) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (billablePeriod != o.billablePeriod) {
+    if (!equalsDeepWithNull(billablePeriod, o.billablePeriod)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (enterer != o.enterer) {
+    if (!equalsDeepWithNull(enterer, o.enterer)) {
       return false;
     }
-    if (insurer != o.insurer) {
+    if (!equalsDeepWithNull(insurer, o.insurer)) {
       return false;
     }
-    if (provider != o.provider) {
+    if (!equalsDeepWithNull(provider, o.provider)) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (fundsReserveRequested != o.fundsReserveRequested) {
+    if (!equalsDeepWithNull(fundsReserveRequested, o.fundsReserveRequested)) {
       return false;
     }
-    if (fundsReserve != o.fundsReserve) {
+    if (!equalsDeepWithNull(fundsReserve, o.fundsReserve)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitRelated>(
@@ -1476,31 +1476,31 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (prescription != o.prescription) {
+    if (!equalsDeepWithNull(prescription, o.prescription)) {
       return false;
     }
-    if (originalPrescription != o.originalPrescription) {
+    if (!equalsDeepWithNull(originalPrescription, o.originalPrescription)) {
       return false;
     }
-    if (payee != o.payee) {
+    if (!equalsDeepWithNull(payee, o.payee)) {
       return false;
     }
-    if (referral != o.referral) {
+    if (!equalsDeepWithNull(referral, o.referral)) {
       return false;
     }
-    if (facility != o.facility) {
+    if (!equalsDeepWithNull(facility, o.facility)) {
       return false;
     }
-    if (claim != o.claim) {
+    if (!equalsDeepWithNull(claim, o.claim)) {
       return false;
     }
-    if (claimResponse != o.claimResponse) {
+    if (!equalsDeepWithNull(claimResponse, o.claimResponse)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (disposition != o.disposition) {
+    if (!equalsDeepWithNull(disposition, o.disposition)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -1539,7 +1539,7 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (precedence != o.precedence) {
+    if (!equalsDeepWithNull(precedence, o.precedence)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitInsurance>(
@@ -1548,7 +1548,7 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (accident != o.accident) {
+    if (!equalsDeepWithNull(accident, o.accident)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitItem>(
@@ -1575,13 +1575,13 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (payment != o.payment) {
+    if (!equalsDeepWithNull(payment, o.payment)) {
       return false;
     }
-    if (formCode != o.formCode) {
+    if (!equalsDeepWithNull(formCode, o.formCode)) {
       return false;
     }
-    if (form != o.form) {
+    if (!equalsDeepWithNull(form, o.form)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitProcessNote>(
@@ -1590,7 +1590,7 @@ class ExplanationOfBenefit extends DomainResource {
     )) {
       return false;
     }
-    if (benefitPeriod != o.benefitPeriod) {
+    if (!equalsDeepWithNull(benefitPeriod, o.benefitPeriod)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitBenefitBalance>(
@@ -1892,7 +1892,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1907,13 +1907,13 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     )) {
       return false;
     }
-    if (claim != o.claim) {
+    if (!equalsDeepWithNull(claim, o.claim)) {
       return false;
     }
-    if (relationship != o.relationship) {
+    if (!equalsDeepWithNull(relationship, o.relationship)) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
     return true;
@@ -2187,7 +2187,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2202,10 +2202,10 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (party != o.party) {
+    if (!equalsDeepWithNull(party, o.party)) {
       return false;
     }
     return true;
@@ -2542,7 +2542,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2557,19 +2557,19 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (provider != o.provider) {
+    if (!equalsDeepWithNull(provider, o.provider)) {
       return false;
     }
-    if (responsible != o.responsible) {
+    if (!equalsDeepWithNull(responsible, o.responsible)) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (qualification != o.qualification) {
+    if (!equalsDeepWithNull(qualification, o.qualification)) {
       return false;
     }
     return true;
@@ -2969,7 +2969,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2984,22 +2984,22 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (timingX != o.timingX) {
+    if (!equalsDeepWithNull(timingX, o.timingX)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (reason != o.reason) {
+    if (!equalsDeepWithNull(reason, o.reason)) {
       return false;
     }
     return true;
@@ -3356,7 +3356,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3371,10 +3371,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (diagnosisX != o.diagnosisX) {
+    if (!equalsDeepWithNull(diagnosisX, o.diagnosisX)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3383,10 +3383,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     )) {
       return false;
     }
-    if (onAdmission != o.onAdmission) {
+    if (!equalsDeepWithNull(onAdmission, o.onAdmission)) {
       return false;
     }
-    if (packageCode != o.packageCode) {
+    if (!equalsDeepWithNull(packageCode, o.packageCode)) {
       return false;
     }
     return true;
@@ -3749,7 +3749,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3764,7 +3764,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3773,10 +3773,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     )) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (procedureX != o.procedureX) {
+    if (!equalsDeepWithNull(procedureX, o.procedureX)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -4083,7 +4083,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4098,10 +4098,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     )) {
       return false;
     }
-    if (focal != o.focal) {
+    if (!equalsDeepWithNull(focal, o.focal)) {
       return false;
     }
-    if (coverage != o.coverage) {
+    if (!equalsDeepWithNull(coverage, o.coverage)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -4416,7 +4416,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4431,13 +4431,13 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     )) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (locationX != o.locationX) {
+    if (!equalsDeepWithNull(locationX, o.locationX)) {
       return false;
     }
     return true;
@@ -5287,7 +5287,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5302,7 +5302,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -5329,13 +5329,13 @@ class ExplanationOfBenefitItem extends BackboneElement {
     )) {
       return false;
     }
-    if (revenue != o.revenue) {
+    if (!equalsDeepWithNull(revenue, o.revenue)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -5350,22 +5350,22 @@ class ExplanationOfBenefitItem extends BackboneElement {
     )) {
       return false;
     }
-    if (servicedX != o.servicedX) {
+    if (!equalsDeepWithNull(servicedX, o.servicedX)) {
       return false;
     }
-    if (locationX != o.locationX) {
+    if (!equalsDeepWithNull(locationX, o.locationX)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -5374,7 +5374,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
     )) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -5726,7 +5726,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5741,16 +5741,16 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (reason != o.reason) {
+    if (!equalsDeepWithNull(reason, o.reason)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -6339,7 +6339,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6354,16 +6354,16 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (revenue != o.revenue) {
+    if (!equalsDeepWithNull(revenue, o.revenue)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -6378,16 +6378,16 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -6970,7 +6970,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6985,16 +6985,16 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (revenue != o.revenue) {
+    if (!equalsDeepWithNull(revenue, o.revenue)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -7009,16 +7009,16 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -7765,7 +7765,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7804,7 +7804,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -7819,25 +7819,25 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     )) {
       return false;
     }
-    if (servicedX != o.servicedX) {
+    if (!equalsDeepWithNull(servicedX, o.servicedX)) {
       return false;
     }
-    if (locationX != o.locationX) {
+    if (!equalsDeepWithNull(locationX, o.locationX)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -8323,7 +8323,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8338,7 +8338,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -8347,16 +8347,16 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -8806,7 +8806,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8821,7 +8821,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -8830,16 +8830,16 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -9123,7 +9123,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9138,10 +9138,10 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;
@@ -9504,7 +9504,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9519,22 +9519,22 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (adjustment != o.adjustment) {
+    if (!equalsDeepWithNull(adjustment, o.adjustment)) {
       return false;
     }
-    if (adjustmentReason != o.adjustmentReason) {
+    if (!equalsDeepWithNull(adjustmentReason, o.adjustmentReason)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
     return true;
@@ -9851,7 +9851,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9866,16 +9866,16 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     )) {
       return false;
     }
-    if (number != o.number) {
+    if (!equalsDeepWithNull(number, o.number)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
     return true;
@@ -10290,7 +10290,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -10305,25 +10305,25 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (excluded != o.excluded) {
+    if (!equalsDeepWithNull(excluded, o.excluded)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (network != o.network) {
+    if (!equalsDeepWithNull(network, o.network)) {
       return false;
     }
-    if (unit != o.unit) {
+    if (!equalsDeepWithNull(unit, o.unit)) {
       return false;
     }
-    if (term != o.term) {
+    if (!equalsDeepWithNull(term, o.term)) {
       return false;
     }
     if (!listEquals<ExplanationOfBenefitFinancial>(
@@ -10647,7 +10647,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -10662,13 +10662,13 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (allowedX != o.allowedX) {
+    if (!equalsDeepWithNull(allowedX, o.allowedX)) {
       return false;
     }
-    if (usedX != o.usedX) {
+    if (!equalsDeepWithNull(usedX, o.usedX)) {
       return false;
     }
     return true;

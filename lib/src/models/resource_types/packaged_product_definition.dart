@@ -705,19 +705,19 @@ class PackagedProductDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -744,10 +744,10 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -756,10 +756,10 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusDate != o.statusDate) {
+    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
       return false;
     }
     if (!listEquals<Quantity>(
@@ -768,7 +768,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<PackagedProductDefinitionLegalStatusOfSupply>(
@@ -789,7 +789,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (copackagedIndicator != o.copackagedIndicator) {
+    if (!equalsDeepWithNull(copackagedIndicator, o.copackagedIndicator)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -798,7 +798,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (package != o.package) {
+    if (!equalsDeepWithNull(package, o.package)) {
       return false;
     }
     return true;
@@ -1074,7 +1074,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1089,10 +1089,10 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (jurisdiction != o.jurisdiction) {
+    if (!equalsDeepWithNull(jurisdiction, o.jurisdiction)) {
       return false;
     }
     return true;
@@ -1613,7 +1613,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1634,10 +1634,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2005,7 +2005,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2020,10 +2020,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (periodX != o.periodX) {
+    if (!equalsDeepWithNull(periodX, o.periodX)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2325,7 +2325,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2340,10 +2340,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -2620,7 +2620,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2635,10 +2635,10 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (item != o.item) {
+    if (!equalsDeepWithNull(item, o.item)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;

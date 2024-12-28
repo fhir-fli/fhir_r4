@@ -947,19 +947,19 @@ class TestScript extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -980,31 +980,31 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1013,7 +1013,7 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1028,10 +1028,10 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
     if (!listEquals<TestScriptOrigin>(
@@ -1046,7 +1046,7 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (metadata != o.metadata) {
+    if (!equalsDeepWithNull(metadata, o.metadata)) {
       return false;
     }
     if (!listEquals<TestScriptFixture>(
@@ -1067,7 +1067,7 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (setup != o.setup) {
+    if (!equalsDeepWithNull(setup, o.setup)) {
       return false;
     }
     if (!listEquals<TestScriptTest>(
@@ -1076,7 +1076,7 @@ class TestScript extends DomainResource {
     )) {
       return false;
     }
-    if (teardown != o.teardown) {
+    if (!equalsDeepWithNull(teardown, o.teardown)) {
       return false;
     }
     return true;
@@ -1346,7 +1346,7 @@ class TestScriptOrigin extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1361,10 +1361,10 @@ class TestScriptOrigin extends BackboneElement {
     )) {
       return false;
     }
-    if (index != o.index) {
+    if (!equalsDeepWithNull(index, o.index)) {
       return false;
     }
-    if (profile != o.profile) {
+    if (!equalsDeepWithNull(profile, o.profile)) {
       return false;
     }
     return true;
@@ -1634,7 +1634,7 @@ class TestScriptDestination extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1649,10 +1649,10 @@ class TestScriptDestination extends BackboneElement {
     )) {
       return false;
     }
-    if (index != o.index) {
+    if (!equalsDeepWithNull(index, o.index)) {
       return false;
     }
-    if (profile != o.profile) {
+    if (!equalsDeepWithNull(profile, o.profile)) {
       return false;
     }
     return true;
@@ -1940,7 +1940,7 @@ class TestScriptMetadata extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2235,7 +2235,7 @@ class TestScriptLink extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2250,10 +2250,10 @@ class TestScriptLink extends BackboneElement {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;
@@ -2644,7 +2644,7 @@ class TestScriptCapability extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2659,13 +2659,13 @@ class TestScriptCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (required_ != o.required_) {
+    if (!equalsDeepWithNull(required_, o.required_)) {
       return false;
     }
-    if (validated != o.validated) {
+    if (!equalsDeepWithNull(validated, o.validated)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<FhirInteger>(
@@ -2674,7 +2674,7 @@ class TestScriptCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (destination != o.destination) {
+    if (!equalsDeepWithNull(destination, o.destination)) {
       return false;
     }
     if (!listEquals<FhirUri>(
@@ -2683,7 +2683,7 @@ class TestScriptCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (capabilities != o.capabilities) {
+    if (!equalsDeepWithNull(capabilities, o.capabilities)) {
       return false;
     }
     return true;
@@ -2981,7 +2981,7 @@ class TestScriptFixture extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2996,13 +2996,13 @@ class TestScriptFixture extends BackboneElement {
     )) {
       return false;
     }
-    if (autocreate != o.autocreate) {
+    if (!equalsDeepWithNull(autocreate, o.autocreate)) {
       return false;
     }
-    if (autodelete != o.autodelete) {
+    if (!equalsDeepWithNull(autodelete, o.autodelete)) {
       return false;
     }
-    if (resource != o.resource) {
+    if (!equalsDeepWithNull(resource, o.resource)) {
       return false;
     }
     return true;
@@ -3413,7 +3413,7 @@ class TestScriptVariable extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3428,28 +3428,28 @@ class TestScriptVariable extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (defaultValue != o.defaultValue) {
+    if (!equalsDeepWithNull(defaultValue, o.defaultValue)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
-    if (headerField != o.headerField) {
+    if (!equalsDeepWithNull(headerField, o.headerField)) {
       return false;
     }
-    if (hint != o.hint) {
+    if (!equalsDeepWithNull(hint, o.hint)) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (sourceId != o.sourceId) {
+    if (!equalsDeepWithNull(sourceId, o.sourceId)) {
       return false;
     }
     return true;
@@ -3705,7 +3705,7 @@ class TestScriptSetup extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3996,7 +3996,7 @@ class TestScriptAction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4011,10 +4011,10 @@ class TestScriptAction extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
-    if (assert_ != o.assert_) {
+    if (!equalsDeepWithNull(assert_, o.assert_)) {
       return false;
     }
     return true;
@@ -4632,7 +4632,7 @@ class TestScriptOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4647,37 +4647,37 @@ class TestScriptOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (resource != o.resource) {
+    if (!equalsDeepWithNull(resource, o.resource)) {
       return false;
     }
-    if (label != o.label) {
+    if (!equalsDeepWithNull(label, o.label)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (accept != o.accept) {
+    if (!equalsDeepWithNull(accept, o.accept)) {
       return false;
     }
-    if (contentType != o.contentType) {
+    if (!equalsDeepWithNull(contentType, o.contentType)) {
       return false;
     }
-    if (destination != o.destination) {
+    if (!equalsDeepWithNull(destination, o.destination)) {
       return false;
     }
-    if (encodeRequestUrl != o.encodeRequestUrl) {
+    if (!equalsDeepWithNull(encodeRequestUrl, o.encodeRequestUrl)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (origin != o.origin) {
+    if (!equalsDeepWithNull(origin, o.origin)) {
       return false;
     }
-    if (params != o.params) {
+    if (!equalsDeepWithNull(params, o.params)) {
       return false;
     }
     if (!listEquals<TestScriptRequestHeader>(
@@ -4686,19 +4686,19 @@ class TestScriptOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (requestId != o.requestId) {
+    if (!equalsDeepWithNull(requestId, o.requestId)) {
       return false;
     }
-    if (responseId != o.responseId) {
+    if (!equalsDeepWithNull(responseId, o.responseId)) {
       return false;
     }
-    if (sourceId != o.sourceId) {
+    if (!equalsDeepWithNull(sourceId, o.sourceId)) {
       return false;
     }
-    if (targetId != o.targetId) {
+    if (!equalsDeepWithNull(targetId, o.targetId)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     return true;
@@ -4966,7 +4966,7 @@ class TestScriptRequestHeader extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4981,10 +4981,10 @@ class TestScriptRequestHeader extends BackboneElement {
     )) {
       return false;
     }
-    if (field != o.field) {
+    if (!equalsDeepWithNull(field, o.field)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -5712,7 +5712,7 @@ class TestScriptAssert extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5727,70 +5727,71 @@ class TestScriptAssert extends BackboneElement {
     )) {
       return false;
     }
-    if (label != o.label) {
+    if (!equalsDeepWithNull(label, o.label)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (direction != o.direction) {
+    if (!equalsDeepWithNull(direction, o.direction)) {
       return false;
     }
-    if (compareToSourceId != o.compareToSourceId) {
+    if (!equalsDeepWithNull(compareToSourceId, o.compareToSourceId)) {
       return false;
     }
-    if (compareToSourceExpression != o.compareToSourceExpression) {
+    if (!equalsDeepWithNull(
+        compareToSourceExpression, o.compareToSourceExpression)) {
       return false;
     }
-    if (compareToSourcePath != o.compareToSourcePath) {
+    if (!equalsDeepWithNull(compareToSourcePath, o.compareToSourcePath)) {
       return false;
     }
-    if (contentType != o.contentType) {
+    if (!equalsDeepWithNull(contentType, o.contentType)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
-    if (headerField != o.headerField) {
+    if (!equalsDeepWithNull(headerField, o.headerField)) {
       return false;
     }
-    if (minimumId != o.minimumId) {
+    if (!equalsDeepWithNull(minimumId, o.minimumId)) {
       return false;
     }
-    if (navigationLinks != o.navigationLinks) {
+    if (!equalsDeepWithNull(navigationLinks, o.navigationLinks)) {
       return false;
     }
-    if (operator_ != o.operator_) {
+    if (!equalsDeepWithNull(operator_, o.operator_)) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (requestMethod != o.requestMethod) {
+    if (!equalsDeepWithNull(requestMethod, o.requestMethod)) {
       return false;
     }
-    if (requestURL != o.requestURL) {
+    if (!equalsDeepWithNull(requestURL, o.requestURL)) {
       return false;
     }
-    if (resource != o.resource) {
+    if (!equalsDeepWithNull(resource, o.resource)) {
       return false;
     }
-    if (response != o.response) {
+    if (!equalsDeepWithNull(response, o.response)) {
       return false;
     }
-    if (responseCode != o.responseCode) {
+    if (!equalsDeepWithNull(responseCode, o.responseCode)) {
       return false;
     }
-    if (sourceId != o.sourceId) {
+    if (!equalsDeepWithNull(sourceId, o.sourceId)) {
       return false;
     }
-    if (validateProfileId != o.validateProfileId) {
+    if (!equalsDeepWithNull(validateProfileId, o.validateProfileId)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (warningOnly != o.warningOnly) {
+    if (!equalsDeepWithNull(warningOnly, o.warningOnly)) {
       return false;
     }
     return true;
@@ -6092,7 +6093,7 @@ class TestScriptTest extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6107,10 +6108,10 @@ class TestScriptTest extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<TestScriptAction>(
@@ -6389,7 +6390,7 @@ class TestScriptAction1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6404,10 +6405,10 @@ class TestScriptAction1 extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
-    if (assert_ != o.assert_) {
+    if (!equalsDeepWithNull(assert_, o.assert_)) {
       return false;
     }
     return true;
@@ -6664,7 +6665,7 @@ class TestScriptTeardown extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6930,7 +6931,7 @@ class TestScriptAction2 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6945,7 +6946,7 @@ class TestScriptAction2 extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
     return true;

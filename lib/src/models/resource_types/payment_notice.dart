@@ -579,19 +579,19 @@ class PaymentNotice extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -618,37 +618,37 @@ class PaymentNotice extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (response != o.response) {
+    if (!equalsDeepWithNull(response, o.response)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (provider != o.provider) {
+    if (!equalsDeepWithNull(provider, o.provider)) {
       return false;
     }
-    if (payment != o.payment) {
+    if (!equalsDeepWithNull(payment, o.payment)) {
       return false;
     }
-    if (paymentDate != o.paymentDate) {
+    if (!equalsDeepWithNull(paymentDate, o.paymentDate)) {
       return false;
     }
-    if (payee != o.payee) {
+    if (!equalsDeepWithNull(payee, o.payee)) {
       return false;
     }
-    if (recipient != o.recipient) {
+    if (!equalsDeepWithNull(recipient, o.recipient)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (paymentStatus != o.paymentStatus) {
+    if (!equalsDeepWithNull(paymentStatus, o.paymentStatus)) {
       return false;
     }
     return true;

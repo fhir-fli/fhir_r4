@@ -780,19 +780,19 @@ class ExampleScenario extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -813,7 +813,7 @@ class ExampleScenario extends DomainResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -822,22 +822,22 @@ class ExampleScenario extends DomainResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -858,10 +858,10 @@ class ExampleScenario extends DomainResource {
     )) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
     if (!listEquals<ExampleScenarioActor>(
@@ -1197,7 +1197,7 @@ class ExampleScenarioActor extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1212,16 +1212,16 @@ class ExampleScenarioActor extends BackboneElement {
     )) {
       return false;
     }
-    if (actorId != o.actorId) {
+    if (!equalsDeepWithNull(actorId, o.actorId)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;
@@ -1594,7 +1594,7 @@ class ExampleScenarioInstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1609,16 +1609,16 @@ class ExampleScenarioInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (resourceId != o.resourceId) {
+    if (!equalsDeepWithNull(resourceId, o.resourceId)) {
       return false;
     }
-    if (resourceType != o.resourceType) {
+    if (!equalsDeepWithNull(resourceType, o.resourceType)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<ExampleScenarioVersion>(
@@ -1898,7 +1898,7 @@ class ExampleScenarioVersion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1913,10 +1913,10 @@ class ExampleScenarioVersion extends BackboneElement {
     )) {
       return false;
     }
-    if (versionId != o.versionId) {
+    if (!equalsDeepWithNull(versionId, o.versionId)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;
@@ -2187,7 +2187,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2202,10 +2202,10 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (resourceId != o.resourceId) {
+    if (!equalsDeepWithNull(resourceId, o.resourceId)) {
       return false;
     }
-    if (versionId != o.versionId) {
+    if (!equalsDeepWithNull(versionId, o.versionId)) {
       return false;
     }
     return true;
@@ -2549,7 +2549,7 @@ class ExampleScenarioProcess extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2564,16 +2564,16 @@ class ExampleScenarioProcess extends BackboneElement {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (preConditions != o.preConditions) {
+    if (!equalsDeepWithNull(preConditions, o.preConditions)) {
       return false;
     }
-    if (postConditions != o.postConditions) {
+    if (!equalsDeepWithNull(postConditions, o.postConditions)) {
       return false;
     }
     if (!listEquals<ExampleScenarioStep>(
@@ -2912,7 +2912,7 @@ class ExampleScenarioStep extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2933,10 +2933,10 @@ class ExampleScenarioStep extends BackboneElement {
     )) {
       return false;
     }
-    if (pause != o.pause) {
+    if (!equalsDeepWithNull(pause, o.pause)) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
     if (!listEquals<ExampleScenarioAlternative>(
@@ -3388,7 +3388,7 @@ class ExampleScenarioOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3403,34 +3403,34 @@ class ExampleScenarioOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (number != o.number) {
+    if (!equalsDeepWithNull(number, o.number)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (initiator != o.initiator) {
+    if (!equalsDeepWithNull(initiator, o.initiator)) {
       return false;
     }
-    if (receiver != o.receiver) {
+    if (!equalsDeepWithNull(receiver, o.receiver)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (initiatorActive != o.initiatorActive) {
+    if (!equalsDeepWithNull(initiatorActive, o.initiatorActive)) {
       return false;
     }
-    if (receiverActive != o.receiverActive) {
+    if (!equalsDeepWithNull(receiverActive, o.receiverActive)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (response != o.response) {
+    if (!equalsDeepWithNull(response, o.response)) {
       return false;
     }
     return true;
@@ -3733,7 +3733,7 @@ class ExampleScenarioAlternative extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3748,10 +3748,10 @@ class ExampleScenarioAlternative extends BackboneElement {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<ExampleScenarioStep>(

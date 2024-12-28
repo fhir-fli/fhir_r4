@@ -364,7 +364,7 @@ class ParameterDefinition extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -373,25 +373,25 @@ class ParameterDefinition extends DataType
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (min != o.min) {
+    if (!equalsDeepWithNull(min, o.min)) {
       return false;
     }
-    if (max != o.max) {
+    if (!equalsDeepWithNull(max, o.max)) {
       return false;
     }
-    if (documentation != o.documentation) {
+    if (!equalsDeepWithNull(documentation, o.documentation)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (profile != o.profile) {
+    if (!equalsDeepWithNull(profile, o.profile)) {
       return false;
     }
     return true;

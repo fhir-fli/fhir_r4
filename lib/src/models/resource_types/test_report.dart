@@ -596,19 +596,19 @@ class TestReport extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -629,28 +629,28 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (testScript != o.testScript) {
+    if (!equalsDeepWithNull(testScript, o.testScript)) {
       return false;
     }
-    if (result != o.result) {
+    if (!equalsDeepWithNull(result, o.result)) {
       return false;
     }
-    if (score != o.score) {
+    if (!equalsDeepWithNull(score, o.score)) {
       return false;
     }
-    if (tester != o.tester) {
+    if (!equalsDeepWithNull(tester, o.tester)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
     if (!listEquals<TestReportParticipant>(
@@ -659,7 +659,7 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (setup != o.setup) {
+    if (!equalsDeepWithNull(setup, o.setup)) {
       return false;
     }
     if (!listEquals<TestReportTest>(
@@ -668,7 +668,7 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (teardown != o.teardown) {
+    if (!equalsDeepWithNull(teardown, o.teardown)) {
       return false;
     }
     return true;
@@ -959,7 +959,7 @@ class TestReportParticipant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -974,13 +974,13 @@ class TestReportParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (uri != o.uri) {
+    if (!equalsDeepWithNull(uri, o.uri)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     return true;
@@ -1237,7 +1237,7 @@ class TestReportSetup extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1527,7 +1527,7 @@ class TestReportAction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1542,10 +1542,10 @@ class TestReportAction extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
-    if (assert_ != o.assert_) {
+    if (!equalsDeepWithNull(assert_, o.assert_)) {
       return false;
     }
     return true;
@@ -1837,7 +1837,7 @@ class TestReportOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1852,13 +1852,13 @@ class TestReportOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (result != o.result) {
+    if (!equalsDeepWithNull(result, o.result)) {
       return false;
     }
-    if (message != o.message) {
+    if (!equalsDeepWithNull(message, o.message)) {
       return false;
     }
-    if (detail != o.detail) {
+    if (!equalsDeepWithNull(detail, o.detail)) {
       return false;
     }
     return true;
@@ -2150,7 +2150,7 @@ class TestReportAssert extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2165,13 +2165,13 @@ class TestReportAssert extends BackboneElement {
     )) {
       return false;
     }
-    if (result != o.result) {
+    if (!equalsDeepWithNull(result, o.result)) {
       return false;
     }
-    if (message != o.message) {
+    if (!equalsDeepWithNull(message, o.message)) {
       return false;
     }
-    if (detail != o.detail) {
+    if (!equalsDeepWithNull(detail, o.detail)) {
       return false;
     }
     return true;
@@ -2473,7 +2473,7 @@ class TestReportTest extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2488,10 +2488,10 @@ class TestReportTest extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<TestReportAction>(
@@ -2769,7 +2769,7 @@ class TestReportAction1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2784,10 +2784,10 @@ class TestReportAction1 extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
-    if (assert_ != o.assert_) {
+    if (!equalsDeepWithNull(assert_, o.assert_)) {
       return false;
     }
     return true;
@@ -3044,7 +3044,7 @@ class TestReportTeardown extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3310,7 +3310,7 @@ class TestReportAction2 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3325,7 +3325,7 @@ class TestReportAction2 extends BackboneElement {
     )) {
       return false;
     }
-    if (operation != o.operation) {
+    if (!equalsDeepWithNull(operation, o.operation)) {
       return false;
     }
     return true;

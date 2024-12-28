@@ -301,7 +301,7 @@ class Period extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -310,10 +310,10 @@ class Period extends DataType
     )) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
     return true;

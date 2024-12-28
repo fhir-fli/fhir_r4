@@ -596,19 +596,19 @@ class MessageHeader extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -629,7 +629,7 @@ class MessageHeader extends DomainResource {
     )) {
       return false;
     }
-    if (eventX != o.eventX) {
+    if (!equalsDeepWithNull(eventX, o.eventX)) {
       return false;
     }
     if (!listEquals<MessageHeaderDestination>(
@@ -638,25 +638,25 @@ class MessageHeader extends DomainResource {
     )) {
       return false;
     }
-    if (sender != o.sender) {
+    if (!equalsDeepWithNull(sender, o.sender)) {
       return false;
     }
-    if (enterer != o.enterer) {
+    if (!equalsDeepWithNull(enterer, o.enterer)) {
       return false;
     }
-    if (author != o.author) {
+    if (!equalsDeepWithNull(author, o.author)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (responsible != o.responsible) {
+    if (!equalsDeepWithNull(responsible, o.responsible)) {
       return false;
     }
-    if (reason != o.reason) {
+    if (!equalsDeepWithNull(reason, o.reason)) {
       return false;
     }
-    if (response != o.response) {
+    if (!equalsDeepWithNull(response, o.response)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -665,7 +665,7 @@ class MessageHeader extends DomainResource {
     )) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
     return true;
@@ -982,7 +982,7 @@ class MessageHeaderDestination extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -997,16 +997,16 @@ class MessageHeaderDestination extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (target != o.target) {
+    if (!equalsDeepWithNull(target, o.target)) {
       return false;
     }
-    if (endpoint != o.endpoint) {
+    if (!equalsDeepWithNull(endpoint, o.endpoint)) {
       return false;
     }
-    if (receiver != o.receiver) {
+    if (!equalsDeepWithNull(receiver, o.receiver)) {
       return false;
     }
     return true;
@@ -1344,7 +1344,7 @@ class MessageHeaderSource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1359,19 +1359,19 @@ class MessageHeaderSource extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (software != o.software) {
+    if (!equalsDeepWithNull(software, o.software)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (contact != o.contact) {
+    if (!equalsDeepWithNull(contact, o.contact)) {
       return false;
     }
-    if (endpoint != o.endpoint) {
+    if (!equalsDeepWithNull(endpoint, o.endpoint)) {
       return false;
     }
     return true;
@@ -1664,7 +1664,7 @@ class MessageHeaderResponse extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1679,13 +1679,13 @@ class MessageHeaderResponse extends BackboneElement {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (details != o.details) {
+    if (!equalsDeepWithNull(details, o.details)) {
       return false;
     }
     return true;

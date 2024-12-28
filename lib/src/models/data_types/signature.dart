@@ -377,7 +377,7 @@ class Signature extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -392,22 +392,22 @@ class Signature extends DataType
     )) {
       return false;
     }
-    if (when != o.when) {
+    if (!equalsDeepWithNull(when, o.when)) {
       return false;
     }
-    if (who != o.who) {
+    if (!equalsDeepWithNull(who, o.who)) {
       return false;
     }
-    if (onBehalfOf != o.onBehalfOf) {
+    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
       return false;
     }
-    if (targetFormat != o.targetFormat) {
+    if (!equalsDeepWithNull(targetFormat, o.targetFormat)) {
       return false;
     }
-    if (sigFormat != o.sigFormat) {
+    if (!equalsDeepWithNull(sigFormat, o.sigFormat)) {
       return false;
     }
-    if (data != o.data) {
+    if (!equalsDeepWithNull(data, o.data)) {
       return false;
     }
     return true;

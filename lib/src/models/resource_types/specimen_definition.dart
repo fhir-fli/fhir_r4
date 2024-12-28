@@ -471,19 +471,19 @@ class SpecimenDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -504,10 +504,10 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (typeCollected != o.typeCollected) {
+    if (!equalsDeepWithNull(typeCollected, o.typeCollected)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -516,7 +516,7 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (timeAspect != o.timeAspect) {
+    if (!equalsDeepWithNull(timeAspect, o.timeAspect)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -951,7 +951,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -966,22 +966,22 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     )) {
       return false;
     }
-    if (isDerived != o.isDerived) {
+    if (!equalsDeepWithNull(isDerived, o.isDerived)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (preference != o.preference) {
+    if (!equalsDeepWithNull(preference, o.preference)) {
       return false;
     }
-    if (container != o.container) {
+    if (!equalsDeepWithNull(container, o.container)) {
       return false;
     }
-    if (requirement != o.requirement) {
+    if (!equalsDeepWithNull(requirement, o.requirement)) {
       return false;
     }
-    if (retentionTime != o.retentionTime) {
+    if (!equalsDeepWithNull(retentionTime, o.retentionTime)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1418,7 +1418,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1433,22 +1433,22 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (material != o.material) {
+    if (!equalsDeepWithNull(material, o.material)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (cap != o.cap) {
+    if (!equalsDeepWithNull(cap, o.cap)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (capacity != o.capacity) {
+    if (!equalsDeepWithNull(capacity, o.capacity)) {
       return false;
     }
-    if (minimumVolumeX != o.minimumVolumeX) {
+    if (!equalsDeepWithNull(minimumVolumeX, o.minimumVolumeX)) {
       return false;
     }
     if (!listEquals<SpecimenDefinitionAdditive>(
@@ -1457,7 +1457,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (preparation != o.preparation) {
+    if (!equalsDeepWithNull(preparation, o.preparation)) {
       return false;
     }
     return true;
@@ -1718,7 +1718,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1733,7 +1733,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     )) {
       return false;
     }
-    if (additiveX != o.additiveX) {
+    if (!equalsDeepWithNull(additiveX, o.additiveX)) {
       return false;
     }
     return true;
@@ -2054,7 +2054,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2069,16 +2069,16 @@ class SpecimenDefinitionHandling extends BackboneElement {
     )) {
       return false;
     }
-    if (temperatureQualifier != o.temperatureQualifier) {
+    if (!equalsDeepWithNull(temperatureQualifier, o.temperatureQualifier)) {
       return false;
     }
-    if (temperatureRange != o.temperatureRange) {
+    if (!equalsDeepWithNull(temperatureRange, o.temperatureRange)) {
       return false;
     }
-    if (maxDuration != o.maxDuration) {
+    if (!equalsDeepWithNull(maxDuration, o.maxDuration)) {
       return false;
     }
-    if (instruction != o.instruction) {
+    if (!equalsDeepWithNull(instruction, o.instruction)) {
       return false;
     }
     return true;

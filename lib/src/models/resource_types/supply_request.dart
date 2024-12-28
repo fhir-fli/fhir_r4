@@ -713,19 +713,19 @@ class SupplyRequest extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -752,19 +752,19 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (itemX != o.itemX) {
+    if (!equalsDeepWithNull(itemX, o.itemX)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
     if (!listEquals<SupplyRequestParameter>(
@@ -773,13 +773,13 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (authoredOn != o.authoredOn) {
+    if (!equalsDeepWithNull(authoredOn, o.authoredOn)) {
       return false;
     }
-    if (requester != o.requester) {
+    if (!equalsDeepWithNull(requester, o.requester)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -800,10 +800,10 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (deliverFrom != o.deliverFrom) {
+    if (!equalsDeepWithNull(deliverFrom, o.deliverFrom)) {
       return false;
     }
-    if (deliverTo != o.deliverTo) {
+    if (!equalsDeepWithNull(deliverTo, o.deliverTo)) {
       return false;
     }
     return true;
@@ -1096,7 +1096,7 @@ class SupplyRequestParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1111,10 +1111,10 @@ class SupplyRequestParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;

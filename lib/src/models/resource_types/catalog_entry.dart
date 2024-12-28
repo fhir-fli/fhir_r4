@@ -651,19 +651,19 @@ class CatalogEntry extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -690,13 +690,13 @@ class CatalogEntry extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (orderable != o.orderable) {
+    if (!equalsDeepWithNull(orderable, o.orderable)) {
       return false;
     }
-    if (referencedItem != o.referencedItem) {
+    if (!equalsDeepWithNull(referencedItem, o.referencedItem)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -711,16 +711,16 @@ class CatalogEntry extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (validityPeriod != o.validityPeriod) {
+    if (!equalsDeepWithNull(validityPeriod, o.validityPeriod)) {
       return false;
     }
-    if (validTo != o.validTo) {
+    if (!equalsDeepWithNull(validTo, o.validTo)) {
       return false;
     }
-    if (lastUpdated != o.lastUpdated) {
+    if (!equalsDeepWithNull(lastUpdated, o.lastUpdated)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1008,7 +1008,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1023,10 +1023,10 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (relationtype != o.relationtype) {
+    if (!equalsDeepWithNull(relationtype, o.relationtype)) {
       return false;
     }
-    if (item != o.item) {
+    if (!equalsDeepWithNull(item, o.item)) {
       return false;
     }
     return true;

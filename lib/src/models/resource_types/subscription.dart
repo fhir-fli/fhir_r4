@@ -478,19 +478,19 @@ class Subscription extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -511,7 +511,7 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -520,19 +520,19 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
-    if (reason != o.reason) {
+    if (!equalsDeepWithNull(reason, o.reason)) {
       return false;
     }
-    if (criteria != o.criteria) {
+    if (!equalsDeepWithNull(criteria, o.criteria)) {
       return false;
     }
-    if (error != o.error) {
+    if (!equalsDeepWithNull(error, o.error)) {
       return false;
     }
-    if (channel != o.channel) {
+    if (!equalsDeepWithNull(channel, o.channel)) {
       return false;
     }
     return true;
@@ -854,7 +854,7 @@ class SubscriptionChannel extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -869,13 +869,13 @@ class SubscriptionChannel extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (endpoint != o.endpoint) {
+    if (!equalsDeepWithNull(endpoint, o.endpoint)) {
       return false;
     }
-    if (payload != o.payload) {
+    if (!equalsDeepWithNull(payload, o.payload)) {
       return false;
     }
     if (!listEquals<FhirString>(

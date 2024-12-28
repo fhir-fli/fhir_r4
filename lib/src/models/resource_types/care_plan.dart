@@ -945,19 +945,19 @@ class CarePlan extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1014,10 +1014,10 @@ class CarePlan extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (intent != o.intent) {
+    if (!equalsDeepWithNull(intent, o.intent)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1026,25 +1026,25 @@ class CarePlan extends DomainResource {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (author != o.author) {
+    if (!equalsDeepWithNull(author, o.author)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1459,7 +1459,7 @@ class CarePlanActivity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1492,10 +1492,10 @@ class CarePlanActivity extends BackboneElement {
     )) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
-    if (detail != o.detail) {
+    if (!equalsDeepWithNull(detail, o.detail)) {
       return false;
     }
     return true;
@@ -2188,7 +2188,7 @@ class CarePlanDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2203,7 +2203,7 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (kind != o.kind) {
+    if (!equalsDeepWithNull(kind, o.kind)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -2218,7 +2218,7 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2239,19 +2239,19 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (doNotPerform != o.doNotPerform) {
+    if (!equalsDeepWithNull(doNotPerform, o.doNotPerform)) {
       return false;
     }
-    if (scheduledX != o.scheduledX) {
+    if (!equalsDeepWithNull(scheduledX, o.scheduledX)) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2260,16 +2260,16 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (productX != o.productX) {
+    if (!equalsDeepWithNull(productX, o.productX)) {
       return false;
     }
-    if (dailyAmount != o.dailyAmount) {
+    if (!equalsDeepWithNull(dailyAmount, o.dailyAmount)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;

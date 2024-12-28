@@ -281,7 +281,7 @@ class Annotation extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -290,13 +290,13 @@ class Annotation extends DataType
     )) {
       return false;
     }
-    if (authorX != o.authorX) {
+    if (!equalsDeepWithNull(authorX, o.authorX)) {
       return false;
     }
-    if (time != o.time) {
+    if (!equalsDeepWithNull(time, o.time)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;

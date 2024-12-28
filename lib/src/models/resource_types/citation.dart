@@ -1101,19 +1101,19 @@ class Citation extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1134,7 +1134,7 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -1143,25 +1143,25 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1170,7 +1170,7 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1185,19 +1185,19 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (approvalDate != o.approvalDate) {
+    if (!equalsDeepWithNull(approvalDate, o.approvalDate)) {
       return false;
     }
-    if (lastReviewDate != o.lastReviewDate) {
+    if (!equalsDeepWithNull(lastReviewDate, o.lastReviewDate)) {
       return false;
     }
-    if (effectivePeriod != o.effectivePeriod) {
+    if (!equalsDeepWithNull(effectivePeriod, o.effectivePeriod)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1260,7 +1260,7 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (citedArtifact != o.citedArtifact) {
+    if (!equalsDeepWithNull(citedArtifact, o.citedArtifact)) {
       return false;
     }
     return true;
@@ -1530,7 +1530,7 @@ class CitationSummary extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1545,10 +1545,10 @@ class CitationSummary extends BackboneElement {
     )) {
       return false;
     }
-    if (style != o.style) {
+    if (!equalsDeepWithNull(style, o.style)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;
@@ -1828,7 +1828,7 @@ class CitationClassification extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1843,7 +1843,7 @@ class CitationClassification extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2139,7 +2139,7 @@ class CitationStatusDate extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2154,13 +2154,13 @@ class CitationStatusDate extends BackboneElement {
     )) {
       return false;
     }
-    if (activity != o.activity) {
+    if (!equalsDeepWithNull(activity, o.activity)) {
       return false;
     }
-    if (actual != o.actual) {
+    if (!equalsDeepWithNull(actual, o.actual)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -2478,7 +2478,7 @@ class CitationRelatesTo extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2493,7 +2493,7 @@ class CitationRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (relationshipType != o.relationshipType) {
+    if (!equalsDeepWithNull(relationshipType, o.relationshipType)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2502,7 +2502,7 @@ class CitationRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (targetX != o.targetX) {
+    if (!equalsDeepWithNull(targetX, o.targetX)) {
       return false;
     }
     return true;
@@ -3153,7 +3153,7 @@ class CitationCitedArtifact extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3180,10 +3180,10 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (dateAccessed != o.dateAccessed) {
+    if (!equalsDeepWithNull(dateAccessed, o.dateAccessed)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3210,7 +3210,7 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (part_ != o.part_) {
+    if (!equalsDeepWithNull(part_, o.part_)) {
       return false;
     }
     if (!listEquals<CitationRelatesTo>(
@@ -3237,7 +3237,7 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (contributorship != o.contributorship) {
+    if (!equalsDeepWithNull(contributorship, o.contributorship)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -3513,7 +3513,7 @@ class CitationVersion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3528,10 +3528,10 @@ class CitationVersion extends BackboneElement {
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (baseCitation != o.baseCitation) {
+    if (!equalsDeepWithNull(baseCitation, o.baseCitation)) {
       return false;
     }
     return true;
@@ -3821,7 +3821,7 @@ class CitationStatusDate1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3836,13 +3836,13 @@ class CitationStatusDate1 extends BackboneElement {
     )) {
       return false;
     }
-    if (activity != o.activity) {
+    if (!equalsDeepWithNull(activity, o.activity)) {
       return false;
     }
-    if (actual != o.actual) {
+    if (!equalsDeepWithNull(actual, o.actual)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -4142,7 +4142,7 @@ class CitationTitle extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4163,10 +4163,10 @@ class CitationTitle extends BackboneElement {
     )) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;
@@ -4480,7 +4480,7 @@ class CitationAbstract extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4495,16 +4495,16 @@ class CitationAbstract extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
     return true;
@@ -4798,7 +4798,7 @@ class CitationPart extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4813,13 +4813,13 @@ class CitationPart extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (baseCitation != o.baseCitation) {
+    if (!equalsDeepWithNull(baseCitation, o.baseCitation)) {
       return false;
     }
     return true;
@@ -5137,7 +5137,7 @@ class CitationRelatesTo1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5152,7 +5152,7 @@ class CitationRelatesTo1 extends BackboneElement {
     )) {
       return false;
     }
-    if (relationshipType != o.relationshipType) {
+    if (!equalsDeepWithNull(relationshipType, o.relationshipType)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -5161,7 +5161,7 @@ class CitationRelatesTo1 extends BackboneElement {
     )) {
       return false;
     }
-    if (targetX != o.targetX) {
+    if (!equalsDeepWithNull(targetX, o.targetX)) {
       return false;
     }
     return true;
@@ -5642,7 +5642,7 @@ class CitationPublicationForm extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5657,16 +5657,16 @@ class CitationPublicationForm extends BackboneElement {
     )) {
       return false;
     }
-    if (publishedIn != o.publishedIn) {
+    if (!equalsDeepWithNull(publishedIn, o.publishedIn)) {
       return false;
     }
-    if (periodicRelease != o.periodicRelease) {
+    if (!equalsDeepWithNull(periodicRelease, o.periodicRelease)) {
       return false;
     }
-    if (articleDate != o.articleDate) {
+    if (!equalsDeepWithNull(articleDate, o.articleDate)) {
       return false;
     }
-    if (lastRevisionDate != o.lastRevisionDate) {
+    if (!equalsDeepWithNull(lastRevisionDate, o.lastRevisionDate)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -5675,22 +5675,22 @@ class CitationPublicationForm extends BackboneElement {
     )) {
       return false;
     }
-    if (accessionNumber != o.accessionNumber) {
+    if (!equalsDeepWithNull(accessionNumber, o.accessionNumber)) {
       return false;
     }
-    if (pageString != o.pageString) {
+    if (!equalsDeepWithNull(pageString, o.pageString)) {
       return false;
     }
-    if (firstPage != o.firstPage) {
+    if (!equalsDeepWithNull(firstPage, o.firstPage)) {
       return false;
     }
-    if (lastPage != o.lastPage) {
+    if (!equalsDeepWithNull(lastPage, o.lastPage)) {
       return false;
     }
-    if (pageCount != o.pageCount) {
+    if (!equalsDeepWithNull(pageCount, o.pageCount)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
     return true;
@@ -6037,7 +6037,7 @@ class CitationPublishedIn extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6052,7 +6052,7 @@ class CitationPublishedIn extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -6061,13 +6061,13 @@ class CitationPublishedIn extends BackboneElement {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
-    if (publisherLocation != o.publisherLocation) {
+    if (!equalsDeepWithNull(publisherLocation, o.publisherLocation)) {
       return false;
     }
     return true;
@@ -6384,7 +6384,7 @@ class CitationPeriodicRelease extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6399,16 +6399,16 @@ class CitationPeriodicRelease extends BackboneElement {
     )) {
       return false;
     }
-    if (citedMedium != o.citedMedium) {
+    if (!equalsDeepWithNull(citedMedium, o.citedMedium)) {
       return false;
     }
-    if (volume != o.volume) {
+    if (!equalsDeepWithNull(volume, o.volume)) {
       return false;
     }
-    if (issue != o.issue) {
+    if (!equalsDeepWithNull(issue, o.issue)) {
       return false;
     }
-    if (dateOfPublication != o.dateOfPublication) {
+    if (!equalsDeepWithNull(dateOfPublication, o.dateOfPublication)) {
       return false;
     }
     return true;
@@ -6771,7 +6771,7 @@ class CitationDateOfPublication extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6786,22 +6786,22 @@ class CitationDateOfPublication extends BackboneElement {
     )) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (year != o.year) {
+    if (!equalsDeepWithNull(year, o.year)) {
       return false;
     }
-    if (month != o.month) {
+    if (!equalsDeepWithNull(month, o.month)) {
       return false;
     }
-    if (day != o.day) {
+    if (!equalsDeepWithNull(day, o.day)) {
       return false;
     }
-    if (season != o.season) {
+    if (!equalsDeepWithNull(season, o.season)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;
@@ -7073,7 +7073,7 @@ class CitationWebLocation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7088,10 +7088,10 @@ class CitationWebLocation extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     return true;
@@ -7393,7 +7393,7 @@ class CitationClassification1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7408,7 +7408,7 @@ class CitationClassification1 extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -7417,7 +7417,7 @@ class CitationClassification1 extends BackboneElement {
     )) {
       return false;
     }
-    if (whoClassified != o.whoClassified) {
+    if (!equalsDeepWithNull(whoClassified, o.whoClassified)) {
       return false;
     }
     return true;
@@ -7756,7 +7756,7 @@ class CitationWhoClassified extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7771,19 +7771,19 @@ class CitationWhoClassified extends BackboneElement {
     )) {
       return false;
     }
-    if (person != o.person) {
+    if (!equalsDeepWithNull(person, o.person)) {
       return false;
     }
-    if (organization != o.organization) {
+    if (!equalsDeepWithNull(organization, o.organization)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
-    if (classifierCopyright != o.classifierCopyright) {
+    if (!equalsDeepWithNull(classifierCopyright, o.classifierCopyright)) {
       return false;
     }
-    if (freeToShare != o.freeToShare) {
+    if (!equalsDeepWithNull(freeToShare, o.freeToShare)) {
       return false;
     }
     return true;
@@ -8095,7 +8095,7 @@ class CitationContributorship extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8110,7 +8110,7 @@ class CitationContributorship extends BackboneElement {
     )) {
       return false;
     }
-    if (complete != o.complete) {
+    if (!equalsDeepWithNull(complete, o.complete)) {
       return false;
     }
     if (!listEquals<CitationEntry>(
@@ -8664,7 +8664,7 @@ class CitationEntry extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8679,13 +8679,13 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (initials != o.initials) {
+    if (!equalsDeepWithNull(initials, o.initials)) {
       return false;
     }
-    if (collectiveName != o.collectiveName) {
+    if (!equalsDeepWithNull(collectiveName, o.collectiveName)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -8718,7 +8718,7 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
     if (!listEquals<CitationContributionInstance>(
@@ -8727,10 +8727,10 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (correspondingContact != o.correspondingContact) {
+    if (!equalsDeepWithNull(correspondingContact, o.correspondingContact)) {
       return false;
     }
-    if (listOrder != o.listOrder) {
+    if (!equalsDeepWithNull(listOrder, o.listOrder)) {
       return false;
     }
     return true;
@@ -9034,7 +9034,7 @@ class CitationAffiliationInfo extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9049,10 +9049,10 @@ class CitationAffiliationInfo extends BackboneElement {
     )) {
       return false;
     }
-    if (affiliation != o.affiliation) {
+    if (!equalsDeepWithNull(affiliation, o.affiliation)) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -9330,7 +9330,7 @@ class CitationContributionInstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9345,10 +9345,10 @@ class CitationContributionInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (time != o.time) {
+    if (!equalsDeepWithNull(time, o.time)) {
       return false;
     }
     return true;
@@ -9665,7 +9665,7 @@ class CitationSummary1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9680,16 +9680,16 @@ class CitationSummary1 extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (style != o.style) {
+    if (!equalsDeepWithNull(style, o.style)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;

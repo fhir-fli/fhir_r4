@@ -735,19 +735,19 @@ class GuidanceResponse extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -768,7 +768,7 @@ class GuidanceResponse extends DomainResource {
     )) {
       return false;
     }
-    if (requestIdentifier != o.requestIdentifier) {
+    if (!equalsDeepWithNull(requestIdentifier, o.requestIdentifier)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -777,22 +777,22 @@ class GuidanceResponse extends DomainResource {
     )) {
       return false;
     }
-    if (moduleX != o.moduleX) {
+    if (!equalsDeepWithNull(moduleX, o.moduleX)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (occurrenceDateTime != o.occurrenceDateTime) {
+    if (!equalsDeepWithNull(occurrenceDateTime, o.occurrenceDateTime)) {
       return false;
     }
-    if (performer != o.performer) {
+    if (!equalsDeepWithNull(performer, o.performer)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -819,10 +819,10 @@ class GuidanceResponse extends DomainResource {
     )) {
       return false;
     }
-    if (outputParameters != o.outputParameters) {
+    if (!equalsDeepWithNull(outputParameters, o.outputParameters)) {
       return false;
     }
-    if (result != o.result) {
+    if (!equalsDeepWithNull(result, o.result)) {
       return false;
     }
     if (!listEquals<DataRequirement>(

@@ -596,19 +596,19 @@ class Account extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -635,13 +635,13 @@ class Account extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -650,7 +650,7 @@ class Account extends DomainResource {
     )) {
       return false;
     }
-    if (servicePeriod != o.servicePeriod) {
+    if (!equalsDeepWithNull(servicePeriod, o.servicePeriod)) {
       return false;
     }
     if (!listEquals<AccountCoverage>(
@@ -659,10 +659,10 @@ class Account extends DomainResource {
     )) {
       return false;
     }
-    if (owner != o.owner) {
+    if (!equalsDeepWithNull(owner, o.owner)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<AccountGuarantor>(
@@ -671,7 +671,7 @@ class Account extends DomainResource {
     )) {
       return false;
     }
-    if (partOf != o.partOf) {
+    if (!equalsDeepWithNull(partOf, o.partOf)) {
       return false;
     }
     return true;
@@ -947,7 +947,7 @@ class AccountCoverage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -962,10 +962,10 @@ class AccountCoverage extends BackboneElement {
     )) {
       return false;
     }
-    if (coverage != o.coverage) {
+    if (!equalsDeepWithNull(coverage, o.coverage)) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
     return true;
@@ -1260,7 +1260,7 @@ class AccountGuarantor extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1275,13 +1275,13 @@ class AccountGuarantor extends BackboneElement {
     )) {
       return false;
     }
-    if (party != o.party) {
+    if (!equalsDeepWithNull(party, o.party)) {
       return false;
     }
-    if (onHold != o.onHold) {
+    if (!equalsDeepWithNull(onHold, o.onHold)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

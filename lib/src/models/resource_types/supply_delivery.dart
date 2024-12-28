@@ -610,19 +610,19 @@ class SupplyDelivery extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -661,25 +661,25 @@ class SupplyDelivery extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (suppliedItem != o.suppliedItem) {
+    if (!equalsDeepWithNull(suppliedItem, o.suppliedItem)) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (supplier != o.supplier) {
+    if (!equalsDeepWithNull(supplier, o.supplier)) {
       return false;
     }
-    if (destination != o.destination) {
+    if (!equalsDeepWithNull(destination, o.destination)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -969,7 +969,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -984,10 +984,10 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (itemX != o.itemX) {
+    if (!equalsDeepWithNull(itemX, o.itemX)) {
       return false;
     }
     return true;

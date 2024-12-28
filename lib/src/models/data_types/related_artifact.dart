@@ -365,7 +365,7 @@ class RelatedArtifact extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -374,25 +374,25 @@ class RelatedArtifact extends DataType
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (label != o.label) {
+    if (!equalsDeepWithNull(label, o.label)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
-    if (citation != o.citation) {
+    if (!equalsDeepWithNull(citation, o.citation)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (document != o.document) {
+    if (!equalsDeepWithNull(document, o.document)) {
       return false;
     }
-    if (resource != o.resource) {
+    if (!equalsDeepWithNull(resource, o.resource)) {
       return false;
     }
     return true;

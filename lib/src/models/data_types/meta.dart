@@ -368,7 +368,7 @@ class FhirMeta extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -377,13 +377,13 @@ class FhirMeta extends DataType
     )) {
       return false;
     }
-    if (versionId != o.versionId) {
+    if (!equalsDeepWithNull(versionId, o.versionId)) {
       return false;
     }
-    if (lastUpdated != o.lastUpdated) {
+    if (!equalsDeepWithNull(lastUpdated, o.lastUpdated)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(

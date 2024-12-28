@@ -735,19 +735,19 @@ class ConceptMap extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -768,31 +768,31 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -801,7 +801,7 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -816,16 +816,16 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (sourceX != o.sourceX) {
+    if (!equalsDeepWithNull(sourceX, o.sourceX)) {
       return false;
     }
-    if (targetX != o.targetX) {
+    if (!equalsDeepWithNull(targetX, o.targetX)) {
       return false;
     }
     if (!listEquals<ConceptMapGroup>(
@@ -1204,7 +1204,7 @@ class ConceptMapGroup extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1219,16 +1219,16 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (sourceVersion != o.sourceVersion) {
+    if (!equalsDeepWithNull(sourceVersion, o.sourceVersion)) {
       return false;
     }
-    if (target != o.target) {
+    if (!equalsDeepWithNull(target, o.target)) {
       return false;
     }
-    if (targetVersion != o.targetVersion) {
+    if (!equalsDeepWithNull(targetVersion, o.targetVersion)) {
       return false;
     }
     if (!listEquals<ConceptMapElement>(
@@ -1237,7 +1237,7 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (unmapped != o.unmapped) {
+    if (!equalsDeepWithNull(unmapped, o.unmapped)) {
       return false;
     }
     return true;
@@ -1541,7 +1541,7 @@ class ConceptMapElement extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1556,10 +1556,10 @@ class ConceptMapElement extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     if (!listEquals<ConceptMapTarget>(
@@ -1949,7 +1949,7 @@ class ConceptMapTarget extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1964,16 +1964,16 @@ class ConceptMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
-    if (equivalence != o.equivalence) {
+    if (!equalsDeepWithNull(equivalence, o.equivalence)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     if (!listEquals<ConceptMapDependsOn>(
@@ -2305,7 +2305,7 @@ class ConceptMapDependsOn extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2320,16 +2320,16 @@ class ConceptMapDependsOn extends BackboneElement {
     )) {
       return false;
     }
-    if (property != o.property) {
+    if (!equalsDeepWithNull(property, o.property)) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     return true;
@@ -2654,7 +2654,7 @@ class ConceptMapUnmapped extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2669,16 +2669,16 @@ class ConceptMapUnmapped extends BackboneElement {
     )) {
       return false;
     }
-    if (mode != o.mode) {
+    if (!equalsDeepWithNull(mode, o.mode)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     return true;

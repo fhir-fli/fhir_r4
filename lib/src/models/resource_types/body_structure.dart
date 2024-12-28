@@ -518,19 +518,19 @@ class BodyStructure extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -557,13 +557,13 @@ class BodyStructure extends DomainResource {
     )) {
       return false;
     }
-    if (active != o.active) {
+    if (!equalsDeepWithNull(active, o.active)) {
       return false;
     }
-    if (morphology != o.morphology) {
+    if (!equalsDeepWithNull(morphology, o.morphology)) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -572,7 +572,7 @@ class BodyStructure extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<Attachment>(
@@ -581,7 +581,7 @@ class BodyStructure extends DomainResource {
     )) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
     return true;

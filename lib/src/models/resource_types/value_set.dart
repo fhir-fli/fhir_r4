@@ -718,19 +718,19 @@ class ValueSet extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -751,7 +751,7 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -760,25 +760,25 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -787,7 +787,7 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -802,19 +802,19 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (immutable != o.immutable) {
+    if (!equalsDeepWithNull(immutable, o.immutable)) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (compose != o.compose) {
+    if (!equalsDeepWithNull(compose, o.compose)) {
       return false;
     }
-    if (expansion != o.expansion) {
+    if (!equalsDeepWithNull(expansion, o.expansion)) {
       return false;
     }
     return true;
@@ -1156,7 +1156,7 @@ class ValueSetCompose extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1171,10 +1171,10 @@ class ValueSetCompose extends BackboneElement {
     )) {
       return false;
     }
-    if (lockedDate != o.lockedDate) {
+    if (!equalsDeepWithNull(lockedDate, o.lockedDate)) {
       return false;
     }
-    if (inactive != o.inactive) {
+    if (!equalsDeepWithNull(inactive, o.inactive)) {
       return false;
     }
     if (!listEquals<ValueSetInclude>(
@@ -1552,7 +1552,7 @@ class ValueSetInclude extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1567,10 +1567,10 @@ class ValueSetInclude extends BackboneElement {
     )) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
     if (!listEquals<ValueSetConcept>(
@@ -1892,7 +1892,7 @@ class ValueSetConcept extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1907,10 +1907,10 @@ class ValueSetConcept extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     if (!listEquals<ValueSetDesignation>(
@@ -2210,7 +2210,7 @@ class ValueSetDesignation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2225,13 +2225,13 @@ class ValueSetDesignation extends BackboneElement {
     )) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -2528,7 +2528,7 @@ class ValueSetFilter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2543,13 +2543,13 @@ class ValueSetFilter extends BackboneElement {
     )) {
       return false;
     }
-    if (property != o.property) {
+    if (!equalsDeepWithNull(property, o.property)) {
       return false;
     }
-    if (op != o.op) {
+    if (!equalsDeepWithNull(op, o.op)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -2936,7 +2936,7 @@ class ValueSetExpansion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2951,16 +2951,16 @@ class ValueSetExpansion extends BackboneElement {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (timestamp != o.timestamp) {
+    if (!equalsDeepWithNull(timestamp, o.timestamp)) {
       return false;
     }
-    if (total != o.total) {
+    if (!equalsDeepWithNull(total, o.total)) {
       return false;
     }
-    if (offset != o.offset) {
+    if (!equalsDeepWithNull(offset, o.offset)) {
       return false;
     }
     if (!listEquals<ValueSetParameter>(
@@ -3281,7 +3281,7 @@ class ValueSetParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3296,10 +3296,10 @@ class ValueSetParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -3735,7 +3735,7 @@ class ValueSetContains extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3750,22 +3750,22 @@ class ValueSetContains extends BackboneElement {
     )) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (abstract_ != o.abstract_) {
+    if (!equalsDeepWithNull(abstract_, o.abstract_)) {
       return false;
     }
-    if (inactive != o.inactive) {
+    if (!equalsDeepWithNull(inactive, o.inactive)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (display != o.display) {
+    if (!equalsDeepWithNull(display, o.display)) {
       return false;
     }
     if (!listEquals<ValueSetDesignation>(

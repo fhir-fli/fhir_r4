@@ -564,19 +564,19 @@ class FhirGroup extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -603,25 +603,25 @@ class FhirGroup extends DomainResource {
     )) {
       return false;
     }
-    if (active != o.active) {
+    if (!equalsDeepWithNull(active, o.active)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (actual != o.actual) {
+    if (!equalsDeepWithNull(actual, o.actual)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (managingEntity != o.managingEntity) {
+    if (!equalsDeepWithNull(managingEntity, o.managingEntity)) {
       return false;
     }
     if (!listEquals<GroupCharacteristic>(
@@ -972,7 +972,7 @@ class GroupCharacteristic extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -987,16 +987,16 @@ class GroupCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (exclude != o.exclude) {
+    if (!equalsDeepWithNull(exclude, o.exclude)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;
@@ -1291,7 +1291,7 @@ class GroupMember extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1306,13 +1306,13 @@ class GroupMember extends BackboneElement {
     )) {
       return false;
     }
-    if (entity != o.entity) {
+    if (!equalsDeepWithNull(entity, o.entity)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (inactive != o.inactive) {
+    if (!equalsDeepWithNull(inactive, o.inactive)) {
       return false;
     }
     return true;

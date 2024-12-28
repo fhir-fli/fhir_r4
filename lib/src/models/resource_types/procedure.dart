@@ -1111,19 +1111,19 @@ class Procedure extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1174,31 +1174,31 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (performedX != o.performedX) {
+    if (!equalsDeepWithNull(performedX, o.performedX)) {
       return false;
     }
-    if (recorder != o.recorder) {
+    if (!equalsDeepWithNull(recorder, o.recorder)) {
       return false;
     }
-    if (asserter != o.asserter) {
+    if (!equalsDeepWithNull(asserter, o.asserter)) {
       return false;
     }
     if (!listEquals<ProcedurePerformer>(
@@ -1207,7 +1207,7 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1228,7 +1228,7 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1569,7 +1569,7 @@ class ProcedurePerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1584,13 +1584,13 @@ class ProcedurePerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
-    if (onBehalfOf != o.onBehalfOf) {
+    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
       return false;
     }
     return true;
@@ -1862,7 +1862,7 @@ class ProcedureFocalDevice extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1877,10 +1877,10 @@ class ProcedureFocalDevice extends BackboneElement {
     )) {
       return false;
     }
-    if (action != o.action) {
+    if (!equalsDeepWithNull(action, o.action)) {
       return false;
     }
-    if (manipulated != o.manipulated) {
+    if (!equalsDeepWithNull(manipulated, o.manipulated)) {
       return false;
     }
     return true;

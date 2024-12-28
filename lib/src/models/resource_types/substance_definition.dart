@@ -846,19 +846,19 @@ class SubstanceDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -885,10 +885,10 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -897,7 +897,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (domain != o.domain) {
+    if (!equalsDeepWithNull(domain, o.domain)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -906,7 +906,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -951,7 +951,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (structure != o.structure) {
+    if (!equalsDeepWithNull(structure, o.structure)) {
       return false;
     }
     if (!listEquals<SubstanceDefinitionCode>(
@@ -972,7 +972,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (sourceMaterial != o.sourceMaterial) {
+    if (!equalsDeepWithNull(sourceMaterial, o.sourceMaterial)) {
       return false;
     }
     return true;
@@ -1390,7 +1390,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1405,28 +1405,28 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (stereochemistry != o.stereochemistry) {
+    if (!equalsDeepWithNull(stereochemistry, o.stereochemistry)) {
       return false;
     }
-    if (opticalActivity != o.opticalActivity) {
+    if (!equalsDeepWithNull(opticalActivity, o.opticalActivity)) {
       return false;
     }
-    if (molecularFormula != o.molecularFormula) {
+    if (!equalsDeepWithNull(molecularFormula, o.molecularFormula)) {
       return false;
     }
-    if (amountX != o.amountX) {
+    if (!equalsDeepWithNull(amountX, o.amountX)) {
       return false;
     }
-    if (measurementType != o.measurementType) {
+    if (!equalsDeepWithNull(measurementType, o.measurementType)) {
       return false;
     }
     return true;
@@ -1721,7 +1721,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1736,10 +1736,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -2036,7 +2036,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2051,13 +2051,13 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     )) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;
@@ -2490,7 +2490,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2505,19 +2505,20 @@ class SubstanceDefinitionStructure extends BackboneElement {
     )) {
       return false;
     }
-    if (stereochemistry != o.stereochemistry) {
+    if (!equalsDeepWithNull(stereochemistry, o.stereochemistry)) {
       return false;
     }
-    if (opticalActivity != o.opticalActivity) {
+    if (!equalsDeepWithNull(opticalActivity, o.opticalActivity)) {
       return false;
     }
-    if (molecularFormula != o.molecularFormula) {
+    if (!equalsDeepWithNull(molecularFormula, o.molecularFormula)) {
       return false;
     }
-    if (molecularFormulaByMoiety != o.molecularFormulaByMoiety) {
+    if (!equalsDeepWithNull(
+        molecularFormulaByMoiety, o.molecularFormulaByMoiety)) {
       return false;
     }
-    if (molecularWeight != o.molecularWeight) {
+    if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2856,7 +2857,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2871,16 +2872,16 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (representation != o.representation) {
+    if (!equalsDeepWithNull(representation, o.representation)) {
       return false;
     }
-    if (format != o.format) {
+    if (!equalsDeepWithNull(format, o.format)) {
       return false;
     }
-    if (document != o.document) {
+    if (!equalsDeepWithNull(document, o.document)) {
       return false;
     }
     return true;
@@ -3235,7 +3236,7 @@ class SubstanceDefinitionCode extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3250,13 +3251,13 @@ class SubstanceDefinitionCode extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusDate != o.statusDate) {
+    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -3794,7 +3795,7 @@ class SubstanceDefinitionName extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3809,16 +3810,16 @@ class SubstanceDefinitionName extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (preferred != o.preferred) {
+    if (!equalsDeepWithNull(preferred, o.preferred)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4155,7 +4156,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4170,13 +4171,13 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     )) {
       return false;
     }
-    if (authority != o.authority) {
+    if (!equalsDeepWithNull(authority, o.authority)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
     return true;
@@ -4406,9 +4407,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-        'substanceDefinition${fhirType.capitalize()}',
-        substanceDefinitionX,
-      );
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
     addField('type', type);
@@ -4603,7 +4602,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4618,22 +4617,22 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     )) {
       return false;
     }
-    if (substanceDefinitionX != o.substanceDefinitionX) {
+    if (!equalsDeepWithNull(substanceDefinitionX, o.substanceDefinitionX)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (isDefining != o.isDefining) {
+    if (!equalsDeepWithNull(isDefining, o.isDefining)) {
       return false;
     }
-    if (amountX != o.amountX) {
+    if (!equalsDeepWithNull(amountX, o.amountX)) {
       return false;
     }
-    if (ratioHighLimitAmount != o.ratioHighLimitAmount) {
+    if (!equalsDeepWithNull(ratioHighLimitAmount, o.ratioHighLimitAmount)) {
       return false;
     }
-    if (comparator != o.comparator) {
+    if (!equalsDeepWithNull(comparator, o.comparator)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -4988,7 +4987,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5003,16 +5002,16 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (genus != o.genus) {
+    if (!equalsDeepWithNull(genus, o.genus)) {
       return false;
     }
-    if (species != o.species) {
+    if (!equalsDeepWithNull(species, o.species)) {
       return false;
     }
-    if (part_ != o.part_) {
+    if (!equalsDeepWithNull(part_, o.part_)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

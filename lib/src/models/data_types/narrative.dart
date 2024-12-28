@@ -239,7 +239,7 @@ class Narrative extends DataType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -248,10 +248,10 @@ class Narrative extends DataType {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (div != o.div) {
+    if (!equalsDeepWithNull(div, o.div)) {
       return false;
     }
     return true;

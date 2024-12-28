@@ -951,19 +951,19 @@ class StructureDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -984,7 +984,7 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -993,25 +993,25 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1020,7 +1020,7 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1035,10 +1035,10 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1047,7 +1047,7 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (fhirVersion != o.fhirVersion) {
+    if (!equalsDeepWithNull(fhirVersion, o.fhirVersion)) {
       return false;
     }
     if (!listEquals<StructureDefinitionMapping>(
@@ -1056,10 +1056,10 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (kind != o.kind) {
+    if (!equalsDeepWithNull(kind, o.kind)) {
       return false;
     }
-    if (abstract_ != o.abstract_) {
+    if (!equalsDeepWithNull(abstract_, o.abstract_)) {
       return false;
     }
     if (!listEquals<StructureDefinitionContext>(
@@ -1074,19 +1074,19 @@ class StructureDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (baseDefinition != o.baseDefinition) {
+    if (!equalsDeepWithNull(baseDefinition, o.baseDefinition)) {
       return false;
     }
-    if (derivation != o.derivation) {
+    if (!equalsDeepWithNull(derivation, o.derivation)) {
       return false;
     }
-    if (snapshot != o.snapshot) {
+    if (!equalsDeepWithNull(snapshot, o.snapshot)) {
       return false;
     }
-    if (differential != o.differential) {
+    if (!equalsDeepWithNull(differential, o.differential)) {
       return false;
     }
     return true;
@@ -1403,7 +1403,7 @@ class StructureDefinitionMapping extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1418,16 +1418,16 @@ class StructureDefinitionMapping extends BackboneElement {
     )) {
       return false;
     }
-    if (identity != o.identity) {
+    if (!equalsDeepWithNull(identity, o.identity)) {
       return false;
     }
-    if (uri != o.uri) {
+    if (!equalsDeepWithNull(uri, o.uri)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;
@@ -1697,7 +1697,7 @@ class StructureDefinitionContext extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1712,10 +1712,10 @@ class StructureDefinitionContext extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (expression != o.expression) {
+    if (!equalsDeepWithNull(expression, o.expression)) {
       return false;
     }
     return true;
@@ -1972,7 +1972,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2247,7 +2247,7 @@ class StructureDefinitionDifferential extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(

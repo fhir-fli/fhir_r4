@@ -827,19 +827,19 @@ class FamilyMemberHistory extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -878,37 +878,37 @@ class FamilyMemberHistory extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (dataAbsentReason != o.dataAbsentReason) {
+    if (!equalsDeepWithNull(dataAbsentReason, o.dataAbsentReason)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (relationship != o.relationship) {
+    if (!equalsDeepWithNull(relationship, o.relationship)) {
       return false;
     }
-    if (sex != o.sex) {
+    if (!equalsDeepWithNull(sex, o.sex)) {
       return false;
     }
-    if (bornX != o.bornX) {
+    if (!equalsDeepWithNull(bornX, o.bornX)) {
       return false;
     }
-    if (ageX != o.ageX) {
+    if (!equalsDeepWithNull(ageX, o.ageX)) {
       return false;
     }
-    if (estimatedAge != o.estimatedAge) {
+    if (!equalsDeepWithNull(estimatedAge, o.estimatedAge)) {
       return false;
     }
-    if (deceasedX != o.deceasedX) {
+    if (!equalsDeepWithNull(deceasedX, o.deceasedX)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1307,7 +1307,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1322,16 +1322,16 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (contributedToDeath != o.contributedToDeath) {
+    if (!equalsDeepWithNull(contributedToDeath, o.contributedToDeath)) {
       return false;
     }
-    if (onsetX != o.onsetX) {
+    if (!equalsDeepWithNull(onsetX, o.onsetX)) {
       return false;
     }
     if (!listEquals<Annotation>(

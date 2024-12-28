@@ -449,7 +449,7 @@ class Address extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -458,13 +458,13 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -473,22 +473,22 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (city != o.city) {
+    if (!equalsDeepWithNull(city, o.city)) {
       return false;
     }
-    if (district != o.district) {
+    if (!equalsDeepWithNull(district, o.district)) {
       return false;
     }
-    if (state != o.state) {
+    if (!equalsDeepWithNull(state, o.state)) {
       return false;
     }
-    if (postalCode != o.postalCode) {
+    if (!equalsDeepWithNull(postalCode, o.postalCode)) {
       return false;
     }
-    if (country != o.country) {
+    if (!equalsDeepWithNull(country, o.country)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     return true;

@@ -272,7 +272,7 @@ class RatioRange extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -281,13 +281,13 @@ class RatioRange extends DataType
     )) {
       return false;
     }
-    if (lowNumerator != o.lowNumerator) {
+    if (!equalsDeepWithNull(lowNumerator, o.lowNumerator)) {
       return false;
     }
-    if (highNumerator != o.highNumerator) {
+    if (!equalsDeepWithNull(highNumerator, o.highNumerator)) {
       return false;
     }
-    if (denominator != o.denominator) {
+    if (!equalsDeepWithNull(denominator, o.denominator)) {
       return false;
     }
     return true;

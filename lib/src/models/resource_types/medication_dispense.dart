@@ -971,19 +971,19 @@ class MedicationDispense extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1016,22 +1016,22 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReasonX != o.statusReasonX) {
+    if (!equalsDeepWithNull(statusReasonX, o.statusReasonX)) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (medicationX != o.medicationX) {
+    if (!equalsDeepWithNull(medicationX, o.medicationX)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (context != o.context) {
+    if (!equalsDeepWithNull(context, o.context)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1046,7 +1046,7 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1055,22 +1055,22 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (daysSupply != o.daysSupply) {
+    if (!equalsDeepWithNull(daysSupply, o.daysSupply)) {
       return false;
     }
-    if (whenPrepared != o.whenPrepared) {
+    if (!equalsDeepWithNull(whenPrepared, o.whenPrepared)) {
       return false;
     }
-    if (whenHandedOver != o.whenHandedOver) {
+    if (!equalsDeepWithNull(whenHandedOver, o.whenHandedOver)) {
       return false;
     }
-    if (destination != o.destination) {
+    if (!equalsDeepWithNull(destination, o.destination)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1091,7 +1091,7 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (substitution != o.substitution) {
+    if (!equalsDeepWithNull(substitution, o.substitution)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1375,7 +1375,7 @@ class MedicationDispensePerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1390,10 +1390,10 @@ class MedicationDispensePerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (function_ != o.function_) {
+    if (!equalsDeepWithNull(function_, o.function_)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;
@@ -1731,7 +1731,7 @@ class MedicationDispenseSubstitution extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1746,10 +1746,10 @@ class MedicationDispenseSubstitution extends BackboneElement {
     )) {
       return false;
     }
-    if (wasSubstituted != o.wasSubstituted) {
+    if (!equalsDeepWithNull(wasSubstituted, o.wasSubstituted)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

@@ -307,7 +307,7 @@ class Age extends Quantity
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -316,19 +316,19 @@ class Age extends Quantity
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (comparator != o.comparator) {
+    if (!equalsDeepWithNull(comparator, o.comparator)) {
       return false;
     }
-    if (unit != o.unit) {
+    if (!equalsDeepWithNull(unit, o.unit)) {
       return false;
     }
-    if (system != o.system) {
+    if (!equalsDeepWithNull(system, o.system)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     return true;

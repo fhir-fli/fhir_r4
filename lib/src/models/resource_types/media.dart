@@ -861,19 +861,19 @@ class Media extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -912,31 +912,31 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (modality != o.modality) {
+    if (!equalsDeepWithNull(modality, o.modality)) {
       return false;
     }
-    if (view != o.view) {
+    if (!equalsDeepWithNull(view, o.view)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (createdX != o.createdX) {
+    if (!equalsDeepWithNull(createdX, o.createdX)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
-    if (operator_ != o.operator_) {
+    if (!equalsDeepWithNull(operator_, o.operator_)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -945,28 +945,28 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
-    if (deviceName != o.deviceName) {
+    if (!equalsDeepWithNull(deviceName, o.deviceName)) {
       return false;
     }
-    if (device != o.device) {
+    if (!equalsDeepWithNull(device, o.device)) {
       return false;
     }
-    if (height != o.height) {
+    if (!equalsDeepWithNull(height, o.height)) {
       return false;
     }
-    if (width != o.width) {
+    if (!equalsDeepWithNull(width, o.width)) {
       return false;
     }
-    if (frames != o.frames) {
+    if (!equalsDeepWithNull(frames, o.frames)) {
       return false;
     }
-    if (duration != o.duration) {
+    if (!equalsDeepWithNull(duration, o.duration)) {
       return false;
     }
-    if (content != o.content) {
+    if (!equalsDeepWithNull(content, o.content)) {
       return false;
     }
     if (!listEquals<Annotation>(

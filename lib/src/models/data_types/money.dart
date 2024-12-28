@@ -255,7 +255,7 @@ class Money extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -264,10 +264,10 @@ class Money extends DataType
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (currency != o.currency) {
+    if (!equalsDeepWithNull(currency, o.currency)) {
       return false;
     }
     return true;

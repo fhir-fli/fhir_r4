@@ -3,6 +3,16 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
+bool equalsDeepWithNull(FhirBase? obj1, FhirBase? obj2) {
+  if (obj1 == null && obj2 == null) {
+    return true;
+  } else if (obj1 == null || obj2 == null) {
+    return false;
+  } else {
+    return obj1.equalsDeep(obj2);
+  }
+}
+
 /// Compares two lists for equality.
 bool listEquals<T>(List<FhirBase>? list1, List<FhirBase>? list2) {
   if (list1 == null && list2 == null) return true;

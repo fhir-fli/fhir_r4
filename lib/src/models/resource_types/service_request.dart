@@ -1255,19 +1255,19 @@ class ServiceRequest extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1318,13 +1318,13 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (requisition != o.requisition) {
+    if (!equalsDeepWithNull(requisition, o.requisition)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (intent != o.intent) {
+    if (!equalsDeepWithNull(intent, o.intent)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1333,13 +1333,13 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (doNotPerform != o.doNotPerform) {
+    if (!equalsDeepWithNull(doNotPerform, o.doNotPerform)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1348,28 +1348,28 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (quantityX != o.quantityX) {
+    if (!equalsDeepWithNull(quantityX, o.quantityX)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (asNeededX != o.asNeededX) {
+    if (!equalsDeepWithNull(asNeededX, o.asNeededX)) {
       return false;
     }
-    if (authoredOn != o.authoredOn) {
+    if (!equalsDeepWithNull(authoredOn, o.authoredOn)) {
       return false;
     }
-    if (requester != o.requester) {
+    if (!equalsDeepWithNull(requester, o.requester)) {
       return false;
     }
-    if (performerType != o.performerType) {
+    if (!equalsDeepWithNull(performerType, o.performerType)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1432,7 +1432,7 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (patientInstruction != o.patientInstruction) {
+    if (!equalsDeepWithNull(patientInstruction, o.patientInstruction)) {
       return false;
     }
     if (!listEquals<Reference>(

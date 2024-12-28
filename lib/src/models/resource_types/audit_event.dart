@@ -586,19 +586,19 @@ class AuditEvent extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -619,7 +619,7 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -628,19 +628,19 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (action != o.action) {
+    if (!equalsDeepWithNull(action, o.action)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (recorded != o.recorded) {
+    if (!equalsDeepWithNull(recorded, o.recorded)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (outcomeDesc != o.outcomeDesc) {
+    if (!equalsDeepWithNull(outcomeDesc, o.outcomeDesc)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -655,7 +655,7 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
     if (!listEquals<AuditEventEntity>(
@@ -1162,7 +1162,7 @@ class AuditEventAgent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1177,7 +1177,7 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1186,19 +1186,19 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (who != o.who) {
+    if (!equalsDeepWithNull(who, o.who)) {
       return false;
     }
-    if (altId != o.altId) {
+    if (!equalsDeepWithNull(altId, o.altId)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (requestor != o.requestor) {
+    if (!equalsDeepWithNull(requestor, o.requestor)) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<FhirUri>(
@@ -1207,10 +1207,10 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (media != o.media) {
+    if (!equalsDeepWithNull(media, o.media)) {
       return false;
     }
-    if (network != o.network) {
+    if (!equalsDeepWithNull(network, o.network)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1491,7 +1491,7 @@ class AuditEventNetwork extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1506,10 +1506,10 @@ class AuditEventNetwork extends BackboneElement {
     )) {
       return false;
     }
-    if (address != o.address) {
+    if (!equalsDeepWithNull(address, o.address)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     return true;
@@ -1811,7 +1811,7 @@ class AuditEventSource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1826,10 +1826,10 @@ class AuditEventSource extends BackboneElement {
     )) {
       return false;
     }
-    if (site != o.site) {
+    if (!equalsDeepWithNull(site, o.site)) {
       return false;
     }
-    if (observer != o.observer) {
+    if (!equalsDeepWithNull(observer, o.observer)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -2280,7 +2280,7 @@ class AuditEventEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2295,16 +2295,16 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (what != o.what) {
+    if (!equalsDeepWithNull(what, o.what)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (lifecycle != o.lifecycle) {
+    if (!equalsDeepWithNull(lifecycle, o.lifecycle)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -2313,13 +2313,13 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (query != o.query) {
+    if (!equalsDeepWithNull(query, o.query)) {
       return false;
     }
     if (!listEquals<AuditEventDetail>(
@@ -2604,7 +2604,7 @@ class AuditEventDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2619,10 +2619,10 @@ class AuditEventDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;

@@ -445,7 +445,7 @@ class DataRequirement extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -454,7 +454,7 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -463,7 +463,7 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (subjectX != o.subjectX) {
+    if (!equalsDeepWithNull(subjectX, o.subjectX)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -484,7 +484,7 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (limit != o.limit) {
+    if (!equalsDeepWithNull(limit, o.limit)) {
       return false;
     }
     if (!listEquals<DataRequirementSort>(
@@ -807,7 +807,7 @@ class DataRequirementCodeFilter extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -816,13 +816,13 @@ class DataRequirementCodeFilter extends Element {
     )) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (searchParam != o.searchParam) {
+    if (!equalsDeepWithNull(searchParam, o.searchParam)) {
       return false;
     }
-    if (valueSet != o.valueSet) {
+    if (!equalsDeepWithNull(valueSet, o.valueSet)) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1129,7 +1129,7 @@ class DataRequirementDateFilter extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1138,13 +1138,13 @@ class DataRequirementDateFilter extends Element {
     )) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (searchParam != o.searchParam) {
+    if (!equalsDeepWithNull(searchParam, o.searchParam)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -1389,7 +1389,7 @@ class DataRequirementSort extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1398,10 +1398,10 @@ class DataRequirementSort extends Element {
     )) {
       return false;
     }
-    if (path != o.path) {
+    if (!equalsDeepWithNull(path, o.path)) {
       return false;
     }
-    if (direction != o.direction) {
+    if (!equalsDeepWithNull(direction, o.direction)) {
       return false;
     }
     return true;

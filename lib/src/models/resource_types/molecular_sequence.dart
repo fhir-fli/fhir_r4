@@ -726,19 +726,19 @@ class MolecularSequence extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -765,28 +765,28 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (coordinateSystem != o.coordinateSystem) {
+    if (!equalsDeepWithNull(coordinateSystem, o.coordinateSystem)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (specimen != o.specimen) {
+    if (!equalsDeepWithNull(specimen, o.specimen)) {
       return false;
     }
-    if (device != o.device) {
+    if (!equalsDeepWithNull(device, o.device)) {
       return false;
     }
-    if (performer != o.performer) {
+    if (!equalsDeepWithNull(performer, o.performer)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (referenceSeq != o.referenceSeq) {
+    if (!equalsDeepWithNull(referenceSeq, o.referenceSeq)) {
       return false;
     }
     if (!listEquals<MolecularSequenceVariant>(
@@ -795,7 +795,7 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (observedSeq != o.observedSeq) {
+    if (!equalsDeepWithNull(observedSeq, o.observedSeq)) {
       return false;
     }
     if (!listEquals<MolecularSequenceQuality>(
@@ -804,7 +804,7 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (readCoverage != o.readCoverage) {
+    if (!equalsDeepWithNull(readCoverage, o.readCoverage)) {
       return false;
     }
     if (!listEquals<MolecularSequenceRepository>(
@@ -1267,7 +1267,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1282,31 +1282,31 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     )) {
       return false;
     }
-    if (chromosome != o.chromosome) {
+    if (!equalsDeepWithNull(chromosome, o.chromosome)) {
       return false;
     }
-    if (genomeBuild != o.genomeBuild) {
+    if (!equalsDeepWithNull(genomeBuild, o.genomeBuild)) {
       return false;
     }
-    if (orientation != o.orientation) {
+    if (!equalsDeepWithNull(orientation, o.orientation)) {
       return false;
     }
-    if (referenceSeqId != o.referenceSeqId) {
+    if (!equalsDeepWithNull(referenceSeqId, o.referenceSeqId)) {
       return false;
     }
-    if (referenceSeqPointer != o.referenceSeqPointer) {
+    if (!equalsDeepWithNull(referenceSeqPointer, o.referenceSeqPointer)) {
       return false;
     }
-    if (referenceSeqString != o.referenceSeqString) {
+    if (!equalsDeepWithNull(referenceSeqString, o.referenceSeqString)) {
       return false;
     }
-    if (strand != o.strand) {
+    if (!equalsDeepWithNull(strand, o.strand)) {
       return false;
     }
-    if (windowStart != o.windowStart) {
+    if (!equalsDeepWithNull(windowStart, o.windowStart)) {
       return false;
     }
-    if (windowEnd != o.windowEnd) {
+    if (!equalsDeepWithNull(windowEnd, o.windowEnd)) {
       return false;
     }
     return true;
@@ -1689,7 +1689,7 @@ class MolecularSequenceVariant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1704,22 +1704,22 @@ class MolecularSequenceVariant extends BackboneElement {
     )) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
-    if (observedAllele != o.observedAllele) {
+    if (!equalsDeepWithNull(observedAllele, o.observedAllele)) {
       return false;
     }
-    if (referenceAllele != o.referenceAllele) {
+    if (!equalsDeepWithNull(referenceAllele, o.referenceAllele)) {
       return false;
     }
-    if (cigar != o.cigar) {
+    if (!equalsDeepWithNull(cigar, o.cigar)) {
       return false;
     }
-    if (variantPointer != o.variantPointer) {
+    if (!equalsDeepWithNull(variantPointer, o.variantPointer)) {
       return false;
     }
     return true;
@@ -2299,7 +2299,7 @@ class MolecularSequenceQuality extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2314,49 +2314,49 @@ class MolecularSequenceQuality extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (standardSequence != o.standardSequence) {
+    if (!equalsDeepWithNull(standardSequence, o.standardSequence)) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
-    if (score != o.score) {
+    if (!equalsDeepWithNull(score, o.score)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (truthTP != o.truthTP) {
+    if (!equalsDeepWithNull(truthTP, o.truthTP)) {
       return false;
     }
-    if (queryTP != o.queryTP) {
+    if (!equalsDeepWithNull(queryTP, o.queryTP)) {
       return false;
     }
-    if (truthFN != o.truthFN) {
+    if (!equalsDeepWithNull(truthFN, o.truthFN)) {
       return false;
     }
-    if (queryFP != o.queryFP) {
+    if (!equalsDeepWithNull(queryFP, o.queryFP)) {
       return false;
     }
-    if (gtFP != o.gtFP) {
+    if (!equalsDeepWithNull(gtFP, o.gtFP)) {
       return false;
     }
-    if (precision != o.precision) {
+    if (!equalsDeepWithNull(precision, o.precision)) {
       return false;
     }
-    if (recall != o.recall) {
+    if (!equalsDeepWithNull(recall, o.recall)) {
       return false;
     }
-    if (fScore != o.fScore) {
+    if (!equalsDeepWithNull(fScore, o.fScore)) {
       return false;
     }
-    if (roc != o.roc) {
+    if (!equalsDeepWithNull(roc, o.roc)) {
       return false;
     }
     return true;
@@ -2774,7 +2774,7 @@ class MolecularSequenceRoc extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3194,7 +3194,7 @@ class MolecularSequenceRepository extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3209,22 +3209,22 @@ class MolecularSequenceRepository extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (datasetId != o.datasetId) {
+    if (!equalsDeepWithNull(datasetId, o.datasetId)) {
       return false;
     }
-    if (variantsetId != o.variantsetId) {
+    if (!equalsDeepWithNull(variantsetId, o.variantsetId)) {
       return false;
     }
-    if (readsetId != o.readsetId) {
+    if (!equalsDeepWithNull(readsetId, o.readsetId)) {
       return false;
     }
     return true;
@@ -3563,7 +3563,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3578,19 +3578,19 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     )) {
       return false;
     }
-    if (variantType != o.variantType) {
+    if (!equalsDeepWithNull(variantType, o.variantType)) {
       return false;
     }
-    if (exact != o.exact) {
+    if (!equalsDeepWithNull(exact, o.exact)) {
       return false;
     }
-    if (length != o.length) {
+    if (!equalsDeepWithNull(length, o.length)) {
       return false;
     }
-    if (outer != o.outer) {
+    if (!equalsDeepWithNull(outer, o.outer)) {
       return false;
     }
-    if (inner != o.inner) {
+    if (!equalsDeepWithNull(inner, o.inner)) {
       return false;
     }
     return true;
@@ -3866,7 +3866,7 @@ class MolecularSequenceOuter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3881,10 +3881,10 @@ class MolecularSequenceOuter extends BackboneElement {
     )) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
     return true;
@@ -4160,7 +4160,7 @@ class MolecularSequenceInner extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4175,10 +4175,10 @@ class MolecularSequenceInner extends BackboneElement {
     )) {
       return false;
     }
-    if (start != o.start) {
+    if (!equalsDeepWithNull(start, o.start)) {
       return false;
     }
-    if (end != o.end) {
+    if (!equalsDeepWithNull(end, o.end)) {
       return false;
     }
     return true;

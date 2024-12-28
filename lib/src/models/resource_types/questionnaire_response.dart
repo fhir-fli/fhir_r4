@@ -593,19 +593,19 @@ class QuestionnaireResponse extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -626,7 +626,7 @@ class QuestionnaireResponse extends DomainResource {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -641,25 +641,25 @@ class QuestionnaireResponse extends DomainResource {
     )) {
       return false;
     }
-    if (questionnaire != o.questionnaire) {
+    if (!equalsDeepWithNull(questionnaire, o.questionnaire)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (authored != o.authored) {
+    if (!equalsDeepWithNull(authored, o.authored)) {
       return false;
     }
-    if (author != o.author) {
+    if (!equalsDeepWithNull(author, o.author)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseItem>(
@@ -1021,7 +1021,7 @@ class QuestionnaireResponseItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1036,13 +1036,13 @@ class QuestionnaireResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (linkId != o.linkId) {
+    if (!equalsDeepWithNull(linkId, o.linkId)) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseAnswer>(
@@ -1395,7 +1395,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1410,7 +1410,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     )) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseItem>(

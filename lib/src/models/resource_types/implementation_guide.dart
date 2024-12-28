@@ -772,19 +772,19 @@ class ImplementationGuide extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -805,28 +805,28 @@ class ImplementationGuide extends CanonicalResource {
     )) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (experimental != o.experimental) {
+    if (!equalsDeepWithNull(experimental, o.experimental)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (publisher != o.publisher) {
+    if (!equalsDeepWithNull(publisher, o.publisher)) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -835,7 +835,7 @@ class ImplementationGuide extends CanonicalResource {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -850,13 +850,13 @@ class ImplementationGuide extends CanonicalResource {
     )) {
       return false;
     }
-    if (copyright != o.copyright) {
+    if (!equalsDeepWithNull(copyright, o.copyright)) {
       return false;
     }
-    if (packageId != o.packageId) {
+    if (!equalsDeepWithNull(packageId, o.packageId)) {
       return false;
     }
-    if (license != o.license) {
+    if (!equalsDeepWithNull(license, o.license)) {
       return false;
     }
     if (!listEquals<FHIRVersion>(
@@ -877,10 +877,10 @@ class ImplementationGuide extends CanonicalResource {
     )) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
-    if (manifest != o.manifest) {
+    if (!equalsDeepWithNull(manifest, o.manifest)) {
       return false;
     }
     return true;
@@ -1176,7 +1176,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1191,13 +1191,13 @@ class ImplementationGuideDependsOn extends BackboneElement {
     )) {
       return false;
     }
-    if (uri != o.uri) {
+    if (!equalsDeepWithNull(uri, o.uri)) {
       return false;
     }
-    if (packageId != o.packageId) {
+    if (!equalsDeepWithNull(packageId, o.packageId)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
     return true;
@@ -1466,7 +1466,7 @@ class ImplementationGuideGlobal extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1481,10 +1481,10 @@ class ImplementationGuideGlobal extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (profile != o.profile) {
+    if (!equalsDeepWithNull(profile, o.profile)) {
       return false;
     }
     return true;
@@ -1858,7 +1858,7 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1885,7 +1885,7 @@ class ImplementationGuideDefinition extends BackboneElement {
     )) {
       return false;
     }
-    if (page != o.page) {
+    if (!equalsDeepWithNull(page, o.page)) {
       return false;
     }
     if (!listEquals<ImplementationGuideParameter>(
@@ -2169,7 +2169,7 @@ class ImplementationGuideGrouping extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2184,10 +2184,10 @@ class ImplementationGuideGrouping extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
     return true;
@@ -2570,7 +2570,7 @@ class ImplementationGuideResource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2585,7 +2585,7 @@ class ImplementationGuideResource extends BackboneElement {
     )) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
     if (!listEquals<FHIRVersion>(
@@ -2594,16 +2594,16 @@ class ImplementationGuideResource extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (exampleX != o.exampleX) {
+    if (!equalsDeepWithNull(exampleX, o.exampleX)) {
       return false;
     }
-    if (groupingId != o.groupingId) {
+    if (!equalsDeepWithNull(groupingId, o.groupingId)) {
       return false;
     }
     return true;
@@ -2933,7 +2933,7 @@ class ImplementationGuidePage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2948,13 +2948,13 @@ class ImplementationGuidePage extends BackboneElement {
     )) {
       return false;
     }
-    if (nameX != o.nameX) {
+    if (!equalsDeepWithNull(nameX, o.nameX)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (generation != o.generation) {
+    if (!equalsDeepWithNull(generation, o.generation)) {
       return false;
     }
     if (!listEquals<ImplementationGuidePage>(
@@ -3230,7 +3230,7 @@ class ImplementationGuideParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3245,10 +3245,10 @@ class ImplementationGuideParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -3538,7 +3538,7 @@ class ImplementationGuideTemplate extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3553,13 +3553,13 @@ class ImplementationGuideTemplate extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (source != o.source) {
+    if (!equalsDeepWithNull(source, o.source)) {
       return false;
     }
-    if (scope != o.scope) {
+    if (!equalsDeepWithNull(scope, o.scope)) {
       return false;
     }
     return true;
@@ -3926,7 +3926,7 @@ class ImplementationGuideManifest extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3941,7 +3941,7 @@ class ImplementationGuideManifest extends BackboneElement {
     )) {
       return false;
     }
-    if (rendering != o.rendering) {
+    if (!equalsDeepWithNull(rendering, o.rendering)) {
       return false;
     }
     if (!listEquals<ImplementationGuideResource>(
@@ -4273,7 +4273,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4288,13 +4288,13 @@ class ImplementationGuideResource1 extends BackboneElement {
     )) {
       return false;
     }
-    if (reference != o.reference) {
+    if (!equalsDeepWithNull(reference, o.reference)) {
       return false;
     }
-    if (exampleX != o.exampleX) {
+    if (!equalsDeepWithNull(exampleX, o.exampleX)) {
       return false;
     }
-    if (relativePath != o.relativePath) {
+    if (!equalsDeepWithNull(relativePath, o.relativePath)) {
       return false;
     }
     return true;
@@ -4590,7 +4590,7 @@ class ImplementationGuidePage1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4605,10 +4605,10 @@ class ImplementationGuidePage1 extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
     if (!listEquals<FhirString>(

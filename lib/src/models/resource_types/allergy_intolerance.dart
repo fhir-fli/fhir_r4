@@ -746,19 +746,19 @@ class AllergyIntolerance extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -785,13 +785,13 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (clinicalStatus != o.clinicalStatus) {
+    if (!equalsDeepWithNull(clinicalStatus, o.clinicalStatus)) {
       return false;
     }
-    if (verificationStatus != o.verificationStatus) {
+    if (!equalsDeepWithNull(verificationStatus, o.verificationStatus)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<AllergyIntoleranceCategory>(
@@ -800,31 +800,31 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (criticality != o.criticality) {
+    if (!equalsDeepWithNull(criticality, o.criticality)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (onsetX != o.onsetX) {
+    if (!equalsDeepWithNull(onsetX, o.onsetX)) {
       return false;
     }
-    if (recordedDate != o.recordedDate) {
+    if (!equalsDeepWithNull(recordedDate, o.recordedDate)) {
       return false;
     }
-    if (recorder != o.recorder) {
+    if (!equalsDeepWithNull(recorder, o.recorder)) {
       return false;
     }
-    if (asserter != o.asserter) {
+    if (!equalsDeepWithNull(asserter, o.asserter)) {
       return false;
     }
-    if (lastOccurrence != o.lastOccurrence) {
+    if (!equalsDeepWithNull(lastOccurrence, o.lastOccurrence)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1248,7 +1248,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1263,7 +1263,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (substance != o.substance) {
+    if (!equalsDeepWithNull(substance, o.substance)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1272,16 +1272,16 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (onset != o.onset) {
+    if (!equalsDeepWithNull(onset, o.onset)) {
       return false;
     }
-    if (severity != o.severity) {
+    if (!equalsDeepWithNull(severity, o.severity)) {
       return false;
     }
-    if (exposureRoute != o.exposureRoute) {
+    if (!equalsDeepWithNull(exposureRoute, o.exposureRoute)) {
       return false;
     }
     if (!listEquals<Annotation>(

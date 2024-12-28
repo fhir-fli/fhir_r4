@@ -986,19 +986,19 @@ class Device extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1025,7 +1025,7 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (definition != o.definition) {
+    if (!equalsDeepWithNull(definition, o.definition)) {
       return false;
     }
     if (!listEquals<DeviceUdiCarrier>(
@@ -1034,7 +1034,7 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1043,22 +1043,22 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (distinctIdentifier != o.distinctIdentifier) {
+    if (!equalsDeepWithNull(distinctIdentifier, o.distinctIdentifier)) {
       return false;
     }
-    if (manufacturer != o.manufacturer) {
+    if (!equalsDeepWithNull(manufacturer, o.manufacturer)) {
       return false;
     }
-    if (manufactureDate != o.manufactureDate) {
+    if (!equalsDeepWithNull(manufactureDate, o.manufactureDate)) {
       return false;
     }
-    if (expirationDate != o.expirationDate) {
+    if (!equalsDeepWithNull(expirationDate, o.expirationDate)) {
       return false;
     }
-    if (lotNumber != o.lotNumber) {
+    if (!equalsDeepWithNull(lotNumber, o.lotNumber)) {
       return false;
     }
-    if (serialNumber != o.serialNumber) {
+    if (!equalsDeepWithNull(serialNumber, o.serialNumber)) {
       return false;
     }
     if (!listEquals<DeviceDeviceName>(
@@ -1067,13 +1067,13 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (modelNumber != o.modelNumber) {
+    if (!equalsDeepWithNull(modelNumber, o.modelNumber)) {
       return false;
     }
-    if (partNumber != o.partNumber) {
+    if (!equalsDeepWithNull(partNumber, o.partNumber)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<DeviceSpecialization>(
@@ -1094,10 +1094,10 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (owner != o.owner) {
+    if (!equalsDeepWithNull(owner, o.owner)) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -1106,10 +1106,10 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1124,7 +1124,7 @@ class Device extends DomainResource {
     )) {
       return false;
     }
-    if (parent != o.parent) {
+    if (!equalsDeepWithNull(parent, o.parent)) {
       return false;
     }
     return true;
@@ -1506,7 +1506,7 @@ class DeviceUdiCarrier extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1521,22 +1521,22 @@ class DeviceUdiCarrier extends BackboneElement {
     )) {
       return false;
     }
-    if (deviceIdentifier != o.deviceIdentifier) {
+    if (!equalsDeepWithNull(deviceIdentifier, o.deviceIdentifier)) {
       return false;
     }
-    if (issuer != o.issuer) {
+    if (!equalsDeepWithNull(issuer, o.issuer)) {
       return false;
     }
-    if (jurisdiction != o.jurisdiction) {
+    if (!equalsDeepWithNull(jurisdiction, o.jurisdiction)) {
       return false;
     }
-    if (carrierAIDC != o.carrierAIDC) {
+    if (!equalsDeepWithNull(carrierAIDC, o.carrierAIDC)) {
       return false;
     }
-    if (carrierHRF != o.carrierHRF) {
+    if (!equalsDeepWithNull(carrierHRF, o.carrierHRF)) {
       return false;
     }
-    if (entryType != o.entryType) {
+    if (!equalsDeepWithNull(entryType, o.entryType)) {
       return false;
     }
     return true;
@@ -1809,7 +1809,7 @@ class DeviceDeviceName extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1824,10 +1824,10 @@ class DeviceDeviceName extends BackboneElement {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     return true;
@@ -2099,7 +2099,7 @@ class DeviceSpecialization extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2114,10 +2114,10 @@ class DeviceSpecialization extends BackboneElement {
     )) {
       return false;
     }
-    if (systemType != o.systemType) {
+    if (!equalsDeepWithNull(systemType, o.systemType)) {
       return false;
     }
-    if (version != o.version) {
+    if (!equalsDeepWithNull(version, o.version)) {
       return false;
     }
     return true;
@@ -2410,7 +2410,7 @@ class DeviceVersion extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2425,13 +2425,13 @@ class DeviceVersion extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (component != o.component) {
+    if (!equalsDeepWithNull(component, o.component)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -2741,7 +2741,7 @@ class DeviceProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2756,7 +2756,7 @@ class DeviceProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Quantity>(

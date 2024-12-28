@@ -500,19 +500,19 @@ class VisionPrescription extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -539,22 +539,22 @@ class VisionPrescription extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (dateWritten != o.dateWritten) {
+    if (!equalsDeepWithNull(dateWritten, o.dateWritten)) {
       return false;
     }
-    if (prescriber != o.prescriber) {
+    if (!equalsDeepWithNull(prescriber, o.prescriber)) {
       return false;
     }
     if (!listEquals<VisionPrescriptionLensSpecification>(
@@ -1111,7 +1111,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1126,19 +1126,19 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (product != o.product) {
+    if (!equalsDeepWithNull(product, o.product)) {
       return false;
     }
-    if (eye != o.eye) {
+    if (!equalsDeepWithNull(eye, o.eye)) {
       return false;
     }
-    if (sphere != o.sphere) {
+    if (!equalsDeepWithNull(sphere, o.sphere)) {
       return false;
     }
-    if (cylinder != o.cylinder) {
+    if (!equalsDeepWithNull(cylinder, o.cylinder)) {
       return false;
     }
-    if (axis != o.axis) {
+    if (!equalsDeepWithNull(axis, o.axis)) {
       return false;
     }
     if (!listEquals<VisionPrescriptionPrism>(
@@ -1147,25 +1147,25 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (add != o.add) {
+    if (!equalsDeepWithNull(add, o.add)) {
       return false;
     }
-    if (power != o.power) {
+    if (!equalsDeepWithNull(power, o.power)) {
       return false;
     }
-    if (backCurve != o.backCurve) {
+    if (!equalsDeepWithNull(backCurve, o.backCurve)) {
       return false;
     }
-    if (diameter != o.diameter) {
+    if (!equalsDeepWithNull(diameter, o.diameter)) {
       return false;
     }
-    if (duration != o.duration) {
+    if (!equalsDeepWithNull(duration, o.duration)) {
       return false;
     }
-    if (color != o.color) {
+    if (!equalsDeepWithNull(color, o.color)) {
       return false;
     }
-    if (brand != o.brand) {
+    if (!equalsDeepWithNull(brand, o.brand)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1439,7 +1439,7 @@ class VisionPrescriptionPrism extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1454,10 +1454,10 @@ class VisionPrescriptionPrism extends BackboneElement {
     )) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (base != o.base) {
+    if (!equalsDeepWithNull(base, o.base)) {
       return false;
     }
     return true;

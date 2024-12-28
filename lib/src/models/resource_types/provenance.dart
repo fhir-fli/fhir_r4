@@ -600,19 +600,19 @@ class Provenance extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -639,10 +639,10 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (occurredX != o.occurredX) {
+    if (!equalsDeepWithNull(occurredX, o.occurredX)) {
       return false;
     }
-    if (recorded != o.recorded) {
+    if (!equalsDeepWithNull(recorded, o.recorded)) {
       return false;
     }
     if (!listEquals<FhirUri>(
@@ -651,7 +651,7 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -660,7 +660,7 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (activity != o.activity) {
+    if (!equalsDeepWithNull(activity, o.activity)) {
       return false;
     }
     if (!listEquals<ProvenanceAgent>(
@@ -1002,7 +1002,7 @@ class ProvenanceAgent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1017,7 +1017,7 @@ class ProvenanceAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1026,10 +1026,10 @@ class ProvenanceAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (who != o.who) {
+    if (!equalsDeepWithNull(who, o.who)) {
       return false;
     }
-    if (onBehalfOf != o.onBehalfOf) {
+    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
       return false;
     }
     return true;
@@ -1331,7 +1331,7 @@ class ProvenanceEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1346,10 +1346,10 @@ class ProvenanceEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (what != o.what) {
+    if (!equalsDeepWithNull(what, o.what)) {
       return false;
     }
     if (!listEquals<ProvenanceAgent>(

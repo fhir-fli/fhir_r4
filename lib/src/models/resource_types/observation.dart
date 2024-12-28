@@ -1048,19 +1048,19 @@ class Observation extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1099,7 +1099,7 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1108,10 +1108,10 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1120,13 +1120,13 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (effectiveX != o.effectiveX) {
+    if (!equalsDeepWithNull(effectiveX, o.effectiveX)) {
       return false;
     }
-    if (issued != o.issued) {
+    if (!equalsDeepWithNull(issued, o.issued)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1135,10 +1135,10 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (dataAbsentReason != o.dataAbsentReason) {
+    if (!equalsDeepWithNull(dataAbsentReason, o.dataAbsentReason)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1153,16 +1153,16 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
-    if (specimen != o.specimen) {
+    if (!equalsDeepWithNull(specimen, o.specimen)) {
       return false;
     }
-    if (device != o.device) {
+    if (!equalsDeepWithNull(device, o.device)) {
       return false;
     }
     if (!listEquals<ObservationReferenceRange>(
@@ -1573,7 +1573,7 @@ class ObservationReferenceRange extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1588,13 +1588,13 @@ class ObservationReferenceRange extends BackboneElement {
     )) {
       return false;
     }
-    if (low != o.low) {
+    if (!equalsDeepWithNull(low, o.low)) {
       return false;
     }
-    if (high != o.high) {
+    if (!equalsDeepWithNull(high, o.high)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1603,10 +1603,10 @@ class ObservationReferenceRange extends BackboneElement {
     )) {
       return false;
     }
-    if (age != o.age) {
+    if (!equalsDeepWithNull(age, o.age)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     return true;
@@ -2022,7 +2022,7 @@ class ObservationComponent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2037,13 +2037,13 @@ class ObservationComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
-    if (dataAbsentReason != o.dataAbsentReason) {
+    if (!equalsDeepWithNull(dataAbsentReason, o.dataAbsentReason)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

@@ -739,19 +739,19 @@ class Goal extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -778,10 +778,10 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (lifecycleStatus != o.lifecycleStatus) {
+    if (!equalsDeepWithNull(lifecycleStatus, o.lifecycleStatus)) {
       return false;
     }
-    if (achievementStatus != o.achievementStatus) {
+    if (!equalsDeepWithNull(achievementStatus, o.achievementStatus)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -790,16 +790,16 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (startX != o.startX) {
+    if (!equalsDeepWithNull(startX, o.startX)) {
       return false;
     }
     if (!listEquals<GoalTarget>(
@@ -808,13 +808,13 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (statusDate != o.statusDate) {
+    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (expressedBy != o.expressedBy) {
+    if (!equalsDeepWithNull(expressedBy, o.expressedBy)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1184,7 +1184,7 @@ class GoalTarget extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1199,13 +1199,13 @@ class GoalTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (measure != o.measure) {
+    if (!equalsDeepWithNull(measure, o.measure)) {
       return false;
     }
-    if (detailX != o.detailX) {
+    if (!equalsDeepWithNull(detailX, o.detailX)) {
       return false;
     }
-    if (dueX != o.dueX) {
+    if (!equalsDeepWithNull(dueX, o.dueX)) {
       return false;
     }
     return true;

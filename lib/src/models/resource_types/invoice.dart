@@ -717,19 +717,19 @@ class Invoice extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -756,22 +756,22 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (cancelledReason != o.cancelledReason) {
+    if (!equalsDeepWithNull(cancelledReason, o.cancelledReason)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (recipient != o.recipient) {
+    if (!equalsDeepWithNull(recipient, o.recipient)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
     if (!listEquals<InvoiceParticipant>(
@@ -780,10 +780,10 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (issuer != o.issuer) {
+    if (!equalsDeepWithNull(issuer, o.issuer)) {
       return false;
     }
-    if (account != o.account) {
+    if (!equalsDeepWithNull(account, o.account)) {
       return false;
     }
     if (!listEquals<InvoiceLineItem>(
@@ -798,13 +798,13 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (totalNet != o.totalNet) {
+    if (!equalsDeepWithNull(totalNet, o.totalNet)) {
       return false;
     }
-    if (totalGross != o.totalGross) {
+    if (!equalsDeepWithNull(totalGross, o.totalGross)) {
       return false;
     }
-    if (paymentTerms != o.paymentTerms) {
+    if (!equalsDeepWithNull(paymentTerms, o.paymentTerms)) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1083,7 +1083,7 @@ class InvoiceParticipant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1098,10 +1098,10 @@ class InvoiceParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (role != o.role) {
+    if (!equalsDeepWithNull(role, o.role)) {
       return false;
     }
-    if (actor != o.actor) {
+    if (!equalsDeepWithNull(actor, o.actor)) {
       return false;
     }
     return true;
@@ -1421,7 +1421,7 @@ class InvoiceLineItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1436,10 +1436,10 @@ class InvoiceLineItem extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (chargeItemX != o.chargeItemX) {
+    if (!equalsDeepWithNull(chargeItemX, o.chargeItemX)) {
       return false;
     }
     if (!listEquals<InvoicePriceComponent>(
@@ -1766,7 +1766,7 @@ class InvoicePriceComponent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1781,16 +1781,16 @@ class InvoicePriceComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;

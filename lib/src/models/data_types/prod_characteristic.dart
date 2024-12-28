@@ -507,7 +507,7 @@ class ProdCharacteristic extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -522,25 +522,25 @@ class ProdCharacteristic extends BackboneType {
     )) {
       return false;
     }
-    if (height != o.height) {
+    if (!equalsDeepWithNull(height, o.height)) {
       return false;
     }
-    if (width != o.width) {
+    if (!equalsDeepWithNull(width, o.width)) {
       return false;
     }
-    if (depth != o.depth) {
+    if (!equalsDeepWithNull(depth, o.depth)) {
       return false;
     }
-    if (weight != o.weight) {
+    if (!equalsDeepWithNull(weight, o.weight)) {
       return false;
     }
-    if (nominalVolume != o.nominalVolume) {
+    if (!equalsDeepWithNull(nominalVolume, o.nominalVolume)) {
       return false;
     }
-    if (externalDiameter != o.externalDiameter) {
+    if (!equalsDeepWithNull(externalDiameter, o.externalDiameter)) {
       return false;
     }
-    if (shape != o.shape) {
+    if (!equalsDeepWithNull(shape, o.shape)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -561,7 +561,7 @@ class ProdCharacteristic extends BackboneType {
     )) {
       return false;
     }
-    if (scoring != o.scoring) {
+    if (!equalsDeepWithNull(scoring, o.scoring)) {
       return false;
     }
     return true;

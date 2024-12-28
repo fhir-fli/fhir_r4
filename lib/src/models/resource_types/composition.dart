@@ -707,19 +707,19 @@ class Composition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -740,13 +740,13 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -755,13 +755,13 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -770,10 +770,10 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (confidentiality != o.confidentiality) {
+    if (!equalsDeepWithNull(confidentiality, o.confidentiality)) {
       return false;
     }
     if (!listEquals<CompositionAttester>(
@@ -782,7 +782,7 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (custodian != o.custodian) {
+    if (!equalsDeepWithNull(custodian, o.custodian)) {
       return false;
     }
     if (!listEquals<CompositionRelatesTo>(
@@ -1093,7 +1093,7 @@ class CompositionAttester extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1108,13 +1108,13 @@ class CompositionAttester extends BackboneElement {
     )) {
       return false;
     }
-    if (mode != o.mode) {
+    if (!equalsDeepWithNull(mode, o.mode)) {
       return false;
     }
-    if (time != o.time) {
+    if (!equalsDeepWithNull(time, o.time)) {
       return false;
     }
-    if (party != o.party) {
+    if (!equalsDeepWithNull(party, o.party)) {
       return false;
     }
     return true;
@@ -1394,7 +1394,7 @@ class CompositionRelatesTo extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1409,10 +1409,10 @@ class CompositionRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (targetX != o.targetX) {
+    if (!equalsDeepWithNull(targetX, o.targetX)) {
       return false;
     }
     return true;
@@ -1731,7 +1731,7 @@ class CompositionEvent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1752,7 +1752,7 @@ class CompositionEvent extends BackboneElement {
     )) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2251,7 +2251,7 @@ class CompositionSection extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2266,10 +2266,10 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2278,16 +2278,16 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (focus != o.focus) {
+    if (!equalsDeepWithNull(focus, o.focus)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (mode != o.mode) {
+    if (!equalsDeepWithNull(mode, o.mode)) {
       return false;
     }
-    if (orderedBy != o.orderedBy) {
+    if (!equalsDeepWithNull(orderedBy, o.orderedBy)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2296,7 +2296,7 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (emptyReason != o.emptyReason) {
+    if (!equalsDeepWithNull(emptyReason, o.emptyReason)) {
       return false;
     }
     if (!listEquals<CompositionSection>(

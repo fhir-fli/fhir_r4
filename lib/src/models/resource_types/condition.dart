@@ -802,19 +802,19 @@ class Condition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -841,10 +841,10 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (clinicalStatus != o.clinicalStatus) {
+    if (!equalsDeepWithNull(clinicalStatus, o.clinicalStatus)) {
       return false;
     }
-    if (verificationStatus != o.verificationStatus) {
+    if (!equalsDeepWithNull(verificationStatus, o.verificationStatus)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -853,10 +853,10 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (severity != o.severity) {
+    if (!equalsDeepWithNull(severity, o.severity)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -865,25 +865,25 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (onsetX != o.onsetX) {
+    if (!equalsDeepWithNull(onsetX, o.onsetX)) {
       return false;
     }
-    if (abatementX != o.abatementX) {
+    if (!equalsDeepWithNull(abatementX, o.abatementX)) {
       return false;
     }
-    if (recordedDate != o.recordedDate) {
+    if (!equalsDeepWithNull(recordedDate, o.recordedDate)) {
       return false;
     }
-    if (recorder != o.recorder) {
+    if (!equalsDeepWithNull(recorder, o.recorder)) {
       return false;
     }
-    if (asserter != o.asserter) {
+    if (!equalsDeepWithNull(asserter, o.asserter)) {
       return false;
     }
     if (!listEquals<ConditionStage>(
@@ -1206,7 +1206,7 @@ class ConditionStage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1221,7 +1221,7 @@ class ConditionStage extends BackboneElement {
     )) {
       return false;
     }
-    if (summary != o.summary) {
+    if (!equalsDeepWithNull(summary, o.summary)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1230,7 +1230,7 @@ class ConditionStage extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     return true;
@@ -1520,7 +1520,7 @@ class ConditionEvidence extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(

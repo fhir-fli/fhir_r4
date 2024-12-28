@@ -1088,19 +1088,19 @@ class Task extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1127,10 +1127,10 @@ class Task extends DomainResource {
     )) {
       return false;
     }
-    if (instantiatesCanonical != o.instantiatesCanonical) {
+    if (!equalsDeepWithNull(instantiatesCanonical, o.instantiatesCanonical)) {
       return false;
     }
-    if (instantiatesUri != o.instantiatesUri) {
+    if (!equalsDeepWithNull(instantiatesUri, o.instantiatesUri)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1139,7 +1139,7 @@ class Task extends DomainResource {
     )) {
       return false;
     }
-    if (groupIdentifier != o.groupIdentifier) {
+    if (!equalsDeepWithNull(groupIdentifier, o.groupIdentifier)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1148,46 +1148,46 @@ class Task extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
-    if (businessStatus != o.businessStatus) {
+    if (!equalsDeepWithNull(businessStatus, o.businessStatus)) {
       return false;
     }
-    if (intent != o.intent) {
+    if (!equalsDeepWithNull(intent, o.intent)) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
-    if (description != o.description) {
+    if (!equalsDeepWithNull(description, o.description)) {
       return false;
     }
-    if (focus != o.focus) {
+    if (!equalsDeepWithNull(focus, o.focus)) {
       return false;
     }
-    if (for_ != o.for_) {
+    if (!equalsDeepWithNull(for_, o.for_)) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
-    if (executionPeriod != o.executionPeriod) {
+    if (!equalsDeepWithNull(executionPeriod, o.executionPeriod)) {
       return false;
     }
-    if (authoredOn != o.authoredOn) {
+    if (!equalsDeepWithNull(authoredOn, o.authoredOn)) {
       return false;
     }
-    if (lastModified != o.lastModified) {
+    if (!equalsDeepWithNull(lastModified, o.lastModified)) {
       return false;
     }
-    if (requester != o.requester) {
+    if (!equalsDeepWithNull(requester, o.requester)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1196,16 +1196,16 @@ class Task extends DomainResource {
     )) {
       return false;
     }
-    if (owner != o.owner) {
+    if (!equalsDeepWithNull(owner, o.owner)) {
       return false;
     }
-    if (location != o.location) {
+    if (!equalsDeepWithNull(location, o.location)) {
       return false;
     }
-    if (reasonCode != o.reasonCode) {
+    if (!equalsDeepWithNull(reasonCode, o.reasonCode)) {
       return false;
     }
-    if (reasonReference != o.reasonReference) {
+    if (!equalsDeepWithNull(reasonReference, o.reasonReference)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1226,7 +1226,7 @@ class Task extends DomainResource {
     )) {
       return false;
     }
-    if (restriction != o.restriction) {
+    if (!equalsDeepWithNull(restriction, o.restriction)) {
       return false;
     }
     if (!listEquals<TaskInput>(
@@ -1544,7 +1544,7 @@ class TaskRestriction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1559,10 +1559,10 @@ class TaskRestriction extends BackboneElement {
     )) {
       return false;
     }
-    if (repetitions != o.repetitions) {
+    if (!equalsDeepWithNull(repetitions, o.repetitions)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2087,7 +2087,7 @@ class TaskInput extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2102,10 +2102,10 @@ class TaskInput extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;
@@ -2623,7 +2623,7 @@ class TaskOutput extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2638,10 +2638,10 @@ class TaskOutput extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (valueX != o.valueX) {
+    if (!equalsDeepWithNull(valueX, o.valueX)) {
       return false;
     }
     return true;

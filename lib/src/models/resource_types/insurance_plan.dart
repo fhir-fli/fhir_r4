@@ -701,19 +701,19 @@ class InsurancePlan extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -740,7 +740,7 @@ class InsurancePlan extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -749,7 +749,7 @@ class InsurancePlan extends DomainResource {
     )) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -758,13 +758,13 @@ class InsurancePlan extends DomainResource {
     )) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (ownedBy != o.ownedBy) {
+    if (!equalsDeepWithNull(ownedBy, o.ownedBy)) {
       return false;
     }
-    if (administeredBy != o.administeredBy) {
+    if (!equalsDeepWithNull(administeredBy, o.administeredBy)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1125,7 +1125,7 @@ class InsurancePlanContact extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1140,10 +1140,10 @@ class InsurancePlanContact extends BackboneElement {
     )) {
       return false;
     }
-    if (purpose != o.purpose) {
+    if (!equalsDeepWithNull(purpose, o.purpose)) {
       return false;
     }
-    if (name != o.name) {
+    if (!equalsDeepWithNull(name, o.name)) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -1152,7 +1152,7 @@ class InsurancePlanContact extends BackboneElement {
     )) {
       return false;
     }
-    if (address != o.address) {
+    if (!equalsDeepWithNull(address, o.address)) {
       return false;
     }
     return true;
@@ -1459,7 +1459,7 @@ class InsurancePlanCoverage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1474,7 +1474,7 @@ class InsurancePlanCoverage extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1786,7 +1786,7 @@ class InsurancePlanBenefit extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1801,10 +1801,10 @@ class InsurancePlanBenefit extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (requirement != o.requirement) {
+    if (!equalsDeepWithNull(requirement, o.requirement)) {
       return false;
     }
     if (!listEquals<InsurancePlanLimit>(
@@ -2083,7 +2083,7 @@ class InsurancePlanLimit extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2098,10 +2098,10 @@ class InsurancePlanLimit extends BackboneElement {
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     return true;
@@ -2504,7 +2504,7 @@ class InsurancePlanPlan extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2525,7 +2525,7 @@ class InsurancePlanPlan extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2866,7 +2866,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2881,16 +2881,16 @@ class InsurancePlanGeneralCost extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (groupSize != o.groupSize) {
+    if (!equalsDeepWithNull(groupSize, o.groupSize)) {
       return false;
     }
-    if (cost != o.cost) {
+    if (!equalsDeepWithNull(cost, o.cost)) {
       return false;
     }
-    if (comment != o.comment) {
+    if (!equalsDeepWithNull(comment, o.comment)) {
       return false;
     }
     return true;
@@ -3169,7 +3169,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3184,7 +3184,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
     if (!listEquals<InsurancePlanBenefit>(
@@ -3469,7 +3469,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3484,7 +3484,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
     if (!listEquals<InsurancePlanCost>(
@@ -3816,7 +3816,7 @@ class InsurancePlanCost extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3831,10 +3831,10 @@ class InsurancePlanCost extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (applicability != o.applicability) {
+    if (!equalsDeepWithNull(applicability, o.applicability)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3843,7 +3843,7 @@ class InsurancePlanCost extends BackboneElement {
     )) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;

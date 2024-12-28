@@ -914,19 +914,19 @@ class CommunicationRequest extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -965,13 +965,13 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (groupIdentifier != o.groupIdentifier) {
+    if (!equalsDeepWithNull(groupIdentifier, o.groupIdentifier)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (statusReason != o.statusReason) {
+    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -980,10 +980,10 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (priority != o.priority) {
+    if (!equalsDeepWithNull(priority, o.priority)) {
       return false;
     }
-    if (doNotPerform != o.doNotPerform) {
+    if (!equalsDeepWithNull(doNotPerform, o.doNotPerform)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -992,7 +992,7 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (subject != o.subject) {
+    if (!equalsDeepWithNull(subject, o.subject)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1001,7 +1001,7 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (encounter != o.encounter) {
+    if (!equalsDeepWithNull(encounter, o.encounter)) {
       return false;
     }
     if (!listEquals<CommunicationRequestPayload>(
@@ -1010,13 +1010,13 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (occurrenceX != o.occurrenceX) {
+    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
       return false;
     }
-    if (authoredOn != o.authoredOn) {
+    if (!equalsDeepWithNull(authoredOn, o.authoredOn)) {
       return false;
     }
-    if (requester != o.requester) {
+    if (!equalsDeepWithNull(requester, o.requester)) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1025,7 +1025,7 @@ class CommunicationRequest extends DomainResource {
     )) {
       return false;
     }
-    if (sender != o.sender) {
+    if (!equalsDeepWithNull(sender, o.sender)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1309,7 +1309,7 @@ class CommunicationRequestPayload extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1324,7 +1324,7 @@ class CommunicationRequestPayload extends BackboneElement {
     )) {
       return false;
     }
-    if (contentX != o.contentX) {
+    if (!equalsDeepWithNull(contentX, o.contentX)) {
       return false;
     }
     return true;

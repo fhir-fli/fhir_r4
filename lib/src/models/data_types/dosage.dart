@@ -551,7 +551,7 @@ class Dosage extends BackboneType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -566,10 +566,10 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -578,22 +578,22 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (patientInstruction != o.patientInstruction) {
+    if (!equalsDeepWithNull(patientInstruction, o.patientInstruction)) {
       return false;
     }
-    if (timing != o.timing) {
+    if (!equalsDeepWithNull(timing, o.timing)) {
       return false;
     }
-    if (asNeededX != o.asNeededX) {
+    if (!equalsDeepWithNull(asNeededX, o.asNeededX)) {
       return false;
     }
-    if (site != o.site) {
+    if (!equalsDeepWithNull(site, o.site)) {
       return false;
     }
-    if (route != o.route) {
+    if (!equalsDeepWithNull(route, o.route)) {
       return false;
     }
-    if (method != o.method) {
+    if (!equalsDeepWithNull(method, o.method)) {
       return false;
     }
     if (!listEquals<DosageDoseAndRate>(
@@ -602,13 +602,14 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (maxDosePerPeriod != o.maxDosePerPeriod) {
+    if (!equalsDeepWithNull(maxDosePerPeriod, o.maxDosePerPeriod)) {
       return false;
     }
-    if (maxDosePerAdministration != o.maxDosePerAdministration) {
+    if (!equalsDeepWithNull(
+        maxDosePerAdministration, o.maxDosePerAdministration)) {
       return false;
     }
-    if (maxDosePerLifetime != o.maxDosePerLifetime) {
+    if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
       return false;
     }
     return true;
@@ -900,7 +901,7 @@ class DosageDoseAndRate extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -909,13 +910,13 @@ class DosageDoseAndRate extends Element {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (doseX != o.doseX) {
+    if (!equalsDeepWithNull(doseX, o.doseX)) {
       return false;
     }
-    if (rateX != o.rateX) {
+    if (!equalsDeepWithNull(rateX, o.rateX)) {
       return false;
     }
     return true;

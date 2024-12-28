@@ -986,19 +986,19 @@ class ClaimResponse extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
-    if (meta != o.meta) {
+    if (!equalsDeepWithNull(meta, o.meta)) {
       return false;
     }
-    if (implicitRules != o.implicitRules) {
+    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1025,46 +1025,46 @@ class ClaimResponse extends DomainResource {
     )) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (subType != o.subType) {
+    if (!equalsDeepWithNull(subType, o.subType)) {
       return false;
     }
-    if (use != o.use) {
+    if (!equalsDeepWithNull(use, o.use)) {
       return false;
     }
-    if (patient != o.patient) {
+    if (!equalsDeepWithNull(patient, o.patient)) {
       return false;
     }
-    if (created != o.created) {
+    if (!equalsDeepWithNull(created, o.created)) {
       return false;
     }
-    if (insurer != o.insurer) {
+    if (!equalsDeepWithNull(insurer, o.insurer)) {
       return false;
     }
-    if (requestor != o.requestor) {
+    if (!equalsDeepWithNull(requestor, o.requestor)) {
       return false;
     }
-    if (request != o.request) {
+    if (!equalsDeepWithNull(request, o.request)) {
       return false;
     }
-    if (outcome != o.outcome) {
+    if (!equalsDeepWithNull(outcome, o.outcome)) {
       return false;
     }
-    if (disposition != o.disposition) {
+    if (!equalsDeepWithNull(disposition, o.disposition)) {
       return false;
     }
-    if (preAuthRef != o.preAuthRef) {
+    if (!equalsDeepWithNull(preAuthRef, o.preAuthRef)) {
       return false;
     }
-    if (preAuthPeriod != o.preAuthPeriod) {
+    if (!equalsDeepWithNull(preAuthPeriod, o.preAuthPeriod)) {
       return false;
     }
-    if (payeeType != o.payeeType) {
+    if (!equalsDeepWithNull(payeeType, o.payeeType)) {
       return false;
     }
     if (!listEquals<ClaimResponseItem>(
@@ -1091,16 +1091,16 @@ class ClaimResponse extends DomainResource {
     )) {
       return false;
     }
-    if (payment != o.payment) {
+    if (!equalsDeepWithNull(payment, o.payment)) {
       return false;
     }
-    if (fundsReserve != o.fundsReserve) {
+    if (!equalsDeepWithNull(fundsReserve, o.fundsReserve)) {
       return false;
     }
-    if (formCode != o.formCode) {
+    if (!equalsDeepWithNull(formCode, o.formCode)) {
       return false;
     }
-    if (form != o.form) {
+    if (!equalsDeepWithNull(form, o.form)) {
       return false;
     }
     if (!listEquals<ClaimResponseProcessNote>(
@@ -1461,7 +1461,7 @@ class ClaimResponseItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1476,7 +1476,7 @@ class ClaimResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (itemSequence != o.itemSequence) {
+    if (!equalsDeepWithNull(itemSequence, o.itemSequence)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -1817,7 +1817,7 @@ class ClaimResponseAdjudication extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1832,16 +1832,16 @@ class ClaimResponseAdjudication extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (reason != o.reason) {
+    if (!equalsDeepWithNull(reason, o.reason)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (value != o.value) {
+    if (!equalsDeepWithNull(value, o.value)) {
       return false;
     }
     return true;
@@ -2175,7 +2175,7 @@ class ClaimResponseDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2190,7 +2190,7 @@ class ClaimResponseDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (detailSequence != o.detailSequence) {
+    if (!equalsDeepWithNull(detailSequence, o.detailSequence)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -2513,7 +2513,7 @@ class ClaimResponseSubDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2528,7 +2528,7 @@ class ClaimResponseSubDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (subDetailSequence != o.subDetailSequence) {
+    if (!equalsDeepWithNull(subDetailSequence, o.subDetailSequence)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -3265,7 +3265,7 @@ class ClaimResponseAddItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3304,7 +3304,7 @@ class ClaimResponseAddItem extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3319,25 +3319,25 @@ class ClaimResponseAddItem extends BackboneElement {
     )) {
       return false;
     }
-    if (servicedX != o.servicedX) {
+    if (!equalsDeepWithNull(servicedX, o.servicedX)) {
       return false;
     }
-    if (locationX != o.locationX) {
+    if (!equalsDeepWithNull(locationX, o.locationX)) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
-    if (bodySite != o.bodySite) {
+    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3821,7 +3821,7 @@ class ClaimResponseDetail1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3836,7 +3836,7 @@ class ClaimResponseDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3845,16 +3845,16 @@ class ClaimResponseDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -4302,7 +4302,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4317,7 +4317,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (productOrService != o.productOrService) {
+    if (!equalsDeepWithNull(productOrService, o.productOrService)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4326,16 +4326,16 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     )) {
       return false;
     }
-    if (quantity != o.quantity) {
+    if (!equalsDeepWithNull(quantity, o.quantity)) {
       return false;
     }
-    if (unitPrice != o.unitPrice) {
+    if (!equalsDeepWithNull(unitPrice, o.unitPrice)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (net != o.net) {
+    if (!equalsDeepWithNull(net, o.net)) {
       return false;
     }
     if (!listEquals<FhirPositiveInt>(
@@ -4619,7 +4619,7 @@ class ClaimResponseTotal extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4634,10 +4634,10 @@ class ClaimResponseTotal extends BackboneElement {
     )) {
       return false;
     }
-    if (category != o.category) {
+    if (!equalsDeepWithNull(category, o.category)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
     return true;
@@ -4996,7 +4996,7 @@ class ClaimResponsePayment extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5011,22 +5011,22 @@ class ClaimResponsePayment extends BackboneElement {
     )) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (adjustment != o.adjustment) {
+    if (!equalsDeepWithNull(adjustment, o.adjustment)) {
       return false;
     }
-    if (adjustmentReason != o.adjustmentReason) {
+    if (!equalsDeepWithNull(adjustmentReason, o.adjustmentReason)) {
       return false;
     }
-    if (date != o.date) {
+    if (!equalsDeepWithNull(date, o.date)) {
       return false;
     }
-    if (amount != o.amount) {
+    if (!equalsDeepWithNull(amount, o.amount)) {
       return false;
     }
-    if (identifier != o.identifier) {
+    if (!equalsDeepWithNull(identifier, o.identifier)) {
       return false;
     }
     return true;
@@ -5341,7 +5341,7 @@ class ClaimResponseProcessNote extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5356,16 +5356,16 @@ class ClaimResponseProcessNote extends BackboneElement {
     )) {
       return false;
     }
-    if (number != o.number) {
+    if (!equalsDeepWithNull(number, o.number)) {
       return false;
     }
-    if (type != o.type) {
+    if (!equalsDeepWithNull(type, o.type)) {
       return false;
     }
-    if (text != o.text) {
+    if (!equalsDeepWithNull(text, o.text)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
     return true;
@@ -5705,7 +5705,7 @@ class ClaimResponseInsurance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5720,19 +5720,19 @@ class ClaimResponseInsurance extends BackboneElement {
     )) {
       return false;
     }
-    if (sequence != o.sequence) {
+    if (!equalsDeepWithNull(sequence, o.sequence)) {
       return false;
     }
-    if (focal != o.focal) {
+    if (!equalsDeepWithNull(focal, o.focal)) {
       return false;
     }
-    if (coverage != o.coverage) {
+    if (!equalsDeepWithNull(coverage, o.coverage)) {
       return false;
     }
-    if (businessArrangement != o.businessArrangement) {
+    if (!equalsDeepWithNull(businessArrangement, o.businessArrangement)) {
       return false;
     }
-    if (claimResponse != o.claimResponse) {
+    if (!equalsDeepWithNull(claimResponse, o.claimResponse)) {
       return false;
     }
     return true;
@@ -6053,7 +6053,7 @@ class ClaimResponseError extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6068,16 +6068,16 @@ class ClaimResponseError extends BackboneElement {
     )) {
       return false;
     }
-    if (itemSequence != o.itemSequence) {
+    if (!equalsDeepWithNull(itemSequence, o.itemSequence)) {
       return false;
     }
-    if (detailSequence != o.detailSequence) {
+    if (!equalsDeepWithNull(detailSequence, o.detailSequence)) {
       return false;
     }
-    if (subDetailSequence != o.subDetailSequence) {
+    if (!equalsDeepWithNull(subDetailSequence, o.subDetailSequence)) {
       return false;
     }
-    if (code != o.code) {
+    if (!equalsDeepWithNull(code, o.code)) {
       return false;
     }
     return true;

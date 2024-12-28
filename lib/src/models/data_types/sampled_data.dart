@@ -367,7 +367,7 @@ class SampledData extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -376,25 +376,25 @@ class SampledData extends DataType
     )) {
       return false;
     }
-    if (origin != o.origin) {
+    if (!equalsDeepWithNull(origin, o.origin)) {
       return false;
     }
-    if (period != o.period) {
+    if (!equalsDeepWithNull(period, o.period)) {
       return false;
     }
-    if (factor != o.factor) {
+    if (!equalsDeepWithNull(factor, o.factor)) {
       return false;
     }
-    if (lowerLimit != o.lowerLimit) {
+    if (!equalsDeepWithNull(lowerLimit, o.lowerLimit)) {
       return false;
     }
-    if (upperLimit != o.upperLimit) {
+    if (!equalsDeepWithNull(upperLimit, o.upperLimit)) {
       return false;
     }
-    if (dimensions != o.dimensions) {
+    if (!equalsDeepWithNull(dimensions, o.dimensions)) {
       return false;
     }
-    if (data != o.data) {
+    if (!equalsDeepWithNull(data, o.data)) {
       return false;
     }
     return true;

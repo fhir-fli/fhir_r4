@@ -407,7 +407,7 @@ class Attachment extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -416,28 +416,28 @@ class Attachment extends DataType
     )) {
       return false;
     }
-    if (contentType != o.contentType) {
+    if (!equalsDeepWithNull(contentType, o.contentType)) {
       return false;
     }
-    if (language != o.language) {
+    if (!equalsDeepWithNull(language, o.language)) {
       return false;
     }
-    if (data != o.data) {
+    if (!equalsDeepWithNull(data, o.data)) {
       return false;
     }
-    if (url != o.url) {
+    if (!equalsDeepWithNull(url, o.url)) {
       return false;
     }
-    if (size != o.size) {
+    if (!equalsDeepWithNull(size, o.size)) {
       return false;
     }
-    if (hash != o.hash) {
+    if (!equalsDeepWithNull(hash, o.hash)) {
       return false;
     }
-    if (title != o.title) {
+    if (!equalsDeepWithNull(title, o.title)) {
       return false;
     }
-    if (creation != o.creation) {
+    if (!equalsDeepWithNull(creation, o.creation)) {
       return false;
     }
     return true;

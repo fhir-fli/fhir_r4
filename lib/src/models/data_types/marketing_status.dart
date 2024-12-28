@@ -352,7 +352,7 @@ class MarketingStatus extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (id != o.id) {
+    if (!equalsDeepWithNull(id, o.id)) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -367,19 +367,19 @@ class MarketingStatus extends BackboneType {
     )) {
       return false;
     }
-    if (country != o.country) {
+    if (!equalsDeepWithNull(country, o.country)) {
       return false;
     }
-    if (jurisdiction != o.jurisdiction) {
+    if (!equalsDeepWithNull(jurisdiction, o.jurisdiction)) {
       return false;
     }
-    if (status != o.status) {
+    if (!equalsDeepWithNull(status, o.status)) {
       return false;
     }
-    if (dateRange != o.dateRange) {
+    if (!equalsDeepWithNull(dateRange, o.dateRange)) {
       return false;
     }
-    if (restoreDate != o.restoreDate) {
+    if (!equalsDeepWithNull(restoreDate, o.restoreDate)) {
       return false;
     }
     return true;
