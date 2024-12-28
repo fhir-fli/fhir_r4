@@ -136,8 +136,8 @@ abstract class FhirBase {
   FhirBase? getChildValueByName(String name);
 
   /// Deep equality check.
-  bool equalsDeep(FhirBase? other) {
-    return other != null;
+  bool equalsDeep(FhirBase? o) {
+    return o != null;
   }
 
   /// Checks if the object is equal to another object.

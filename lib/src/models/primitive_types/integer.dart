@@ -141,6 +141,10 @@ class FhirInteger extends FhirNumber
   @override
   String? get primitiveValue => value?.toString();
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirInteger && o.value == value && o.element == element;
+
   /// Overrides equality operator to compare instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

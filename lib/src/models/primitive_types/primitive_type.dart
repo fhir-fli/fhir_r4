@@ -41,11 +41,11 @@ abstract class PrimitiveType<T> extends DataType {
 
   /// Checks equality between two instances (deep comparison)
   @override
-  bool equalsDeep(FhirBase? other) {
-    return other is PrimitiveType<T> &&
-        value == other.value &&
-        element == other.element &&
-        userData == other.userData;
+  bool equalsDeep(FhirBase? o) {
+    return o is PrimitiveType<T> &&
+        value == o.value &&
+        element == o.element &&
+        userData == o.userData;
   }
 
   /// Checks equality between two instances (shallow comparison)

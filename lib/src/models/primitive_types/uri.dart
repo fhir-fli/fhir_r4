@@ -160,6 +160,9 @@ class FhirUri extends PrimitiveType<Uri>
   /// Retrieves the primitive value of the object.
   @override
   String? get primitiveValue => value?.toString();
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirUri && o.value == value && o.element == element;
 
   /// Overrides equality operator
   @override

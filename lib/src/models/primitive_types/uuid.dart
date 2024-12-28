@@ -253,6 +253,10 @@ class FhirUuid extends PrimitiveType<UuidValue?>
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirUuid && o.value == value && o.element == element;
+
   /// Checks equality between two objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

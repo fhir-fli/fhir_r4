@@ -278,6 +278,10 @@ class FhirTime extends PrimitiveType<String>
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => value.hashCode;
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirTime && o.value == value && o.element == element;
+
   /// Equality operator for comparing two [FhirTime] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

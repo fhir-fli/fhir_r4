@@ -856,6 +856,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
   int get hashCode => value.hashCode;
 
   @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirDateTimeBase && o.value == value && o.element == element;
+
+  @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
 

@@ -190,6 +190,10 @@ class FhirDate extends FhirDateTimeBase
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => value.hashCode;
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirDate && o.value == value && o.element == element;
+
   /// Overrides the equality operator to compare two [FhirDate] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

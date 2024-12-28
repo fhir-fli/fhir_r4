@@ -160,6 +160,10 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   int compareTo(FhirInteger64 other) =>
       value == null || other.value == null ? 0 : value!.compareTo(other.value!);
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirInteger64 && o.value == value && o.element == element;
+
   /// Checks equality.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

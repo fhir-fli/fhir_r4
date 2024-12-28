@@ -104,6 +104,10 @@ class FhirMarkdown extends PrimitiveType<String>
   @override
   String? get primitiveValue => value?.toString();
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirMarkdown && o.value == value && o.element == element;
+
   /// Compares this instance for equality with another object.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

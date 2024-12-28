@@ -202,13 +202,13 @@ class Element extends FhirBase {
   }
 
   @override
-  bool equalsDeep(FhirBase? other) {
-    if (other == null || other is! Element) {
+  bool equalsDeep(FhirBase? o) {
+    if (o == null || o is! Element) {
       return false;
     }
 
-    return id == other.id &&
-        FhirBase.compareDeepLists(extension_, other.extension_, true);
+    return id == o.id &&
+        FhirBase.compareDeepLists(extension_, o.extension_, true);
   }
 
   /// Method to compare shallow equality of two elements

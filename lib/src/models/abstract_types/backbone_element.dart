@@ -58,14 +58,14 @@ abstract class BackboneElement extends DataType {
   }
 
   @override
-  bool equalsDeep(FhirBase? other) {
-    if (other == null || other is! BackboneElement) {
+  bool equalsDeep(FhirBase? o) {
+    if (o == null || o is! BackboneElement) {
       return false;
     }
-    return super.equalsDeep(other) &&
+    return super.equalsDeep(o) &&
         FhirBase.compareDeepLists<FhirExtension>(
           modifierExtension,
-          other.modifierExtension,
+          o.modifierExtension,
           true,
         );
   }

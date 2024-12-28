@@ -150,6 +150,10 @@ class FhirUrl extends PrimitiveType<Uri>
   @override
   String? get primitiveValue => value?.toString();
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirUrl && o.value == value && o.element == element;
+
   /// Overrides equality operator
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

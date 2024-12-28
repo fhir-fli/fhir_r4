@@ -153,6 +153,10 @@ class FhirDecimal extends FhirNumber
   @override
   String? get primitiveValue => value?.toString();
 
+  @override
+  bool equalsDeep(FhirBase? o) =>
+      o is FhirDecimal && o.value == value && o.element == element;
+
   /// Overrides equality operator for comparing two [FhirDecimal] instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
