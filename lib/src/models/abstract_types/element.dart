@@ -208,7 +208,7 @@ class Element extends FhirBase {
     }
 
     return id == other.id &&
-        FhirBase.compareDeepLists(extension_, other.extension_);
+        FhirBase.compareDeepLists(extension_, other.extension_, true);
   }
 
   /// Method to compare shallow equality of two elements

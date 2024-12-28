@@ -140,6 +140,77 @@ abstract class FhirBase {
     return other != null;
   }
 
+  /// Checks if the object is equal to another object.
+  // ignore: avoid_positional_boolean_parameters
+  bool compareDeepStrings(String? s1, String? s2, bool allowNull) {
+    if (allowNull) {
+      final noLeft = s1 == null || s1.isEmpty;
+      final noRight = s2 == null || s2.isEmpty;
+      if (noLeft && noRight) {
+        return true;
+      }
+    }
+    if (s1 == null || s2 == null) {
+      return false;
+    }
+    return s1 == s2;
+  }
+
+  /// Checks if the object is equal to another object.
+  static bool compareDeepLists<T extends FhirBase>(
+    List<T>? e1,
+    List<T>? e2,
+    // ignore: avoid_positional_boolean_parameters
+    bool allowNull,
+  ) {
+    if (noList(e1) && noList(e2) && allowNull) {
+      return true;
+    }
+    if (noList(e1) || noList(e2)) {
+      return false;
+    }
+    if (e1!.length != e2!.length) {
+      return false;
+    }
+    for (var i = 0; i < e1.length; i++) {
+      if (!compareDeepBases(e1[i], e2[i], allowNull)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// Checks if the list is empty.
+  static bool noList<T extends FhirBase>(List<T>? list) {
+    return list == null ||
+        list.isEmpty ||
+        (list.length == 1 && list.first.isEmpty());
+  }
+
+  /// Checks if the object is equal to another object.
+  static bool compareDeepBases(
+    FhirBase? e1,
+    FhirBase? e2,
+    // ignore: avoid_positional_boolean_parameters
+    bool allowNull,
+  ) {
+    if (allowNull) {
+      final noLeft = e1 == null || e1.isEmpty();
+      final noRight = e2 == null || e2.isEmpty();
+      if (noLeft && noRight) {
+        return true;
+      }
+    }
+    if (e1 == null || e2 == null) {
+      return false;
+    }
+    if (e2.isMetadataBased && !e1.isMetadataBased) {
+      return e2.equalsDeep(e1);
+    } else {
+      return e1.equalsDeep(e2);
+    }
+  }
+
   /// Compares two [FhirBase] objects deeply.
   static bool compareDeep(
     FhirBase? e1,
@@ -158,31 +229,6 @@ abstract class FhirBase {
       return false;
     }
     return const DeepCollectionEquality().equals(e1.toJson(), e2.toJson());
-  }
-
-  /// Compares two lists of [FhirBase] objects deeply.
-  static bool compareDeepLists<T extends FhirBase>(
-    List<T>? list1,
-    List<T>? list2, [
-    // ignore: avoid_positional_boolean_parameters
-    bool allowNull = false,
-  ]) {
-    if (allowNull) {
-      final noLeft = list1 == null || list1.isEmpty;
-      final noRight = list2 == null || list2.isEmpty;
-      if (noLeft && noRight) {
-        return true;
-      }
-    }
-    if (list1 == null || list2 == null || list1.length != list2.length) {
-      return false;
-    }
-    for (var i = 0; i < list1.length; i++) {
-      if (!compareDeep(list1[i], list2[i], allowNull)) {
-        return false;
-      }
-    }
-    return true;
   }
 
   /// Converts the object to a JSON representation.

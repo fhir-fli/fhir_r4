@@ -66,6 +66,7 @@ abstract class BackboneElement extends DataType {
         FhirBase.compareDeepLists<FhirExtension>(
           modifierExtension,
           other.modifierExtension,
+          true,
         );
   }
 

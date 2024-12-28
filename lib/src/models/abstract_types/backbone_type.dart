@@ -64,7 +64,11 @@ abstract class BackboneType extends DataType {
       return false;
     }
     return super.equalsDeep(other) &&
-        FhirBase.compareDeepLists(modifierExtension, other.modifierExtension);
+        FhirBase.compareDeepLists(
+          modifierExtension,
+          other.modifierExtension,
+          true,
+        );
   }
 
   @override

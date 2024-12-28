@@ -320,7 +320,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         return lhs.year!.compareTo(rhs.year!);
       }
     }
-
+    
     if (lhs.month != null || rhs.month != null) {
       if (lhs.month == null || rhs.month == null) {
         return null;
@@ -390,7 +390,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
       case Comparator.equal:
         return comparisonResult == 0;
       case Comparator.equivalent:
-        return comparisonResult != 0;
+        return comparisonResult == 0;
       case Comparator.greaterThan:
         return comparisonResult > 0;
       case Comparator.greaterThanEqual:
@@ -1053,7 +1053,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
   /// Returns if the passed in [FhirDateTimeBase] is equivalent to this
   /// in terms of precision
-  bool isEquivalentTo(FhirDateTimeBase other) =>
+  bool isPrecisionEquivalentTo(FhirDateTimeBase other) =>
       (yearsPrecision && other.yearsPrecision) ||
       (monthsPrecision && other.monthsPrecision) ||
       (daysPrecision && other.daysPrecision) ||

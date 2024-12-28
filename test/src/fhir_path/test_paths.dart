@@ -1,9 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors, no_adjacent_strings_in_list
-// ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
-// ignore_for_file: leading_newlines_in_multiline_strings
-// ignore_for_file: unnecessary_statements, directives_ordering
-// ignore_for_file: always_specify_types, inference_failure_on_collection_literal
+// ignore_for_file: no_adjacent_strings_in_list
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
