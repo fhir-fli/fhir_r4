@@ -33,7 +33,7 @@ abstract class FhirBase {
   final String? objectPath;
 
   /// Checks if the object is primitive.
-  bool get isPrimitive => false;
+  bool get isPrimitive => this is PrimitiveType;
 
   /// Checks if the object has a primitive value.
   bool get hasPrimitiveValue => isPrimitive;

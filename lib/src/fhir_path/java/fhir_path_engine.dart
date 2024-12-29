@@ -3447,7 +3447,7 @@ class FHIRPathEngine {
         ['-'],
       );
     }
-    if (right.first is! PrimitiveType &&
+    if (!right.first.isPrimitive &&
         !(left.first is FhirDateTimeBase ||
             left.first.toString() == '0' ||
             left.first.fhirType == 'Quantity')) {
@@ -3540,7 +3540,7 @@ class FHIRPathEngine {
         ['/'],
       );
     }
-    if (left.first is! PrimitiveType && left.first.fhirType != 'Quantity') {
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
       throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
         '/',
         left.first.fhirType,
@@ -3551,7 +3551,7 @@ class FHIRPathEngine {
         '/',
       ]);
     }
-    if (right.first is! PrimitiveType && right.first.fhirType != 'Quantity') {
+    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
       throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
         '/',
         right.first.fhirType,
