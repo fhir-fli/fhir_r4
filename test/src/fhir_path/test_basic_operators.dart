@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 import 'test_data.dart';
 
-void main() {
+void testBasicOperators() {
   group('Operators: ', () {
     test('= : ', () {
       final node = engine.parse('10 = 10');
@@ -1050,110 +1050,100 @@ void main() {
       );
     });
 
-    // test('is : ', () {
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '12 is Integer',
-    //     ),
-    //     [true],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '12 is Decimal',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '12.5 is Integer',
-    //     ),
-    //     [false],
-    //   );
-    //   expect(
-    //     walkFhirPath(
-    //       context: patient3.toJson(),
-    //       pathExpression: '12.5 is Decimal',
-    //     ),
-    //     [true],
-    //   );
-    // });
+    test('is : ', () {
+      final node = engine.parse('12 is Integer');
+      expect(
+        engine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+
+      final node1 = engine.parse('12 is Decimal');
+      expect(
+        engine.evaluate(patient3, node1),
+        [false.toFhirBoolean],
+      );
+
+      final node2 = engine.parse('12.5 is Integer');
+      expect(
+        engine.evaluate(patient3, node2),
+        [false.toFhirBoolean],
+      );
+
+      final node3 = engine.parse('12.5 is Decimal');
+      expect(
+        engine.evaluate(patient3, node3),
+        [true.toFhirBoolean],
+      );
+    });
   });
-  // group(
-  //   'Math Operators: ',
-  //   () {
-  //     test('/ : ', () {
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '(1.2 / 1.8).round(8) = 0.66666667',
-  //         ),
-  //         [true],
-  //       );
-  //       expect(
-  //         walkFhirPath(context: patient3.toJson(), pathExpression: '1/0'),
-  //         [],
-  //       );
-  //     });
-  //     test('- : ', () {
-  //       expect(
-  //         walkFhirPath(context: patient3.toJson(), pathExpression: '75-70'),
-  //         [5],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '75-70-75',
-  //         ),
-  //         [-70],
-  //       );
-  //     });
-  //     test('Precedence : ', () {
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '75+70-75',
-  //         ),
-  //         [70],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '1+2*3+4 = 11',
-  //         ),
-  //         [true],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '1+2*-3+4 = -1',
-  //         ),
-  //         [true],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '-1-2*3 = -7',
-  //         ),
-  //         [true],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '1-2*3-4*5 = -25',
-  //         ),
-  //         [true],
-  //       );
-  //       expect(
-  //         walkFhirPath(
-  //           context: patient3.toJson(),
-  //           pathExpression: '1-2.ceiling()*3-4*5.ceiling() = -25',
-  //         ),
-  //         [true],
-  //       );
-  //     });
-  //   },
-  // );
+  group(
+    'Math Operators: ',
+    () {
+      test('Math Operators: / :', () {
+        final node1 = engine.parse('(1.2 / 1.8).round(8) = 0.66666667');
+        expect(
+          engine.evaluate(patient3, node1),
+          [true.toFhirBoolean],
+        );
+
+        final node2 = engine.parse('1/0');
+        expect(
+          engine.evaluate(patient3, node2),
+          <FhirBase>[],
+        );
+      });
+
+      // test('Math Operators: - :', () {
+      //   final node1 = engine.parse('75-70');
+      //   expect(
+      //     engine.evaluate(patient3, node1),
+      //     [5],
+      //   );
+
+      //   final node2 = engine.parse('75-70-75');
+      //   expect(
+      //     engine.evaluate(patient3, node2),
+      //     [-70],
+      //   );
+      // });
+
+      // test('Math Operators: Precedence', () {
+      //   final node1 = engine.parse('75+70-75');
+      //   expect(
+      //     engine.evaluate(patient3, node1),
+      //     [70],
+      //   );
+
+      //   final node2 = engine.parse('1+2*3+4 = 11');
+      //   expect(
+      //     engine.evaluate(patient3, node2),
+      //     [true.toFhirBoolean],
+      //   );
+
+      //   final node3 = engine.parse('1+2*-3+4 = -1');
+      //   expect(
+      //     engine.evaluate(patient3, node3),
+      //     [true.toFhirBoolean],
+      //   );
+
+      //   final node4 = engine.parse('-1-2*3 = -7');
+      //   expect(
+      //     engine.evaluate(patient3, node4),
+      //     [true.toFhirBoolean],
+      //   );
+
+      //   final node5 = engine.parse('1-2*3-4*5 = -25');
+      //   expect(
+      //     engine.evaluate(patient3, node5),
+      //     [true.toFhirBoolean],
+      //   );
+
+      //   final node6 = engine.parse('1-2.ceiling()*3-4*5.ceiling() = -25');
+      //   expect(
+      //     engine.evaluate(patient3, node6),
+      //     [true.toFhirBoolean],
+      //   );
+      // });
+    },
+  );
 }

@@ -391,7 +391,7 @@ extension StringExtensionForFHIR on String {
     return DecimalStatus.ok;
   }
 
-  /// Returns `true` if the [String] is a valid [R4ResourceType].
+  /// Returns `true` if the [String] represents a [PrimitiveType].
   bool get isFhirPrimitive => const {
         'base64binary',
         'fhirbase64binary',
@@ -401,6 +401,7 @@ extension StringExtensionForFHIR on String {
         'fhirboolean',
         'fhir.boolean',
         'canonical',
+        'fhircanonical',
         'code',
         'fhircode',
         'fhir.code',
@@ -416,15 +417,21 @@ extension StringExtensionForFHIR on String {
         'fhir.decimal',
         'num',
         'id',
+        'fhirid',
         'instant',
+        'fhirinstant',
         'int',
         'integer',
         'fhirinteger',
         'fhir.integer',
         'integer64',
+        'fhirinteger64',
         'markdown',
+        'fhirmarkdown',
         'oid',
+        'fhiroid',
         'positiveint',
+        'fhirpositiveint',
         'string',
         'fhirstring',
         'fhir.string',
@@ -432,12 +439,91 @@ extension StringExtensionForFHIR on String {
         'fhirtime',
         'fhir.time',
         'unsignedint',
+        'fhirunsignedint',
         'uri',
         'fhiruri',
         'fhir.uri',
         'url',
+        'fhirurl',
         'uuid',
+        'fhiruuid',
+        'xhtml',
+        'fhirxhtml',
+        'http://hl7.org/fhirpath/system.string',
       }.contains(toLowerCase());
+
+  /// Returns `true` if the [String] represents a [DataType].
+  bool get isFhirDataType {
+    return <String>{
+      'address',
+      'age',
+      'annotation',
+      'attachment',
+      'codeableconcept',
+      'codeablereference',
+      'coding',
+      'contactdetail',
+      'contactpoint',
+      'contributor',
+      'count',
+      'datarequirement',
+      'distance',
+      'duration',
+      'fhirduration',
+      'dosage',
+      'elementdefinition',
+      'expression',
+      'extension',
+      'fhirextension',
+      'humanname',
+      'identifier',
+      'marketingstatus',
+      'meta',
+      'fhirmeta',
+      'money',
+      'narrative',
+      'parameterdefinition',
+      'period',
+      'population',
+      'prodcharacteristic',
+      'productshelflife',
+      'quantity',
+      'range',
+      'ratio',
+      'ratiorange',
+      'reference',
+      'relatedartifact',
+      'sampleddata',
+      'signature',
+      'timing',
+      'triggerdefinition',
+      'usagecontext',
+    }.contains(toLowerCase());
+  }
+
+  /// Returns `true` if the [String] represents a [Quantity].
+  bool get isFhirQuantity {
+    return <String>{
+      'age',
+      'count',
+      'distance',
+      'duration',
+      'fhirduration',
+    }.contains(toLowerCase());
+  }
+
+  /// Returns `true` if the [String] represents a [BackboneType].
+  bool get isFhirBackboneType {
+    return <String>{
+      'dosage',
+      'elementdefinition',
+      'marketingstatus',
+      'population',
+      'prodcharacteristic',
+      'productshelflife',
+      'timing',
+    }.contains(toLowerCase());
+  }
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isFhirResourceType =>

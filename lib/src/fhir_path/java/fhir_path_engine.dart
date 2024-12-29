@@ -33,6 +33,10 @@ class FHIRPathEngine {
     }
   }
 
+  StructureDefinition? _fetchTypeDefinition(String? type) {
+    return type == null ? null : worker.fetchTypeDefinition(type);
+  }
+
   /// Constants
   // ignore: constant_identifier_names
   static const NS_SYSTEM_TYPE = 'http://hl7.org/fhirpath/System.';
@@ -72,217 +76,6 @@ class FHIRPathEngine {
 
   ///
   /// ***************************************
-  /// CORE EXECUTION METHODS
-  /// ***************************************
-  ///
-  /// Core method to execute evaluation logic
-  List<FhirBase> execute(
-    ExecutionContext inContext,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-    bool atEntry,
-  ) {
-    var context = contextForParameter(inContext);
-    var work = <FhirBase>[];
-
-    print('Kind: ${exp.kind}');
-
-    switch (exp.kind) {
-      case ExpressionNodeKind.unary:
-        work.add(0.toFhirInteger);
-      case ExpressionNodeKind.name:
-        if (atEntry && exp.name == r'$this') {
-          if (context.thisItem == null) {
-            throw makeException(exp, 'FHIRPATH_NO_THIS', ['']);
-          }
-          work.add(context.thisItem!);
-        } else if (atEntry && exp.name == r'$total') {
-          work.addAll(context.total ?? []);
-        } else if (atEntry && exp.name == r'$index') {
-          work.add(context.index);
-        } else {
-          for (final item in focus) {
-            final outcome = executeForItem(context, item, exp, atEntry: true);
-            print('Outcome: $outcome');
-            for (final base in outcome) {
-              work.add(base);
-            }
-          }
-        }
-
-      case ExpressionNodeKind.function:
-        final work2 = evaluateFunction(context, focus, exp);
-        work.addAll(work2);
-
-      case ExpressionNodeKind.constant:
-        print('Constant: ${exp.constant}');
-        print('Work: $work');
-        work.addAll(
-          resolveConstantWithBase(context, exp.constant, false, exp, true),
-        );
-        print('Work: $work');
-
-      case ExpressionNodeKind.group:
-        final work2 = execute(context, focus, exp.group!, false);
-        work.addAll(work2);
-
-      case null:
-    }
-
-    print('Work: $work');
-    print('Inner: ${exp.inner}');
-
-    // Inner evaluation
-    if (exp.inner != null) {
-      work = execute(context, work, exp.inner!, false);
-    }
-
-    print('proximal: ${exp.proximal}');
-    print('operation: ${exp.operation}');
-
-    // Proximal operations
-    if (exp.proximal && exp.operation != null) {
-      var next = exp.opNext;
-      var last = exp;
-      while (next != null) {
-        context = contextForParameter(inContext);
-        var work2 = preOperate(work, last.operation, exp);
-        if (work2 != null) {
-          work = work2;
-        } else {
-          work2 = execute(context, focus, next, true);
-          work = operate(context, work, last.operation, work2, last);
-        }
-        last = next;
-        next = next.opNext;
-      }
-    }
-
-    return work;
-  }
-
-  /// Evaluation with base and ExpressionNode
-  List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
-    print('Evaluating1: ');
-    final list = <FhirBase>[];
-    if (base != null) {
-      list.add(base);
-    }
-    fpLog.clear();
-    final context = ExecutionContext(
-      focusResource: base != null && base is Resource ? base : null,
-      rootResource: base != null && base is Resource ? base : null,
-      context: base,
-      thisItem: base,
-    );
-    print('Evaluating2: ');
-    node.printExpressionTree();
-    return execute(context, list, node, true);
-  }
-
-  // Evaluation with base and FHIRPath expression (String)
-  List<FhirBase> evaluateFromPath(FhirBase? base, String path) {
-    final node = parse(path); // Assume `parse` is implemented
-    return evaluate(base, node);
-  }
-
-  // Evaluation with appContext and additional parameters
-  List<FhirBase> evaluateWithContext(
-    Object? appContext,
-    Resource? focusResource,
-    Resource? rootResource,
-    FhirBase? base,
-    ExpressionNode node,
-  ) {
-    final list = <FhirBase>[];
-    if (base != null) {
-      list.add(base);
-    }
-    fpLog.clear();
-    final context = ExecutionContext(
-      appInfo: appContext,
-      focusResource: focusResource,
-      rootResource: rootResource,
-      context: base,
-      thisItem: base,
-    );
-    return execute(context, list, node, true);
-  }
-
-  // Evaluation with appContext and path (String)
-  List<FhirBase> evaluateWithPath(
-    Object? appContext,
-    Resource? focusResource,
-    Resource? rootResource,
-    FhirBase? base,
-    String path,
-  ) {
-    final node = parse(path); // Assume `parse` is implemented
-    return evaluateWithContext(
-      appContext,
-      focusResource,
-      rootResource,
-      base,
-      node,
-    );
-  }
-
-  List<FhirBase> executeForItem(
-    ExecutionContext context,
-    FhirBase item,
-    ExpressionNode exp, {
-    required bool atEntry,
-  }) {
-    print('Executing for item: $item');
-    print('At entry: $atEntry');
-    print('AppInfo: ${context.appInfo}');
-    print('FocusResource: ${context.focusResource}');
-    final result = <FhirBase>[];
-
-    if (atEntry && context.appInfo != null && hostServices != null) {
-      final temp = hostServices!
-          .resolveConstant(this, context.appInfo, exp.name, true, false);
-      if (temp.isNotEmpty) {
-        result.addAll(temp);
-        return result;
-      }
-    }
-
-    if (atEntry &&
-        exp.name != null &&
-        exp.name!.isNotEmpty &&
-        exp.name![0].toUpperCase() == exp.name![0]) {
-      print('Special case for type checks');
-      // Special case for type checks
-      var sd = worker.fetchTypeDefinition(item.fhirType);
-      while (sd != null) {
-        if (sd.type.toString() == exp.name) {
-          result.add(item);
-          break;
-        }
-        sd = worker.fetchResource(uri: sd.baseDefinition.toString())
-            as StructureDefinition?;
-      }
-    } else {
-      print(item);
-      getChildrenByName(item, exp.name!, result);
-    }
-
-    if (atEntry &&
-        context.appInfo != null &&
-        hostServices != null &&
-        result.isEmpty) {
-      result.addAll(
-        hostServices!
-            .resolveConstant(this, context.appInfo, exp.name, false, false),
-      );
-    }
-
-    return result;
-  }
-
-  ///
-  /// ***************************************
   /// PARSING AND PRECEDENCE MANAGEMENT
   /// ***************************************
   ///
@@ -299,7 +92,7 @@ class FHIRPathEngine {
         location: lexer.currentLocation,
       );
     }
-    return parseLexer(lexer);
+    return _parseLexer(lexer);
   }
 
   ExpressionNodeWithOffset parsePartial(String path, int i) {
@@ -315,9 +108,8 @@ class FHIRPathEngine {
     return ExpressionNodeWithOffset(lexer.currentStart, result);
   }
 
-  ExpressionNode parseLexer(FHIRLexer lexer) {
-    final result = _parseExpression(lexer, true);
-    result.printExpressionTree();
+  ExpressionNode _parseLexer(FHIRLexer lexer) {
+    final result = _parseExpression(lexer, true)..printExpressionTree();
     if (!lexer.done()) {
       throw lexer.error('Unexpected token "${lexer.current}"');
     }
@@ -355,7 +147,7 @@ class FHIRPathEngine {
       }
 
       result
-        ..constant = processConstant(lexer)
+        ..constant = _processConstant(lexer)
         ..kind = ExpressionNodeKind.constant;
 
       if (!isString &&
@@ -490,7 +282,7 @@ class FHIRPathEngine {
         }
         result.end = lexer.currentLocation;
         lexer.next();
-        checkParameters(lexer, c, result, details);
+        _checkParameters(lexer, c, result, details);
       } else {
         result.kind = ExpressionNodeKind.name;
       }
@@ -528,7 +320,7 @@ class FHIRPathEngine {
         focus.opNext = _parseExpression(lexer, false);
         focus = focus.opNext!;
       }
-      result = organisePrecedence(lexer, result);
+      result = _organisePrecedence(lexer, result);
     }
     if (wrapper != null) {
       wrapper.opNext = result;
@@ -538,35 +330,35 @@ class FHIRPathEngine {
     return result;
   }
 
-  ExpressionNode organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
+  ExpressionNode _organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
     var node = oldNode;
-    node = gatherPrecedence(lexer, node, {
+    node = _gatherPrecedence(lexer, node, {
       FpOperation.Times,
       FpOperation.DivideBy,
       FpOperation.Div,
       FpOperation.Mod,
     });
-    node = gatherPrecedence(lexer, node, {
+    node = _gatherPrecedence(lexer, node, {
       FpOperation.Plus,
       FpOperation.Minus,
       FpOperation.Concatenate,
     });
-    node = gatherPrecedence(lexer, node, {FpOperation.Union});
-    node = gatherPrecedence(lexer, node, {
+    node = _gatherPrecedence(lexer, node, {FpOperation.Union});
+    node = _gatherPrecedence(lexer, node, {
       FpOperation.LessThan,
       FpOperation.Greater,
       FpOperation.LessOrEqual,
       FpOperation.GreaterOrEqual,
     });
-    node = gatherPrecedence(lexer, node, {
+    node = _gatherPrecedence(lexer, node, {
       FpOperation.Equals,
       FpOperation.Equivalent,
       FpOperation.NotEquals,
       FpOperation.NotEquivalent,
     });
-    node = gatherPrecedence(lexer, node, {FpOperation.And});
-    node = gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
-    node = gatherPrecedence(
+    node = _gatherPrecedence(lexer, node, {FpOperation.And});
+    node = _gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
+    node = _gatherPrecedence(
       lexer,
       node,
       {FpOperation.Implies},
@@ -575,7 +367,7 @@ class FHIRPathEngine {
   }
 
   /// As closely as possible, a Dart version of the Java gatherPrecedence logic.
-  ExpressionNode gatherPrecedence(
+  ExpressionNode _gatherPrecedence(
     FHIRLexer lexer,
     ExpressionNode oldStart,
     Set<FpOperation> ops,
@@ -637,7 +429,7 @@ class FHIRPathEngine {
 
     if (ops.contains(start.operation)) {
       // The top node's operator is in `ops`, so we create a group at the top
-      group = newGroup(lexer, start)..proximal = true;
+      group = _newGroup(lexer, start)..proximal = true;
       // Now `focus = start` in the Java code
       focus = start;
       start = group;
@@ -651,7 +443,7 @@ class FHIRPathEngine {
         node = focus;
         focus = focus.opNext;
       }
-      group = newGroup(lexer, focus);
+      group = _newGroup(lexer, focus);
       node.opNext = group;
     }
 
@@ -690,7 +482,7 @@ class FHIRPathEngine {
               focus.operation != null &&
               ops.contains(focus.operation)) {
             // We have another operator in `ops`, so we create another group
-            group = newGroup(lexer, focus);
+            group = _newGroup(lexer, focus);
             node.opNext = group;
           }
         }
@@ -702,7 +494,7 @@ class FHIRPathEngine {
 
   // Same as in Java. `newGroup` just sets a new node of `kind=group` with
   //`.group = next`.
-  ExpressionNode newGroup(FHIRLexer lexer, ExpressionNode? next) {
+  ExpressionNode _newGroup(FHIRLexer lexer, ExpressionNode? next) {
     final result = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
       ..group = next;
@@ -714,122 +506,73 @@ class FHIRPathEngine {
 
   ///
   /// ***************************************
-  /// EVALUATION AND TYPE HANDLING
+  /// CORE EVALUATION METHODS
   /// ***************************************
   ///
-  TypeDetails executeType(
-    dynamic contextOrType, // Can be String or ExecutionTypeContext
-    dynamic focusOrExp, // Can be TypeDetails or ExpressionNode
-    ExpressionNode exp,
-    bool atEntry,
-  ) {
-    // Determine whether the first parameter is a String or ExecutionTypeContext
-    if (contextOrType is String && focusOrExp is ExpressionNode) {
-      // Handle the first function's logic
-      final type = contextOrType;
-      final expression = focusOrExp;
-
-      if (atEntry &&
-          expression.name != null &&
-          expression.name!.isNotEmpty &&
-          expression.name![0].isUpperCase() &&
-          type.hashTail() == expression.name) {
-        // Special case for start up
-        return TypeDetails(CollectionStatus.singleton, [type]);
-      }
-
-      final result = TypeDetails(null);
-      getChildTypesByName(type, expression.name!, result, expression);
-      return result;
-    } else if (contextOrType is ExecutionTypeContext &&
-        focusOrExp is TypeDetails?) {
-      // Handle the second function's logic
-      var context = typeContextForParameter(contextOrType);
-      final focus = focusOrExp;
-      TypeDetails? result = TypeDetails(null);
-
-      switch (exp.kind) {
-        case ExpressionNodeKind.name:
-          if (atEntry && exp.name == r'$this') {
-            if (context.thisItem == null) {
-              throw makeException(exp, 'FHIRPATH_NO_THIS', ['']);
-            }
-            result.update(context.thisItem!);
-          } else if (atEntry && exp.name == r'$total') {
-            result.update(anything(CollectionStatus.unordered));
-          } else if (atEntry && exp.name == r'$index') {
-            result.addType(TypeDetails.FP_Integer);
-          } else if (atEntry && focus == null) {
-            result.update(executeContextType(context, exp.name!, exp, false));
-          } else {
-            for (final s in focus?.types ?? <String>[]) {
-              result.update(executeType(s, null, exp, atEntry));
-            }
-            if (result.hasNoTypes()) {
-              throw makeException(exp, 'FHIRPATH_UNKNOWN_NAME', [
-                exp.name ?? '',
-                focus?.describe() ?? '',
-              ]);
-            }
-          }
-
-        case ExpressionNodeKind.function:
-          if (focus == null) {
-            throw makeException(exp, 'FHIRPATH_NO_FOCUS', ['']);
-          }
-          result.update(evaluateFunctionType(context, focus, exp));
-
-        case ExpressionNodeKind.unary:
-          result.addType(TypeDetails.FP_Integer);
-          result.addType(TypeDetails.FP_Decimal);
-          result.addType(TypeDetails.FP_Quantity);
-
-        case ExpressionNodeKind.constant:
-          result.update(resolveConstantType(context, exp.constant, exp, true));
-
-        case ExpressionNodeKind.group:
-          result.update(executeType(context, focus, exp.group!, atEntry));
-        case null:
-          throw ArgumentError('Invalid arguments passed to executeType');
-      }
-
-      exp.types = result;
-
-      if (exp.inner != null) {
-        result = executeType(context, result, exp.inner!, false);
-      }
-
-      if (exp.proximal && exp.operation != null) {
-        var next = exp.opNext;
-        var last = exp;
-        while (next != null) {
-          context = typeContextForParameter(contextOrType);
-          TypeDetails work;
-          if (last.operation == FpOperation.Is ||
-              last.operation == FpOperation.As) {
-            if (focus == null) {
-              throw makeException(exp, 'FHIRPATH_NO_FOCUS', ['']);
-            }
-            work = executeTypeContextTypeName(context, focus, next, atEntry);
-          } else {
-            work = executeType(context, focus, next, atEntry);
-          }
-          if (result == null) {
-            throw ArgumentError('result is null');
-          }
-          result = operateTypes(result, last.operation!, work, last);
-          last = next;
-          next = next.opNext;
-        }
-        exp.opTypes = result;
-      }
-      if (result == null) {
-        throw ArgumentError('result is null');
-      }
-      return result;
-    } else {
-      throw ArgumentError('Invalid arguments passed to executeType');
+  /// Evaluation with base and ExpressionNode
+  List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
+    print('Evaluating1: ');
+    final list = <FhirBase>[];
+    if (base != null) {
+      list.add(base);
     }
+    fpLog.clear();
+    final context = ExecutionContext(
+      focusResource: base != null && base is Resource ? base : null,
+      rootResource: base != null && base is Resource ? base : null,
+      context: base,
+      thisItem: base,
+    );
+    print('Evaluating2: ');
+    node.printExpressionTree();
+    return execute(context, list, node, true);
+  }
+
+  // Evaluation with base and FHIRPath expression (String)
+  List<FhirBase> evaluateFromPath(FhirBase? base, String path) {
+    final node = parse(path); // Assume `parse` is implemented
+    return evaluate(base, node);
+  }
+
+  // Evaluation with appContext and additional parameters
+  List<FhirBase> evaluateWithContext(
+    Object? appContext,
+    Resource? focusResource,
+    Resource? rootResource,
+    FhirBase? base,
+    ExpressionNode node,
+  ) {
+    final list = <FhirBase>[];
+    if (base != null) {
+      list.add(base);
+    }
+    fpLog.clear();
+    final context = ExecutionContext(
+      appInfo: appContext,
+      focusResource: focusResource,
+      rootResource: rootResource,
+      context: base,
+      thisItem: base,
+    );
+    return execute(context, list, node, true);
+  }
+
+  // Evaluation with appContext and path (String)
+  List<FhirBase> evaluateWithPath(
+    Object? appContext,
+    Resource? focusResource,
+    Resource? rootResource,
+    FhirBase? base,
+    String path,
+  ) {
+    final node = parse(path); // Assume `parse` is implemented
+    return evaluateWithContext(
+      appContext,
+      focusResource,
+      rootResource,
+      base,
+      node,
+    );
   }
 
   TypeDetails evaluateFunctionType(
@@ -1163,6 +906,343 @@ class FHIRPathEngine {
     }
   }
 
+  ///
+  /// ***************************************
+  /// CORE EXECUTION FUNCTIONS
+  /// ***************************************
+  ///
+  /// Core method to execute evaluation logic
+  List<FhirBase> execute(
+    ExecutionContext inContext,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+    bool atEntry,
+  ) {
+    print('Executing: $exp');
+    var context = contextForParameter(inContext);
+    var work = <FhirBase>[];
+
+    switch (exp.kind) {
+      case ExpressionNodeKind.unary:
+        work.add(0.toFhirInteger);
+
+      case ExpressionNodeKind.name:
+        if (atEntry && exp.name == r'$this') {
+          work.add(context.thisItem!);
+        } else if (atEntry && exp.name == r'$total') {
+          work.addAll(context.total ?? []);
+        } else if (atEntry && exp.name == r'$index') {
+          work.add(context.index);
+        } else {
+          for (final item in focus) {
+            print('Item: $item');
+            final outcome = executeForItem(context, item, exp, atEntry: true);
+            print('Outcome: $outcome');
+            work.addAll(outcome);
+          }
+        }
+
+      case ExpressionNodeKind.function:
+        work.addAll(evaluateFunction(context, focus, exp));
+
+      case ExpressionNodeKind.constant:
+        final constants =
+            resolveConstantWithBase(context, exp.constant, false, exp, true);
+        print('Constants: $constants');
+        work.addAll(constants);
+
+      case ExpressionNodeKind.group:
+        work.addAll(execute(context, focus, exp.group!, atEntry));
+
+      case null:
+        break;
+    }
+
+    if (exp.inner != null) {
+      work = execute(context, work, exp.inner!, false);
+    }
+
+    if (exp.proximal && exp.operation != null) {
+      var next = exp.opNext;
+      var last = exp;
+      while (next != null) {
+        context = contextForParameter(inContext);
+        print('lastoperation: ${last.operation}');
+        print('context: $context');
+        var work2 = preOperate(work, last.operation, exp);
+        print('work2: $work2');
+        if (work2 != null) {
+          work = work2;
+          print('work: $work');
+        } else if (last.operation == FpOperation.Is ||
+            last.operation == FpOperation.As) {
+          work2 = executeContextTypeName(context, focus, next, false);
+          print('work2: $work2');
+          work = operate(context, work, last.operation, work2, last);
+          print('work: $work');
+        } else {
+          work2 = execute(context, focus, next, true);
+          print('work2: $work2');
+          work = operate(context, work, last.operation, work2, last);
+          print('work: $work');
+        }
+        last = next;
+        next = next.opNext;
+        print('last: $last');
+        print('next: $next');
+      }
+    }
+
+    return work;
+  }
+
+  List<FhirBase> executeForItem(
+    ExecutionContext context,
+    FhirBase item,
+    ExpressionNode exp, {
+    required bool atEntry,
+  }) {
+    print('Executing for item: $item');
+    print('At entry: $atEntry');
+    print('AppInfo: ${context.appInfo}');
+    print('FocusResource: ${context.focusResource}');
+    final result = <FhirBase>[];
+    print('host services: $hostServices');
+    // Step 1: Resolve constants if at entry
+    if (atEntry && context.appInfo != null && hostServices != null) {
+      final temp = hostServices!
+          .resolveConstant(this, context.appInfo, exp.name, true, false);
+      if (temp.isNotEmpty) {
+        result.addAll(temp);
+        print('Resolved constant: $result');
+        return result;
+      }
+    }
+
+    // Step 2: Special case for type checks
+    if (atEntry &&
+        exp.name != null &&
+        exp.name!.isNotEmpty &&
+        exp.name![0].toUpperCase() == exp.name![0]) {
+      print('Special case for type checks: ${exp.name}');
+
+      // Handle constant items
+      // if (item is PrimitiveType) {
+      //   final itemType = item.fhirType;
+      //   if (itemType == exp.name) {
+      //     print('Type Check Success: $itemType matches ${exp.name}');
+      //     result.add(item);
+      //     return result;
+      //   } else {
+      //     print('Type Check Failed: $itemType does not match ${exp.name}');
+      //   }
+      // }
+
+      // Handle resources
+      var sd = _fetchTypeDefinition(item.fhirType);
+      if (sd == null) {
+        // Logical model case
+        if (exp.name == item.fhirType) {
+          result.add(item);
+        }
+      } else {
+        // Traverse through base definitions
+        while (sd != null) {
+          print('Current SD type: ${sd.type}, Exp name: ${exp.name}');
+          if (sd.type.toString() == exp.name) {
+            result.add(item);
+            break;
+          }
+          // final baseDefinitionUri = sd.baseDefinition?.toString();
+          // if (baseDefinitionUri == null || baseDefinitionUri.isEmpty) {
+          //   break;
+          // }
+          sd = worker.fetchResource<StructureDefinition>(
+            uri: sd.baseDefinition?.toString(),
+          );
+        }
+      }
+    } else {
+      // Step 3: Default case - Get children by name
+      print('Getting children by name for: ${exp.name}');
+      getChildrenByName(item, exp.name!, result);
+    }
+    // Step 4: Fallback to resolve constants if result is empty
+    if (atEntry &&
+        context.appInfo != null &&
+        hostServices != null &&
+        result.isEmpty) {
+      print('Fallback to resolve constant for: ${exp.name}');
+      result.addAll(
+        hostServices!
+            .resolveConstant(this, context.appInfo, exp.name, false, false),
+      );
+    }
+
+    print('Execution result: $result');
+    return result;
+  }
+
+  TypeDetails executeType(
+    dynamic contextOrType, // Can be String or ExecutionTypeContext
+    dynamic focusOrExp, // Can be TypeDetails or ExpressionNode
+    ExpressionNode exp,
+    bool atEntry,
+  ) {
+    // Determine whether the first parameter is a String or ExecutionTypeContext
+    if (contextOrType is String && focusOrExp is ExpressionNode) {
+      // Handle the first function's logic
+      final type = contextOrType;
+      final expression = focusOrExp;
+
+      if (atEntry &&
+          expression.name != null &&
+          expression.name!.isNotEmpty &&
+          expression.name![0].isUpperCase() &&
+          type.hashTail() == expression.name) {
+        // Special case for start up
+        return TypeDetails(CollectionStatus.singleton, [type]);
+      }
+
+      final result = TypeDetails(null);
+      getChildTypesByName(type, expression.name!, result, expression);
+      return result;
+    } else if (contextOrType is ExecutionTypeContext &&
+        focusOrExp is TypeDetails?) {
+      // Handle the second function's logic
+      var context = typeContextForParameter(contextOrType);
+      final focus = focusOrExp;
+      TypeDetails? result = TypeDetails(null);
+
+      switch (exp.kind) {
+        case ExpressionNodeKind.name:
+          if (atEntry && exp.name == r'$this') {
+            if (context.thisItem == null) {
+              throw makeException(exp, 'FHIRPATH_NO_THIS', ['']);
+            }
+            result.update(context.thisItem!);
+          } else if (atEntry && exp.name == r'$total') {
+            result.update(anything(CollectionStatus.unordered));
+          } else if (atEntry && exp.name == r'$index') {
+            result.addType(TypeDetails.FP_Integer);
+          } else if (atEntry && focus == null) {
+            result.update(executeContextType(context, exp.name!, exp, false));
+          } else {
+            for (final s in focus?.types ?? <String>[]) {
+              result.update(executeType(s, null, exp, atEntry));
+            }
+            if (result.hasNoTypes()) {
+              throw makeException(exp, 'FHIRPATH_UNKNOWN_NAME', [
+                exp.name ?? '',
+                focus?.describe() ?? '',
+              ]);
+            }
+          }
+
+        case ExpressionNodeKind.function:
+          if (focus == null) {
+            throw makeException(exp, 'FHIRPATH_NO_FOCUS', ['']);
+          }
+          result.update(evaluateFunctionType(context, focus, exp));
+
+        case ExpressionNodeKind.unary:
+          result.addType(TypeDetails.FP_Integer);
+          result.addType(TypeDetails.FP_Decimal);
+          result.addType(TypeDetails.FP_Quantity);
+
+        case ExpressionNodeKind.constant:
+          result.update(resolveConstantType(context, exp.constant, exp, true));
+
+        case ExpressionNodeKind.group:
+          result.update(executeType(context, focus, exp.group!, atEntry));
+        case null:
+          throw ArgumentError('Invalid arguments passed to executeType');
+      }
+
+      exp.types = result;
+
+      if (exp.inner != null) {
+        result = executeType(context, result, exp.inner!, false);
+      }
+
+      if (exp.proximal && exp.operation != null) {
+        var next = exp.opNext;
+        var last = exp;
+        while (next != null) {
+          context = typeContextForParameter(contextOrType);
+          TypeDetails work;
+          print('lastoperation: ${last.operation}');
+          if (last.operation == FpOperation.Is ||
+              last.operation == FpOperation.As) {
+            if (focus == null) {
+              throw makeException(exp, 'FHIRPATH_NO_FOCUS', ['']);
+            }
+            work = executeTypeContextTypeName(context, focus, next, atEntry);
+          } else {
+            work = executeType(context, focus, next, atEntry);
+          }
+          if (result == null) {
+            throw ArgumentError('result is null');
+          }
+          result = operateTypes(result, last.operation!, work, last);
+          last = next;
+          next = next.opNext;
+        }
+        exp.opTypes = result;
+      }
+      if (result == null) {
+        throw ArgumentError('result is null');
+      }
+      return result;
+    } else {
+      throw ArgumentError('Invalid arguments passed to executeType');
+    }
+  }
+
+  TypeDetails executeContextType(
+    ExecutionTypeContext context,
+    String name,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    if (hostServices == null) {
+      throw makeException(
+        expr,
+        'FHIRPATH_NO_HOST_SERVICES',
+        ['Context Reference'],
+      );
+    }
+    return hostServices!
+        .resolveConstantType(this, context.appInfo, name, explicitConstant);
+  }
+
+  List<FhirBase> executeContextTypeName(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode next,
+    bool atEntry,
+  ) {
+    final result = <FhirBase>[];
+    if (next.inner != null) {
+      result.add(FhirString('${next.name}.${next.inner!.name}'));
+    } else {
+      result.add(FhirString(next.name));
+    }
+    return result;
+  }
+
+  TypeDetails executeTypeContextTypeName(
+    ExecutionTypeContext context,
+    TypeDetails focus,
+    ExpressionNode exp,
+    bool atEntry,
+  ) {
+    return TypeDetails(
+      CollectionStatus.singleton,
+      exp.name == null ? <String>[] : [exp.name!],
+    );
+  }
+
   TypeDetails check(
     Object appContext, {
     String? resourceType,
@@ -1248,7 +1328,7 @@ class FHIRPathEngine {
       // Case 1: resourceType, context, and expressionNode provided
       TypeDetails? types;
       if (!context.contains('.')) {
-        final sd = worker.fetchTypeDefinition(context);
+        final sd = _fetchTypeDefinition(context);
         if (sd == null) {
           throw PathEngineException('Unknown type definition: $context');
         }
@@ -1295,50 +1375,6 @@ class FHIRPathEngine {
         'Insufficient or incorrect arguments provided to the check method.',
       );
     }
-  }
-
-  TypeDetails executeContextType(
-    ExecutionTypeContext context,
-    String name,
-    ExpressionNode expr,
-    bool explicitConstant,
-  ) {
-    if (hostServices == null) {
-      throw makeException(
-        expr,
-        'FHIRPATH_NO_HOST_SERVICES',
-        ['Context Reference'],
-      );
-    }
-    return hostServices!
-        .resolveConstantType(this, context.appInfo, name, explicitConstant);
-  }
-
-  List<FhirBase> executeContextTypeName(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode next,
-    bool atEntry,
-  ) {
-    final result = <FhirBase>[];
-    if (next.inner != null) {
-      result.add(FhirString('${next.name}.${next.inner!.name}'));
-    } else {
-      result.add(FhirString(next.name));
-    }
-    return result;
-  }
-
-  TypeDetails executeTypeContextTypeName(
-    ExecutionTypeContext context,
-    TypeDetails focus,
-    ExpressionNode exp,
-    bool atEntry,
-  ) {
-    return TypeDetails(
-      CollectionStatus.singleton,
-      exp.name == null ? <String>[] : [exp.name!],
-    );
   }
 
   TypeDetails resolveConstantType(
@@ -1469,10 +1505,9 @@ class FHIRPathEngine {
 
   ///
   /// ***************************************
-  /// UTILITY AND HELPER METHODS
+  /// CHILD AND CONTEXT HANDLING
   /// ***************************************
   ///
-
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
     String? tn;
     var name = oldName;
@@ -1693,21 +1728,98 @@ class FHIRPathEngine {
     }
   }
 
-  void addTypeAndDescendents(
-    List<StructureDefinition> sdl,
-    StructureDefinition dt,
-    List<StructureDefinition> types,
-  ) {
-    sdl.add(dt);
-    for (final sd in types) {
-      if (sd.baseDefinition != null &&
-          sd.baseDefinition.toString() == dt.url.toString() &&
-          sd.derivation == TypeDerivationRule.specialization) {
-        addTypeAndDescendents(sdl, sd, types);
-      }
+  void getClassInfoChildTypesByName(String name, TypeDetails result) {
+    if (name == 'namespace') {
+      result.addType(TypeDetails.FP_String);
+    }
+    if (name == 'name') {
+      result.addType(TypeDetails.FP_String);
     }
   }
 
+  void getSimpleTypeChildTypesByName(String name, TypeDetails result) {
+    if (name == 'namespace') {
+      result.addType(TypeDetails.FP_String);
+    }
+    if (name == 'name') {
+      result.addType(TypeDetails.FP_String);
+    }
+  }
+
+  ExecutionContext contextForParameter(ExecutionContext context) {
+    final newContext = ExecutionContext(
+      appInfo: context.appInfo,
+      focusResource: context.focusResource,
+      rootResource: context.rootResource,
+      context: context.context,
+      thisItem: context.thisItem,
+    )
+      ..total = context.total
+      ..index = context.index;
+
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
+      }
+    }
+    return newContext;
+  }
+
+  ExecutionTypeContext typeContextForParameter(ExecutionTypeContext context) {
+    final newContext = ExecutionTypeContext(
+      context.appInfo,
+      context.resource,
+      context.context,
+      context.thisItem,
+    );
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]);
+      }
+    }
+    return newContext;
+  }
+
+  ExecutionContext changeThisContext(
+    ExecutionContext context,
+    FhirBase newThis,
+  ) {
+    final newContext = context.copyWith(thisItem: newThis);
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
+      }
+    }
+    return newContext;
+  }
+
+  ExecutionTypeContext changeThisTypeContext(
+    ExecutionTypeContext context,
+    TypeDetails newThis,
+  ) {
+    final newContext = ExecutionTypeContext(
+      context.appInfo,
+      context.resource,
+      context.context,
+      newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]);
+      }
+    }
+    return newContext;
+  }
+
+  ///
+  /// ***************************************
+  /// ELEMENT AND CLASS INFO HANDLING
+  /// ***************************************
+  ///
   ElementDefinitionMatch? getElementDefinition(
     StructureDefinition sd,
     String path,
@@ -1806,30 +1918,11 @@ class FHIRPathEngine {
     return null;
   }
 
-  void getClassInfoChildTypesByName(String name, TypeDetails result) {
-    if (name == 'namespace') {
-      result.addType(TypeDetails.FP_String);
-    }
-    if (name == 'name') {
-      result.addType(TypeDetails.FP_String);
-    }
-  }
-
-  void getSimpleTypeChildTypesByName(String name, TypeDetails result) {
-    if (name == 'namespace') {
-      result.addType(TypeDetails.FP_String);
-    }
-    if (name == 'name') {
-      result.addType(TypeDetails.FP_String);
-    }
-  }
-
   ///
   /// ***************************************
   /// ERROR AND EXCEPTION HANDLING
   /// ***************************************
   ///
-
   FHIRException makeException(
     ExpressionNode? holder,
     String constName,
@@ -1876,8 +1969,7 @@ class FHIRPathEngine {
   /// PROCESSING CONSTANTS
   /// ***************************************
   ///
-
-  FhirBase? processConstant(FHIRLexer lexer) {
+  FhirBase? _processConstant(FHIRLexer lexer) {
     print('Current: ${lexer.current}');
     if (lexer.isStringConstant()) {
       print('String constant');
@@ -1970,11 +2062,10 @@ class FHIRPathEngine {
 
   ///
   /// ***************************************
-  /// PARAMETER AND FUNCTION CHECKING
+  /// uTILITY AND HELPER METHODS
   /// ***************************************
   ///
-
-  bool checkParameters(
+  bool _checkParameters(
     FHIRLexer lexer,
     SourceLocation location,
     ExpressionNode exp,
@@ -2243,6 +2334,19 @@ class FHIRPathEngine {
     }
   }
 
+  void checkOrdered(TypeDetails focus, String name, ExpressionNode expr) {
+    if (focus.collectionStatus == CollectionStatus.unordered) {
+      throw makeException(expr, 'FHIRPATH_ORDERED_ONLY', [name]);
+    }
+  }
+
+  void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
+    if (focus.collectionStatus != CollectionStatus.singleton) {
+// ignore: lines_longer_than_80_chars
+// typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
+    }
+  }
+
   bool isExpressionParameter(ExpressionNode exp, int i) {
     switch (i) {
       case 0:
@@ -2258,34 +2362,6 @@ class FHIRPathEngine {
       default:
         return false;
     }
-  }
-
-  ExecutionContext contextForParameter(ExecutionContext context) {
-    final newContext =
-        context.copyWith(total: context.total, index: context.index);
-    // append all of the defined variables from the context into the new context
-    if (context.definedVariables != null) {
-      for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
-      }
-    }
-    return newContext;
-  }
-
-  ExecutionTypeContext typeContextForParameter(ExecutionTypeContext context) {
-    final newContext = ExecutionTypeContext(
-      context.appInfo,
-      context.resource,
-      context.context,
-      context.thisItem,
-    );
-    // append all of the defined variables from the context into the new context
-    if (context.definedVariables != null) {
-      for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]);
-      }
-    }
-    return newContext;
   }
 
   bool isAbstractType(List<ElementDefinitionType> list) {
@@ -2318,6 +2394,7 @@ class FHIRPathEngine {
       case FpOperation.In:
       case FpOperation.MemberOf:
       case FpOperation.Contains:
+        print('Operation: $operation');
         return TypeDetails(
           CollectionStatus.singleton,
           [TypeDetails.FP_Boolean],
@@ -2420,52 +2497,6 @@ class FHIRPathEngine {
             ed.getType().first.code.toString() == 'BackboneElement');
   }
 
-  ExecutionContext changeThisContext(
-    ExecutionContext context,
-    FhirBase newThis,
-  ) {
-    final newContext = context.copyWith(thisItem: newThis);
-    // append all of the defined variables from the context into the new context
-    if (context.definedVariables != null) {
-      for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
-      }
-    }
-    return newContext;
-  }
-
-  ExecutionTypeContext changeThisTypeContext(
-    ExecutionTypeContext context,
-    TypeDetails newThis,
-  ) {
-    final newContext = ExecutionTypeContext(
-      context.appInfo,
-      context.resource,
-      context.context,
-      newThis,
-    );
-    // append all of the defined variables from the context into the new context
-    if (context.definedVariables != null) {
-      for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]);
-      }
-    }
-    return newContext;
-  }
-
-  void checkOrdered(TypeDetails focus, String name, ExpressionNode expr) {
-    if (focus.collectionStatus == CollectionStatus.unordered) {
-      throw makeException(expr, 'FHIRPATH_ORDERED_ONLY', [name]);
-    }
-  }
-
-  void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
-    if (focus.collectionStatus != CollectionStatus.singleton) {
-// ignore: lines_longer_than_80_chars
-// typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
-    }
-  }
-
   void checkContextString(
     TypeDetails focus,
     String name,
@@ -2547,6 +2578,11 @@ class FHIRPathEngine {
     }
   }
 
+  ///
+  /// ***************************************
+  /// OPERATIONS
+  /// ***************************************
+  ///
   List<FhirBase>? preOperate(
     List<FhirBase> left,
     FpOperation? operation,
@@ -2569,110 +2605,6 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> makeBoolean(bool b) {
-    return <FhirBase>[FhirBoolean(b).noExtensions()];
-  }
-
-  bool isBoolean(List<FhirBase> list, bool b) {
-    return list.length == 1 &&
-        list.first is FhirBoolean &&
-        (list.first as FhirBoolean).value == b;
-  }
-
-  Equality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
-    if (items.isEmpty) {
-      return Equality.null_;
-    } else if (items.length == 1 && items.first is FhirBoolean) {
-      return asBool(items.first, true);
-    } else if (items.length == 1) {
-      return Equality.true_;
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_UNABLE_BOOLEAN',
-        items.map((e) => e.toString()).toList(),
-      );
-    }
-  }
-
-  Equality asBool(FhirBase item, bool narrow) {
-    if (item is FhirBoolean && item.value != null) {
-      return boolToTriState(item.value!);
-    } else if (narrow) {
-      return Equality.false_;
-    } else if (item is FhirNumber && item.value != null) {
-      if (item is FhirInteger ||
-          item is FhirUnsignedInt ||
-          item is FhirPositiveInt) {
-        return asBoolFromInt(item.value.toString());
-      } else if (item is FhirDecimal) {
-        return asBoolFromDec(item.value.toString());
-      } else if (item is FhirString) {
-        if (['true', 't', 'yes', 'y'].contains((item as FhirString).value)) {
-          return Equality.true_;
-        } else if (['false', 'f', 'no', 'n']
-            .contains((item as FhirString).value)) {
-          return Equality.false_;
-        } else {
-          return Equality.null_;
-        }
-      }
-    }
-    return Equality.null_;
-  }
-
-  Equality asBoolList(List<FhirBase> items, ExpressionNode expr) {
-    if (items.isEmpty) {
-      return Equality.null_;
-    } else if (items.length == 1 && items.first is FhirBoolean) {
-      return asBool(items.first, true);
-    } else if (items.length == 1) {
-      return Equality.true_;
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_UNABLE_BOOLEAN',
-        [convertToStringList(items)],
-      );
-    }
-  }
-
-  Equality boolToTriState(bool b) {
-    return b ? Equality.true_ : Equality.false_;
-  }
-
-  Equality asBoolFromInt(String s) {
-    try {
-      final i = int.tryParse(s);
-      switch (i) {
-        case 0:
-          return Equality.false_;
-        case 1:
-          return Equality.true_;
-        default:
-          return Equality.null_;
-      }
-    } catch (e) {
-      return Equality.null_;
-    }
-  }
-
-  Equality asBoolFromDec(String s) {
-    try {
-      final d =
-          BigInt.parse(s); // Use BigInt for arbitrary precision numbers in Dart
-      if (d == BigInt.zero) {
-        return Equality.false_;
-      } else if (d == BigInt.one) {
-        return Equality.true_;
-      } else {
-        return Equality.null_;
-      }
-    } catch (e) {
-      return Equality.null_;
-    }
-  }
-
   List<FhirBase> operate(
     ExecutionContext context,
     List<FhirBase> left,
@@ -2680,6 +2612,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode holder,
   ) {
+    print('Operation: $operation');
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -2736,6 +2669,1124 @@ class FHIRPathEngine {
     }
   }
 
+  List<FhirBase> opEquals(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    print('opEquals: $left == $right');
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length != right.length) {
+      return makeBoolean(false);
+    }
+
+    var res = true;
+    var nil = false;
+
+    for (var i = 0; i < left.length; i++) {
+      print('left[i]: ${left[i]} == right[i]: ${right[i]}');
+      final eq = doEquals(left[i], right[i]);
+      print('eq: $eq');
+      if (eq == null) {
+        nil = true;
+      } else if (!eq) {
+        res = false;
+        break;
+      }
+    }
+
+    print('res: $res');
+
+    if (!res) {
+      return makeBoolean(false);
+    } else if (nil) {
+      return [];
+    } else {
+      return makeBoolean(true);
+    }
+  }
+
+  List<FhirBase> opEquivalent(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    print('opEquivalent: $left == $right');
+    if (left.length != right.length) {
+      return makeBoolean(false);
+    }
+
+    var res = true;
+
+    for (var i = 0; i < left.length; i++) {
+      var found = false;
+      for (var j = 0; j < right.length; j++) {
+        // TODO(Dokotela): unclear if this is the correct way to handle null
+        final equivalent = doEquivalent(left[i], right[j]);
+        if (equivalent == null) {
+          return <FhirBase>[];
+        } else if (equivalent) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        res = false;
+        break;
+      }
+    }
+
+    return makeBoolean(res);
+  }
+
+  List<FhirBase> opNotEquals(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (!legacyMode && (left.isEmpty || right.isEmpty)) {
+      return [];
+    }
+
+    if (left.length != right.length) {
+      return makeBoolean(true);
+    }
+
+    var res = true;
+    var nil = false;
+    for (var i = 0; i < left.length; i++) {
+      final eq = doEquals(left[i], right[i]);
+      if (eq == null) {
+        nil = true;
+      } else if (eq) {
+        res = false;
+        break;
+      }
+    }
+
+    if (!res) {
+      return makeBoolean(res);
+    } else if (nil) {
+      return [];
+    } else {
+      return makeBoolean(res);
+    }
+  }
+
+  List<FhirBase> opNotEquivalent(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.length != right.length) {
+      return makeBoolean(true);
+    }
+
+    var res = true;
+
+    for (var i = 0; i < left.length; i++) {
+      var found = false;
+      for (var j = 0; j < right.length; j++) {
+        if (doEquivalent(left[i], right[j]) ?? false) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        res = false;
+        break;
+      }
+    }
+
+    return makeBoolean(!res);
+  }
+
+  List<FhirBase> opLessThan(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) < 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l < r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l < r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l < r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opLessThan(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opLessThan(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opGreater(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l > r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l > r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          print('l: ${l.toJson()} > r: ${r.toJson()}');
+          final comparison = l > r;
+          print('time comparison: $comparison');
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opGreater(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opGreater(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opLessOrEqual(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+      print('opLessOrEqual: ${l.toJson()} <= ${r.toJson()}');
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) <= 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l <= r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l <= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l <= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opLessOrEqual(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opLessOrEqual(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opGreaterOrEqual(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    if (left.length == 1 && right.length == 1) {
+      final l = left.first;
+      final r = right.first;
+
+      if (l is PrimitiveType && r is PrimitiveType) {
+        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+            FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return makeBoolean(l.toString().compareTo(r.toString()) >= 0);
+        } else if (l is FhirNumber && r is FhirNumber) {
+          return makeBoolean(l >= r);
+        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
+          final comparison = l >= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else if (l is FhirTime && r is FhirTime) {
+          final comparison = l >= r;
+          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+        } else {
+          throw makeException(
+            expr,
+            'FHIRPATH_CANT_COMPARE',
+            [l.fhirType, r.fhirType],
+          );
+        }
+      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
+        var lUnit = l.listChildrenByName('code');
+        if (lUnit.isEmpty) {
+          lUnit = l.listChildrenByName('unit');
+        }
+        var rUnit = r.listChildrenByName('code');
+        if (rUnit.isEmpty) {
+          rUnit = r.listChildrenByName('unit');
+        }
+        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+          return opGreaterOrEqual(
+            l.listChildrenByName('value'),
+            r.listChildrenByName('value'),
+            expr,
+          );
+        } else {
+          if (worker.ucumService == null) {
+            return makeBoolean(false);
+          } else {
+            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+            return opGreaterOrEqual(dl, dr, expr);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> opUnion(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    for (final item in left) {
+      if (!doContains(result, item)) {
+        result.add(item);
+      }
+    }
+    for (final item in right) {
+      if (!doContains(result, item)) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> opIn(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty) {
+      return [];
+    }
+    if (right.isEmpty) {
+      return makeBoolean(false);
+    }
+
+    var ans = true;
+    for (final l in left) {
+      var found = false;
+      for (final r in right) {
+        final eq = doEquals(l, r);
+        if (eq ?? false) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        ans = false;
+        break;
+      }
+    }
+    return makeBoolean(ans);
+  }
+
+  List<FhirBase> opMemberOf(
+    ExecutionContext context,
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    var ans = false;
+    final url = right.first.primitiveValue.toString();
+    final vs = hostServices != null
+        ? hostServices!.resolveValueSet(this, context.appInfo, url)
+        : worker.fetchResource<ValueSet>(uri: url);
+
+    if (vs != null) {
+      for (final l in left) {
+        if (['code', 'string', 'uri'].contains(l.fhirType)) {
+          if (worker
+              .validateCode(
+                terminologyServiceOptions.withGuessSystem(),
+                TypeConvertor.castToCoding(l),
+                vs,
+              )
+              .isOk()) {
+            ans = true;
+          }
+        } else if (l.fhirType == 'Coding') {
+          if (worker
+              .validateCode(
+                terminologyServiceOptions,
+                TypeConvertor.castToCoding(l),
+                vs,
+              )
+              .isOk()) {
+            ans = true;
+          }
+        } else if (l.fhirType == 'CodeableConcept') {
+          // TODO(Dokotela): invalid, need to correct
+          // final cc = TypeConvertor.castToCodeableConcept(l);
+          // final vr = worker.validateCode(terminologyServiceOptions, cc, vs);
+          // if (vr.isOk()) {
+          ans = true;
+          // }
+        }
+      }
+    }
+
+    return makeBoolean(ans);
+  }
+
+  List<FhirBase> opContains(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+
+    var ans = true;
+    for (final r in right) {
+      var found = false;
+      for (final l in left) {
+        final eq = doEquals(l, r);
+        if (eq ?? false) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        ans = false;
+        break;
+      }
+    }
+    return makeBoolean(ans);
+  }
+
+  List<FhirBase> opOr(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final l = asBoolList(left, expr);
+    final r = asBoolList(right, expr);
+    switch (l) {
+      case Equality.true_:
+        return makeBoolean(true);
+      case Equality.null_:
+        return r == Equality.true_ ? makeBoolean(true) : makeNull();
+      case Equality.false_:
+        switch (r) {
+          case Equality.false_:
+            return makeBoolean(false);
+          case Equality.null_:
+            return makeNull();
+          case Equality.true_:
+            return makeBoolean(true);
+        }
+    }
+  }
+
+  List<FhirBase> opAnd(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final l = asBoolList(left, expr);
+    final r = asBoolList(right, expr);
+    switch (l) {
+      case Equality.false_:
+        return makeBoolean(false);
+      case Equality.null_:
+        return r == Equality.false_ ? makeBoolean(false) : makeNull();
+      case Equality.true_:
+        switch (r) {
+          case Equality.false_:
+            return makeBoolean(false);
+          case Equality.null_:
+            return makeNull();
+          case Equality.true_:
+            return makeBoolean(true);
+        }
+    }
+  }
+
+  List<FhirBase> opXor(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final l = asBoolList(left, expr);
+    final r = asBoolList(right, expr);
+    switch (l) {
+      case Equality.true_:
+        switch (r) {
+          case Equality.false_:
+            return makeBoolean(true);
+          case Equality.true_:
+            return makeBoolean(false);
+          case Equality.null_:
+            return makeNull();
+        }
+      case Equality.null_:
+        return makeNull();
+      case Equality.false_:
+        switch (r) {
+          case Equality.false_:
+            return makeBoolean(false);
+          case Equality.true_:
+            return makeBoolean(true);
+          case Equality.null_:
+            return makeNull();
+        }
+    }
+  }
+
+  List<FhirBase> opImplies(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final eq = asBoolList(left, expr);
+    if (eq == Equality.false_) {
+      return makeBoolean(true);
+    } else if (right.isEmpty) {
+      return makeNull();
+    } else {
+      switch (asBoolList(right, expr)) {
+        case Equality.false_:
+          return eq == Equality.null_ ? makeNull() : makeBoolean(false);
+        case Equality.null_:
+          return makeNull();
+        case Equality.true_:
+          return makeBoolean(true);
+      }
+    }
+  }
+
+  List<FhirBase> opPlus(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['+'],
+      );
+    }
+    if (!left.first.isPrimitive) {
+      throw makeException(
+        expr,
+        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
+        ['+', left.first.fhirType],
+      );
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(
+        right.length,
+        expr,
+        'FHIRPATH_RIGHT_VALUE',
+        ['+'],
+      );
+    }
+    if (!right.first.isPrimitive &&
+        !(left.first.fhirType == 'Quantity' &&
+            right.first.fhirType == 'Quantity')) {
+      throw makeException(
+        expr,
+        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
+        ['+', right.first.fhirType],
+      );
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l.fhirType == 'string' && r.fhirType == 'string') {
+      result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
+    } else if (l is FhirNumber && r is FhirNumber) {
+      result.add((l + r)!);
+    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
+      result.add(dateAdd(l, r as Quantity, false, expr));
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_OP_INCOMPATIBLE',
+        ['+', l.fhirType, r.fhirType],
+      );
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opTimes(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['*'],
+      );
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(
+        expr,
+        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
+        ['*', left.first.fhirType],
+      );
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(
+        right.length,
+        expr,
+        'FHIRPATH_RIGHT_VALUE',
+        ['*'],
+      );
+    }
+    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
+      throw makeException(
+        expr,
+        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
+        ['*', right.first.fhirType],
+      );
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirNumber && r is FhirNumber) {
+      result.add((l * r)!);
+    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
+      final pl = qtyToPair(l);
+      final pr = qtyToPair(r);
+      if (pl != null && pr != null) {
+        try {
+          final p = worker.ucumService!.multiply(pl, pr);
+          result.add(pairToQty(p));
+        } catch (e) {
+          throw PathEngineException(
+            e.toString(),
+            location: expr.opStart,
+            expression: expr.toString(),
+          );
+        }
+      }
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_OP_INCOMPATIBLE',
+        ['*', l.fhirType, r.fhirType],
+      );
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opMinus(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['-'],
+      );
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        '-',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(
+        right.length,
+        expr,
+        'FHIRPATH_RIGHT_VALUE',
+        ['-'],
+      );
+    }
+    if (right.first is! PrimitiveType &&
+        !(left.first is FhirDateTimeBase ||
+            left.first.toString() == '0' ||
+            left.first.fhirType == 'Quantity')) {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        '-',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirNumber && r is FhirNumber) {
+      result.add((l - r)!);
+    } else if (l is Quantity && r is Quantity) {
+      final qty = r.copyWith(value: r.value?.abs().toFhirDecimal);
+      result.add(qty);
+    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
+      result.add(dateAdd(l as FhirDateTime, r as Quantity, true, expr));
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        '-',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opConcatenate(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['&'],
+      );
+    }
+    if (left.isNotEmpty && !FHIR_TYPES_STRING.contains(left.first.fhirType)) {
+      throw makeException(
+        expr,
+        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
+        ['&', left.first.fhirType],
+      );
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(
+        right.length,
+        expr,
+        'FHIRPATH_RIGHT_VALUE',
+        ['&'],
+      );
+    }
+    if (right.isNotEmpty && !FHIR_TYPES_STRING.contains(right.first.fhirType)) {
+      throw makeException(
+        expr,
+        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
+        ['&', right.first.fhirType],
+      );
+    }
+
+    final result = <FhirBase>[];
+    final l = left.isEmpty ? '' : left.first.primitiveValue.toString();
+    final r = right.isEmpty ? '' : right.first.primitiveValue.toString();
+    result.add(FhirString('$l$r'));
+
+    return result;
+  }
+
+  List<FhirBase> opDivideBy(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    print('opDivideBy: $left / $right');
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(
+        left.length,
+        expr,
+        'FHIRPATH_LEFT_VALUE',
+        ['/'],
+      );
+    }
+    if (left.first is! PrimitiveType && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        '/',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        '/',
+      ]);
+    }
+    if (right.first is! PrimitiveType && right.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        '/',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirNumber && r is FhirNumber) {
+      try {
+        final d1 = FhirDecimal(l.value);
+        final d2 = FhirDecimal(r.value);
+        if(d2.value == 0) {
+          return <FhirBase>[];
+        }
+        result.add((d1 / d2)! as FhirDecimal);
+      } catch (e) {
+        return <FhirBase>[];
+      }
+    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
+      final pl = qtyToPair(l);
+      final pr = qtyToPair(r);
+      if (pl != null && pr != null) {
+        final p = worker.ucumService!.divideBy(pl, pr);
+        result.add(pairToQty(p));
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        '/',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opDiv(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+        'div',
+      ]);
+    }
+    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        'div',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        'div',
+      ]);
+    }
+    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        'div',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l is FhirInteger &&
+        l.value != null &&
+        r is FhirInteger &&
+        r.value != null) {
+      final divisor = r.value!;
+      if (divisor != 0) {
+        result.add(FhirInteger(l.value! ~/ divisor));
+      }
+    } else if ((l is FhirDecimal || l is FhirInteger) &&
+        (r is FhirDecimal || r is FhirInteger)) {
+      if ((r as FhirNumber).value != 0) {
+        result.add(((l as FhirNumber) ~/ r)!);
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        'div',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opMod(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    if (left.isEmpty || right.isEmpty) {
+      return [];
+    }
+    if (left.length > 1) {
+      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+        'mod',
+      ]);
+    }
+    if (!left.first.isPrimitive) {
+      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+        'mod',
+        left.first.fhirType,
+      ]);
+    }
+    if (right.length > 1) {
+      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+        'mod',
+      ]);
+    }
+    if (!right.first.isPrimitive) {
+      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+        'mod',
+        right.first.fhirType,
+      ]);
+    }
+
+    final result = <FhirBase>[];
+    final l = left.first;
+    final r = right.first;
+
+    if (l.fhirType == 'integer' && r.fhirType == 'integer') {
+      final modulus = r.primitiveValue! as int;
+      if (modulus != 0) {
+        result.add(FhirInteger((l.primitiveValue! as int) % modulus));
+      }
+    } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
+        (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
+      try {
+        final d1 = l as FhirNumber;
+        final d2 = r as FhirNumber;
+        if (d2.value != 0) {
+          result.add((d1 % d2)!);
+        }
+      } catch (e) {
+        throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+        'mod',
+        l.fhirType,
+        r.fhirType,
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> opIs(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    print('opIs: $left is $right');
+    final result = <FhirBase>[];
+    if (left.isEmpty || right.isEmpty) {
+      // No operation needed for empty lists
+    } else if (left.length != 1 || right.length != 1) {
+      result.add(FhirBoolean(false).noExtensions());
+    } else {
+      final tn = convertToStringList(right);
+      if (left.first is Element) {
+        final element = left.first as Element;
+        if (element.disallowExtensions ?? false) {
+          result.add(
+            FhirBoolean(
+              element.fhirType.capitalize() == tn ||
+                  'System.${element.fhirType.capitalize()}' == tn,
+            ).noExtensions(),
+          );
+        } else {
+          final currentType = element.fhirType;
+          var sd = _fetchTypeDefinition(currentType);
+          while (sd != null) {
+            if (tn == sd.type.toString()) {
+              return makeBoolean(true);
+            }
+            sd = worker.fetchResource<StructureDefinition>(
+              uri: sd.baseDefinition?.toString(),
+            );
+          }
+          return makeBoolean(false);
+        }
+      } else if (left.first.fhirType == tn) {
+        result.add(FhirBoolean(true).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> opAs(
+    List<FhirBase> left,
+    List<FhirBase> right,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    if (right.length != 1) {
+      return result;
+    }
+
+    final tn = convertToStringList(right);
+    if (!isKnownType(tn)) {
+      throw PathEngineException('The type $tn is not valid');
+    }
+    if (!doNotEnforceAsSingletonRule && left.length > 1) {
+      throw PathEngineException(
+        'Attempt to use "as" on more than one item (${left.length}, "$expr")',
+      );
+    }
+
+    for (final nextLeft in left) {
+      if (compareTypeNames(tn, nextLeft.fhirType)) {
+        result.add(nextLeft);
+      }
+    }
+    return result;
+  }
+
+  ///
+  /// ***************************************
+  /// FUNCTIONS
+  /// ***************************************
+  ///
   List<FhirBase> evaluateFunction(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -2909,7 +3960,7 @@ class FHIRPathEngine {
       case FpFunction.ConformsTo:
       // return funcConformsTo(context, focus, exp);
       case FpFunction.Round:
-      // return funcRound(context, focus, exp);
+        return funcRound(context, focus, exp);
       case FpFunction.Sqrt:
       // return funcSqrt(context, focus, exp);
       case FpFunction.Abs:
@@ -2952,6 +4003,882 @@ class FHIRPathEngine {
       case null:
       case FpFunction.HasTemplateIdOf:
         throw UnimplementedError();
+    }
+  }
+
+  List<FhirBase> funcEmpty(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return [FhirBoolean(focus.isEmpty).noExtensions()];
+  }
+
+  List<FhirBase> funcNot(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final v = asBoolList(focus, exp);
+
+    if (v != Equality.null_) {
+      result.add(FhirBoolean(v != Equality.true_));
+    }
+    return result;
+  }
+
+  List<FhirBase> funcExists(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    var empty = true;
+    final pc = <FhirBase>[];
+
+    for (final f in focus) {
+      if (exp.parameters.length == 1) {
+        pc
+          ..clear()
+          ..add(f);
+        final v = asBoolList(
+          execute(context.changeThis(f, worker), pc, exp.parameters[0], true),
+          exp,
+        );
+        if (v == Equality.true_) {
+          empty = false;
+        }
+      } else if (!f.isEmpty()) {
+        empty = false;
+      }
+    }
+
+    return [FhirBoolean(!empty).noExtensions()];
+  }
+
+  List<FhirBase> funcSubsetOf(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final target = execute(context, focus, exp.parameters[0], true);
+
+    var valid = true;
+    for (final item in focus) {
+      var found = false;
+      for (final t in target) {
+        if (FhirBase.compareDeep(item, t)) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        valid = false;
+        break;
+      }
+    }
+
+    return [FhirBoolean(valid).noExtensions()];
+  }
+
+  List<FhirBase> funcIsDistinct(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.isEmpty) {
+      return makeBoolean(true);
+    }
+    if (focus.length == 1) {
+      return makeBoolean(true);
+    }
+
+    var distinct = true;
+    for (var i = 0; i < focus.length; i++) {
+      for (var j = i + 1; j < focus.length; j++) {
+        final eq = doEquals(focus[j], focus[i]);
+        if (eq == null) {
+          return [];
+        } else if (eq) {
+          distinct = false;
+          break;
+        }
+      }
+    }
+    return makeBoolean(distinct);
+  }
+
+  List<FhirBase> funcDistinct(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length <= 1) {
+      return focus;
+    }
+
+    final result = <FhirBase>[];
+
+    for (var i = 0; i < focus.length; i++) {
+      var found = false;
+
+      for (var j = i + 1; j < focus.length; j++) {
+        final eq = doEquals(focus[j], focus[i]);
+        if (eq == null) return <FhirBase>[];
+        if (eq) {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        result.add(focus[i]);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcCount(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return [FhirInteger(focus.length).noExtensions()];
+  }
+
+  List<FhirBase> funcWhere(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final pc = <FhirBase>[];
+
+    for (final item in focus) {
+      pc
+        ..clear()
+        ..add(item);
+      final v = asBoolFromList(
+        executeContextTypeName(
+          context.changeThis(item, worker),
+          pc,
+          exp.parameters[0],
+          true,
+        ),
+        exp,
+      );
+      if (v == Equality.true_) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcSelect(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final pc = <FhirBase>[];
+
+    for (var i = 0; i < focus.length; i++) {
+      final item = focus[i];
+      pc
+        ..clear()
+        ..add(item);
+      result.addAll(
+        execute(
+          context.changeThis(item, worker)..index = i.toFhirInteger,
+          pc,
+          exp.parameters[0],
+          true,
+        ),
+      );
+    }
+    return result;
+  }
+
+  List<FhirBase> funcItem(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final s = convertToStringList(
+      execute(context, focus, exp.parameters[0], true),
+    );
+    if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
+      result.add(focus[int.parse(s)]);
+    }
+    return result;
+  }
+
+  List<FhirBase> funcAs(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    final parameter = expr.parameters[0];
+    final tn = parameter.inner != null
+        ? '${parameter.name}.${parameter.inner!.name}'
+        : 'FHIR.${parameter.name}';
+
+    if (!isKnownType(tn)) {
+      throw PathEngineException('The type $tn is not valid');
+    }
+
+    if (!doNotEnforceAsSingletonRule && focus.length > 1) {
+      throw PathEngineException(
+        'Attempt to use as() on more than one item (${focus.length})',
+      );
+    }
+
+    for (final b in focus) {
+      if (tn.startsWith('System.')) {
+        if (b is Element &&
+            (b.disallowExtensions ?? false) &&
+            b.hasType([tn.substring(7)])) {
+          result.add(b);
+        }
+      } else if (tn.startsWith('FHIR.')) {
+        final tnp = tn.substring(5);
+        if (b.fhirType == tnp) {
+          result.add(b);
+        } else {
+          var sd = _fetchTypeDefinition(b.fhirType);
+          while (sd != null) {
+            if (compareTypeNames(tnp, sd.type.toString())) {
+              result.add(b);
+              break;
+            }
+            sd = sd.kind == StructureDefinitionKind.primitive_type
+                ? null
+                : worker.fetchResource<StructureDefinition>(
+                    uri: sd.baseDefinition?.toString(),
+                    canonicalForSource: sd,
+                  );
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcOfType(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    final parameter = expr.parameters[0];
+    final tn = parameter.inner != null
+        ? '${parameter.name}.${parameter.inner!.name}'
+        : 'FHIR.${parameter.name}';
+
+    if (!isKnownType(tn)) {
+      throw PathEngineException('The type $tn is not valid');
+    }
+
+    for (final b in focus) {
+      if (tn.startsWith('System.')) {
+        if (b is Element &&
+            (b.disallowExtensions ?? false) &&
+            b.hasType([tn.substring(7)])) {
+          result.add(b);
+        }
+      } else if (tn.startsWith('FHIR.')) {
+        final tnp = tn.substring(5);
+        if (b.fhirType == tnp) {
+          result.add(b);
+        } else {
+          var sd = _fetchTypeDefinition(b.fhirType);
+          while (sd != null) {
+            if (tnp == sd.type.toString()) {
+              result.add(b);
+              break;
+            }
+            sd = sd.kind == StructureDefinitionKind.primitive_type
+                ? null
+                : worker.fetchResource<StructureDefinition>(
+                    uri: sd.baseDefinition?.toString(),
+                    canonicalForSource: sd,
+                  );
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcIs(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.isEmpty || focus.length > 1) {
+      return makeNull();
+    }
+
+    String? ns;
+    String? n;
+
+    final texp = expr.parameters[0];
+    if (texp.kind != ExpressionNodeKind.name) {
+      throw makeException(
+        expr,
+        'FHIRPATH_PARAM_WRONG',
+        [
+          texp.kind!,
+          '0',
+          'is',
+        ],
+      );
+    }
+
+    if (texp.inner != null) {
+      if (texp.inner!.kind != ExpressionNodeKind.name) {
+        throw makeException(
+          expr,
+          'FHIRPATH_PARAM_WRONG',
+          [
+            texp.kind!,
+            '1',
+            'is',
+          ],
+        );
+      }
+      ns = texp.name;
+      n = texp.inner!.name;
+    } else if ([
+      'Boolean',
+      'Integer',
+      'Decimal',
+      'String',
+      'DateTime',
+      'Date',
+      'Time',
+      'SimpleTypeInfo',
+      'ClassInfo',
+    ].contains(texp.name)) {
+      ns = 'System';
+      n = texp.name;
+    } else {
+      ns = 'FHIR';
+      n = texp.name;
+    }
+
+    if (ns == 'System') {
+      if (focus.first is Resource) {
+        return makeBoolean(false);
+      }
+
+      if (focus.first is! Element ||
+          ((focus.first as Element).disallowExtensions ?? false)) {
+        final t = focus.first.fhirType.capitalize();
+        if (n == t) {
+          return makeBoolean(true);
+        }
+        if (t == 'Date' && n == 'DateTime') {
+          return makeBoolean(true);
+        }
+        return makeBoolean(false);
+      } else {
+        return makeBoolean(false);
+      }
+    } else if (ns == 'FHIR') {
+      if (n == focus.first.fhirType) {
+        return makeBoolean(true);
+      } else {
+        var sd = _fetchTypeDefinition(focus.first.fhirType);
+        while (sd != null) {
+          if (n == sd.type.toString()) {
+            return makeBoolean(true);
+          }
+          sd = worker.fetchResource<StructureDefinition>(
+            uri: sd.baseDefinition?.toString(),
+          );
+        }
+        return makeBoolean(false);
+      }
+    } else {
+      return makeBoolean(false);
+    }
+  }
+
+  List<FhirBase> funcSingle(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length == 1) {
+      return focus;
+    }
+    throw makeException(expr, 'FHIRPATH_NO_COLLECTION', [
+      'single',
+      focus.length,
+    ]);
+  }
+
+  List<FhirBase> funcFirst(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return focus.isNotEmpty ? [focus.first] : [];
+  }
+
+  List<FhirBase> funcLast(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return focus.isNotEmpty ? [focus.last] : [];
+  }
+
+  List<FhirBase> funcTail(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return focus.length > 1 ? focus.sublist(1) : [];
+  }
+
+  List<FhirBase> funcSkip(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final n1 = execute(context, focus, exp.parameters[0], true);
+    final i1 = int.parse(n1.first.primitiveValue.toString());
+
+    return focus.sublist(i1);
+  }
+
+  List<FhirBase> funcMatches(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final swb = execute(context, focus, exp.parameters[0], true);
+    final sw = convertToStringList(swb);
+
+    if (focus.isEmpty || swb.isEmpty) {
+      return result;
+    } else if (focus.length == 1 && sw.isNotEmpty) {
+      final st = convertToString(focus.first);
+      if (st.isEmpty) {
+        result.add(FhirBoolean(false).noExtensions());
+      } else {
+        final regExp = RegExp(sw, dotAll: true);
+        final match = regExp.hasMatch(st);
+        result.add(FhirBoolean(match).noExtensions());
+      }
+    } else {
+      result.add(FhirBoolean(false).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcMatchesFull(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final sw =
+        convertToStringList(execute(context, focus, exp.parameters[0], true));
+
+    if (focus.length == 1 && sw.isNotEmpty) {
+      final st = convertToString(focus.first);
+      if (st.isEmpty) {
+        result.add(FhirBoolean(false).noExtensions());
+      } else {
+        final regExp = RegExp(sw, dotAll: true);
+        final fullMatch = regExp.matchAsPrefix(st) != null;
+        result.add(FhirBoolean(fullMatch).noExtensions());
+      }
+    } else {
+      result.add(FhirBoolean(false).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcContains(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (context.thisItem == null) {
+      throw PathEngineException('The context does not have a thisItem');
+    }
+    final swb = execute(
+      context,
+      baseToList(context.thisItem!),
+      exp.parameters[0],
+      true,
+    );
+    final sw = convertToStringList(swb);
+
+    if (focus.length != 1 || swb.length != 1) {
+      return result;
+    } else if (sw.isEmpty) {
+      result.add(FhirBoolean(true).noExtensions());
+    } else if (focus.first is FhirString) {
+      final st = convertToString(focus.first);
+      result.add(FhirBoolean(st.contains(sw)).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcTrace(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final nl = execute(context, focus, exp.parameters[0], true);
+    final name = nl.first.primitiveValue.toString();
+
+    if (exp.parameters.length == 2) {
+      final n2 = execute(context, focus, exp.parameters[1], true);
+      writeToLog(name, n2);
+    } else {
+      writeToLog(name, focus);
+    }
+    return focus;
+  }
+
+  List<FhirBase> funcDefineVariable(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final nl = execute(context, focus, exp.parameters[0], true);
+    final name = nl.first.primitiveValue.toString();
+    final value = exp.parameters.length == 2
+        ? execute(context, focus, exp.parameters[1], true)
+        : focus;
+
+    context.setDefinedVariable(name, value, worker);
+    return focus;
+  }
+
+  List<FhirBase> funcCheck(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    final n1 = execute(context, focus, expr.parameters[0], true);
+
+    if (!convertToBoolean(n1)) {
+      final n2 = execute(context, focus, expr.parameters[1], true);
+      final name = n2.first.primitiveValue.toString();
+      throw FhirPathException('Check failed for $name');
+    }
+    return focus;
+  }
+
+  List<FhirBase> funcToday(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return <FhirBase>[FhirDate.fromDateTime(DateTime.now())];
+  }
+
+  List<FhirBase> funcNow(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return <FhirBase>[FhirDateTime.fromDateTime(DateTime.now())];
+  }
+
+  List<FhirBase> funcAnyTrue(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+
+    if (exp.parameters.length == 1) {
+      var any = false;
+      final pc = <FhirBase>[];
+
+      for (final item in focus) {
+        pc
+          ..clear()
+          ..add(item);
+        final res = execute(context, pc, exp.parameters[0], true);
+        final v = asBoolList(res, exp);
+        if (v == Equality.true_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    } else {
+      var any = false;
+      for (final item in focus) {
+        if (!canConvertToBoolean(item)) {
+          throw FHIRException(
+            message:
+                "Unable to convert '${convertToString(item)}' to a boolean",
+          );
+        }
+        final v = asBool(item, true);
+        if (v == Equality.true_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcIsDecimal(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length != 1) {
+      result.add(FhirBoolean(false).noExtensions());
+    } else if (focus.first is FhirInteger ||
+        focus.first is FhirBoolean ||
+        focus.first is FhirDecimal) {
+      result.add(FhirBoolean(true).noExtensions());
+    } else if (focus.first is FhirString) {
+      result.add(
+        FhirBoolean(Utilities.isDecimal(focus.first.toString())).noExtensions(),
+      );
+    } else {
+      result.add(FhirBoolean(false).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcRound(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
+        'round',
+        focus.length,
+      ]);
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      int? precision = 0;
+
+      if (expr.parameters.isNotEmpty) {
+        final n1 = execute(context, focus, expr.parameters[0], true);
+        if (n1.length != 1) {
+          throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+            'round',
+            '0',
+            'Multiple Values',
+            'integer',
+          ]);
+        }
+        precision = int.tryParse(n1[0].toString());
+      }
+
+      final value = double.tryParse(base.toString());
+      if (value == null) {
+        throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+          'round',
+          '(focus)',
+          base.fhirType,
+          'integer or decimal',
+        ]);
+      }
+      if (precision == null) {
+        throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+          'round',
+          '(focus)',
+          base.fhirType,
+          'integer',
+        ]);
+      }
+      result.add(FhirDecimal(double.parse(value.toStringAsFixed(precision))));
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'round',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcSupersetOf(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final target = execute(context, focus, exp.parameters[0], true);
+
+    var valid = true;
+    for (final item in target) {
+      var found = false;
+      for (final t in focus) {
+        if (FhirBase.compareDeep(item, t)) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        valid = false;
+        break;
+      }
+    }
+
+    return [FhirBoolean(valid).noExtensions()];
+  }
+
+  List<FhirBase> funcType(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return focus.map(ClassTypeInfo.new).toList();
+  }
+
+  ///
+  /// ***************************************
+  /// UTILITIES
+  /// ***************************************
+  ///
+  List<FhirBase> makeBoolean(bool b) {
+    return <FhirBase>[FhirBoolean(b).noExtensions()];
+  }
+
+  bool isBoolean(List<FhirBase> list, bool b) {
+    return list.length == 1 &&
+        list.first is FhirBoolean &&
+        (list.first as FhirBoolean).value == b;
+  }
+
+  Equality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
+    if (items.isEmpty) {
+      return Equality.null_;
+    } else if (items.length == 1 && items.first is FhirBoolean) {
+      return asBool(items.first, true);
+    } else if (items.length == 1) {
+      return Equality.true_;
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_UNABLE_BOOLEAN',
+        items.map((e) => e.toString()).toList(),
+      );
+    }
+  }
+
+  Equality asBool(FhirBase item, bool narrow) {
+    if (item is FhirBoolean && item.value != null) {
+      return boolToTriState(item.value!);
+    } else if (narrow) {
+      return Equality.false_;
+    } else if (item is FhirNumber && item.value != null) {
+      if (item is FhirInteger ||
+          item is FhirUnsignedInt ||
+          item is FhirPositiveInt) {
+        return asBoolFromInt(item.value.toString());
+      } else if (item is FhirDecimal) {
+        return asBoolFromDec(item.value.toString());
+      } else if (item is FhirString) {
+        if (['true', 't', 'yes', 'y'].contains((item as FhirString).value)) {
+          return Equality.true_;
+        } else if (['false', 'f', 'no', 'n']
+            .contains((item as FhirString).value)) {
+          return Equality.false_;
+        } else {
+          return Equality.null_;
+        }
+      }
+    }
+    return Equality.null_;
+  }
+
+  Equality asBoolList(List<FhirBase> items, ExpressionNode expr) {
+    if (items.isEmpty) {
+      return Equality.null_;
+    } else if (items.length == 1 && items.first is FhirBoolean) {
+      return asBool(items.first, true);
+    } else if (items.length == 1) {
+      return Equality.true_;
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_UNABLE_BOOLEAN',
+        [convertToStringList(items)],
+      );
+    }
+  }
+
+  Equality boolToTriState(bool b) {
+    return b ? Equality.true_ : Equality.false_;
+  }
+
+  Equality asBoolFromInt(String s) {
+    try {
+      final i = int.tryParse(s);
+      switch (i) {
+        case 0:
+          return Equality.false_;
+        case 1:
+          return Equality.true_;
+        default:
+          return Equality.null_;
+      }
+    } catch (e) {
+      return Equality.null_;
+    }
+  }
+
+  Equality asBoolFromDec(String s) {
+    try {
+      final d =
+          BigInt.parse(s); // Use BigInt for arbitrary precision numbers in Dart
+      if (d == BigInt.zero) {
+        return Equality.false_;
+      } else if (d == BigInt.one) {
+        return Equality.true_;
+      } else {
+        return Equality.null_;
+      }
+    } catch (e) {
+      return Equality.null_;
+    }
+  }
+
+  void addTypeAndDescendents(
+    List<StructureDefinition> sdl,
+    StructureDefinition dt,
+    List<StructureDefinition> types,
+  ) {
+    sdl.add(dt);
+    for (final sd in types) {
+      if (sd.baseDefinition != null &&
+          sd.baseDefinition.toString() == dt.url.toString() &&
+          sd.derivation == TypeDerivationRule.specialization) {
+        addTypeAndDescendents(sdl, sd, types);
+      }
     }
   }
 
@@ -3084,121 +5011,6 @@ class FHIRPathEngine {
     );
   }
 
-  List<FhirBase> opIs(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final result = <FhirBase>[];
-    if (left.isEmpty || right.isEmpty) {
-      // No operation needed for empty lists
-    } else if (left.length != 1 || right.length != 1) {
-      result.add(FhirBoolean(false).noExtensions());
-    } else {
-      final tn = convertToStringList(right);
-      if (left.first is Element) {
-        final element = left.first as Element;
-        if (element.disallowExtensions ?? false) {
-          result.add(
-            FhirBoolean(
-              element.fhirType.capitalize() == tn ||
-                  'System.${element.fhirType.capitalize()}' == tn,
-            ).noExtensions(),
-          );
-        } else {
-          final currentType = element.fhirType;
-          var sd = worker.fetchTypeDefinition(currentType);
-          while (sd != null) {
-            if (tn == sd.type.toString()) {
-              return makeBoolean(true);
-            }
-            sd = worker.fetchResource<StructureDefinition>(
-              uri: sd.baseDefinition?.toString(),
-            );
-          }
-          return makeBoolean(false);
-        }
-      } else if (left.first.fhirType == tn) {
-        result.add(FhirBoolean(true).noExtensions());
-      }
-    }
-    return result;
-  }
-
-  List<FhirBase> opEquals(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    print('opEquals: $left == $right');
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length != right.length) {
-      return makeBoolean(false);
-    }
-
-    var res = true;
-    var nil = false;
-
-    for (var i = 0; i < left.length; i++) {
-      print('left[i]: ${left[i]} == right[i]: ${right[i]}');
-      final eq = doEquals(left[i], right[i]);
-      print('eq: $eq');
-      if (eq == null) {
-        nil = true;
-      } else if (!eq) {
-        res = false;
-        break;
-      }
-    }
-
-    print('res: $res');
-
-    if (!res) {
-      return makeBoolean(false);
-    } else if (nil) {
-      return [];
-    } else {
-      return makeBoolean(true);
-    }
-  }
-
-  List<FhirBase> opNotEquals(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (!legacyMode && (left.isEmpty || right.isEmpty)) {
-      return [];
-    }
-
-    if (left.length != right.length) {
-      return makeBoolean(true);
-    }
-
-    var res = true;
-    var nil = false;
-    for (var i = 0; i < left.length; i++) {
-      final eq = doEquals(left[i], right[i]);
-      if (eq == null) {
-        nil = true;
-      } else if (eq) {
-        res = false;
-        break;
-      }
-    }
-
-    if (!res) {
-      return makeBoolean(res);
-    } else if (nil) {
-      return [];
-    } else {
-      return makeBoolean(res);
-    }
-  }
-
   String removeTrailingZeros(String s) {
     if (s.noString()) {
       return '';
@@ -3252,67 +5064,6 @@ class FHIRPathEngine {
     } else {
       return FhirBase.compareDeep(left, right);
     }
-  }
-
-  List<FhirBase> opEquivalent(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    print('opEquivalent: $left == $right');
-    if (left.length != right.length) {
-      return makeBoolean(false);
-    }
-
-    var res = true;
-
-    for (var i = 0; i < left.length; i++) {
-      var found = false;
-      for (var j = 0; j < right.length; j++) {
-        // TODO(Dokotela): unclear if this is the correct way to handle null
-        final equivalent = doEquivalent(left[i], right[j]);
-        if (equivalent == null) {
-          return <FhirBase>[];
-        } else if (equivalent) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        res = false;
-        break;
-      }
-    }
-
-    return makeBoolean(res);
-  }
-
-  List<FhirBase> opNotEquivalent(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.length != right.length) {
-      return makeBoolean(true);
-    }
-
-    var res = true;
-
-    for (var i = 0; i < left.length; i++) {
-      var found = false;
-      for (var j = 0; j < right.length; j++) {
-        if (doEquivalent(left[i], right[j]) ?? false) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        res = false;
-        break;
-      }
-    }
-
-    return makeBoolean(!res);
   }
 
   bool? qtyEqual(Quantity left, Quantity right) {
@@ -3472,69 +5223,6 @@ class FHIRPathEngine {
       }
     }
     return doEquivalent(left, right);
-  }
-
-  List<FhirBase> opLessThan(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length == 1 && right.length == 1) {
-      final l = left.first;
-      final r = right.first;
-
-      if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) < 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l < r);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l < r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l < r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else {
-          throw makeException(
-            expr,
-            'FHIRPATH_CANT_COMPARE',
-            [l.fhirType, r.fhirType],
-          );
-        }
-      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
-        if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
-        }
-        var rUnit = r.listChildrenByName('code');
-        if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
-        }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
-          return opLessThan(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
-            expr,
-          );
-        } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opLessThan(dl, dr, expr);
-          }
-        }
-      }
-    }
-    return [];
   }
 
   String convertToStringList(List<FhirBase> items) {
@@ -3709,404 +5397,6 @@ class FHIRPathEngine {
     return l.toLowerCase() == r.toLowerCase();
   }
 
-  List<FhirBase> opGreater(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length == 1 && right.length == 1) {
-      final l = left.first;
-      final r = right.first;
-
-      if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l > r);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l > r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          print('l: ${l.toJson()} > r: ${r.toJson()}');
-          final comparison = l > r;
-          print('time comparison: $comparison');
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else {
-          throw makeException(
-            expr,
-            'FHIRPATH_CANT_COMPARE',
-            [l.fhirType, r.fhirType],
-          );
-        }
-      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
-        if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
-        }
-        var rUnit = r.listChildrenByName('code');
-        if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
-        }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
-          return opGreater(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
-            expr,
-          );
-        } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreater(dl, dr, expr);
-          }
-        }
-      }
-    }
-    return [];
-  }
-
-  List<FhirBase> opLessOrEqual(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length == 1 && right.length == 1) {
-      final l = left.first;
-      final r = right.first;
-      print('opLessOrEqual: ${l.toJson()} <= ${r.toJson()}');
-
-      if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) <= 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l <= r);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l <= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l <= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else {
-          throw makeException(
-            expr,
-            'FHIRPATH_CANT_COMPARE',
-            [l.fhirType, r.fhirType],
-          );
-        }
-      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
-        if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
-        }
-        var rUnit = r.listChildrenByName('code');
-        if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
-        }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
-          return opLessOrEqual(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
-            expr,
-          );
-        } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opLessOrEqual(dl, dr, expr);
-          }
-        }
-      }
-    }
-    return [];
-  }
-
-  List<FhirBase> opImplies(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final eq = asBoolList(left, expr);
-    if (eq == Equality.false_) {
-      return makeBoolean(true);
-    } else if (right.isEmpty) {
-      return makeNull();
-    } else {
-      switch (asBoolList(right, expr)) {
-        case Equality.false_:
-          return eq == Equality.null_ ? makeNull() : makeBoolean(false);
-        case Equality.null_:
-          return makeNull();
-        case Equality.true_:
-          return makeBoolean(true);
-      }
-    }
-  }
-
-  List<FhirBase> opMinus(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(
-        left.length,
-        expr,
-        'FHIRPATH_LEFT_VALUE',
-        ['-'],
-      );
-    }
-    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
-        '-',
-        left.first.fhirType,
-      ]);
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(
-        right.length,
-        expr,
-        'FHIRPATH_RIGHT_VALUE',
-        ['-'],
-      );
-    }
-    if (right.first is! PrimitiveType &&
-        !(left.first is FhirDateTimeBase ||
-            left.first.toString() == '0' ||
-            left.first.fhirType == 'Quantity')) {
-      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
-        '-',
-        right.first.fhirType,
-      ]);
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l is FhirNumber && r is FhirNumber) {
-      result.add((l - r)!);
-    } else if (l is Quantity && r is Quantity) {
-      final qty = r.copyWith(value: r.value?.abs().toFhirDecimal);
-      result.add(qty);
-    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
-      result.add(dateAdd(l as FhirDateTime, r as Quantity, true, expr));
-    } else {
-      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
-        '-',
-        l.fhirType,
-        r.fhirType,
-      ]);
-    }
-
-    return result;
-  }
-
-  List<FhirBase> opDivideBy(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(
-        left.length,
-        expr,
-        'FHIRPATH_LEFT_VALUE',
-        ['/'],
-      );
-    }
-    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
-        '/',
-        left.first.fhirType,
-      ]);
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
-        '/',
-      ]);
-    }
-    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
-        '/',
-        right.first.fhirType,
-      ]);
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l is FhirNumber && r is FhirNumber) {
-      try {
-        final d1 = FhirDecimal(l.value);
-        final d2 = FhirDecimal(r.value);
-        result.add((d1 / d2)! as FhirDecimal);
-      } catch (e) {
-        return <FhirBase>[];
-      }
-    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
-      final pl = qtyToPair(l);
-      final pr = qtyToPair(r);
-      if (pl != null && pr != null) {
-        final p = worker.ucumService!.divideBy(pl, pr);
-        result.add(pairToQty(p));
-      }
-    } else {
-      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
-        '/',
-        l.fhirType,
-        r.fhirType,
-      ]);
-    }
-
-    return result;
-  }
-
-  List<FhirBase> opDiv(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
-        'div',
-      ]);
-    }
-    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
-        'div',
-        left.first.fhirType,
-      ]);
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
-        'div',
-      ]);
-    }
-    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
-        'div',
-        right.first.fhirType,
-      ]);
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l is FhirInteger &&
-        l.value != null &&
-        r is FhirInteger &&
-        r.value != null) {
-      final divisor = r.value!;
-      if (divisor != 0) {
-        result.add(FhirInteger(l.value! ~/ divisor));
-      }
-    } else if ((l is FhirDecimal || l is FhirInteger) &&
-        (r is FhirDecimal || r is FhirInteger)) {
-      if ((r as FhirNumber).value != 0) {
-        result.add(((l as FhirNumber) ~/ r)!);
-      }
-    } else {
-      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
-        'div',
-        l.fhirType,
-        r.fhirType,
-      ]);
-    }
-
-    return result;
-  }
-
-  List<FhirBase> opMod(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
-        'mod',
-      ]);
-    }
-    if (!left.first.isPrimitive) {
-      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
-        'mod',
-        left.first.fhirType,
-      ]);
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
-        'mod',
-      ]);
-    }
-    if (!right.first.isPrimitive) {
-      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
-        'mod',
-        right.first.fhirType,
-      ]);
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l.fhirType == 'integer' && r.fhirType == 'integer') {
-      final modulus = r.primitiveValue! as int;
-      if (modulus != 0) {
-        result.add(FhirInteger((l.primitiveValue! as int) % modulus));
-      }
-    } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
-        (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
-      try {
-        final d1 = l as FhirNumber;
-        final d2 = r as FhirNumber;
-        if (d2.value != 0) {
-          result.add((d1 % d2)!);
-        }
-      } catch (e) {
-        throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
-      }
-    } else {
-      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
-        'mod',
-        l.fhirType,
-        r.fhirType,
-      ]);
-    }
-
-    return result;
-  }
-
   FhirDateTimeBase dateAdd(
     FhirDateTimeBase d,
     Quantity q,
@@ -4202,279 +5492,6 @@ class FHIRPathEngine {
     return left.compareTo(right);
   }
 
-  List<FhirBase> opGreaterOrEqual(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    if (left.length == 1 && right.length == 1) {
-      final l = left.first;
-      final r = right.first;
-
-      if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) >= 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l >= r);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l >= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l >= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
-        } else {
-          throw makeException(
-            expr,
-            'FHIRPATH_CANT_COMPARE',
-            [l.fhirType, r.fhirType],
-          );
-        }
-      } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
-        if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
-        }
-        var rUnit = r.listChildrenByName('code');
-        if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
-        }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
-          return opGreaterOrEqual(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
-            expr,
-          );
-        } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreaterOrEqual(dl, dr, expr);
-          }
-        }
-      }
-    }
-    return [];
-  }
-
-  List<FhirBase> opMemberOf(
-    ExecutionContext context,
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    var ans = false;
-    final url = right.first.primitiveValue.toString();
-    final vs = hostServices != null
-        ? hostServices!.resolveValueSet(this, context.appInfo, url)
-        : worker.fetchResource<ValueSet>(uri: url);
-
-    if (vs != null) {
-      for (final l in left) {
-        if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          if (worker
-              .validateCode(
-                terminologyServiceOptions.withGuessSystem(),
-                TypeConvertor.castToCoding(l),
-                vs,
-              )
-              .isOk()) {
-            ans = true;
-          }
-        } else if (l.fhirType == 'Coding') {
-          if (worker
-              .validateCode(
-                terminologyServiceOptions,
-                TypeConvertor.castToCoding(l),
-                vs,
-              )
-              .isOk()) {
-            ans = true;
-          }
-        } else if (l.fhirType == 'CodeableConcept') {
-          // TODO(Dokotela): invalid, need to correct
-          // final cc = TypeConvertor.castToCodeableConcept(l);
-          // final vr = worker.validateCode(terminologyServiceOptions, cc, vs);
-          // if (vr.isOk()) {
-          ans = true;
-          // }
-        }
-      }
-    }
-
-    return makeBoolean(ans);
-  }
-
-  List<FhirBase> opIn(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty) {
-      return [];
-    }
-    if (right.isEmpty) {
-      return makeBoolean(false);
-    }
-
-    var ans = true;
-    for (final l in left) {
-      var found = false;
-      for (final r in right) {
-        final eq = doEquals(l, r);
-        if (eq ?? false) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        ans = false;
-        break;
-      }
-    }
-    return makeBoolean(ans);
-  }
-
-  List<FhirBase> opContains(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-
-    var ans = true;
-    for (final r in right) {
-      var found = false;
-      for (final l in left) {
-        final eq = doEquals(l, r);
-        if (eq ?? false) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        ans = false;
-        break;
-      }
-    }
-    return makeBoolean(ans);
-  }
-
-  List<FhirBase> opPlus(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(
-        left.length,
-        expr,
-        'FHIRPATH_LEFT_VALUE',
-        ['+'],
-      );
-    }
-    if (!left.first.isPrimitive) {
-      throw makeException(
-        expr,
-        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
-        ['+', left.first.fhirType],
-      );
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(
-        right.length,
-        expr,
-        'FHIRPATH_RIGHT_VALUE',
-        ['+'],
-      );
-    }
-    if (!right.first.isPrimitive &&
-        !(left.first.fhirType == 'Quantity' &&
-            right.first.fhirType == 'Quantity')) {
-      throw makeException(
-        expr,
-        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
-        ['+', right.first.fhirType],
-      );
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l.fhirType == 'string' && r.fhirType == 'string') {
-      result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
-    } else if (l is FhirNumber && r is FhirNumber) {
-      result.add((l + r)!);
-    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
-      result.add(dateAdd(l, r as Quantity, false, expr));
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_OP_INCOMPATIBLE',
-        ['+', l.fhirType, r.fhirType],
-      );
-    }
-
-    return result;
-  }
-
-  List<FhirBase> opUnion(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final result = <FhirBase>[];
-    for (final item in left) {
-      if (!doContains(result, item)) {
-        result.add(item);
-      }
-    }
-    for (final item in right) {
-      if (!doContains(result, item)) {
-        result.add(item);
-      }
-    }
-    return result;
-  }
-
-  List<FhirBase> opAnd(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
-    switch (l) {
-      case Equality.false_:
-        return makeBoolean(false);
-      case Equality.null_:
-        return r == Equality.false_ ? makeBoolean(false) : makeNull();
-      case Equality.true_:
-        switch (r) {
-          case Equality.false_:
-            return makeBoolean(false);
-          case Equality.null_:
-            return makeNull();
-          case Equality.true_:
-            return makeBoolean(true);
-        }
-    }
-  }
-
   bool doContains(List<FhirBase> list, FhirBase item) {
     for (final test in list) {
       final eq = doEquals(test, item);
@@ -4483,204 +5500,6 @@ class FHIRPathEngine {
       }
     }
     return false;
-  }
-
-  List<FhirBase> opOr(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
-    switch (l) {
-      case Equality.true_:
-        return makeBoolean(true);
-      case Equality.null_:
-        return r == Equality.true_ ? makeBoolean(true) : makeNull();
-      case Equality.false_:
-        switch (r) {
-          case Equality.false_:
-            return makeBoolean(false);
-          case Equality.null_:
-            return makeNull();
-          case Equality.true_:
-            return makeBoolean(true);
-        }
-    }
-  }
-
-  List<FhirBase> opXor(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
-    switch (l) {
-      case Equality.true_:
-        switch (r) {
-          case Equality.false_:
-            return makeBoolean(true);
-          case Equality.true_:
-            return makeBoolean(false);
-          case Equality.null_:
-            return makeNull();
-        }
-      case Equality.null_:
-        return makeNull();
-      case Equality.false_:
-        switch (r) {
-          case Equality.false_:
-            return makeBoolean(false);
-          case Equality.true_:
-            return makeBoolean(true);
-          case Equality.null_:
-            return makeNull();
-        }
-    }
-  }
-
-  List<FhirBase> opTimes(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.isEmpty || right.isEmpty) {
-      return [];
-    }
-    if (left.length > 1) {
-      throw makeExceptionPlural(
-        left.length,
-        expr,
-        'FHIRPATH_LEFT_VALUE',
-        ['*'],
-      );
-    }
-    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw makeException(
-        expr,
-        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
-        ['*', left.first.fhirType],
-      );
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(
-        right.length,
-        expr,
-        'FHIRPATH_RIGHT_VALUE',
-        ['*'],
-      );
-    }
-    if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw makeException(
-        expr,
-        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
-        ['*', right.first.fhirType],
-      );
-    }
-
-    final result = <FhirBase>[];
-    final l = left.first;
-    final r = right.first;
-
-    if (l is FhirNumber && r is FhirNumber) {
-      result.add((l * r)!);
-    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
-      final pl = qtyToPair(l);
-      final pr = qtyToPair(r);
-      if (pl != null && pr != null) {
-        try {
-          final p = worker.ucumService!.multiply(pl, pr);
-          result.add(pairToQty(p));
-        } catch (e) {
-          throw PathEngineException(
-            e.toString(),
-            location: expr.opStart,
-            expression: expr.toString(),
-          );
-        }
-      }
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_OP_INCOMPATIBLE',
-        ['*', l.fhirType, r.fhirType],
-      );
-    }
-
-    return result;
-  }
-
-  List<FhirBase> opConcatenate(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    if (left.length > 1) {
-      throw makeExceptionPlural(
-        left.length,
-        expr,
-        'FHIRPATH_LEFT_VALUE',
-        ['&'],
-      );
-    }
-    if (left.isNotEmpty && !FHIR_TYPES_STRING.contains(left.first.fhirType)) {
-      throw makeException(
-        expr,
-        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
-        ['&', left.first.fhirType],
-      );
-    }
-    if (right.length > 1) {
-      throw makeExceptionPlural(
-        right.length,
-        expr,
-        'FHIRPATH_RIGHT_VALUE',
-        ['&'],
-      );
-    }
-    if (right.isNotEmpty && !FHIR_TYPES_STRING.contains(right.first.fhirType)) {
-      throw makeException(
-        expr,
-        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
-        ['&', right.first.fhirType],
-      );
-    }
-
-    final result = <FhirBase>[];
-    final l = left.isEmpty ? '' : left.first.primitiveValue.toString();
-    final r = right.isEmpty ? '' : right.first.primitiveValue.toString();
-    result.add(FhirString('$l$r'));
-
-    return result;
-  }
-
-  List<FhirBase> opAs(
-    List<FhirBase> left,
-    List<FhirBase> right,
-    ExpressionNode expr,
-  ) {
-    final result = <FhirBase>[];
-    if (right.length != 1) {
-      return result;
-    }
-
-    final tn = convertToStringList(right);
-    if (!isKnownType(tn)) {
-      throw PathEngineException('The type $tn is not valid');
-    }
-    if (!doNotEnforceAsSingletonRule && left.length > 1) {
-      throw PathEngineException(
-        'Attempt to use "as" on more than one item (${left.length}, "$expr")',
-      );
-    }
-
-    for (final nextLeft in left) {
-      if (compareTypeNames(tn, nextLeft.fhirType)) {
-        result.add(nextLeft);
-      }
-    }
-    return result;
   }
 
   bool isKnownType(String tn) {
@@ -4699,7 +5518,7 @@ class FHIRPathEngine {
         return true;
       }
       try {
-        return worker.fetchTypeDefinition(tn) != null;
+        return _fetchTypeDefinition(tn) != null;
       } catch (e) {
         return false;
       }
@@ -4722,7 +5541,7 @@ class FHIRPathEngine {
       ].contains(t[1]);
     } else if ('FHIR' == t[0]) {
       try {
-        return worker.fetchTypeDefinition(t[1]) != null;
+        return _fetchTypeDefinition(t[1]) != null;
       } catch (e) {
         return false;
       }
@@ -4737,161 +5556,6 @@ class FHIRPathEngine {
     } else {
       return left == right;
     }
-  }
-
-  List<FhirBase> funcIsDecimal(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    if (focus.length != 1) {
-      result.add(FhirBoolean(false).noExtensions());
-    } else if (focus.first is FhirInteger ||
-        focus.first is FhirBoolean ||
-        focus.first is FhirDecimal) {
-      result.add(FhirBoolean(true).noExtensions());
-    } else if (focus.first is FhirString) {
-      result.add(
-        FhirBoolean(Utilities.isDecimal(focus.first.toString())).noExtensions(),
-      );
-    } else {
-      result.add(FhirBoolean(false).noExtensions());
-    }
-    return result;
-  }
-
-  List<FhirBase> funcCount(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return [FhirInteger(focus.length).noExtensions()];
-  }
-
-  List<FhirBase> funcSkip(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final n1 = execute(context, focus, exp.parameters[0], true);
-    final i1 = int.parse(n1.first.primitiveValue.toString());
-
-    return focus.sublist(i1);
-  }
-
-  List<FhirBase> funcTail(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return focus.length > 1 ? focus.sublist(1) : [];
-  }
-
-  List<FhirBase> funcLast(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return focus.isNotEmpty ? [focus.last] : [];
-  }
-
-  List<FhirBase> funcFirst(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return focus.isNotEmpty ? [focus.first] : [];
-  }
-
-  List<FhirBase> funcWhere(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final pc = <FhirBase>[];
-
-    for (final item in focus) {
-      pc
-        ..clear()
-        ..add(item);
-      final v = asBoolFromList(
-        executeContextTypeName(
-          context.changeThis(item, worker),
-          pc,
-          exp.parameters[0],
-          true,
-        ),
-        exp,
-      );
-      if (v == Equality.true_) {
-        result.add(item);
-      }
-    }
-    return result;
-  }
-
-  List<FhirBase> funcSelect(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final pc = <FhirBase>[];
-
-    for (var i = 0; i < focus.length; i++) {
-      final item = focus[i];
-      pc
-        ..clear()
-        ..add(item);
-      result.addAll(
-        execute(
-          context.changeThis(item, worker)..index = i.toFhirInteger,
-          pc,
-          exp.parameters[0],
-          true,
-        ),
-      );
-    }
-    return result;
-  }
-
-  List<FhirBase> funcItem(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final s = convertToStringList(
-      execute(context, focus, exp.parameters[0], true),
-    );
-    if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
-      result.add(focus[int.parse(s)]);
-    }
-    return result;
-  }
-
-  List<FhirBase> funcEmpty(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return [FhirBoolean(focus.isEmpty).noExtensions()];
-  }
-
-  List<FhirBase> funcNot(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final v = asBoolList(focus, exp);
-
-    if (v != Equality.null_) {
-      result.add(FhirBoolean(v != Equality.true_));
-    }
-    return result;
   }
 
   ExecutionTypeContext changeThis(
@@ -4913,49 +5577,6 @@ class FHIRPathEngine {
     return newContext;
   }
 
-  List<FhirBase> funcAnyTrue(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-
-    if (exp.parameters.length == 1) {
-      var any = false;
-      final pc = <FhirBase>[];
-
-      for (final item in focus) {
-        pc
-          ..clear()
-          ..add(item);
-        final res = execute(context, pc, exp.parameters[0], true);
-        final v = asBoolList(res, exp);
-        if (v == Equality.true_) {
-          any = true;
-          break;
-        }
-      }
-      result.add(FhirBoolean(any).noExtensions());
-    } else {
-      var any = false;
-      for (final item in focus) {
-        if (!canConvertToBoolean(item)) {
-          throw FHIRException(
-            message:
-                "Unable to convert '${convertToString(item)}' to a boolean",
-          );
-        }
-        final v = asBool(item, true);
-        if (v == Equality.true_) {
-          any = true;
-          break;
-        }
-      }
-      result.add(FhirBoolean(any).noExtensions());
-    }
-    return result;
-  }
-
   bool canConvertToBoolean(FhirBase item) {
     return item is FhirBoolean ||
         (item is PrimitiveType &&
@@ -4973,161 +5594,6 @@ class FHIRPathEngine {
               '0',
               '0.0',
             ].contains(item.toString().toLowerCase()));
-  }
-
-  List<FhirBase> funcTrace(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
-    final name = nl.first.primitiveValue.toString();
-
-    if (exp.parameters.length == 2) {
-      final n2 = execute(context, focus, exp.parameters[1], true);
-      writeToLog(name, n2);
-    } else {
-      writeToLog(name, focus);
-    }
-    return focus;
-  }
-
-  List<FhirBase> funcDefineVariable(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
-    final name = nl.first.primitiveValue.toString();
-    final value = exp.parameters.length == 2
-        ? execute(context, focus, exp.parameters[1], true)
-        : focus;
-
-    context.setDefinedVariable(name, value, worker);
-    return focus;
-  }
-
-  List<FhirBase> funcCheck(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode expr,
-  ) {
-    final n1 = execute(context, focus, expr.parameters[0], true);
-
-    if (!convertToBoolean(n1)) {
-      final n2 = execute(context, focus, expr.parameters[1], true);
-      final name = n2.first.primitiveValue.toString();
-      throw FhirPathException('Check failed for $name');
-    }
-    return focus;
-  }
-
-  List<FhirBase> funcDistinct(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    if (focus.length <= 1) {
-      return focus;
-    }
-
-    final result = <FhirBase>[];
-
-    for (var i = 0; i < focus.length; i++) {
-      var found = false;
-
-      for (var j = i + 1; j < focus.length; j++) {
-        final eq = doEquals(focus[j], focus[i]);
-        if (eq == null) return <FhirBase>[];
-        if (eq) {
-          found = true;
-          break;
-        }
-      }
-
-      if (!found) {
-        result.add(focus[i]);
-      }
-    }
-    return result;
-  }
-
-  List<FhirBase> funcMatches(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
-    final sw = convertToStringList(swb);
-
-    if (focus.isEmpty || swb.isEmpty) {
-      return result;
-    } else if (focus.length == 1 && sw.isNotEmpty) {
-      final st = convertToString(focus.first);
-      if (st.isEmpty) {
-        result.add(FhirBoolean(false).noExtensions());
-      } else {
-        final regExp = RegExp(sw, dotAll: true);
-        final match = regExp.hasMatch(st);
-        result.add(FhirBoolean(match).noExtensions());
-      }
-    } else {
-      result.add(FhirBoolean(false).noExtensions());
-    }
-    return result;
-  }
-
-  List<FhirBase> funcMatchesFull(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    final sw =
-        convertToStringList(execute(context, focus, exp.parameters[0], true));
-
-    if (focus.length == 1 && sw.isNotEmpty) {
-      final st = convertToString(focus.first);
-      if (st.isEmpty) {
-        result.add(FhirBoolean(false).noExtensions());
-      } else {
-        final regExp = RegExp(sw, dotAll: true);
-        final fullMatch = regExp.matchAsPrefix(st) != null;
-        result.add(FhirBoolean(fullMatch).noExtensions());
-      }
-    } else {
-      result.add(FhirBoolean(false).noExtensions());
-    }
-    return result;
-  }
-
-  List<FhirBase> funcContains(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final result = <FhirBase>[];
-    if (context.thisItem == null) {
-      throw PathEngineException('The context does not have a thisItem');
-    }
-    final swb = execute(
-      context,
-      baseToList(context.thisItem!),
-      exp.parameters[0],
-      true,
-    );
-    final sw = convertToStringList(swb);
-
-    if (focus.length != 1 || swb.length != 1) {
-      return result;
-    } else if (sw.isEmpty) {
-      result.add(FhirBoolean(true).noExtensions());
-    } else if (focus.first is FhirString) {
-      final st = convertToString(focus.first);
-      result.add(FhirBoolean(st.contains(sw)).noExtensions());
-    }
-    return result;
   }
 
   List<FhirBase> baseToList(FhirBase b) {
@@ -5177,344 +5643,6 @@ class FHIRPathEngine {
       }
     }
     return items.isNotEmpty;
-  }
-
-  List<FhirBase> funcIsDistinct(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    if (focus.isEmpty) {
-      return makeBoolean(true);
-    }
-    if (focus.length == 1) {
-      return makeBoolean(true);
-    }
-
-    var distinct = true;
-    for (var i = 0; i < focus.length; i++) {
-      for (var j = i + 1; j < focus.length; j++) {
-        final eq = doEquals(focus[j], focus[i]);
-        if (eq == null) {
-          return [];
-        } else if (eq) {
-          distinct = false;
-          break;
-        }
-      }
-    }
-    return makeBoolean(distinct);
-  }
-
-  List<FhirBase> funcSupersetOf(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final target = execute(context, focus, exp.parameters[0], true);
-
-    var valid = true;
-    for (final item in target) {
-      var found = false;
-      for (final t in focus) {
-        if (FhirBase.compareDeep(item, t)) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        valid = false;
-        break;
-      }
-    }
-
-    return [FhirBoolean(valid).noExtensions()];
-  }
-
-  List<FhirBase> funcSubsetOf(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    final target = execute(context, focus, exp.parameters[0], true);
-
-    var valid = true;
-    for (final item in focus) {
-      var found = false;
-      for (final t in target) {
-        if (FhirBase.compareDeep(item, t)) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        valid = false;
-        break;
-      }
-    }
-
-    return [FhirBoolean(valid).noExtensions()];
-  }
-
-  List<FhirBase> funcExists(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    var empty = true;
-    final pc = <FhirBase>[];
-
-    for (final f in focus) {
-      if (exp.parameters.length == 1) {
-        pc
-          ..clear()
-          ..add(f);
-        final v = asBoolList(
-          execute(context.changeThis(f, worker), pc, exp.parameters[0], true),
-          exp,
-        );
-        if (v == Equality.true_) {
-          empty = false;
-        }
-      } else if (!f.isEmpty()) {
-        empty = false;
-      }
-    }
-
-    return [FhirBoolean(!empty).noExtensions()];
-  }
-
-  List<FhirBase> funcNow(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return <FhirBase>[FhirDateTime.fromDateTime(DateTime.now())];
-  }
-
-  List<FhirBase> funcToday(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return <FhirBase>[FhirDate.fromDateTime(DateTime.now())];
-  }
-
-  List<FhirBase> funcAs(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode expr,
-  ) {
-    final result = <FhirBase>[];
-    final parameter = expr.parameters[0];
-    final tn = parameter.inner != null
-        ? '${parameter.name}.${parameter.inner!.name}'
-        : 'FHIR.${parameter.name}';
-
-    if (!isKnownType(tn)) {
-      throw PathEngineException('The type $tn is not valid');
-    }
-
-    if (!doNotEnforceAsSingletonRule && focus.length > 1) {
-      throw PathEngineException(
-        'Attempt to use as() on more than one item (${focus.length})',
-      );
-    }
-
-    for (final b in focus) {
-      if (tn.startsWith('System.')) {
-        if (b is Element &&
-            (b.disallowExtensions ?? false) &&
-            b.hasType([tn.substring(7)])) {
-          result.add(b);
-        }
-      } else if (tn.startsWith('FHIR.')) {
-        final tnp = tn.substring(5);
-        if (b.fhirType == tnp) {
-          result.add(b);
-        } else {
-          var sd = worker.fetchTypeDefinition(b.fhirType);
-          while (sd != null) {
-            if (compareTypeNames(tnp, sd.type.toString())) {
-              result.add(b);
-              break;
-            }
-            sd = sd.kind == StructureDefinitionKind.primitive_type
-                ? null
-                : worker.fetchResource<StructureDefinition>(
-                    uri: sd.baseDefinition?.toString(),
-                    canonicalForSource: sd,
-                  );
-          }
-        }
-      }
-    }
-
-    return result;
-  }
-
-  List<FhirBase> funcIs(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode expr,
-  ) {
-    if (focus.isEmpty || focus.length > 1) {
-      return makeNull();
-    }
-
-    String? ns;
-    String? n;
-
-    final texp = expr.parameters[0];
-    if (texp.kind != ExpressionNodeKind.name) {
-      throw makeException(
-        expr,
-        'FHIRPATH_PARAM_WRONG',
-        [
-          texp.kind!,
-          '0',
-          'is',
-        ],
-      );
-    }
-
-    if (texp.inner != null) {
-      if (texp.inner!.kind != ExpressionNodeKind.name) {
-        throw makeException(
-          expr,
-          'FHIRPATH_PARAM_WRONG',
-          [
-            texp.kind!,
-            '1',
-            'is',
-          ],
-        );
-      }
-      ns = texp.name;
-      n = texp.inner!.name;
-    } else if ([
-      'Boolean',
-      'Integer',
-      'Decimal',
-      'String',
-      'DateTime',
-      'Date',
-      'Time',
-      'SimpleTypeInfo',
-      'ClassInfo',
-    ].contains(texp.name)) {
-      ns = 'System';
-      n = texp.name;
-    } else {
-      ns = 'FHIR';
-      n = texp.name;
-    }
-
-    if (ns == 'System') {
-      if (focus.first is Resource) {
-        return makeBoolean(false);
-      }
-
-      if (focus.first is! Element ||
-          ((focus.first as Element).disallowExtensions ?? false)) {
-        final t = focus.first.fhirType.capitalize();
-        if (n == t) {
-          return makeBoolean(true);
-        }
-        if (t == 'Date' && n == 'DateTime') {
-          return makeBoolean(true);
-        }
-        return makeBoolean(false);
-      } else {
-        return makeBoolean(false);
-      }
-    } else if (ns == 'FHIR') {
-      if (n == focus.first.fhirType) {
-        return makeBoolean(true);
-      } else {
-        var sd = worker.fetchTypeDefinition(focus.first.fhirType);
-        while (sd != null) {
-          if (n == sd.type.toString()) {
-            return makeBoolean(true);
-          }
-          sd = worker.fetchResource<StructureDefinition>(
-            uri: sd.baseDefinition?.toString(),
-          );
-        }
-        return makeBoolean(false);
-      }
-    } else {
-      return makeBoolean(false);
-    }
-  }
-
-  List<FhirBase> funcOfType(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode expr,
-  ) {
-    final result = <FhirBase>[];
-    final parameter = expr.parameters[0];
-    final tn = parameter.inner != null
-        ? '${parameter.name}.${parameter.inner!.name}'
-        : 'FHIR.${parameter.name}';
-
-    if (!isKnownType(tn)) {
-      throw PathEngineException('The type $tn is not valid');
-    }
-
-    for (final b in focus) {
-      if (tn.startsWith('System.')) {
-        if (b is Element &&
-            (b.disallowExtensions ?? false) &&
-            b.hasType([tn.substring(7)])) {
-          result.add(b);
-        }
-      } else if (tn.startsWith('FHIR.')) {
-        final tnp = tn.substring(5);
-        if (b.fhirType == tnp) {
-          result.add(b);
-        } else {
-          var sd = worker.fetchTypeDefinition(b.fhirType);
-          while (sd != null) {
-            if (tnp == sd.type.toString()) {
-              result.add(b);
-              break;
-            }
-            sd = sd.kind == StructureDefinitionKind.primitive_type
-                ? null
-                : worker.fetchResource<StructureDefinition>(
-                    uri: sd.baseDefinition?.toString(),
-                    canonicalForSource: sd,
-                  );
-          }
-        }
-      }
-    }
-
-    return result;
-  }
-
-  List<FhirBase> funcType(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode exp,
-  ) {
-    return focus.map(ClassTypeInfo.new).toList();
-  }
-
-  List<FhirBase> funcSingle(
-    ExecutionContext context,
-    List<FhirBase> focus,
-    ExpressionNode expr,
-  ) {
-    if (focus.length == 1) {
-      return focus;
-    }
-    throw makeException(expr, 'FHIRPATH_NO_COLLECTION', [
-      'single',
-      focus.length,
-    ]);
   }
 
   bool hasType(FhirBase b, List<String> names) {

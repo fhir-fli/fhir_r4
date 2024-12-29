@@ -14,7 +14,7 @@ List<dynamic> parseAndEvaluate(String expression, [FhirBase? context]) {
   return [];
 }
 
-void main() {
+void testPaths() {
   group('Path Test', () {
     test('Patient Name', () {
       final node = engine.parse('Patient.name');
