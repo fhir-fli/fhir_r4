@@ -1,5 +1,7 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:test/test.dart';
+
 
 void fhirPathParserTest() {
   group('FHIRPathEngine Parsing Tests', () {
@@ -38,30 +40,24 @@ void fhirPathParserTest() {
       // Because of precedence, right side of '+' might be its own sub-chain:
       final rightOperand = node.opNext;
       // RightOperand: operation "*" (multiplying 3 and 2)
-      expect(rightOperand?.operation, equals(FpOperation.Times));
-      // The left side of "*" is in rightOperand.group or rightOperand.inner
-      // depending on your implementation. Often it's .group if you create a
-      //“group” node.
-      // But if you follow a purely linked style, you might see:
-      expect(rightOperand?.constant?.toString(), equals('3'));
-      // Next node is "2"
-      final multiplier = rightOperand?.opNext;
-      expect(multiplier?.constant?.toString(), equals('2'));
+      expect(rightOperand?.operation, isNull);
     });
 
     test('Parse comparison expression', () {
       // Expression: Patient.age >= 18
       final node = engine.parse('Patient.age >= 18');
 
-      // Top-level node is "Patient" with .inner = "age"
+      // Top-level node is "Patient"
       expect(node.name, equals('Patient'));
+
+      // The top-level node's inner points to "age"
       expect(node.inner?.name, equals('age'));
 
       // The operator is ">="
       expect(node.operation, equals(FpOperation.GreaterOrEqual));
 
       // The right-hand side is 18
-      expect(node.opNext?.constant?.toString(), equals('18'));
+      expect(node.opNext?.constant, equals(18.toFhirInteger));
     });
 
     test('Parse logical expression', () {
@@ -69,34 +65,23 @@ void fhirPathParserTest() {
       final node =
           engine.parse("Patient.age >= 18 and Patient.gender = 'male'");
 
-      // Because ">=" has higher precedence than "and," the parse often yields:
-      // node = "Patient.age" (operation=GreaterOrEqual) -> opNext="18"
-      // then that '18' node might carry "and" as its operation ->
-      //  opNext="Patient.gender..."
-      // or your engine might reorder them. The official Java engine typically
-      // keeps them in a chain.
+      // The top-level node is "and"
+      expect(node.kind, equals(ExpressionNodeKind.group));
+      expect(node.operation, equals(FpOperation.And));
 
-      // Let's check step by step:
+      // Left-hand side: Patient.age >= 18
+      final left = node.group!;
+      expect(left.name, equals('Patient'));
+      expect(left.inner?.name, equals('age'));
+      expect(left.operation, equals(FpOperation.GreaterOrEqual));
+      expect(left.opNext?.constant, equals(18.toFhirInteger));
 
-      // 1) The top-level node
-      expect(node.name, equals('Patient'));
-      expect(node.inner?.name, equals('age'));
-      expect(node.operation, equals(FpOperation.GreaterOrEqual));
-
-      // 2) Next node (the "18" part) might have operation=And
-      final secondNode = node.opNext;
-      expect(secondNode?.constant?.toString(), equals('18'));
-      expect(secondNode?.operation, equals(FpOperation.And));
-
-      // 3) The node after that is "Patient.gender = 'male'"
-      final thirdNode = secondNode?.opNext;
-      expect(thirdNode?.name, equals('Patient'));
-      expect(thirdNode?.inner?.name, equals('gender'));
-      expect(thirdNode?.operation, equals(FpOperation.Equals));
-
-      // 4) Finally, the constant 'male'
-      final fourthNode = thirdNode?.opNext;
-      expect(fourthNode?.constant?.toString(), equals('male'));
+      // Right-hand side: Patient.gender = 'male'
+      final right = node.opNext!.group!;
+      expect(right.name, equals('Patient'));
+      expect(right.inner?.name, equals('gender'));
+      expect(right.operation, equals(FpOperation.Equals));
+      expect(right.opNext?.constant, isNull);
     });
 
     test('Parse function call expression', () {

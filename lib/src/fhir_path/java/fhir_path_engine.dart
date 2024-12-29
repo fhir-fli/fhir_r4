@@ -109,7 +109,7 @@ class FHIRPathEngine {
   }
 
   ExpressionNode _parseLexer(FHIRLexer lexer) {
-    final result = _parseExpression(lexer, true)..printExpressionTree();
+    final result = _parseExpression(lexer, true);
     if (!lexer.done()) {
       throw lexer.error('Unexpected token "${lexer.current}"');
     }
@@ -123,8 +123,10 @@ class FHIRPathEngine {
     final c = lexer.currentStartLocation;
     result.start = lexer.currentLocation;
 
-    // Special: +/- represents a unary operation at this point
+    // Handle unary operations ('-' and '+')
     if (['-', '+'].contains(lexer.current)) {
+      print('Found unary operation: ${lexer.current}');
+
       wrapper = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.unary
         ..operation = FpOperation.fromCode(lexer.take())
@@ -136,6 +138,8 @@ class FHIRPathEngine {
       throw lexer.error('Expression terminated unexpectedly');
     } else if (lexer.isConstant()) {
       final isString = lexer.isStringConstant();
+
+      // Adjust for constants with unary operators (e.g., "-123")
       if (!isString &&
           (lexer.current!.startsWith('-') || lexer.current!.startsWith('+'))) {
         wrapper = ExpressionNode(lexer.nextId().toString())
@@ -150,6 +154,7 @@ class FHIRPathEngine {
         ..constant = _processConstant(lexer)
         ..kind = ExpressionNodeKind.constant;
 
+      // Handle quantities (e.g., "5 years")
       if (!isString &&
           !lexer.done() &&
           (result.constant is FhirInteger || result.constant is FhirDecimal) &&
@@ -174,6 +179,7 @@ class FHIRPathEngine {
               ]))) {
         String? ucum;
         String? unit;
+
         if (lexer.hasTokenList([
           'year',
           'years',
@@ -227,7 +233,6 @@ class FHIRPathEngine {
           system: ucum == null ? null : 'http://unitsofmeasure.org'.toFhirUri,
           code: ucum?.toFhirCode,
         );
-        print('Result Constant: ${result.constant?.toJson()}');
       }
       result.end = lexer.currentLocation;
     } else if (lexer.current == '(') {
@@ -276,8 +281,9 @@ class FHIRPathEngine {
             lexer.next();
           } else if (lexer.current != ')') {
             throw lexer.error(
-                'The token ${lexer.current} is not expected here - either a '
-                '"," or a ")" expected');
+              'The token ${lexer.current} is not expected here - '
+              'either a "," or a ")" expected',
+            );
           }
         }
         result.end = lexer.currentLocation;
@@ -308,6 +314,7 @@ class FHIRPathEngine {
       lexer.next();
       focus.inner = _parseExpression(lexer, false);
     }
+
     result.proximal = proximal;
     if (proximal) {
       while (lexer.isOp()) {
@@ -320,29 +327,41 @@ class FHIRPathEngine {
         focus.opNext = _parseExpression(lexer, false);
         focus = focus.opNext!;
       }
+      print('before organize precedence');
+      result.printExpressionTree();
       result = _organisePrecedence(lexer, result);
+      print('after organize precedence');
+      result.printExpressionTree();
     }
+
     if (wrapper != null) {
       wrapper.opNext = result;
       result.proximal = false;
       result = wrapper;
     }
+
     return result;
   }
 
   ExpressionNode _organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
     var node = oldNode;
+
+    // Handle multiplication/division/mod
     node = _gatherPrecedence(lexer, node, {
       FpOperation.Times,
       FpOperation.DivideBy,
       FpOperation.Div,
       FpOperation.Mod,
     });
+
+    // Handle addition/subtraction
     node = _gatherPrecedence(lexer, node, {
       FpOperation.Plus,
       FpOperation.Minus,
       FpOperation.Concatenate,
     });
+
+    // Handle other operations
     node = _gatherPrecedence(lexer, node, {FpOperation.Union});
     node = _gatherPrecedence(lexer, node, {
       FpOperation.LessThan,
@@ -356,85 +375,60 @@ class FHIRPathEngine {
       FpOperation.NotEquals,
       FpOperation.NotEquivalent,
     });
+
     node = _gatherPrecedence(lexer, node, {FpOperation.And});
+
     node = _gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
-    node = _gatherPrecedence(
-      lexer,
-      node,
-      {FpOperation.Implies},
-    ); // Lowest precedence
+    node = _gatherPrecedence(lexer, node, {FpOperation.Implies});
     return node;
   }
 
-  /// As closely as possible, a Dart version of the Java gatherPrecedence logic.
   ExpressionNode _gatherPrecedence(
     FHIRLexer lexer,
     ExpressionNode oldStart,
-    Set<FpOperation> ops,
-  ) {
-    // The Java code does: assert(start.isProximal());
-    assert(oldStart.proximal, 'start must be proximal');
+    Set<FpOperation> ops, {
+    bool unary = false,
+  }) {
+    assert(oldStart.proximal, 'Start must be proximal');
     var start = oldStart;
 
-    // (1) Count how many times we see an operator in `ops` so we can decide
-    //if grouping is needed.
-    var opCount = 0;
-    ExpressionNode? temp = start;
-    while (temp != null) {
-      if (temp.operation != null && ops.contains(temp.operation)) {
-        opCount++;
+    if (unary) {
+      // Handle unary operators
+      while (start.kind == ExpressionNodeKind.unary && start.opNext != null) {
+        start
+          ..group = start.opNext
+          ..opNext = null;
+        start = start.group!;
       }
-      temp = temp.opNext;
-    }
-
-    // If there's 0 or 1 operator in this chain at this precedence, skip
-    //grouping entirely:
-    if (opCount <= 1) {
       return start;
     }
 
-    // (2) The official Java logic checks whether "we have any real mix of
-    //operators" (the `work` variable).
-    var work = false;
+    // Detect work needed for precedence grouping
     var focus = start.opNext;
+    var work = false;
     if (ops.contains(start.operation)) {
-      // If start's operator is in `ops`, we look for any operator that is
-      //*not* in `ops`
-      // to decide if there's something to do
       while (focus != null && focus.operation != null) {
-        if (!ops.contains(focus.operation)) {
-          work = true;
-        }
+        work = work || !ops.contains(focus.operation);
         focus = focus.opNext;
       }
     } else {
-      // Otherwise, if the start node’s operator is *not* in `ops`,
-      // we look for an operator that *is* in `ops`.
       while (focus != null && focus.operation != null) {
-        if (ops.contains(focus.operation)) {
-          work = true;
-        }
+        work = work || ops.contains(focus.operation);
         focus = focus.opNext;
       }
     }
-
     if (!work) {
-      // No operator from `ops` is actually forcing grouping
       return start;
     }
 
-    // (3) "entry point: tricky" - create the first group if needed
+    // Entry point for grouping
     ExpressionNode group;
-    focus = null; // We'll set `focus` fresh below
-
     if (ops.contains(start.operation)) {
-      // The top node's operator is in `ops`, so we create a group at the top
-      group = _newGroup(lexer, start)..proximal = true;
-      // Now `focus = start` in the Java code
+      group = _newGroup(lexer, start);
+      group.proximal = true;
       focus = start;
       start = group;
     } else {
-      // Otherwise, walk down until we find the first operator in `ops`
       var node = start;
       focus = node.opNext;
       while (focus != null &&
@@ -447,9 +441,8 @@ class FHIRPathEngine {
       node.opNext = group;
     }
 
-    // (4) The main grouping loop
+    // Main grouping loop
     do {
-      // Skip consecutive operators in `ops`.
       while (focus != null &&
           focus.operation != null &&
           ops.contains(focus.operation)) {
@@ -457,31 +450,24 @@ class FHIRPathEngine {
       }
 
       if (focus != null && focus.operation != null) {
-        // Lift the operator from `focus` onto the group
         group
           ..operation = focus.operation
           ..opNext = focus.opNext;
 
-        // Null out that operator from the child
         focus
           ..operation = null
           ..opNext = null;
 
-        // Now see if there's another operator we need to group
         var node = group;
         focus = group.opNext;
         if (focus != null) {
-          // Skip nodes that do *not* have an operator in `ops`
           while (focus != null &&
               focus.operation != null &&
               !ops.contains(focus.operation)) {
             node = focus;
             focus = focus.opNext;
           }
-          if (focus != null &&
-              focus.operation != null &&
-              ops.contains(focus.operation)) {
-            // We have another operator in `ops`, so we create another group
+          if (focus != null) {
             group = _newGroup(lexer, focus);
             node.opNext = group;
           }
@@ -492,8 +478,6 @@ class FHIRPathEngine {
     return start;
   }
 
-  // Same as in Java. `newGroup` just sets a new node of `kind=group` with
-  //`.group = next`.
   ExpressionNode _newGroup(FHIRLexer lexer, ExpressionNode? next) {
     final result = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
@@ -523,8 +507,6 @@ class FHIRPathEngine {
       context: base,
       thisItem: base,
     );
-    print('Evaluating2: ');
-    node.printExpressionTree();
     return execute(context, list, node, true);
   }
 
@@ -935,9 +917,7 @@ class FHIRPathEngine {
           work.add(context.index);
         } else {
           for (final item in focus) {
-            print('Item: $item');
             final outcome = executeForItem(context, item, exp, atEntry: true);
-            print('Outcome: $outcome');
             work.addAll(outcome);
           }
         }
@@ -948,7 +928,6 @@ class FHIRPathEngine {
       case ExpressionNodeKind.constant:
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
-        print('Constants: $constants');
         work.addAll(constants);
 
       case ExpressionNodeKind.group:
@@ -967,29 +946,19 @@ class FHIRPathEngine {
       var last = exp;
       while (next != null) {
         context = contextForParameter(inContext);
-        print('lastoperation: ${last.operation}');
-        print('context: $context');
         var work2 = preOperate(work, last.operation, exp);
-        print('work2: $work2');
         if (work2 != null) {
           work = work2;
-          print('work: $work');
         } else if (last.operation == FpOperation.Is ||
             last.operation == FpOperation.As) {
           work2 = executeContextTypeName(context, focus, next, false);
-          print('work2: $work2');
           work = operate(context, work, last.operation, work2, last);
-          print('work: $work');
         } else {
           work2 = execute(context, focus, next, true);
-          print('work2: $work2');
           work = operate(context, work, last.operation, work2, last);
-          print('work: $work');
         }
         last = next;
         next = next.opNext;
-        print('last: $last');
-        print('next: $next');
       }
     }
 
@@ -1002,19 +971,13 @@ class FHIRPathEngine {
     ExpressionNode exp, {
     required bool atEntry,
   }) {
-    print('Executing for item: $item');
-    print('At entry: $atEntry');
-    print('AppInfo: ${context.appInfo}');
-    print('FocusResource: ${context.focusResource}');
     final result = <FhirBase>[];
-    print('host services: $hostServices');
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
       if (temp.isNotEmpty) {
         result.addAll(temp);
-        print('Resolved constant: $result');
         return result;
       }
     }
@@ -1024,19 +987,14 @@ class FHIRPathEngine {
         exp.name != null &&
         exp.name!.isNotEmpty &&
         exp.name![0].toUpperCase() == exp.name![0]) {
-      print('Special case for type checks: ${exp.name}');
-
       // Handle constant items
-      // if (item is PrimitiveType) {
-      //   final itemType = item.fhirType;
-      //   if (itemType == exp.name) {
-      //     print('Type Check Success: $itemType matches ${exp.name}');
-      //     result.add(item);
-      //     return result;
-      //   } else {
-      //     print('Type Check Failed: $itemType does not match ${exp.name}');
-      //   }
-      // }
+      if (item is PrimitiveType) {
+        final itemType = item.fhirType;
+        if (itemType == exp.name) {
+          result.add(item);
+          return result;
+        } else {}
+      }
 
       // Handle resources
       var sd = _fetchTypeDefinition(item.fhirType);
@@ -1048,7 +1006,6 @@ class FHIRPathEngine {
       } else {
         // Traverse through base definitions
         while (sd != null) {
-          print('Current SD type: ${sd.type}, Exp name: ${exp.name}');
           if (sd.type.toString() == exp.name) {
             result.add(item);
             break;
@@ -1064,7 +1021,7 @@ class FHIRPathEngine {
       }
     } else {
       // Step 3: Default case - Get children by name
-      print('Getting children by name for: ${exp.name}');
+
       getChildrenByName(item, exp.name!, result);
     }
     // Step 4: Fallback to resolve constants if result is empty
@@ -1072,14 +1029,12 @@ class FHIRPathEngine {
         context.appInfo != null &&
         hostServices != null &&
         result.isEmpty) {
-      print('Fallback to resolve constant for: ${exp.name}');
       result.addAll(
         hostServices!
             .resolveConstant(this, context.appInfo, exp.name, false, false),
       );
     }
 
-    print('Execution result: $result');
     return result;
   }
 
@@ -1171,7 +1126,7 @@ class FHIRPathEngine {
         while (next != null) {
           context = typeContextForParameter(contextOrType);
           TypeDetails work;
-          print('lastoperation: ${last.operation}');
+
           if (last.operation == FpOperation.Is ||
               last.operation == FpOperation.As) {
             if (focus == null) {
@@ -1511,7 +1466,7 @@ class FHIRPathEngine {
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
     String? tn;
     var name = oldName;
-    print('Old name: $oldName');
+
     if (allowPolymorphicNames) {
       // we'll look to see whether we have a polymorphic name
       for (final p in item.children()) {
@@ -1970,27 +1925,20 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   FhirBase? _processConstant(FHIRLexer lexer) {
-    print('Current: ${lexer.current}');
     if (lexer.isStringConstant()) {
-      print('String constant');
       return FhirString(processConstantString(lexer.take(), lexer))
           .noExtensions();
     } else if (lexer.current?.isInteger ?? false) {
-      print('Integer constant');
       return FhirInteger(int.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.isDecimal() ?? false) {
-      print('Decimal constant');
       return FhirDecimal(double.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.existsInList({'true', 'false'}) ?? false) {
-      print('Boolean constant');
       return FhirBoolean(lexer.take() == 'true').noExtensions();
     } else if (lexer.current == '{}') {
-      print('Empty constant');
       lexer.take();
       return null;
     } else if ((lexer.current?.startsWith('%') ?? false) ||
         (lexer.current?.startsWith('@') ?? false)) {
-      print('Constant reference');
       return FHIRConstant(lexer.take());
     } else {
       throw lexer.error('Invalid Constant ${lexer.current}');
@@ -2687,9 +2635,8 @@ class FHIRPathEngine {
     var nil = false;
 
     for (var i = 0; i < left.length; i++) {
-      print('left[i]: ${left[i]} == right[i]: ${right[i]}');
       final eq = doEquals(left[i], right[i]);
-      print('eq: $eq');
+
       if (eq == null) {
         nil = true;
       } else if (!eq) {
@@ -2697,8 +2644,6 @@ class FHIRPathEngine {
         break;
       }
     }
-
-    print('res: $res');
 
     if (!res) {
       return makeBoolean(false);
@@ -2714,7 +2659,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opEquivalent: $left == $right');
     if (left.length != right.length) {
       return makeBoolean(false);
     }
@@ -2890,9 +2834,8 @@ class FHIRPathEngine {
           final comparison = l > r;
           return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
-          print('l: ${l.toJson()} > r: ${r.toJson()}');
           final comparison = l > r;
-          print('time comparison: $comparison');
+
           return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
         } else {
           throw makeException(
@@ -2944,7 +2887,6 @@ class FHIRPathEngine {
     if (left.length == 1 && right.length == 1) {
       final l = left.first;
       final r = right.first;
-      print('opLessOrEqual: ${l.toJson()} <= ${r.toJson()}');
 
       if (l is PrimitiveType && r is PrimitiveType) {
         if (FHIR_TYPES_STRING.contains(l.fhirType) &&
@@ -3528,7 +3470,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opDivideBy: $left / $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3566,7 +3507,7 @@ class FHIRPathEngine {
       try {
         final d1 = FhirDecimal(l.value);
         final d2 = FhirDecimal(r.value);
-        if(d2.value == 0) {
+        if (d2.value == 0) {
           return <FhirBase>[];
         }
         result.add((d1 / d2)! as FhirDecimal);
@@ -3717,7 +3658,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opIs: $left is $right');
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
@@ -4911,7 +4851,6 @@ class FHIRPathEngine {
         explicitConstant,
       );
     } else if (c.value.startsWith('@')) {
-      print('Processing date constant');
       return [
         processDateConstant(context.appInfo, c.value.substring(1), expr),
       ];
@@ -4994,10 +4933,9 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     FhirBase? result;
-    print('VALUE: $value');
+
     if (value.startsWith('T')) {
       result = FhirTime.tryParse(value.replaceFirst('T', ''));
-      print('TIME: ${result?.toJson()}');
     } else {
       result = FhirDate.tryParse(value) ??
           FhirDateTime.tryParse(value) ??
@@ -5043,7 +4981,6 @@ class FHIRPathEngine {
   }
 
   bool decEqual(String left, String right) {
-    print('${removeTrailingZeros(left)} == ${removeTrailingZeros(right)}');
     return removeTrailingZeros(left) == removeTrailingZeros(right);
   }
 
@@ -5076,8 +5013,6 @@ class FHIRPathEngine {
     if (worker.ucumService != null) {
       final dl = qtyToCanonicalPair(left);
       final dr = qtyToCanonicalPair(right);
-
-      print('dl: $dl, dr: $dr');
 
       if (dl != null && dr != null) {
         if (dl.unit == dr.unit) {
@@ -5187,7 +5122,6 @@ class FHIRPathEngine {
   }
 
   bool? qtyEquivalent(Quantity left, Quantity right) {
-    print('qtyEquivalent: ${left.toJson()} == ${right.toJson()}');
     if (left.value == null && right.value == null) {
       return true;
     }
@@ -5197,8 +5131,6 @@ class FHIRPathEngine {
     if (worker.ucumService != null) {
       final dl = qtyToCanonicalPair(left);
       final dr = qtyToCanonicalPair(right);
-
-      print('dl: $dl, dr: $dr');
 
       if (dl != null && dr != null) {
         if (dl.unit == dr.unit) {

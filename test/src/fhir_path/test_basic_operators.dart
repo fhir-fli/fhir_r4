@@ -1095,12 +1095,18 @@ void testBasicOperators() {
 
       test('Math Operators: - :', () {
         final node1 = engine.parse('75-70');
+        print('************************************');
+        node1.printExpressionTree();
+        print('************************************');
         expect(
           engine.evaluate(patient3, node1),
           [5.toFhirInteger],
         );
 
         final node2 = engine.parse('75-70-75');
+        print('************************************');
+        node2.printExpressionTree();
+        print('************************************');
         expect(
           engine.evaluate(patient3, node2),
           [-70.toFhirInteger],
@@ -1109,18 +1115,27 @@ void testBasicOperators() {
 
       test('Math Operators: Precedence', () {
         final node1 = engine.parse('75+70-75');
+        print('************************************');
+        node1.printExpressionTree();
+        print('************************************');
         expect(
           engine.evaluate(patient3, node1),
           [70.toFhirInteger],
         );
 
         final node2 = engine.parse('1+2*3+4 = 11');
+        print('************************************');
+        node2.printExpressionTree();
+        print('************************************');
         expect(
           engine.evaluate(patient3, node2),
           [true.toFhirBoolean],
         );
 
         final node3 = engine.parse('1+2*-3+4 = -1');
+        print('************************************');
+        node3.printExpressionTree();
+        print('************************************');
         expect(
           engine.evaluate(patient3, node3),
           [true.toFhirBoolean],

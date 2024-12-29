@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, lines_longer_than_80_chars
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'java.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 // Converted from Java to Dart
 
@@ -117,7 +117,13 @@ class ExpressionNode {
         b.write(')');
       case null:
       case ExpressionNodeKind.unary:
-        b.write('<unary>');
+        b.write('Unary(${operation?.toCode()}');
+        if (group != null) {
+          b.write(': $group');
+        } else {
+          b.write(': null');
+        }
+        b.write(')');
     }
 
     if (inner != null) {
