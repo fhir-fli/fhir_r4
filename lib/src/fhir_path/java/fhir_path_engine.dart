@@ -125,8 +125,6 @@ class FHIRPathEngine {
 
     // Handle unary operations ('-' and '+')
     if (['-', '+'].contains(lexer.current)) {
-      print('Found unary operation: ${lexer.current}');
-
       wrapper = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.unary
         ..operation = FpOperation.fromCode(lexer.take())
@@ -237,9 +235,11 @@ class FHIRPathEngine {
       result.end = lexer.currentLocation;
     } else if (lexer.current == '(') {
       lexer.next();
+      final newExpression = _parseExpression(lexer, true);
+
       result
         ..kind = ExpressionNodeKind.group
-        ..group = _parseExpression(lexer, true);
+        ..group = newExpression;
       if (lexer.current != ')') {
         throw lexer.error('Found ${lexer.current} expecting a ")"');
       }
@@ -294,13 +294,16 @@ class FHIRPathEngine {
       }
     }
 
-    var focus = result;
+    ExpressionNode? focus = result;
     if (lexer.current == '[') {
       lexer.next();
+
+      final param = _parseExpression(lexer, true);
+
       final item = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.function
         ..function = FpFunction.Item
-        ..parameters.add(_parseExpression(lexer, true));
+        ..parameters.add(param);
       if (lexer.current != ']') {
         throw lexer.error(
           'The token ${lexer.current} is not expected here - a "]" expected',
@@ -318,6 +321,7 @@ class FHIRPathEngine {
     result.proximal = proximal;
     if (proximal) {
       while (lexer.isOp()) {
+        focus ??= ExpressionNode(lexer.nextId().toString());
         focus
           ..operation = FpOperation.fromCode(lexer.current)
           ..opStart = lexer.currentStartLocation
@@ -325,12 +329,15 @@ class FHIRPathEngine {
 
         lexer.next();
         focus.opNext = _parseExpression(lexer, false);
-        focus = focus.opNext!;
+        focus = focus.opNext;
+        if (focus?.kind == ExpressionNodeKind.unary) {
+          focus = focus!.opNext;
+        }
       }
-      print('before organize precedence');
+      print('before organise precedence');
       result.printExpressionTree();
       result = _organisePrecedence(lexer, result);
-      print('after organize precedence');
+      print('after organise precedence');
       result.printExpressionTree();
     }
 
@@ -346,6 +353,8 @@ class FHIRPathEngine {
   ExpressionNode _organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
     var node = oldNode;
 
+    print('Organising precedence');
+    node.printExpressionTree();
     // Handle multiplication/division/mod
     node = _gatherPrecedence(lexer, node, {
       FpOperation.Times,
@@ -354,12 +363,18 @@ class FHIRPathEngine {
       FpOperation.Mod,
     });
 
+    print('After multiplication');
+    node.printExpressionTree();
+
     // Handle addition/subtraction
     node = _gatherPrecedence(lexer, node, {
       FpOperation.Plus,
       FpOperation.Minus,
       FpOperation.Concatenate,
     });
+
+    print('After addition');
+    node.printExpressionTree();
 
     // Handle other operations
     node = _gatherPrecedence(lexer, node, {FpOperation.Union});
@@ -386,26 +401,14 @@ class FHIRPathEngine {
   ExpressionNode _gatherPrecedence(
     FHIRLexer lexer,
     ExpressionNode oldStart,
-    Set<FpOperation> ops, {
-    bool unary = false,
-  }) {
+    Set<FpOperation> ops,
+  ) {
     assert(oldStart.proximal, 'Start must be proximal');
     var start = oldStart;
 
-    if (unary) {
-      // Handle unary operators
-      while (start.kind == ExpressionNodeKind.unary && start.opNext != null) {
-        start
-          ..group = start.opNext
-          ..opNext = null;
-        start = start.group!;
-      }
-      return start;
-    }
-
     // Detect work needed for precedence grouping
-    var focus = start.opNext;
     var work = false;
+    var focus = start.opNext;
     if (ops.contains(start.operation)) {
       while (focus != null && focus.operation != null) {
         work = work || !ops.contains(focus.operation);
@@ -424,17 +427,14 @@ class FHIRPathEngine {
     // Entry point for grouping
     ExpressionNode group;
     if (ops.contains(start.operation)) {
-      group = _newGroup(lexer, start);
-      group.proximal = true;
+      group = _newGroup(lexer, start)..proximal = true;
       focus = start;
       start = group;
     } else {
       var node = start;
       focus = node.opNext;
-      while (focus != null &&
-          focus.operation != null &&
-          !ops.contains(focus.operation)) {
-        node = focus;
+      while (!ops.contains(focus?.operation)) {
+        node = focus!;
         focus = focus.opNext;
       }
       group = _newGroup(lexer, focus);
@@ -443,15 +443,13 @@ class FHIRPathEngine {
 
     // Main grouping loop
     do {
-      while (focus != null &&
-          focus.operation != null &&
-          ops.contains(focus.operation)) {
-        focus = focus.opNext;
+      while (ops.contains(focus?.operation)) {
+        focus = focus!.opNext;
       }
 
-      if (focus != null && focus.operation != null) {
+      if (focus?.operation != null) {
         group
-          ..operation = focus.operation
+          ..operation = focus!.operation
           ..opNext = focus.opNext;
 
         focus
@@ -461,9 +459,7 @@ class FHIRPathEngine {
         var node = group;
         focus = group.opNext;
         if (focus != null) {
-          while (focus != null &&
-              focus.operation != null &&
-              !ops.contains(focus.operation)) {
+          while (focus != null && !ops.contains(focus.operation)) {
             node = focus;
             focus = focus.opNext;
           }

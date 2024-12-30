@@ -81,7 +81,7 @@ void fhirPathParserTest() {
       expect(right.name, equals('Patient'));
       expect(right.inner?.name, equals('gender'));
       expect(right.operation, equals(FpOperation.Equals));
-      expect(right.opNext?.constant, isNull);
+      expect(right.opNext?.constant, equals('male'.toFhirString));
     });
 
     test('Parse function call expression', () {
