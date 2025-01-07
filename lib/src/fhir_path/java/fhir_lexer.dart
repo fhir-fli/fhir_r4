@@ -17,6 +17,17 @@ class FHIRLexer {
     next();
   }
 
+  FHIRLexer.fromPosition(String source, int cursor)
+      : this(source: source, cursor: cursor);
+
+  // ignore: avoid_positional_boolean_parameters
+  FHIRLexer.withDoubleQuotes(String source, int cursor, bool allowDoubleQuotes)
+      : this(
+          source: source,
+          cursor: cursor,
+          allowDoubleQuotes: allowDoubleQuotes,
+        );
+
   String source;
   int cursor;
   int currentStart = 0;
@@ -132,12 +143,12 @@ class FHIRLexer {
           cursor++;
         }
         current = source.substring(currentStart, cursor);
-      } else if (between_0_9(ch.codeUnitAt(0))) {
+      } else if (ch.codeUnitAt(0).between_0_9) {
         print('Identified as numeric constant');
         cursor++;
         var dotted = false;
         while (cursor < source.length &&
-            (between_0_9(source[cursor].codeUnitAt(0)) ||
+            (source[cursor].codeUnitAt(0).between_0_9 ||
                 (source[cursor] == '.') && !dotted)) {
           if (source[cursor] == '.') {
             print('Found decimal point in numeric constant');
@@ -150,13 +161,12 @@ class FHIRLexer {
           cursor--;
         }
         current = source.substring(currentStart, cursor);
-      } else if (between_a_z(ch.codeUnitAt(0)) ||
-          between_A_Z(ch.codeUnitAt(0))) {
+      } else if (ch.codeUnitAt(0).between_a_z || ch.codeUnitAt(0).between_A_Z) {
         print('Identified as alphabetic token');
         while (cursor < source.length &&
-            ((between_A_Z(source[cursor].codeUnitAt(0))) ||
-                (between_a_z(source[cursor].codeUnitAt(0))) ||
-                (between_0_9(source[cursor].codeUnitAt(0))) ||
+            (source[cursor].codeUnitAt(0).between_A_Z ||
+                source[cursor].codeUnitAt(0).between_a_z ||
+                source[cursor].codeUnitAt(0).between_0_9 ||
                 source[cursor] == '_')) {
           cursor++;
         }
@@ -173,9 +183,9 @@ class FHIRLexer {
           cursor++;
         } else {
           while (cursor < source.length &&
-              ((between_A_Z(source[cursor].codeUnitAt(0))) ||
-                  (between_a_z(source[cursor].codeUnitAt(0))) ||
-                  (between_0_9(source[cursor].codeUnitAt(0))) ||
+              (source[cursor].codeUnitAt(0).between_A_Z ||
+                  source[cursor].codeUnitAt(0).between_a_z ||
+                  source[cursor].codeUnitAt(0).between_0_9 ||
                   source[cursor] == ':' ||
                   source[cursor] == '-' ||
                   source[cursor] == '_')) {
@@ -197,7 +207,7 @@ class FHIRLexer {
         print(r'Identified as $ token');
         cursor++;
         while (cursor < source.length &&
-            (between_a_z(source[cursor].codeUnitAt(0)))) {
+            source[cursor].codeUnitAt(0).between_a_z) {
           cursor++;
         }
         current = source.substring(currentStart, cursor);
@@ -283,14 +293,6 @@ class FHIRLexer {
 
     print('--- Exiting next() ---');
   }
-
-  // ignore: non_constant_identifier_names
-  bool between_A_Z(int code) => code >= 65 && code <= 90;
-
-  // ignore: non_constant_identifier_names
-  bool between_a_z(int code) => code >= 97 && code <= 122;
-
-  bool between_0_9(int code) => code >= 48 && code <= 57;
 
   void skipWhitespaceAndComments() {
     comments.clear();

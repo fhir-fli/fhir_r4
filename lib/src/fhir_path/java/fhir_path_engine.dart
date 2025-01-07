@@ -118,13 +118,17 @@ class FHIRPathEngine {
   }
 
   ExpressionNode _parseExpression(FHIRLexer lexer, bool proximal) {
+    // 1) Create our main 'result' node
     var result = ExpressionNode(lexer.nextId().toString());
     ExpressionNode? wrapper;
     final c = lexer.currentStartLocation;
     result.start = lexer.currentLocation;
 
-    // Handle unary operations ('-' and '+')
+    // 2) Check if the current token is a standalone unary ('-' or '+') at this
+    // point
     if (['-', '+'].contains(lexer.current)) {
+      // This parallels the Java snippet where it does:
+      //   if (Utilities.existsInList(lexer.getCurrent(), "-", "+")) { ... }
       wrapper = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.unary
         ..operation = FpOperation.fromCode(lexer.take())
@@ -132,12 +136,13 @@ class FHIRPathEngine {
         ..proximal = proximal;
     }
 
+    // 3) Now parse out the actual expression content
     if (lexer.current == null) {
       throw lexer.error('Expression terminated unexpectedly');
     } else if (lexer.isConstant()) {
       final isString = lexer.isStringConstant();
 
-      // Adjust for constants with unary operators (e.g., "-123")
+      // Check if it's a unary sign embedded with the constant, e.g. '-123'
       if (!isString &&
           (lexer.current!.startsWith('-') || lexer.current!.startsWith('+'))) {
         wrapper = ExpressionNode(lexer.nextId().toString())
@@ -145,14 +150,16 @@ class FHIRPathEngine {
           ..operation = FpOperation.fromCode(lexer.current!.substring(0, 1))
           ..proximal = proximal
           ..start = lexer.currentLocation;
+        // Remove the sign from the string so _processConstant sees just digits
         lexer.current = lexer.current!.substring(1);
       }
 
+      // Actually parse the constant
       result
         ..constant = _processConstant(lexer)
         ..kind = ExpressionNodeKind.constant;
 
-      // Handle quantities (e.g., "5 years")
+      // Possibly parse a quantity (e.g., "5 years")
       if (!isString &&
           !lexer.done() &&
           (result.constant is FhirInteger || result.constant is FhirDecimal) &&
@@ -217,6 +224,8 @@ class FHIRPathEngine {
             case 'millisecond':
             case 'milliseconds':
               ucum = 'ms';
+            // If 'year' or 'month', the Java code just doesn't set a UCUM,
+            // but you can adapt as needed.
           }
         } else {
           ucum = lexer.readConstant('units');
@@ -234,9 +243,9 @@ class FHIRPathEngine {
       }
       result.end = lexer.currentLocation;
     } else if (lexer.current == '(') {
+      // If the token is '(' => parse a group
       lexer.next();
       final newExpression = _parseExpression(lexer, true);
-
       result
         ..kind = ExpressionNodeKind.group
         ..group = newExpression;
@@ -244,9 +253,10 @@ class FHIRPathEngine {
         throw lexer.error('Found ${lexer.current} expecting a ")"');
       }
       result.end = lexer.currentLocation;
-      lexer.next();
+      lexer.next(); // consume ')'
     } else {
-      if (!lexer.isToken() && !lexer.current!.startsWith('`')) {
+      // Parse a named token or function
+      if (!lexer.isToken() && !lexer.current!.startsWith('')) {
         throw lexer.error('Found ${lexer.current} expecting a token name');
       }
       if (lexer.isFixedName()) {
@@ -258,6 +268,7 @@ class FHIRPathEngine {
       if (!result.checkName()) {
         throw lexer.error('Found ${result.name} expecting a valid token name');
       }
+      // If it looks like a function call => parse parameters
       if (lexer.current == '(') {
         var f = FpFunction.fromCode(result.name!);
         FunctionDetails? details;
@@ -274,7 +285,7 @@ class FHIRPathEngine {
         result
           ..kind = ExpressionNodeKind.function
           ..function = f;
-        lexer.next();
+        lexer.next(); // consume '('
         while (lexer.current != ')') {
           result.parameters.add(_parseExpression(lexer, true));
           if (lexer.current == ',') {
@@ -287,23 +298,21 @@ class FHIRPathEngine {
           }
         }
         result.end = lexer.currentLocation;
-        lexer.next();
+        lexer.next(); // consume ')'
         _checkParameters(lexer, c, result, details);
       } else {
         result.kind = ExpressionNodeKind.name;
       }
     }
 
-    ExpressionNode? focus = result;
+    // 4) Possibly parse array indexing [x]
+    var focus = result;
     if (lexer.current == '[') {
       lexer.next();
-
-      final param = _parseExpression(lexer, true);
-
       final item = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.function
         ..function = FpFunction.Item
-        ..parameters.add(param);
+        ..parameters.add(_parseExpression(lexer, true));
       if (lexer.current != ']') {
         throw lexer.error(
           'The token ${lexer.current} is not expected here - a "]" expected',
@@ -313,34 +322,47 @@ class FHIRPathEngine {
       result.inner = item;
       focus = item;
     }
+
+    // Possibly parse .inner expressions
     if (lexer.current == '.') {
       lexer.next();
       focus.inner = _parseExpression(lexer, false);
     }
 
+    // 5) Mark result as proximal or not
     result.proximal = proximal;
+
+    // 6) If it's the proximal expression, parse any operators
     if (proximal) {
+      // The Java code:  while (lexer.isOp()) { focus.setOperation(...); ... }
       while (lexer.isOp()) {
-        focus ??= ExpressionNode(lexer.nextId().toString());
         focus
           ..operation = FpOperation.fromCode(lexer.current)
           ..opStart = lexer.currentStartLocation
           ..opEnd = lexer.currentLocation;
 
-        lexer.next();
+        lexer.next(); // Consume the operator
+
+        // Parse the right-hand side of the operation
         focus.opNext = _parseExpression(lexer, false);
-        focus = focus.opNext;
-        if (focus?.kind == ExpressionNodeKind.unary) {
-          focus = focus!.opNext;
+
+        // Move focus forward carefully
+        if (focus.opNext != null) {
+          focus = focus.opNext!;
+
+          // Ensure we do not skip unary nodes
+          while (
+              focus.kind == ExpressionNodeKind.unary && focus.opNext != null) {
+            focus = focus.opNext!;
+          }
         }
       }
-      print('before organise precedence');
-      result.printExpressionTree();
+
+      // 7) Then do the precedence reorganization
       result = _organisePrecedence(lexer, result);
-      print('after organise precedence');
-      result.printExpressionTree();
     }
 
+    // 8) If we built a unary wrapper for this expression, link it up
     if (wrapper != null) {
       wrapper.opNext = result;
       result.proximal = false;
@@ -350,116 +372,166 @@ class FHIRPathEngine {
     return result;
   }
 
+  // Mirror the Java organisePrecedence
   ExpressionNode _organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
     var node = oldNode;
-
-    print('Organising precedence');
+    print('Node:');
     node.printExpressionTree();
-    // Handle multiplication/division/mod
-    node = _gatherPrecedence(lexer, node, {
-      FpOperation.Times,
-      FpOperation.DivideBy,
-      FpOperation.Div,
-      FpOperation.Mod,
-    });
+    // Times/DivideBy/Div/Mod
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {
+        FpOperation.Times,
+        FpOperation.DivideBy,
+        FpOperation.Div,
+        FpOperation.Mod,
+      },
+    );
 
-    print('After multiplication');
+    print('After Times/DivideBy/Div/Mod:');
     node.printExpressionTree();
+    // Plus/Minus/Concatenate
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {FpOperation.Plus, FpOperation.Minus, FpOperation.Concatenate},
+    );
 
-    // Handle addition/subtraction
-    node = _gatherPrecedence(lexer, node, {
-      FpOperation.Plus,
-      FpOperation.Minus,
-      FpOperation.Concatenate,
-    });
-
-    print('After addition');
+    print('After Plus/Minus/Concatenate:');
     node.printExpressionTree();
-
-    // Handle other operations
+    // Union
     node = _gatherPrecedence(lexer, node, {FpOperation.Union});
-    node = _gatherPrecedence(lexer, node, {
-      FpOperation.LessThan,
-      FpOperation.Greater,
-      FpOperation.LessOrEqual,
-      FpOperation.GreaterOrEqual,
-    });
-    node = _gatherPrecedence(lexer, node, {
-      FpOperation.Equals,
-      FpOperation.Equivalent,
-      FpOperation.NotEquals,
-      FpOperation.NotEquivalent,
-    });
-
+    // <, >, <=, >=
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {
+        FpOperation.LessThan,
+        FpOperation.Greater,
+        FpOperation.LessOrEqual,
+        FpOperation.GreaterOrEqual,
+      },
+    );
+    // =, ~, !=, !~
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {
+        FpOperation.Equals,
+        FpOperation.Equivalent,
+        FpOperation.NotEquals,
+        FpOperation.NotEquivalent,
+      },
+    );
+    // and
     node = _gatherPrecedence(lexer, node, {FpOperation.And});
-
+    // xor, or
     node = _gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
+    // implies
     node = _gatherPrecedence(lexer, node, {FpOperation.Implies});
+
     return node;
   }
 
+// Mirror the Java gatherPrecedence
   ExpressionNode _gatherPrecedence(
     FHIRLexer lexer,
     ExpressionNode oldStart,
     Set<FpOperation> ops,
   ) {
+    // Must be proximal in the chain
     assert(oldStart.proximal, 'Start must be proximal');
     var start = oldStart;
 
-    // Detect work needed for precedence grouping
-    var work = false;
+    // 1) Determine if we need to group anything
     var focus = start.opNext;
-    if (ops.contains(start.operation)) {
+    var work = false;
+    if (ops.contains(start.operation) &&
+        start.kind != ExpressionNodeKind.unary) {
+      // If the start node's operator is in 'ops', grouping might be needed
       while (focus != null && focus.operation != null) {
         work = work || !ops.contains(focus.operation);
         focus = focus.opNext;
       }
     } else {
+      // Otherwise grouping is needed if we see an operator in 'ops'
       while (focus != null && focus.operation != null) {
-        work = work || ops.contains(focus.operation);
+        work = work ||
+            (ops.contains(focus.operation) &&
+                focus.kind != ExpressionNodeKind.unary);
         focus = focus.opNext;
       }
     }
     if (!work) {
+      // no changes
       return start;
     }
 
-    // Entry point for grouping
+    // 2) Possibly create a new group at the start
     ExpressionNode group;
-    if (ops.contains(start.operation)) {
+    if (ops.contains(start.operation) &&
+        start.kind != ExpressionNodeKind.unary) {
       group = _newGroup(lexer, start)..proximal = true;
       focus = start;
       start = group;
     } else {
       var node = start;
       focus = node.opNext;
-      while (!ops.contains(focus?.operation)) {
-        node = focus!;
-        focus = focus.opNext;
+      // skip over unary or irrelevant operators
+      while (focus != null) {
+        if (focus.kind == ExpressionNodeKind.unary) {
+          node = focus;
+          focus = focus.opNext;
+          continue;
+        }
+        if (focus.operation == null || !ops.contains(focus.operation)) {
+          node = focus;
+          focus = focus.opNext;
+        } else {
+          // found a matching operator
+          break;
+        }
+      }
+      if (focus == null) {
+        return start; // no grouping needed
       }
       group = _newGroup(lexer, focus);
       node.opNext = group;
     }
 
-    // Main grouping loop
+    // 3) Grouping loop
     do {
-      while (ops.contains(focus?.operation)) {
-        focus = focus!.opNext;
+      // (A) skip unary nodes
+      while (focus != null && focus.kind == ExpressionNodeKind.unary) {
+        focus = focus.opNext;
       }
-
-      if (focus?.operation != null) {
+      // (B) skip consecutive ops in 'ops'
+      while (focus != null &&
+          focus.operation != null &&
+          ops.contains(focus.operation) &&
+          focus.kind != ExpressionNodeKind.unary) {
+        focus = focus.opNext;
+      }
+      // (C) if there's still an operator, attach it
+      if (focus != null &&
+          focus.operation != null &&
+          focus.kind != ExpressionNodeKind.unary) {
         group
-          ..operation = focus!.operation
+          ..operation = focus.operation
           ..opNext = focus.opNext;
-
         focus
           ..operation = null
           ..opNext = null;
 
         var node = group;
         focus = group.opNext;
+
+        // (D) possibly chain more groups
         if (focus != null) {
-          while (focus != null && !ops.contains(focus.operation)) {
+          while (focus != null &&
+              (focus.kind == ExpressionNodeKind.unary ||
+                  !ops.contains(focus.operation))) {
             node = focus;
             focus = focus.opNext;
           }
@@ -474,6 +546,7 @@ class FHIRPathEngine {
     return start;
   }
 
+  // Mirror the Java newGroup
   ExpressionNode _newGroup(FHIRLexer lexer, ExpressionNode? next) {
     final result = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
@@ -491,7 +564,6 @@ class FHIRPathEngine {
   ///
   /// Evaluation with base and ExpressionNode
   List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
-    print('Evaluating1: ');
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -897,14 +969,49 @@ class FHIRPathEngine {
     bool atEntry,
   ) {
     print('Executing: $exp');
+
+    // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
+
+    // This will hold the evaluated results for the current node
     var work = <FhirBase>[];
 
+    // Main switch to evaluate this node based on its kind
     switch (exp.kind) {
       case ExpressionNodeKind.unary:
-        work.add(0.toFhirInteger);
+        // Evaluate the operand first
+        if (exp.opNext != null) {
+          // Evaluate operand in non-proximal mode (the unary node is the 'proximal' context)
+          final operandResult = execute(context, focus, exp.opNext!, false);
+
+          // Now apply the unary operation
+          if (exp.operation == FpOperation.Minus) {
+            final negValues = <FhirBase>[];
+            for (final val in operandResult) {
+              if (val is FhirNumber) {
+                // Flip sign
+                negValues.add((val * -1)!);
+              } else {
+                // If you allow unary minus on other types (Quantity, etc.), handle here
+                throw Exception('Unary minus not supported on $val');
+              }
+            }
+            work.addAll(negValues);
+          } else if (exp.operation == FpOperation.Plus) {
+            // Unary plus: no-op
+            work.addAll(operandResult);
+          } else {
+            throw Exception('Unsupported unary operator: ${exp.operation}');
+          }
+        } else {
+          // If no operand, decide how to handle (e.g. 0, or throw an error)
+          work.add(0.toFhirInteger);
+        }
+        // Nullify the unary operation so it's not re-applied in the proximal loop
+        exp.operation = null;
 
       case ExpressionNodeKind.name:
+        // Handle a named reference
         if (atEntry && exp.name == r'$this') {
           work.add(context.thisItem!);
         } else if (atEntry && exp.name == r'$total') {
@@ -919,42 +1026,84 @@ class FHIRPathEngine {
         }
 
       case ExpressionNodeKind.function:
+        // Evaluate a function call
         work.addAll(evaluateFunction(context, focus, exp));
 
       case ExpressionNodeKind.constant:
+        // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
         work.addAll(constants);
 
       case ExpressionNodeKind.group:
+        // Evaluate the sub-expression inside the group
         work.addAll(execute(context, focus, exp.group!, atEntry));
 
       case null:
+        // No node kind: do nothing or throw
         break;
     }
 
+    // If there's an inner expression (dot or bracket indexing), evaluate that next
     if (exp.inner != null) {
       work = execute(context, work, exp.inner!, false);
     }
 
+    // If the node is proximal and has an operation, evaluate the chain of operations
     if (exp.proximal && exp.operation != null) {
       var next = exp.opNext;
       var last = exp;
+
+      print('Proximal:');
+      exp.printExpressionTree();
+      next?.printExpressionTree();
+
       while (next != null) {
+        // If the last node was a unary node, we skip its operand, which is next
+        // because unary already consumed 'next' as its single operand
+        if (last.kind == ExpressionNodeKind.unary) {
+          next = next.opNext; // skip the operand
+          if (next == null) {
+            break;
+          }
+        }
+
+        // If there's no operation on 'last', we've exhausted the chain
+        if (last.operation == null) {
+          break;
+        }
+
+        // Re-fetch context for each operation
         context = contextForParameter(inContext);
+
+        // Optional pre-operation logic
         var work2 = preOperate(work, last.operation, exp);
+        print('initial Work2: $work2');
+
         if (work2 != null) {
+          // If preOperate returns a value, use it
           work = work2;
         } else if (last.operation == FpOperation.Is ||
             last.operation == FpOperation.As) {
+          // Evaluate a type check or cast
           work2 = executeContextTypeName(context, focus, next, false);
           work = operate(context, work, last.operation, work2, last);
         } else {
+          // Evaluate the 'next' node, then apply the operation
+          print('Executing next:');
           work2 = execute(context, focus, next, true);
           work = operate(context, work, last.operation, work2, last);
+          print('Work: $work');
+          print('Work2: $work2');
         }
+
+        // Move on to the next operation
         last = next;
         next = next.opNext;
+
+        print('finished a loop');
+        last.printExpressionTree();
+        next?.printExpressionTree();
       }
     }
 
@@ -2338,7 +2487,6 @@ class FHIRPathEngine {
       case FpOperation.In:
       case FpOperation.MemberOf:
       case FpOperation.Contains:
-        print('Operation: $operation');
         return TypeDetails(
           CollectionStatus.singleton,
           [TypeDetails.FP_Boolean],
@@ -2556,7 +2704,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode holder,
   ) {
-    print('Operation: $operation');
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -2618,7 +2765,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opEquals: $left == $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3289,6 +3435,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opTimes left: $left right: $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -4985,7 +5132,6 @@ class FHIRPathEngine {
   }
 
   bool? doEquals(FhirBase left, FhirBase right) {
-    print('doEquals: $left == $right');
     if (left is Quantity && right is Quantity) {
       return qtyEqual(left, right);
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
@@ -5212,7 +5358,6 @@ class FHIRPathEngine {
   List<FhirBase> makeNull() => <FhirBase>[];
 
   bool? doEquivalent(FhirBase left, FhirBase right) {
-    print('doEquivalent: $left == $right');
     if (left is Quantity && right is Quantity) {
       return qtyEquivalent(left, right);
     }

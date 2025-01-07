@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, constant_identifier_names, lines_longer_than_80_chars
+// ignore_for_file: public_member_api_docs, constant_identifier_names, lines_longer_than_80_chars, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
@@ -41,9 +41,25 @@ class ExpressionNode {
     print('${indent}Node ID: $uniqueId (Kind: ${kind ?? 'null'})');
     if (name != null) print('$indent  Name: $name');
     if (constant != null) print('$indent  Constant: $constant');
+    if (function != null) print('$indent  Function: ${function!.toCode()}');
     if (operation != null) print('$indent  Operation: ${operation!.toCode()}');
-    if (start != null)
-      print('$indent  Location: ${start!.line}:${start!.column}');
+    if (start != null) {
+      print('$indent  Start Location: ${start!.line}:${start!.column}');
+    }
+    if (end != null) {
+      print('$indent  End Location: ${end!.line}:${end!.column}');
+    }
+    if (opStart != null) {
+      print(
+        '$indent  Operation Start Location: ${opStart!.line}:${opStart!.column}',
+      );
+    }
+    if (opEnd != null) {
+      print('$indent  Operation End Location: ${opEnd!.line}:${opEnd!.column}');
+    }
+    if (types != null) print('$indent  Types: $types');
+    if (opTypes != null) print('$indent  Operation Types: $opTypes');
+    print('$indent  Proximal: $proximal');
 
     if (group != null) {
       print('$indent  Group:');
@@ -73,69 +89,70 @@ class ExpressionNode {
   @override
   String toString() {
     final b = StringBuffer();
-
     switch (kind) {
       case ExpressionNodeKind.name:
-        b.write(name ?? 'null'); // Safeguard against null names
+        b.write(name);
       case ExpressionNodeKind.function:
         if (function == FpFunction.Item) {
           b.write('[');
         } else {
-          b.write('$name(');
-          var first = true;
-          for (final n in parameters) {
-            if (!first) {
-              b.write(', ');
-            }
+          b
+            ..write(name)
+            ..write('(');
+        }
+        var first = true;
+        for (final n in parameters) {
+          if (first) {
             first = false;
-            b.write(n.toString());
+          } else {
+            b.write(', ');
           }
+          b.write(n.toString());
+        }
+        if (function == FpFunction.Item) {
+          b.write(']');
+        } else {
+          b.write(')');
         }
       case ExpressionNodeKind.constant:
         if (constant == null) {
           b.write('{}');
         } else if (constant is FhirString) {
-          b.write("'${(constant! as FhirString).value!.escapeJson()}'");
+          b.write("'${(constant! as FhirString).value?.escapeJson()}'");
         } else if (constant is Quantity) {
           final q = constant! as Quantity;
-          b.write('${q.value?.toString().escapeJson()} '
-              "'${q.unit?.value?.escapeJson()}'");
+          b
+            ..write(q.value.toString().escapeJson())
+            ..write(" '")
+            ..write(q.unit?.value?.escapeJson())
+            ..write("'");
         } else if (constant is PrimitiveType &&
-            (constant! as PrimitiveType).value != null) {
-          b.write(
-            (constant! as PrimitiveType)
-                .toJson()['value']
-                .toString()
-                .escapeJson(),
-          );
+            constant?.primitiveValue != null) {
+          b.write(constant?.primitiveValue?.escapeJson());
         } else {
           b.write(constant.toString().escapeJson());
         }
       case ExpressionNodeKind.group:
         b.write('(');
-        b.write(group?.toString() ?? 'null');
+        b.write(group.toString());
         b.write(')');
       case null:
       case ExpressionNodeKind.unary:
-        b.write('Unary(${operation?.toCode()}');
-        if (group != null) {
-          b.write(': $group');
-        } else {
-          b.write(': null');
-        }
-        b.write(')');
     }
-
     if (inner != null) {
-      if (!(kind == ExpressionNodeKind.function &&
-          function == FpFunction.Item)) {
+      if (!(inner!.kind == ExpressionNodeKind.function &&
+          inner!.function == FpFunction.Item)) {
         b.write('.');
       }
-      b.write(inner.toString());
+      b.write(inner!.toString());
     }
 
     if (operation != null) {
-      b.write(' ${operation!.toCode()} $opNext');
+      b
+        ..write(' ')
+        ..write(operation?.toCode())
+        ..write(' ')
+        ..write(opNext.toString());
     }
 
     return b.toString();

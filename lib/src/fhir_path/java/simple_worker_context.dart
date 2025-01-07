@@ -54,12 +54,26 @@ class SimpleWorkerContext extends IWorkerContext {
 
   @override
   String formatMessage(String theMessage, List<dynamic> theMessageArguments) {
+    // Include argument information in the output
+    final argumentsInfo = theMessageArguments
+        .asMap()
+        .entries
+        .map(
+          (entry) =>
+              // ignore: avoid_dynamic_calls
+              '[${entry.key}]: (${entry.value.runtimeType}) ${entry.value}',
+        )
+        .join(', ');
+
     // Replace placeholders with the arguments
-    return theMessageArguments.asMap().entries.fold(
+    final formattedMessage = theMessageArguments.asMap().entries.fold(
           theMessage,
           (msg, entry) =>
               msg.replaceAll('{$entry.key}', entry.value.toString()),
         );
+
+    // Add the arguments info to the message
+    return '$formattedMessage\nArguments: $argumentsInfo';
   }
 
   @override
