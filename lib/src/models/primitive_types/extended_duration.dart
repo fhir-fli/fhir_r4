@@ -17,35 +17,35 @@ class ExtendedDuration {
   }) {
     // Microseconds to milliseconds conversion.
     milliseconds += microseconds ~/ 1000;
-    microseconds %= 1000;
+    microseconds = signedModulo(microseconds, 1000);
 
     // Milliseconds to seconds conversion.
     seconds += milliseconds ~/ 1000;
-    milliseconds %= 1000;
+    milliseconds = signedModulo(milliseconds, 1000);
 
     // Seconds to minutes conversion.
     minutes += seconds ~/ 60;
-    seconds %= 60;
+    seconds = signedModulo(seconds, 60);
 
     // Minutes to hours conversion.
     hours += minutes ~/ 60;
-    minutes %= 60;
+    minutes = signedModulo(minutes, 60);
 
     // Hours to days conversion.
     days += hours ~/ 24;
-    hours %= 24;
+    hours = signedModulo(hours, 24);
 
     // Days to weeks conversion.
     weeks += days ~/ 7;
-    days %= 7;
+    days = signedModulo(days, 7);
 
     // Weeks to months conversion.
     months += weeks ~/ 4;
-    weeks %= 4;
+    weeks = signedModulo(weeks, 4);
 
     // Months to years conversion.
     years += months ~/ 12;
-    months %= 12;
+    months = signedModulo(months, 12);
   }
 
   /// Factory constructor to create an [ExtendedDuration] from a [Duration].
@@ -224,6 +224,12 @@ class ExtendedDuration {
         if (milliseconds != 0) '$milliseconds milliseconds',
         if (microseconds != 0) '$microseconds microseconds',
       ].join(', ');
+
+  /// Creates an [ExtendedDuration] object from a number of years.
+  static int signedModulo(int value, int divisor) {
+    final mod = value % divisor;
+    return mod == 0 ? 0 : (value.isNegative ? -mod.abs() : mod.abs());
+  }
 }
 
 /// Extension to convert [Duration] to [ExtendedDuration].

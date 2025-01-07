@@ -554,14 +554,17 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
             0;
 
+    print(fhirDateTimeBase);
+    print(o);
+
     final dateTime = DateTime(
-      fhirDateTimeBase.year ?? 0 + o.years,
-      fhirDateTimeBase.month ?? 0 + o.months,
-      fhirDateTimeBase.day ?? 0 + o.days,
-      fhirDateTimeBase.hour ?? 0 + o.hours,
-      fhirDateTimeBase.minute ?? 0 + o.minutes,
-      fhirDateTimeBase.second ?? 0 + o.seconds,
-      fhirDateTimeBase.millisecond ?? 0 + o.milliseconds,
+      (fhirDateTimeBase.year ?? 0) + o.years,
+      (fhirDateTimeBase.month ?? 0) + o.months,
+      (fhirDateTimeBase.day ?? 0) + o.days,
+      (fhirDateTimeBase.hour ?? 0) + o.hours,
+      (fhirDateTimeBase.minute ?? 0) + o.minutes,
+      (fhirDateTimeBase.second ?? 0) + o.seconds,
+      (fhirDateTimeBase.millisecond ?? 0) + o.milliseconds,
       normalizedMicrosecond + o.microseconds,
     );
     return fromMathUnits<T>(dateTime, fhirDateTimeBase);
@@ -576,13 +579,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
             0;
     final dateTime = DateTime(
-      fhirDateTimeBase.year ?? 0 - o.years,
-      fhirDateTimeBase.month ?? 0 - o.months,
-      fhirDateTimeBase.day ?? 0 - o.days,
-      fhirDateTimeBase.hour ?? 0 - o.hours,
-      fhirDateTimeBase.minute ?? 0 - o.minutes,
-      fhirDateTimeBase.second ?? 0 - o.seconds,
-      fhirDateTimeBase.millisecond ?? 0 - o.milliseconds,
+      (fhirDateTimeBase.year ?? 0) - o.years,
+      (fhirDateTimeBase.month ?? 0) - o.months,
+      (fhirDateTimeBase.day ?? 0) - o.days,
+      (fhirDateTimeBase.hour ?? 0) - o.hours,
+      (fhirDateTimeBase.minute ?? 0) - o.minutes,
+      (fhirDateTimeBase.second ?? 0) - o.seconds,
+      (fhirDateTimeBase.millisecond ?? 0) - o.milliseconds,
       normalizedMicrosecond - o.microseconds,
     );
     return fromMathUnits<T>(dateTime, fhirDateTimeBase);
@@ -894,7 +897,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
           match.namedGroup('fraction') != null) {
         throw ArgumentError('Invalid date-time string: $dateTimeString');
       }
-    }else if(T == FhirInstant){
+    } else if (T == FhirInstant) {
       if (match.namedGroup('year') == null ||
           match.namedGroup('month') == null ||
           match.namedGroup('day') == null ||

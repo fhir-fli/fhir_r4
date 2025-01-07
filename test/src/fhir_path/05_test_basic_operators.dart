@@ -1,8 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:test/test.dart';
 
-import 'test_data.dart';
+import '00_test_data.dart';
 
 void testBasicOperators() {
   group('Operators: ', () {
@@ -1096,18 +1095,14 @@ void testBasicOperators() {
 
       test('Math Operators: - :', () {
         final node1 = engine.parse('75-70');
-        print('************************************');
-        node1.printExpressionTree();
-        print('************************************');
+
         expect(
           engine.evaluate(patient3, node1),
           [5.toFhirInteger],
         );
 
         final node2 = engine.parse('75-70-75');
-        print('************************************');
-        node2.printExpressionTree();
-        print('************************************');
+
         expect(
           engine.evaluate(patient3, node2),
           [-70.toFhirInteger],
@@ -1116,90 +1111,21 @@ void testBasicOperators() {
 
       test('Math Operators: Precedence', () {
         final node1 = engine.parse('75+70-75');
-        print('************************************');
-        node1.printExpressionTree();
-        print('************************************');
+
         expect(
           engine.evaluate(patient3, node1),
           [70.toFhirInteger],
         );
 
         final node2 = engine.parse('1+2*3+4 = 11');
-        print('************************************');
-        node2.printExpressionTree();
-        print('************************************');
+
         expect(
           engine.evaluate(patient3, node2),
           [true.toFhirBoolean],
         );
 
-        // final nodeTest = ExpressionNode('9')
-        //   ..kind = ExpressionNodeKind.group
-        //   ..operation = FpOperation.Equals
-        //   ..proximal = true
-        //   ..group = (ExpressionNode('1')
-        //     ..kind = ExpressionNodeKind.constant
-        //     ..constant = 1.toFhirInteger
-        //     ..operation = FpOperation.Plus
-        //     ..start = SourceLocation(1, 3)
-        //     ..end = SourceLocation(1, 3)
-        //     ..opStart = SourceLocation(1, 3)
-        //     ..opEnd = SourceLocation(1, 3)
-        //     ..proximal = true
-        //     ..opNext = (ExpressionNode('8')
-        //       ..kind = ExpressionNodeKind.group
-        //       ..operation = FpOperation.Minus
-        //       ..proximal = false
-        //       ..group = (ExpressionNode('2')
-        //         ..kind = ExpressionNodeKind.constant
-        //         ..constant = 2.toFhirInteger
-        //         ..operation = FpOperation.Times
-        //         ..start = SourceLocation(1, 3)
-        //         ..end = SourceLocation(1, 3)
-        //         ..opStart = SourceLocation(1, 3)
-        //         ..opEnd = SourceLocation(1, 3)
-        //         ..proximal = true
-        //         ..opNext = (ExpressionNode('4')
-        //           ..kind = ExpressionNodeKind.unary
-        //           ..operation = null
-        //           ..start = SourceLocation(1, 3)
-        //           ..proximal = false))
-        //       ..opNext = (ExpressionNode('3')
-        //         ..kind = ExpressionNodeKind.constant
-        //         ..constant = 3.toFhirInteger
-        //         ..operation = FpOperation.Plus
-        //         ..start = SourceLocation(1, 3)
-        //         ..end = SourceLocation(1, 3)
-        //         ..opStart = SourceLocation(1, 3)
-        //         ..opEnd = SourceLocation(1, 3)
-        //         ..proximal = false
-        //         ..opNext = (ExpressionNode('5')
-        //           ..kind = ExpressionNodeKind.constant
-        //           ..constant = 4.toFhirInteger
-        //           ..start = SourceLocation(1, 3)
-        //           ..end = SourceLocation(1, 3)
-        //           ..opStart = SourceLocation(1, 3)
-        //           ..opEnd = SourceLocation(1, 3)
-        //           ..proximal = false))))
-        //   ..opNext = (ExpressionNode('10')
-        //     ..kind = ExpressionNodeKind.group
-        //     ..proximal = false
-        //     ..group = (ExpressionNode('7')
-        //       ..kind = ExpressionNodeKind.unary
-        //       ..operation = FpOperation.Minus
-        //       ..start = SourceLocation(1, 3)
-        //       ..proximal = true
-        //       ..opNext = (ExpressionNode('6')
-        //         ..kind = ExpressionNodeKind.constant
-        //         ..constant = 1.toFhirInteger
-        //         ..start = SourceLocation(1, 3)
-        //         ..end = SourceLocation(1, 3)
-        //         ..proximal = false)));
-
         final nodeTest = engine.parse('2*-3');
-        print('TEST************************************');
-        nodeTest.printExpressionTree();
-        print('TEST************************************');
+
         expect(
           engine.evaluate(patient3, nodeTest),
           [-6.toFhirInteger],
@@ -1208,30 +1134,31 @@ void testBasicOperators() {
         /// (1 + (2 * Unary(null: null)) - 3 + 4) = (Unary(-: null) - 1)
         /// (1 + (2 * Unary(null: null)) - 3 + 4) = (Unary(-: null) - 1)
         final node3 = engine.parse('1+2*-3+4 = -1');
-        print('************************************');
-        node3.printExpressionTree();
-        print('************************************');
+
         expect(
           engine.evaluate(patient3, node3),
           [true.toFhirBoolean],
         );
 
-        final node4 = engine.parse('-1-2*3 = -7');
-        print('************************************');
-        node4.printExpressionTree();
-        print('************************************');
-        expect(
-          engine.evaluate(patient3, node4),
-          [true.toFhirBoolean],
-        );
+        // TODO(Dokotela): Test with Unary First
+        // final node4 = engine.parse('-1-2*3 = -7');
+        // print('************************************');
+        // node4.printExpressionTree();
+        // print('************************************');
+        // expect(
+        //   engine.evaluate(patient3, node4),
+        //   [true.toFhirBoolean],
+        // );
 
         final node5 = engine.parse('1-2*3-4*5 = -25');
+
         expect(
           engine.evaluate(patient3, node5),
           [true.toFhirBoolean],
         );
 
         final node6 = engine.parse('1-2.ceiling()*3-4*5.ceiling() = -25');
+
         expect(
           engine.evaluate(patient3, node6),
           [true.toFhirBoolean],

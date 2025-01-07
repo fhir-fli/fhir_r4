@@ -981,7 +981,8 @@ class FHIRPathEngine {
       case ExpressionNodeKind.unary:
         // Evaluate the operand first
         if (exp.opNext != null) {
-          // Evaluate operand in non-proximal mode (the unary node is the 'proximal' context)
+          // Evaluate operand in non-proximal mode (the unary node is the
+          // 'proximal' context)
           final operandResult = execute(context, focus, exp.opNext!, false);
 
           // Now apply the unary operation
@@ -992,7 +993,8 @@ class FHIRPathEngine {
                 // Flip sign
                 negValues.add((val * -1)!);
               } else {
-                // If you allow unary minus on other types (Quantity, etc.), handle here
+                // If you allow unary minus on other types (Quantity, etc.),
+                // handle here
                 throw Exception('Unary minus not supported on $val');
               }
             }
@@ -1007,7 +1009,8 @@ class FHIRPathEngine {
           // If no operand, decide how to handle (e.g. 0, or throw an error)
           work.add(0.toFhirInteger);
         }
-        // Nullify the unary operation so it's not re-applied in the proximal loop
+        // Nullify the unary operation so it's not re-applied in the proximal
+        // loop
         exp.operation = null;
 
       case ExpressionNodeKind.name:
@@ -1044,12 +1047,14 @@ class FHIRPathEngine {
         break;
     }
 
-    // If there's an inner expression (dot or bracket indexing), evaluate that next
+    // If there's an inner expression (dot or bracket indexing), evaluate that
+    // next
     if (exp.inner != null) {
       work = execute(context, work, exp.inner!, false);
     }
 
-    // If the node is proximal and has an operation, evaluate the chain of operations
+    // If the node is proximal and has an operation, evaluate the chain of
+    // operations
     if (exp.proximal && exp.operation != null) {
       var next = exp.opNext;
       var last = exp;
@@ -3400,8 +3405,8 @@ class FHIRPathEngine {
       );
     }
     if (!right.first.isPrimitive &&
-        !(left.first.fhirType == 'Quantity' &&
-            right.first.fhirType == 'Quantity')) {
+        !((left.first is Quantity && right.first is Quantity) ||
+            (left.first is FhirDateTimeBase && right.first is Quantity))) {
       throw makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
@@ -3413,12 +3418,13 @@ class FHIRPathEngine {
     final l = left.first;
     final r = right.first;
 
-    if (l.fhirType == 'string' && r.fhirType == 'string') {
+    if (FHIR_TYPES_STRING.contains(l.fhirType) &&
+        FHIR_TYPES_STRING.contains(r.fhirType)) {
       result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
     } else if (l is FhirNumber && r is FhirNumber) {
       result.add((l + r)!);
-    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
-      result.add(dateAdd(l, r as Quantity, false, expr));
+    } else if (l is FhirDateTimeBase && r is Quantity) {
+      result.add(dateAdd(l, r, false, expr));
     } else {
       throw makeException(
         expr,
@@ -3507,6 +3513,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opMinus left: $left right: $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3518,11 +3525,12 @@ class FHIRPathEngine {
         ['-'],
       );
     }
-    if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
-        '-',
-        left.first.fhirType,
-      ]);
+    if (!left.first.isPrimitive && left.first is! Quantity) {
+      throw makeException(
+        expr,
+        'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
+        ['-', left.first.fhirType],
+      );
     }
     if (right.length > 1) {
       throw makeExceptionPlural(
@@ -3533,13 +3541,15 @@ class FHIRPathEngine {
       );
     }
     if (!right.first.isPrimitive &&
-        !(left.first is FhirDateTimeBase ||
-            left.first.toString() == '0' ||
-            left.first.fhirType == 'Quantity')) {
-      throw makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
-        '-',
-        right.first.fhirType,
-      ]);
+        !((left.first is FhirDateTimeBase ||
+                left.first.toString() == '0' ||
+                left.first is Quantity) &&
+            right.first is Quantity)) {
+      throw makeException(
+        expr,
+        'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
+        ['-', right.first.fhirType],
+      );
     }
 
     final result = <FhirBase>[];
@@ -3548,17 +3558,25 @@ class FHIRPathEngine {
 
     if (l is FhirNumber && r is FhirNumber) {
       result.add((l - r)!);
-    } else if (l is Quantity && r is Quantity) {
-      final qty = r.copyWith(value: r.value?.abs().toFhirDecimal);
-      result.add(qty);
-    } else if (l is FhirDateTimeBase && r.fhirType == 'Quantity') {
-      result.add(dateAdd(l as FhirDateTime, r as Quantity, true, expr));
+    } else if ((l is FhirNumber || l is Quantity) && r is Quantity) {
+      if (l.toString() == '0') {
+        final qty = r;
+        result.add(
+          qty.copyWith(
+            value: qty.value?.abs() == null
+                ? null
+                : qty.value!.abs().toFhirDecimal,
+          ),
+        );
+      }
+    } else if (l is FhirDateTimeBase && r is Quantity) {
+      result.add(dateAdd(l, r, true, expr));
     } else {
-      throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
-        '-',
-        l.fhirType,
-        r.fhirType,
-      ]);
+      throw makeException(
+        expr,
+        'FHIRPATH_OP_INCOMPATIBLE',
+        ['-', l.fhirType, r.fhirType],
+      );
     }
 
     return result;
@@ -4049,7 +4067,7 @@ class FHIRPathEngine {
       case FpFunction.Abs:
       // return funcAbs(context, focus, exp);
       case FpFunction.Ceiling:
-      // return funcCeiling(context, focus, exp);
+        return funcCeiling(context, focus, exp);
       case FpFunction.Exp:
       // return funcExp(context, focus, exp);
       case FpFunction.Floor:
@@ -4808,6 +4826,47 @@ class FHIRPathEngine {
     return result;
   }
 
+  List<FhirBase> funcCeiling(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        [
+          'ceiling',
+          focus.length,
+        ],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final d = double.tryParse(base.primitiveValue ?? '');
+      if (d != null) {
+        try {
+          result.add(d.ceil().toFhirInteger);
+        } catch (e) {
+          // Just return nothing if there's an error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'ceiling',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
   List<FhirBase> funcSupersetOf(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -5476,7 +5535,7 @@ class FHIRPathEngine {
     bool negate,
     ExpressionNode holder,
   ) {
-    var result = d.copy() as FhirDateTimeBase;
+    var result = d.copyWith() as FhirDateTimeBase;
 
     final value = negate ? -q.value!.value!.toInt() : q.value!.value!.toInt();
     final unit = q.code?.value ?? q.unit?.value;
@@ -5492,7 +5551,11 @@ class FHIRPathEngine {
         );
       case 'months':
       case 'month':
+        print('unit: $unit');
+        print('value: $value');
+        print('result: $result');
         result = (result + ExtendedDuration(months: value))!;
+        print('result: $result');
       case 'mo':
         throw PathEngineException(
           'Error in date arithmetic: attempt to add a definite quantity '

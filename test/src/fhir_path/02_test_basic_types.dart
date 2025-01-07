@@ -6,14 +6,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:test/test.dart';
-import 'test_data.dart';
+import '00_test_data.dart';
 
 ExpressionNode parseExpression(String expression, [FhirBase? context]) {
   final node = engine.parse(expression);
   return node;
 }
 
-void main() {
+void testBasicTypes() {
   group('FHIRPathEngine Basic Types Tests', () {
     test('Boolean', () {
       expect(parseExpression('true').constant, true.toFhirBoolean);
