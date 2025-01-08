@@ -375,8 +375,7 @@ class FHIRPathEngine {
   // Mirror the Java organisePrecedence
   ExpressionNode _organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
     var node = oldNode;
-    print('Node:');
-    node.printExpressionTree();
+
     // Times/DivideBy/Div/Mod
     node = _gatherPrecedence(
       lexer,
@@ -389,8 +388,6 @@ class FHIRPathEngine {
       },
     );
 
-    print('After Times/DivideBy/Div/Mod:');
-    node.printExpressionTree();
     // Plus/Minus/Concatenate
     node = _gatherPrecedence(
       lexer,
@@ -398,8 +395,6 @@ class FHIRPathEngine {
       {FpOperation.Plus, FpOperation.Minus, FpOperation.Concatenate},
     );
 
-    print('After Plus/Minus/Concatenate:');
-    node.printExpressionTree();
     // Union
     node = _gatherPrecedence(lexer, node, {FpOperation.Union});
     // <, >, <=, >=
@@ -564,6 +559,7 @@ class FHIRPathEngine {
   ///
   /// Evaluation with base and ExpressionNode
   List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
+    print('evaluate');
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -968,8 +964,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
     bool atEntry,
   ) {
-    print('Executing: $exp');
-
+    print('execute');
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
 
@@ -1059,10 +1054,6 @@ class FHIRPathEngine {
       var next = exp.opNext;
       var last = exp;
 
-      print('Proximal:');
-      exp.printExpressionTree();
-      next?.printExpressionTree();
-
       while (next != null) {
         // If the last node was a unary node, we skip its operand, which is next
         // because unary already consumed 'next' as its single operand
@@ -1083,7 +1074,6 @@ class FHIRPathEngine {
 
         // Optional pre-operation logic
         var work2 = preOperate(work, last.operation, exp);
-        print('initial Work2: $work2');
 
         if (work2 != null) {
           // If preOperate returns a value, use it
@@ -1095,22 +1085,18 @@ class FHIRPathEngine {
           work = operate(context, work, last.operation, work2, last);
         } else {
           // Evaluate the 'next' node, then apply the operation
-          print('Executing next:');
+
           work2 = execute(context, focus, next, true);
           work = operate(context, work, last.operation, work2, last);
-          print('Work: $work');
-          print('Work2: $work2');
         }
 
         // Move on to the next operation
         last = next;
         next = next.opNext;
-
-        print('finished a loop');
-        last.printExpressionTree();
-        next?.printExpressionTree();
       }
     }
+
+    print('work: $work');
 
     return work;
   }
@@ -2770,6 +2756,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opEquals: $left == $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -2963,6 +2950,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opGreater: $left > $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3441,7 +3429,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opTimes left: $left right: $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3513,7 +3500,13 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opMinus left: $left right: $right');
+    print('opMinus: $left - $right');
+    if (left.length == 1) {
+      print('left: ${left.first.toJson()}');
+    }
+    if (right.length == 1) {
+      print('right: ${right.first.toJson()}');
+    }
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -4689,7 +4682,14 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[FhirDate.fromDateTime(DateTime.now())];
+    final dateTime = DateTime.now();
+    return <FhirBase>[
+      FhirDate.fromUnits(
+        year: dateTime.year,
+        month: dateTime.month,
+        day: dateTime.day,
+      ),
+    ];
   }
 
   List<FhirBase> funcNow(
@@ -5540,6 +5540,8 @@ class FHIRPathEngine {
     final value = negate ? -q.value!.value!.toInt() : q.value!.value!.toInt();
     final unit = q.code?.value ?? q.unit?.value;
 
+    print('Adding $value $unit to $d');
+
     switch (unit) {
       case 'years':
       case 'year':
@@ -5551,11 +5553,7 @@ class FHIRPathEngine {
         );
       case 'months':
       case 'month':
-        print('unit: $unit');
-        print('value: $value');
-        print('result: $result');
         result = (result + ExtendedDuration(months: value))!;
-        print('result: $result');
       case 'mo':
         throw PathEngineException(
           'Error in date arithmetic: attempt to add a definite quantity '

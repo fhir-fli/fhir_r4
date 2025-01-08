@@ -228,7 +228,7 @@ class ExtendedDuration {
   /// Creates an [ExtendedDuration] object from a number of years.
   static int signedModulo(int value, int divisor) {
     final mod = value % divisor;
-    return mod == 0 ? 0 : (value.isNegative ? -mod.abs() : mod.abs());
+    return value.isNegative ? mod - divisor : mod;
   }
 }
 

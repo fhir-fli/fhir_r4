@@ -554,13 +554,14 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
             0;
 
-    print(fhirDateTimeBase);
-    print(o);
-
     final dateTime = DateTime(
       (fhirDateTimeBase.year ?? 0) + o.years,
-      (fhirDateTimeBase.month ?? 0) + o.months,
-      (fhirDateTimeBase.day ?? 0) + o.days,
+      (fhirDateTimeBase.month ?? 0) + o.months == 0
+          ? 1
+          : (fhirDateTimeBase.month ?? 0) + o.months,
+      (fhirDateTimeBase.day ?? 0) + o.days == 0
+          ? 1
+          : (fhirDateTimeBase.day ?? 0) + o.days,
       (fhirDateTimeBase.hour ?? 0) + o.hours,
       (fhirDateTimeBase.minute ?? 0) + o.minutes,
       (fhirDateTimeBase.second ?? 0) + o.seconds,
@@ -580,8 +581,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
             0;
     final dateTime = DateTime(
       (fhirDateTimeBase.year ?? 0) - o.years,
-      (fhirDateTimeBase.month ?? 0) - o.months,
-      (fhirDateTimeBase.day ?? 0) - o.days,
+      (fhirDateTimeBase.month ?? 0) - o.months == 0
+          ? 1
+          : (fhirDateTimeBase.month ?? 0) - o.months,
+      (fhirDateTimeBase.day ?? 0) - o.days == 0
+          ? 1
+          : (fhirDateTimeBase.day ?? 0) - o.days,
       (fhirDateTimeBase.hour ?? 0) - o.hours,
       (fhirDateTimeBase.minute ?? 0) - o.minutes,
       (fhirDateTimeBase.second ?? 0) - o.seconds,
@@ -889,13 +894,17 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     // Match the input string against the regex
     final match = dateTimeExp.firstMatch(dateTimeString);
     if (match == null) {
-      throw ArgumentError('Invalid date-time string: $dateTimeString');
+      throw ArgumentError(
+        'Invalid date-time string (no match): $dateTimeString',
+      );
     } else if (T == FhirDate) {
       if (match.namedGroup('hour') != null ||
           match.namedGroup('minute') != null ||
           match.namedGroup('second') != null ||
           match.namedGroup('fraction') != null) {
-        throw ArgumentError('Invalid date-time string: $dateTimeString');
+        throw ArgumentError(
+          'Invalid date-time string (FhirDate): $dateTimeString',
+        );
       }
     } else if (T == FhirInstant) {
       if (match.namedGroup('year') == null ||
@@ -904,7 +913,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
           match.namedGroup('hour') == null ||
           match.namedGroup('minute') == null ||
           match.namedGroup('second') == null) {
-        throw ArgumentError('Invalid date-time string: $dateTimeString');
+        throw ArgumentError(
+          'Invalid date-time string (FhirInstant): $dateTimeString',
+        );
       }
     }
 

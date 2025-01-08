@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:petitparser/core.dart';
+import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 /// Start here! This is where the fun begins. This is a bit confusing, so we'll
 /// explain the arguments that can be passed.
@@ -74,49 +74,12 @@ List<dynamic> walkFhirPath({
   );
 }
 
-/// Parse a FHIRPath for repeated use with different inputs later.
-ParserList parseFhirPath(String pathExpression) {
-  try {
-    final ast = lexer().parse(pathExpression).value;
-    if (ast is ParserList) {
-      if (ast.isEmpty) {
-        return ast;
-      } else {
-        // Check for combination of IdentifierParser followed by ParenthesisParser
-        // This indicates invalid function name
-        if (ast.value.length > 1) {
-          for (var i = 0; i < ast.value.length - 1; i++) {
-            if ((ast.value[i] is IdentifierParser) &&
-                (ast.value[i + 1] is ParenthesesParser)) {
-              final functionName = (ast.value[i] as IdentifierParser).value;
-              throw FhirPathInvalidExpressionException(
-                'Unknown function: $functionName',
-                pathExpression: pathExpression,
-              );
-            }
-          }
-        }
+/// The FHIRPath engine.
+final engine = FHIRPathEngine(SimpleWorkerContext());
 
-        return ast;
-      }
-    } else {
-      throw FhirPathInvalidExpressionException(
-        'Parsing did not result in ParserList',
-        pathExpression: pathExpression,
-      );
-    }
-  } catch (error) {
-    if (error is ParserException) {
-      throw FhirPathInvalidExpressionException(
-        'Expression could not be parsed: ${error.message}',
-        pathExpression: pathExpression,
-        offset: error.offset,
-        cause: error,
-      );
-    } else {
-      rethrow;
-    }
-  }
+/// Parse a FHIRPath for repeated use with different inputs later.
+ExpressionNode parseFhirPath(String pathExpression) {
+  return engine.parse(pathExpression);
 }
 
 /// Execute the FHIRPath as pre-parsed by [parseFhirPath].
@@ -125,66 +88,65 @@ ParserList parseFhirPath(String pathExpression) {
 /// resulting in a performance gain over [walkFhirPath].
 ///
 /// All parameters have the same meaning as for [walkFhirPath].
-List<dynamic> executeFhirPath({
+List<FhirBase> executeFhirPath({
   required dynamic context,
-  required ParserList parsedFhirPath,
+  required ExpressionNode parsedFhirPath,
   required String pathExpression,
   Map<String, dynamic>? resource,
   Map<String, dynamic>? rootResource,
   Map<String, dynamic>? environment,
 }) {
-  // Use passed-in environment as the starting point.
-  // It will later be amended/overridden by explicitly passed resources.
-  final passedEnvironment =
-      Map<String, dynamic>.from(environment ?? <String, dynamic>{});
-
-  // Explicitly passed context overrides context that might have been passed
-  // through environment.
-  passedEnvironment.context = context;
-
-  // Explicitly passed resource overrides resource that might have been passed
-  // through environment.
-  if (resource != null) {
-    passedEnvironment.resource = resource;
-  }
-
-  // Explicitly passed rootResource overrides rootResource that might have been passed
-  // through environment.
-  if (rootResource != null) {
-    passedEnvironment.rootResource = rootResource;
-  }
+  // Prepare the environment map
+  final passedEnvironment = <String, dynamic>{
+    '%context': context,
+    if (resource != null) '%resource': resource,
+    if (rootResource != null) '%rootResource': rootResource,
+    ...?environment,
+  };
 
   try {
-    if (parsedFhirPath.isEmpty) {
-      return <dynamic>[];
-    } else {
-      return parsedFhirPath.execute(
-        context is List ? <dynamic>[...context] : <dynamic>[context],
-        passedEnvironment,
-      );
+    // Inject environment variables into the context if the engine supports it
+    if (context is Map<String, dynamic>) {
+      context.addAll(passedEnvironment);
     }
+
+    // Evaluate the FHIRPath expression
+    return engine.evaluate(
+      context is FhirBase
+          ? context
+          : Resource.fromJson(context as Map<String, dynamic>),
+      parsedFhirPath,
+    );
   } catch (error) {
-    if (error is FhirPathException) {
+    if (error is PathEngineException) {
       rethrow;
     } else {
-      throw FhirPathException(
+      throw PathEngineException(
         'Unable to execute FHIRPath expression',
-        pathExpression: pathExpression,
-        cause: error,
-        context: context,
-        environment: passedEnvironment,
+        expression: pathExpression,
+        cause: error as Exception,
       );
     }
   }
 }
 
+/// The FHIRPath engine's [inContext] function.
 extension FhirPathResourceExtension on Map<String, dynamic> {
+  /// The FHIRPath engine's [inContext] function.
   static const String contextKey = '%context';
+
+  /// The FHIRPath engine's [focus] function.
   static const String resourceKey = '%resource';
+
+  /// The FHIRPath engine's [atEntry] function.
   static const String rootResourceKey = '%rootResource';
 
+  /// The FHIRPath engine's [atEntry] function.
   dynamic get context => this[contextKey];
+
   set context(dynamic context) => this[contextKey] = context;
+
+  /// The FHIRPath engine's [focus] function.
   bool get hasNoContext => context == null;
 
   set resource(Map<String, dynamic>? resource) {

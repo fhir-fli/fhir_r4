@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 import '00_test_data.dart';
 
 ExpressionNode parseExpression(String expression, [FhirBase? context]) {
-  final node = engine.parse(expression);
+  final node = testEngine.parse(expression);
   return node;
 }
 
@@ -43,7 +43,7 @@ void testBasicTypes() {
       expect(parseExpression('0').constant, 0.toFhirInteger);
       expect(parseExpression('45').constant, 45.toFhirInteger);
       // Uncomment if negative integers are supported
-      final node = engine.parse('-5');
+      final node = testEngine.parse('-5');
       expect(node.operation, FpOperation.Minus);
       expect(node.opNext?.constant, equals(5.toFhirInteger));
     });

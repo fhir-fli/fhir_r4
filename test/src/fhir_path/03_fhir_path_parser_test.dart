@@ -6,10 +6,10 @@ import 'package:test/test.dart';
 void fhirPathParserTest() {
   group('FHIRPathEngine Parsing Tests', () {
     final worker = SimpleWorkerContext();
-    final engine = FHIRPathEngine(worker);
+    final testEngine = FHIRPathEngine(worker);
 
     test('Parse valid simple path', () {
-      final node = engine.parse('Patient.name');
+      final node = testEngine.parse('Patient.name');
       // Top-level node is "Patient"
       expect(node.name, equals('Patient'));
       // Its .inner is "name"
@@ -17,7 +17,7 @@ void fhirPathParserTest() {
     });
 
     test('Parse path with constant', () {
-      final node = engine.parse('Patient.age = 30');
+      final node = testEngine.parse('Patient.age = 30');
 
       // Top-level node: "Patient"
       expect(node.name, equals('Patient'));
@@ -31,7 +31,7 @@ void fhirPathParserTest() {
 
     test('Parse simple arithmetic expression (with precedence)', () {
       // Expression: 5 + 3 * 2
-      final node = engine.parse('5 + 3 * 2');
+      final node = testEngine.parse('5 + 3 * 2');
 
       // Top-level node = constant(5), with operation "+"
       expect(node.constant?.toString(), equals('5'));
@@ -45,7 +45,7 @@ void fhirPathParserTest() {
 
     test('Parse comparison expression', () {
       // Expression: Patient.age >= 18
-      final node = engine.parse('Patient.age >= 18');
+      final node = testEngine.parse('Patient.age >= 18');
 
       // Top-level node is "Patient"
       expect(node.name, equals('Patient'));
@@ -63,7 +63,7 @@ void fhirPathParserTest() {
     test('Parse logical expression', () {
       // Expression: Patient.age >= 18 and Patient.gender = 'male'
       final node =
-          engine.parse("Patient.age >= 18 and Patient.gender = 'male'");
+          testEngine.parse("Patient.age >= 18 and Patient.gender = 'male'");
 
       // The top-level node is "and"
       expect(node.kind, equals(ExpressionNodeKind.group));
@@ -86,7 +86,7 @@ void fhirPathParserTest() {
 
     test('Parse function call expression', () {
       // Expression: Patient.name.first()
-      final node = engine.parse('Patient.name.first()');
+      final node = testEngine.parse('Patient.name.first()');
 
       // "Patient" is the top-level
       expect(node.name, equals('Patient'));
@@ -98,7 +98,7 @@ void fhirPathParserTest() {
     });
 
     test('Parse nested expression', () {
-      final node = engine.parse('(Patient.age + 2) * 3');
+      final node = testEngine.parse('(Patient.age + 2) * 3');
 
       // Top-level node has operation = "*"
       expect(node.operation, equals(FpOperation.Times));
@@ -122,7 +122,7 @@ void fhirPathParserTest() {
 
     test('Parse chained access expression', () {
       // Expression: Patient.address.city
-      final node = engine.parse('Patient.address.city');
+      final node = testEngine.parse('Patient.address.city');
 
       expect(node.name, equals('Patient'));
       expect(node.inner?.name, equals('address'));
