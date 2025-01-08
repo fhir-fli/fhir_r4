@@ -268,9 +268,7 @@ class ExpressionNode {
     return '${start?.line ?? ''}, ${start?.column ?? ''}';
   }
 
-  int parameterCount() {
-    return parameters.length;
-  }
+  int get parameterCount => parameters.length;
 
   String canonical() {
     final b = StringBuffer();
@@ -338,6 +336,7 @@ enum FpFunction {
   DefineVariable,
   Check,
   Today,
+  TimeOfDay,
   Now,
   Resolve,
   Extension,
@@ -486,6 +485,8 @@ enum FpFunction {
         return FpFunction.Check;
       case 'today':
         return FpFunction.Today;
+      case 'timeOfDay':
+        return FpFunction.TimeOfDay;
       case 'now':
         return FpFunction.Now;
       case 'resolve':
@@ -689,6 +690,8 @@ enum FpFunction {
         return 'check';
       case FpFunction.Today:
         return 'today';
+      case FpFunction.TimeOfDay:
+        return 'timeOfDay';
       case FpFunction.Now:
         return 'now';
       case FpFunction.Resolve:

@@ -32,6 +32,12 @@ abstract class IWorkerContext {
 
   UcumService? get ucumService;
 
+  ValidationResult validateCodeableConcept(
+    ValidationOptions options,
+    CodeableConcept code,
+    ValueSet vs,
+  );
+
   ValidationResult validateCode(
     ValidationOptions options,
     Coding? code,
@@ -65,7 +71,7 @@ class ValidationResult {
         'errorClass=$errorClass, txLink=$txLink]';
   }
 
-  bool isOk() {
+  bool get isOk {
     return severity == null ||
         severity == IssueSeverity.information ||
         severity == IssueSeverity.warning;
@@ -88,7 +94,7 @@ class ValidationResult {
   }
 
   Coding? asCoding() {
-    if (isOk() && definition != null && definition?.code.value != null) {
+    if (isOk && definition != null && definition?.code.value != null) {
       return Coding(
         system: system == null ? null : FhirUri(system),
         code: definition?.code.value == null

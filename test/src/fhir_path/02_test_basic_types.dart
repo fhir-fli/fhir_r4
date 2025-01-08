@@ -1,8 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors, no_adjacent_strings_in_list
-// ignore_for_file: lines_longer_than_80_chars, prefer_single_quotes, unnecessary_string_escapes
-// ignore_for_file: leading_newlines_in_multiline_strings, unnecessary_statements, directives_ordering
-// ignore_for_file: always_specify_types, inference_failure_on_collection_literal
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:test/test.dart';
@@ -23,11 +18,11 @@ void testBasicTypes() {
     test('String', () {
       expect(
         parseExpression("'test string'").constant,
-        "test string".toFhirString,
+        'test string'.toFhirString,
       );
       expect(
         parseExpression("'urn:oid:3.4.5.6.7.8'").constant,
-        "urn:oid:3.4.5.6.7.8".toFhirString,
+        'urn:oid:3.4.5.6.7.8'.toFhirString,
       );
     });
 

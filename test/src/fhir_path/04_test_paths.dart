@@ -132,7 +132,8 @@ void testPaths() {
       ]);
     });
     test('Patient Address Period Extension ValueCount', () {
-      final node = testEngine.parse('Patient.address.period.extension.valueCount');
+      final node =
+          testEngine.parse('Patient.address.period.extension.valueCount');
       final result = testEngine.evaluate(patient2, node);
       expect(toJsonList(result), [
         {'unit': 'Mg'},

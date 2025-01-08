@@ -1,1974 +1,1398 @@
-// // ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
-// // ignore_for_file: lines_longer_than_80_chars
-// // ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
-// // ignore_for_file: leading_newlines_in_multiline_strings
-// // ignore_for_file: unnecessary_statements, directives_ordering
-// // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:test/test.dart';
+import 'package:ucum/ucum.dart';
 
-// import 'package:fhir_r4/fhir_r4.dart';
-// import 'package:test/test.dart';
-// import 'package:ucum/ucum.dart';
+import '00_test_data.dart';
 
-// void testNoArgFxns() {
-//   group('Functions w/o Arguments: ', () {
-//     test('empty', () {
-//       expect(
-//         [false],
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'name.family.empty()',
-//         ),
-//       );
-//       expect(
-//         [false],
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'name.given.empty()',
-//         ),
-//       );
-//       expect(
-//         [true],
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.language.empty()',
-//         ),
-//       );
-//       expect(
-//         [true],
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.period.empty()',
-//         ),
-//       );
-//       expect(
-//         [true],
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: '{ }.empty()',
-//         ),
-//       );
-//     });
-//     test('allTrue', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.active.allTrue()',
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.deceasedBoolean.allTrue()',
-//         ),
-//         [false],
-//       );
-//     });
-//     test('anyTrue', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.active.anyTrue()',
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.deceasedBoolean.anyTrue()',
-//         ),
-//         [false],
-//       );
-//     });
-//     test('allFalse', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.active.allFalse()',
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.deceasedBoolean.allFalse()',
-//         ),
-//         [true],
-//       );
-//     });
-//     test('anyFalse', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.active.anyFalse()',
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.deceasedBoolean.anyFalse()',
-//         ),
-//         [true],
-//       );
-//     });
-//     test('count', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.count()',
-//         ),
-//         [4],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.given.count()',
-//         ),
-//         [8],
-//       );
-//     });
-//     test('distinct', () {
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: 'Patient.name.distinct()',
-//           ),
-//           [
-//             {
-//               'use': 'official',
-//               'family': 'Faulkenberry',
-//               'given': ['Jason', 'Grey'],
-//             },
-//             {
-//               'family': 'Niel',
-//               'given': ['Kristin'],
-//             },
-//             {
-//               'family': 'Smith',
-//               'given': ['John', 'Jacob', 'Jingleheimer'],
-//             },
-//           ]);
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.given.distinct()',
-//         ),
-//         ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
-//       );
-//     });
-//     test('isDistinct', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.distinct().isDistinct()',
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.given.distinct().isDistinct()',
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.address.period.isDistinct()',
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.isDistinct()',
-//         ),
-//         [false],
-//       );
-//     });
-//     test('Single', () {
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: 'Patient.telecom.single()',
-//           ),
-//           [
-//             {
-//               'system': 'email',
-//               'use': 'mobile',
-//               'rank': 3,
-//             },
-//           ]);
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.id.single()',
-//         ),
-//         [],
-//       );
-//     });
-//     test('First', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.id.first()',
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.given.first()',
-//         ),
-//         ['Jason'],
-//       );
-//     });
-//     test('Last', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.id.last()',
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.given.last()',
-//         ),
-//         ['Jingleheimer'],
-//       );
-//     });
-//     test('Tail', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: 'Patient.name.id.tail()',
-//         ),
-//         [],
-//       );
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: 'Patient.name.given.tail()',
-//           ),
-//           [
-//             'Grey',
-//             'Jason',
-//             'Grey',
-//             'Kristin',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//     });
-//     test('toBoolean', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.toBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.toBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.toBoolean()",
-//         ),
-//         [false],
-//       );
-//     });
-//     test('convertsToBoolean', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.toBoolean().convertsToBoolean()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "name.first().convertsToBoolean()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "name.given.first().convertsToBoolean()",
-//         ),
-//         [false],
-//       );
-//     });
-//     test('toInteger', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.toInteger()",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.toInteger()",
-//         ),
-//         [0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.toInteger()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toInteger()",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.toInteger()",
-//         ),
-//         [0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.toInteger()",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.toInteger()",
-//         ),
-//         [0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.toInteger()",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.toInteger()",
-//         ),
-//         [0],
-//       );
-//     });
-//     test('convertsToInteger', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.convertsToInteger()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.convertsToInteger()",
-//         ),
-//         [true],
-//       );
-//     });
-//     test('toDate', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01.toDate()",
-//         ),
-//         [FhirDate.fromString('2021-01-01')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01'.toDate()",
-//         ),
-//         [FhirDate.fromString('2021-01-01')],
-//       );
-//     });
-//     test('convertsToDate', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01.convertsToDate()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01'.convertsToDate()",
-//         ),
-//         [true],
-//       );
-//     });
-//     test('toDateTime', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01.toDateTime()",
-//         ),
-//         [FhirDateTime.fromString('2021-01-01')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01'.toDateTime()",
-//         ),
-//         [FhirDateTime.fromString('2021-01-01')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01T12:12.toDateTime()",
-//         ),
-//         [FhirDateTime.fromString('2021-01-01T12:12')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01T12:12'.toDateTime()",
-//         ),
-//         [FhirDateTime.fromString('2021-01-01T12:12')],
-//       );
-//     });
-//     test('convertsToDateTime', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01.convertsToDateTime()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01'.convertsToDateTime()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01T12:12.convertsToDateTime()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'2021-01-01T12:12'.convertsToDateTime()",
-//         ),
-//         [true],
-//       );
-//     });
-//     test('toDecimal', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.toDecimal()",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.toDecimal()",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.toDecimal()",
-//         ),
-//         [0.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.toDecimal()",
-//         ),
-//         [],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.toDecimal()",
-//         ),
-//         [0.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toDecimal()",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.toDecimal()",
-//         ),
-//         [0.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.toDecimal()",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.toDecimal()",
-//         ),
-//         [0.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.toDecimal()",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.toDecimal()",
-//         ),
-//         [0.0],
-//       );
-//     });
-//     test('convertsToDecimal', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1'.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'t'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'yes'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'y'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'1.0'.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0'.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'false'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'f'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'no'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'n'.convertsToDecimal()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'0.0'.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.0.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.convertsToDecimal()",
-//         ),
-//         [true],
-//       );
-//     });
+void testNoArgFxns() {
+  group('Functions w/o Arguments: ', () {
+    test('empty', () {
+      var node = testEngine.parse('name.family.empty()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [false.toFhirBoolean],
+      );
+      node = testEngine.parse('name.given.empty()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [false.toFhirBoolean],
+      );
+      node = testEngine.parse('Patient.language.empty()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+      node = testEngine.parse('Patient.name.period.empty()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+      node = testEngine.parse('{}.empty()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+    });
+    test('allTrue', () {
+      var node = testEngine.parse('Patient.active.allTrue()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [true.toFhirBoolean],
+      );
+      node = testEngine.parse('Patient.deceasedBoolean.allTrue()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [false.toFhirBoolean],
+      );
+    });
+    // test('anyTrue', () {
+    //   var node = testEngine.parse('Patient.active.anyTrue()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.deceasedBoolean.anyTrue()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    // });
+    // test('allFalse', () {
+    //   var node = testEngine.parse('Patient.active.allFalse()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.deceasedBoolean.allFalse()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('anyFalse', () {
+    //   var node = testEngine.parse('Patient.active.anyFalse()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.deceasedBoolean.anyFalse()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('count', () {
+    //   var node = testEngine.parse('Patient.name.count()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [4],
+    //   );
+    //   node = testEngine.parse('Patient.name.given.count()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [8],
+    //   );
+    // });
+    // test('distinct', () {
+    //   var node = testEngine.parse('Patient.name.distinct()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     {
+    //       'use': 'official',
+    //       'family': 'Faulkenberry',
+    //       'given': ['Jason', 'Grey'],
+    //     },
+    //     {
+    //       'family': 'Niel',
+    //       'given': ['Kristin'],
+    //     },
+    //     {
+    //       'family': 'Smith',
+    //       'given': ['John', 'Jacob', 'Jingleheimer'],
+    //     },
+    //   ]);
+    //   node = testEngine.parse('Patient.name.given.distinct()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
+    //   );
+    // });
+    // test('isDistinct', () {
+    //   var node = testEngine.parse('Patient.name.distinct().isDistinct()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.name.given.distinct().isDistinct()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.address.period.isDistinct()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('Patient.name.isDistinct()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    // });
+    // test('Single', () {
+    //   var node = testEngine.parse('Patient.telecom.single()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     {
+    //       'system': 'email',
+    //       'use': 'mobile',
+    //       'rank': 3,
+    //     },
+    //   ]);
+    //   node = testEngine.parse('Patient.name.id.single()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    // });
+    // test('First', () {
+    //   var node = testEngine.parse('Patient.name.id.first()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse('Patient.name.given.first()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['Jason'],
+    //   );
+    // });
+    // test('Last', () {
+    //   var node = testEngine.parse('Patient.name.id.last()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse('Patient.name.given.last()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['Jingleheimer'],
+    //   );
+    // });
+    // test('Tail', () {
+    //   var node = testEngine.parse('Patient.name.id.tail()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse('Patient.name.given.tail()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     'Grey',
+    //     'Jason',
+    //     'Grey',
+    //     'Kristin',
+    //     'John',
+    //     'Jacob',
+    //     'Jingleheimer',
+    //   ]);
+    // });
+    // test('toBoolean', () {
+    //   var node = testEngine.parse("'1'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'true'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'t'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'yes'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'y'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'1.0'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'false'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'f'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'no'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'n'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0.0'.toBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.toBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.toBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.0.toBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.0.toBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    // });
+    // test('convertsToBoolean', () {
+    //   var node = testEngine.parse("'1'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'true'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'t'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'yes'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'y'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'1.0'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'false'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'f'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'no'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'n'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0.0'.toBoolean().convertsToBoolean()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.toBoolean().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.toBoolean().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.0.toBoolean().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.0.toBoolean().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('name.first().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('name.given.first().convertsToBoolean()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    // });
+    // test('toInteger', () {
+    //   var node = testEngine.parse("'1'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse("'true'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'t'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'yes'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'y'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'1.0'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'0'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0],
+    //   );
+    //   node = testEngine.parse("'false'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'f'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'no'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'n'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'0.0'.toInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse('1.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('0.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0],
+    //   );
+    //   node = testEngine.parse('1.0.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('0.0.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0],
+    //   );
+    //   node = testEngine.parse('true.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('false.toInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0],
+    //   );
+    // });
+    // test('convertsToInteger', () {
+    //   var node = testEngine.parse("'1'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'true'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'t'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'yes'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'y'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'1.0'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'false'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'f'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'no'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'n'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0.0'.convertsToInteger()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.0.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.0.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('true.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('false.convertsToInteger()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('toDate', () {
+    //   var node = testEngine.parse('@2021-01-01.toDate()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01'.toFhirDate],
+    //   );
+    //   node = testEngine.parse("'2021-01-01'.toDate()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01'.toFhirDate],
+    //   );
+    // });
+    // test('convertsToDate', () {
+    //   var node = testEngine.parse('@2021-01-01.convertsToDate()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'2021-01-01'.convertsToDate()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('toDateTime', () {
+    //   var node = testEngine.parse('@2021-01-01.toDateTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01'.toFhirDateTime],
+    //   );
+    //   node = testEngine.parse("'2021-01-01'.toDateTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01'.toFhirDateTime],
+    //   );
+    //   node = testEngine.parse('@2021-01-01T12:12.toDateTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01T12:12'.toFhirDateTime],
+    //   );
+    //   node = testEngine.parse("'2021-01-01T12:12'.toDateTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01T12:12'.toFhirDateTime],
+    //   );
+    // });
+    // test('convertsToDateTime', () {
+    //   var node = testEngine.parse('@2021-01-01.convertsToDateTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'2021-01-01'.convertsToDateTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('@2021-01-01T12:12.convertsToDateTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'2021-01-01T12:12'.convertsToDateTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('toDecimal', () {
+    //   var node = testEngine.parse("'1'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse("'true'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'t'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'yes'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'y'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'1.0'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse("'0'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    //   node = testEngine.parse("'false'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'f'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'no'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'n'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    //   node = testEngine.parse("'0.0'.toDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    //   node = testEngine.parse('1.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse('0.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    //   node = testEngine.parse('1.0.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse('0.0.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    //   node = testEngine.parse('true.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse('false.toDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    // });
+    // test('convertsToDecimal', () {
+    //   var node = testEngine.parse("'1'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'true'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'t'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'yes'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'y'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'1.0'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'false'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'f'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'no'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'n'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'0.0'.convertsToDecimal()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.0.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('0.0.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('true.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('false.convertsToDecimal()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
 
-//     test('toQuantity', () {
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "'4 days'.toQuantity()",
-//           ),
-//           [
-//             ValidatedQuantity(value: UcumDecimal.fromString('4'), unit: 'days'),
-//           ]);
+    // test('toQuantity', () {
+    //   expect(
+    //       walkFhirPath(
+    //         context: resource.toJson(),
+    //         pathExpression: "'4 days'.toQuantity()",
+    //       ),
+    //       [
+    //         ValidatedQuantity(value: UcumDecimal.fromString('4'), unit: 'days'),
+    //       ]);
 
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: r"'10 \'mm[Hg]\''.toQuantity()",
-//           ),
-//           [
-//             ValidatedQuantity(
-//               value: UcumDecimal.fromString('10'),
-//               unit: 'mm[Hg]',
-//             ),
-//           ]);
-//     });
+    //   expect(
+    //       walkFhirPath(
+    //         context: resource.toJson(),
+    //         pathExpression: r"'10 \'mm[Hg]\''.toQuantity()",
+    //       ),
+    //       [
+    //         ValidatedQuantity(
+    //           value: UcumDecimal.fromString('10'),
+    //           unit: 'mm[Hg]',
+    //         ),
+    //       ]);
+    // });
 
-//     test('ConvertsToQuantity', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'4 days'.convertsToQuantity()",
-//         ),
-//         [true],
-//       );
+    // test('ConvertsToQuantity', () {
+    //   final node = testEngine.parse("'4 days'.convertsToQuantity()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
 
-//       // TODO(Dokotela): still need to work on recognizing Quantity
-//       // expect(
-//       //     walkFhirPath(
-//       //         context: resource.toJson(),
-//       //         pathExpression: ""10 \'mg[Hg]'".convertsToQuantity()"),
-//       //     ['true']);
-//     });
+    //   // TODO(Dokotela): still need to work on recognizing Quantity
+    //   // expect(
+    //   //     walkFhirPath(
+    //   //         context: resource.toJson(),
+    //   //         pathExpression: ""10 \'mg[Hg]'".convertsToQuantity()"),
+    //   //     ['true']);
+    // });
 
-//     test('toString', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.toString()",
-//         ),
-//         ['true'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.toString()",
-//         ),
-//         ['false'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toString()",
-//         ),
-//         ['1'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.toString()",
-//         ),
-//         ['111'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1.toString()",
-//         ),
-//         ['1.1'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1.toString()",
-//         ),
-//         ['111.1'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1 'mg'.toString()",
-//         ),
-//         ["1.1 'mg'"],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1 'mL'.toString()",
-//         ),
-//         ["111.1 'mL'"],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2019-08-01.toString()",
-//         ),
-//         ['2019-08-01'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01T12:12.toString()",
-//         ),
-//         ['2021-01-01T12:12'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:12.toString()",
-//         ),
-//         ['12:12'],
-//       );
-//     });
-//     test('convertsToString', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1 'mg'.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1 'mL'.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2019-08-01.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01T12:12.convertsToString()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:12.convertsToString()",
-//         ),
-//         [true],
-//       );
-//     });
-//     test('toTime', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:22.toTime()",
-//         ),
-//         [FhirTime('12:22')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:22:33.toTime()",
-//         ),
-//         [FhirTime('12:22:33')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'12:22'.toTime()",
-//         ),
-//         [FhirTime('12:22')],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'12:22:33.321'.toTime()",
-//         ),
-//         [FhirTime('12:22:33.321')],
-//       );
-//     });
-//     test('convertsToTime', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:22.convertsToTime()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:22:33.convertsToTime()",
-//         ),
-//         [true],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'T12:22'.convertsToTime()",
-//         ),
-//         [false],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'12:22:33.321'.convertsToTime()",
-//         ),
-//         [true],
-//       );
-//     });
-//     test('upper', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'abcdefg'.upper() // 'ABCDEFG'",
-//         ),
-//         ['ABCDEFG'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'AbCdefg'.upper() // 'ABCDEFG'",
-//         ),
-//         ['ABCDEFG'],
-//       );
-//     });
-//     test('lower', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'ABCDEFG'.lower() // 'abcdefg'",
-//         ),
-//         ['abcdefg'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'aBcDEFG'.lower() // 'abcdefg'",
-//         ),
-//         ['abcdefg'],
-//       );
-//     });
-//     test('Length', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "true.toString().length()",
-//         ),
-//         [4],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "false.toString().length()",
-//         ),
-//         [5],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.toString().length()",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.toString().length()",
-//         ),
-//         [3],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1.toString().length()",
-//         ),
-//         [3],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1.toString().length()",
-//         ),
-//         [5],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1 'mg'.toString().length()",
-//         ),
-//         [8],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "111.1 'mL'.toString().length()",
-//         ),
-//         [10],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2019-08-01.toString().length()",
-//         ),
-//         [10],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@2021-01-01T12:12.toString().length()",
-//         ),
-//         [16],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "@T12:12.toString().length()",
-//         ),
-//         [5],
-//       );
-//     });
-//     test('toChars', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "'true'.toChars()",
-//         ),
-//         ['t', 'r', 'u', 'e'],
-//       );
-//     });
-//     test('abs', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-5) // -5",
-//         ),
-//         [-5],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-5).abs() // 5",
-//         ),
-//         [5],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-5.5).abs() // 5.5",
-//         ),
-//         [5.5],
-//       );
-//       expect(
-//         () => walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "today() + 5.5 'mg'",
-//         ),
-//         throwsA(const TypeMatcher<FhirPathException>()),
-//       );
+    // test('toString', () {
+    //   var node = testEngine.parse('true.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['true'],
+    //   );
+    //   node = testEngine.parse('false.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['false'],
+    //   );
+    //   node = testEngine.parse('1.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['1'],
+    //   );
+    //   node = testEngine.parse('111.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['111'],
+    //   );
+    //   node = testEngine.parse('1.1.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['1.1'],
+    //   );
+    //   node = testEngine.parse('111.1.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['111.1'],
+    //   );
+    //   node = testEngine.parse("1.1 'mg'.toString()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ["1.1 'mg'"],
+    //   );
+    //   node = testEngine.parse("111.1 'mL'.toString()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ["111.1 'mL'"],
+    //   );
+    //   node = testEngine.parse('@2019-08-01.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2019-08-01'],
+    //   );
+    //   node = testEngine.parse('@2021-01-01T12:12.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['2021-01-01T12:12'],
+    //   );
+    //   node = testEngine.parse('@T12:12.toString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['12:12'],
+    //   );
+    // });
+    // test('convertsToString', () {
+    //   var node = testEngine.parse('true.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('false.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('111.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('1.1.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('111.1.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("1.1 'mg'.convertsToString()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("111.1 'mL'.convertsToString()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('@2019-08-01.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('@2021-01-01T12:12.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('@T12:12.convertsToString()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('toTime', () {
+    //   var node = testEngine.parse('@T12:22.toTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [FhirTime('12:22')],
+    //   );
+    //   node = testEngine.parse('@T12:22:33.toTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [FhirTime('12:22:33')],
+    //   );
+    //   node = testEngine.parse("'12:22'.toTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [FhirTime('12:22')],
+    //   );
+    //   node = testEngine.parse("'12:22:33.321'.toTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [FhirTime('12:22:33.321')],
+    //   );
+    // });
+    // test('convertsToTime', () {
+    //   var node = testEngine.parse('@T12:22.convertsToTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse('@T12:22:33.convertsToTime()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'T12:22'.convertsToTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [false.toFhirBoolean],
+    //   );
+    //   node = testEngine.parse("'12:22:33.321'.convertsToTime()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [true.toFhirBoolean],
+    //   );
+    // });
+    // test('upper', () {
+    //   var node = testEngine.parse("'abcdefg'.upper() // 'ABCDEFG'");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['ABCDEFG'],
+    //   );
+    //   node = testEngine.parse("'AbCdefg'.upper() // 'ABCDEFG'");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['ABCDEFG'],
+    //   );
+    // });
+    // test('lower', () {
+    //   var node = testEngine.parse("'ABCDEFG'.lower() // 'abcdefg'");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['abcdefg'],
+    //   );
+    //   node = testEngine.parse("'aBcDEFG'.lower() // 'abcdefg'");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['abcdefg'],
+    //   );
+    // });
+    // test('Length', () {
+    //   var node = testEngine.parse('true.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [4],
+    //   );
+    //   node = testEngine.parse('false.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [5],
+    //   );
+    //   node = testEngine.parse('1.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('111.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [3],
+    //   );
+    //   node = testEngine.parse('1.1.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [3],
+    //   );
+    //   node = testEngine.parse('111.1.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [5],
+    //   );
+    //   node = testEngine.parse("1.1 'mg'.toString().length()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [8],
+    //   );
+    //   node = testEngine.parse("111.1 'mL'.toString().length()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [10],
+    //   );
+    //   node = testEngine.parse('@2019-08-01.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [10],
+    //   );
+    //   node = testEngine.parse('@2021-01-01T12:12.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [16],
+    //   );
+    //   node = testEngine.parse('@T12:12.toString().length()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [5],
+    //   );
+    // });
+    // test('toChars', () {
+    //   final node = testEngine.parse("'true'.toChars()");
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     ['t', 'r', 'u', 'e'],
+    //   );
+    // });
+    // test('abs', () {
+    //   var node = testEngine.parse('(-5) // -5');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [-5],
+    //   );
+    //   node = testEngine.parse('(-5).abs() // 5');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [5],
+    //   );
+    //   node = testEngine.parse('(-5.5).abs() // 5.5');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [5.5],
+    //   );
+    //   expect(
+    //     () => walkFhirPath(
+    //       context: resource.toJson(),
+    //       pathExpression: "today() + 5.5 'mg'",
+    //     ),
+    //     throwsA(const TypeMatcher<FhirPathException>()),
+    //   );
 
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "(-5.5 'mg').abs() // 5.5 'mg'",
-//           ),
-//           [
-//             ValidatedQuantity(value: UcumDecimal.fromString('5.5'), unit: "mg"),
-//           ]);
-//     });
-//     test('ceiling', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.ceiling() // 1",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.1.ceiling() // 2",
-//         ),
-//         [2],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-1.1).ceiling() // -1",
-//         ),
-//         [-1],
-//       );
-//     });
-//     test('exp', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "0.exp() // 1.0",
-//         ),
-//         [1.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-0.0).exp() // 1.0",
-//         ),
-//         [1.0],
-//       );
-//     });
-//     test('floor', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.floor() // 1",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "2.1.floor() // 2",
-//         ),
-//         [2],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-2.1).floor() // -3",
-//         ),
-//         [-3],
-//       );
-//     });
-//     test('ln', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.ln() // 0.0",
-//         ),
-//         [0.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.0.ln() // 0.0",
-//         ),
-//         [0.0],
-//       );
-//     });
-//     test('log', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "16.log(2) // 4.0",
-//         ),
-//         [4.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "100.0.log(10.0) // 2.0",
-//         ),
-//         [2.0],
-//       );
-//     });
-//     test('sqrt', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "81.sqrt() // 9.0",
-//         ),
-//         [9.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-1).sqrt() // empty",
-//         ),
-//         [],
-//       );
-//     });
-//     test('truncate', () {
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "101.truncate() // 101",
-//         ),
-//         [101],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "1.00000001.truncate() // 1",
-//         ),
-//         [1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: resource.toJson(),
-//           pathExpression: "(-1.56).truncate() // -1",
-//         ),
-//         [-1],
-//       );
-//     });
-//     test('children', () {
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "Patient.name.children()",
-//           ),
-//           [
-//             'official',
-//             'Faulkenberry',
-//             'Jason',
-//             'Grey',
-//             'official',
-//             'Faulkenberry',
-//             'Jason',
-//             'Grey',
-//             'Niel',
-//             'Kristin',
-//             'Smith',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "Patient.address.children()",
-//           ),
-//           [
-//             {
-//               "extension": [
-//                 {
-//                   "valueX": {"unit": "Mg"},
-//                 },
-//                 {
-//                   "valueX": {"unit": "mL"},
-//                 }
-//               ],
-//             },
-//             {
-//               "extension": [
-//                 {
-//                   "extension": [
-//                     {
-//                       "extension": [
-//                         {
-//                           "extension": [
-//                             {
-//                               "valueX": {"unit": "Kg"},
-//                             },
-//                             {
-//                               "valueX": {"unit": "Km"},
-//                             }
-//                           ],
-//                           "valueX": {"unit": "Kg"},
-//                         },
-//                         {
-//                           "valueX": {"unit": "Km"},
-//                         }
-//                       ],
-//                       "valueX": {"unit": "Kg"},
-//                     },
-//                     {
-//                       "valueX": {"unit": "Km"},
-//                     }
-//                   ],
-//                   "valueX": {"unit": "Kg"},
-//                 },
-//                 {
-//                   "valueX": {"unit": "Km"},
-//                 }
-//               ],
-//             },
-//             {
-//               "extension": [
-//                 {
-//                   "valueX": {"unit": "Feet"},
-//                 },
-//                 {
-//                   "valueX": {"unit": "inches"},
-//                 }
-//               ],
-//             }
-//           ]);
-//     });
-//     test('Descendants', () {
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "Patient.name.descendants()",
-//           ),
-//           [
-//             'official',
-//             'Faulkenberry',
-//             'Jason',
-//             'Grey',
-//             'Niel',
-//             'Kristin',
-//             'Smith',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: resource.toJson(),
-//             pathExpression: "Patient.address[1].period.extension.descendants()",
-//           ),
-//           [
-//             {
-//               "extension": [
-//                 {
-//                   "extension": [
-//                     {
-//                       "valueX": {"unit": "Kg"},
-//                     },
-//                     {
-//                       "valueX": {"unit": "Km"},
-//                     }
-//                   ],
-//                   "valueX": {"unit": "Kg"},
-//                 },
-//                 {
-//                   "valueX": {"unit": "Km"},
-//                 }
-//               ],
-//               "valueX": {"unit": "Kg"},
-//             },
-//             {
-//               "valueX": {"unit": "Km"},
-//             },
-//             {"unit": "Kg"},
-//             {"unit": "Km"},
-//             {
-//               "extension": [
-//                 {
-//                   "valueX": {"unit": "Kg"},
-//                 },
-//                 {
-//                   "valueX": {"unit": "Km"},
-//                 }
-//               ],
-//               "valueX": {"unit": "Kg"},
-//             },
-//             "Kg",
-//             "Km",
-//             {
-//               "valueX": {"unit": "Kg"},
-//             },
-//           ]);
-//     });
+    //   node = testEngine.parse("(-5.5 'mg').abs() // 5.5 'mg'");
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     ValidatedQuantity(value: UcumDecimal.fromString('5.5'), unit: 'mg'),
+    //   ]);
+    // });
+    // test('ceiling', () {
+    //   var node = testEngine.parse('1.ceiling() // 1');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('1.1.ceiling() // 2');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [2],
+    //   );
+    //   node = testEngine.parse('(-1.1).ceiling() // -1');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [-1],
+    //   );
+    // });
+    // test('exp', () {
+    //   var node = testEngine.parse('0.exp() // 1.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    //   node = testEngine.parse('(-0.0).exp() // 1.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1.0],
+    //   );
+    // });
+    // test('floor', () {
+    //   var node = testEngine.parse('1.floor() // 1');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('2.1.floor() // 2');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [2],
+    //   );
+    //   node = testEngine.parse('(-2.1).floor() // -3');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [-3],
+    //   );
+    // });
+    // test('ln', () {
+    //   var node = testEngine.parse('1.ln() // 0.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    //   node = testEngine.parse('1.0.ln() // 0.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [0.0],
+    //   );
+    // });
+    // test('log', () {
+    //   var node = testEngine.parse('16.log(2) // 4.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [4.0],
+    //   );
+    //   node = testEngine.parse('100.0.log(10.0) // 2.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [2.0],
+    //   );
+    // });
+    // test('sqrt', () {
+    //   var node = testEngine.parse('81.sqrt() // 9.0');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [9.0],
+    //   );
+    //   node = testEngine.parse('(-1).sqrt() // empty');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     <FhirBase>[],
+    //   );
+    // });
+    // test('truncate', () {
+    //   var node = testEngine.parse('101.truncate() // 101');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [101],
+    //   );
+    //   node = testEngine.parse('1.00000001.truncate() // 1');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [1],
+    //   );
+    //   node = testEngine.parse('(-1.56).truncate() // -1');
+    //   expect(
+    //     testEngine.evaluate(patient3, node),
+    //     [-1],
+    //   );
+    // });
+    // test('children', () {
+    //   var node = testEngine.parse('Patient.name.children()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     'official',
+    //     'Faulkenberry',
+    //     'Jason',
+    //     'Grey',
+    //     'official',
+    //     'Faulkenberry',
+    //     'Jason',
+    //     'Grey',
+    //     'Niel',
+    //     'Kristin',
+    //     'Smith',
+    //     'John',
+    //     'Jacob',
+    //     'Jingleheimer',
+    //   ]);
+    //   node = testEngine.parse('Patient.address.children()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     {
+    //       'extension': [
+    //         {
+    //           'valueX': {'unit': 'Mg'},
+    //         },
+    //         {
+    //           'valueX': {'unit': 'mL'},
+    //         }
+    //       ],
+    //     },
+    //     {
+    //       'extension': [
+    //         {
+    //           'extension': [
+    //             {
+    //               'extension': [
+    //                 {
+    //                   'extension': [
+    //                     {
+    //                       'valueX': {'unit': 'Kg'},
+    //                     },
+    //                     {
+    //                       'valueX': {'unit': 'Km'},
+    //                     }
+    //                   ],
+    //                   'valueX': {'unit': 'Kg'},
+    //                 },
+    //                 {
+    //                   'valueX': {'unit': 'Km'},
+    //                 }
+    //               ],
+    //               'valueX': {'unit': 'Kg'},
+    //             },
+    //             {
+    //               'valueX': {'unit': 'Km'},
+    //             }
+    //           ],
+    //           'valueX': {'unit': 'Kg'},
+    //         },
+    //         {
+    //           'valueX': {'unit': 'Km'},
+    //         }
+    //       ],
+    //     },
+    //     {
+    //       'extension': [
+    //         {
+    //           'valueX': {'unit': 'Feet'},
+    //         },
+    //         {
+    //           'valueX': {'unit': 'inches'},
+    //         }
+    //       ],
+    //     }
+    //   ]);
+    // });
+    // test('Descendants', () {
+    //   var node = testEngine.parse('Patient.name.descendants()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     'official',
+    //     'Faulkenberry',
+    //     'Jason',
+    //     'Grey',
+    //     'Niel',
+    //     'Kristin',
+    //     'Smith',
+    //     'John',
+    //     'Jacob',
+    //     'Jingleheimer',
+    //   ]);
+    //   node =
+    //       testEngine.parse('Patient.address[1].period.extension.descendants()');
+    //   expect(testEngine.evaluate(patient3, node), [
+    //     {
+    //       'extension': [
+    //         {
+    //           'extension': [
+    //             {
+    //               'valueX': {'unit': 'Kg'},
+    //             },
+    //             {
+    //               'valueX': {'unit': 'Km'},
+    //             }
+    //           ],
+    //           'valueX': {'unit': 'Kg'},
+    //         },
+    //         {
+    //           'valueX': {'unit': 'Km'},
+    //         }
+    //       ],
+    //       'valueX': {'unit': 'Kg'},
+    //     },
+    //     {
+    //       'valueX': {'unit': 'Km'},
+    //     },
+    //     {'unit': 'Kg'},
+    //     {'unit': 'Km'},
+    //     {
+    //       'extension': [
+    //         {
+    //           'valueX': {'unit': 'Kg'},
+    //         },
+    //         {
+    //           'valueX': {'unit': 'Km'},
+    //         }
+    //       ],
+    //       'valueX': {'unit': 'Kg'},
+    //     },
+    //     'Kg',
+    //     'Km',
+    //     {
+    //       'valueX': {'unit': 'Kg'},
+    //     },
+    //   ]);
+    // });
 
-//     test('DateTimeFunctions', () {
-//       final startNow = FhirDateTime.fromDateTime(DateTime.now()).value;
-//       final resultNow =
-//           walkFhirPath(context: resource.toJson(), pathExpression: "now()");
-//       final endNow = FhirDateTime.fromDateTime(DateTime.now()).value;
-//       expect(
-//         (toDateTime(startNow).isBefore(toDateTime(resultNow.first)) ||
-//                 toDateTime(startNow)
-//                     .isAtSameMomentAs(toDateTime(resultNow.first))) &&
-//             ((endNow?.isAfter(toDateTime(resultNow.first)) ?? false) ||
-//                 toDateTime(endNow)
-//                     .isAtSameMomentAs(toDateTime(resultNow.first))),
-//         true,
-//       );
+    // test('DateTimeFunctions', () {
+    //   final startNow = DateTime.now();
+    //   var node = testEngine.parse('now()');
+    //   final resultNow = testEngine.evaluate(patient3, node).first;
+    //   final endNow = DateTime.now();
+    //   expect(
+    //     (startNow.isBefore(toDateTime(resultNow)) ||
+    //             startNow.isAtSameMomentAs(toDateTime(resultNow))) &&
+    //         (endNow.isAfter(toDateTime(resultNow)) ||
+    //             endNow.isAtSameMomentAs(toDateTime(resultNow))),
+    //     true,
+    //   );
 
-//       final startTimeOfDay = FhirTime(
-//         DateTime.now().toIso8601String().split('T').last.substring(0, 12),
-//       );
-//       final resultTimeOfDay = walkFhirPath(
-//         context: resource.toJson(),
-//         pathExpression: "timeOfDay()",
-//       ).first;
-//       final endTimeOfDay = FhirTime(
-//         DateTime.now().toIso8601String().split('T').last.substring(0, 12),
-//       );
-//       expect(
-//         (startTimeOfDay <= (resultTimeOfDay as FhirTime) ?? false) &&
-//             (endTimeOfDay >= resultTimeOfDay ?? false),
-//         true,
-//       );
-//       expect(
-//         walkFhirPath(context: resource.toJson(), pathExpression: "today()")
-//             .first,
-//         FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
-//       );
-//     });
-//   });
-// }
+    //   final startTimeOfDay = FhirTime(
+    //     DateTime.now().toIso8601String().split('T').last,
+    //   );
+    //   node = testEngine.parse('timeOfDay()');
+    //   final resultTimeOfDay = testEngine.evaluate(patient3, node).first;
+    //   final endTimeOfDay = FhirTime(
+    //     DateTime.now().toIso8601String().split('T').last,
+    //   );
 
-// final resource = Patient(
-//   telecom: [
-//     ContactPoint(
-//       system: ContactPointSystem.email,
-//       use: ContactPointUse.mobile,
-//       rank: FhirPositiveInt(3),
-//     ),
-//   ],
-//   address: [
-//     Address(
-//       period: Period(
-//         extension_: [
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             valueX: Count(unit: 'Mg'.toFhirString),
-//           ),
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             valueX: Count(unit: 'mL'.toFhirString),
-//           ),
-//         ],
-//       ),
-//     ),
-//     Address(
-//       period: Period(
-//         extension_: [
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             extension_: [
-//               FhirExtension(
-//                 url: 'www.mayjuun.com'.toFhirString,
-//                 extension_: [
-//                   FhirExtension(
-//                     url: 'www.mayjuun.com'.toFhirString,
-//                     extension_: [
-//                       FhirExtension(
-//                         url: 'www.mayjuun.com'.toFhirString,
-//                         valueX: Count(unit: 'Kg'.toFhirString),
-//                       ),
-//                       FhirExtension(
-//                         url: 'www.mayjuun.com'.toFhirString,
-//                         valueX: Count(unit: 'Km'.toFhirString),
-//                       ),
-//                     ],
-//                     valueX: Count(unit: 'Kg'.toFhirString),
-//                   ),
-//                   FhirExtension(
-//                     url: 'www.mayjuun.com'.toFhirString,
-//                     valueX: Count(unit: 'Km'.toFhirString),
-//                   ),
-//                 ],
-//                 valueX: Count(unit: 'Kg'.toFhirString),
-//               ),
-//               FhirExtension(
-//                 url: 'www.mayjuun.com'.toFhirString,
-//                 valueX: Count(unit: 'Km'.toFhirString),
-//               ),
-//             ],
-//             valueX: Count(unit: 'Kg'.toFhirString),
-//           ),
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             valueX: Count(unit: 'Km'.toFhirString),
-//           ),
-//         ],
-//       ),
-//     ),
-//     Address(
-//       period: Period(
-//         extension_: [
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             valueX: Count(unit: 'Feet'.toFhirString),
-//           ),
-//           FhirExtension(
-//             url: 'www.mayjuun.com'.toFhirString,
-//             valueX: Count(unit: 'inches'.toFhirString),
-//           ),
-//         ],
-//       ),
-//     ),
-//   ],
-//   deceasedX: FhirBoolean(false),
-//   name: [
-//     HumanName(
-//       use: NameUse.official,
-//       family: 'Faulkenberry'.toFhirString,
-//       given: [
-//         'Jason'.toFhirString,
-//         'Grey'.toFhirString,
-//       ],
-//     ),
-//     HumanName(
-//       use: NameUse.official,
-//       family: 'Faulkenberry'.toFhirString,
-//       given: [
-//         'Jason'.toFhirString,
-//         'Grey'.toFhirString,
-//       ],
-//     ),
-//     HumanName(
-//       family: 'Niel'.toFhirString,
-//       given: [
-//         'Kristin'.toFhirString,
-//       ],
-//     ),
-//     HumanName(
-//       family: 'Smith'.toFhirString,
-//       given: [
-//         'John'.toFhirString,
-//         'Jacob'.toFhirString,
-//         'Jingleheimer'.toFhirString,
-//       ],
-//     ),
-//   ],
-// );
+    //   expect(
+    //     (startTimeOfDay <= (resultTimeOfDay as FhirTime) ?? false) &&
+    //         (endTimeOfDay >= resultTimeOfDay ?? false),
+    //     true,
+    //   );
 
-// DateTime toDateTime(dynamic dateTime) => dateTime is DateTime
-//     ? dateTime
-//     : dateTime is FhirDateTime
-//         ? dateTime.value!
-//         : DateTime.now();
+
+    //   node = testEngine.parse('today()');
+    //   expect(
+    //     testEngine.evaluate(patient3, node).first,
+    //     FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
+    //   );
+    // });
+  });
+}
+
+DateTime toDateTime(dynamic dateTime) => dateTime is DateTime
+    ? dateTime
+    : dateTime is FhirDateTimeBase
+        ? dateTime.valueDateTime!
+        : DateTime.now();

@@ -41,7 +41,7 @@ class FHIRPathEngine {
   // ignore: constant_identifier_names
   static const NS_SYSTEM_TYPE = 'http://hl7.org/fhirpath/System.';
   // ignore: constant_identifier_names
-  static const FHIR_TYPES_STRING = {
+  static const FHIR_TYPES_STRING = [
     'string',
     'uri',
     'code',
@@ -53,7 +53,7 @@ class FHIRPathEngine {
     'base64Binary',
     'canonical',
     'url',
-  };
+  ];
 
   /// Fields
   final IWorkerContext worker;
@@ -863,6 +863,7 @@ class FHIRPathEngine {
         return focus;
       case FpFunction.Today:
       case FpFunction.Now:
+      case FpFunction.TimeOfDay:
         return TypeDetails(
           CollectionStatus.singleton,
           [TypeDetails.FP_DateTime],
@@ -2253,6 +2254,8 @@ class FHIRPathEngine {
       case FpFunction.Check:
         return checkParamCount(lexer, location, exp, 2);
       case FpFunction.Today:
+        return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.TimeOfDay:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.Now:
         return checkParamCount(lexer, location, exp, 0);
@@ -3908,11 +3911,11 @@ class FHIRPathEngine {
       case FpFunction.Select:
         return funcSelect(context, focus, exp);
       case FpFunction.All:
-      // return funcAll(context, focus, exp);
+        return funcAll(context, focus, exp);
       case FpFunction.Repeat:
-      // return funcRepeat(context, focus, exp);
+        return funcRepeat(context, focus, exp);
       case FpFunction.Aggregate:
-      // return funcAggregate(context, focus, exp);
+        return funcAggregate(context, focus, exp);
       case FpFunction.Item:
         return funcItem(context, focus, exp);
       case FpFunction.As:
@@ -3934,49 +3937,49 @@ class FHIRPathEngine {
       case FpFunction.Skip:
         return funcSkip(context, focus, exp);
       case FpFunction.Take:
-      // return funcTake(context, focus, exp);
+        return funcTake(context, focus, exp);
       case FpFunction.Union:
-      // return funcUnion(context, focus, exp);
+        return funcUnion(context, focus, exp);
       case FpFunction.Combine:
-      // return funcCombine(context, focus, exp);
+        return funcCombine(context, focus, exp);
       case FpFunction.Intersect:
-      // return funcIntersect(context, focus, exp);
+        return funcIntersect(context, focus, exp);
       case FpFunction.Exclude:
-      // return funcExclude(context, focus, exp);
+        return funcExclude(context, focus, exp);
       case FpFunction.Iif:
-      // return funcIif(context, focus, exp);
+        return funcIif(context, focus, exp);
       case FpFunction.Lower:
-      // return funcLower(context, focus, exp);
+        return funcLower(context, focus, exp);
       case FpFunction.Upper:
-      // return funcUpper(context, focus, exp);
+        return funcUpper(context, focus, exp);
       case FpFunction.ToChars:
-      // return funcToChars(context, focus, exp);
+        return funcToChars(context, focus, exp);
       case FpFunction.IndexOf:
-      // return funcIndexOf(context, focus, exp);
+        return funcIndexOf(context, focus, exp);
       case FpFunction.Substring:
-      // return funcSubstring(context, focus, exp);
+        return funcSubstring(context, focus, exp);
       case FpFunction.StartsWith:
-      // return funcStartsWith(context, focus, exp);
+        return funcStartsWith(context, focus, exp);
       case FpFunction.EndsWith:
-      // return funcEndsWith(context, focus, exp);
+        return funcEndsWith(context, focus, exp);
       case FpFunction.Matches:
         return funcMatches(context, focus, exp);
       case FpFunction.MatchesFull:
         return funcMatchesFull(context, focus, exp);
       case FpFunction.ReplaceMatches:
-      // return funcReplaceMatches(context, focus, exp);
+        return funcReplaceMatches(context, focus, exp);
       case FpFunction.Contains:
         return funcContains(context, focus, exp);
       case FpFunction.Replace:
-      // return funcReplace(context, focus, exp);
+        return funcReplace(context, focus, exp);
       case FpFunction.Length:
-      // return funcLength(context, focus, exp);
+        return funcLength(context, focus, exp);
       case FpFunction.Children:
-      // return funcChildren(context, focus, exp);
+        return funcChildren(context, focus, exp);
       case FpFunction.Descendants:
-      // return funcDescendants(context, focus, exp);
+        return funcDescendants(context, focus, exp);
       case FpFunction.MemberOf:
-      // return funcMemberOf(context, focus, exp);
+        return funcMemberOf(context, focus, exp);
       case FpFunction.Trace:
         return funcTrace(context, focus, exp);
       case FpFunction.DefineVariable:
@@ -3987,6 +3990,8 @@ class FHIRPathEngine {
         return funcToday(context, focus, exp);
       case FpFunction.Now:
         return funcNow(context, focus, exp);
+      case FpFunction.TimeOfDay:
+        return funcTimeOfDay(context, focus, exp);
       case FpFunction.Resolve:
       // return funcResolve(context, focus, exp);
       case FpFunction.Extension:
@@ -3998,7 +4003,7 @@ class FHIRPathEngine {
       case FpFunction.AnyTrue:
         return funcAnyTrue(context, focus, exp);
       case FpFunction.AllTrue:
-      // return funcAllTrue(context, focus, exp);
+        return funcAllTrue(context, focus, exp);
       case FpFunction.HasValue:
       // return funcHasValue(context, focus, exp);
       case FpFunction.Encode:
@@ -4105,6 +4110,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
+    print('funcEmpty: $focus');
     return [FhirBoolean(focus.isEmpty).noExtensions()];
   }
 
@@ -4291,6 +4297,108 @@ class FHIRPathEngine {
       );
     }
     return result;
+  }
+
+  List<FhirBase> funcAll(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (exp.parameters.length == 1) {
+      final pc = <FhirBase>[];
+      var all = true;
+      for (final item in focus) {
+        pc
+          ..clear()
+          ..add(item);
+        final eq = asBoolList(
+          execute(
+            context.changeThis(item, worker),
+            pc,
+            exp.parameters[0],
+            true,
+          ),
+          exp,
+        );
+        if (eq != Equality.true_) {
+          all = false;
+          break;
+        }
+      }
+      result.add(FhirBoolean(all).noExtensions());
+    } else {
+      var all = true;
+      for (final item in focus) {
+        final eq = asBool(item, true);
+        if (eq != Equality.true_) {
+          all = false;
+          break;
+        }
+      }
+      result.add(FhirBoolean(all).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcRepeat(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final current = <FhirBase>[...focus];
+    final added = <FhirBase>[];
+    var more = true;
+
+    while (more) {
+      added.clear();
+      final pc = <FhirBase>[];
+      for (final item in current) {
+        pc
+          ..clear()
+          ..add(item);
+        added.addAll(
+          execute(
+            context.changeThis(item, worker),
+            pc,
+            exp.parameters[0],
+            false,
+          ),
+        );
+      }
+      more = false;
+      current.clear();
+      for (final b in added) {
+        final isNew = result.every((t) => !FhirBase.compareDeep(b, t));
+        if (isNew) {
+          result.add(b);
+          current.add(b);
+          more = true;
+        }
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcAggregate(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    var total = <FhirBase>[];
+    if (exp.parameterCount > 1) {
+      total = execute(context, focus, exp.parameters[1], false);
+    }
+
+    final pc = <FhirBase>[];
+    for (final item in focus) {
+      final c = context.changeThis(item, worker)
+        ..total = total
+        ..next();
+      total = execute(c, pc, exp.parameters[0], true);
+    }
+    return total;
   }
 
   List<FhirBase> funcItem(
@@ -4552,6 +4660,290 @@ class FHIRPathEngine {
     return focus.sublist(i1);
   }
 
+  List<FhirBase> funcTake(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final n1 = execute(context, focus, exp.parameters[0], true);
+    final i1 = int.parse(n1.first.primitiveValue ?? '0');
+
+    final result = <FhirBase>[];
+    for (var i = 0; i < focus.length && i < i1; i++) {
+      result.add(focus[i]);
+    }
+    return result;
+  }
+
+  List<FhirBase> funcUnion(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    for (final item in focus) {
+      if (!doContains(result, item)) {
+        result.add(item);
+      }
+    }
+
+    if (context.thisItem == null) {
+      throw PathEngineException('The context does not have a thisItem');
+    }
+
+    final other = execute(
+      context,
+      baseToList(context.thisItem!),
+      exp.parameters[0],
+      true,
+    );
+
+    for (final item in other) {
+      if (!doContains(result, item)) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcCombine(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = List<FhirBase>.from(focus);
+    if (context.thisItem == null) {
+      throw PathEngineException('The context does not have a thisItem');
+    }
+
+    final other = execute(
+      context,
+      baseToList(context.thisItem!),
+      exp.parameters[0],
+      true,
+    );
+
+    result.addAll(other);
+    return result;
+  }
+
+  List<FhirBase> funcIntersect(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final other = execute(context, focus, exp.parameters[0], true);
+
+    for (final item in focus) {
+      if (!doContains(result, item) && doContains(other, item)) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcExclude(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final other = execute(context, focus, exp.parameters[0], true);
+
+    for (final item in focus) {
+      if (!doContains(other, item)) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcIif(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length > 1) {
+      throw makeException(
+        exp,
+        'FHIRPATH_NO_COLLECTION',
+        ['iif', focus.length],
+      );
+    }
+
+    final n1 = execute(
+      focus.isEmpty ? context : context.changeThis(focus.first, worker),
+      focus,
+      exp.parameters[0],
+      true,
+    );
+
+    final v = asBoolList(n1, exp);
+    if (v == Equality.true_) {
+      return execute(context, focus, exp.parameters[1], true);
+    } else if (exp.parameters.length < 3) {
+      return [];
+    } else {
+      return execute(context, focus, exp.parameters[2], true);
+    }
+  }
+
+  List<FhirBase> funcLower(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final s = convertToString(focus.first);
+      if (s.isNotEmpty) {
+        result.add(FhirString(s.toLowerCase()).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcUpper(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final s = convertToString(focus.first);
+      if (s.isNotEmpty) {
+        result.add(FhirString(s.toUpperCase()).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcToChars(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final s = convertToString(focus.first);
+      for (final c in s.split('')) {
+        result.add(FhirString(c).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcIndexOf(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final swb = execute(context, focus, exp.parameters[0], true);
+    final sw = convertToStringList(swb);
+
+    if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
+      result.add(FhirInteger(0).noExtensions());
+    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
+        doImplicitStringConversion) {
+      final s = convertToString(focus.first);
+      result.add(FhirInteger(s.indexOf(sw)).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcSubstring(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final n1 = execute(context, focus, exp.parameters[0], true);
+    final i1 = int.parse(n1.first.primitiveValue ?? '0');
+    var i2 = -1;
+
+    if (exp.parameterCount == 2) {
+      final n2 = execute(context, focus, exp.parameters[1], true);
+      if (n2.isEmpty ||
+          !n2.first.isPrimitive ||
+          !n2.first.primitiveValue!.isInteger) {
+        return [];
+      }
+      i2 = int.parse(n2.first.primitiveValue ?? '-1');
+    }
+
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final sw = convertToString(focus.first);
+      if (i1 < 0 || i1 >= sw.length) {
+        return [];
+      }
+
+      final s = (exp.parameterCount == 2)
+          ? sw.substring(i1, (i1 + i2).clamp(0, sw.length))
+          : sw.substring(i1);
+
+      if (s.isNotEmpty) {
+        result.add(FhirString(s).noExtensions());
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcStartsWith(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final swb = execute(context, focus, exp.parameters[0], true);
+    final sw = convertToStringList(swb);
+
+    if (focus.isEmpty || swb.isEmpty) {
+      return result;
+    }
+
+    if (sw.isEmpty) {
+      result.add(FhirBoolean(true).noExtensions());
+    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
+        doImplicitStringConversion) {
+      final s = convertToString(focus.first);
+      result.add(FhirBoolean(s.startsWith(sw)).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcEndsWith(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final swb = execute(context, focus, exp.parameters[0], true);
+    final sw = convertToStringList(swb);
+
+    if (focus.isEmpty || swb.isEmpty) {
+      return result;
+    }
+
+    if (sw.isEmpty) {
+      result.add(FhirBoolean(true).noExtensions());
+    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
+        doImplicitStringConversion) {
+      final s = convertToString(focus.first);
+      result.add(FhirBoolean(s.endsWith(sw)).noExtensions());
+    }
+    return result;
+  }
+
   List<FhirBase> funcMatches(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -4602,6 +4994,33 @@ class FHIRPathEngine {
     return result;
   }
 
+  List<FhirBase> funcReplaceMatches(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final regexB = execute(context, focus, exp.parameters[0], true);
+    final regex = convertToStringList(regexB);
+    final replB = execute(context, focus, exp.parameters[1], true);
+    final repl = convertToStringList(replB);
+
+    if (focus.isEmpty || regexB.isEmpty || replB.isEmpty) {
+      return result;
+    }
+
+    if (focus.length == 1 &&
+        !Utilities.noString(regex) &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final s = convertToString(focus.first);
+      result.add(
+        FhirString(s.replaceAll(RegExp(regex), repl)).noExtensions(),
+      );
+    }
+    return result;
+  }
+
   List<FhirBase> funcContains(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -4628,6 +5047,142 @@ class FHIRPathEngine {
       result.add(FhirBoolean(st.contains(sw)).noExtensions());
     }
     return result;
+  }
+
+  List<FhirBase> funcReplace(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final tB = execute(context, focus, exp.parameters[0], true);
+    final t = convertToStringList(tB);
+    final rB = execute(context, focus, exp.parameters[1], true);
+    final r = convertToStringList(rB);
+
+    if (focus.isEmpty || tB.isEmpty || rB.isEmpty) {
+      return result;
+    }
+
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final f = convertToString(focus.first);
+      if (f.isEmpty) {
+        result.add(FhirString('').noExtensions());
+      } else {
+        result.add(FhirString(f.replaceAll(t, r)).noExtensions());
+      }
+    } else {
+      throw makeException(
+        exp,
+        'FHIRPATH_NO_COLLECTION',
+        ['replace', focus.length],
+      );
+    }
+    return result;
+  }
+
+  List<FhirBase> funcLength(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length == 1 &&
+        (focus.first.hasType(FHIR_TYPES_STRING) ||
+            doImplicitStringConversion)) {
+      final s = convertToString(focus.first);
+      result.add(FhirInteger(s.length).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcChildren(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    for (final b in focus) {
+      getChildrenByName(b, '*', result);
+    }
+    return result;
+  }
+
+  List<FhirBase> funcDescendants(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    final current = <FhirBase>[...focus];
+    final added = <FhirBase>[];
+
+    while (current.isNotEmpty) {
+      added.clear();
+      for (final item in current) {
+        getChildrenByName(item, '*', added);
+      }
+      result.addAll(added);
+      current
+        ..clear()
+        ..addAll(added);
+    }
+    return result;
+  }
+
+  List<FhirBase> funcMemberOf(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final nl = execute(context, focus, exp.parameters[0], true);
+
+    if (nl.length != 1 || focus.length != 1) {
+      return [];
+    }
+
+    final url = nl.first.primitiveValue;
+    if (url == null) {
+      return [];
+    }
+    final vs = hostServices != null
+        ? hostServices!.resolveValueSet(this, context.appInfo, url)
+        : worker.fetchResource<ValueSet>(uri: url);
+
+    if (vs == null) {
+      return [];
+    }
+
+    final l = focus.first;
+    if (['code', 'string', 'uri'].contains(l.fhirType)) {
+      return makeBoolean(
+        worker
+            .validateCode(
+              terminologyServiceOptions.withGuessSystem(),
+              TypeConvertor.castToCoding(l),
+              vs,
+            )
+            .isOk,
+      );
+    } else if (l.fhirType == 'Coding') {
+      return makeBoolean(
+        worker
+            .validateCode(
+              terminologyServiceOptions,
+              TypeConvertor.castToCoding(l),
+              vs,
+            )
+            .isOk,
+      );
+    } else if (l.fhirType == 'CodeableConcept') {
+      return makeBoolean(worker
+          .validateCode(terminologyServiceOptions,
+              TypeConvertor.castToCodeableConcept(l), vs,)
+          .isOk,);
+    }
+    return [];
   }
 
   List<FhirBase> funcTrace(
@@ -4700,7 +5255,60 @@ class FHIRPathEngine {
     return <FhirBase>[FhirDateTime.fromDateTime(DateTime.now())];
   }
 
+  List<FhirBase> funcTimeOfDay(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    return <FhirBase>[
+      FhirTime.tryParse(DateTime.now().toIso8601String().split('T').last)!,
+    ];
+  }
+
   List<FhirBase> funcAnyTrue(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+
+    if (exp.parameters.length == 1) {
+      var any = false;
+      final pc = <FhirBase>[];
+
+      for (final item in focus) {
+        pc
+          ..clear()
+          ..add(item);
+        final res = execute(context, pc, exp.parameters[0], true);
+        final v = asBoolList(res, exp);
+        if (v == Equality.true_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    } else {
+      var any = false;
+      for (final item in focus) {
+        if (!canConvertToBoolean(item)) {
+          throw FHIRException(
+            message:
+                "Unable to convert '${convertToString(item)}' to a boolean",
+          );
+        }
+        final v = asBool(item, true);
+        if (v == Equality.true_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcAllTrue(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
