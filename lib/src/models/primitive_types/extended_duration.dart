@@ -15,37 +15,38 @@ class ExtendedDuration {
     this.milliseconds = 0,
     this.microseconds = 0,
   }) {
+    int isNegative(int value) => value.isNegative ? -1 : 1;
     // Microseconds to milliseconds conversion.
     milliseconds += microseconds ~/ 1000;
-    microseconds = signedModulo(microseconds, 1000);
+    microseconds = microseconds.abs() % 1000 * isNegative(microseconds);
 
     // Milliseconds to seconds conversion.
     seconds += milliseconds ~/ 1000;
-    milliseconds = signedModulo(milliseconds, 1000);
+    milliseconds = milliseconds.abs() % 1000 * isNegative(milliseconds);
 
     // Seconds to minutes conversion.
     minutes += seconds ~/ 60;
-    seconds = signedModulo(seconds, 60);
+    seconds = seconds.abs() % 60 * isNegative(seconds);
 
     // Minutes to hours conversion.
     hours += minutes ~/ 60;
-    minutes = signedModulo(minutes, 60);
+    minutes = minutes.abs() % 60 * isNegative(minutes);
 
     // Hours to days conversion.
     days += hours ~/ 24;
-    hours = signedModulo(hours, 24);
+    hours = hours.abs() % 24 * isNegative(hours);
 
     // Days to weeks conversion.
     weeks += days ~/ 7;
-    days = signedModulo(days, 7);
+    days = days.abs() % 7 * isNegative(days);
 
     // Weeks to months conversion.
-    months += weeks ~/ 4;
-    weeks = signedModulo(weeks, 4);
+    months += weeks ~/ 4; // Approximate conversion
+    weeks = weeks.abs() % 4 * isNegative(weeks);
 
     // Months to years conversion.
     years += months ~/ 12;
-    months = signedModulo(months, 12);
+    months = months.abs() % 12 * isNegative(months);
   }
 
   /// Factory constructor to create an [ExtendedDuration] from a [Duration].
