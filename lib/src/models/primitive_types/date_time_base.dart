@@ -554,6 +554,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
             0;
 
+    // Construct a Dart DateTime to handle overflow corrections
     final dateTime = DateTime(
       (fhirDateTimeBase.year ?? 0) + o.years,
       (fhirDateTimeBase.month ?? 0) + o.months == 0
@@ -568,17 +569,36 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
       (fhirDateTimeBase.millisecond ?? 0) + o.milliseconds,
       normalizedMicrosecond + o.microseconds,
     );
-    return fromMathUnits<T>(dateTime, fhirDateTimeBase);
+
+    // Map the adjusted values back to a FhirDateTimeBase, respecting original
+    // precision
+    return fromUnits<T>(
+      year: dateTime.year,
+      month: fhirDateTimeBase.month != null ? dateTime.month : null,
+      day: fhirDateTimeBase.day != null ? dateTime.day : null,
+      hour: fhirDateTimeBase.hour != null ? dateTime.hour : null,
+      minute: fhirDateTimeBase.minute != null ? dateTime.minute : null,
+      second: fhirDateTimeBase.second != null ? dateTime.second : null,
+      millisecond:
+          fhirDateTimeBase.millisecond != null ? dateTime.millisecond : null,
+      microsecond:
+          fhirDateTimeBase.microsecond != null ? dateTime.microsecond : null,
+      timeZoneOffset: fhirDateTimeBase.timeZoneOffset,
+      isUtc: fhirDateTimeBase.isUtc,
+    );
   }
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  static FhirDateTimeBase subtract<T>(
+  /// Math operations
+  static FhirDateTimeBase minus<T>(
     FhirDateTimeBase fhirDateTimeBase,
     ExtendedDuration o,
   ) {
     final normalizedMicrosecond =
         int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
             0;
+
+    // Construct a Dart DateTime to handle overflow corrections
     final dateTime = DateTime(
       (fhirDateTimeBase.year ?? 0) - o.years,
       (fhirDateTimeBase.month ?? 0) - o.months == 0
@@ -593,7 +613,23 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
       (fhirDateTimeBase.millisecond ?? 0) - o.milliseconds,
       normalizedMicrosecond - o.microseconds,
     );
-    return fromMathUnits<T>(dateTime, fhirDateTimeBase);
+
+    // Map the adjusted values back to a FhirDateTimeBase, respecting original
+    // precision
+    return fromUnits<T>(
+      year: dateTime.year,
+      month: fhirDateTimeBase.month != null ? dateTime.month : null,
+      day: fhirDateTimeBase.day != null ? dateTime.day : null,
+      hour: fhirDateTimeBase.hour != null ? dateTime.hour : null,
+      minute: fhirDateTimeBase.minute != null ? dateTime.minute : null,
+      second: fhirDateTimeBase.second != null ? dateTime.second : null,
+      millisecond:
+          fhirDateTimeBase.millisecond != null ? dateTime.millisecond : null,
+      microsecond:
+          fhirDateTimeBase.microsecond != null ? dateTime.microsecond : null,
+      timeZoneOffset: fhirDateTimeBase.timeZoneOffset,
+      isUtc: fhirDateTimeBase.isUtc,
+    );
   }
 
   /// Helper methods (cleanup, conversions, timezone formatting)

@@ -251,7 +251,11 @@ class FhirDateTime extends FhirDateTimeBase
 
   /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDateTime].
   FhirDateTime subtract(ExtendedDuration other) =>
-      FhirDateTimeBase.subtract<FhirDateTime>(this, other) as FhirDateTime;
+      FhirDateTimeBase.minus<FhirDateTime>(this, other) as FhirDateTime;
+
+  /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDateTime].
+  FhirDateTime minus(ExtendedDuration other) =>
+      FhirDateTimeBase.minus<FhirDateTime>(this, other) as FhirDateTime;
 
   /// Adds an [ExtendedDuration] to the current [FhirDateTime] using the `+`
   /// operator.
@@ -263,7 +267,7 @@ class FhirDateTime extends FhirDateTimeBase
   /// the `-` operator.
   @override
   FhirDateTime operator -(ExtendedDuration other) =>
-      FhirDateTimeBase.subtract<FhirDateTime>(this, other) as FhirDateTime;
+      FhirDateTimeBase.minus<FhirDateTime>(this, other) as FhirDateTime;
 
   /// Clones the current [FhirDateTime] and returns a new instance.
   @override
