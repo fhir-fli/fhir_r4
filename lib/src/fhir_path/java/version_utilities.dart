@@ -184,3 +184,33 @@ class VersionUtilities {
     return 0;
   }
 }
+
+class PackageVersion {
+
+  /// Constructor that accepts `id` and `version` separately.
+  PackageVersion(this.id, this.version);
+
+  /// Constructor that parses the source string into `id` and `version`.
+  /// Throws an [ArgumentError] if the source is null or invalid.
+  PackageVersion.fromSource(String source)
+      : id = source.contains('#')
+            ? source.substring(0, source.indexOf('#'))
+            : throw ArgumentError(
+                'Source must contain "#" to separate id and version',),
+        version = source.contains('#')
+            ? source.substring(source.indexOf('#') + 1)
+            : throw ArgumentError(
+                'Source must contain "#" to separate id and version',);
+  final String id;
+  final String version;
+
+  /// Returns whether the package is an examples package.
+  bool isExamplesPackage() {
+    return id.startsWith('hl7.fhir.') && id.endsWith('.examples');
+  }
+
+  @override
+  String toString() {
+    return '$id#$version';
+  }
+}

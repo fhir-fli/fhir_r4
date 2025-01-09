@@ -123,7 +123,7 @@ class TypeDetails {
     return false;
   }
 
-  bool hasTypeFromWorker(IWorkerContext context, List<String> tn) {
+  bool hasTypeFromWorker(WorkerContext context, List<String> tn) {
     for (final n in tn) {
       var t = ProfiledType.ns(n);
       if (typesContains(t)) {

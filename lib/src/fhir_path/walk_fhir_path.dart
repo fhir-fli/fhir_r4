@@ -75,7 +75,7 @@ List<dynamic> walkFhirPath({
 }
 
 /// The FHIRPath engine.
-final engine = FHIRPathEngine(SimpleWorkerContext());
+final engine = FHIRPathEngine(WorkerContext());
 
 /// Parse a FHIRPath for repeated use with different inputs later.
 ExpressionNode parseFhirPath(String pathExpression) {

@@ -56,7 +56,7 @@ class FHIRPathEngine {
   ];
 
   /// Fields
-  final IWorkerContext worker;
+  final WorkerContext worker;
   final StringBuffer fpLog = StringBuffer();
   final Set<String> primitiveTypes = {};
   final Map<String, StructureDefinition> allTypes = {};
@@ -558,7 +558,7 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Evaluation with base and ExpressionNode
-  List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
+  Future<List<FhirBase>> evaluate(FhirBase? base, ExpressionNode node) async {
     print('evaluate');
     final list = <FhirBase>[];
     if (base != null) {
@@ -575,19 +575,19 @@ class FHIRPathEngine {
   }
 
   // Evaluation with base and FHIRPath expression (String)
-  List<FhirBase> evaluateFromPath(FhirBase? base, String path) {
+  Future<List<FhirBase>> evaluateFromPath(FhirBase? base, String path) async {
     final node = parse(path); // Assume `parse` is implemented
     return evaluate(base, node);
   }
 
   // Evaluation with appContext and additional parameters
-  List<FhirBase> evaluateWithContext(
+  Future<List<FhirBase>> evaluateWithContext(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
     FhirBase? base,
     ExpressionNode node,
-  ) {
+  ) async {
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -604,13 +604,13 @@ class FHIRPathEngine {
   }
 
   // Evaluation with appContext and path (String)
-  List<FhirBase> evaluateWithPath(
+  Future<List<FhirBase>> evaluateWithPath(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
     FhirBase? base,
     String path,
-  ) {
+  ) async {
     final node = parse(path); // Assume `parse` is implemented
     return evaluateWithContext(
       appContext,
@@ -959,12 +959,12 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Core method to execute evaluation logic
-  List<FhirBase> execute(
+  Future<List<FhirBase>> execute(
     ExecutionContext inContext,
     List<FhirBase> focus,
     ExpressionNode exp,
     bool atEntry,
-  ) {
+  ) async {
     print('execute');
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
@@ -984,7 +984,7 @@ class FHIRPathEngine {
           // Now apply the unary operation
           if (exp.operation == FpOperation.Minus) {
             final negValues = <FhirBase>[];
-            for (final val in operandResult) {
+            for (final val in await operandResult) {
               if (val is FhirNumber) {
                 // Flip sign
                 negValues.add((val * -1)!);
@@ -997,7 +997,7 @@ class FHIRPathEngine {
             work.addAll(negValues);
           } else if (exp.operation == FpOperation.Plus) {
             // Unary plus: no-op
-            work.addAll(operandResult);
+            work.addAll(await operandResult);
           } else {
             throw Exception('Unsupported unary operator: ${exp.operation}');
           }
@@ -1026,7 +1026,7 @@ class FHIRPathEngine {
 
       case ExpressionNodeKind.function:
         // Evaluate a function call
-        work.addAll(evaluateFunction(context, focus, exp));
+        work.addAll(await evaluateFunction(context, focus, exp));
 
       case ExpressionNodeKind.constant:
         // Evaluate a literal constant
@@ -1036,7 +1036,7 @@ class FHIRPathEngine {
 
       case ExpressionNodeKind.group:
         // Evaluate the sub-expression inside the group
-        work.addAll(execute(context, focus, exp.group!, atEntry));
+        work.addAll(await execute(context, focus, exp.group!, atEntry));
 
       case null:
         // No node kind: do nothing or throw
@@ -1046,7 +1046,7 @@ class FHIRPathEngine {
     // If there's an inner expression (dot or bracket indexing), evaluate that
     // next
     if (exp.inner != null) {
-      work = execute(context, work, exp.inner!, false);
+      work = await execute(context, work, exp.inner!, false);
     }
 
     // If the node is proximal and has an operation, evaluate the chain of
@@ -1083,12 +1083,12 @@ class FHIRPathEngine {
             last.operation == FpOperation.As) {
           // Evaluate a type check or cast
           work2 = executeContextTypeName(context, focus, next, false);
-          work = operate(context, work, last.operation, work2, last);
+          work = await operate(context, work, last.operation, work2, last);
         } else {
           // Evaluate the 'next' node, then apply the operation
 
-          work2 = execute(context, focus, next, true);
-          work = operate(context, work, last.operation, work2, last);
+          work2 = await execute(context, focus, next, true);
+          work = await operate(context, work, last.operation, work2, last);
         }
 
         // Move on to the next operation
@@ -2691,13 +2691,13 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> operate(
+  Future<List<FhirBase>> operate(
     ExecutionContext context,
     List<FhirBase> left,
     FpOperation? operation,
     List<FhirBase> right,
     ExpressionNode holder,
-  ) {
+  ) async {
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -2933,15 +2933,11 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opLessThan(dl, dr, expr);
-          }
+          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          return opLessThan(dl, dr, expr);
         }
       }
     }
@@ -2998,15 +2994,11 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreater(dl, dr, expr);
-          }
+          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          return opGreater(dl, dr, expr);
         }
       }
     }
@@ -3061,15 +3053,11 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opLessOrEqual(dl, dr, expr);
-          }
+          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          return opLessOrEqual(dl, dr, expr);
         }
       }
     }
@@ -3124,15 +3112,11 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          if (worker.ucumService == null) {
-            return makeBoolean(false);
-          } else {
-            final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-            final rQuantity = qtyToCanonicalDecimal(r as Quantity);
-            final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-            final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
-            return opGreaterOrEqual(dl, dr, expr);
-          }
+          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          return opGreaterOrEqual(dl, dr, expr);
         }
       }
     }
@@ -3188,12 +3172,12 @@ class FHIRPathEngine {
     return makeBoolean(ans);
   }
 
-  List<FhirBase> opMemberOf(
+  Future<List<FhirBase>> opMemberOf(
     ExecutionContext context,
     List<FhirBase> left,
     List<FhirBase> right,
     ExpressionNode expr,
-  ) {
+  ) async {
     var ans = false;
     final url = right.first.primitiveValue.toString();
     final vs = hostServices != null
@@ -3203,28 +3187,26 @@ class FHIRPathEngine {
     if (vs != null) {
       for (final l in left) {
         if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          if (worker
-              .validateCode(
-                terminologyServiceOptions.withGuessSystem(),
-                TypeConvertor.castToCoding(l),
-                vs,
-              )
-              .isOk()) {
+          final result = await worker.validateCodeWithCoding(
+            terminologyServiceOptions.withGuessSystem(),
+            TypeConvertor.castToCoding(l)!,
+            vs,
+          );
+          if (result.isOk) {
             ans = true;
           }
         } else if (l.fhirType == 'Coding') {
-          if (worker
-              .validateCode(
-                terminologyServiceOptions,
-                TypeConvertor.castToCoding(l),
-                vs,
-              )
-              .isOk()) {
+          final result = await worker.validateCodeWithCoding(
+            terminologyServiceOptions,
+            TypeConvertor.castToCoding(l)!,
+            vs,
+          );
+          if (result.isOk) {
             ans = true;
           }
         } else if (l.fhirType == 'CodeableConcept') {
           // TODO(Dokotela): invalid, need to correct
-          // final cc = TypeConvertor.castToCodeableConcept(l);
+          final cc = TypeConvertor.castToCodeableConcept(l);
           // final vr = worker.validateCode(terminologyServiceOptions, cc, vs);
           // if (vr.isOk()) {
           ans = true;
@@ -3472,12 +3454,12 @@ class FHIRPathEngine {
 
     if (l is FhirNumber && r is FhirNumber) {
       result.add((l * r)!);
-    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
+    } else if (l is Quantity && r is Quantity) {
       final pl = qtyToPair(l);
       final pr = qtyToPair(r);
       if (pl != null && pr != null) {
         try {
-          final p = worker.ucumService!.multiply(pl, pr);
+          final p = worker.ucumService.multiply(pl, pr);
           result.add(pairToQty(p));
         } catch (e) {
           throw PathEngineException(
@@ -3671,11 +3653,11 @@ class FHIRPathEngine {
       } catch (e) {
         return <FhirBase>[];
       }
-    } else if (l is Quantity && r is Quantity && worker.ucumService != null) {
+    } else if (l is Quantity && r is Quantity) {
       final pl = qtyToPair(l);
       final pr = qtyToPair(r);
       if (pl != null && pr != null) {
-        final p = worker.ucumService!.divideBy(pl, pr);
+        final p = worker.ucumService.divideBy(pl, pr);
         result.add(pairToQty(p));
       }
     } else {
@@ -3884,11 +3866,11 @@ class FHIRPathEngine {
   /// FUNCTIONS
   /// ***************************************
   ///
-  List<FhirBase> evaluateFunction(
+  Future<List<FhirBase>> evaluateFunction(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -4088,7 +4070,7 @@ class FHIRPathEngine {
         {
           final params = <List<FhirBase>>[];
           for (final p in exp.parameters) {
-            params.add(execute(context, focus, p, true));
+            params.add(await execute(context, focus, p, true));
           }
           return hostServices?.executeFunction(
                 this,
@@ -4128,11 +4110,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcExists(
+  Future<List<FhirBase>> funcExists(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     var empty = true;
     final pc = <FhirBase>[];
 
@@ -4142,7 +4124,12 @@ class FHIRPathEngine {
           ..clear()
           ..add(f);
         final v = asBoolList(
-          execute(context.changeThis(f, worker), pc, exp.parameters[0], true),
+          await execute(
+            context.changeThis(f, worker),
+            pc,
+            exp.parameters[0],
+            true,
+          ),
           exp,
         );
         if (v == Equality.true_) {
@@ -4156,17 +4143,17 @@ class FHIRPathEngine {
     return [FhirBoolean(!empty).noExtensions()];
   }
 
-  List<FhirBase> funcSubsetOf(
+  Future<List<FhirBase>> funcSubsetOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final target = execute(context, focus, exp.parameters[0], true);
 
     var valid = true;
     for (final item in focus) {
       var found = false;
-      for (final t in target) {
+      for (final t in await target) {
         if (FhirBase.compareDeep(item, t)) {
           found = true;
           break;
@@ -4274,11 +4261,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcSelect(
+  Future<List<FhirBase>> funcSelect(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final pc = <FhirBase>[];
 
@@ -4288,7 +4275,7 @@ class FHIRPathEngine {
         ..clear()
         ..add(item);
       result.addAll(
-        execute(
+        await execute(
           context.changeThis(item, worker)..index = i.toFhirInteger,
           pc,
           exp.parameters[0],
@@ -4299,11 +4286,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAll(
+  Future<List<FhirBase>> funcAll(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (exp.parameters.length == 1) {
       final pc = <FhirBase>[];
@@ -4313,7 +4300,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final eq = asBoolList(
-          execute(
+          await execute(
             context.changeThis(item, worker),
             pc,
             exp.parameters[0],
@@ -4341,11 +4328,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcRepeat(
+  Future<List<FhirBase>> funcRepeat(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final current = <FhirBase>[...focus];
     final added = <FhirBase>[];
@@ -4359,7 +4346,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         added.addAll(
-          execute(
+          await execute(
             context.changeThis(item, worker),
             pc,
             exp.parameters[0],
@@ -4381,14 +4368,14 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAggregate(
+  Future<List<FhirBase>> funcAggregate(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     var total = <FhirBase>[];
     if (exp.parameterCount > 1) {
-      total = execute(context, focus, exp.parameters[1], false);
+      total = await execute(context, focus, exp.parameters[1], false);
     }
 
     final pc = <FhirBase>[];
@@ -4396,19 +4383,19 @@ class FHIRPathEngine {
       final c = context.changeThis(item, worker)
         ..total = total
         ..next();
-      total = execute(c, pc, exp.parameters[0], true);
+      total = await execute(c, pc, exp.parameters[0], true);
     }
     return total;
   }
 
-  List<FhirBase> funcItem(
+  Future<List<FhirBase>> funcItem(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final s = convertToStringList(
-      execute(context, focus, exp.parameters[0], true),
+      await execute(context, focus, exp.parameters[0], true),
     );
     if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
       result.add(focus[int.parse(s)]);
@@ -4649,23 +4636,23 @@ class FHIRPathEngine {
     return focus.length > 1 ? focus.sublist(1) : [];
   }
 
-  List<FhirBase> funcSkip(
+  Future<List<FhirBase>> funcSkip(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final n1 = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue.toString());
 
     return focus.sublist(i1);
   }
 
-  List<FhirBase> funcTake(
+  Future<List<FhirBase>> funcTake(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final n1 = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
 
     final result = <FhirBase>[];
@@ -4675,11 +4662,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcUnion(
+  Future<List<FhirBase>> funcUnion(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     for (final item in focus) {
       if (!doContains(result, item)) {
@@ -4691,7 +4678,7 @@ class FHIRPathEngine {
       throw PathEngineException('The context does not have a thisItem');
     }
 
-    final other = execute(
+    final other = await execute(
       context,
       baseToList(context.thisItem!),
       exp.parameters[0],
@@ -4706,17 +4693,17 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcCombine(
+  Future<List<FhirBase>> funcCombine(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = List<FhirBase>.from(focus);
     if (context.thisItem == null) {
       throw PathEngineException('The context does not have a thisItem');
     }
 
-    final other = execute(
+    final other = await execute(
       context,
       baseToList(context.thisItem!),
       exp.parameters[0],
@@ -4727,13 +4714,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIntersect(
+  Future<List<FhirBase>> funcIntersect(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final other = execute(context, focus, exp.parameters[0], true);
+    final other = await execute(context, focus, exp.parameters[0], true);
 
     for (final item in focus) {
       if (!doContains(result, item) && doContains(other, item)) {
@@ -4743,13 +4730,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcExclude(
+  Future<List<FhirBase>> funcExclude(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final other = execute(context, focus, exp.parameters[0], true);
+    final other = await execute(context, focus, exp.parameters[0], true);
 
     for (final item in focus) {
       if (!doContains(other, item)) {
@@ -4759,11 +4746,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIif(
+  Future<List<FhirBase>> funcIif(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     if (focus.length > 1) {
       throw makeException(
         exp,
@@ -4772,7 +4759,7 @@ class FHIRPathEngine {
       );
     }
 
-    final n1 = execute(
+    final n1 = await execute(
       focus.isEmpty ? context : context.changeThis(focus.first, worker),
       focus,
       exp.parameters[0],
@@ -4840,13 +4827,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIndexOf(
+  Future<List<FhirBase>> funcIndexOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertToStringList(swb);
 
     if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
@@ -4859,18 +4846,18 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcSubstring(
+  Future<List<FhirBase>> funcSubstring(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final n1 = execute(context, focus, exp.parameters[0], true);
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
     var i2 = -1;
 
     if (exp.parameterCount == 2) {
-      final n2 = execute(context, focus, exp.parameters[1], true);
+      final n2 = await execute(context, focus, exp.parameters[1], true);
       if (n2.isEmpty ||
           !n2.first.isPrimitive ||
           !n2.first.primitiveValue!.isInteger) {
@@ -4898,13 +4885,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcStartsWith(
+  Future<List<FhirBase>> funcStartsWith(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertToStringList(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -4921,13 +4908,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcEndsWith(
+  Future<List<FhirBase>> funcEndsWith(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertToStringList(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -4944,13 +4931,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMatches(
+  Future<List<FhirBase>> funcMatches(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertToStringList(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -4970,14 +4957,15 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMatchesFull(
+  Future<List<FhirBase>> funcMatchesFull(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final sw =
-        convertToStringList(execute(context, focus, exp.parameters[0], true));
+    final sw = convertToStringList(
+      await execute(context, focus, exp.parameters[0], true),
+    );
 
     if (focus.length == 1 && sw.isNotEmpty) {
       final st = convertToString(focus.first);
@@ -4994,15 +4982,15 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcReplaceMatches(
+  Future<List<FhirBase>> funcReplaceMatches(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final regexB = execute(context, focus, exp.parameters[0], true);
+    final regexB = await execute(context, focus, exp.parameters[0], true);
     final regex = convertToStringList(regexB);
-    final replB = execute(context, focus, exp.parameters[1], true);
+    final replB = await execute(context, focus, exp.parameters[1], true);
     final repl = convertToStringList(replB);
 
     if (focus.isEmpty || regexB.isEmpty || replB.isEmpty) {
@@ -5021,16 +5009,16 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcContains(
+  Future<List<FhirBase>> funcContains(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (context.thisItem == null) {
       throw PathEngineException('The context does not have a thisItem');
     }
-    final swb = execute(
+    final swb = await execute(
       context,
       baseToList(context.thisItem!),
       exp.parameters[0],
@@ -5049,15 +5037,15 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcReplace(
+  Future<List<FhirBase>> funcReplace(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final tB = execute(context, focus, exp.parameters[0], true);
+    final tB = await execute(context, focus, exp.parameters[0], true);
     final t = convertToStringList(tB);
-    final rB = execute(context, focus, exp.parameters[1], true);
+    final rB = await execute(context, focus, exp.parameters[1], true);
     final r = convertToStringList(rB);
 
     if (focus.isEmpty || tB.isEmpty || rB.isEmpty) {
@@ -5132,12 +5120,12 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMemberOf(
+  Future<List<FhirBase>> funcMemberOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
 
     if (nl.length != 1 || focus.length != 1) {
       return [];
@@ -5157,44 +5145,44 @@ class FHIRPathEngine {
 
     final l = focus.first;
     if (['code', 'string', 'uri'].contains(l.fhirType)) {
+      final result = await worker.validateCodeWithCoding(
+        terminologyServiceOptions,
+        TypeConvertor.castToCoding(l)!,
+        vs,
+      );
       return makeBoolean(
-        worker
-            .validateCode(
-              terminologyServiceOptions.withGuessSystem(),
-              TypeConvertor.castToCoding(l),
-              vs,
-            )
-            .isOk,
+        result.isOk,
       );
     } else if (l.fhirType == 'Coding') {
+      final result = await worker.validateCodeWithCoding(
+        terminologyServiceOptions,
+        TypeConvertor.castToCoding(l)!,
+        vs,
+      );
       return makeBoolean(
-        worker
-            .validateCode(
-              terminologyServiceOptions,
-              TypeConvertor.castToCoding(l),
-              vs,
-            )
-            .isOk,
+        result.isOk,
       );
     } else if (l.fhirType == 'CodeableConcept') {
-      return makeBoolean(worker
-          .validateCode(terminologyServiceOptions,
-              TypeConvertor.castToCodeableConcept(l), vs,)
-          .isOk,);
+      final result = await worker.validateCodeWithCodeableConcept(
+        terminologyServiceOptions,
+        TypeConvertor.castToCodeableConcept(l)!,
+        vs,
+      );
+      return makeBoolean(result.isOk);
     }
     return [];
   }
 
-  List<FhirBase> funcTrace(
+  Future<List<FhirBase>> funcTrace(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
     final name = nl.first.primitiveValue.toString();
 
     if (exp.parameters.length == 2) {
-      final n2 = execute(context, focus, exp.parameters[1], true);
+      final n2 = await execute(context, focus, exp.parameters[1], true);
       writeToLog(name, n2);
     } else {
       writeToLog(name, focus);
@@ -5202,30 +5190,30 @@ class FHIRPathEngine {
     return focus;
   }
 
-  List<FhirBase> funcDefineVariable(
+  Future<List<FhirBase>> funcDefineVariable(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
     final name = nl.first.primitiveValue.toString();
     final value = exp.parameters.length == 2
-        ? execute(context, focus, exp.parameters[1], true)
+        ? await execute(context, focus, exp.parameters[1], true)
         : focus;
 
     context.setDefinedVariable(name, value, worker);
     return focus;
   }
 
-  List<FhirBase> funcCheck(
+  Future<List<FhirBase>> funcCheck(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
-    final n1 = execute(context, focus, expr.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, expr.parameters[0], true);
 
     if (!convertToBoolean(n1)) {
-      final n2 = execute(context, focus, expr.parameters[1], true);
+      final n2 = await execute(context, focus, expr.parameters[1], true);
       final name = n2.first.primitiveValue.toString();
       throw FhirPathException('Check failed for $name');
     }
@@ -5265,11 +5253,11 @@ class FHIRPathEngine {
     ];
   }
 
-  List<FhirBase> funcAnyTrue(
+  Future<List<FhirBase>> funcAnyTrue(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
 
     if (exp.parameters.length == 1) {
@@ -5280,7 +5268,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters[0], true);
+        final res = await execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
         if (v == Equality.true_) {
           any = true;
@@ -5308,11 +5296,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAllTrue(
+  Future<List<FhirBase>> funcAllTrue(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
 
     if (exp.parameters.length == 1) {
@@ -5323,7 +5311,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters[0], true);
+        final res = await execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
         if (v == Equality.true_) {
           any = true;
@@ -5373,11 +5361,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcRound(
+  Future<List<FhirBase>> funcRound(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.length != 1) {
       throw makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
         'round',
@@ -5392,7 +5380,7 @@ class FHIRPathEngine {
       int? precision = 0;
 
       if (expr.parameters.isNotEmpty) {
-        final n1 = execute(context, focus, expr.parameters[0], true);
+        final n1 = await execute(context, focus, expr.parameters[0], true);
         if (n1.length != 1) {
           throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
             'round',
@@ -5475,12 +5463,12 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcSupersetOf(
+  Future<List<FhirBase>> funcSupersetOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final target = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final target = await execute(context, focus, exp.parameters[0], true);
 
     var valid = true;
     for (final item in target) {
@@ -5819,19 +5807,17 @@ class FHIRPathEngine {
     if (left.value == null || right.value == null) {
       return null;
     }
-    if (worker.ucumService != null) {
-      final dl = qtyToCanonicalPair(left);
-      final dr = qtyToCanonicalPair(right);
+    final dl = qtyToCanonicalPair(left);
+    final dr = qtyToCanonicalPair(right);
 
-      if (dl != null && dr != null) {
-        if (dl.unit == dr.unit) {
-          return doEquals(
-            FhirDecimal(dl.value.asDouble),
-            FhirDecimal(dr.value.asDouble),
-          );
-        } else {
-          return false;
-        }
+    if (dl != null && dr != null) {
+      if (dl.unit == dr.unit) {
+        return doEquals(
+          FhirDecimal(dl.value.asDouble),
+          FhirDecimal(dr.value.asDouble),
+        );
+      } else {
+        return false;
       }
     }
     if (left.code != null || right.code != null) {
@@ -5885,7 +5871,7 @@ class FHIRPathEngine {
         value: UcumDecimal.fromNum(q.value!.value!),
         unit: q.code?.toString() ?? ucum ?? '1',
       );
-      return worker.ucumService?.getCanonicalForm(p);
+      return worker.ucumService.getCanonicalForm(p);
     } catch (e) {
       return null;
     }
@@ -5900,8 +5886,8 @@ class FHIRPathEngine {
         value: UcumDecimal.fromNum(q.value!.value!),
         unit: q.code?.toString() ?? '1',
       );
-      final canonicalPair = worker.ucumService?.getCanonicalForm(pair);
-      return FhirDecimal(canonicalPair?.value.asDouble);
+      final canonicalPair = worker.ucumService.getCanonicalForm(pair);
+      return FhirDecimal(canonicalPair.value.asDouble);
     } catch (e) {
       return null;
     }
@@ -5937,19 +5923,17 @@ class FHIRPathEngine {
     if (left.value == null || right.value == null) {
       return null;
     }
-    if (worker.ucumService != null) {
-      final dl = qtyToCanonicalPair(left);
-      final dr = qtyToCanonicalPair(right);
+    final dl = qtyToCanonicalPair(left);
+    final dr = qtyToCanonicalPair(right);
 
-      if (dl != null && dr != null) {
-        if (dl.unit == dr.unit) {
-          return doEquivalent(
-            FhirDecimal(dl.value.asDouble),
-            FhirDecimal(dr.value.asDouble),
-          );
-        } else {
-          return false;
-        }
+    if (dl != null && dr != null) {
+      if (dl.unit == dr.unit) {
+        return doEquivalent(
+          FhirDecimal(dl.value.asDouble),
+          FhirDecimal(dr.value.asDouble),
+        );
+      } else {
+        return false;
       }
     }
     if (left.code != null || right.code != null) {

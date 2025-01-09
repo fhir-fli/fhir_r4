@@ -215,7 +215,7 @@ class ExecutionContext {
   void setDefinedVariable(
     String name,
     List<FhirBase> value,
-    IWorkerContext worker,
+    WorkerContext worker,
   ) {
     if (isSystemVariable(name)) {
       throw PathEngineException(
@@ -235,7 +235,7 @@ class ExecutionContext {
     definedVariables![name] = value;
   }
 
-  ExecutionContext changeThis(FhirBase newThis, IWorkerContext worker) {
+  ExecutionContext changeThis(FhirBase newThis, WorkerContext worker) {
     final newContext = ExecutionContext(
       appInfo: appInfo,
       focusResource: focusResource,
