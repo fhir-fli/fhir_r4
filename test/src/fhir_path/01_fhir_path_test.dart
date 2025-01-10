@@ -5,7 +5,7 @@ import '05_test_basic_operators.dart';
 import '06_test_date_times.dart';
 import '07_test_no_arg_fxns.dart';
 
-Future<void> main() async {
+void main()  {
   testBasicTypes();
   fhirPathParserTest();
   testPaths();

@@ -49,7 +49,7 @@ class ValueSetChecker {
   }
 
   /// Analyse a component of a value set
-  Future<ValidationResult> validateCode(CodeableConcept code) async {
+  ValidationResult validateCode(CodeableConcept code) {
     final errors = <String>[];
     final warnings = <String>[];
 
@@ -59,12 +59,12 @@ class ValueSetChecker {
           warnings.add('Coding has no system, cannot validate');
         }
 
-        final cs = await resolveCodeSystem(coding.system?.primitiveValue);
+        final cs = resolveCodeSystem(coding.system?.primitiveValue);
         ValidationResult? res;
 
         if (cs?.content != CodeSystemContentMode.complete) {
           // Adjusted to call the new method
-          res = await context.validateCodeWithCoding(
+          res = context.validateCodeWithCoding(
             options.withNoClient(),
             coding,
             null,
@@ -109,7 +109,7 @@ class ValueSetChecker {
   }
 
   /// Analyse a component of a value set
-  Future<CodeSystem?> resolveCodeSystem(String? system) async {
+  CodeSystem? resolveCodeSystem(String? system) {
     if (system == null) return null;
     for (final cs in localSystems) {
       if (cs.url?.primitiveValue == system) {

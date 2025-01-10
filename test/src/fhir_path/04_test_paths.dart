@@ -5,13 +5,13 @@ import 'package:test/test.dart';
 
 import '00_test_data.dart';
 
-Future<List<dynamic>> parseAndEvaluate(
+List<dynamic> parseAndEvaluate(
   String expression, [
   FhirBase? context,
-]) async {
+])  {
   final node = testEngine.parse(expression);
   if (context != null) {
-    final result = await testEngine.evaluate(context, node);
+    final result =  testEngine.evaluate(context, node);
     return result;
   }
   return [];
@@ -19,9 +19,9 @@ Future<List<dynamic>> parseAndEvaluate(
 
 void testPaths() {
   group('Path Test', () {
-    test('Patient Name', () async {
+    test('Patient Name', ()  {
       final node = testEngine.parse('Patient.name');
-      final result = await testEngine.evaluate(patient1, node);
+      final result =  testEngine.evaluate(patient1, node);
       expect(
         deepCompare(
           toJsonList(result),
@@ -46,25 +46,25 @@ void testPaths() {
         true,
       );
     });
-    test('Patient Family Name', () async {
+    test('Patient Family Name', ()  {
       final node = testEngine.parse('Patient.name.family');
-      final result = await testEngine.evaluate(patient1, node);
+      final result =  testEngine.evaluate(patient1, node);
       expect(
         toJsonList(result),
         ['Chalmers', 'Windsor'],
       );
     });
-    test('Patient Given Name', () async {
+    test('Patient Given Name', ()  {
       final node = testEngine.parse('Patient.name.given');
-      final result = await testEngine.evaluate(patient1, node);
+      final result =  testEngine.evaluate(patient1, node);
       expect(
         toJsonList(result),
         ['Peter', 'James', 'Jim', 'Peter', 'James'],
       );
     });
-    test('Patient Address Period', () async {
+    test('Patient Address Period', ()  {
       final node = testEngine.parse('Patient.address.period');
-      final result = await testEngine.evaluate(patient2, node);
+      final result =  testEngine.evaluate(patient2, node);
       expect(toJsonList(result), [
         {
           'extension': [
@@ -104,9 +104,9 @@ void testPaths() {
         }
       ]);
     });
-    test('Patient Address Period Extension', () async {
+    test('Patient Address Period Extension', ()  {
       final node = testEngine.parse('Patient.address.period.extension');
-      final result = await testEngine.evaluate(patient2, node);
+      final result =  testEngine.evaluate(patient2, node);
       expect(toJsonList(result), [
         {
           'url': 'www.mayjuun.com',
@@ -134,10 +134,10 @@ void testPaths() {
         }
       ]);
     });
-    test('Patient Address Period Extension ValueCount', () async {
+    test('Patient Address Period Extension ValueCount', ()  {
       final node =
           testEngine.parse('Patient.address.period.extension.valueCount');
-      final result = await testEngine.evaluate(patient2, node);
+      final result =  testEngine.evaluate(patient2, node);
       expect(toJsonList(result), [
         {'unit': 'Mg'},
         {'unit': 'mL'},
@@ -147,25 +147,25 @@ void testPaths() {
         {'unit': 'inches'},
       ]);
     });
-    test('Patient Address Period Extension ValueCount Unit', () async {
+    test('Patient Address Period Extension ValueCount Unit', ()  {
       final node =
           testEngine.parse('Patient.address.period.extension.valueCount.unit');
-      final result = await testEngine.evaluate(patient2, node);
+      final result =  testEngine.evaluate(patient2, node);
 
       expect(toJsonList(result), ['Mg', 'mL', 'Kg', 'Km', 'Feet', 'inches']);
     });
-    test('Patient Text Status', () async {
+    test('Patient Text Status', ()  {
       final node = testEngine.parse('Patient.text.status');
-      final result = await testEngine.evaluate(patient1, node);
+      final result =  testEngine.evaluate(patient1, node);
 
       expect(
         toJsonList(result),
         ['generated'],
       );
     });
-    test('Patient Text Div', () async {
+    test('Patient Text Div', ()  {
       final node = testEngine.parse('Patient.text.div');
-      final result = await testEngine.evaluate(patient1, node);
+      final result =  testEngine.evaluate(patient1, node);
 
       expect(toJsonList(result), [
         '<div xmlns="http://www.w3.org/1999/xhtml">\n'

@@ -514,9 +514,9 @@ class ValidatorFetcher {
   final HashMap<String, String> packageIdCache = HashMap();
 
   /// Resolves the URL and attempts to find the associated resource.
-  Future<void> findResource(Object validator, String url) async {
+  void findResource(Object validator, String url) {
     try {
-      await resolveURL(validator, url);
+      resolveURL(validator, url);
     } catch (e) {
       // Log or handle the exception as needed
       print('Error resolving URL: $e');
@@ -524,7 +524,7 @@ class ValidatorFetcher {
   }
 
   /// Resolves a given URL and determines if it can be processed or not.
-  Future<bool> resolveURL(Object validator, String url) async {
+  bool resolveURL(Object validator, String url) {
     // Check if the URL is already cached
     if (urlCache.containsKey(url)) {
       return urlCache[url]!;
@@ -569,7 +569,7 @@ class ValidationContextCarrier {
 /// Allows partially loaded resources to be fully resolved when needed.
 abstract class IValidationContextResourceLoader {
   /// Load a contained resource by its ID and type.
-  Future<Resource?> loadContainedResource({
+  Resource? loadContainedResource({
     required List<String> errors,
     required String path,
     required Element resource,
@@ -612,7 +612,7 @@ class ValidationContextResourceProxy {
   final List<String>? errors;
 
   /// Load a contained resource by its ID and type.
-  Future<Resource?> loadContainedResource(String id, Type resourceType) async {
+  Resource? loadContainedResource(String id, Type resourceType) {
     if (resource != null) {
       // If the resource is already resolved, look for contained resources.
       if (resource is DomainResource) {

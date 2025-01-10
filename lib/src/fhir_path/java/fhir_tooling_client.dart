@@ -25,6 +25,7 @@ class FhirToolingClient {
   /// The HTTP headers to include in the request.
   final Map<String, String> headers = {};
 
+  /// Returns the address of the FHIR server.
   String getAddress() {
     return baseUri.toString();
   }

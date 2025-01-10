@@ -22,6 +22,7 @@ class ICoding {
   /// The display field
   String? display;
 
+  /// Returns a [ICoding] from a [FhirBase] object
   static ICoding? getAsICoding(FhirBase? b) {
     if (b == null) return null;
 

@@ -61,7 +61,7 @@ class WorkerContext {
     return null;
   }
 
-  Future<CodeSystem?> fetchCodeSystem(String? system) async {
+  CodeSystem? fetchCodeSystem(String? system) {
     if (system == null) return null;
 
     if (system.contains('|')) {
@@ -75,14 +75,14 @@ class WorkerContext {
     if (codeSystem != null) return codeSystem;
 
     // Fallback: Try to locate and load the resource
-    await locator.findResource(this, system);
+    locator.findResource(this, system);
     return codeSystems.get(system); // Recheck after locator runs
   }
 
-  Future<CodeSystem?> fetchCodeSystemWithVersion(
+  CodeSystem? fetchCodeSystemWithVersion(
     String system,
     String version,
-  ) async {
+  ) {
     // Attempt to fetch the CodeSystem from the local cache with the specified
     // version
     var codeSystem = codeSystems.getWithVersion(system, version);
@@ -90,7 +90,7 @@ class WorkerContext {
     // If the CodeSystem is not found and a locator exists, try to find the
     // resource
     if (codeSystem == null) {
-      await locator.findResource(this, system);
+      locator.findResource(this, system);
 
       // Recheck the cache after the locator runs
       codeSystem = codeSystems.getWithVersion(system, version);
@@ -206,13 +206,13 @@ class WorkerContext {
     return double.tryParse(s) != null;
   }
 
-  Future<ValidationResult> validateCode(
+  ValidationResult validateCode(
     ValidationOptions options,
     String system,
     String version,
     String code,
     String? display,
-  ) async {
+  ) {
     final coding = Coding(
       system: system.toFhirUri,
       version: version.toFhirString,
@@ -222,11 +222,11 @@ class WorkerContext {
     return validateCodeWithCoding(options, coding, null);
   }
 
-  Future<ValidationResult> validateCodeWithCoding(
+  ValidationResult validateCodeWithCoding(
     ValidationOptions options,
     Coding coding,
     ValueSet? valueSet,
-  ) async {
+  ) {
     try {
       // Validate locally if client-side validation is enabled
       if (options.useClient) {
@@ -236,7 +236,7 @@ class WorkerContext {
           context: this,
         );
 
-        final codeSystem = await fetchCodeSystem(coding.system?.primitiveValue);
+        final codeSystem = fetchCodeSystem(coding.system?.primitiveValue);
         if (codeSystem == null) {
           return ValidationResult.error(
             message: 'Code system not found: ${coding.system}',
@@ -262,11 +262,11 @@ class WorkerContext {
     }
   }
 
-  Future<ValidationResult> validateCodeWithCodeableConcept(
+  ValidationResult validateCodeWithCodeableConcept(
     ValidationOptions options,
     CodeableConcept code,
     ValueSet vs,
-  ) async {
+  ) {
     // Generate a cache token for validation
     final cacheToken =
         txCache.generateValidationTokenForCodeableConcept(options, code, vs);
@@ -294,7 +294,7 @@ class WorkerContext {
         );
 
         // Perform local validation
-        final result = await checker.validateCode(code);
+        final result = checker.validateCode(code);
 
         // Cache and return the result
         txCache.cacheValidation(cacheToken, result, TerminologyCache.transient);
@@ -346,7 +346,7 @@ class WorkerContext {
       setTerminologyOptions(options, params);
 
       // Perform server validation
-      final result = await validateOnServer(vs, params, options);
+      final result = validateOnServer(vs, params, options);
 
       // Cache and return the result
       txCache.cacheValidation(cacheToken, result, TerminologyCache.permanent);
@@ -365,11 +365,11 @@ class WorkerContext {
   }
 
   /// Validates a ValueSet on a server using the given parameters and options.
-  Future<ValidationResult> validateOnServer(
+  ValidationResult validateOnServer(
     ValueSet? vs,
     Parameters pin,
     ValidationOptions options,
-  ) async {
+  ) {
     var cache = false;
 
     if (vs != null) {
@@ -465,14 +465,16 @@ class WorkerContext {
       );
     }
 
-    Parameters pOut;
-    if (vs == null) {
-      pOut = await txClient!.validateCS(pin);
-    } else {
-      pOut = await txClient!.validateVS(pin);
-    }
+    return ValidationResult.error(message: 'Not yet Implemented');
+    // TODO(Dokotela): Implement actual server validation
+    // Parameters pOut;
+    // if (vs == null) {
+    //   pOut = txClient!.validateCS(pin);
+    // } else {
+    //   pOut = txClient!.validateVS(pin);
+    // }
 
-    return processValidationResult(pOut);
+    // return processValidationResult(pOut);
   }
 
   (bool, Parameters) addDependentResources(Parameters oldPin, ValueSet vs) {
@@ -680,8 +682,10 @@ class WorkerContext {
 
     try {
       // Simulate sending request to the terminology server
-      final response = _sendValidationRequestToServer(params);
-      return processValidationResponse(response);
+      // TODO(Dokotela): Implement actual server validation
+      // final response = _sendValidationRequestToServer(params);
+      // return processValidationResponse(response);
+      throw Exception('Not yet implemented');
     } catch (e) {
       return ValidationResult.error(
         message: 'Server validation failed: $e',
@@ -689,7 +693,9 @@ class WorkerContext {
     }
   }
 
-  Map<String, dynamic> _sendValidationRequestToServer(Parameters params) {
+  Future<Map<String, dynamic>> _sendValidationRequestToServer(
+    Parameters params,
+  ) async {
     // Mock response for now; integrate with an actual server later
     try {
       return {'result': true, 'message': 'Code is valid'};

@@ -2,101 +2,101 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';
 
+import '../fhir_db/test_resources.dart';
 import '00_test_data.dart';
 
 void testNoArgFxns() {
   group('Functions w/o Arguments: ', () {
-    test('empty', () async {
+    test('empty', () {
       var node = testEngine.parse('name.family.empty()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('name.given.empty()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('Patient.language.empty()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.name.period.empty()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('{}.empty()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('allTrue', () async {
+    test('allTrue', () {
       var node = testEngine.parse('Patient.active.allTrue()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.deceasedBoolean.allTrue()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
-    test('anyTrue', () async {
+    test('anyTrue', () {
       var node = testEngine.parse('Patient.active.anyTrue()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.deceasedBoolean.anyTrue()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
-    test('allFalse', () async {
+    test('allFalse', () {
       var node = testEngine.parse('Patient.active.allFalse()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('Patient.deceasedBoolean.allFalse()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('anyFalse', () async {
+    test('anyFalse', () {
       var node = testEngine.parse('Patient.active.anyFalse()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('Patient.deceasedBoolean.anyFalse()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('count', () async {
+    test('count', () {
       var node = testEngine.parse('Patient.name.count()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [4.toFhirInteger],
       );
       node = testEngine.parse('Patient.name.given.count()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [8.toFhirInteger],
       );
     });
-    test('distinct', () async {
+    test('distinct', () {
       var node = testEngine.parse('Patient.name.distinct()');
-      expect(
-          (await testEngine.evaluate(patient3, node)).map((e) => e.toJson()), [
+      expect(testEngine.evaluate(patient3, node).map((e) => e.toJson()), [
         {
           'use': 'official',
           'family': 'Faulkenberry',
@@ -113,37 +113,38 @@ void testNoArgFxns() {
       ]);
       node = testEngine.parse('Patient.name.given.distinct()');
       expect(
-        (await testEngine.evaluate(patient3, node))
+        testEngine
+            .evaluate(patient3, node)
             .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson()),
         ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
       );
     });
-    test('isDistinct', () async {
+    test('isDistinct', () {
       var node = testEngine.parse('Patient.name.distinct().isDistinct()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.name.given.distinct().isDistinct()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.address.period.isDistinct()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.name.isDistinct()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
-    test('Single', () async {
+    test('Single', () {
       var node = testEngine.parse('Patient.telecom.single()');
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        testEngine.evaluate(patient3, node).first.toJson(),
         {
           'system': 'email',
           'use': 'mobile',
@@ -152,42 +153,42 @@ void testNoArgFxns() {
       );
       node = testEngine.parse('Patient.name.id.single()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
     });
-    test('First', () async {
+    test('First', () {
       var node = testEngine.parse('Patient.name.id.first()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('Patient.name.given.first()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['Jason'.toFhirString],
       );
     });
-    test('Last', () async {
+    test('Last', () {
       var node = testEngine.parse('Patient.name.id.last()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('Patient.name.given.last()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['Jingleheimer'.toFhirString],
       );
     });
-    test('Tail', () async {
+    test('Tail', () {
       var node = testEngine.parse('Patient.name.id.tail()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('Patient.name.given.tail()');
-      expect(await testEngine.evaluate(patient3, node), [
+      expect(testEngine.evaluate(patient3, node), [
         'Grey'.toFhirString,
         'Jason'.toFhirString,
         'Grey'.toFhirString,
@@ -197,621 +198,621 @@ void testNoArgFxns() {
         'Jingleheimer'.toFhirString,
       ]);
     });
-    test('toBoolean', () async {
+    test('toBoolean', () {
       var node = testEngine.parse("'1'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'true'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'t'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'yes'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'y'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'1.0'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'0'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'false'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'f'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'no'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'n'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'0.0'.toBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('1.toBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.toBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('1.0.toBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.0.toBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
-    test('convertsToBoolean', () async {
+    test('convertsToBoolean', () {
       var node = testEngine.parse("'1'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'true'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'t'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'yes'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'y'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'1.0'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'0'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'false'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'f'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'no'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'n'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'0.0'.toBoolean().convertsToBoolean()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.toBoolean().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.toBoolean().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.0.toBoolean().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.0.toBoolean().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('name.first().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('name.given.first().convertsToBoolean()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
-    test('toInteger', () async {
+    test('toInteger', () {
       var node = testEngine.parse("'1'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.toFhirInteger],
       );
       node = testEngine.parse("'true'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[1.toFhirInteger],
       );
       node = testEngine.parse("'t'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'yes'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'y'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'1.0'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'0'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.toFhirInteger],
       );
       node = testEngine.parse("'false'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[0.toFhirInteger],
       );
       node = testEngine.parse("'f'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'no'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'n'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'0.0'.toInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('1.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.toFhirInteger],
       );
       node = testEngine.parse('0.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.toFhirInteger],
       );
       node = testEngine.parse('1.0.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('0.0.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse('true.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.toFhirInteger],
       );
       node = testEngine.parse('false.toInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.toFhirInteger],
       );
     });
-    test('convertsToInteger', () async {
+    test('convertsToInteger', () {
       var node = testEngine.parse("'1'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'true'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'t'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'yes'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'y'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'1.0'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'0'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'false'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'f'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'no'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'n'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'0.0'.convertsToInteger()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('1.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.0.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('0.0.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('true.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('false.convertsToInteger()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('toDate', () async {
+    test('toDate', () {
       var node = testEngine.parse('@2021-01-01.toDate()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01'.toFhirDate],
       );
       node = testEngine.parse("'2021-01-01'.toDate()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01'.toFhirDate],
       );
     });
-    test('convertsToDate', () async {
+    test('convertsToDate', () {
       var node = testEngine.parse('@2021-01-01.convertsToDate()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'2021-01-01'.convertsToDate()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('toDateTime', () async {
+    test('toDateTime', () {
       var node = testEngine.parse('@2021-01-01.toDateTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01'.toFhirDateTime],
       );
       node = testEngine.parse("'2021-01-01'.toDateTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01'.toFhirDateTime],
       );
       node = testEngine.parse('@2021-01-01T12:12.toDateTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01T12:12'.toFhirDateTime],
       );
       node = testEngine.parse("'2021-01-01T12:12'.toDateTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01T12:12'.toFhirDateTime],
       );
     });
-    test('convertsToDateTime', () async {
+    test('convertsToDateTime', () {
       var node = testEngine.parse('@2021-01-01.convertsToDateTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'2021-01-01'.convertsToDateTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('@2021-01-01T12:12.convertsToDateTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'2021-01-01T12:12'.convertsToDateTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('toDecimal', () async {
+    test('toDecimal', () {
       var node = testEngine.parse("'1'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.0.toFhirDecimal],
       );
       node = testEngine.parse("'true'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[1.toFhirDecimal],
       );
       node = testEngine.parse("'t'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'yes'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'y'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'1.0'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.0.toFhirDecimal],
       );
       node = testEngine.parse("'0'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.0.toFhirDecimal],
       );
       node = testEngine.parse("'false'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[0.toFhirDecimal],
       );
       node = testEngine.parse("'f'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'no'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'n'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         <FhirBase>[],
       );
       node = testEngine.parse("'0.0'.toDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.0.toFhirDecimal],
       );
       node = testEngine.parse('1.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.0.toFhirDecimal],
       );
       node = testEngine.parse('0.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.0.toFhirDecimal],
       );
       node = testEngine.parse('1.0.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.0.toFhirDecimal],
       );
       node = testEngine.parse('0.0.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.0.toFhirDecimal],
       );
       node = testEngine.parse('true.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [1.0.toFhirDecimal],
       );
       node = testEngine.parse('false.toDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [0.0.toFhirDecimal],
       );
     });
-    test('convertsToDecimal', () async {
+    test('convertsToDecimal', () {
       var node = testEngine.parse("'1'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'true'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'t'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'yes'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'y'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'1.0'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'0'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'false'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'f'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'no'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'n'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse("'0.0'.convertsToDecimal()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.0.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('0.0.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('true.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('false.convertsToDecimal()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
 
-    test('toQuantity', () async {
+    test('toQuantity', () {
       var node = testEngine.parse("'4 days'.toQuantity()");
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        testEngine.evaluate(patient3, node).first.toJson(),
         Quantity(
           value: 4.0.toFhirDecimal,
           system: 'http://unitsofmeasure.org'.toFhirUri,
@@ -821,7 +822,7 @@ void testNoArgFxns() {
 
       node = testEngine.parse(r"'10 \'mm[Hg]\''.toQuantity()");
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        testEngine.evaluate(patient3, node).first.toJson(),
         Quantity(
           value: 10.0.toFhirDecimal,
           system: 'http://unitsofmeasure.org'.toFhirUri,
@@ -830,534 +831,538 @@ void testNoArgFxns() {
       );
     });
 
-    test('ConvertsToQuantity', () async {
+    test('ConvertsToQuantity', () {
       var node = testEngine.parse("'4 days'.convertsToQuantity()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
 
       node = testEngine.parse(r"'10 \'mm[Hg]\''.convertsToQuantity()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
 
-    test('toString', () async {
+    test('toString', () {
       var node = testEngine.parse('true.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['true'.toFhirString],
       );
       node = testEngine.parse('false.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['false'.toFhirString],
       );
       node = testEngine.parse('1.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['1'.toFhirString],
       );
       node = testEngine.parse('111.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['111'.toFhirString],
       );
       node = testEngine.parse('1.1.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['1.1'.toFhirString],
       );
       node = testEngine.parse('111.1.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['111.1'.toFhirString],
       );
       node = testEngine.parse("1.1 'mg'.toString()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ["1.1 'mg'".toFhirString],
       );
       node = testEngine.parse("111.1 'mL'.toString()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ["111.1 'mL'".toFhirString],
       );
       node = testEngine.parse('@2019-08-01.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2019-08-01'.toFhirString],
       );
       node = testEngine.parse('@2021-01-01T12:12.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['2021-01-01T12:12'.toFhirString],
       );
       node = testEngine.parse('@T12:12.toString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         ['12:12'.toFhirString],
       );
     });
-    test('convertsToString', () async {
+    test('convertsToString', () {
       var node = testEngine.parse('true.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('false.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('111.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('1.1.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('111.1.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("1.1 'mg'.convertsToString()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("111.1 'mL'.convertsToString()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('@2019-08-01.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('@2021-01-01T12:12.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('@T12:12.convertsToString()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('toTime', () async {
+    test('toTime', () {
       var node = testEngine.parse('@T12:22.toTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [FhirTime('12:22')],
       );
       node = testEngine.parse('@T12:22:33.toTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [FhirTime('12:22:33')],
       );
       node = testEngine.parse("'12:22'.toTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [FhirTime('12:22')],
       );
       node = testEngine.parse("'12:22:33.321'.toTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [FhirTime('12:22:33.321')],
       );
     });
-    test('convertsToTime', () async {
+    test('convertsToTime', () {
       var node = testEngine.parse('@T12:22.convertsToTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('@T12:22:33.convertsToTime()');
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'T12:22'.convertsToTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse("'12:22:33.321'.convertsToTime()");
       expect(
-        await testEngine.evaluate(patient3, node),
+        testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('upper', () async {
+    test('upper', () {
       var node = testEngine.parse("'abcdefg'.upper() // 'ABCDEFG'");
       expect(
-        await testEngine.evaluate(patient3, node),
-        ['ABCDEFG'],
+        testEngine.evaluate(patient3, node),
+        ['ABCDEFG'.toFhirString],
       );
       node = testEngine.parse("'AbCdefg'.upper() // 'ABCDEFG'");
       expect(
-        await testEngine.evaluate(patient3, node),
-        ['ABCDEFG'],
+        testEngine.evaluate(patient3, node),
+        ['ABCDEFG'.toFhirString],
       );
     });
-    test('lower', () async {
+    test('lower', () {
       var node = testEngine.parse("'ABCDEFG'.lower() // 'abcdefg'");
       expect(
-        await testEngine.evaluate(patient3, node),
-        ['abcdefg'],
+        testEngine.evaluate(patient3, node),
+        ['abcdefg'.toFhirString],
       );
       node = testEngine.parse("'aBcDEFG'.lower() // 'abcdefg'");
       expect(
-        await testEngine.evaluate(patient3, node),
-        ['abcdefg'],
+        testEngine.evaluate(patient3, node),
+        ['abcdefg'.toFhirString],
       );
     });
-    // test('Length', () {
-    //   var node = testEngine.parse('true.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [4],
-    //   );
-    //   node = testEngine.parse('false.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [5],
-    //   );
-    //   node = testEngine.parse('1.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1],
-    //   );
-    //   node = testEngine.parse('111.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [3],
-    //   );
-    //   node = testEngine.parse('1.1.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [3],
-    //   );
-    //   node = testEngine.parse('111.1.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [5],
-    //   );
-    //   node = testEngine.parse("1.1 'mg'.toString().length()");
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [8],
-    //   );
-    //   node = testEngine.parse("111.1 'mL'.toString().length()");
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [10],
-    //   );
-    //   node = testEngine.parse('@2019-08-01.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [10],
-    //   );
-    //   node = testEngine.parse('@2021-01-01T12:12.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [16],
-    //   );
-    //   node = testEngine.parse('@T12:12.toString().length()');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [5],
-    //   );
-    // });
-    // test('toChars', () {
-    //   final node = testEngine.parse("'true'.toChars()");
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     ['t', 'r', 'u', 'e'],
-    //   );
-    // });
-    // test('abs', () {
-    //   var node = testEngine.parse('(-5) // -5');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [-5],
-    //   );
-    //   node = testEngine.parse('(-5).abs() // 5');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [5],
-    //   );
-    //   node = testEngine.parse('(-5.5).abs() // 5.5');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [5.5],
-    //   );
-    //   expect(
-    //     () => walkFhirPath(
-    //       context: resource.toJson(),
-    //       pathExpression: "today() + 5.5 'mg'",
-    //     ),
-    //     throwsA(const TypeMatcher<FhirPathException>()),
-    //   );
+    test('Length', () {
+      var node = testEngine.parse('true.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [4.toFhirInteger],
+      );
+      node = testEngine.parse('false.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [5.toFhirInteger],
+      );
+      node = testEngine.parse('1.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.toFhirInteger],
+      );
+      node = testEngine.parse('111.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [3.toFhirInteger],
+      );
+      node = testEngine.parse('1.1.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [3.toFhirInteger],
+      );
+      node = testEngine.parse('111.1.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [5.toFhirInteger],
+      );
+      node = testEngine.parse("1.1 'mg'.toString().length()");
+      expect(
+        testEngine.evaluate(patient3, node),
+        [8.toFhirInteger],
+      );
+      node = testEngine.parse("111.1 'mL'.toString().length()");
+      expect(
+        testEngine.evaluate(patient3, node),
+        [10.toFhirInteger],
+      );
+      node = testEngine.parse('@2019-08-01.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [10.toFhirInteger],
+      );
+      node = testEngine.parse('@2021-01-01T12:12.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [16.toFhirInteger],
+      );
+      node = testEngine.parse('@T12:12.toString().length()');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [5.toFhirInteger],
+      );
+    });
+    test('toChars', () {
+      final node = testEngine.parse("'true'.toChars()");
+      expect(
+        testEngine.evaluate(patient3, node),
+        [
+          't'.toFhirString,
+          'r'.toFhirString,
+          'u'.toFhirString,
+          'e'.toFhirString,
+        ],
+      );
+    });
+    test('abs', () {
+      var node = testEngine.parse('(-5) // -5');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [-5.toFhirInteger],
+      );
+      node = testEngine.parse('(-5).abs() // 5');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [5.toFhirInteger],
+      );
+      node = testEngine.parse('(-5.5).abs() // 5.5');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [5.5.toFhirDecimal],
+      );
+      node = testEngine.parse("today() + 5.5 'mg'");
+      expect(
+        () => testEngine.evaluate(patient3, node),
+        throwsA(const TypeMatcher<PathEngineException>()),
+      );
 
-    //   node = testEngine.parse("(-5.5 'mg').abs() // 5.5 'mg'");
-    //   expect(await testEngine.evaluate(patient3, node), [
-    //     ValidatedQuantity(value: UcumDecimal.fromString('5.5'), unit: 'mg'),
-    //   ]);
-    // });
-    // test('ceiling', () {
-    //   var node = testEngine.parse('1.ceiling() // 1');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1],
-    //   );
-    //   node = testEngine.parse('1.1.ceiling() // 2');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [2],
-    //   );
-    //   node = testEngine.parse('(-1.1).ceiling() // -1');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [-1],
-    //   );
-    // });
-    // test('exp', () {
-    //   var node = testEngine.parse('0.exp() // 1.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1.0],
-    //   );
-    //   node = testEngine.parse('(-0.0).exp() // 1.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1.0],
-    //   );
-    // });
-    // test('floor', () {
-    //   var node = testEngine.parse('1.floor() // 1');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1],
-    //   );
-    //   node = testEngine.parse('2.1.floor() // 2');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [2],
-    //   );
-    //   node = testEngine.parse('(-2.1).floor() // -3');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [-3],
-    //   );
-    // });
-    // test('ln', () {
-    //   var node = testEngine.parse('1.ln() // 0.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [0.0],
-    //   );
-    //   node = testEngine.parse('1.0.ln() // 0.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [0.0],
-    //   );
-    // });
-    // test('log', () {
-    //   var node = testEngine.parse('16.log(2) // 4.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [4.0],
-    //   );
-    //   node = testEngine.parse('100.0.log(10.0) // 2.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [2.0],
-    //   );
-    // });
-    // test('sqrt', () {
-    //   var node = testEngine.parse('81.sqrt() // 9.0');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [9.0],
-    //   );
-    //   node = testEngine.parse('(-1).sqrt() // empty');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     <FhirBase>[],
-    //   );
-    // });
-    // test('truncate', () {
-    //   var node = testEngine.parse('101.truncate() // 101');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [101],
-    //   );
-    //   node = testEngine.parse('1.00000001.truncate() // 1');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [1],
-    //   );
-    //   node = testEngine.parse('(-1.56).truncate() // -1');
-    //   expect(
-    //     await testEngine.evaluate(patient3, node),
-    //     [-1],
-    //   );
-    // });
-    // test('children', () {
-    //   var node = testEngine.parse('Patient.name.children()');
-    //   expect(await testEngine.evaluate(patient3, node), [
-    //     'official',
-    //     'Faulkenberry',
-    //     'Jason',
-    //     'Grey',
-    //     'official',
-    //     'Faulkenberry',
-    //     'Jason',
-    //     'Grey',
-    //     'Niel',
-    //     'Kristin',
-    //     'Smith',
-    //     'John',
-    //     'Jacob',
-    //     'Jingleheimer',
-    //   ]);
-    //   node = testEngine.parse('Patient.address.children()');
-    //   expect(await testEngine.evaluate(patient3, node), [
-    //     {
-    //       'extension': [
-    //         {
-    //           'valueX': {'unit': 'Mg'},
-    //         },
-    //         {
-    //           'valueX': {'unit': 'mL'},
-    //         }
-    //       ],
-    //     },
-    //     {
-    //       'extension': [
-    //         {
-    //           'extension': [
-    //             {
-    //               'extension': [
-    //                 {
-    //                   'extension': [
-    //                     {
-    //                       'valueX': {'unit': 'Kg'},
-    //                     },
-    //                     {
-    //                       'valueX': {'unit': 'Km'},
-    //                     }
-    //                   ],
-    //                   'valueX': {'unit': 'Kg'},
-    //                 },
-    //                 {
-    //                   'valueX': {'unit': 'Km'},
-    //                 }
-    //               ],
-    //               'valueX': {'unit': 'Kg'},
-    //             },
-    //             {
-    //               'valueX': {'unit': 'Km'},
-    //             }
-    //           ],
-    //           'valueX': {'unit': 'Kg'},
-    //         },
-    //         {
-    //           'valueX': {'unit': 'Km'},
-    //         }
-    //       ],
-    //     },
-    //     {
-    //       'extension': [
-    //         {
-    //           'valueX': {'unit': 'Feet'},
-    //         },
-    //         {
-    //           'valueX': {'unit': 'inches'},
-    //         }
-    //       ],
-    //     }
-    //   ]);
-    // });
-    // test('Descendants', () {
-    //   var node = testEngine.parse('Patient.name.descendants()');
-    //   expect(await testEngine.evaluate(patient3, node), [
-    //     'official',
-    //     'Faulkenberry',
-    //     'Jason',
-    //     'Grey',
-    //     'Niel',
-    //     'Kristin',
-    //     'Smith',
-    //     'John',
-    //     'Jacob',
-    //     'Jingleheimer',
-    //   ]);
-    //   node =
-    //       testEngine.parse('Patient.address[1].period.extension.descendants()');
-    //   expect(await testEngine.evaluate(patient3, node), [
-    //     {
-    //       'extension': [
-    //         {
-    //           'extension': [
-    //             {
-    //               'valueX': {'unit': 'Kg'},
-    //             },
-    //             {
-    //               'valueX': {'unit': 'Km'},
-    //             }
-    //           ],
-    //           'valueX': {'unit': 'Kg'},
-    //         },
-    //         {
-    //           'valueX': {'unit': 'Km'},
-    //         }
-    //       ],
-    //       'valueX': {'unit': 'Kg'},
-    //     },
-    //     {
-    //       'valueX': {'unit': 'Km'},
-    //     },
-    //     {'unit': 'Kg'},
-    //     {'unit': 'Km'},
-    //     {
-    //       'extension': [
-    //         {
-    //           'valueX': {'unit': 'Kg'},
-    //         },
-    //         {
-    //           'valueX': {'unit': 'Km'},
-    //         }
-    //       ],
-    //       'valueX': {'unit': 'Kg'},
-    //     },
-    //     'Kg',
-    //     'Km',
-    //     {
-    //       'valueX': {'unit': 'Kg'},
-    //     },
-    //   ]);
-    // });
+      node = testEngine.parse("(-5.5 'mg').abs() // 5.5 'mg'");
+      expect(
+        testEngine.evaluate(patient3, node).first.toJson(),
+        {'value': 5.5, 'system': 'http://unitsofmeasure.org', 'code': 'mg'},
+      );
+    });
+    test('ceiling', () {
+      var node = testEngine.parse('1.ceiling() // 1');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.toFhirInteger],
+      );
+      node = testEngine.parse('1.1.ceiling() // 2');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [2.toFhirInteger],
+      );
+      node = testEngine.parse('(-1.1).ceiling() // -1');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [-1.toFhirInteger],
+      );
+    });
+    test('exp', () {
+      var node = testEngine.parse('0.exp() // 1.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.0.toFhirDecimal],
+      );
+      node = testEngine.parse('(-0.0).exp() // 1.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.0.toFhirDecimal],
+      );
+    });
+    test('floor', () {
+      var node = testEngine.parse('1.floor() // 1');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.toFhirInteger],
+      );
+      node = testEngine.parse('2.1.floor() // 2');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [2.toFhirInteger],
+      );
+      node = testEngine.parse('(-2.1).floor() // -3');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [-3.toFhirInteger],
+      );
+    });
+    test('ln', () {
+      var node = testEngine.parse('1.ln() // 0.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [0.0.toFhirDecimal],
+      );
+      node = testEngine.parse('1.0.ln() // 0.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [0.0.toFhirDecimal],
+      );
+    });
+    test('log', () {
+      var node = testEngine.parse('16.log(2) // 4.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [4.0.toFhirDecimal],
+      );
+      node = testEngine.parse('100.0.log(10.0) // 2.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [2.0.toFhirDecimal],
+      );
+    });
+    test('sqrt', () {
+      var node = testEngine.parse('81.sqrt() // 9.0');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [9.0.toFhirDecimal],
+      );
+      node = testEngine.parse('(-1).sqrt() // empty');
+      expect(
+        testEngine.evaluate(patient3, node),
+        <FhirBase>[],
+      );
+    });
+    test('truncate', () {
+      var node = testEngine.parse('101.truncate() // 101');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [101.toFhirInteger],
+      );
+      node = testEngine.parse('1.00000001.truncate() // 1');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [1.toFhirInteger],
+      );
+      node = testEngine.parse('(-1.56).truncate() // -1');
+      expect(
+        testEngine.evaluate(patient3, node),
+        [-1.toFhirInteger],
+      );
+    });
+    test('children', () {
+      var node = testEngine.parse('Patient.name.children()');
+      expect(testEngine.evaluate(patient3, node), [
+        'official',
+        'Faulkenberry',
+        'Jason',
+        'Grey',
+        'official',
+        'Faulkenberry',
+        'Jason',
+        'Grey',
+        'Niel',
+        'Kristin',
+        'Smith',
+        'John',
+        'Jacob',
+        'Jingleheimer',
+      ]);
+      node = testEngine.parse('Patient.address.children()');
+      expect(testEngine.evaluate(patient3, node), [
+        {
+          'extension': [
+            {
+              'valueX': {'unit': 'Mg'},
+            },
+            {
+              'valueX': {'unit': 'mL'},
+            }
+          ],
+        },
+        {
+          'extension': [
+            {
+              'extension': [
+                {
+                  'extension': [
+                    {
+                      'extension': [
+                        {
+                          'valueX': {'unit': 'Kg'},
+                        },
+                        {
+                          'valueX': {'unit': 'Km'},
+                        }
+                      ],
+                      'valueX': {'unit': 'Kg'},
+                    },
+                    {
+                      'valueX': {'unit': 'Km'},
+                    }
+                  ],
+                  'valueX': {'unit': 'Kg'},
+                },
+                {
+                  'valueX': {'unit': 'Km'},
+                }
+              ],
+              'valueX': {'unit': 'Kg'},
+            },
+            {
+              'valueX': {'unit': 'Km'},
+            }
+          ],
+        },
+        {
+          'extension': [
+            {
+              'valueX': {'unit': 'Feet'},
+            },
+            {
+              'valueX': {'unit': 'inches'},
+            }
+          ],
+        }
+      ]);
+    });
+    test('Descendants', () {
+      var node = testEngine.parse('Patient.name.descendants()');
+      expect(testEngine.evaluate(patient3, node), [
+        'official',
+        'Faulkenberry',
+        'Jason',
+        'Grey',
+        'Niel',
+        'Kristin',
+        'Smith',
+        'John',
+        'Jacob',
+        'Jingleheimer',
+      ]);
+      node =
+          testEngine.parse('Patient.address[1].period.extension.descendants()');
+      expect(testEngine.evaluate(patient3, node), [
+        {
+          'extension': [
+            {
+              'extension': [
+                {
+                  'valueX': {'unit': 'Kg'},
+                },
+                {
+                  'valueX': {'unit': 'Km'},
+                }
+              ],
+              'valueX': {'unit': 'Kg'},
+            },
+            {
+              'valueX': {'unit': 'Km'},
+            }
+          ],
+          'valueX': {'unit': 'Kg'},
+        },
+        {
+          'valueX': {'unit': 'Km'},
+        },
+        {'unit': 'Kg'},
+        {'unit': 'Km'},
+        {
+          'extension': [
+            {
+              'valueX': {'unit': 'Kg'},
+            },
+            {
+              'valueX': {'unit': 'Km'},
+            }
+          ],
+          'valueX': {'unit': 'Kg'},
+        },
+        'Kg',
+        'Km',
+        {
+          'valueX': {'unit': 'Kg'},
+        },
+      ]);
+    });
 
     // test('DateTimeFunctions', () {
     //   final startNow = DateTime.now();
     //   var node = testEngine.parse('now()');
-    //   final resultNow = await testEngine.evaluate(patient3, node).first;
+    //   final resultNow =  testEngine.evaluate(patient3, node).first;
     //   final endNow = DateTime.now();
     //   expect(
     //     (startNow.isBefore(toDateTime(resultNow)) ||
@@ -1371,7 +1376,7 @@ void testNoArgFxns() {
     //     DateTime.now().toIso8601String().split('T').last,
     //   );
     //   node = testEngine.parse('timeOfDay()');
-    //   final resultTimeOfDay = await testEngine.evaluate(patient3, node).first;
+    //   final resultTimeOfDay =  testEngine.evaluate(patient3, node).first;
     //   final endTimeOfDay = FhirTime(
     //     DateTime.now().toIso8601String().split('T').last,
     //   );
@@ -1384,7 +1389,7 @@ void testNoArgFxns() {
 
     //   node = testEngine.parse('today()');
     //   expect(
-    //     await testEngine.evaluate(patient3, node).first,
+    //      testEngine.evaluate(patient3, node).first,
     //     FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
     //   );
     // });
