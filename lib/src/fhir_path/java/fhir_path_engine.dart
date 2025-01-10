@@ -1611,11 +1611,7 @@ class FHIRPathEngine {
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
     if (oldName == '*') {
       for (final child in item.children()) {
-        final childValue = item.getChildValueByName(child);
-        print(childValue);
-        if (childValue != null) {
-          result.add(childValue);
-        }
+        result.addAll(item.listChildrenByName(child));
       }
     } else {
       String? tn;

@@ -1,8 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
-import 'package:ucum/ucum.dart';
-
-import '../fhir_db/test_resources.dart';
 import '00_test_data.dart';
 
 void testNoArgFxns() {
@@ -1226,30 +1223,33 @@ void testNoArgFxns() {
     test('children', () {
       var node = testEngine.parse('Patient.name.children()');
       expect(testEngine.evaluate(patient3, node), [
-        'official',
-        'Faulkenberry',
-        'Jason',
-        'Grey',
-        'official',
-        'Faulkenberry',
-        'Jason',
-        'Grey',
-        'Niel',
-        'Kristin',
-        'Smith',
-        'John',
-        'Jacob',
-        'Jingleheimer',
+        NameUse.official,
+        'Faulkenberry'.toFhirString,
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+        NameUse.official,
+        'Faulkenberry'.toFhirString,
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+        'Niel'.toFhirString,
+        'Kristin'.toFhirString,
+        'Smith'.toFhirString,
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
       ]);
       node = testEngine.parse('Patient.address.children()');
-      expect(testEngine.evaluate(patient3, node), [
+      expect(
+          testEngine.evaluate(patient3, node).map((e) => e.toJson()).toList(), [
         {
           'extension': [
             {
-              'valueX': {'unit': 'Mg'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Mg'},
             },
             {
-              'valueX': {'unit': 'mL'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'mL'},
             }
           ],
         },
@@ -1262,38 +1262,48 @@ void testNoArgFxns() {
                     {
                       'extension': [
                         {
-                          'valueX': {'unit': 'Kg'},
+                          'url': 'www.mayjuun.com',
+                          'valueCount': {'unit': 'Kg'},
                         },
                         {
-                          'valueX': {'unit': 'Km'},
+                          'url': 'www.mayjuun.com',
+                          'valueCount': {'unit': 'Km'},
                         }
                       ],
-                      'valueX': {'unit': 'Kg'},
+                      'url': 'www.mayjuun.com',
+                      'valueCount': {'unit': 'Kg'},
                     },
                     {
-                      'valueX': {'unit': 'Km'},
+                      'url': 'www.mayjuun.com',
+                      'valueCount': {'unit': 'Km'},
                     }
                   ],
-                  'valueX': {'unit': 'Kg'},
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Kg'},
                 },
                 {
-                  'valueX': {'unit': 'Km'},
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Km'},
                 }
               ],
-              'valueX': {'unit': 'Kg'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Kg'},
             },
             {
-              'valueX': {'unit': 'Km'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Km'},
             }
           ],
         },
         {
           'extension': [
             {
-              'valueX': {'unit': 'Feet'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Feet'},
             },
             {
-              'valueX': {'unit': 'inches'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'inches'},
             }
           ],
         }
@@ -1302,97 +1312,123 @@ void testNoArgFxns() {
     test('Descendants', () {
       var node = testEngine.parse('Patient.name.descendants()');
       expect(testEngine.evaluate(patient3, node), [
-        'official',
-        'Faulkenberry',
-        'Jason',
-        'Grey',
-        'Niel',
-        'Kristin',
-        'Smith',
-        'John',
-        'Jacob',
-        'Jingleheimer',
+        NameUse.official,
+        'Faulkenberry'.toFhirString,
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+        NameUse.official,
+        'Faulkenberry'.toFhirString,
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
+        'Niel'.toFhirString,
+        'Kristin'.toFhirString,
+        'Smith'.toFhirString,
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
       ]);
       node =
           testEngine.parse('Patient.address[1].period.extension.descendants()');
-      expect(testEngine.evaluate(patient3, node), [
+      expect(testEngine.evaluate(patient3, node).map((e) => e.toJson()), [
         {
           'extension': [
             {
               'extension': [
                 {
-                  'valueX': {'unit': 'Kg'},
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Kg'},
                 },
                 {
-                  'valueX': {'unit': 'Km'},
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Km'},
                 }
               ],
-              'valueX': {'unit': 'Kg'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Kg'},
             },
             {
-              'valueX': {'unit': 'Km'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Km'},
             }
           ],
-          'valueX': {'unit': 'Kg'},
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Kg'},
         },
         {
-          'valueX': {'unit': 'Km'},
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Km'},
         },
-        {'unit': 'Kg'},
-        {'unit': 'Km'},
+        {'value': 'www.mayjuun.com'},
+        {'value': 'www.mayjuun.com'},
         {
           'extension': [
             {
-              'valueX': {'unit': 'Kg'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Kg'},
             },
             {
-              'valueX': {'unit': 'Km'},
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Km'},
             }
           ],
-          'valueX': {'unit': 'Kg'},
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Kg'},
         },
-        'Kg',
-        'Km',
         {
-          'valueX': {'unit': 'Kg'},
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Km'},
         },
+        {'value': 'www.mayjuun.com'},
+        {'value': 'www.mayjuun.com'},
+        {
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Kg'},
+        },
+        {
+          'url': 'www.mayjuun.com',
+          'valueCount': {'unit': 'Km'},
+        },
+        {'value': 'www.mayjuun.com'},
+        {'value': 'www.mayjuun.com'},
+        {'value': 'www.mayjuun.com'},
+        {'value': 'www.mayjuun.com'},
       ]);
     });
 
-    // test('DateTimeFunctions', () {
-    //   final startNow = DateTime.now();
-    //   var node = testEngine.parse('now()');
-    //   final resultNow =  testEngine.evaluate(patient3, node).first;
-    //   final endNow = DateTime.now();
-    //   expect(
-    //     (startNow.isBefore(toDateTime(resultNow)) ||
-    //             startNow.isAtSameMomentAs(toDateTime(resultNow))) &&
-    //         (endNow.isAfter(toDateTime(resultNow)) ||
-    //             endNow.isAtSameMomentAs(toDateTime(resultNow))),
-    //     true,
-    //   );
+    test('DateTimeFunctions', () {
+      final startNow = DateTime.now();
+      var node = testEngine.parse('now()');
+      final resultNow = testEngine.evaluate(patient3, node).first;
+      final endNow = DateTime.now();
+      expect(
+        (startNow.isBefore(toDateTime(resultNow)) ||
+                startNow.isAtSameMomentAs(toDateTime(resultNow))) &&
+            (endNow.isAfter(toDateTime(resultNow)) ||
+                endNow.isAtSameMomentAs(toDateTime(resultNow))),
+        true,
+      );
 
-    //   final startTimeOfDay = FhirTime(
-    //     DateTime.now().toIso8601String().split('T').last,
-    //   );
-    //   node = testEngine.parse('timeOfDay()');
-    //   final resultTimeOfDay =  testEngine.evaluate(patient3, node).first;
-    //   final endTimeOfDay = FhirTime(
-    //     DateTime.now().toIso8601String().split('T').last,
-    //   );
+      final startTimeOfDay = FhirTime(
+        DateTime.now().toIso8601String().split('T').last,
+      );
+      node = testEngine.parse('timeOfDay()');
+      final resultTimeOfDay = testEngine.evaluate(patient3, node).first;
+      final endTimeOfDay = FhirTime(
+        DateTime.now().toIso8601String().split('T').last,
+      );
 
-    //   expect(
-    //     (startTimeOfDay <= (resultTimeOfDay as FhirTime) ?? false) &&
-    //         (endTimeOfDay >= resultTimeOfDay ?? false),
-    //     true,
-    //   );
+      expect(
+        (startTimeOfDay <= (resultTimeOfDay as FhirTime) ?? false) &&
+            (endTimeOfDay >= resultTimeOfDay ?? false),
+        true,
+      );
 
-    //   node = testEngine.parse('today()');
-    //   expect(
-    //      testEngine.evaluate(patient3, node).first,
-    //     FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
-    //   );
-    // });
+      node = testEngine.parse('today()');
+      expect(
+        testEngine.evaluate(patient3, node).first,
+        FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
+      );
+    });
   });
 }
 
