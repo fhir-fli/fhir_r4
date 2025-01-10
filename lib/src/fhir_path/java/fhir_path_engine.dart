@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
@@ -559,7 +562,6 @@ class FHIRPathEngine {
   ///
   /// Evaluation with base and ExpressionNode
   Future<List<FhirBase>> evaluate(FhirBase? base, ExpressionNode node) async {
-    print('evaluate');
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -889,6 +891,7 @@ class FHIRPathEngine {
         checkContextPrimitive(focus, exp.function.toString(), true, exp);
         return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
       case FpFunction.ToDateTime:
+      case FpFunction.ToDate:
       case FpFunction.ToTime:
         checkContextPrimitive(focus, exp.function.toString(), false, exp);
         return TypeDetails(
@@ -965,7 +968,6 @@ class FHIRPathEngine {
     ExpressionNode exp,
     bool atEntry,
   ) async {
-    print('execute');
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
 
@@ -1096,8 +1098,6 @@ class FHIRPathEngine {
         next = next.opNext;
       }
     }
-
-    print('work: $work');
 
     return work;
   }
@@ -2305,6 +2305,8 @@ class FHIRPathEngine {
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ToDateTime:
         return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.ToDate:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ToTime:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToInteger:
@@ -2698,6 +2700,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode holder,
   ) async {
+    print('operate: $operation');
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -2759,7 +2762,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opEquals: $left == $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -2949,7 +2951,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opGreater: $left > $right');
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3488,13 +3489,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opMinus: $left - $right');
-    if (left.length == 1) {
-      print('left: ${left.first.toJson()}');
-    }
-    if (right.length == 1) {
-      print('right: ${right.first.toJson()}');
-    }
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -3874,6 +3868,8 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) async {
+    print('evaluateFunction focus: $focus');
+    print('Evaluating function: ${exp.function}');
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -3978,97 +3974,99 @@ class FHIRPathEngine {
       case FpFunction.TimeOfDay:
         return funcTimeOfDay(context, focus, exp);
       case FpFunction.Resolve:
-      // return funcResolve(context, focus, exp);
+        return funcResolve(context, focus, exp);
       case FpFunction.Extension:
-      // return funcExtension(context, focus, exp);
+        return funcExtension(context, focus, exp);
       case FpFunction.AnyFalse:
-      // return funcAnyFalse(context, focus, exp);
+        return funcAnyFalse(context, focus, exp);
       case FpFunction.AllFalse:
-      // return funcAllFalse(context, focus, exp);
+        return funcAllFalse(context, focus, exp);
       case FpFunction.AnyTrue:
         return funcAnyTrue(context, focus, exp);
       case FpFunction.AllTrue:
         return funcAllTrue(context, focus, exp);
       case FpFunction.HasValue:
-      // return funcHasValue(context, focus, exp);
+        return funcHasValue(context, focus, exp);
       case FpFunction.Encode:
-      // return funcEncode(context, focus, exp);
+        return funcEncode(context, focus, exp);
       case FpFunction.Decode:
-      // return funcDecode(context, focus, exp);
+        return funcDecode(context, focus, exp);
       case FpFunction.Escape:
-      // return funcEscape(context, focus, exp);
+        return funcEscape(context, focus, exp);
       case FpFunction.Unescape:
-      // return funcUnescape(context, focus, exp);
+        return funcUnescape(context, focus, exp);
       case FpFunction.Trim:
-      // return funcTrim(context, focus, exp);
+        return funcTrim(context, focus, exp);
       case FpFunction.Split:
-      // return funcSplit(context, focus, exp);
+        return funcSplit(context, focus, exp);
       case FpFunction.Join:
-      // return funcJoin(context, focus, exp);
+        return funcJoin(context, focus, exp);
       case FpFunction.HtmlChecks1:
-      // return funcHtmlChecks1(context, focus, exp);
+        return funcHtmlChecks1(context, focus, exp);
       case FpFunction.HtmlChecks2:
-      // return funcHtmlChecks2(context, focus, exp);
+        return funcHtmlChecks2(context, focus, exp);
       case FpFunction.Comparable:
-      // return funcComparable(context, focus, exp);
+        return funcComparable(context, focus, exp);
       case FpFunction.ToInteger:
-      // return funcToInteger(context, focus, exp);
+        return funcToInteger(context, focus, exp);
       case FpFunction.ToDecimal:
-      // return funcToDecimal(context, focus, exp);
+        return funcToDecimal(context, focus, exp);
       case FpFunction.ToString:
-      // return funcToString(context, focus, exp);
+        return funcToString(context, focus, exp);
       case FpFunction.ToBoolean:
-      // return funcToBoolean(context, focus, exp);
+        return funcToBoolean(context, focus, exp);
       case FpFunction.ToQuantity:
-      // return funcToQuantity(context, focus, exp);
+        return funcToQuantity(context, focus, exp);
       case FpFunction.ToDateTime:
-      // return funcToDateTime(context, focus, exp);
+        return funcToDateTime(context, focus, exp);
+      case FpFunction.ToDate:
+        return funcToDate(context, focus, exp);
       case FpFunction.ToTime:
-      // return funcToTime(context, focus, exp);
+        return funcToTime(context, focus, exp);
       case FpFunction.ConvertsToInteger:
-      // return funcIsInteger(context, focus, exp);
+        return funcIsInteger(focus);
       case FpFunction.ConvertsToDecimal:
         return funcIsDecimal(context, focus, exp);
       case FpFunction.ConvertsToString:
-      // return funcIsString(context, focus, exp);
+        return funcIsString(focus);
       case FpFunction.ConvertsToBoolean:
-      // return funcIsBoolean(context, focus, exp);
+        return funcIsBoolean(focus);
       case FpFunction.ConvertsToQuantity:
-      // return funcIsQuantity(context, focus, exp);
+        return funcIsQuantity(focus);
       case FpFunction.ConvertsToDateTime:
-      // return funcIsDateTime(context, focus, exp);
+        return funcIsDateTime(focus);
       case FpFunction.ConvertsToDate:
-      // return funcIsDate(context, focus, exp);
+        return funcIsDate(focus);
       case FpFunction.ConvertsToTime:
-      // return funcIsTime(context, focus, exp);
+        return funcIsTime(focus);
       case FpFunction.ConformsTo:
-      // return funcConformsTo(context, focus, exp);
+        return funcConformsTo(context, focus, exp);
       case FpFunction.Round:
         return funcRound(context, focus, exp);
       case FpFunction.Sqrt:
-      // return funcSqrt(context, focus, exp);
+        return funcSqrt(context, focus, exp);
       case FpFunction.Abs:
-      // return funcAbs(context, focus, exp);
+        return funcAbs(context, focus, exp);
       case FpFunction.Ceiling:
         return funcCeiling(context, focus, exp);
       case FpFunction.Exp:
-      // return funcExp(context, focus, exp);
+        return funcExp(context, focus, exp);
       case FpFunction.Floor:
-      // return funcFloor(context, focus, exp);
+        return funcFloor(context, focus, exp);
       case FpFunction.Ln:
-      // return funcLn(context, focus, exp);
+        return funcLn(context, focus, exp);
       case FpFunction.Log:
-      // return funcLog(context, focus, exp);
+        return funcLog(context, focus, exp);
       case FpFunction.Power:
-      // return funcPower(context, focus, exp);
+        return funcPower(context, focus, exp);
       case FpFunction.Truncate:
-      // return funcTruncate(context, focus, exp);
+        return funcTruncate(context, focus, exp);
       case FpFunction.LowBoundary:
-      // return funcLowBoundary(context, focus, exp);
+        return funcLowBoundary(context, focus, exp);
       case FpFunction.HighBoundary:
-      // return funcHighBoundary(context, focus, exp);
+        return funcHighBoundary(context, focus, exp);
       case FpFunction.Precision:
-      // return funcPrecision(context, focus, exp);
+        return funcPrecision(context, focus, exp);
       case FpFunction.Custom:
         {
           final params = <List<FhirBase>>[];
@@ -4095,7 +4093,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('funcEmpty: $focus');
     return [FhirBoolean(focus.isEmpty).noExtensions()];
   }
 
@@ -4608,11 +4605,14 @@ class FHIRPathEngine {
   ) {
     if (focus.length == 1) {
       return focus;
+    } else if (focus.isEmpty) {
+      return [];
+    } else {
+      throw makeException(expr, 'FHIRPATH_NO_COLLECTION', [
+        'single',
+        focus.length,
+      ]);
     }
-    throw makeException(expr, 'FHIRPATH_NO_COLLECTION', [
-      'single',
-      focus.length,
-    ]);
   }
 
   List<FhirBase> funcFirst(
@@ -5256,6 +5256,91 @@ class FHIRPathEngine {
     ];
   }
 
+  Future<List<FhirBase>> funcAllFalse(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final result = <FhirBase>[];
+    if (exp.parameters.length == 1) {
+      var all = true;
+      final pc = <FhirBase>[];
+      for (final item in focus) {
+        pc
+          ..clear()
+          ..add(item);
+        final res = await execute(context, pc, exp.parameters.first, true);
+        final v = asBoolList(res, exp);
+        if (v != Equality.false_) {
+          // Assuming Equality.falseValue corresponds to `Equality.False`
+          all = false;
+          break;
+        }
+      }
+      result.add(FhirBoolean(all).noExtensions());
+    } else {
+      var all = true;
+      for (final item in focus) {
+        if (!canConvertToBoolean(item)) {
+          throw FHIRException(
+            message:
+                "Unable to convert '${convertToString(item)}' to a boolean",
+          );
+        }
+
+        final v = asBool(item, true);
+        if (v != Equality.false_) {
+          all = false;
+          break;
+        }
+      }
+      result.add(FhirBoolean(all).noExtensions());
+    }
+    return result;
+  }
+
+  Future<List<FhirBase>> funcAnyFalse(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final result = <FhirBase>[];
+    if (exp.parameters.length == 1) {
+      var any = false;
+      final pc = <FhirBase>[];
+      for (final item in focus) {
+        pc
+          ..clear()
+          ..add(item);
+        final res = await execute(context, pc, exp.parameters.first, true);
+        final v = asBoolList(res, exp);
+        if (v == Equality.false_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    } else {
+      var any = false;
+      for (final item in focus) {
+        if (!canConvertToBoolean(item)) {
+          throw FHIRException(
+            message:
+                "Unable to convert '${convertToString(item)}' to a boolean",
+          );
+        }
+
+        final v = asBool(item, true);
+        if (v == Equality.false_) {
+          any = true;
+          break;
+        }
+      }
+      result.add(FhirBoolean(any).noExtensions());
+    }
+    return result;
+  }
+
   Future<List<FhirBase>> funcAnyTrue(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -5342,6 +5427,631 @@ class FHIRPathEngine {
     return result;
   }
 
+  List<FhirBase> funcResolve(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    FhirBase? refContext;
+
+    for (final item in focus) {
+      String? s = convertToString(item);
+      if (item.fhirType == 'Reference') {
+        refContext = item;
+        final property = item.getChildValueByName('reference');
+        if (property != null && property.hasValues()) {
+          for (final child in property.children()) {
+            final prop = property.getChildValueByName(child);
+            if (prop != null && prop is PrimitiveType) {
+              s = prop.primitiveValue;
+              break;
+            }
+          }
+        } else {
+          s = null;
+        }
+      }
+
+      if (item.fhirType == 'canonical') {
+        s = item.primitiveValue;
+        refContext = item;
+      }
+
+      if (s != null) {
+        FhirBase? res;
+        if (s.startsWith('#')) {
+          final property =
+              context.rootResource?.getChildValueByName('contained');
+          if (property != null) {
+            for (final c in property.children()) {
+              final val = property.getChildValueByName(c);
+              final id = val is Element
+                  ? val.id
+                  : val is Resource
+                      ? val.id
+                      : null;
+              if (id != null && chompHash(s) == chompHash(id.value)) {
+                res = c.toFhirString;
+                break;
+              }
+            }
+          }
+        } else if (hostServices != null && refContext != null) {
+          try {
+            res = hostServices?.resolveReference(
+              this,
+              context.appInfo ?? '',
+              s,
+              refContext,
+            );
+          } catch (e) {
+            res = null;
+          }
+        }
+
+        if (res != null) {
+          result.add(res);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  String? chompHash(String? theId) {
+    var retVal = theId;
+    while (retVal?.startsWith('#') ?? false) {
+      retVal = retVal!.substring(1);
+    }
+    return retVal;
+  }
+
+  Future<List<FhirBase>> funcExtension(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final result = <FhirBase>[];
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final url = nl.first.primitiveValue;
+
+    for (final item in focus) {
+      final ext = <FhirBase>[];
+      getChildrenByName(item, 'extension', ext);
+      getChildrenByName(item, 'modifierExtension', ext);
+      for (final ex in ext) {
+        final vl = <FhirBase>[];
+        getChildrenByName(ex, 'url', vl);
+        if (convertToStringList(vl) == url) {
+          result.add(ex);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcHasValue(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length == 1) {
+      final s = convertToString(focus.first);
+      return [FhirBoolean(!Utilities.noString(s))];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  Future<List<FhirBase>> funcEncode(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final param = nl.first.primitiveValue;
+
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null) {
+        if (param == 'hex') {
+          return [FhirString(bytesToHex(cnt.codeUnits))];
+        } else if (param == 'base64') {
+          return [FhirString(base64Encode(cnt.codeUnits))];
+        } else if (param == 'urlbase64') {
+          return [FhirString(base64UrlEncode(cnt.codeUnits))];
+        }
+      }
+    }
+    return [];
+  }
+
+  String bytesToHex(List<int> bytes) {
+    const hexArray = '0123456789ABCDEF';
+    final hexChars = List<String>.filled(bytes.length * 2, '');
+
+    for (var j = 0; j < bytes.length; j++) {
+      final v = bytes[j] & 0xFF;
+      hexChars[j * 2] = hexArray[v >> 4];
+      hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+    }
+
+    return hexChars.join();
+  }
+
+  Future<List<FhirBase>> funcDecode(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final param = nl.first.primitiveValue;
+
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null) {
+        if (param == 'hex') {
+          return [FhirString(String.fromCharCodes(hexStringToByteArray(cnt)))];
+        } else if (param == 'base64') {
+          return [FhirString(utf8.decode(base64Decode(cnt)))];
+        } else if (param == 'urlbase64') {
+          return [FhirString(utf8.decode(base64Url.decode(cnt)))];
+        }
+      }
+    }
+    return [];
+  }
+
+  List<int> hexStringToByteArray(String s) {
+    final len = s.length;
+    if (len % 2 != 0) {
+      throw ArgumentError('Hex string must have an even number of characters');
+    }
+
+    final data = List<int>.filled(len ~/ 2, 0);
+    for (var i = 0; i < len; i += 2) {
+      final high = int.parse(s[i], radix: 16);
+      final low = int.parse(s[i + 1], radix: 16);
+      data[i ~/ 2] = (high << 4) + low;
+    }
+    return data;
+  }
+
+  Future<List<FhirBase>> funcEscape(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final param = nl.first.primitiveValue;
+
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null) {
+        if (param == 'html') {
+          return [FhirString(cnt.escapeXml())];
+        } else if (param == 'json') {
+          return [FhirString(cnt.escapeJson())];
+        }
+      }
+    }
+    return [];
+  }
+
+  Future<List<FhirBase>> funcUnescape(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final param = nl.first.primitiveValue;
+
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null) {
+        if (param == 'html') {
+          return [FhirString(cnt.unescapeXml())];
+        } else if (param == 'json') {
+          return [FhirString(cnt.unescapeJson())];
+        }
+      }
+    }
+    return [];
+  }
+
+  List<FhirBase> funcTrim(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null) return [FhirString(cnt.trim())];
+    }
+    return [];
+  }
+
+  Future<List<FhirBase>> funcSplit(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final param = nl.first.primitiveValue;
+
+    if (focus.length == 1) {
+      final cnt = focus.first.primitiveValue;
+      if (cnt != null && param != null) {
+        final parts = cnt.split(param);
+        return parts.map(FhirString.new).toList();
+      }
+    }
+    return [];
+  }
+
+  Future<List<FhirBase>> funcJoin(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
+    final delimiter = nl.first.primitiveValue;
+
+    final joined =
+        focus.map((item) => item.primitiveValue).join(delimiter ?? '');
+    return [FhirString(joined)];
+  }
+
+  List<FhirBase> funcHtmlChecks1(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    }
+    return [FhirBoolean(false)];
+    // final xhtml = focus.first.getXhtml();
+    // if (xhtml == null) {
+    //   return [FhirBoolean(false)];
+    // }
+    // return [FhirBoolean(checkHtmlNames(xhtml))];
+  }
+
+  List<FhirBase> funcHtmlChecks2(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    }
+    return [FhirBoolean(false)];
+    // final xhtml = focus.first.getXhtml();
+    // if (xhtml == null) {
+    //   return [FhirBoolean(false)];
+    // }
+    // return [FhirBoolean(checkForContent(xhtml))];
+  }
+
+  Future<List<FhirBase>> funcComparable(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    if (focus.length != 1 || focus.first.fhirType != 'Quantity') {
+      return makeBoolean(false);
+    }
+
+    final nl = await execute(context, focus, exp.parameters[0], true);
+    if (nl.length != 1 || nl.first.fhirType != 'Quantity') {
+      return makeBoolean(false);
+    }
+
+    final s1 = getNamedValue(focus.first, 'system');
+    final u1 = getNamedValue(focus.first, 'code');
+    final s2 = getNamedValue(nl.first, 'system');
+    final u2 = getNamedValue(nl.first, 'code');
+
+    if (s1 == null || s2 == null || s1 != s2) {
+      return makeBoolean(false);
+    }
+    if (u1 == null || u2 == null) {
+      return makeBoolean(false);
+    }
+    if (u1 == u2) {
+      return makeBoolean(true);
+    }
+    if (s1 == 'http://unitsofmeasure.org') {
+      try {
+        return makeBoolean(worker.ucumService.isComparable(u1, u2));
+      } catch (e) {
+        return makeBoolean(false);
+      }
+    } else {
+      return makeBoolean(false);
+    }
+  }
+
+  List<FhirBase> funcToInteger(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    print('funcToInteger focus: $focus');
+    final s = convertToStringList(focus);
+    final result = <FhirBase>[];
+    if (Utilities.isInteger(s)) {
+      result.add(FhirInteger(int.parse(s)).noExtensions());
+    } else if (s == 'true') {
+      result.add(FhirInteger(1).noExtensions());
+    } else if (s == 'false') {
+      result.add(FhirInteger(0).noExtensions());
+    }
+    return result;
+  }
+
+  List<FhirBase> funcToString(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    for (final item in focus) {
+      final value = convertToString(item);
+      result.add(FhirString(value).noExtensions());
+    }
+
+    if (result.length > 1) {
+      throw makeException(
+        exp,
+        'FHIRPATH_NO_COLLECTION',
+        ['toString', result.length],
+      );
+    }
+    return result;
+  }
+
+  List<FhirBase> funcToBoolean(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    print('funcToBoolean focus: $focus');
+    final result = <FhirBase>[];
+    if (focus.length == 1) {
+      final item = focus.first;
+      if (item is FhirBoolean) {
+        result.add(item);
+      } else if (item is FhirInteger) {
+        final i = item.value;
+        if (i == 0) {
+          result.add(FhirBoolean(false).noExtensions());
+        } else if (i == 1) {
+          result.add(FhirBoolean(true).noExtensions());
+        }
+      } else if (item is FhirDecimal) {
+        final value = item.value;
+        if (value == 0) {
+          result.add(FhirBoolean(false).noExtensions());
+        } else if (value == 1) {
+          result.add(FhirBoolean(true).noExtensions());
+        }
+      } else if (item is FhirString) {
+        final primitiveValue = item.primitiveValue?.toLowerCase();
+        if (<String>['true', 't', 'yes', 'y', '1', '1.0']
+            .contains(primitiveValue)) {
+          result.add(FhirBoolean(true).noExtensions());
+        } else if (<String>[
+          'false',
+          'f',
+          'no',
+          'n',
+          '0',
+          '0.0',
+        ].contains(primitiveValue)) {
+          result.add(FhirBoolean(false).noExtensions());
+        }
+      }
+    }
+    return result;
+  }
+
+  List<FhirBase> funcToQuantity(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) {
+    final result = <FhirBase>[];
+    if (focus.length == 1) {
+      final item = focus.first;
+      if (item is Quantity) {
+        result.add(item);
+      } else if (item is FhirString) {
+        final q = parseQuantityString(item.primitiveValue);
+        if (q != null) {
+          result.add(q);
+        }
+      } else if (item is FhirNumber) {
+        result.add(
+          Quantity(
+            value: FhirDecimal(item.value),
+            system: 'http://unitsofmeasure.org'.toFhirUri,
+            code: '1'.toFhirCode,
+          ),
+        );
+      }
+    }
+    return result;
+  }
+
+  Quantity? parseQuantityString(String? str) {
+    if (str == null) {
+      return null;
+    }
+    var s = str.trim();
+    if (s.contains(' ')) {
+      final v = s.substring(0, s.indexOf(' ')).trim();
+      s = s.substring(s.indexOf(' ')).trim();
+
+      if (!Utilities.isDecimal(v)) {
+        return null;
+      }
+
+      if (s.startsWith("'") && s.endsWith("'")) {
+        return quantityFromUcum(v, s.substring(1, s.length - 1));
+      }
+
+      switch (s) {
+        case 'year':
+        case 'years':
+          return quantityFromUcum(v, 'a');
+        case 'month':
+        case 'months':
+          return quantityFromUcum(v, 'mo_s');
+        case 'week':
+        case 'weeks':
+          return quantityFromUcum(v, 'wk');
+        case 'day':
+        case 'days':
+          return quantityFromUcum(v, 'd');
+        case 'hour':
+        case 'hours':
+          return quantityFromUcum(v, 'h');
+        case 'minute':
+        case 'minutes':
+          return quantityFromUcum(v, 'min');
+        case 'second':
+        case 'seconds':
+          return quantityFromUcum(v, 's');
+        case 'millisecond':
+        case 'milliseconds':
+          return quantityFromUcum(v, 'ms');
+        default:
+          return null;
+      }
+    } else {
+      if (Utilities.isDecimal(s)) {
+        return Quantity(
+          value: FhirDecimal(double.parse(s)),
+          system: FhirUri('http://unitsofmeasure.org'),
+          code: FhirCode('1'),
+        );
+      } else {
+        return null;
+      }
+    }
+  }
+
+  List<FhirBase> funcToDateTime(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    print('funcToDateTime focus: $focus ${focus.first.runtimeType}');
+    if (focus.isEmpty) {
+      return [];
+    } else if (focus.length == 1) {
+      if (focus.first is FhirDateTimeBase) {
+        return [
+          FhirDateTime.fromString(
+            (focus.first as FhirDateTimeBase).valueString,
+          ),
+        ];
+      } else if (focus.first is FhirString) {
+        final dateTime =
+            FhirDateTime.tryParse((focus.first as FhirString).value);
+        if (dateTime != null) {
+          return [dateTime];
+        }
+        return [];
+      }
+    }
+
+    throw makeException(
+      expr,
+      'FHIRPATH_NO_COLLECTION',
+      ['toString'],
+    );
+  }
+
+  List<FhirBase> funcToDate(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    print('funcToDateTime focus: $focus ${focus.first.runtimeType}');
+    if (focus.isEmpty) {
+      return [];
+    } else if (focus.length == 1) {
+      if (focus.first is FhirDateTimeBase) {
+        final date =
+            FhirDate.tryParse((focus.first as FhirDateTimeBase).valueString);
+        if (date != null) {
+          return [date];
+        }
+        return [];
+      } else if (focus.first is FhirString) {
+        final date = FhirDateTime.tryParse((focus.first as FhirString).value);
+        if (date != null) {
+          return [date];
+        }
+        return [];
+      }
+    }
+
+    throw makeException(
+      expr,
+      'FHIRPATH_NO_COLLECTION',
+      ['toString'],
+    );
+  }
+
+  List<FhirBase> funcToTime(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.isEmpty) {
+      return [];
+    } else if (focus.length == 1) {
+      if (focus.first is FhirTime) {
+        return [focus.first];
+      } else if (focus.first is FhirString) {
+        final time = FhirTime.tryParse(focus.first.toString());
+        if (time != null) {
+          return [time];
+        }
+        return [];
+      }
+    }
+
+    throw makeException(
+      expr,
+      'FHIRPATH_NO_COLLECTION',
+      ['toString'],
+    );
+  }
+
+  List<FhirBase> funcToDecimal(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    final s = convertToStringList(focus);
+    final result = <FhirBase>[];
+    if (Utilities.isDecimal(s)) {
+      result.add(FhirDecimal(double.parse(s)).noExtensions());
+    } else if (s == 'true') {
+      result.add(FhirDecimal(1).noExtensions());
+    } else if (s == 'false') {
+      result.add(FhirDecimal(0).noExtensions());
+    }
+    return result;
+  }
+
   List<FhirBase> funcIsDecimal(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -5362,6 +6072,147 @@ class FHIRPathEngine {
       result.add(FhirBoolean(false).noExtensions());
     }
     return result;
+  }
+
+  List<FhirBoolean> funcIsInteger(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirInteger || focus.first is FhirBoolean) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      return [FhirBoolean(Utilities.isInteger(focus.first.toString()))];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  List<FhirBoolean> funcIsBoolean(List<FhirBase> focus) {
+    print('funcIsBoolean focus: $focus');
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirInteger) {
+      final value = (focus.first as FhirInteger).value;
+      return [FhirBoolean(value != null && value >= 0 && value <= 1)];
+    } else if (focus.first is FhirDecimal) {
+      final value = (focus.first as FhirDecimal).value;
+      return [FhirBoolean(value != null && (value == 0 || value == 1))];
+    } else if (focus.first is FhirBoolean) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      final value = focus.first.toString().toLowerCase();
+      return [FhirBoolean(value == 'true' || value == 'false')];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  List<FhirBoolean> funcIsDateTime(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirDateTime || focus.first is FhirDate) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      final regex = RegExp(
+        r'(\d{4}(-\d{2}(-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|([-+]\d{2}:\d{2})))?)?)?)',
+      );
+      return [FhirBoolean(regex.hasMatch(focus.first.toString()))];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  List<FhirBoolean> funcIsDate(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirDateTime || focus.first is FhirDate) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      final regex = RegExp(
+        r'\d{4}(-\d{2}(-\d{2})?)?',
+      );
+      return [FhirBoolean(regex.hasMatch(focus.first.toString()))];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  Future<List<FhirBase>> funcConformsTo(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) async {
+    if (hostServices == null) {
+      throw makeException(expr, 'FHIRPATH_HO_HOST_SERVICES', [
+        'conformsTo',
+      ]);
+    }
+    final result = <FhirBase>[];
+    if (focus.length != 1) {
+      result.add(FhirBoolean(false).noExtensions());
+    } else {
+      final url = convertToStringList(
+        await execute(context, focus, expr.parameters.first, true),
+      );
+      result.add(
+        FhirBoolean(
+          hostServices!.conformsToProfile(
+            this,
+            context.appInfo ?? '',
+            focus.first,
+            url,
+          ),
+        ).noExtensions(),
+      );
+    }
+    return result;
+  }
+
+  List<FhirBoolean> funcIsTime(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirTime) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      final regex = RegExp(
+        r'(T)?([01]\d|2[0-3]):[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|([-+](0[0-9]|1[0-3]):[0-5]\d|14:00))?',
+      );
+      return [FhirBoolean(regex.hasMatch(focus.first.toString()))];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  List<FhirBoolean> funcIsString(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirString ||
+        focus.first is FhirInteger ||
+        focus.first is FhirDecimal ||
+        focus.first is FhirDate ||
+        focus.first is FhirDateTime ||
+        focus.first is FhirTime ||
+        focus.first is FhirBoolean ||
+        focus.first is Quantity) {
+      return [FhirBoolean(true)];
+    } else {
+      return [FhirBoolean(false)];
+    }
+  }
+
+  List<FhirBoolean> funcIsQuantity(List<FhirBase> focus) {
+    if (focus.length != 1) {
+      return [FhirBoolean(false)];
+    } else if (focus.first is FhirInteger ||
+        focus.first is FhirDecimal ||
+        focus.first is Quantity ||
+        focus.first is FhirBoolean) {
+      return [FhirBoolean(true)];
+    } else if (focus.first is FhirString) {
+      final quantity = parseQuantityString(focus.first.toString());
+      return [FhirBoolean(quantity != null)];
+    } else {
+      return [FhirBoolean(false)];
+    }
   }
 
   Future<List<FhirBase>> funcRound(
@@ -5425,6 +6276,88 @@ class FHIRPathEngine {
     return result;
   }
 
+  List<FhirBase> funcSqrt(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['sqrt', focus.length],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (value != null) {
+        try {
+          result.add(FhirDecimal(sqrt(value)).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'sqrt',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcAbs(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['abs', focus.length],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (value != null) {
+        try {
+          result.add(FhirDecimal(value.abs()).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else if (base.fhirType == 'Quantity') {
+      final qty = base as Quantity;
+      final n = qty.value?.abs();
+      if (n != null) {
+        result.add(qty.copyWith(value: FhirDecimal(n)));
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'abs',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
   List<FhirBase> funcCeiling(
     ExecutionContext context,
     List<FhirBase> focus,
@@ -5435,10 +6368,7 @@ class FHIRPathEngine {
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
-        [
-          'ceiling',
-          focus.length,
-        ],
+        ['ceiling', focus.length],
       );
     }
 
@@ -5446,12 +6376,12 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
 
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final d = double.tryParse(base.primitiveValue ?? '');
-      if (d != null) {
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (value != null) {
         try {
-          result.add(d.ceil().toFhirInteger);
+          result.add(FhirInteger(value.ceil()).noExtensions());
         } catch (e) {
-          // Just return nothing if there's an error
+          // Do nothing on error
         }
       }
     } else {
@@ -5464,6 +6394,485 @@ class FHIRPathEngine {
     }
 
     return result;
+  }
+
+  List<FhirBase> funcFloor(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['floor', focus.length],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (value != null) {
+        try {
+          result.add(FhirInteger(value.floor()).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'floor',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcLn(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['ln', focus.length],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (value != null) {
+        try {
+          result.add(FhirDecimal(log(value)).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'ln',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  Future<List<FhirBase>> funcPower(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) async {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['power', focus.length],
+      );
+    }
+
+    final base = focus[0];
+    final result = <FhirBase>[];
+
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final n1 = await execute(context, focus, expr.parameters.first, true);
+      if (n1.length != 1) {
+        throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+          'power',
+          '0',
+          'Multiple Values',
+          'integer or decimal',
+        ]);
+      }
+
+      final exponent = double.tryParse(n1[0].primitiveValue ?? '');
+      final value = double.tryParse(base.primitiveValue ?? '');
+      if (exponent != null && value != null) {
+        try {
+          result.add(FhirDecimal(pow(value, exponent)).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'power',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcExp(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['exp', focus.length],
+      );
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final d = double.tryParse(base.primitiveValue ?? '');
+      if (d != null) {
+        try {
+          result.add(FhirDecimal(exp(d)).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'exp',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  Future<List<FhirBase>> funcLog(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) async {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['log', focus.length],
+      );
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      final n1 = await execute(context, focus, expr.parameters[0], true);
+      if (n1.length != 1) {
+        throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+          'log',
+          '0',
+          'Multiple Values',
+          'integer or decimal',
+        ]);
+      }
+      final e = double.tryParse(n1.first.primitiveValue ?? '');
+      final d = double.tryParse(base.primitiveValue ?? '');
+      if (e != null && d != null) {
+        try {
+          result.add(FhirDecimal(log(d) / log(e)).noExtensions());
+        } catch (e) {
+          // Do nothing on error
+        }
+      }
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'log',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcTruncate(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['truncate', focus.length],
+      );
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
+      var s = base.primitiveValue ?? '';
+      if (s.contains('.')) {
+        s = s.split('.').first;
+      }
+      result.add(FhirInteger(int.parse(s)).noExtensions());
+    } else {
+      throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+        'truncate',
+        '(focus)',
+        base.fhirType,
+        'integer or decimal',
+      ]);
+    }
+
+    return result;
+  }
+
+  Future<List<FhirBase>> funcLowBoundary(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) async {
+    if (focus.isEmpty) {
+      return makeNull();
+    }
+    if (focus.length > 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['lowBoundary', focus.length],
+      );
+    }
+
+    int? precision;
+    if (expr.parameters.isNotEmpty) {
+      final n1 = await execute(context, focus, expr.parameters[0], true);
+      if (n1.length != 1) {
+        throw makeException(
+          expr,
+          'FHIRPATH_WRONG_PARAM_TYPE',
+          ['lowBoundary', '0', 'Multiple Values', 'integer'],
+        );
+      }
+      precision = int.tryParse(n1.first.primitiveValue ?? '');
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+
+    if (base.hasType(['decimal', 'integer'])) {
+      if (precision == null || (precision >= 0 && precision < 17)) {
+        result.add(
+          FhirDecimal(
+            double.parse(
+              (base.primitiveValue ?? '').lowBoundaryForDecimal(
+                precision ?? 8,
+              ),
+            ),
+          ).noExtensions(),
+        );
+      }
+    } else if (base.hasType(['date'])) {
+      result.add(
+        FhirDateTime.fromString(
+          (base.primitiveValue ?? '').lowBoundaryForDate(
+            precision ?? 10,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['dateTime'])) {
+      result.add(
+        FhirDateTime.fromString(
+          (base.primitiveValue ?? '').lowBoundaryForDate(
+            precision ?? 17,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['time'])) {
+      result.add(
+        FhirTime(
+          (base.primitiveValue ?? '').lowBoundaryForTime(
+            precision ?? 9,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['Quantity'])) {
+      final value = getNamedValue(base, 'value');
+      final copied = base.copyWith() as Quantity
+        ..setProperty(
+          'value',
+          FhirDecimal(
+            double.parse((value ?? '').lowBoundaryForDecimal(precision ?? 8)),
+          ),
+        );
+      result.add(copied);
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_WRONG_PARAM_TYPE',
+        ['lowBoundary', '(focus)', base.fhirType, 'decimal or date'],
+      );
+    }
+
+    return result;
+  }
+
+  Future<List<FhirBase>> funcHighBoundary(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) async {
+    if (focus.isEmpty) {
+      return makeNull();
+    }
+    if (focus.length > 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['highBoundary', focus.length],
+      );
+    }
+
+    int? precision;
+    if (expr.parameters.isNotEmpty) {
+      final n1 = await execute(context, focus, expr.parameters[0], true);
+      if (n1.length != 1) {
+        throw makeException(
+          expr,
+          'FHIRPATH_WRONG_PARAM_TYPE',
+          ['highBoundary', '0', 'Multiple Values', 'integer'],
+        );
+      }
+      precision = int.tryParse(n1.first.primitiveValue ?? '');
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+
+    if (base.hasType(['decimal', 'integer'])) {
+      if (precision == null || (precision >= 0 && precision < 17)) {
+        result.add(
+          FhirDecimal(
+            double.parse(
+              (base.primitiveValue ?? '').highBoundaryForDecimal(
+                precision ?? 8,
+              ),
+            ),
+          ).noExtensions(),
+        );
+      }
+    } else if (base.hasType(['date'])) {
+      result.add(
+        FhirDateTime.fromString(
+          (base.primitiveValue ?? '').highBoundaryForDate(
+            precision ?? 10,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['dateTime'])) {
+      result.add(
+        FhirDateTime.fromString(
+          (base.primitiveValue ?? '').highBoundaryForDate(
+            precision ?? 17,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['time'])) {
+      result.add(
+        FhirTime(
+          (base.primitiveValue ?? '').highBoundaryForTime(
+            precision ?? 9,
+          ),
+        ).noExtensions(),
+      );
+    } else if (base.hasType(['Quantity'])) {
+      final value = getNamedValue(base, 'value');
+      final copied = base.copyWith() as Quantity
+        ..setProperty(
+          'value',
+          FhirDecimal(
+            double.parse((value ?? '').highBoundaryForDecimal(precision ?? 8)),
+          ),
+        );
+      result.add(copied);
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_WRONG_PARAM_TYPE',
+        ['highBoundary', '(focus)', base.fhirType, 'decimal or date'],
+      );
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcPrecision(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    if (focus.length != 1) {
+      throw makeExceptionPlural(
+        focus.length,
+        expr,
+        'FHIRPATH_FOCUS',
+        ['highBoundary', focus.length],
+      );
+    }
+
+    final base = focus.first;
+    final result = <FhirBase>[];
+
+    if (base.hasType(['decimal'])) {
+      result.add(
+        FhirInteger(
+          (base.primitiveValue ?? '').getDecimalPrecision(),
+        ),
+      );
+    } else if (base.hasType(['date', 'dateTime'])) {
+      result.add(
+        FhirInteger((base.primitiveValue ?? '').getDatePrecision()),
+      );
+    } else if (base.hasType(['time'])) {
+      result.add(
+        FhirInteger((base.primitiveValue ?? '').getTimePrecision()),
+      );
+    } else {
+      throw makeException(
+        expr,
+        'FHIRPATH_WRONG_PARAM_TYPE',
+        ['highBoundary', '(focus)', base.fhirType, 'decimal or date'],
+      );
+    }
+
+    return result;
+  }
+
+  String? getNamedValue(FhirBase base, String name) {
+    final property = base.getChildValueByName(name);
+    final propertyChildren = property?.children();
+    if (property != null && propertyChildren!.length == 1) {
+      return property
+          .getChildValueByName(propertyChildren.first)
+          ?.primitiveValue;
+    }
+    return null;
   }
 
   Future<List<FhirBase>> funcSupersetOf(
@@ -6135,8 +7544,6 @@ class FHIRPathEngine {
     final value = negate ? -q.value!.value!.toInt() : q.value!.value!.toInt();
     final unit = q.code?.value ?? q.unit?.value;
 
-    print('Adding $value $unit to $d');
-
     switch (unit) {
       case 'years':
       case 'year':
@@ -6358,6 +7765,7 @@ class FHIRPathEngine {
   }
 
   bool convertToBoolean(List<FhirBase>? items) {
+    print('convertToBoolean items: $items');
     if (items == null) {
       return false;
     } else if (items.length == 1 && items.first is PrimitiveType) {
@@ -6380,5 +7788,13 @@ class FHIRPathEngine {
       if (n.equalsIgnoreCase(t)) return true;
     }
     return false;
+  }
+
+  Quantity quantityFromUcum(String v, String code) {
+    return Quantity(
+      value: FhirDecimal(double.parse(v)),
+      system: FhirUri('http://unitsofmeasure.org'),
+      code: FhirCode(code),
+    );
   }
 }

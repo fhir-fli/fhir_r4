@@ -4,7 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 final worker = WorkerContext();
-  // ..loadStructureDefinitions(getStructureDefinitions());
+// ..loadStructureDefinitions(getStructureDefinitions());
 final testEngine = FHIRPathEngine(worker);
 List<dynamic> toJsonList(List<FhirBase> list) =>
     list.map((e) => e is PrimitiveType ? e.value : e.toJson()).toList();
@@ -216,6 +216,7 @@ final patient2 = Patient(
 );
 
 final patient3 = Patient(
+  id: 'example'.toFhirString,
   active: true.toFhirBoolean,
   telecom: [
     ContactPoint(

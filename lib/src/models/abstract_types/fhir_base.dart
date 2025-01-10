@@ -178,6 +178,16 @@ abstract class FhirBase {
     return true;
   }
 
+  /// Checks if the object has values.
+  bool hasValues() {
+    for (final child in children()) {
+      if (getChildValueByName(child) != null) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /// Checks if the list is empty.
   static bool noList<T extends FhirBase>(List<T>? list) {
     return list == null ||

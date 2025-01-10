@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_bool_parameters
-// ignore_for_file: avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
@@ -105,12 +104,6 @@ class FHIRLexer {
 
   void next() {
     // Debugging: Start of next() function
-    print('--- Entering next() ---');
-    print('Cursor at start: $cursor');
-    print('Source length: ${source.length}');
-    print(
-      'Current character: ${cursor < source.length ? source[cursor] : 'EOF'}',
-    );
 
     skipWhitespaceAndComments();
 
@@ -120,49 +113,37 @@ class FHIRLexer {
 
     if (cursor < source.length) {
       var ch = source[cursor];
-      print('Lexing character: $ch');
 
       if (['!', '>', '<', ':', '=', '-'].contains(ch)) {
-        print('Identified as potential operator: $ch');
         cursor++;
         if (cursor < source.length &&
             (['=', '~', '-'].contains(source[cursor]) ||
                 (ch == '-' && source[cursor] == '>'))) {
-          print(
-            'Compound operator detected: '
-            '${source.substring(currentStart, cursor + 1)}',
-          );
           cursor++;
         }
         current = source.substring(currentStart, cursor);
       } else if (ch == '.') {
-        print('Identified as potential dot operator or range');
         cursor++;
         if (cursor < source.length && source[cursor] == '.') {
-          print('Dot operator is range (..)');
           cursor++;
         }
         current = source.substring(currentStart, cursor);
       } else if (ch.codeUnitAt(0).between_0_9) {
-        print('Identified as numeric constant');
         cursor++;
         var dotted = false;
         while (cursor < source.length &&
             (source[cursor].codeUnitAt(0).between_0_9 ||
                 (source[cursor] == '.') && !dotted)) {
           if (source[cursor] == '.') {
-            print('Found decimal point in numeric constant');
             dotted = true;
           }
           cursor++;
         }
         if (source[cursor - 1] == '.') {
-          print('Trailing dot detected, adjusting');
           cursor--;
         }
         current = source.substring(currentStart, cursor);
       } else if (ch.codeUnitAt(0).between_a_z || ch.codeUnitAt(0).between_A_Z) {
-        print('Identified as alphabetic token');
         while (cursor < source.length &&
             (source[cursor].codeUnitAt(0).between_A_Z ||
                 source[cursor].codeUnitAt(0).between_a_z ||
@@ -172,10 +153,8 @@ class FHIRLexer {
         }
         current = source.substring(currentStart, cursor);
       } else if (ch == '%') {
-        print('Identified as % operator or metadata token');
         cursor++;
         if (cursor < source.length && (source[cursor] == '`')) {
-          print('Entering backtick-enclosed metadata');
           cursor++;
           while (cursor < source.length && (source[cursor] != '`')) {
             cursor++;
@@ -194,17 +173,14 @@ class FHIRLexer {
         }
         current = source.substring(currentStart, cursor);
       } else if (ch == '/') {
-        print('Identified as / operator or metadata');
         cursor++;
         if (cursor < source.length && (source[cursor] == '/')) {
-          print('Detected metadata start with //');
           cursor += 2;
           current = source.substring(currentStart, cursor);
         } else {
           current = source.substring(currentStart, cursor);
         }
       } else if (ch == r'$') {
-        print(r'Identified as $ token');
         cursor++;
         while (cursor < source.length &&
             source[cursor].codeUnitAt(0).between_a_z) {
@@ -212,16 +188,13 @@ class FHIRLexer {
         }
         current = source.substring(currentStart, cursor);
       } else if (ch == '{') {
-        print('Identified as potential block start: {');
         cursor++;
         ch = source[cursor];
         if (ch == '}') {
-          print('Empty block detected: {}');
           cursor++;
         }
         current = source.substring(currentStart, cursor);
       } else if (ch == '"' && allowDoubleQuotes) {
-        print('Identified as string starting with double quotes');
         cursor++;
         var escape = false;
         while (cursor < source.length && (escape || source[cursor] != '"')) {
@@ -236,7 +209,6 @@ class FHIRLexer {
         cursor++;
         current = '"${source.substring(currentStart + 1, cursor - 1)}"';
       } else if (ch == '`') {
-        print('Identified as string starting with backtick');
         cursor++;
         var escape = false;
         while (cursor < source.length && (escape || source[cursor] != '`')) {
@@ -251,7 +223,6 @@ class FHIRLexer {
         cursor++;
         current = '`${source.substring(currentStart + 1, cursor - 1)}`';
       } else if (ch == "'") {
-        print('Identified as string starting with single quote');
         cursor++;
         final ech = ch;
         var escape = false;
@@ -270,13 +241,11 @@ class FHIRLexer {
           current = "'${current!.substring(1, current!.length - 1)}'";
         }
       } else if (ch == '|' && liquidMode) {
-        print('Identified as | in liquid mode');
         cursor++;
         ch = source[cursor];
         if (ch == '|') cursor++;
         current = source.substring(currentStart, cursor);
       } else if (ch == '@') {
-        print('Identified as @ token');
         final start = cursor;
         cursor++;
         while (cursor < source.length && isDateChar(source[cursor], start)) {
@@ -284,14 +253,10 @@ class FHIRLexer {
         }
         current = source.substring(currentStart, cursor);
       } else {
-        print('Identified as general token: $ch');
         cursor++;
         current = source.substring(currentStart, cursor);
       }
-      print('Token finalized: $current');
     }
-
-    print('--- Exiting next() ---');
   }
 
   void skipWhitespaceAndComments() {
@@ -366,7 +331,7 @@ class FHIRLexer {
 
   bool done() {
     final isDone = currentStart >= source.length;
-    print('Lexer done? $isDone');
+
     return isDone;
   }
 

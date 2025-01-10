@@ -1,4 +1,5 @@
-// ignore_for_file: public_member_api_docs, constant_identifier_names, lines_longer_than_80_chars, avoid_print
+// ignore_for_file: public_member_api_docs, constant_identifier_names,
+// ignore_for_file: lines_longer_than_80_chars, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
@@ -361,6 +362,7 @@ enum FpFunction {
   ToDecimal,
   ToQuantity,
   ToDateTime,
+  ToDate,
   ToTime,
   ConformsTo,
   Round,
@@ -389,7 +391,6 @@ enum FpFunction {
   HasTemplateIdOf;
 
   static FpFunction? fromCode(String name) {
-    print('name: $name');
     switch (name) {
       case 'empty':
         return FpFunction.Empty;
@@ -541,6 +542,8 @@ enum FpFunction {
         return FpFunction.ToBoolean;
       case 'toDateTime':
         return FpFunction.ToDateTime;
+      case 'toDate':
+        return FpFunction.ToDate;
       case 'toTime':
         return FpFunction.ToTime;
       case 'convertsToInteger':
@@ -740,6 +743,8 @@ enum FpFunction {
         return 'toQuantity';
       case FpFunction.ToDateTime:
         return 'toDateTime';
+      case FpFunction.ToDate:
+        return 'toDate';
       case FpFunction.ToTime:
         return 'toTime';
       case FpFunction.ConformsTo:
