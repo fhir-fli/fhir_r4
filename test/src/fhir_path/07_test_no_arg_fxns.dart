@@ -6,42 +6,42 @@ import '00_test_data.dart';
 
 void testNoArgFxns() {
   group('Functions w/o Arguments: ', () {
-    test('empty', () {
+    test('empty', () async {
       var node = testEngine.parse('name.family.empty()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('name.given.empty()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
       node = testEngine.parse('Patient.language.empty()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.name.period.empty()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('{}.empty()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
     });
-    test('allTrue', () {
+    test('allTrue', () async {
       var node = testEngine.parse('Patient.active.allTrue()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [true.toFhirBoolean],
       );
       node = testEngine.parse('Patient.deceasedBoolean.allTrue()');
       expect(
-        testEngine.evaluate(patient3, node),
+        await testEngine.evaluate(patient3, node),
         [false.toFhirBoolean],
       );
     });
@@ -1380,7 +1380,6 @@ void testNoArgFxns() {
     //         (endTimeOfDay >= resultTimeOfDay ?? false),
     //     true,
     //   );
-
 
     //   node = testEngine.parse('today()');
     //   expect(

@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 void fhirPathParserTest() {
   group('FHIRPathEngine Parsing Tests', () {
-    final worker = SimpleWorkerContext();
+    final worker = WorkerContext();
     final testEngine = FHIRPathEngine(worker);
 
     test('Parse valid simple path', () {

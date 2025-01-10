@@ -72,7 +72,7 @@ class ValueSetChecker {
         } else {
           if (cs == null) {
             return ValidationResult.error(
-              errorMessage: 'Code system not found',
+              message: 'Code system not found',
             );
           }
           res = validateCodeAgainstCodeSystem(coding, cs);
@@ -97,9 +97,12 @@ class ValueSetChecker {
     }
 
     if (errors.isNotEmpty) {
-      return ValidationResult.error(errorMessage: errors.join(', '));
+      return ValidationResult.error(message: errors.join(', '));
     } else if (warnings.isNotEmpty) {
-      return ValidationResult.warning(warningMessage: warnings.join(', '));
+      return ValidationResult(
+        severity: IssueSeverity.warning,
+        message: warnings.join(', '),
+      );
     } else {
       return ValidationResult(severity: IssueSeverity.information);
     }
@@ -156,8 +159,9 @@ class ValueSetChecker {
   /// Analyse a component of a value set
   ValidationResult validateCodeAgainstCodeSystem(Coding coding, CodeSystem cs) {
     if (cs.content != CodeSystemContentMode.complete) {
-      return ValidationResult.warning(
-        warningMessage: 'Code system is incomplete: ${cs.url}',
+      return ValidationResult(
+        severity: IssueSeverity.warning,
+        message: 'Code system is incomplete: ${cs.url}',
       );
     }
 
@@ -168,7 +172,7 @@ class ValueSetChecker {
 
     if (concept == null) {
       return ValidationResult.error(
-        errorMessage: 'Code not found in code system: ${coding.code}',
+        message: 'Code not found in code system: ${coding.code}',
       );
     }
 

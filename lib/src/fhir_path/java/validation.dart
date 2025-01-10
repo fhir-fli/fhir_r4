@@ -259,119 +259,96 @@ class ValidationOptions {
 /// Represents the result of a validation operation, including its outcome and
 /// related metadata.
 class ValidationResult {
-  /// Creates a generic [ValidationResult] instance.
+  /// Constructor for a generic [ValidationResult].
   ValidationResult({
-    this.definition,
     this.system,
+    this.definition,
     this.severity,
     this.message,
     this.errorClass,
     this.txLink,
   });
 
-  /// Creates a successful [ValidationResult] with optional metadata.
+  /// Constructor for an error result.
+  ValidationResult.error({
+    required this.message,
+    this.errorClass,
+  }) : severity = IssueSeverity.error;
+
+  /// Constructor for a successful validation result.
   ValidationResult.success({
-    String? message,
     this.system,
     this.definition,
+    this.message,
     this.txLink,
-  })  : severity = IssueSeverity.information,
-        message = message ?? 'Success';
+  }) : severity = IssueSeverity.information;
 
-  /// Creates an error [ValidationResult] with a required error message and
-  /// optional error class.
-  ValidationResult.error({
-    required String errorMessage,
-    this.errorClass,
-  })  : severity = IssueSeverity.error,
-        message = errorMessage;
-
-  /// Creates a warning [ValidationResult] with a required warning message.
-  ValidationResult.warning({
-    required String warningMessage,
-    FhirCode? severity,
-  })  : severity = severity ?? IssueSeverity.warning,
-        message = warningMessage;
-
-  /// The associated definition of the validated concept, if available.
+  /// The associated concept definition.
   CodeSystemConcept? definition;
 
-  /// The system URL associated with the validated code, if applicable.
+  /// The system URL.
   String? system;
 
-  /// The severity of the validation result, indicating its significance.
-  FhirCode? severity;
+  /// The severity of the validation result.
+  IssueSeverity? severity;
 
-  /// A message providing details about the validation result.
+  /// The validation message.
   String? message;
 
-  /// The classification of the error, if applicable.
+  /// The error classification.
   TerminologyServiceErrorClass? errorClass;
 
-  /// A link to any related transaction, if applicable.
+  /// The transaction link.
   String? txLink;
 
-  /// Returns a string representation of the validation result.
-  @override
-  String toString() {
-    return 'ValidationResult [definition=$definition, '
-        'system=$system, severity=$severity, message=$message, '
-        'errorClass=$errorClass, txLink=$txLink]';
-  }
-
-  /// Indicates whether the validation result is considered acceptable (OK).
+  /// Returns whether the validation result is acceptable.
   bool get isOk {
     return severity == null ||
         severity == IssueSeverity.information ||
         severity == IssueSeverity.warning;
   }
 
-  /// Retrieves the display name of the validated concept, if available.
+  /// Retrieves the display name of the validated concept.
   String? getDisplay() {
     return definition?.display?.value;
   }
 
-  /// Retrieves the code of the validated concept, defaulting to an empty
-  /// string if unavailable.
+  /// Retrieves the code of the validated concept.
   String? getCode() {
-    return definition?.code.primitiveValue;
+    return definition?.code.value;
   }
 
-  /// Retrieves the definition of the validated concept, defaulting to an
-  /// empty string if unavailable.
-  String? getDefinition() => definition?.definition?.value;
+  /// Retrieves the definition of the validated concept.
+  String? getDefinition() {
+    return definition?.definition?.value;
+  }
 
-  /// Returns the associated [CodeSystemConcept] as a canonical concept
-  /// definition.
-  CodeSystemConcept asConceptDefinition() => definition!;
+  /// Returns the associated concept definition.
+  CodeSystemConcept? asConceptDefinition() => definition;
 
-  /// Indicates whether the validation error was caused by the absence of a
-  /// terminology service.
+  /// Indicates whether the error was caused by the absence of a terminology
+  /// service.
   bool isNoService() {
     return errorClass == TerminologyServiceErrorClass.noservice;
   }
 
-  /// Checks if the validation result includes an error or warning message.
-  bool hasMessage() {
-    return message != null;
-  }
-
-  /// Converts the validation result into a [Coding] instance if possible.
-  /// Returns `null` if the result is not valid or lacks required information.
+  /// Returns the instance as a [Coding], if applicable.
   Coding? asCoding() {
-    if (isOk && definition != null && definition?.code.value != null) {
+    if (isOk && definition != null) {
       return Coding(
         system: system == null ? null : FhirUri(system),
-        code: definition?.code.value == null
-            ? null
-            : FhirCode(definition!.code.value),
-        display: definition?.display?.value == null
-            ? null
-            : FhirString(definition!.display!.value),
+        code: definition?.code,
+        display: definition?.display,
       );
-    } else {
-      return null;
     }
+    return null;
+  }
+
+  @override
+  String toString() {
+    return 'ValidationResult [definition=$definition, system=$system, '
+        'severity=$severity, message=$message, errorClass=$errorClass, '
+        'txLink=$txLink]';
   }
 }
 

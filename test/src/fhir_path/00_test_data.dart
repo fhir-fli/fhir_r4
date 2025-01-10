@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
-final worker = SimpleWorkerContext();
+final worker = WorkerContext();
   // ..loadStructureDefinitions(getStructureDefinitions());
 final testEngine = FHIRPathEngine(worker);
 List<dynamic> toJsonList(List<FhirBase> list) =>
@@ -216,6 +216,7 @@ final patient2 = Patient(
 );
 
 final patient3 = Patient(
+  active: true.toFhirBoolean,
   telecom: [
     ContactPoint(
       system: ContactPointSystem.email,

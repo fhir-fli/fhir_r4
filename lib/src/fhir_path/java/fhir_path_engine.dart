@@ -3205,12 +3205,15 @@ class FHIRPathEngine {
             ans = true;
           }
         } else if (l.fhirType == 'CodeableConcept') {
-          // TODO(Dokotela): invalid, need to correct
           final cc = TypeConvertor.castToCodeableConcept(l);
-          // final vr = worker.validateCode(terminologyServiceOptions, cc, vs);
-          // if (vr.isOk()) {
-          ans = true;
-          // }
+          final vr = await worker.validateCodeWithCodeableConcept(
+            terminologyServiceOptions,
+            cc!,
+            vs,
+          );
+          if (vr.isOk) {
+            ans = true;
+          }
         }
       }
     }

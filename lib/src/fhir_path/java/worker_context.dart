@@ -5,6 +5,7 @@ import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:ucum/ucum.dart';
 
 class WorkerContext {
+  WorkerContext({this.txClient});
   // Fields to store resources
   final Map<String, StructureDefinition> _structures = {};
   final Map<String, Resource> _resources = {};
@@ -17,7 +18,12 @@ class WorkerContext {
   final ClientLogger txLog = ClientLogger();
   bool noTerminologyServer = true;
   bool tlogging = true;
+  bool isTxCaching = false;
+  String? cacheId;
+  final Set<String> cached = {};
   final LoggingService logger = LoggingService(debug: true);
+  final FhirToolingClient? txClient;
+  Parameters? expParameters;
 
   List<StructureDefinition> getStructures() {
     return _structures.values.toList();
@@ -233,7 +239,7 @@ class WorkerContext {
         final codeSystem = await fetchCodeSystem(coding.system?.primitiveValue);
         if (codeSystem == null) {
           return ValidationResult.error(
-            errorMessage: 'Code system not found: ${coding.system}',
+            message: 'Code system not found: ${coding.system}',
           );
         }
         return checker.validateCodeAgainstCodeSystem(coding, codeSystem);
@@ -246,12 +252,12 @@ class WorkerContext {
 
       // If neither client nor server validation is enabled
       return ValidationResult.error(
-        errorMessage: 'No validation methods (client/server) enabled.',
+        message: 'No validation methods (client/server) enabled.',
       );
     } catch (e) {
       // Catch and return any unexpected errors during validation
       return ValidationResult.error(
-        errorMessage: 'Validation failed: $e',
+        message: 'Validation failed: $e',
       );
     }
   }
@@ -296,7 +302,7 @@ class WorkerContext {
       } catch (e) {
         if (e is NoTerminologyServiceException) {
           return ValidationResult.error(
-            errorMessage: 'No Terminology Service available',
+            message: 'No Terminology Service available',
             errorClass: TerminologyServiceErrorClass.noservice,
           );
         }
@@ -305,17 +311,17 @@ class WorkerContext {
 
     // If client-side validation fails and server-side validation is disabled
     if (!options.useServer) {
-      return ValidationResult.warning(
-        warningMessage: 'Unable to validate code without using server',
-        severity: TerminologyServiceErrorClass.blockedByOptions,
+      return ValidationResult(
+        severity: IssueSeverity.warning,
+        message: 'Unable to validate code without using server',
+        errorClass: TerminologyServiceErrorClass.blockedByOptions,
       );
     }
 
     // Attempt server-side validation
     if (noTerminologyServer) {
       return ValidationResult.error(
-        errorMessage:
-            'Error validating code: running without terminology services',
+        message: 'Error validating code: running without terminology services',
         errorClass: TerminologyServiceErrorClass.noservice,
       );
     }
@@ -347,7 +353,7 @@ class WorkerContext {
       return result;
     } catch (e) {
       return ValidationResult.error(
-        errorMessage: e.toString(),
+        message: e.toString(),
       )..txLink = txLog.getLastId();
     }
   }
@@ -359,19 +365,23 @@ class WorkerContext {
   }
 
   /// Validates a ValueSet on a server using the given parameters and options.
-  ValidationResult validateOnServer(
+  Future<ValidationResult> validateOnServer(
     ValueSet? vs,
     Parameters pin,
     ValidationOptions options,
-  ) {
-    bool cache = false;
+  ) async {
+    var cache = false;
 
     if (vs != null) {
-      for (final inc in vs.compose?.include ?? []) {
-        codeSystemsUsed.add(inc.system?.value);
+      for (final inc in vs.compose?.include ?? <ValueSetInclude>[]) {
+        if (inc.system?.primitiveValue != null) {
+          codeSystemsUsed.add(inc.system!.primitiveValue!);
+        }
       }
-      for (final exc in vs.compose?.exclude ?? []) {
-        codeSystemsUsed.add(exc.system?.value);
+      for (final exc in vs.compose?.exclude ?? <ValueSetInclude>[]) {
+        if (exc.system?.primitiveValue != null) {
+          codeSystemsUsed.add(exc.system!.primitiveValue!);
+        }
       }
     }
 
@@ -382,22 +392,26 @@ class WorkerContext {
           cached.contains('${vs.url!.value}|${vs.version?.value}')) {
         pin.parameter?.add(
           ParametersParameter(
-            name: 'url',
-            valueUri: FhirUri(
-                '${vs.url!.value}${vs.version != null ? '|${vs.version!.value}' : ''}'),
+            name: 'url'.toFhirString,
+            valueX: FhirUri(
+              '${vs.url!.value}'
+              '${vs.version != null ? '|${vs.version!.value}' : ''}',
+            ),
           ),
         );
       } else if (options.vsAsUrl) {
         pin.parameter?.add(
           ParametersParameter(
-            name: 'url',
-            valueString: FhirString(vs.url?.value),
+            name: 'url'.toFhirString,
+            valueX: vs.url?.primitiveValue == null
+                ? null
+                : FhirString(vs.url!.primitiveValue),
           ),
         );
       } else {
         pin.parameter?.add(
           ParametersParameter(
-            name: 'valueSet',
+            name: 'valueSet'.toFhirString,
             resource: vs,
           ),
         );
@@ -412,54 +426,206 @@ class WorkerContext {
     if (cache) {
       pin.parameter?.add(
         ParametersParameter(
-          name: 'cache-id',
-          valueString: FhirString(cacheId),
+          name: 'cache-id'.toFhirString,
+          valueX: FhirString(cacheId),
         ),
       );
     }
 
-    for (final pp in pin.parameter ?? []) {
-      if (pp.name == 'profile') {
+    for (final pp in pin.parameter ?? <ParametersParameter>[]) {
+      if (pp.name.primitiveValue == 'profile') {
         throw ArgumentError(
-          formatMessage(I18nConstants.CAN_ONLY_SPECIFY_PROFILE_IN_THE_CONTEXT),
+          formatMessage('CAN_ONLY_SPECIFY_PROFILE_IN_THE_CONTEXT', []),
         );
       }
     }
 
     if (expParameters == null) {
       throw ArgumentError(
-        formatMessage(I18nConstants.NO_EXPANSIONPROFILE_PROVIDED),
+        formatMessage('NO_EXPANSIONPROFILE_PROVIDED', []),
       );
     }
 
     pin.parameter?.add(
       ParametersParameter(
-        name: 'profile',
+        name: 'profile'.toFhirString,
         resource: expParameters,
       ),
     );
 
-    if (txLog != null) {
-      txLog.clearLastId();
-    }
+    txLog.clearLastId();
 
     if (txClient == null) {
       throw ArgumentError(
         formatMessage(
-          I18nConstants
-              .ATTEMPT_TO_USE_TERMINOLOGY_SERVER_WHEN_NO_TERMINOLOGY_SERVER_IS_AVAILABLE,
+          // ignore: lines_longer_than_80_chars
+          'ATTEMPT_TO_USE_TERMINOLOGY_SERVER_WHEN_NO_TERMINOLOGY_SERVER_IS_AVAILABLE',
+          [],
         ),
       );
     }
 
     Parameters pOut;
     if (vs == null) {
-      pOut = txClient.validateCS(pin);
+      pOut = await txClient!.validateCS(pin);
     } else {
-      pOut = txClient.validateVS(pin);
+      pOut = await txClient!.validateVS(pin);
     }
 
     return processValidationResult(pOut);
+  }
+
+  (bool, Parameters) addDependentResources(Parameters oldPin, ValueSet vs) {
+    var cache = false;
+    var pin = oldPin;
+    for (final inc in vs.compose?.include ?? <ValueSetInclude>[]) {
+      final tempCachePin = addDependentResourcesForComponent(pin, inc);
+      cache = tempCachePin.$1 || cache;
+      pin = tempCachePin.$2;
+    }
+    for (final inc in vs.compose?.exclude ?? <ValueSetInclude>[]) {
+      final tempCachePin = addDependentResourcesForComponent(pin, inc);
+      cache = tempCachePin.$1 || cache;
+      pin = tempCachePin.$2;
+    }
+    return (cache, pin);
+  }
+
+  (bool, Parameters) addDependentResourcesForComponent(
+    Parameters oldPin,
+    ValueSetInclude inc,
+  ) {
+    var cache = false;
+    var pin = oldPin;
+
+    for (final canonical in inc.valueSet ?? <FhirCanonical>[]) {
+      final vs = fetchResource<ValueSet>(uri: canonical.primitiveValue);
+      if (vs != null) {
+        pin = pin.copyWith(
+          parameter: [
+            ...pin.parameter ?? [],
+            ParametersParameter(
+              name: 'tx-resource'.toFhirString,
+              resource: vs,
+            ),
+          ],
+        );
+        if (isTxCaching && cacheId == null ||
+            !cached.contains(vs.url?.primitiveValue)) {
+          cached.add(vs.url!.primitiveValue!);
+          cache = true;
+        }
+        addDependentResources(pin, vs);
+      }
+    }
+
+    final cs = fetchResource<CodeSystem>(uri: inc.system?.primitiveValue);
+    if (cs != null) {
+      pin = pin.copyWith(
+        parameter: [
+          ...pin.parameter ?? [],
+          ParametersParameter(
+            name: 'tx-resource'.toFhirString,
+            resource: cs,
+          ),
+        ],
+      );
+      if (isTxCaching && cacheId == null ||
+          !cached.contains(cs.url?.primitiveValue)) {
+        cached.add(cs.url!.primitiveValue!);
+        cache = true;
+      }
+      // TODO: handle supplements
+    }
+    return (cache, pin);
+  }
+
+  ValidationResult processValidationResult(Parameters pOut) {
+    var ok = false;
+    var message = 'No Message returned';
+    String? display;
+    String? system;
+    String? code;
+    var errorClass = TerminologyServiceErrorClass.unknown;
+
+    for (final parameter in pOut.parameter ?? <ParametersParameter>[]) {
+      if (parameter.valueX != null) {
+        final name = parameter.name;
+        final value = parameter.valueX;
+        if (name.value == 'result' && value is FhirBoolean) {
+          ok = value.value ?? false;
+        } else if (name.value == 'message' && value is FhirString) {
+          message = value.value ?? 'No Message returned';
+        } else if (name.value == 'display' && value is FhirString) {
+          display = value.value;
+        } else if (name.value == 'system' && value is FhirString) {
+          system = value.value;
+        } else if (name.value == 'code' && value is FhirString) {
+          code = value.value;
+        } else if (name.value == 'cause' && value is FhirString) {
+          try {
+            final issueType = value.value ?? '';
+            switch (issueType) {
+              case 'unknown':
+                errorClass = TerminologyServiceErrorClass.unknown;
+              case 'not_found':
+                errorClass = TerminologyServiceErrorClass.codeSystemUnsupported;
+              case 'code_invalid':
+                errorClass = TerminologyServiceErrorClass.valueSetUnsupported;
+              default:
+                errorClass = TerminologyServiceErrorClass.unknown;
+                break;
+            }
+          } catch (e) {
+            // Handle exceptions gracefully
+          }
+        }
+      }
+    }
+
+    if (!ok) {
+      return ValidationResult(
+        severity: IssueSeverity.error,
+        message: '$message (from ${txClient?.getAddress()})',
+        errorClass: errorClass,
+        txLink: txLog.getLastId(),
+      );
+    } else if (message != 'No Message returned') {
+      if (code == null) {
+        throw ArgumentError('Code is required when message is present');
+      }
+      return ValidationResult(
+        severity: IssueSeverity.warning,
+        message: '$message (from ${txClient?.getAddress()})',
+        system: system,
+        definition: CodeSystemConcept(
+          display: display?.toFhirString,
+          code: code.toFhirCode,
+        ),
+        txLink: txLog.getLastId(),
+      );
+    } else if (display != null) {
+      if (code == null) {
+        throw ArgumentError('Code is required when display is present');
+      }
+      return ValidationResult(
+        system: system,
+        definition: CodeSystemConcept(
+          display: display.toFhirString,
+          code: code.toFhirCode,
+        ),
+        txLink: txLog.getLastId(),
+      );
+    } else {
+      if (code == null) {
+        throw ArgumentError('Code is required when display is present');
+      }
+      return ValidationResult(
+        system: system,
+        definition: CodeSystemConcept(code: code.toFhirCode),
+        txLink: txLog.getLastId(),
+      );
+    }
   }
 
   Parameters setTerminologyOptions(ValidationOptions options, Parameters pIn) {
@@ -518,7 +684,7 @@ class WorkerContext {
       return processValidationResponse(response);
     } catch (e) {
       return ValidationResult.error(
-        errorMessage: 'Server validation failed: $e',
+        message: 'Server validation failed: $e',
       );
     }
   }
@@ -537,7 +703,7 @@ class WorkerContext {
       return ValidationResult.success(message: response['message'] as String?);
     } else {
       return ValidationResult.error(
-        errorMessage: response['message'] as String? ??
+        message: response['message'] as String? ??
             'Unknown error during server validation.',
       );
     }
