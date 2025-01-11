@@ -40,7 +40,7 @@ class FhirUnsignedInt extends FhirNumber
     super.objectPath = 'UnsignedInt',
   }) : super(input != null ? _validateUnsignedInt(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirUnsignedInt');
     }
   }
 

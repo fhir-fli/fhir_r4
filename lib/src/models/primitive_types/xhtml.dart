@@ -21,7 +21,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.objectPath = 'Xhtml',
   }) : super(input != null ? _validateXhtml(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirXhtml');
     }
   }
 

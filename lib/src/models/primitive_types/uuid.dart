@@ -37,7 +37,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
     super.objectPath = 'Uuid',
   }) : super(input != null ? _validateUuid(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirUuid');
     }
   }
 

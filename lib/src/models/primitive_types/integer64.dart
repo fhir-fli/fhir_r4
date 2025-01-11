@@ -33,7 +33,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     super.objectPath = 'Integer64',
   }) : super(input != null ? _validateInteger64(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirInteger64');
     }
   }
 

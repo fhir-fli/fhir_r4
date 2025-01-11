@@ -16,7 +16,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
     super.objectPath = 'Number',
   }) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirNumber');
     }
   }
 

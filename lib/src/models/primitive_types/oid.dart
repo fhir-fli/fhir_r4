@@ -30,7 +30,7 @@ class FhirOid extends PrimitiveType<String>
     super.objectPath = 'Oid',
   }) : super(_validateOid(input)) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirOid');
     }
   }
 

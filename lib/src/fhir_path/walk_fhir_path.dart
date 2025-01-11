@@ -96,32 +96,55 @@ List<FhirBase> executeFhirPath({
   Resource? rootResource,
   Map<String, dynamic>? environment,
 }) {
-  // Prepare the environment map
-  final passedEnvironment = <String, dynamic>{
-    if (resource != null) 'focusResource': [resource],
-    if (rootResource != null) 'rootResource': [rootResource],
-    ...?environment,
-  };
+  if (environment != null) {
+    // Prepare the environment map
+    final passedEnvironment = <String, dynamic>{
+      if (resource != null) 'focusResource': [resource],
+      if (rootResource != null) 'rootResource': [rootResource],
+      ...environment,
+    };
 
-  try {
-    // Evaluate the FHIRPath expression
-    return engine.evaluateWithContext(
-      null,
-      resource,
-      rootResource,
-      context,
-      parsedFhirPath,
-      environment: passedEnvironment,
-    );
-  } catch (error) {
-    if (error is PathEngineException) {
-      rethrow;
-    } else {
-      throw PathEngineException(
-        'Unable to execute FHIRPath expression',
-        expression: pathExpression,
-        cause: error as Exception,
+    try {
+      // Evaluate the FHIRPath expression
+      return engine.evaluateWithContext(
+        null,
+        resource,
+        rootResource,
+        context,
+        parsedFhirPath,
+        environment: passedEnvironment,
       );
+    } catch (error) {
+      if (error is PathEngineException) {
+        rethrow;
+      } else {
+        throw PathEngineException(
+          'Unable to execute FHIRPath expression',
+          expression: pathExpression,
+          cause: error as Exception,
+        );
+      }
+    }
+  } else {
+    try {
+      // Evaluate the FHIRPath expression
+      return engine.evaluate(context, parsedFhirPath);
+    } catch (error) {
+      if (error is PathEngineException) {
+        rethrow;
+      } else if (error is Error) {
+        throw PathEngineError(
+          'Unable to execute FHIRPath expression',
+          expression: pathExpression,
+          cause: error,
+        );
+      } else {
+        throw PathEngineException(
+          'Unable to execute FHIRPath expression',
+          expression: pathExpression,
+          cause: error as Exception,
+        );
+      }
     }
   }
 }

@@ -1,25 +1,25 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
-/// An exception that occurs during FHIRPath evaluation.
-class PathEngineException extends FHIRException {
-  /// Constructs a new [PathEngineException].
-  PathEngineException(
+/// An error that occurs during FHIRPath evaluation.
+class PathEngineError extends FHIRError {
+  /// Constructs a new [PathEngineError].
+  PathEngineError(
     String message, {
     this.location,
     this.expression,
     this.id,
-    Exception? cause,
-    super.stackTrace,
-  }) : super(message: message, cause: cause);
+    Error? cause,
+    StackTrace? stackTrace,
+  }) : super(message: message, cause: cause, stackTrace: stackTrace);
 
-  /// The location in the FHIRPath where the exception occurred.
+  /// The location in the FHIRPath where the error occurred.
   final SourceLocation? location;
 
-  /// The FHIRPath expression being evaluated when the exception occurred.
+  /// The FHIRPath expression being evaluated when the error occurred.
   final String? expression;
 
-  /// Optional identifier for the exception.
+  /// Optional identifier for the error.
   final String? id;
 
   /// Returns a string representation of the location and expression.
@@ -39,7 +39,7 @@ class PathEngineException extends FHIRException {
 
   @override
   String toString() {
-    final buffer = StringBuffer('PathEngineException:\n');
+    final buffer = StringBuffer('PathEngineError:\n');
     if (message != null) {
       buffer.writeln('Message: $message');
     }

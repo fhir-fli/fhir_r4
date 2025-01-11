@@ -664,21 +664,21 @@ class WorkerContext {
     ValueSet? valueSet,
   ) {
     // Prepare parameters for server-side validation
-    final params = Parameters(
-      parameter: [
-        ParametersParameter(name: 'coding'.toFhirString, valueX: coding),
-        if (options.guessSystem)
-          ParametersParameter(
-            name: 'inferSystem'.toFhirString,
-            valueX: true.toFhirBoolean,
-          ),
-        if (valueSet != null)
-          ParametersParameter(
-            name: 'valueSet'.toFhirString,
-            resource: valueSet,
-          ),
-      ],
-    );
+    // final params = Parameters(
+    //   parameter: [
+    //     ParametersParameter(name: 'coding'.toFhirString, valueX: coding),
+    //     if (options.guessSystem)
+    //       ParametersParameter(
+    //         name: 'inferSystem'.toFhirString,
+    //         valueX: true.toFhirBoolean,
+    //       ),
+    //     if (valueSet != null)
+    //       ParametersParameter(
+    //         name: 'valueSet'.toFhirString,
+    //         resource: valueSet,
+    //       ),
+    //   ],
+    // );
 
     try {
       // Simulate sending request to the terminology server

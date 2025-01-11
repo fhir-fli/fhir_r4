@@ -48,7 +48,7 @@ class FhirInteger extends FhirNumber
     super.objectPath = 'Integer',
   }) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirInteger');
     }
   }
 

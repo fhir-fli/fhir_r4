@@ -4166,10 +4166,11 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     final target = execute(
-        context,
-        context.focusResource == null ? focus : [context.focusResource!],
-        exp.parameters[0],
-        true,);
+      context,
+      context.focusResource == null ? focus : [context.focusResource!],
+      exp.parameters[0],
+      true,
+    );
     var valid = true;
     for (final item in focus) {
       var found = false;
@@ -6899,7 +6900,14 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    final target = execute(context, focus, exp.parameters[0], true);
+    final target = execute(
+      context,
+      context.focusResource == null ? focus : [context.focusResource!],
+      exp.parameters[0],
+      true,
+    );
+    print('target: $target');
+    print('focus: $focus');
 
     var valid = true;
     for (final item in target) {

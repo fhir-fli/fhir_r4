@@ -47,7 +47,7 @@ class FhirCanonical extends PrimitiveType<Uri>
     super.objectPath = 'Canonical',
   }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirCanonical');
     }
   }
 

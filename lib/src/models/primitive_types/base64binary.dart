@@ -34,7 +34,9 @@ class FhirBase64Binary extends PrimitiveType<String?>
     super.objectPath = 'Base64Binary',
   }) : super(input != null ? _validateBase64(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError(
+        'A value or element is required for FhirBase64Binary',
+      );
     }
   }
 

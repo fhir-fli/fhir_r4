@@ -41,7 +41,7 @@ class FhirDecimal extends FhirNumber
   })  : isInt = input is int,
         super(input?.toDouble()) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirDecimal');
     }
   }
 

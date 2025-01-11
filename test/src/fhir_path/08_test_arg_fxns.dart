@@ -551,10 +551,6 @@ void testArgFxns() {
         engine.parse('Patient.name.given[2].subsetOf(Patient.name.given)');
     expect(
       engine.evaluate(patient3, node),
-      // walkFhirPath(
-      //   context: patient3,
-      //   pathExpression: 'Patient.name.given[2].subsetOf(Patient.name.given)',
-      // ),
       [true.toFhirBoolean],
     );
     expect(
@@ -565,128 +561,127 @@ void testArgFxns() {
       [true.toFhirBoolean],
     );
 
-    // expect(
-    //   walkFhirPath(
-    //     context: patient3,
-    //     pathExpression: 'Patient.name.given.subsetOf(Patient.name.given)',
-    //   ),
-    //   [true.toFhirBoolean],
-    // );
-    // expect(
-    //   walkFhirPath(
-    //     context: patient3,
-    //     pathExpression: 'Patient.name.subsetOf(Patient.name.given)',
-    //   ),
-    //   [false.toFhirBoolean],
-    // );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.subsetOf(Patient.name.given)',
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.subsetOf(Patient.name.given)',
+      ),
+      [false.toFhirBoolean],
+    );
   });
-  // test('supersetOf', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: patient3,
-  //       pathExpression:
-  //           'Patient.name.given.supersetOf(Patient.name.given[2])',
-  //     ),
-  //     [true.toFhirBoolean],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: patient3,
-  //       pathExpression: 'Patient.name.given.supersetOf(Patient.name.given)',
-  //     ),
-  //     [true.toFhirBoolean],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: patient3,
-  //       pathExpression: 'Patient.name.given.supersetOf(Patient.name)',
-  //     ),
-  //     [false.toFhirBoolean],
-  //   );
-  // });
-//     test('where', () {
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: "Patient.telecom.where(use = 'mobile')",
-//           ),
-//           [
-//             {
-//               'system': 'email',
-//               'use': 'mobile',
-//               'rank': 3,
-//             }
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 "Patient.telecom.where(use = 'mobile' and rank = 3)",
-//           ),
-//           [
-//             {
-//               'system': 'email',
-//               'use': 'mobile',
-//               'rank': 3,
-//             }
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 "Patient.telecom.where(use = 'mobile' and system = 'email')",
-//           ),
-//           [
-//             {
-//               'system': 'email',
-//               'use': 'mobile',
-//               'rank': 3,
-//             }
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 "Patient.telecom.where(use = 'mobile' and system = 'email' and rank = 3)",
-//           ),
-//           [
-//             {
-//               'system': 'email',
-//               'use': 'mobile',
-//               'rank': 3,
-//             }
-//           ]);
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
-//         ),
-//         <FhirBase>[],
-//       );
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: "Patient.name.where(use = 'official')",
-//           ),
-//           [
-//             {
-//               'use': 'official',
-//               'family': 'Faulkenberry',
-//               'given': [
-//                 'Jason',
-//                 'Grey',
-//               ],
-//             },
-//             {
-//               'use': 'official',
-//               'family': 'Faulkenberry',
-//               'given': [
-//                 'Jason',
-//                 'Grey',
-//               ],
-//             }
-//           ]);
-//     });
+  test('supersetOf', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.supersetOf(Patient.name.given[2])',
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.supersetOf(Patient.name.given)',
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.supersetOf(Patient.name)',
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+    test('where', () {
+      expect(
+          walkFhirPath(
+            context: patient3,
+            pathExpression: "Patient.telecom.where(use = 'mobile')",
+          ).map((e) => e.toJson()),
+          [
+            {
+              'system': 'email',
+              'use': 'mobile',
+              'rank': 3,
+            }
+          ]);
+      expect(
+          walkFhirPath(
+            context: patient3,
+            pathExpression:
+                "Patient.telecom.where(use = 'mobile' and rank = 3)",
+          ),
+          [
+            {
+              'system': 'email',
+              'use': 'mobile',
+              'rank': 3,
+            }
+          ]);
+      expect(
+          walkFhirPath(
+            context: patient3,
+            pathExpression:
+                "Patient.telecom.where(use = 'mobile' and system = 'email')",
+          ),
+          [
+            {
+              'system': 'email',
+              'use': 'mobile',
+              'rank': 3,
+            }
+          ]);
+      expect(
+          walkFhirPath(
+            context: patient3,
+            pathExpression:
+                "Patient.telecom.where(use = 'mobile' and system = 'email' and rank = 3)",
+          ),
+          [
+            {
+              'system': 'email',
+              'use': 'mobile',
+              'rank': 3,
+            }
+          ]);
+      expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
+        ),
+        <FhirBase>[],
+      );
+      expect(
+          walkFhirPath(
+            context: patient3,
+            pathExpression: "Patient.name.where(use = 'official')",
+          ),
+          [
+            {
+              'use': 'official',
+              'family': 'Faulkenberry',
+              'given': [
+                'Jason',
+                'Grey',
+              ],
+            },
+            {
+              'use': 'official',
+              'family': 'Faulkenberry',
+              'given': [
+                'Jason',
+                'Grey',
+              ],
+            }
+          ]);
+    });
 //     test('select', () {
 //       expect(
 //         walkFhirPath(

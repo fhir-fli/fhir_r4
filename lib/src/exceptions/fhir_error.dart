@@ -1,24 +1,24 @@
-/// A generic exception for FHIR-related errors.
-class FHIRException implements Exception {
-  /// Constructs a new [FHIRException].
-  FHIRException({
+/// Base class for all FHIR errors.
+class FHIRError implements Error {
+  /// Constructs a new [FHIRError].
+  FHIRError({
     this.message,
     this.cause,
     this.stackTrace,
   });
 
-  /// The exception message.
+  /// The error message.
   final String? message;
 
-  /// The cause of the exception.
+  /// The cause of the error.
   final Object? cause;
 
-  /// The stack trace at the time of the exception.
+  @override
   final StackTrace? stackTrace;
 
   @override
   String toString() {
-    final buffer = StringBuffer('FHIRException:\n');
+    final buffer = StringBuffer('FHIRError:\n');
     if (message != null) {
       buffer.writeln('Message: $message');
     }

@@ -42,7 +42,7 @@ class FhirPositiveInt extends FhirNumber
     super.objectPath = 'PositiveInt',
   }) : super(input != null ? _validatePositiveInt(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirPositiveInt');
     }
   }
 

@@ -31,7 +31,7 @@ class FhirId extends PrimitiveType<String>
     super.objectPath = 'Id',
   }) : super(input != null ? _validateId(input) : null) {
     if (value == null && element == null) {
-      throw ArgumentError('A value or element is required');
+      throw ArgumentError('A value or element is required for FhirId');
     }
   }
 
