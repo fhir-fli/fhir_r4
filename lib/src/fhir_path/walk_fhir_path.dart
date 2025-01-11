@@ -56,13 +56,13 @@ import 'package:fhir_r4/src/fhir_path/java/java.dart';
 ///
 /// The lazy-loading mechanism is currently only supported through the
 /// [environment] map, not for explicitly passed-in parameters.
-Future<List<dynamic>> walkFhirPath({
-  required dynamic context,
+List<FhirBase> walkFhirPath({
+  required FhirBase? context,
   required String pathExpression,
-  Map<String, dynamic>? resource,
-  Map<String, dynamic>? rootResource,
+  Resource? resource,
+  Resource? rootResource,
   Map<String, dynamic>? environment,
-}) async {
+}) {
   final ast = parseFhirPath(pathExpression);
   return executeFhirPath(
     context: context,
@@ -88,34 +88,30 @@ ExpressionNode parseFhirPath(String pathExpression) {
 /// resulting in a performance gain over [walkFhirPath].
 ///
 /// All parameters have the same meaning as for [walkFhirPath].
-Future<List<FhirBase>> executeFhirPath({
-  required dynamic context,
+List<FhirBase> executeFhirPath({
+  required FhirBase? context,
   required ExpressionNode parsedFhirPath,
   required String pathExpression,
-  Map<String, dynamic>? resource,
-  Map<String, dynamic>? rootResource,
+  Resource? resource,
+  Resource? rootResource,
   Map<String, dynamic>? environment,
-}) async {
+}) {
   // Prepare the environment map
   final passedEnvironment = <String, dynamic>{
-    '%context': context,
-    if (resource != null) '%resource': resource,
-    if (rootResource != null) '%rootResource': rootResource,
+    if (resource != null) 'focusResource': [resource],
+    if (rootResource != null) 'rootResource': [rootResource],
     ...?environment,
   };
 
   try {
-    // Inject environment variables into the context if the engine supports it
-    if (context is Map<String, dynamic>) {
-      context.addAll(passedEnvironment);
-    }
-
     // Evaluate the FHIRPath expression
-    return await engine.evaluate(
-      context is FhirBase
-          ? context
-          : Resource.fromJson(context as Map<String, dynamic>),
+    return engine.evaluateWithContext(
+      null,
+      resource,
+      rootResource,
+      context,
       parsedFhirPath,
+      environment: passedEnvironment,
     );
   } catch (error) {
     if (error is PathEngineException) {
@@ -133,13 +129,13 @@ Future<List<FhirBase>> executeFhirPath({
 /// The FHIRPath engine's [inContext] function.
 extension FhirPathResourceExtension on Map<String, dynamic> {
   /// The FHIRPath engine's [inContext] function.
-  static const String contextKey = '%context';
+  static const String contextKey = 'context';
 
   /// The FHIRPath engine's [focus] function.
-  static const String resourceKey = '%resource';
+  static const String resourceKey = 'resource';
 
   /// The FHIRPath engine's [atEntry] function.
-  static const String rootResourceKey = '%rootResource';
+  static const String rootResourceKey = 'rootResource';
 
   /// The FHIRPath engine's [atEntry] function.
   dynamic get context => this[contextKey];

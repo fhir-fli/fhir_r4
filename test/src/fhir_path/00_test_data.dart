@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
@@ -652,6 +653,259 @@ final resource = QuestionnaireResponse.fromJson({
               ],
             }
           ],
+        }
+      ],
+    }
+  ],
+});
+
+Map<String, dynamic>? patientExample() {
+  return jsonDecode(patientJsonString) as Map<String, dynamic>?;
+}
+
+const patientJsonString = r'''
+{
+	"resourceType": "Patient",
+	"id": "example",
+	"text": {
+		"status": "generated",
+		"div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><tbody><tr><td>Name</td><td>Peter James \r\n              <b>Chalmers</b> (\"Jim\")\r\n            </td></tr><tr><td>Address</td><td>534 Erewhon, Pleasantville, Vic, 3999</td></tr><tr><td>Contacts</td><td>Home: unknown. Work: (03) 5555 6473</td></tr><tr><td>Id</td><td>MRN: 12345 (Acme Healthcare)</td></tr></tbody></table></div>"
+	},
+	"identifier": [
+		{
+			"use": "usual",
+			"type": {
+				"coding": [
+					{
+						"system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+						"code": "MR"
+					}
+				]
+			},
+			"system": "urn:oid:1.2.36.146.595.217.0.1",
+			"value": "12345",
+			"period": {
+				"start": "2001-05-06"
+			},
+			"assigner": {
+				"display": "Acme Healthcare"
+			}
+		}
+	],
+	"active": true,
+	"name": [
+		{
+			"use": "official",
+			"family": "Chalmers",
+			"given": [
+				"Peter",
+				"James"
+			]
+		},
+		{
+			"use": "usual",
+			"given": [
+				"Jim"
+			]
+		},
+		{
+			"use": "maiden",
+			"family": "Windsor",
+			"given": [
+				"Peter",
+				"James"
+			],
+			"period": {
+				"end": "2002"
+			}
+		}
+	],
+	"telecom": [
+		{
+			"use": "home"
+		},
+		{
+			"system": "phone",
+			"value": "(03) 5555 6473",
+			"use": "work",
+			"rank": 1
+		},
+		{
+			"system": "phone",
+			"value": "(03) 3410 5613",
+			"use": "mobile",
+			"rank": 2
+		},
+		{
+			"system": "phone",
+			"value": "(03) 5555 8834",
+			"use": "old",
+			"period": {
+				"end": "2014"
+			}
+		}
+	],
+	"gender": "male",
+	"_birthDate": {
+		"extension": [
+			{
+				"url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+				"valueDateTime": "1974-12-25T14:35:45-05:00"
+			}
+		]
+	},
+	"birthDate": "1974-12-25",
+	"deceasedBoolean": false,
+	"address": [
+		{
+			"use": "home",
+			"type": "both",
+			"text": "534 Erewhon St PeasantVille, Rainbow, Vic  3999",
+			"line": [
+				"534 Erewhon St"
+			],
+			"city": "PleasantVille",
+			"district": "Rainbow",
+			"state": "Vic",
+			"postalCode": "3999",
+			"period": {
+				"start": "1974-12-25"
+			}
+		}
+	],
+	"contact": [
+		{
+			"relationship": [
+				{
+					"coding": [
+						{
+							"system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+							"code": "N"
+						}
+					]
+				}
+			],
+			"name": {
+				"_family": {
+					"extension": [
+						{
+							"url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
+							"valueString": "VV"
+						}
+					]
+				},
+				"family": "du Marché",
+				"given": [
+					"Bénédicte"
+				]
+			},
+			"telecom": [
+				{
+					"system": "phone",
+					"value": "+33 (237) 998327"
+				}
+			],
+			"address": {
+				"use": "home",
+				"type": "both",
+				"line": [
+					"534 Erewhon St"
+				],
+				"city": "PleasantVille",
+				"district": "Rainbow",
+				"state": "Vic",
+				"postalCode": "3999",
+				"period": {
+					"start": "1974-12-25"
+				}
+			},
+			"gender": "female",
+			"period": {
+				"start": "2012"
+			}
+		}
+	],
+	"managingOrganization": {
+		"reference": "Organization/1"
+	}
+}''';
+
+final bundle = Bundle(
+  type: BundleType.transaction,
+  entry: [
+    BundleEntry(resource: Patient(id: '1'.toFhirString)),
+    BundleEntry(resource: Practitioner(id: '2'.toFhirString)),
+    BundleEntry(resource: Patient(id: '3'.toFhirString)),
+    BundleEntry(resource: Practitioner(id: '4'.toFhirString)),
+    BundleEntry(resource: Practitioner(id: '5'.toFhirString)),
+    BundleEntry(resource: Patient(id: '6'.toFhirString)),
+    BundleEntry(resource: Patient(id: '7'.toFhirString)),
+  ],
+);
+
+final questionnaireResponse2 = QuestionnaireResponse.fromJson({
+  'resourceType': 'QuestionnaireResponse',
+  'id': 'gcs',
+  'questionnaire': 'Questionnaire/gcs',
+  'status': 'completed',
+  'subject': {
+    'reference': 'Patient/example',
+    'display': 'Peter James Chalmers',
+  },
+  'authored': '2014-12-11T04:44:16Z',
+  'source': {'reference': 'Practitioner/f007'},
+  'item': [
+    {
+      'linkId': '1.1',
+      'answer': [
+        {
+          'valueCoding': {
+            'extension': [
+              {
+                'url': 'http://hl7.org/fhir/StructureDefinition/ordinalValue',
+                'valueDecimal': 4,
+              }
+            ],
+            'system': 'http://loinc.org',
+            'code': 'LA6560-2',
+            'display': 'Confused',
+          },
+        }
+      ],
+    },
+    {
+      'linkId': '1.2',
+      'answer': [
+        {
+          'valueCoding': {
+            'extension': [
+              {
+                'url': 'http://hl7.org/fhir/StructureDefinition/ordinalValue',
+                'valueDecimal': 5,
+              }
+            ],
+            'system': 'http://loinc.org',
+            'code': 'LA6566-9',
+            'display': 'Localizing pain',
+          },
+        }
+      ],
+    },
+    {
+      'linkId': '1.3',
+      'answer': [
+        {
+          'valueCoding': {
+            'extension': [
+              {
+                'url': 'http://hl7.org/fhir/StructureDefinition/ordinalValue',
+                'valueDecimal': 4,
+              }
+            ],
+            'system': 'http://loinc.org',
+            'code': 'LA6556-0',
+            'display': 'Eyes open spontaneously',
+          },
         }
       ],
     }

@@ -288,6 +288,7 @@ class FHIRPathEngine {
         result
           ..kind = ExpressionNodeKind.function
           ..function = f;
+
         lexer.next(); // consume '('
         while (lexer.current != ')') {
           result.parameters.add(_parseExpression(lexer, true));
@@ -588,8 +589,9 @@ class FHIRPathEngine {
     Resource? focusResource,
     Resource? rootResource,
     FhirBase? base,
-    ExpressionNode node,
-  ) {
+    ExpressionNode node, {
+    Map<String, dynamic>? environment,
+  }) {
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -601,7 +603,7 @@ class FHIRPathEngine {
       rootResource: rootResource,
       context: base,
       thisItem: base,
-    );
+    )..definedVariables = environment;
     return execute(context, list, node, true);
   }
 
@@ -968,6 +970,9 @@ class FHIRPathEngine {
     ExpressionNode exp,
     bool atEntry,
   ) {
+    print('execute');
+    print('inContext: $inContext');
+    print('focus: $focus');
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
 
@@ -1867,7 +1872,7 @@ class FHIRPathEngine {
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
+        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
       }
     }
     return newContext;
@@ -1897,7 +1902,7 @@ class FHIRPathEngine {
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
+        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
       }
     }
     return newContext;
@@ -2715,7 +2720,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode holder,
   ) {
-    print('operate: $operation');
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -3883,8 +3887,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('evaluateFunction focus: $focus');
-    print('Evaluating function: ${exp.function}');
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -4163,8 +4165,11 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    final target = execute(context, focus, exp.parameters[0], true);
-
+    final target = execute(
+        context,
+        context.focusResource == null ? focus : [context.focusResource!],
+        exp.parameters[0],
+        true,);
     var valid = true;
     for (final item in focus) {
       var found = false;
@@ -5795,7 +5800,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('funcToInteger focus: $focus');
     final s = convertToStringList(focus);
     final result = <FhirBase>[];
     if (Utilities.isInteger(s)) {
@@ -5834,7 +5838,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('funcToBoolean focus: $focus');
     final result = <FhirBase>[];
     if (focus.length == 1) {
       final item = focus.first;
@@ -5965,7 +5968,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    print('funcToDateTime focus: $focus ${focus.first.runtimeType}');
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
@@ -5997,7 +5999,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    print('funcToDateTime focus: $focus ${focus.first.runtimeType}');
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
@@ -6102,7 +6103,6 @@ class FHIRPathEngine {
   }
 
   List<FhirBoolean> funcIsBoolean(List<FhirBase> focus) {
-    print('funcIsBoolean focus: $focus');
     if (focus.length != 1) {
       return [FhirBoolean(false)];
     } else if (focus.first is FhirInteger) {
@@ -7784,7 +7784,6 @@ class FHIRPathEngine {
   }
 
   bool convertToBoolean(List<FhirBase>? items) {
-    print('convertToBoolean items: $items');
     if (items == null) {
       return false;
     } else if (items.length == 1 && items.first is PrimitiveType) {

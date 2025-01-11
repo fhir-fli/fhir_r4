@@ -175,7 +175,7 @@ class ExecutionContext {
     FhirBase? thisItem,
     List<FhirBase>? total,
     FhirInteger? index,
-    Map<String, List<FhirBase>>? definedVariables,
+    Map<String, dynamic>? definedVariables,
   }) {
     return ExecutionContext(
       appInfo: appInfo ?? this.appInfo,
@@ -196,7 +196,7 @@ class ExecutionContext {
   final FhirBase? thisItem;
   List<FhirBase>? total;
   FhirInteger index = 0.toFhirInteger;
-  Map<String, List<FhirBase>>? definedVariables;
+  Map<String, dynamic>? definedVariables;
 
   void next() {
     index = (index + 1)! as FhirInteger;
@@ -207,14 +207,25 @@ class ExecutionContext {
   }
 
   List<FhirBase> getDefinedVariable(String name) {
-    return definedVariables == null
-        ? <FhirBase>[]
-        : definedVariables![name] ?? <FhirBase>[];
+    if (definedVariables == null) {
+      return <FhirBase>[];
+    }
+    final variable = definedVariables![name];
+    if (variable is List<FhirBase>) {
+      return variable;
+    } else if (variable is Function) {
+      // ignore: avoid_dynamic_calls
+      final result = variable();
+      if (result is List<FhirBase>) {
+        return result;
+      }
+    }
+    return <FhirBase>[];
   }
 
   void setDefinedVariable(
     String name,
-    List<FhirBase> value,
+    dynamic value,
     WorkerContext worker,
   ) {
     if (isSystemVariable(name)) {
@@ -248,12 +259,19 @@ class ExecutionContext {
       for (final s in definedVariables?.keys ?? <String>[]) {
         newContext.setDefinedVariable(
           s,
-          definedVariables![s] ?? <FhirBase>[],
+          definedVariables![s] as List<FhirBase>? ?? <FhirBase>[],
           worker,
         );
       }
     }
     return newContext;
+  }
+
+  @override
+  String toString() {
+    return 'ExecutionContext{appInfo: $appInfo, focusResource: $focusResource, '
+        'rootResource: $rootResource, context: $context, thisItem: $thisItem, '
+        'total: $total, index: $index, definedVariables: $definedVariables}';
   }
 }
 
