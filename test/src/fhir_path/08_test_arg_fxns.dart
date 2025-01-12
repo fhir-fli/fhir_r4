@@ -304,7 +304,7 @@ void testArgFxns() {
         () => walkFhirPath(
           context: null,
           pathExpression: '%var',
-          environment: {'%dummy': 5},
+          environment: {'dummy': 5},
         ),
         throwsA(const TypeMatcher<PathEngineException>()),
       );
@@ -364,6 +364,7 @@ void testArgFxns() {
       throwsA(const TypeMatcher<PathEngineException>()),
     );
   });
+
   test('%variables and math', () {
     expect(
       walkFhirPath(
@@ -402,6 +403,7 @@ void testArgFxns() {
       [true.toFhirBoolean],
     );
   });
+
   test(r'$this', () {
     expect(
       walkFhirPath(
@@ -451,6 +453,7 @@ void testArgFxns() {
           'Jingleheimer'.toFhirString,
         ]);
   });
+
   test('exists', () {
     expect(
       walkFhirPath(
@@ -502,6 +505,7 @@ void testArgFxns() {
       [false.toFhirBoolean],
     );
   });
+
   test('all', () {
     expect(
       walkFhirPath(
@@ -546,6 +550,7 @@ void testArgFxns() {
       [true.toFhirBoolean],
     );
   });
+
   test('subsetOf', () {
     final node =
         engine.parse('Patient.name.given[2].subsetOf(Patient.name.given)');
@@ -576,6 +581,7 @@ void testArgFxns() {
       [false.toFhirBoolean],
     );
   });
+
   test('supersetOf', () {
     expect(
       walkFhirPath(
@@ -599,886 +605,971 @@ void testArgFxns() {
       [false.toFhirBoolean],
     );
   });
-    test('where', () {
-      expect(
-          walkFhirPath(
-            context: patient3,
-            pathExpression: "Patient.telecom.where(use = 'mobile')",
-          ).map((e) => e.toJson()),
-          [
-            {
-              'system': 'email',
-              'use': 'mobile',
-              'rank': 3,
-            }
-          ]);
-      expect(
-          walkFhirPath(
-            context: patient3,
-            pathExpression:
-                "Patient.telecom.where(use = 'mobile' and rank = 3)",
-          ),
-          [
-            {
-              'system': 'email',
-              'use': 'mobile',
-              'rank': 3,
-            }
-          ]);
-      expect(
-          walkFhirPath(
-            context: patient3,
-            pathExpression:
-                "Patient.telecom.where(use = 'mobile' and system = 'email')",
-          ),
-          [
-            {
-              'system': 'email',
-              'use': 'mobile',
-              'rank': 3,
-            }
-          ]);
-      expect(
-          walkFhirPath(
-            context: patient3,
-            pathExpression:
-                "Patient.telecom.where(use = 'mobile' and system = 'email' and rank = 3)",
-          ),
-          [
-            {
-              'system': 'email',
-              'use': 'mobile',
-              'rank': 3,
-            }
-          ]);
-      expect(
+
+  test('where', () {
+    expect(
         walkFhirPath(
           context: patient3,
-          pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
+          pathExpression: "Patient.telecom.where(use = 'mobile')",
+        ).map((e) => e.toJson()),
+        [
+          {
+            'system': 'email',
+            'use': 'mobile',
+            'rank': 3,
+          }
+        ]);
+
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 3)",
+        ).map((e) => e.toJson()).toList(),
+        [
+          {
+            'system': 'email',
+            'use': 'mobile',
+            'rank': 3,
+          }
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression:
+              "Patient.telecom.where(use = 'mobile' and system = 'email')",
+        ).map((e) => e.toJson()),
+        [
+          {
+            'system': 'email',
+            'use': 'mobile',
+            'rank': 3,
+          }
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression:
+              "Patient.telecom.where(use = 'mobile' and system = 'email' and "
+              'rank = 3)',
+        ).map((e) => e.toJson()),
+        [
+          {
+            'system': 'email',
+            'use': 'mobile',
+            'rank': 3,
+          }
+        ]);
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
+      ).map((e) => e.toJson()),
+      <FhirBase>[],
+    );
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: "Patient.name.where(use = 'official')",
+        ).map((e) => e.toJson()),
+        [
+          {
+            'use': 'official',
+            'family': 'Faulkenberry',
+            'given': [
+              'Jason',
+              'Grey',
+            ],
+          },
+          {
+            'use': 'official',
+            'family': 'Faulkenberry',
+            'given': [
+              'Jason',
+              'Grey',
+            ],
+          }
+        ]);
+  });
+
+  test('select', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.telecom.select(rank as positiveInt)',
+      ),
+      [3.toFhirPositiveInt],
+    );
+    expect(
+        walkFhirPath(
+          context: bundle,
+          pathExpression: 'Bundle.entry.select(resource as Patient)',
+        ).map((e) => e.toJson()).toList(),
+        [
+          {'resourceType': 'Patient', 'id': '1'},
+          {'resourceType': 'Patient', 'id': '3'},
+          {'resourceType': 'Patient', 'id': '6'},
+          {'resourceType': 'Patient', 'id': '7'},
+        ]);
+    expect(
+        walkFhirPath(
+          context: bundle,
+          pathExpression: 'Bundle.entry.select(resource as Practitioner)',
+        ).map((e) => e.toJson()),
+        [
+          {'resourceType': 'Practitioner', 'id': '2'},
+          {'resourceType': 'Practitioner', 'id': '4'},
+          {'resourceType': 'Practitioner', 'id': '5'},
+        ]);
+  });
+
+  test('repeat', () {
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.address.period.extension.extension.extension'
+              '.repeat(extension)',
+        ).map((e) => e.toJson()),
+        [
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          },
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Km'},
+          }
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression:
+              'Patient.address.period.extension.extension.repeat(extension)',
+        ).map((e) => e.toJson()),
+        [
+          {
+            'extension': [
+              {
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Kg'},
+              },
+              {
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Km'},
+              }
+            ],
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          },
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Km'},
+          },
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          }
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.address.period.extension.repeat(extension)',
+        ).map((e) => e.toJson()),
+        [
+          {
+            'extension': [
+              {
+                'extension': [
+                  {
+                    'url': 'www.mayjuun.com',
+                    'valueCount': {'unit': 'Kg'},
+                  },
+                  {
+                    'url': 'www.mayjuun.com',
+                    'valueCount': {'unit': 'Km'},
+                  }
+                ],
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Kg'},
+              },
+              {
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Km'},
+              }
+            ],
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          },
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Km'},
+          },
+          {
+            'extension': [
+              {
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Kg'},
+              },
+              {
+                'url': 'www.mayjuun.com',
+                'valueCount': {'unit': 'Km'},
+              }
+            ],
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          },
+          {
+            'url': 'www.mayjuun.com',
+            'valueCount': {'unit': 'Kg'},
+          }
+        ]);
+  });
+
+  test('ofType', () {
+    expect(
+        walkFhirPath(
+          context: bundle,
+          pathExpression: 'Bundle.entry.resource.ofType(Patient)',
+        ).map((e) => e.toJson()).toList(),
+        [
+          {'resourceType': 'Patient', 'id': '1'},
+          {'resourceType': 'Patient', 'id': '3'},
+          {'resourceType': 'Patient', 'id': '6'},
+          {'resourceType': 'Patient', 'id': '7'},
+        ]);
+    expect(
+        walkFhirPath(
+          context: bundle,
+          pathExpression: 'Bundle.entry.resource.ofType(Practitioner)',
+        ).map((e) => e.toJson()).toList(),
+        [
+          {'resourceType': 'Practitioner', 'id': '2'},
+          {'resourceType': 'Practitioner', 'id': '4'},
+          {'resourceType': 'Practitioner', 'id': '5'},
+        ]);
+  });
+
+  test('index', () {
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name[3]',
+        ).map((e) => e.toJson()).toList(),
+        [
+          {
+            'family': 'Smith',
+            'given': [
+              'John',
+              'Jacob',
+              'Jingleheimer',
+            ],
+          }
+        ]);
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name[12]',
+      ),
+      <FhirBase>[],
+    );
+  });
+
+  test('skip', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.id.skip(1)',
+      ),
+      <FhirBase>[],
+    );
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.skip(3)',
         ),
-        <FhirBase>[],
-      );
-      expect(
-          walkFhirPath(
-            context: patient3,
-            pathExpression: "Patient.name.where(use = 'official')",
-          ),
-          [
-            {
-              'use': 'official',
-              'family': 'Faulkenberry',
-              'given': [
-                'Jason',
-                'Grey',
-              ],
-            },
-            {
-              'use': 'official',
-              'family': 'Faulkenberry',
-              'given': [
-                'Jason',
-                'Grey',
-              ],
-            }
-          ]);
-    });
-//     test('select', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.telecom.select(rank as integer)',
-//         ),
-//         [3.toFhirInteger],
-//       );
-//       expect(
-//           walkFhirPath(
-//             context: bundle.toJson(),
-//             pathExpression: 'Bundle.entry.select(resource as Patient)',
-//           ),
-//           [
-//             {'resourceType': 'Patient', 'id': '1'},
-//             {'resourceType': 'Patient', 'id': '3'},
-//             {'resourceType': 'Patient', 'id': '6'},
-//             {'resourceType': 'Patient', 'id': '7'},
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: bundle.toJson(),
-//             pathExpression: 'Bundle.entry.select(resource as Practitioner)',
-//           ),
-//           [
-//             {'resourceType': 'Practitioner', 'id': '2'},
-//             {'resourceType': 'Practitioner', 'id': '4'},
-//             {'resourceType': 'Practitioner', 'id': '5'},
-//           ]);
-//     });
-//     test('repeat', () {
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 'Patient.address.period.extension.extension.extension.repeat(extension)',
-//           ),
-//           [
-//             {
-//               'valueX': {'unit': 'Kg'},
-//             },
-//             {
-//               'valueX': {'unit': 'Km'},
-//             }
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 'Patient.address.period.extension.extension.repeat(extension)',
-//           ),
-//           [
-//             {
-//               'extension': [
-//                 {
-//                   'valueX': {'unit': 'Kg'},
-//                 },
-//                 {
-//                   'valueX': {'unit': 'Km'},
-//                 }
-//               ],
-//               'valueX': {'unit': 'Kg'},
-//             },
-//             {
-//               'valueX': {'unit': 'Km'},
-//             },
-//             {
-//               'valueX': {'unit': 'Kg'},
-//             }
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression:
-//                 'Patient.address.period.extension.repeat(extension)',
-//           ),
-//           [
-//             {
-//               'extension': [
-//                 {
-//                   'extension': [
-//                     {
-//                       'valueX': {'unit': 'Kg'},
-//                     },
-//                     {
-//                       'valueX': {'unit': 'Km'},
-//                     }
-//                   ],
-//                   'valueX': {'unit': 'Kg'},
-//                 },
-//                 {
-//                   'valueX': {'unit': 'Km'},
-//                 }
-//               ],
-//               'valueX': {'unit': 'Kg'},
-//             },
-//             {
-//               'valueX': {'unit': 'Km'},
-//             },
-//             {
-//               'extension': [
-//                 {
-//                   'valueX': {'unit': 'Kg'},
-//                 },
-//                 {
-//                   'valueX': {'unit': 'Km'},
-//                 }
-//               ],
-//               'valueX': {'unit': 'Kg'},
-//             },
-//             {
-//               'valueX': {'unit': 'Kg'},
-//             },
-//           ]);
-//     });
-//     test('ofType', () {
-//       expect(
-//           walkFhirPath(
-//             context: bundle.toJson(),
-//             pathExpression: 'Bundle.entry.patient3.ofType(Patient)',
-//           ),
-//           [
-//             {'resourceType': 'Patient', 'id': '1'},
-//             {'resourceType': 'Patient', 'id': '3'},
-//             {'resourceType': 'Patient', 'id': '6'},
-//             {'resourceType': 'Patient', 'id': '7'},
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: bundle.toJson(),
-//             pathExpression: 'Bundle.entry.patient3.ofType(Practitioner)',
-//           ),
-//           [
-//             {'resourceType': 'Practitioner', 'id': '2'},
-//             {'resourceType': 'Practitioner', 'id': '4'},
-//             {'resourceType': 'Practitioner', 'id': '5'},
-//           ]);
-//     });
-//     test('index', () {
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name[3]',
-//           ),
-//           [
-//             {
-//               'family': 'Smith',
-//               'given': [
-//                 'John',
-//                 'Jacob',
-//                 'Jingleheimer',
-//               ],
-//             }
-//           ]);
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name[12]',
-//         ),
-//         <FhirBase>[],
-//       );
-//     });
-//     test('skip', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name.id.skip(1)',
-//         ),
-//         <FhirBase>[],
-//       );
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.skip(3)',
-//           ),
-//           [
-//             'Grey',
-//             'Kristin',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//     });
-//     test('take', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name.id.take(1)',
-//         ),
-//         <FhirBase>[],
-//       );
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.take(3)',
-//           ),
-//           [
-//             'Jason',
-//             'Grey',
-//             'Jason',
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.take(13)',
-//           ),
-//           [
-//             'Jason',
-//             'Grey',
-//             'Jason',
-//             'Grey',
-//             'Kristin',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//     });
-//     test('intersect', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name.given.intersect(%nameList)',
-//           environment: {'%nameList': 'Jason'},
-//         ),
-//         ['Jason'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name.given.intersect(%nameList)',
-//           environment: {
-//             '%nameList': ['Jason', 'Kristin'],
-//           },
-//         ),
-//         ['Jason', 'Kristin'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'Patient.name.given.intersect(%nameList)',
-//           environment: {
-//             '%nameList': ['Jason', 'Fnuts'],
-//           },
-//         ),
-//         ['Jason'],
-//       );
-//     });
-//     test('exclude', () {
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.exclude(%nameList)',
-//             environment: {'%nameList': 'Jason'},
-//           ),
-//           [
-//             'Grey',
-//             'Grey',
-//             'Kristin',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
+        [
+          'Grey'.toFhirString,
+          'Kristin'.toFhirString,
+          'John'.toFhirString,
+          'Jacob'.toFhirString,
+          'Jingleheimer'.toFhirString,
+        ]);
+  });
 
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.exclude(%nameList)',
-//             environment: {
-//               '%nameList': ['Jason', 'Kristin'],
-//             },
-//           ),
-//           [
-//             'Grey',
-//             'Grey',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//       expect(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: 'Patient.name.given.exclude(%nameList)',
-//             environment: {
-//               '%nameList': ['Jason', 'Fnuts'],
-//             },
-//           ),
-//           [
-//             'Grey',
-//             'Grey',
-//             'Kristin',
-//             'John',
-//             'Jacob',
-//             'Jingleheimer',
-//           ]);
-//     });
-//     test('union', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '%a.union(%b)',
-//           environment: {
-//             '%a': [1, 1, 2, 3],
-//             '%b': [2, 3],
-//           },
-//         ),
-//         [1, 2, 3],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '%a.union()',
-//           environment: {
-//             '%a': [1, 1, 2, 3],
-//           },
-//         ),
-//         [1, 2, 3],
-//       );
-//     });
-//     test('combine', () {
-//       expect(
-//         deepEquals(
-//           walkFhirPath(
-//             context: patient3,
-//             pathExpression: '%a.combine(%b)',
-//             environment: {
-//               '%a': [1, 1, 2, 3],
-//               '%b': [2, 3],
-//             },
-//           ),
-//           [1, 1, 2, 3, 2, 3],
-//         ),
-//         true,
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '%a.combine()',
-//           environment: {
-//             '%a': [1, 1, 2, 3],
-//           },
-//         ),
-//         [1, 1, 2, 3],
-//       );
-//     });
-//     test('indexOf', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.indexOf('bc') // 1",
-//         ),
-//         [1.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.indexOf('x') // -1",
-//         ),
-//         [-1],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.indexOf('abcdefg') // 0",
-//         ),
-//         [0.toFhirInteger],
-//       );
-//     });
-//     test('Substring Function', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.substring(3) // 'defg'",
-//         ),
-//         ['defg'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.substring(1, 2) // 'bc'",
-//         ),
-//         ['bc'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.substring(6, 2) // 'g'",
-//         ),
-//         ['g'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.substring(7, 1) // { }",
-//         ),
-//         <FhirBase>[],
-//       );
-//     });
-//     test('startsWith', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.startsWith('abc') // true",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.startsWith('xyz') // false",
-//         ),
-//         [false.toFhirBoolean],
-//       );
-//     });
-//     test('endsWith', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.endsWith('efg') // true",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.endsWith('abc') // false",
-//         ),
-//         [false.toFhirBoolean],
-//       );
-//     });
-//     test('contains', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abc'.contains('b') // true",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abc'.contains('bc') // true",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abc'.contains('d') // false",
-//         ),
-//         [false.toFhirBoolean],
-//       );
-//     });
-//     test('replace', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.replace('cde', '123') // 'ab123fg'",
-//         ),
-//         ['ab123fg'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abcdefg'.replace('cde', '') // 'abfg'",
-//         ),
-//         ['abfg'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'abc'.replace('', 'x') // 'xaxbxcx'",
-//         ),
-//         ['xaxbxcx'],
-//       );
-//     });
-//     test('matches', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'hello'.matches('hello')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "35.matches('[2-9]|[12]d|3[0-6]')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "38.matches('[2-9]|[12]d|3[0-6]')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'35'.matches('[2-9]|[12]d|3[0-6]')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'38'.matches('[2-9]|[12]d|3[0-6]')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'google'.matches('g(oog)+le')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'googoogoogoogle'.matches('g(oog)+le')",
-//         ),
-//         [true.toFhirBoolean],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: "'goooooogle'.matches('g(oog)+le')",
-//         ),
-//         [false.toFhirBoolean],
-//       );
-//     });
+  test('take', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.id.take(1)',
+      ),
+      <FhirBase>[],
+    );
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.take(3)',
+        ),
+        [
+          'Jason'.toFhirString,
+          'Grey'.toFhirString,
+          'Jason'.toFhirString,
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.take(13)',
+        ),
+        [
+          'Jason'.toFhirString,
+          'Grey'.toFhirString,
+          'Jason'.toFhirString,
+          'Grey'.toFhirString,
+          'Kristin'.toFhirString,
+          'John'.toFhirString,
+          'Jacob'.toFhirString,
+          'Jingleheimer'.toFhirString,
+        ]);
+  });
 
-//     test('replacesMatches', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression:
-//               r"'11/30/1972'.replace('\\b(?<month>\\d{1,2})/(?<day>\\d{1,2})/(?<year>\\d{2,4})\\b','${day}-${month}-${year}')",
-//         ),
-//         ['11/30/1972'],
-//       );
-//     });
-//     test('log', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '16.log(2) // 4.0',
-//         ),
-//         [4.0],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '100.0.log(10.0) // 2.0',
-//         ),
-//         [2.0],
-//       );
-//     });
-//     test('power', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '2.power(3) // 8',
-//         ),
-//         [8.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '2.5.power(2) // 6.25',
-//         ),
-//         [6.25],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '(-1).power(0.5) // empty ({ })',
-//         ),
-//         <FhirBase>[],
-//       );
-//     });
-//     test('round', () {
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '1.round() // 1',
-//         ),
-//         [1.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: '3.14159.round(3) // 3.142',
-//         ),
-//         [3.142],
-//       );
-//     });
+  test('intersect', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.intersect(%nameList)',
+        environment: {
+          'nameList': ['Jason'.toFhirString],
+        },
+      ),
+      ['Jason'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.intersect(%nameList)',
+        environment: {
+          'nameList': ['Jason'.toFhirString, 'Kristin'.toFhirString],
+        },
+      ),
+      ['Jason'.toFhirString, 'Kristin'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'Patient.name.given.intersect(%nameList)',
+        environment: {
+          'nameList': ['Jason'.toFhirString, 'Fnuts'.toFhirString],
+        },
+      ),
+      ['Jason'.toFhirString],
+    );
+  });
 
-//     test('complex-extension', () {
-//       expect(
-//         walkFhirPath(
-//           context: questionnaireResponse,
-//           pathExpression:
-//               '%context.repeat(item).answer.value.extension(%`ext-ordinalValue`).value.sum()',
-//         ),
-//         [13.toFhirInteger],
-//       );
-//     });
+  test('exclude', () {
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.exclude(%nameList)',
+          environment: {
+            'nameList': ['Jason'.toFhirString],
+          },
+        ),
+        [
+          'Grey'.toFhirString,
+          'Grey'.toFhirString,
+          'Kristin'.toFhirString,
+          'John'.toFhirString,
+          'Jacob'.toFhirString,
+          'Jingleheimer'.toFhirString,
+        ]);
 
-//     test('iif-basic', () {
-//       expect(
-//         walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
-//         [1.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
-//         [0.toFhirInteger],
-//       );
-//       expect(walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'), [0.toFhirInteger]);
-//       expect(walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'), [1.toFhirInteger]);
-//       expect(walkFhirPath(context: null, pathExpression: 'iif(true, 1)'), [1.toFhirInteger]);
-//       expect(walkFhirPath(context: null, pathExpression: 'iif(false, 1)'), <FhirBase>[]);
-//       expect(
-//         () => walkFhirPath(context: null, pathExpression: 'iif(false)'),
-//         throwsA(const TypeMatcher<FhirPathInvalidExpressionException>()),
-//       );
-//     });
-//     test('iif-short-circuit', () {
-//       // non-existent identifier should never be evaluated
-//       expect(
-//         walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'iif(true, 1, %patient3.blurb)',
-//         ),
-//         [1.toFhirInteger],
-//       );
-//       // non-existent identifier should throw
-//       expect(
-//         () => walkFhirPath(
-//           context: patient3,
-//           pathExpression: 'iif(false, 1, %patient3.blurb)',
-//         ),
-//         throwsA(const TypeMatcher<FhirPathEvaluationException>()),
-//       );
-//     });
-//     test('iif-with-variables', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: 'iif(%smokesCode.exists(), 1, 0)',
-//           environment: {'%smokesCode': <FhirBase>[]},
-//         ),
-//         [0.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
-//           environment: {
-//             '%smokesCode': ['Y'],
-//           },
-//         ),
-//         [1.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
-//           environment: {
-//             '%smokesCode': ['N'],
-//           },
-//         ),
-//         [0.toFhirInteger],
-//       );
-//     });
-//     test('iif-nested-fxns', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: 'iif(%smokesCode.exists(), {}.empty(), {}.exists())',
-//           environment: {'%smokesCode': <FhirBase>[]},
-//         ),
-//         [false.toFhirBoolean],
-//       );
-//     });
-//     test('iif-nested-iif-empty-variable', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-//           environment: {'%smokesCode': <FhirBase>[]},
-//         ),
-//         <FhirBase>[],
-//       );
-//     });
-//     test('iif-nested-iif-empty-set', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: "iif({}.exists(), iif({} = 'Y', 1, 0), {})",
-//         ),
-//         <FhirBase>[],
-//       );
-//     });
-//     test('iif-nested-iif-filled-variable', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-//           environment: {
-//             '%smokesCode': ['Y'],
-//           },
-//         ),
-//         [1.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-//           environment: {
-//             '%smokesCode': ['N'],
-//           },
-//         ),
-//         [0.toFhirInteger],
-//       );
-//     });
-//     test('iif-act-on-score', () {
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: r"(2 + 2).select(iif($this > 2, $this, '<= 2'))",
-//         ),
-//         [4.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression: r"(1 + 1).select(iif($this > 2, $this, '<= 2'))",
-//         ),
-//         ['<= 2'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               r"(1 + 1).select(iif($this > 2, $this, iif($this < 2, $this.toString() + ' is below 2', $this.toString() + ' is above 2')))",
-//         ),
-//         ['2 is above 2'],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               r"(2 + 2).select(iif($this > 2, $this, iif($this < 2, $this.toString() + ' is below 2', $this.toString() + ' is above 2')))",
-//         ),
-//         [4.toFhirInteger],
-//       );
-//       expect(
-//         walkFhirPath(
-//           context: null,
-//           pathExpression:
-//               r"(1 + 0).select(iif($this > 2, $this, iif($this < 2, $this.toString() + ' is below 2', $this.toString() + ' is above 2')))",
-//         ),
-//         ['1 is below 2'],
-//       );
-//     });
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.exclude(%nameList)',
+          environment: {
+            'nameList': ['Jason'.toFhirString, 'Kristin'.toFhirString],
+          },
+        ),
+        [
+          'Grey'.toFhirString,
+          'Grey'.toFhirString,
+          'John'.toFhirString,
+          'Jacob'.toFhirString,
+          'Jingleheimer'.toFhirString,
+        ]);
+    expect(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: 'Patient.name.given.exclude(%nameList)',
+          environment: {
+            'nameList': ['Jason'.toFhirString, 'Fnuts'.toFhirString],
+          },
+        ),
+        [
+          'Grey'.toFhirString,
+          'Grey'.toFhirString,
+          'Kristin'.toFhirString,
+          'John'.toFhirString,
+          'Jacob'.toFhirString,
+          'Jingleheimer'.toFhirString,
+        ]);
+  });
 
-//     group('extensions', () {
-//       test(
-//         'extensionOnPolymorphic',
-//         () => expect(
-//           walkFhirPath(
-//             context: questionnaireResponse,
-//             pathExpression:
-//                 '%context.repeat(item).answer.value.extension.where(url=%`ext-ordinalValue`).value',
-//           ),
-//           [4, 5, 4],
-//         ),
-//       );
-//       test(
-//         'extensionOnPrimitive',
-//         () => expect(
-//           walkFhirPath(
-//             context: patientExample(),
-//             pathExpression:
-//                 'Patient.contact.name.family.extension(%`ext-humanname-own-prefix`).value',
-//           ),
-//           ['VV'],
-//         ),
-//       );
-//     });
+  test('union', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '%a.union(%b)',
+        environment: {
+          'a': [
+            1.toFhirInteger,
+            1.toFhirInteger,
+            2.toFhirInteger,
+            3.toFhirInteger,
+          ],
+          'b': [2.toFhirInteger, 3.toFhirInteger],
+        },
+      ),
+      [1.toFhirInteger, 2.toFhirInteger, 3.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '%a.union()',
+        environment: {
+          'a': [
+            1.toFhirInteger,
+            1.toFhirInteger,
+            2.toFhirInteger,
+            3.toFhirInteger,
+          ],
+        },
+      ),
+      [1.toFhirInteger, 2.toFhirInteger, 3.toFhirInteger],
+    );
+  });
 
-//     // TODO(Dokotela):  trace
-//   });
+  test('combine', () {
+    expect(
+      deepEquals(
+        walkFhirPath(
+          context: patient3,
+          pathExpression: '%a.combine(%b)',
+          environment: {
+            'a': [
+              1.toFhirInteger,
+              1.toFhirInteger,
+              2.toFhirInteger,
+              3.toFhirInteger,
+            ],
+            'b': [2.toFhirInteger, 3.toFhirInteger],
+          },
+        ),
+        [
+          1.toFhirInteger,
+          1.toFhirInteger,
+          2.toFhirInteger,
+          3.toFhirInteger,
+          2.toFhirInteger,
+          3.toFhirInteger,
+        ],
+      ),
+      true,
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '%a.combine()',
+        environment: {
+          'a': [
+            1.toFhirInteger,
+            1.toFhirInteger,
+            2.toFhirInteger,
+            3.toFhirInteger,
+          ],
+        },
+      ),
+      [1.toFhirInteger, 1.toFhirInteger, 2.toFhirInteger, 3.toFhirInteger],
+    );
+  });
+
+  test('indexOf', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.indexOf('bc') // 1",
+      ),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.indexOf('x') // -1",
+      ),
+      [-1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.indexOf('abcdefg') // 0",
+      ),
+      [0.toFhirInteger],
+    );
+  });
+
+  test('Substring Function', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.substring(3) // 'defg'",
+      ),
+      ['defg'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.substring(1, 2) // 'bc'",
+      ),
+      ['bc'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.substring(6, 2) // 'g'",
+      ),
+      ['g'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.substring(7, 1) // { }",
+      ),
+      <FhirBase>[],
+    );
+  });
+
+  test('startsWith', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.startsWith('abc') // true",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.startsWith('xyz') // false",
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+
+  test('endsWith', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.endsWith('efg') // true",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.endsWith('abc') // false",
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+
+  test('contains', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abc'.contains('b') // true",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abc'.contains('bc') // true",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abc'.contains('d') // false",
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+
+  test('replace', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.replace('cde', '123') // 'ab123fg'",
+      ),
+      ['ab123fg'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abcdefg'.replace('cde', '') // 'abfg'",
+      ),
+      ['abfg'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'abc'.replace('', 'x') // 'xaxbxcx'",
+      ),
+      ['xaxbxcx'.toFhirString],
+    );
+  });
+
+  test('matches', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'hello'.matches('hello')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "35.matches('[2-9]|[12]d|3[0-6]')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "38.matches('[2-9]|[12]d|3[0-6]')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'35'.matches('[2-9]|[12]d|3[0-6]')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'38'.matches('[2-9]|[12]d|3[0-6]')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'google'.matches('g(oog)+le')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'googoogoogoogle'.matches('g(oog)+le')",
+      ),
+      [true.toFhirBoolean],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: "'goooooogle'.matches('g(oog)+le')",
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+
+  test('replacesMatches', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression:
+            r"'11/30/1972'.replace('\\b(?<month>\\d{1,2})/(?<day>\\d{1,2})/(?<year>\\d{2,4})\\b','${day}-${month}-${year}')",
+      ),
+      ['11/30/1972'.toFhirString],
+    );
+  });
+
+  test('log', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '16.log(2) // 4.0',
+      ),
+      [4.0.toFhirDecimal],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '100.0.log(10.0) // 2.0',
+      ),
+      [2.0.toFhirDecimal],
+    );
+  });
+
+  test('power', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '2.power(3) // 8',
+      ),
+      [8.0.toFhirDecimal],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '2.5.power(2) // 6.25',
+      ),
+      [6.25.toFhirDecimal],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '(-1).power(0.5) // empty ({ })',
+      ),
+      <FhirBase>[],
+    );
+  });
+
+  test('round', () {
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '1.round() // 1',
+      ),
+      [1.0.toFhirDecimal],
+    );
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: '3.14159.round(3) // 3.142',
+      ),
+      [3.142.toFhirDecimal],
+    );
+  });
+
+  test('complex-extension', () {
+    expect(
+      walkFhirPath(
+        context: QuestionnaireResponse.fromJson(questionnaireResponse),
+        pathExpression:
+            '%context.repeat(item).answer.value.extension(%`ext-ordinalValue`)'
+            '.value.sum()',
+      ),
+      [13.toFhirInteger],
+    );
+  });
+
+  // test('iif-basic', () {
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
+  //     [1.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
+  //     [0.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'),
+  //     [0.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'),
+  //     [1.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif(true, 1)'),
+  //     [1.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(context: null, pathExpression: 'iif(false, 1)'),
+  //     <FhirBase>[],
+  //   );
+  //   expect(
+  //     () => walkFhirPath(context: null, pathExpression: 'iif(false)'),
+  //     throwsA(const TypeMatcher<FhirPathInvalidExpressionException>()),
+  //   );
+  // });
+  // test('iif-short-circuit', () {
+  //   // non-existent identifier should never be evaluated
+  //   expect(
+  //     walkFhirPath(
+  //       context: patient3,
+  //       pathExpression: 'iif(true, 1, %patient3.blurb)',
+  //     ),
+  //     [1.toFhirInteger],
+  //   );
+  //   // non-existent identifier should throw
+  //   expect(
+  //     () => walkFhirPath(
+  //       context: patient3,
+  //       pathExpression: 'iif(false, 1, %patient3.blurb)',
+  //     ),
+  //     throwsA(const TypeMatcher<FhirPathEvaluationException>()),
+  //   );
+  // });
+  // test('iif-with-variables', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: 'iif(%smokesCode.exists(), 1, 0)',
+  //       environment: {'smokesCode': <FhirBase>[]},
+  //     ),
+  //     [0.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
+  //       environment: {
+  //         'smokesCode': ['Y'],
+  //       },
+  //     ),
+  //     [1.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
+  //       environment: {
+  //         'smokesCode': ['N'],
+  //       },
+  //     ),
+  //     [0.toFhirInteger],
+  //   );
+  // });
+  // test('iif-nested-fxns', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: 'iif(%smokesCode.exists(), {}.empty(), {}.exists())',
+  //       environment: {'smokesCode': <FhirBase>[]},
+  //     ),
+  //     [false.toFhirBoolean],
+  //   );
+  // });
+  // test('iif-nested-iif-empty-variable', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression:
+  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+  //       environment: {'smokesCode': <FhirBase>[]},
+  //     ),
+  //     <FhirBase>[],
+  //   );
+  // });
+  // test('iif-nested-iif-empty-set', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: "iif({}.exists(), iif({} = 'Y', 1, 0), {})",
+  //     ),
+  //     <FhirBase>[],
+  //   );
+  // });
+  // test('iif-nested-iif-filled-variable', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression:
+  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+  //       environment: {
+  //         'smokesCode': ['Y'],
+  //       },
+  //     ),
+  //     [1.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression:
+  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+  //       environment: {
+  //         'smokesCode': ['N'],
+  //       },
+  //     ),
+  //     [0.toFhirInteger],
+  //   );
+  // });
+  // test('iif-act-on-score', () {
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: r"(2 + 2).select(iif($this > 2, $this, '<= 2'))",
+  //     ),
+  //     [4.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: r"(1 + 1).select(iif($this > 2, $this, '<= 2'))",
+  //     ),
+  //     ['<= 2'.toFhirString],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: r'(1 + 1).select(iif($this > 2, $this, iif($this < 2, '
+  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+  //           "2')))",
+  //     ),
+  //     ['2 is above 2'.toFhirString],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: r'(2 + 2).select(iif($this > 2, $this, iif($this < 2, '
+  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+  //           "2')))",
+  //     ),
+  //     [4.toFhirInteger],
+  //   );
+  //   expect(
+  //     walkFhirPath(
+  //       context: null,
+  //       pathExpression: r'(1 + 0).select(iif($this > 2, $this, iif($this < 2, '
+  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+  //           "2')))",
+  //     ),
+  //     ['1 is below 2'],
+  //   );
+  // });
+
+  // group('extensions', () {
+  //   test(
+  //     'extensionOnPolymorphic',
+  //     () => expect(
+  //       walkFhirPath(
+  //         context: QuestionnaireResponse.fromJson(questionnaireResponse),
+  //         pathExpression: '%context.repeat(item).answer.value.extension.'
+  //             'where(url=%`ext-ordinalValue`).value',
+  //       ),
+  //       [4.toFhirInteger, 5.toFhirInteger, 4.toFhirInteger],
+  //     ),
+  //   );
+  //   test(
+  //     'extensionOnPrimitive',
+  //     () => expect(
+  //       walkFhirPath(
+  //         context: patientExample(),
+  //         pathExpression: 'Patient.contact.name.family.extension'
+  //             '(%`ext-humanname-own-prefix`).value',
+  //       ),
+  //       ['VV'.toFhirString],
+  //     ),
+  //   );
+  // });
+
+  // TODO(Dokotela):  trace
+  // });
 }

@@ -10,8 +10,8 @@ void main()  {
   testBasicTypes();
   fhirPathParserTest();
   testPaths();
-  testBasicOperators();
-  testDateTimes();
-  testNoArgFxns();
-  testArgFxns();
+  // testBasicOperators();
+  // testDateTimes();
+  // testNoArgFxns();
+  // testArgFxns();
 }

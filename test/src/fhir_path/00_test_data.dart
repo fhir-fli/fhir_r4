@@ -659,8 +659,10 @@ final resource = QuestionnaireResponse.fromJson({
   ],
 });
 
-Map<String, dynamic>? patientExample() {
-  return jsonDecode(patientJsonString) as Map<String, dynamic>?;
+Resource? patientExample() {
+  return Resource.fromJson(
+    jsonDecode(patientJsonString) as Map<String, dynamic>,
+  );
 }
 
 const patientJsonString = r'''

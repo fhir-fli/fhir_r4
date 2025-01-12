@@ -374,6 +374,7 @@ enum FpFunction {
   Ln,
   Log,
   Power,
+  Sum,
   Truncate,
   Encode,
   Decode,
@@ -582,6 +583,8 @@ enum FpFunction {
         return FpFunction.Log;
       case 'power':
         return FpFunction.Power;
+      case 'sum':
+        return FpFunction.Sum;
       case 'truncate':
         return FpFunction.Truncate;
       case 'lowBoundary':
@@ -767,6 +770,8 @@ enum FpFunction {
         return 'log';
       case FpFunction.Power:
         return 'power';
+      case FpFunction.Sum:
+        return 'sum';
       case FpFunction.Truncate:
         return 'truncate';
       case FpFunction.Encode:

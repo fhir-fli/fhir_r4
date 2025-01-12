@@ -64,6 +64,9 @@ List<FhirBase> walkFhirPath({
   Map<String, dynamic>? environment,
 }) {
   final ast = parseFhirPath(pathExpression);
+  print('*********************************');
+  ast.printExpressionTree();
+  print('*********************************');
   return executeFhirPath(
     context: context,
     parsedFhirPath: ast,
@@ -114,22 +117,7 @@ List<FhirBase> executeFhirPath({
         parsedFhirPath,
         environment: passedEnvironment,
       );
-    } catch (error) {
-      if (error is PathEngineException) {
-        rethrow;
-      } else {
-        throw PathEngineException(
-          'Unable to execute FHIRPath expression',
-          expression: pathExpression,
-          cause: error as Exception,
-        );
-      }
-    }
-  } else {
-    try {
-      // Evaluate the FHIRPath expression
-      return engine.evaluate(context, parsedFhirPath);
-    } catch (error) {
+    } catch (error, st) {
       if (error is PathEngineException) {
         rethrow;
       } else if (error is Error) {
@@ -137,12 +125,37 @@ List<FhirBase> executeFhirPath({
           'Unable to execute FHIRPath expression',
           expression: pathExpression,
           cause: error,
+          stackTrace: st,
         );
       } else {
         throw PathEngineException(
           'Unable to execute FHIRPath expression',
           expression: pathExpression,
           cause: error as Exception,
+          stackTrace: st,
+        );
+      }
+    }
+  } else {
+    try {
+      // Evaluate the FHIRPath expression
+      return engine.evaluate(context, parsedFhirPath);
+    } catch (error, st) {
+      if (error is PathEngineException) {
+        rethrow;
+      } else if (error is Error) {
+        throw PathEngineError(
+          'Unable to execute FHIRPath expression',
+          expression: pathExpression,
+          cause: error,
+          stackTrace: st,
+        );
+      } else {
+        throw PathEngineException(
+          'Unable to execute FHIRPath expression',
+          expression: pathExpression,
+          cause: error as Exception,
+          stackTrace: st,
         );
       }
     }

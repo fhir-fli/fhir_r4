@@ -67,7 +67,7 @@ class FHIRPathEngine {
 
   /// Flags
   bool legacyMode = false;
-  bool allowPolymorphicNames = false;
+  bool allowPolymorphicNames = true;
   bool doImplicitStringConversion = false;
   bool liquidMode = false;
   bool doNotEnforceAsSingletonRule = false;
@@ -939,6 +939,7 @@ class FHIRPathEngine {
       case FpFunction.Ln:
       case FpFunction.Log:
       case FpFunction.Power:
+      case FpFunction.Sum:
       case FpFunction.Truncate:
       case FpFunction.Encode:
       case FpFunction.Decode:
@@ -970,9 +971,6 @@ class FHIRPathEngine {
     ExpressionNode exp,
     bool atEntry,
   ) {
-    print('execute');
-    print('inContext: $inContext');
-    print('focus: $focus');
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
 
@@ -1047,6 +1045,7 @@ class FHIRPathEngine {
         // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
+
         work.addAll(constants);
 
       case ExpressionNodeKind.group:
@@ -1143,7 +1142,7 @@ class FHIRPathEngine {
         if (itemType == exp.name) {
           result.add(item);
           return result;
-        } else {}
+        }
       }
 
       // Handle resources
@@ -1328,11 +1327,19 @@ class FHIRPathEngine {
     bool atEntry,
   ) {
     final result = <FhirBase>[];
+
     if (next.inner != null) {
+      // Handle inner nodes by constructing the fully qualified name
       result.add(FhirString('${next.name}.${next.inner!.name}'));
-    } else {
+    } else if (next.name != null) {
+      // Handle nodes with a name
       result.add(FhirString(next.name));
+    } else if (next.kind == ExpressionNodeKind.group) {
+      // Process group nodes recursively
+
+      result.addAll(execute(context, focus, next.group!, atEntry));
     }
+
     return result;
   }
 
@@ -1628,6 +1635,7 @@ class FHIRPathEngine {
           if (p.endsWith('X')) {
             final n = p.substring(0, p.length - 1);
             if (name.startsWith(n)) {
+              print('n: $n name: $name');
               tn = name.substring(n.length);
               name = n;
               break;
@@ -1636,6 +1644,7 @@ class FHIRPathEngine {
         }
       }
 
+      print('name: $name');
       final list = item.listChildrenByName(name);
       if (list.isNotEmpty) {
         for (final v in list) {
@@ -2226,9 +2235,9 @@ class FHIRPathEngine {
       case FpFunction.Take:
         return checkParamCount(lexer, location, exp, 1);
       case FpFunction.Union:
-        return checkParamCount(lexer, location, exp, 1);
+        return checkParamCount(lexer, location, exp, 0, 1);
       case FpFunction.Combine:
-        return checkParamCount(lexer, location, exp, 1);
+        return checkParamCount(lexer, location, exp, 0, 1);
       case FpFunction.Intersect:
         return checkParamCount(lexer, location, exp, 1);
       case FpFunction.Exclude:
@@ -2365,6 +2374,8 @@ class FHIRPathEngine {
         return checkParamCount(lexer, location, exp, 1);
       case FpFunction.Power:
         return checkParamCount(lexer, location, exp, 1);
+      case FpFunction.Sum:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.Truncate:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.LowBoundary:
@@ -2391,13 +2402,16 @@ class FHIRPathEngine {
     FHIRLexer lexer,
     SourceLocation location,
     ExpressionNode exp,
-    int count,
-  ) {
-    if (exp.parameters.length != count) {
+    int count, [
+    int? count2,
+  ]) {
+    if (exp.parameters.length == count ||
+        (count2 != null && exp.parameters.length == count2)) {
+      return true;
+    } else {
       throw lexer
           .error('The function "${exp.name}" requires $count parameters');
     }
-    return true;
   }
 
   bool checkParamCountBoundary(
@@ -3860,6 +3874,7 @@ class FHIRPathEngine {
     }
 
     final tn = convertToStringList(right);
+
     if (!isKnownType(tn)) {
       throw PathEngineException('The type $tn is not valid');
     }
@@ -4076,6 +4091,8 @@ class FHIRPathEngine {
         return funcLog(context, focus, exp);
       case FpFunction.Power:
         return funcPower(context, focus, exp);
+      case FpFunction.Sum:
+        return funcSum(context, focus, exp);
       case FpFunction.Truncate:
         return funcTruncate(context, focus, exp);
       case FpFunction.LowBoundary:
@@ -4261,16 +4278,20 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final pc = <FhirBase>[];
-
     for (final item in focus) {
       pc
         ..clear()
         ..add(item);
-      final v = asBoolFromList(
-        executeContextTypeName(
-          context.changeThis(item, worker),
+      if (exp.parameters.isEmpty) {
+        throw PathEngineException(
+          'Where function must have at least one parameter',
+        );
+      }
+      final v = asBoolList(
+        execute(
+          changeThisExecutionContext(context, item),
           pc,
-          exp.parameters[0],
+          exp.parameters.first,
           true,
         ),
         exp,
@@ -4362,23 +4383,37 @@ class FHIRPathEngine {
     while (more) {
       added.clear();
       final pc = <FhirBase>[];
+
       for (final item in current) {
         pc
           ..clear()
           ..add(item);
-        added.addAll(
-          execute(
+
+        try {
+          final ex = execute(
             context.changeThis(item, worker),
             pc,
-            exp.parameters[0],
+            exp.parameters.first,
             false,
-          ),
-        );
+          );
+
+          added.addAll(ex);
+        } catch (e, stackTrace) {}
       }
+
       more = false;
       current.clear();
+
       for (final b in added) {
-        final isNew = result.every((t) => !FhirBase.compareDeep(b, t));
+        var isNew = true;
+
+        for (final t in result) {
+          if (b.equalsDeep(t)) {
+            isNew = false;
+            break;
+          }
+        }
+
         if (isNew) {
           result.add(b);
           current.add(b);
@@ -4386,6 +4421,7 @@ class FHIRPathEngine {
         }
       }
     }
+
     return result;
   }
 
@@ -4483,39 +4519,41 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     final result = <FhirBase>[];
-    final parameter = expr.parameters[0];
-    final tn = parameter.inner != null
-        ? '${parameter.name}.${parameter.inner!.name}'
-        : 'FHIR.${parameter.name}';
+    String? tn;
+    if (expr.parameters.isNotEmpty && expr.parameters.first.inner != null) {
+      tn = '${expr.parameters.first.name}.${expr.parameters.first.inner!.name}';
+    } else if (expr.parameters.isNotEmpty) {
+      tn = 'FHIR.${expr.parameters.first.name}';
+    }
 
     if (!isKnownType(tn)) {
       throw PathEngineException('The type $tn is not valid');
     }
 
     for (final b in focus) {
-      if (tn.startsWith('System.')) {
-        if (b is Element &&
-            (b.disallowExtensions ?? false) &&
-            b.hasType([tn.substring(7)])) {
-          result.add(b);
+      if (tn!.startsWith('System.')) {
+        if (b is Element && (b.disallowExtensions ?? false)) {
+          if (b.hasType([tn.substring(7)])) {
+            result.add(b);
+          }
         }
       } else if (tn.startsWith('FHIR.')) {
         final tnp = tn.substring(5);
         if (b.fhirType == tnp) {
           result.add(b);
         } else {
-          var sd = _fetchTypeDefinition(b.fhirType);
+          var sd = worker.fetchTypeDefinition(b.fhirType);
           while (sd != null) {
-            if (tnp == sd.type.toString()) {
+            if (tnp == sd.type.primitiveValue) {
               result.add(b);
               break;
             }
             sd = sd.kind == StructureDefinitionKind.primitive_type
                 ? null
                 : worker.fetchResource<StructureDefinition>(
-                    uri: sd.baseDefinition?.toString(),
+                    uri: sd.baseDefinition?.primitiveValue,
                     canonicalForSource: sd,
-                  );
+                  )!;
           }
         }
       }
@@ -4668,6 +4706,10 @@ class FHIRPathEngine {
     final n1 = execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue.toString());
 
+    if (focus.length <= i1) {
+      return [];
+    }
+
     return focus.sublist(i1);
   }
 
@@ -4702,12 +4744,14 @@ class FHIRPathEngine {
       throw PathEngineException('The context does not have a thisItem');
     }
 
-    final other = execute(
-      context,
-      baseToList(context.thisItem!),
-      exp.parameters[0],
-      true,
-    );
+    final other = exp.parameters.isEmpty
+        ? <FhirBase>[]
+        : execute(
+            context,
+            baseToList(context.thisItem!),
+            exp.parameters[0],
+            true,
+          );
 
     for (final item in other) {
       if (!doContains(result, item)) {
@@ -4727,12 +4771,14 @@ class FHIRPathEngine {
       throw PathEngineException('The context does not have a thisItem');
     }
 
-    final other = execute(
-      context,
-      baseToList(context.thisItem!),
-      exp.parameters[0],
-      true,
-    );
+    final other = exp.parameters.isEmpty
+        ? <FhirBase>[]
+        : execute(
+            context,
+            baseToList(context.thisItem!),
+            exp.parameters[0],
+            true,
+          );
 
     result.addAll(other);
     return result;
@@ -4760,7 +4806,12 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     final result = <FhirBase>[];
-    final other = execute(context, focus, exp.parameters[0], true);
+    final other = execute(
+      context,
+      context.focusResource == null ? focus : [context.focusResource!],
+      exp.parameters[0],
+      true,
+    );
 
     for (final item in focus) {
       if (!doContains(other, item)) {
@@ -6524,7 +6575,10 @@ class FHIRPathEngine {
       final value = double.tryParse(base.primitiveValue ?? '');
       if (exponent != null && value != null) {
         try {
-          result.add(FhirDecimal(pow(value, exponent)).noExtensions());
+          final res = pow(value, exponent);
+          if (!res.isNaN) {
+            result.add(FhirDecimal(res).noExtensions());
+          }
         } catch (e) {
           // Do nothing on error
         }
@@ -6536,6 +6590,34 @@ class FHIRPathEngine {
         base.fhirType,
         'integer or decimal',
       ]);
+    }
+
+    return result;
+  }
+
+  List<FhirBase> funcSum(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode expr,
+  ) {
+    final result = <FhirBase>[];
+    FhirNumber? sum;
+
+    for (final item in focus) {
+      if (item is FhirNumber) {
+        if (sum == null) {
+          sum = item;
+        } else {
+          sum = sum + item;
+        }
+      } else {
+        throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
+          'sum',
+          '(focus)',
+          item.fhirType,
+          'integer or decimal',
+        ]);
+      }
     }
 
     return result;
@@ -6906,8 +6988,6 @@ class FHIRPathEngine {
       exp.parameters[0],
       true,
     );
-    print('target: $target');
-    print('focus: $focus');
 
     var valid = true;
     for (final item in target) {
@@ -7665,19 +7745,20 @@ class FHIRPathEngine {
     return false;
   }
 
-  bool isKnownType(String tn) {
-    if (!tn.contains('.')) {
+  bool isKnownType(String? tn) {
+    if (tn == null) {
+      return false;
+    } else if (!tn.contains('.')) {
       if ([
-        'String',
-        'Boolean',
-        'Integer',
-        'Decimal',
-        'Quantity',
-        'DateTime',
-        'Time',
-        'SimpleTypeInfo',
-        'ClassInfo',
-      ].contains(tn)) {
+            'SimpleTypeInfo',
+            'ClassInfo',
+          ].contains(tn) ||
+          tn.isFhirPrimitive ||
+          tn.isBackboneElement ||
+          tn.isFhirBackboneType ||
+          tn.isFhirDataType ||
+          tn.isFhirQuantity ||
+          tn.isFhirResourceType) {
         return true;
       }
       try {
@@ -7703,6 +7784,22 @@ class FHIRPathEngine {
         'ClassInfo',
       ].contains(t[1]);
     } else if ('FHIR' == t[0]) {
+      if (tn.startsWith('FHIR.')) {
+        final newTn = tn.substring(5);
+        if ([
+              'SimpleTypeInfo',
+              'ClassInfo',
+            ].contains(newTn) ||
+            newTn.isFhirPrimitive ||
+            newTn.isBackboneElement ||
+            newTn.isFhirBackboneType ||
+            newTn.isFhirDataType ||
+            newTn.isFhirQuantity ||
+            newTn.isFhirResourceType) {
+          return true;
+        }
+      }
+
       try {
         return _fetchTypeDefinition(t[1]) != null;
       } catch (e) {
@@ -7721,7 +7818,27 @@ class FHIRPathEngine {
     }
   }
 
-  ExecutionTypeContext changeThis(
+  ExecutionContext changeThisExecutionContext(
+    ExecutionContext context,
+    FhirBase newThis,
+  ) {
+    final newContext = ExecutionContext(
+      appInfo: context.appInfo,
+      focusResource: context.focusResource,
+      rootResource: context.rootResource,
+      context: context.context,
+      thisItem: newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables?.keys ?? <String>[]) {
+        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
+      }
+    }
+    return newContext;
+  }
+
+  ExecutionTypeContext changeThisExecutionTypeContext(
     ExecutionTypeContext context,
     TypeDetails newThis,
   ) {
