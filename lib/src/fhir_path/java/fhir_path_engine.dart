@@ -1034,13 +1034,6 @@ class FHIRPathEngine {
           for (final item in focus) {
             final outcome = executeForItem(context, item, exp, atEntry: true);
             work.addAll(outcome);
-            if (outcome.isNotEmpty) {
-              print('Outcome: ${outcome.first.toJson()}');
-            }
-            print('Work: $work');
-            if (work.isNotEmpty) {
-              print('Work: ${work.first.toJson()}');
-            }
           }
         }
 
@@ -1649,9 +1642,6 @@ class FHIRPathEngine {
         }
       }
 
-      if (item is Element && item.extension_ != null) {
-        print('item: ${item.toJson()}');
-      }
       final list = item.listChildrenByName(name);
       if (list.isNotEmpty) {
         for (final v in list) {
@@ -3834,6 +3824,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opIs $left $right');
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
@@ -3841,8 +3832,11 @@ class FHIRPathEngine {
       result.add(FhirBoolean(false).noExtensions());
     } else {
       final tn = convertToStringList(right);
+      print('tn $tn');
       if (left.first is Element) {
         final element = left.first as Element;
+        print(element.fhirType.capitalize());
+        print(element.disallowExtensions ?? false);
         if (element.disallowExtensions ?? false) {
           result.add(
             FhirBoolean(
@@ -3852,21 +3846,24 @@ class FHIRPathEngine {
           );
         } else {
           final currentType = element.fhirType;
-          var sd = _fetchTypeDefinition(currentType);
-          while (sd != null) {
-            if (tn == sd.type.toString()) {
-              return makeBoolean(true);
-            }
-            sd = worker.fetchResource<StructureDefinition>(
-              uri: sd.baseDefinition?.toString(),
-            );
-          }
-          return makeBoolean(false);
+          return makeBoolean(currentType == tn);
+          // TODO(Dokotela): I don't think we really need all this
+          // var sd = _fetchTypeDefinition(currentType);
+          // while (sd != null) {
+          //   if (tn == sd.type.toString()) {
+          //     return makeBoolean(true);
+          //   }
+          //   sd = worker.fetchResource<StructureDefinition>(
+          //     uri: sd.baseDefinition?.toString(),
+          //   );
+          // }
+          // return makeBoolean(false);
         }
       } else if (left.first.fhirType == tn) {
         result.add(FhirBoolean(true).noExtensions());
       }
     }
+    print('result $result');
     return result;
   }
 
@@ -4482,52 +4479,56 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    final result = <FhirBase>[];
-    final parameter = expr.parameters[0];
-    final tn = parameter.inner != null
-        ? '${parameter.name}.${parameter.inner!.name}'
-        : 'FHIR.${parameter.name}';
+    throw FhirPathDeprecatedExpressionException(
+      'The "as" function is deprecated',
+      location: expr.opStart,
+    );
+    // final result = <FhirBase>[];
+    // final parameter = expr.parameters[0];
+    // final tn = parameter.inner != null
+    //     ? '${parameter.name}.${parameter.inner!.name}'
+    //     : 'FHIR.${parameter.name}';
 
-    if (!isKnownType(tn)) {
-      throw PathEngineException('The type $tn is not valid');
-    }
+    // if (!isKnownType(tn)) {
+    //   throw PathEngineException('The type $tn is not valid');
+    // }
 
-    if (!doNotEnforceAsSingletonRule && focus.length > 1) {
-      throw PathEngineException(
-        'Attempt to use as() on more than one item (${focus.length})',
-      );
-    }
+    // if (!doNotEnforceAsSingletonRule && focus.length > 1) {
+    //   throw PathEngineException(
+    //     'Attempt to use as() on more than one item (${focus.length})',
+    //   );
+    // }
 
-    for (final b in focus) {
-      if (tn.startsWith('System.')) {
-        if (b is Element &&
-            (b.disallowExtensions ?? false) &&
-            b.hasType([tn.substring(7)])) {
-          result.add(b);
-        }
-      } else if (tn.startsWith('FHIR.')) {
-        final tnp = tn.substring(5);
-        if (b.fhirType == tnp) {
-          result.add(b);
-        } else {
-          var sd = _fetchTypeDefinition(b.fhirType);
-          while (sd != null) {
-            if (compareTypeNames(tnp, sd.type.toString())) {
-              result.add(b);
-              break;
-            }
-            sd = sd.kind == StructureDefinitionKind.primitive_type
-                ? null
-                : worker.fetchResource<StructureDefinition>(
-                    uri: sd.baseDefinition?.toString(),
-                    canonicalForSource: sd,
-                  );
-          }
-        }
-      }
-    }
+    // for (final b in focus) {
+    //   if (tn.startsWith('System.')) {
+    //     if (b is Element &&
+    //         (b.disallowExtensions ?? false) &&
+    //         b.hasType([tn.substring(7)])) {
+    //       result.add(b);
+    //     }
+    //   } else if (tn.startsWith('FHIR.')) {
+    //     final tnp = tn.substring(5);
+    //     if (b.fhirType == tnp) {
+    //       result.add(b);
+    //     } else {
+    //       var sd = _fetchTypeDefinition(b.fhirType);
+    //       while (sd != null) {
+    //         if (compareTypeNames(tnp, sd.type.toString())) {
+    //           result.add(b);
+    //           break;
+    //         }
+    //         sd = sd.kind == StructureDefinitionKind.primitive_type
+    //             ? null
+    //             : worker.fetchResource<StructureDefinition>(
+    //                 uri: sd.baseDefinition?.toString(),
+    //                 canonicalForSource: sd,
+    //               );
+    //       }
+    //     }
+    //   }
+    // }
 
-    return result;
+    // return result;
   }
 
   List<FhirBase> funcOfType(
@@ -5609,9 +5610,7 @@ class FHIRPathEngine {
     for (final item in focus) {
       final ext = <FhirBase>[];
       getChildrenByName(item, 'extension', ext);
-      print('extension: $ext');
       getChildrenByName(item, 'modifierExtension', ext);
-      print('modifierExtension: $ext');
       for (final ex in ext) {
         final vl = <FhirBase>[];
         getChildrenByName(ex, 'url', vl);
@@ -5954,6 +5953,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
+    print('funcToQuantity');
     final result = <FhirBase>[];
     if (focus.length == 1) {
       final item = focus.first;
