@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/java.dart';
 import 'package:test/test.dart';
-import '00_test_data.dart';
+import 'test_data.dart';
 
 ExpressionNode parseExpression(String expression, [FhirBase? context]) {
   final node = testEngine.parse(expression);

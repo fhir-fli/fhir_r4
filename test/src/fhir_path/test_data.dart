@@ -841,3 +841,221 @@ final bundle = Bundle(
     BundleEntry(resource: Patient(id: '7'.toFhirString)),
   ],
 );
+
+final questionnaire1 = Questionnaire.fromJsonString(r'''
+{
+	"resourceType": "Questionnaire",
+	"id": "3141",
+	"text": {
+		"status": "generated",
+		"div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>\r\n            1.Comorbidity?\r\n              1.1 Cardial Comorbidity\r\n                1.1.1 Angina?\r\n                1.1.2 MI?\r\n              1.2 Vascular Comorbidity?\r\n              ...\r\n            Histopathology\r\n              Abdominal\r\n                pT category?\r\n              ...\r\n          </pre></div>"
+	},
+	"url": "http://hl7.org/fhir/Questionnaire/3141",
+	"title": "Cancer Quality Forum Questionnaire 2012",
+	"status": "draft",
+	"subjectType": [
+		"Patient"
+	],
+	"date": "2012-01",
+	"item": [
+		{
+			"linkId": "1",
+			"code": [
+				{
+					"system": "http://example.org/system/code/sections",
+					"code": "COMORBIDITY"
+				}
+			],
+			"type": "group",
+			"item": [
+				{
+					"linkId": "1.1",
+					"code": [
+						{
+							"system": "http://example.org/system/code/questions",
+							"code": "COMORB"
+						}
+					],
+					"prefix": "1",
+					"type": "choice",
+					"answerValueSet": "http://hl7.org/fhir/ValueSet/yesnodontknow",
+					"item": [
+						{
+							"linkId": "1.1.1",
+							"code": [
+								{
+									"system": "http://example.org/system/code/sections",
+									"code": "CARDIAL"
+								}
+							],
+							"type": "group",
+							"enableWhen": [
+								{
+									"question": "1.1",
+									"operator": "=",
+									"answerCoding": {
+										"system": "http://terminology.hl7.org/CodeSystem/v2-0136",
+										"code": "Y"
+									}
+								}
+							],
+							"item": [
+								{
+									"linkId": "1.1.1.1",
+									"code": [
+										{
+											"system": "http://example.org/system/code/questions",
+											"code": "COMORBCAR"
+										}
+									],
+									"prefix": "1.1",
+									"type": "choice",
+									"answerValueSet": "http://hl7.org/fhir/ValueSet/yesnodontknow",
+									"item": [
+										{
+											"linkId": "1.1.1.1.1",
+											"code": [
+												{
+													"system": "http://example.org/system/code/questions",
+													"code": "COMCAR00",
+													"display": "Angina Pectoris"
+												},
+												{
+													"system": "http://snomed.info/sct",
+													"code": "194828000",
+													"display": "Angina (disorder)"
+												}
+											],
+											"prefix": "1.1.1",
+											"type": "choice",
+											"answerValueSet": "http://hl7.org/fhir/ValueSet/yesnodontknow"
+										},
+										{
+											"linkId": "1.1.1.1.2",
+											"code": [
+												{
+													"system": "http://snomed.info/sct",
+													"code": "22298006",
+													"display": "Myocardial infarction (disorder)"
+												}
+											],
+											"prefix": "1.1.2",
+											"type": "choice",
+											"answerValueSet": "http://hl7.org/fhir/ValueSet/yesnodontknow"
+										}
+									]
+								},
+								{
+									"linkId": "1.1.1.2",
+									"code": [
+										{
+											"system": "http://example.org/system/code/questions",
+											"code": "COMORBVAS"
+										}
+									],
+									"prefix": "1.2",
+									"type": "choice",
+									"answerValueSet": "http://hl7.org/fhir/ValueSet/yesnodontknow"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"linkId": "2",
+			"code": [
+				{
+					"system": "http://example.org/system/code/sections",
+					"code": "HISTOPATHOLOGY"
+				}
+			],
+			"type": "group",
+			"item": [
+				{
+					"linkId": "2.1",
+					"code": [
+						{
+							"system": "http://example.org/system/code/sections",
+							"code": "ABDOMINAL"
+						}
+					],
+					"type": "group",
+					"item": [
+						{
+							"linkId": "2.1.2",
+							"code": [
+								{
+									"system": "http://example.org/system/code/questions",
+									"code": "STADPT",
+									"display": "pT category"
+								}
+							],
+							"type": "choice"
+						}
+					]
+				}
+			]
+		}
+	]
+}''');
+
+final observation1 = Observation.fromJsonString(r'''
+{
+	"resourceType": "Observation",
+	"id": "example",
+	"text": {
+		"status": "generated",
+		"div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example</p><p><b>status</b>: final</p><p><b>category</b>: Vital Signs <span>(Details : {http://terminology.hl7.org/CodeSystem/observation-category code 'vital-signs' = 'Vital Signs', given as 'Vital Signs'})</span></p><p><b>code</b>: Body Weight <span>(Details : {LOINC code '29463-7' = 'Body weight', given as 'Body Weight'}; {LOINC code '3141-9' = 'Body weight Measured', given as 'Body weight Measured'}; {SNOMED CT code '27113001' = 'Body weight', given as 'Body weight'}; {http://acme.org/devices/clinical-codes code 'body-weight' = 'body-weight', given as 'Body Weight'})</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>encounter</b>: <a>Encounter/example</a></p><p><b>effective</b>: 28/03/2016</p><p><b>value</b>: 185 lbs<span> (Details: UCUM code [lb_av] = 'lb_av')</span></p></div>"
+	},
+	"status": "final",
+	"category": [
+		{
+			"coding": [
+				{
+					"system": "http://terminology.hl7.org/CodeSystem/observation-category",
+					"code": "vital-signs",
+					"display": "Vital Signs"
+				}
+			]
+		}
+	],
+	"code": {
+		"coding": [
+			{
+				"system": "http://loinc.org",
+				"code": "29463-7",
+				"display": "Body Weight"
+			},
+			{
+				"system": "http://loinc.org",
+				"code": "3141-9",
+				"display": "Body weight Measured"
+			},
+			{
+				"system": "http://snomed.info/sct",
+				"code": "27113001",
+				"display": "Body weight"
+			},
+			{
+				"system": "http://acme.org/devices/clinical-codes",
+				"code": "body-weight",
+				"display": "Body Weight"
+			}
+		]
+	},
+	"subject": {
+		"reference": "Patient/example"
+	},
+	"encounter": {
+		"reference": "Encounter/example"
+	},
+	"effectiveDateTime": "2016-03-28",
+	"valueQuantity": {
+		"value": 185,
+		"unit": "lbs",
+		"system": "http://unitsofmeasure.org",
+		"code": "[lb_av]"
+	}
+}''');
