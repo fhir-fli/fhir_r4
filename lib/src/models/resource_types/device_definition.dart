@@ -591,6 +591,10 @@ class DeviceDefinition extends DomainResource {
         if (udiDeviceIdentifier != null) {
           fields.addAll(udiDeviceIdentifier!);
         }
+      case 'manufacturer':
+        fields.add(manufacturerX!);
+      case 'manufacturerX':
+        fields.add(manufacturerX!);
       case 'manufacturerString':
         if (manufacturerX is FhirString) {
           fields.add(manufacturerX!);

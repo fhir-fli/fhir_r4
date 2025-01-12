@@ -734,6 +734,10 @@ class Procedure extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'performed':
+        fields.add(performedX!);
+      case 'performedX':
+        fields.add(performedX!);
       case 'performedDateTime':
         if (performedX is FhirDateTime) {
           fields.add(performedX!);

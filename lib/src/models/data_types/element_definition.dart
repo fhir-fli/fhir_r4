@@ -971,6 +971,10 @@ class ElementDefinition extends BackboneType {
         if (type != null) {
           fields.addAll(type!);
         }
+      case 'defaultValue':
+        fields.add(defaultValueX!);
+      case 'defaultValueX':
+        fields.add(defaultValueX!);
       case 'defaultValueBase64Binary':
         if (defaultValueX is FhirBase64Binary) {
           fields.add(defaultValueX!);
@@ -1183,6 +1187,10 @@ class ElementDefinition extends BackboneType {
         if (orderMeaning != null) {
           fields.add(orderMeaning!);
         }
+      case 'fixed':
+        fields.add(fixedX!);
+      case 'fixedX':
+        fields.add(fixedX!);
       case 'fixedBase64Binary':
         if (fixedX is FhirBase64Binary) {
           fields.add(fixedX!);
@@ -1387,6 +1395,10 @@ class ElementDefinition extends BackboneType {
         if (fixedX is Dosage) {
           fields.add(fixedX!);
         }
+      case 'pattern':
+        fields.add(patternX!);
+      case 'patternX':
+        fields.add(patternX!);
       case 'patternBase64Binary':
         if (patternX is FhirBase64Binary) {
           fields.add(patternX!);
@@ -1595,6 +1607,10 @@ class ElementDefinition extends BackboneType {
         if (example != null) {
           fields.addAll(example!);
         }
+      case 'minValue':
+        fields.add(minValueX!);
+      case 'minValueX':
+        fields.add(minValueX!);
       case 'minValueDate':
         if (minValueX is FhirDate) {
           fields.add(minValueX!);
@@ -1631,6 +1647,10 @@ class ElementDefinition extends BackboneType {
         if (minValueX is Quantity) {
           fields.add(minValueX!);
         }
+      case 'maxValue':
+        fields.add(maxValueX!);
+      case 'maxValueX':
+        fields.add(maxValueX!);
       case 'maxValueDate':
         if (maxValueX is FhirDate) {
           fields.add(maxValueX!);
@@ -3591,6 +3611,10 @@ class ElementDefinitionExample extends Element {
         }
       case 'label':
         fields.add(label);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueBase64Binary':
         if (valueX is FhirBase64Binary) {
           fields.add(valueX);

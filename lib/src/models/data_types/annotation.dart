@@ -197,6 +197,10 @@ class Annotation extends DataType
         if (extension_ != null) {
           fields.addAll(extension_!);
         }
+      case 'author':
+        fields.add(authorX!);
+      case 'authorX':
+        fields.add(authorX!);
       case 'authorReference':
         if (authorX is Reference) {
           fields.add(authorX!);

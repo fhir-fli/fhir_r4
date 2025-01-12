@@ -226,6 +226,10 @@ class FhirExtension extends DataType {
         }
       case 'url':
         fields.add(url);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueBase64Binary':
         if (valueX is FhirBase64Binary) {
           fields.add(valueX!);

@@ -31,7 +31,10 @@ Future<void> main() async {
 
   // Validate the code
   final result = await context.validateCodeWithCoding(
-      ValidationOptions(), coding, valueSet,);
+    ValidationOptions(),
+    coding,
+    valueSet,
+  );
 
   // ignore: avoid_print
   print(result.message);

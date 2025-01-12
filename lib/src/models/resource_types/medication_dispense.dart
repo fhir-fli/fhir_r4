@@ -634,6 +634,10 @@ class MedicationDispense extends DomainResource {
         }
       case 'status':
         fields.add(status);
+      case 'statusReason':
+        fields.add(statusReasonX!);
+      case 'statusReasonX':
+        fields.add(statusReasonX!);
       case 'statusReasonCodeableConcept':
         if (statusReasonX is CodeableConcept) {
           fields.add(statusReasonX!);
@@ -646,6 +650,10 @@ class MedicationDispense extends DomainResource {
         if (category != null) {
           fields.add(category!);
         }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
       case 'medicationCodeableConcept':
         if (medicationX is CodeableConcept) {
           fields.add(medicationX);

@@ -1274,6 +1274,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         if (molecularFormula != null) {
           fields.add(molecularFormula!);
         }
+      case 'amount':
+        fields.add(amountX!);
+      case 'amountX':
+        fields.add(amountX!);
       case 'amountQuantity':
         if (amountX is Quantity) {
           fields.add(amountX!);
@@ -1627,6 +1631,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);
@@ -4461,6 +4469,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'substanceDefinition':
+        fields.add(substanceDefinitionX!);
+      case 'substanceDefinitionX':
+        fields.add(substanceDefinitionX!);
       case 'substanceDefinitionReference':
         if (substanceDefinitionX is Reference) {
           fields.add(substanceDefinitionX!);
@@ -4475,6 +4487,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         if (isDefining != null) {
           fields.add(isDefining!);
         }
+      case 'amount':
+        fields.add(amountX!);
+      case 'amountX':
+        fields.add(amountX!);
       case 'amountQuantity':
         if (amountX is Quantity) {
           fields.add(amountX!);

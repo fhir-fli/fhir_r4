@@ -1909,6 +1909,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         if (type != null) {
           fields.add(type!);
         }
+      case 'period':
+        fields.add(periodX!);
+      case 'periodX':
+        fields.add(periodX!);
       case 'periodDuration':
         if (periodX is FhirDuration) {
           fields.add(periodX!);
@@ -2231,6 +2235,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

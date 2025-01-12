@@ -2460,6 +2460,10 @@ class ImplementationGuideResource extends BackboneElement {
         if (description != null) {
           fields.add(description!);
         }
+      case 'example':
+        fields.add(exampleX!);
+      case 'exampleX':
+        fields.add(exampleX!);
       case 'exampleBoolean':
         if (exampleX is FhirBoolean) {
           fields.add(exampleX!);
@@ -2829,6 +2833,10 @@ class ImplementationGuidePage extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'name':
+        fields.add(nameX);
+      case 'nameX':
+        fields.add(nameX);
       case 'nameUrl':
         if (nameX is FhirUrl) {
           fields.add(nameX);
@@ -4182,6 +4190,10 @@ class ImplementationGuideResource1 extends BackboneElement {
         }
       case 'reference':
         fields.add(reference);
+      case 'example':
+        fields.add(exampleX!);
+      case 'exampleX':
+        fields.add(exampleX!);
       case 'exampleBoolean':
         if (exampleX is FhirBoolean) {
           fields.add(exampleX!);

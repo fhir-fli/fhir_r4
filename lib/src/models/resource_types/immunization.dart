@@ -673,6 +673,10 @@ class Immunization extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'occurrence':
+        fields.add(occurrenceX);
+      case 'occurrenceX':
+        fields.add(occurrenceX);
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX);
@@ -2381,6 +2385,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
         if (targetDisease != null) {
           fields.addAll(targetDisease!);
         }
+      case 'doseNumber':
+        fields.add(doseNumberX);
+      case 'doseNumberX':
+        fields.add(doseNumberX);
       case 'doseNumberPositiveInt':
         if (doseNumberX is FhirPositiveInt) {
           fields.add(doseNumberX);
@@ -2389,6 +2397,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
         if (doseNumberX is FhirString) {
           fields.add(doseNumberX);
         }
+      case 'seriesDoses':
+        fields.add(seriesDosesX!);
+      case 'seriesDosesX':
+        fields.add(seriesDosesX!);
       case 'seriesDosesPositiveInt':
         if (seriesDosesX is FhirPositiveInt) {
           fields.add(seriesDosesX!);

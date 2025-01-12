@@ -575,6 +575,10 @@ class ClinicalImpression extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'effective':
+        fields.add(effectiveX!);
+      case 'effectiveX':
+        fields.add(effectiveX!);
       case 'effectiveDateTime':
         if (effectiveX is FhirDateTime) {
           fields.add(effectiveX!);

@@ -3012,6 +3012,10 @@ class NutritionOrderAdministration extends BackboneElement {
         if (quantity != null) {
           fields.add(quantity!);
         }
+      case 'rate':
+        fields.add(rateX!);
+      case 'rateX':
+        fields.add(rateX!);
       case 'rateQuantity':
         if (rateX is Quantity) {
           fields.add(rateX!);

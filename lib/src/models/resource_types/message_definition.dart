@@ -620,6 +620,10 @@ class MessageDefinition extends CanonicalResource {
         if (parent != null) {
           fields.addAll(parent!);
         }
+      case 'event':
+        fields.add(eventX);
+      case 'eventX':
+        fields.add(eventX);
       case 'eventCoding':
         if (eventX is Coding) {
           fields.add(eventX);

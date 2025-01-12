@@ -456,6 +456,10 @@ class DeviceUseStatement extends DomainResource {
         if (derivedFrom != null) {
           fields.addAll(derivedFrom!);
         }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
       case 'timingTiming':
         if (timingX is Timing) {
           fields.add(timingX!);

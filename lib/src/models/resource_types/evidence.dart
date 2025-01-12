@@ -660,6 +660,10 @@ class Evidence extends DomainResource {
         if (title != null) {
           fields.add(title!);
         }
+      case 'citeAs':
+        fields.add(citeAsX!);
+      case 'citeAsX':
+        fields.add(citeAsX!);
       case 'citeAsReference':
         if (citeAsX is Reference) {
           fields.add(citeAsX!);

@@ -521,6 +521,10 @@ class AllergyIntolerance extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'onset':
+        fields.add(onsetX!);
+      case 'onsetX':
+        fields.add(onsetX!);
       case 'onsetDateTime':
         if (onsetX is FhirDateTime) {
           fields.add(onsetX!);

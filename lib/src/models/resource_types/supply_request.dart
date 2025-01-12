@@ -479,6 +479,10 @@ class SupplyRequest extends DomainResource {
         if (priority != null) {
           fields.add(priority!);
         }
+      case 'item':
+        fields.add(itemX);
+      case 'itemX':
+        fields.add(itemX);
       case 'itemCodeableConcept':
         if (itemX is CodeableConcept) {
           fields.add(itemX);
@@ -493,6 +497,10 @@ class SupplyRequest extends DomainResource {
         if (parameter != null) {
           fields.addAll(parameter!);
         }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -1006,6 +1014,10 @@ class SupplyRequestParameter extends BackboneElement {
         if (code != null) {
           fields.add(code!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

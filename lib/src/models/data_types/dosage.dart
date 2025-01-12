@@ -378,6 +378,10 @@ class Dosage extends BackboneType
         if (timing != null) {
           fields.add(timing!);
         }
+      case 'asNeeded':
+        fields.add(asNeededX!);
+      case 'asNeededX':
+        fields.add(asNeededX!);
       case 'asNeededBoolean':
         if (asNeededX is FhirBoolean) {
           fields.add(asNeededX!);
@@ -811,6 +815,10 @@ class DosageDoseAndRate extends Element {
         if (type != null) {
           fields.add(type!);
         }
+      case 'dose':
+        fields.add(doseX!);
+      case 'doseX':
+        fields.add(doseX!);
       case 'doseRange':
         if (doseX is Range) {
           fields.add(doseX!);
@@ -819,6 +827,10 @@ class DosageDoseAndRate extends Element {
         if (doseX is Quantity) {
           fields.add(doseX!);
         }
+      case 'rate':
+        fields.add(rateX!);
+      case 'rateX':
+        fields.add(rateX!);
       case 'rateRatio':
         if (rateX is Ratio) {
           fields.add(rateX!);

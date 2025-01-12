@@ -548,6 +548,10 @@ class ParametersParameter extends BackboneElement {
         }
       case 'name':
         fields.add(name);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueBase64Binary':
         if (valueX is FhirBase64Binary) {
           fields.add(valueX!);

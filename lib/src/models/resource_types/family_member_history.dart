@@ -560,6 +560,10 @@ class FamilyMemberHistory extends DomainResource {
         if (sex != null) {
           fields.add(sex!);
         }
+      case 'born':
+        fields.add(bornX!);
+      case 'bornX':
+        fields.add(bornX!);
       case 'bornPeriod':
         if (bornX is Period) {
           fields.add(bornX!);
@@ -572,6 +576,10 @@ class FamilyMemberHistory extends DomainResource {
         if (bornX is FhirString) {
           fields.add(bornX!);
         }
+      case 'age':
+        fields.add(ageX!);
+      case 'ageX':
+        fields.add(ageX!);
       case 'ageAge':
         if (ageX is Age) {
           fields.add(ageX!);
@@ -588,6 +596,10 @@ class FamilyMemberHistory extends DomainResource {
         if (estimatedAge != null) {
           fields.add(estimatedAge!);
         }
+      case 'deceased':
+        fields.add(deceasedX!);
+      case 'deceasedX':
+        fields.add(deceasedX!);
       case 'deceasedBoolean':
         if (deceasedX is FhirBoolean) {
           fields.add(deceasedX!);
@@ -1194,6 +1206,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         if (contributedToDeath != null) {
           fields.add(contributedToDeath!);
         }
+      case 'onset':
+        fields.add(onsetX!);
+      case 'onsetX':
+        fields.add(onsetX!);
       case 'onsetAge':
         if (onsetX is Age) {
           fields.add(onsetX!);

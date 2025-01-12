@@ -1312,6 +1312,10 @@ class CompositionRelatesTo extends BackboneElement {
         }
       case 'code':
         fields.add(code);
+      case 'target':
+        fields.add(targetX);
+      case 'targetX':
+        fields.add(targetX);
       case 'targetIdentifier':
         if (targetX is Identifier) {
           fields.add(targetX);

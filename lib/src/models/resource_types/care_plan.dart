@@ -1975,6 +1975,10 @@ class CarePlanDetail extends BackboneElement {
         if (doNotPerform != null) {
           fields.add(doNotPerform!);
         }
+      case 'scheduled':
+        fields.add(scheduledX!);
+      case 'scheduledX':
+        fields.add(scheduledX!);
       case 'scheduledTiming':
         if (scheduledX is Timing) {
           fields.add(scheduledX!);
@@ -1995,6 +1999,10 @@ class CarePlanDetail extends BackboneElement {
         if (performer != null) {
           fields.addAll(performer!);
         }
+      case 'product':
+        fields.add(productX!);
+      case 'productX':
+        fields.add(productX!);
       case 'productCodeableConcept':
         if (productX is CodeableConcept) {
           fields.add(productX!);

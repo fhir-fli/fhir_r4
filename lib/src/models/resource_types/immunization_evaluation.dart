@@ -461,6 +461,10 @@ class ImmunizationEvaluation extends DomainResource {
         if (series != null) {
           fields.add(series!);
         }
+      case 'doseNumber':
+        fields.add(doseNumberX!);
+      case 'doseNumberX':
+        fields.add(doseNumberX!);
       case 'doseNumberPositiveInt':
         if (doseNumberX is FhirPositiveInt) {
           fields.add(doseNumberX!);
@@ -469,6 +473,10 @@ class ImmunizationEvaluation extends DomainResource {
         if (doseNumberX is FhirString) {
           fields.add(doseNumberX!);
         }
+      case 'seriesDoses':
+        fields.add(seriesDosesX!);
+      case 'seriesDosesX':
+        fields.add(seriesDosesX!);
       case 'seriesDosesPositiveInt':
         if (seriesDosesX is FhirPositiveInt) {
           fields.add(seriesDosesX!);

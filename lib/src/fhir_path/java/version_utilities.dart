@@ -186,7 +186,6 @@ class VersionUtilities {
 }
 
 class PackageVersion {
-
   /// Constructor that accepts `id` and `version` separately.
   PackageVersion(this.id, this.version);
 
@@ -196,11 +195,13 @@ class PackageVersion {
       : id = source.contains('#')
             ? source.substring(0, source.indexOf('#'))
             : throw ArgumentError(
-                'Source must contain "#" to separate id and version',),
+                'Source must contain "#" to separate id and version',
+              ),
         version = source.contains('#')
             ? source.substring(source.indexOf('#') + 1)
             : throw ArgumentError(
-                'Source must contain "#" to separate id and version',);
+                'Source must contain "#" to separate id and version',
+              );
   final String id;
   final String version;
 

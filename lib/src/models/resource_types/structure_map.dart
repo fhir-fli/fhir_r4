@@ -2729,6 +2729,10 @@ class StructureMapSource extends BackboneElement {
         if (type != null) {
           fields.add(type!);
         }
+      case 'defaultValue':
+        fields.add(defaultValueX!);
+      case 'defaultValueX':
+        fields.add(defaultValueX!);
       case 'defaultValueBase64Binary':
         if (defaultValueX is FhirBase64Binary) {
           fields.add(defaultValueX!);
@@ -3759,6 +3763,10 @@ class StructureMapParameter extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueId':
         if (valueX is FhirId) {
           fields.add(valueX);

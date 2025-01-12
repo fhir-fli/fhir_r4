@@ -724,6 +724,10 @@ class PlanDefinition extends CanonicalResource {
         if (experimental != null) {
           fields.add(experimental!);
         }
+      case 'subject':
+        fields.add(subjectX!);
+      case 'subjectX':
+        fields.add(subjectX!);
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);
@@ -1953,6 +1957,10 @@ class PlanDefinitionTarget extends BackboneElement {
         if (measure != null) {
           fields.add(measure!);
         }
+      case 'detail':
+        fields.add(detailX!);
+      case 'detailX':
+        fields.add(detailX!);
       case 'detailQuantity':
         if (detailX is Quantity) {
           fields.add(detailX!);
@@ -2726,6 +2734,10 @@ class PlanDefinitionAction extends BackboneElement {
         if (goalId != null) {
           fields.addAll(goalId!);
         }
+      case 'subject':
+        fields.add(subjectX!);
+      case 'subjectX':
+        fields.add(subjectX!);
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);
@@ -2758,6 +2770,10 @@ class PlanDefinitionAction extends BackboneElement {
         if (relatedAction != null) {
           fields.addAll(relatedAction!);
         }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
       case 'timingDateTime':
         if (timingX is FhirDateTime) {
           fields.add(timingX!);
@@ -2810,6 +2826,10 @@ class PlanDefinitionAction extends BackboneElement {
         if (cardinalityBehavior != null) {
           fields.add(cardinalityBehavior!);
         }
+      case 'definition':
+        fields.add(definitionX!);
+      case 'definitionX':
+        fields.add(definitionX!);
       case 'definitionCanonical':
         if (definitionX is FhirCanonical) {
           fields.add(definitionX!);
@@ -3711,6 +3731,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
         fields.add(actionId);
       case 'relationship':
         fields.add(relationship);
+      case 'offset':
+        fields.add(offsetX!);
+      case 'offsetX':
+        fields.add(offsetX!);
       case 'offsetDuration':
         if (offsetX is FhirDuration) {
           fields.add(offsetX!);

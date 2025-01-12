@@ -648,6 +648,10 @@ class DeviceRequest extends DomainResource {
         if (priority != null) {
           fields.add(priority!);
         }
+      case 'code':
+        fields.add(codeX);
+      case 'codeX':
+        fields.add(codeX);
       case 'codeReference':
         if (codeX is Reference) {
           fields.add(codeX);
@@ -666,6 +670,10 @@ class DeviceRequest extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -1312,6 +1320,10 @@ class DeviceRequestParameter extends BackboneElement {
         if (code != null) {
           fields.add(code!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

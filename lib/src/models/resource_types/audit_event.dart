@@ -2522,6 +2522,10 @@ class AuditEventDetail extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueString':
         if (valueX is FhirString) {
           fields.add(valueX);

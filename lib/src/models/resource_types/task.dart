@@ -1813,6 +1813,10 @@ class TaskInput extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueBase64Binary':
         if (valueX is FhirBase64Binary) {
           fields.add(valueX);
@@ -2349,6 +2353,10 @@ class TaskOutput extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueBase64Binary':
         if (valueX is FhirBase64Binary) {
           fields.add(valueX);

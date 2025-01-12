@@ -806,6 +806,10 @@ class ResearchElementDefinition extends DomainResource {
         if (experimental != null) {
           fields.add(experimental!);
         }
+      case 'subject':
+        fields.add(subjectX!);
+      case 'subjectX':
+        fields.add(subjectX!);
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);
@@ -1734,6 +1738,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'definition':
+        fields.add(definitionX);
+      case 'definitionX':
+        fields.add(definitionX);
       case 'definitionCodeableConcept':
         if (definitionX is CodeableConcept) {
           fields.add(definitionX);
@@ -1766,6 +1774,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         if (studyEffectiveDescription != null) {
           fields.add(studyEffectiveDescription!);
         }
+      case 'studyEffective':
+        fields.add(studyEffectiveX!);
+      case 'studyEffectiveX':
+        fields.add(studyEffectiveX!);
       case 'studyEffectiveDateTime':
         if (studyEffectiveX is FhirDateTime) {
           fields.add(studyEffectiveX!);
@@ -1794,6 +1806,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         if (participantEffectiveDescription != null) {
           fields.add(participantEffectiveDescription!);
         }
+      case 'participantEffective':
+        fields.add(participantEffectiveX!);
+      case 'participantEffectiveX':
+        fields.add(participantEffectiveX!);
       case 'participantEffectiveDateTime':
         if (participantEffectiveX is FhirDateTime) {
           fields.add(participantEffectiveX!);

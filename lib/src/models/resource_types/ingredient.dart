@@ -1483,6 +1483,10 @@ class IngredientStrength extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'presentation':
+        fields.add(presentationX!);
+      case 'presentationX':
+        fields.add(presentationX!);
       case 'presentationRatio':
         if (presentationX is Ratio) {
           fields.add(presentationX!);
@@ -1495,6 +1499,10 @@ class IngredientStrength extends BackboneElement {
         if (textPresentation != null) {
           fields.add(textPresentation!);
         }
+      case 'concentration':
+        fields.add(concentrationX!);
+      case 'concentrationX':
+        fields.add(concentrationX!);
       case 'concentrationRatio':
         if (concentrationX is Ratio) {
           fields.add(concentrationX!);
@@ -1900,6 +1908,10 @@ class IngredientReferenceStrength extends BackboneElement {
         if (substance != null) {
           fields.add(substance!);
         }
+      case 'strength':
+        fields.add(strengthX);
+      case 'strengthX':
+        fields.add(strengthX);
       case 'strengthRatio':
         if (strengthX is Ratio) {
           fields.add(strengthX);

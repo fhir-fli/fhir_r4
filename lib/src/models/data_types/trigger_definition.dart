@@ -241,6 +241,10 @@ class TriggerDefinition extends DataType
         if (name != null) {
           fields.add(name!);
         }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
       case 'timingTiming':
         if (timingX is Timing) {
           fields.add(timingX!);

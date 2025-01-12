@@ -1294,6 +1294,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
         if (capacity != null) {
           fields.add(capacity!);
         }
+      case 'minimumVolume':
+        fields.add(minimumVolumeX!);
+      case 'minimumVolumeX':
+        fields.add(minimumVolumeX!);
       case 'minimumVolumeQuantity':
         if (minimumVolumeX is Quantity) {
           fields.add(minimumVolumeX!);
@@ -1641,6 +1645,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'additive':
+        fields.add(additiveX);
+      case 'additiveX':
+        fields.add(additiveX);
       case 'additiveCodeableConcept':
         if (additiveX is CodeableConcept) {
           fields.add(additiveX);

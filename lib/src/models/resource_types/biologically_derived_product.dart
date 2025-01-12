@@ -906,6 +906,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         if (source != null) {
           fields.add(source!);
         }
+      case 'collected':
+        fields.add(collectedX!);
+      case 'collectedX':
+        fields.add(collectedX!);
       case 'collectedDateTime':
         if (collectedX is FhirDateTime) {
           fields.add(collectedX!);
@@ -1251,6 +1255,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         if (additive != null) {
           fields.add(additive!);
         }
+      case 'time':
+        fields.add(timeX!);
+      case 'timeX':
+        fields.add(timeX!);
       case 'timeDateTime':
         if (timeX is FhirDateTime) {
           fields.add(timeX!);
@@ -1570,6 +1578,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         if (description != null) {
           fields.add(description!);
         }
+      case 'time':
+        fields.add(timeX!);
+      case 'timeX':
+        fields.add(timeX!);
       case 'timeDateTime':
         if (timeX is FhirDateTime) {
           fields.add(timeX!);

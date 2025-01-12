@@ -1883,6 +1883,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'item':
+        fields.add(itemX);
+      case 'itemX':
+        fields.add(itemX);
       case 'itemCodeableConcept':
         if (itemX is CodeableConcept) {
           fields.add(itemX);
@@ -2825,6 +2829,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
         if (dosage != null) {
           fields.addAll(dosage!);
         }
+      case 'indication':
+        fields.add(indicationX!);
+      case 'indicationX':
+        fields.add(indicationX!);
       case 'indicationCodeableConcept':
         if (indicationX is CodeableConcept) {
           fields.add(indicationX!);
@@ -3451,6 +3459,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'characteristic':
+        fields.add(characteristicX);
+      case 'characteristicX':
+        fields.add(characteristicX);
       case 'characteristicCodeableConcept':
         if (characteristicX is CodeableConcept) {
           fields.add(characteristicX);
@@ -4362,6 +4374,10 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
         if (type != null) {
           fields.add(type!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

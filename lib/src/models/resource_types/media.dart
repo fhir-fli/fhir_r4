@@ -592,6 +592,10 @@ class Media extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'created':
+        fields.add(createdX!);
+      case 'createdX':
+        fields.add(createdX!);
       case 'createdDateTime':
         if (createdX is FhirDateTime) {
           fields.add(createdX!);

@@ -1326,6 +1326,10 @@ class InvoiceLineItem extends BackboneElement {
         if (sequence != null) {
           fields.add(sequence!);
         }
+      case 'chargeItem':
+        fields.add(chargeItemX);
+      case 'chargeItemX':
+        fields.add(chargeItemX);
       case 'chargeItemReference':
         if (chargeItemX is Reference) {
           fields.add(chargeItemX);

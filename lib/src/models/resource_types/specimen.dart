@@ -1033,6 +1033,10 @@ class SpecimenCollection extends BackboneElement {
         if (collector != null) {
           fields.add(collector!);
         }
+      case 'collected':
+        fields.add(collectedX!);
+      case 'collectedX':
+        fields.add(collectedX!);
       case 'collectedDateTime':
         if (collectedX is FhirDateTime) {
           fields.add(collectedX!);
@@ -1057,6 +1061,10 @@ class SpecimenCollection extends BackboneElement {
         if (bodySite != null) {
           fields.add(bodySite!);
         }
+      case 'fastingStatus':
+        fields.add(fastingStatusX!);
+      case 'fastingStatusX':
+        fields.add(fastingStatusX!);
       case 'fastingStatusCodeableConcept':
         if (fastingStatusX is CodeableConcept) {
           fields.add(fastingStatusX!);
@@ -1437,6 +1445,10 @@ class SpecimenProcessing extends BackboneElement {
         if (additive != null) {
           fields.addAll(additive!);
         }
+      case 'time':
+        fields.add(timeX!);
+      case 'timeX':
+        fields.add(timeX!);
       case 'timeDateTime':
         if (timeX is FhirDateTime) {
           fields.add(timeX!);
@@ -1838,6 +1850,10 @@ class SpecimenContainer extends BackboneElement {
         if (specimenQuantity != null) {
           fields.add(specimenQuantity!);
         }
+      case 'additive':
+        fields.add(additiveX!);
+      case 'additiveX':
+        fields.add(additiveX!);
       case 'additiveCodeableConcept':
         if (additiveX is CodeableConcept) {
           fields.add(additiveX!);

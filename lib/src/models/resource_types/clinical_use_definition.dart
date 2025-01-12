@@ -1660,6 +1660,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
         if (intendedEffect != null) {
           fields.add(intendedEffect!);
         }
+      case 'duration':
+        fields.add(durationX!);
+      case 'durationX':
+        fields.add(durationX!);
       case 'durationRange':
         if (durationX is Range) {
           fields.add(durationX!);
@@ -2402,6 +2406,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'item':
+        fields.add(itemX);
+      case 'itemX':
+        fields.add(itemX);
       case 'itemReference':
         if (itemX is Reference) {
           fields.add(itemX);

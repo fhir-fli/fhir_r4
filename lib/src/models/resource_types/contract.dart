@@ -866,6 +866,10 @@ class Contract extends DomainResource {
         if (scope != null) {
           fields.add(scope!);
         }
+      case 'topic':
+        fields.add(topicX!);
+      case 'topicX':
+        fields.add(topicX!);
       case 'topicCodeableConcept':
         if (topicX is CodeableConcept) {
           fields.add(topicX!);
@@ -914,6 +918,10 @@ class Contract extends DomainResource {
         if (rule != null) {
           fields.addAll(rule!);
         }
+      case 'legallyBinding':
+        fields.add(legallyBindingX!);
+      case 'legallyBindingX':
+        fields.add(legallyBindingX!);
       case 'legallyBindingAttachment':
         if (legallyBindingX is Attachment) {
           fields.add(legallyBindingX!);
@@ -2160,6 +2168,10 @@ class ContractTerm extends BackboneElement {
         if (applies != null) {
           fields.add(applies!);
         }
+      case 'topic':
+        fields.add(topicX!);
+      case 'topicX':
+        fields.add(topicX!);
       case 'topicCodeableConcept':
         if (topicX is CodeableConcept) {
           fields.add(topicX!);
@@ -3814,6 +3826,10 @@ class ContractAnswer extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueBoolean':
         if (valueX is FhirBoolean) {
           fields.add(valueX);
@@ -5376,6 +5392,10 @@ class ContractValuedItem extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'entity':
+        fields.add(entityX!);
+      case 'entityX':
+        fields.add(entityX!);
       case 'entityCodeableConcept':
         if (entityX is CodeableConcept) {
           fields.add(entityX!);
@@ -6152,6 +6172,10 @@ class ContractAction extends BackboneElement {
         if (contextLinkId != null) {
           fields.addAll(contextLinkId!);
         }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -7358,6 +7382,10 @@ class ContractFriendly extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'content':
+        fields.add(contentX);
+      case 'contentX':
+        fields.add(contentX);
       case 'contentAttachment':
         if (contentX is Attachment) {
           fields.add(contentX);
@@ -7631,6 +7659,10 @@ class ContractLegal extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'content':
+        fields.add(contentX);
+      case 'contentX':
+        fields.add(contentX);
       case 'contentAttachment':
         if (contentX is Attachment) {
           fields.add(contentX);
@@ -7906,6 +7938,10 @@ class ContractRule extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'content':
+        fields.add(contentX);
+      case 'contentX':
+        fields.add(contentX);
       case 'contentAttachment':
         if (contentX is Attachment) {
           fields.add(contentX);

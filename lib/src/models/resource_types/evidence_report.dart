@@ -561,6 +561,10 @@ class EvidenceReport extends DomainResource {
         if (relatedIdentifier != null) {
           fields.addAll(relatedIdentifier!);
         }
+      case 'citeAs':
+        fields.add(citeAsX!);
+      case 'citeAsX':
+        fields.add(citeAsX!);
       case 'citeAsReference':
         if (citeAsX is Reference) {
           fields.add(citeAsX!);
@@ -1496,6 +1500,10 @@ class EvidenceReportCharacteristic extends BackboneElement {
         }
       case 'code':
         fields.add(code);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueReference':
         if (valueX is Reference) {
           fields.add(valueX);
@@ -1830,6 +1838,10 @@ class EvidenceReportRelatesTo extends BackboneElement {
         }
       case 'code':
         fields.add(code);
+      case 'target':
+        fields.add(targetX);
+      case 'targetX':
+        fields.add(targetX);
       case 'targetIdentifier':
         if (targetX is Identifier) {
           fields.add(targetX);

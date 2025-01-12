@@ -1080,6 +1080,10 @@ class SubstanceIngredient extends BackboneElement {
         if (quantity != null) {
           fields.add(quantity!);
         }
+      case 'substance':
+        fields.add(substanceX);
+      case 'substanceX':
+        fields.add(substanceX);
       case 'substanceCodeableConcept':
         if (substanceX is CodeableConcept) {
           fields.add(substanceX);

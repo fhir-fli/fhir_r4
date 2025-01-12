@@ -493,6 +493,10 @@ class GuidanceResponse extends DomainResource {
         if (identifier != null) {
           fields.addAll(identifier!);
         }
+      case 'module':
+        fields.add(moduleX);
+      case 'moduleX':
+        fields.add(moduleX);
       case 'moduleUri':
         if (moduleX is FhirUri) {
           fields.add(moduleX);

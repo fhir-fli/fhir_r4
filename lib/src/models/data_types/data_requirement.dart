@@ -302,6 +302,10 @@ class DataRequirement extends DataType
         if (profile != null) {
           fields.addAll(profile!);
         }
+      case 'subject':
+        fields.add(subjectX!);
+      case 'subjectX':
+        fields.add(subjectX!);
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);
@@ -1047,6 +1051,10 @@ class DataRequirementDateFilter extends Element {
         if (searchParam != null) {
           fields.add(searchParam!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueDateTime':
         if (valueX is FhirDateTime) {
           fields.add(valueX!);

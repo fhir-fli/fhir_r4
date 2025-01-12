@@ -721,6 +721,10 @@ class TimingRepeat extends Element {
         if (extension_ != null) {
           fields.addAll(extension_!);
         }
+      case 'bounds':
+        fields.add(boundsX!);
+      case 'boundsX':
+        fields.add(boundsX!);
       case 'boundsDuration':
         if (boundsX is FhirDuration) {
           fields.add(boundsX!);

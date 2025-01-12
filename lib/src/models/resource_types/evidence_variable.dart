@@ -1383,6 +1383,10 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         if (description != null) {
           fields.add(description!);
         }
+      case 'definition':
+        fields.add(definitionX);
+      case 'definitionX':
+        fields.add(definitionX);
       case 'definitionReference':
         if (definitionX is Reference) {
           fields.add(definitionX);
@@ -2107,6 +2111,10 @@ class EvidenceVariableCategory extends BackboneElement {
         if (name != null) {
           fields.add(name!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

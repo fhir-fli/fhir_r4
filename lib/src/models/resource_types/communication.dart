@@ -1271,6 +1271,10 @@ class CommunicationPayload extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'content':
+        fields.add(contentX);
+      case 'contentX':
+        fields.add(contentX);
       case 'contentString':
         if (contentX is FhirString) {
           fields.add(contentX);

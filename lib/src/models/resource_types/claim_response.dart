@@ -3017,6 +3017,10 @@ class ClaimResponseAddItem extends BackboneElement {
         if (programCode != null) {
           fields.addAll(programCode!);
         }
+      case 'serviced':
+        fields.add(servicedX!);
+      case 'servicedX':
+        fields.add(servicedX!);
       case 'servicedDate':
         if (servicedX is FhirDate) {
           fields.add(servicedX!);
@@ -3025,6 +3029,10 @@ class ClaimResponseAddItem extends BackboneElement {
         if (servicedX is Period) {
           fields.add(servicedX!);
         }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
       case 'locationCodeableConcept':
         if (locationX is CodeableConcept) {
           fields.add(locationX!);

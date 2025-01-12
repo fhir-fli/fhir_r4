@@ -790,6 +790,10 @@ class MedicationIngredient extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'item':
+        fields.add(itemX);
+      case 'itemX':
+        fields.add(itemX);
       case 'itemCodeableConcept':
         if (itemX is CodeableConcept) {
           fields.add(itemX);

@@ -683,6 +683,10 @@ class Observation extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'effective':
+        fields.add(effectiveX!);
+      case 'effectiveX':
+        fields.add(effectiveX!);
       case 'effectiveDateTime':
         if (effectiveX is FhirDateTime) {
           fields.add(effectiveX!);
@@ -707,6 +711,10 @@ class Observation extends DomainResource {
         if (performer != null) {
           fields.addAll(performer!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueQuantity':
         if (valueX is Quantity) {
           fields.add(valueX!);
@@ -1869,6 +1877,10 @@ class ObservationComponent extends BackboneElement {
         }
       case 'code':
         fields.add(code);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueQuantity':
         if (valueX is Quantity) {
           fields.add(valueX!);

@@ -814,6 +814,10 @@ class ResearchDefinition extends DomainResource {
         if (experimental != null) {
           fields.add(experimental!);
         }
+      case 'subject':
+        fields.add(subjectX!);
+      case 'subjectX':
+        fields.add(subjectX!);
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);

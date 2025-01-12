@@ -405,6 +405,10 @@ class Provenance extends DomainResource {
         }
       case 'target':
         fields.addAll(target);
+      case 'occurred':
+        fields.add(occurredX!);
+      case 'occurredX':
+        fields.add(occurredX!);
       case 'occurredPeriod':
         if (occurredX is Period) {
           fields.add(occurredX!);

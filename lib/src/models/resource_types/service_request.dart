@@ -835,6 +835,10 @@ class ServiceRequest extends DomainResource {
         if (orderDetail != null) {
           fields.addAll(orderDetail!);
         }
+      case 'quantity':
+        fields.add(quantityX!);
+      case 'quantityX':
+        fields.add(quantityX!);
       case 'quantityQuantity':
         if (quantityX is Quantity) {
           fields.add(quantityX!);
@@ -853,6 +857,10 @@ class ServiceRequest extends DomainResource {
         if (encounter != null) {
           fields.add(encounter!);
         }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -865,6 +873,10 @@ class ServiceRequest extends DomainResource {
         if (occurrenceX is Timing) {
           fields.add(occurrenceX!);
         }
+      case 'asNeeded':
+        fields.add(asNeededX!);
+      case 'asNeededX':
+        fields.add(asNeededX!);
       case 'asNeededBoolean':
         if (asNeededX is FhirBoolean) {
           fields.add(asNeededX!);

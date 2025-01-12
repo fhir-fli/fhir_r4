@@ -1390,6 +1390,10 @@ class RequestGroupAction extends BackboneElement {
         if (relatedAction != null) {
           fields.addAll(relatedAction!);
         }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
       case 'timingDateTime':
         if (timingX is FhirDateTime) {
           fields.add(timingX!);
@@ -2225,6 +2229,10 @@ class RequestGroupRelatedAction extends BackboneElement {
         fields.add(actionId);
       case 'relationship':
         fields.add(relationship);
+      case 'offset':
+        fields.add(offsetX!);
+      case 'offsetX':
+        fields.add(offsetX!);
       case 'offsetDuration':
         if (offsetX is FhirDuration) {
           fields.add(offsetX!);

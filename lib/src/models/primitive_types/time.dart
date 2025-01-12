@@ -261,13 +261,13 @@ class FhirTime extends PrimitiveType<String>
         case Comparator.greaterThanEqual:
           if (lhsValue < rhsValue) {
             return false;
-          }else if(lhsValue > rhsValue){
+          } else if (lhsValue > rhsValue) {
             return true;
           }
         case Comparator.lessThanEqual:
           if (lhsValue > rhsValue) {
             return false;
-          }else if(lhsValue < rhsValue){
+          } else if (lhsValue < rhsValue) {
             return true;
           }
       }

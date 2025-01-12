@@ -2684,6 +2684,10 @@ class CodeSystemProperty1 extends BackboneElement {
         }
       case 'code':
         fields.add(code);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
       case 'valueCode':
         if (valueX is FhirCode) {
           fields.add(valueX);

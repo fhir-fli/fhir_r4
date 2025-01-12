@@ -777,6 +777,10 @@ class MedicationRequest extends DomainResource {
         if (doNotPerform != null) {
           fields.add(doNotPerform!);
         }
+      case 'reported':
+        fields.add(reportedX!);
+      case 'reportedX':
+        fields.add(reportedX!);
       case 'reportedBoolean':
         if (reportedX is FhirBoolean) {
           fields.add(reportedX!);
@@ -785,6 +789,10 @@ class MedicationRequest extends DomainResource {
         if (reportedX is Reference) {
           fields.add(reportedX!);
         }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
       case 'medicationCodeableConcept':
         if (medicationX is CodeableConcept) {
           fields.add(medicationX);
@@ -2268,6 +2276,10 @@ class MedicationRequestSubstitution extends BackboneElement {
         if (modifierExtension != null) {
           fields.addAll(modifierExtension!);
         }
+      case 'allowed':
+        fields.add(allowedX);
+      case 'allowedX':
+        fields.add(allowedX);
       case 'allowedBoolean':
         if (allowedX is FhirBoolean) {
           fields.add(allowedX);

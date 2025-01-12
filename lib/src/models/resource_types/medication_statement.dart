@@ -564,6 +564,10 @@ class MedicationStatement extends DomainResource {
         if (category != null) {
           fields.add(category!);
         }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
       case 'medicationCodeableConcept':
         if (medicationX is CodeableConcept) {
           fields.add(medicationX);
@@ -578,6 +582,10 @@ class MedicationStatement extends DomainResource {
         if (context != null) {
           fields.add(context!);
         }
+      case 'effective':
+        fields.add(effectiveX!);
+      case 'effectiveX':
+        fields.add(effectiveX!);
       case 'effectiveDateTime':
         if (effectiveX is FhirDateTime) {
           fields.add(effectiveX!);

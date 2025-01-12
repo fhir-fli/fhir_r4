@@ -769,6 +769,10 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);

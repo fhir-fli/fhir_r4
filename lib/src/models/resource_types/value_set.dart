@@ -3179,6 +3179,10 @@ class ValueSetParameter extends BackboneElement {
         }
       case 'name':
         fields.add(name);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueString':
         if (valueX is FhirString) {
           fields.add(valueX!);

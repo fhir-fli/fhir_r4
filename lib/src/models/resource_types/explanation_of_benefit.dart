@@ -2843,6 +2843,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
         if (code != null) {
           fields.add(code!);
         }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
       case 'timingDate':
         if (timingX is FhirDate) {
           fields.add(timingX!);
@@ -2851,6 +2855,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
         if (timingX is Period) {
           fields.add(timingX!);
         }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
       case 'valueBoolean':
         if (valueX is FhirBoolean) {
           fields.add(valueX!);
@@ -3243,6 +3251,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         }
       case 'sequence':
         fields.add(sequence);
+      case 'diagnosis':
+        fields.add(diagnosisX);
+      case 'diagnosisX':
+        fields.add(diagnosisX);
       case 'diagnosisCodeableConcept':
         if (diagnosisX is CodeableConcept) {
           fields.add(diagnosisX);
@@ -3640,6 +3652,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
         if (date != null) {
           fields.add(date!);
         }
+      case 'procedure':
+        fields.add(procedureX);
+      case 'procedureX':
+        fields.add(procedureX);
       case 'procedureCodeableConcept':
         if (procedureX is CodeableConcept) {
           fields.add(procedureX);
@@ -4329,6 +4345,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
         if (type != null) {
           fields.add(type!);
         }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
       case 'locationAddress':
         if (locationX is Address) {
           fields.add(locationX!);
@@ -4996,6 +5016,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
         if (programCode != null) {
           fields.addAll(programCode!);
         }
+      case 'serviced':
+        fields.add(servicedX!);
+      case 'servicedX':
+        fields.add(servicedX!);
       case 'servicedDate':
         if (servicedX is FhirDate) {
           fields.add(servicedX!);
@@ -5004,6 +5028,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
         if (servicedX is Period) {
           fields.add(servicedX!);
         }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
       case 'locationCodeableConcept':
         if (locationX is CodeableConcept) {
           fields.add(locationX!);
@@ -7515,6 +7543,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         if (programCode != null) {
           fields.addAll(programCode!);
         }
+      case 'serviced':
+        fields.add(servicedX!);
+      case 'servicedX':
+        fields.add(servicedX!);
       case 'servicedDate':
         if (servicedX is FhirDate) {
           fields.add(servicedX!);
@@ -7523,6 +7555,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         if (servicedX is Period) {
           fields.add(servicedX!);
         }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
       case 'locationCodeableConcept':
         if (locationX is CodeableConcept) {
           fields.add(locationX!);
@@ -10548,6 +10584,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'allowed':
+        fields.add(allowedX!);
+      case 'allowedX':
+        fields.add(allowedX!);
       case 'allowedUnsignedInt':
         if (allowedX is FhirUnsignedInt) {
           fields.add(allowedX!);
@@ -10560,6 +10600,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
         if (allowedX is Money) {
           fields.add(allowedX!);
         }
+      case 'used':
+        fields.add(usedX!);
+      case 'usedX':
+        fields.add(usedX!);
       case 'usedUnsignedInt':
         if (usedX is FhirUnsignedInt) {
           fields.add(usedX!);

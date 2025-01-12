@@ -2379,6 +2379,10 @@ class CitationRelatesTo extends BackboneElement {
         if (targetClassifier != null) {
           fields.addAll(targetClassifier!);
         }
+      case 'target':
+        fields.add(targetX);
+      case 'targetX':
+        fields.add(targetX);
       case 'targetUri':
         if (targetX is FhirUri) {
           fields.add(targetX);
@@ -5038,6 +5042,10 @@ class CitationRelatesTo1 extends BackboneElement {
         if (targetClassifier != null) {
           fields.addAll(targetClassifier!);
         }
+      case 'target':
+        fields.add(targetX);
+      case 'targetX':
+        fields.add(targetX);
       case 'targetUri':
         if (targetX is FhirUri) {
           fields.add(targetX);

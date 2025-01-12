@@ -524,6 +524,10 @@ class ConceptMap extends CanonicalResource {
         if (copyright != null) {
           fields.add(copyright!);
         }
+      case 'source':
+        fields.add(sourceX!);
+      case 'sourceX':
+        fields.add(sourceX!);
       case 'sourceUri':
         if (sourceX is FhirUri) {
           fields.add(sourceX!);
@@ -532,6 +536,10 @@ class ConceptMap extends CanonicalResource {
         if (sourceX is FhirCanonical) {
           fields.add(sourceX!);
         }
+      case 'target':
+        fields.add(targetX!);
+      case 'targetX':
+        fields.add(targetX!);
       case 'targetUri':
         if (targetX is FhirUri) {
           fields.add(targetX!);

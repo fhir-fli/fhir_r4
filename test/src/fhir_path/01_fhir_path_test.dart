@@ -6,7 +6,7 @@ import '06_test_date_times.dart';
 import '07_test_no_arg_fxns.dart';
 import '08_test_arg_fxns.dart';
 
-void main()  {
+void main() {
   testBasicTypes();
   fhirPathParserTest();
   testPaths();

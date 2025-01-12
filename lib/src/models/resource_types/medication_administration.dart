@@ -577,6 +577,10 @@ class MedicationAdministration extends DomainResource {
         if (category != null) {
           fields.add(category!);
         }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
       case 'medicationCodeableConcept':
         if (medicationX is CodeableConcept) {
           fields.add(medicationX);
@@ -595,6 +599,10 @@ class MedicationAdministration extends DomainResource {
         if (supportingInformation != null) {
           fields.addAll(supportingInformation!);
         }
+      case 'effective':
+        fields.add(effectiveX);
+      case 'effectiveX':
+        fields.add(effectiveX);
       case 'effectiveDateTime':
         if (effectiveX is FhirDateTime) {
           fields.add(effectiveX);
@@ -1553,6 +1561,10 @@ class MedicationAdministrationDosage extends BackboneElement {
         if (dose != null) {
           fields.add(dose!);
         }
+      case 'rate':
+        fields.add(rateX!);
+      case 'rateX':
+        fields.add(rateX!);
       case 'rateRatio':
         if (rateX is Ratio) {
           fields.add(rateX!);

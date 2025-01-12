@@ -463,6 +463,10 @@ class CoverageEligibilityResponse extends DomainResource {
         fields.addAll(purpose);
       case 'patient':
         fields.add(patient);
+      case 'serviced':
+        fields.add(servicedX!);
+      case 'servicedX':
+        fields.add(servicedX!);
       case 'servicedDate':
         if (servicedX is FhirDate) {
           fields.add(servicedX!);
@@ -1979,6 +1983,10 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
         }
       case 'type':
         fields.add(type);
+      case 'allowed':
+        fields.add(allowedX!);
+      case 'allowedX':
+        fields.add(allowedX!);
       case 'allowedUnsignedInt':
         if (allowedX is FhirUnsignedInt) {
           fields.add(allowedX!);
@@ -1991,6 +1999,10 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
         if (allowedX is Money) {
           fields.add(allowedX!);
         }
+      case 'used':
+        fields.add(usedX!);
+      case 'usedX':
+        fields.add(usedX!);
       case 'usedUnsignedInt':
         if (usedX is FhirUnsignedInt) {
           fields.add(usedX!);

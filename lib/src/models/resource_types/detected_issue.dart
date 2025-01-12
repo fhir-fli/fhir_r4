@@ -439,6 +439,10 @@ class DetectedIssue extends DomainResource {
         if (patient != null) {
           fields.add(patient!);
         }
+      case 'identified':
+        fields.add(identifiedX!);
+      case 'identifiedX':
+        fields.add(identifiedX!);
       case 'identifiedDateTime':
         if (identifiedX is FhirDateTime) {
           fields.add(identifiedX!);
