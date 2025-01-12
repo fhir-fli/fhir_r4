@@ -5,7 +5,7 @@ import '00_test_data.dart';
 
 void testDateTimes() {
   group('DateTime Arithmetic', () {
-    final response = QuestionnaireResponse.fromJson(questionnaireResponse);
+    final response = questionnaireResponse3;
     test('Basic Date Addition/Subtraction', () {
       final node1 = testEngine.parse('authored');
       expect(

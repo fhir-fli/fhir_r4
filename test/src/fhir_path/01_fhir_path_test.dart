@@ -5,13 +5,15 @@ import '05_test_basic_operators.dart';
 import '06_test_date_times.dart';
 import '07_test_no_arg_fxns.dart';
 import '08_test_arg_fxns.dart';
+import '09_test_questionnaire.dart';
 
 void main() {
   testBasicTypes();
   fhirPathParserTest();
   testPaths();
-  // testBasicOperators();
-  // testDateTimes();
-  // testNoArgFxns();
-  // testArgFxns();
+  testBasicOperators();
+  testDateTimes();
+  testNoArgFxns();
+  testArgFxns();
+  testQuestionnaire();
 }

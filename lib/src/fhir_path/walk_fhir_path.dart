@@ -64,9 +64,6 @@ List<FhirBase> walkFhirPath({
   Map<String, dynamic>? environment,
 }) {
   final ast = parseFhirPath(pathExpression);
-  print('*********************************');
-  ast.printExpressionTree();
-  print('*********************************');
   return executeFhirPath(
     context: context,
     parsedFhirPath: ast,

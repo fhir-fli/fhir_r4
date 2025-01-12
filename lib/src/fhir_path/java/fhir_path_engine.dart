@@ -1034,6 +1034,13 @@ class FHIRPathEngine {
           for (final item in focus) {
             final outcome = executeForItem(context, item, exp, atEntry: true);
             work.addAll(outcome);
+            if (outcome.isNotEmpty) {
+              print('Outcome: ${outcome.first.toJson()}');
+            }
+            print('Work: $work');
+            if (work.isNotEmpty) {
+              print('Work: ${work.first.toJson()}');
+            }
           }
         }
 
@@ -1045,7 +1052,6 @@ class FHIRPathEngine {
         // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
-
         work.addAll(constants);
 
       case ExpressionNodeKind.group:
@@ -1635,7 +1641,6 @@ class FHIRPathEngine {
           if (p.endsWith('X')) {
             final n = p.substring(0, p.length - 1);
             if (name.startsWith(n)) {
-              print('n: $n name: $name');
               tn = name.substring(n.length);
               name = n;
               break;
@@ -1644,11 +1649,13 @@ class FHIRPathEngine {
         }
       }
 
-      print('name: $name');
+      if (item is Element && item.extension_ != null) {
+        print('item: ${item.toJson()}');
+      }
       final list = item.listChildrenByName(name);
       if (list.isNotEmpty) {
         for (final v in list) {
-          if (tn == null || v.fhirType.equalsIgnoreCase(tn)) {
+          if (tn == null || tn.isEmpty || v.fhirType.equalsIgnoreCase(tn)) {
             result.add(v);
           }
         }
@@ -4398,7 +4405,17 @@ class FHIRPathEngine {
           );
 
           added.addAll(ex);
-        } catch (e, stackTrace) {}
+        } catch (e) {
+          if (e is PathEngineException) {
+            rethrow;
+          } else {
+            throw PathEngineException(
+              e.toString(),
+              location: exp.opStart,
+              expression: exp.toString(),
+            );
+          }
+        }
       }
 
       more = false;
@@ -5181,12 +5198,13 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     final current = <FhirBase>[...focus];
     final added = <FhirBase>[];
-
-    while (current.isNotEmpty) {
+    var more = true;
+    while (more) {
       added.clear();
       for (final item in current) {
         getChildrenByName(item, '*', added);
       }
+      more = added.isNotEmpty;
       result.addAll(added);
       current
         ..clear()
@@ -5591,7 +5609,9 @@ class FHIRPathEngine {
     for (final item in focus) {
       final ext = <FhirBase>[];
       getChildrenByName(item, 'extension', ext);
+      print('extension: $ext');
       getChildrenByName(item, 'modifierExtension', ext);
+      print('modifierExtension: $ext');
       for (final ex in ext) {
         final vl = <FhirBase>[];
         getChildrenByName(ex, 'url', vl);
@@ -6600,7 +6620,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    final result = <FhirBase>[];
     FhirNumber? sum;
 
     for (final item in focus) {
@@ -6620,7 +6639,7 @@ class FHIRPathEngine {
       }
     }
 
-    return result;
+    return sum == null ? [] : [sum];
   }
 
   List<FhirBase> funcExp(

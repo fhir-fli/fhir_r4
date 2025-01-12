@@ -7,10 +7,18 @@ abstract class PrimitiveType<T> extends DataType {
     this.value, {
     this.element,
     super.id,
-    super.extension_,
+    List<FhirExtension>? extension_,
     super.disallowExtensions,
     super.objectPath = 'PrimitiveType',
-  });
+  }) : super(
+          extension_: extension_ == null && element?.extension_ == null
+              ? null
+              : extension_ != null
+                  ? element?.extension_ != null
+                      ? [...extension_, ...element!.extension_!]
+                      : extension_
+                  : element?.extension_,
+        );
 
   @override
   String get fhirType => 'PrimitiveType';

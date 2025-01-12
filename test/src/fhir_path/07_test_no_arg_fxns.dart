@@ -1329,9 +1329,49 @@ void testNoArgFxns() {
       ]);
       node =
           testEngine.parse('Patient.address[1].period.extension.descendants()');
-      expect(testEngine.evaluate(patient3, node).map((e) => e.toJson()), [
-        {
-          'extension': [
+      testEngine
+          .evaluate(patient3, node)
+          .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson())
+          .toList()
+          .forEach(print);
+      expect(
+          testEngine
+              .evaluate(patient3, node)
+              .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson())
+              .toList(),
+          [
+            {
+              'extension': [
+                {
+                  'extension': [
+                    {
+                      'url': 'www.mayjuun.com',
+                      'valueCount': {'unit': 'Kg'},
+                    },
+                    {
+                      'url': 'www.mayjuun.com',
+                      'valueCount': {'unit': 'Km'},
+                    }
+                  ],
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Kg'},
+                },
+                {
+                  'url': 'www.mayjuun.com',
+                  'valueCount': {'unit': 'Km'},
+                }
+              ],
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Kg'},
+            },
+            {
+              'url': 'www.mayjuun.com',
+              'valueCount': {'unit': 'Km'},
+            },
+            'www.mayjuun.com',
+            {'unit': 'Kg'},
+            'www.mayjuun.com',
+            {'unit': 'Km'},
             {
               'extension': [
                 {
@@ -1349,19 +1389,13 @@ void testNoArgFxns() {
             {
               'url': 'www.mayjuun.com',
               'valueCount': {'unit': 'Km'},
-            }
-          ],
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Kg'},
-        },
-        {
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Km'},
-        },
-        {'value': 'www.mayjuun.com'},
-        {'value': 'www.mayjuun.com'},
-        {
-          'extension': [
+            },
+            'www.mayjuun.com',
+            {'unit': 'Kg'},
+            'www.mayjuun.com',
+            {'unit': 'Km'},
+            'Kg',
+            'Km',
             {
               'url': 'www.mayjuun.com',
               'valueCount': {'unit': 'Kg'},
@@ -1369,30 +1403,22 @@ void testNoArgFxns() {
             {
               'url': 'www.mayjuun.com',
               'valueCount': {'unit': 'Km'},
-            }
-          ],
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Kg'},
-        },
-        {
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Km'},
-        },
-        {'value': 'www.mayjuun.com'},
-        {'value': 'www.mayjuun.com'},
-        {
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Kg'},
-        },
-        {
-          'url': 'www.mayjuun.com',
-          'valueCount': {'unit': 'Km'},
-        },
-        {'value': 'www.mayjuun.com'},
-        {'value': 'www.mayjuun.com'},
-        {'value': 'www.mayjuun.com'},
-        {'value': 'www.mayjuun.com'},
-      ]);
+            },
+            'www.mayjuun.com',
+            {'unit': 'Kg'},
+            'www.mayjuun.com',
+            {'unit': 'Km'},
+            'Kg',
+            'Km',
+            'www.mayjuun.com',
+            {'unit': 'Kg'},
+            'www.mayjuun.com',
+            {'unit': 'Km'},
+            'Kg',
+            'Km',
+            'Kg',
+            'Km',
+          ]);
     });
 
     test('DateTimeFunctions', () {

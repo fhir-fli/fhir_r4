@@ -1360,216 +1360,222 @@ void testArgFxns() {
   test('complex-extension', () {
     expect(
       walkFhirPath(
-        context: QuestionnaireResponse.fromJson(questionnaireResponse),
+        context: questionnaireResponse3,
         pathExpression:
             '%context.repeat(item).answer.value.extension(%`ext-ordinalValue`)'
             '.value.sum()',
       ),
-      [13.toFhirInteger],
+      [13.toFhirDecimal],
     );
   });
 
-  // test('iif-basic', () {
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
-  //     [1.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
-  //     [0.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'),
-  //     [0.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'),
-  //     [1.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif(true, 1)'),
-  //     [1.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(context: null, pathExpression: 'iif(false, 1)'),
-  //     <FhirBase>[],
-  //   );
-  //   expect(
-  //     () => walkFhirPath(context: null, pathExpression: 'iif(false)'),
-  //     throwsA(const TypeMatcher<FhirPathInvalidExpressionException>()),
-  //   );
-  // });
-  // test('iif-short-circuit', () {
-  //   // non-existent identifier should never be evaluated
-  //   expect(
-  //     walkFhirPath(
-  //       context: patient3,
-  //       pathExpression: 'iif(true, 1, %patient3.blurb)',
-  //     ),
-  //     [1.toFhirInteger],
-  //   );
-  //   // non-existent identifier should throw
-  //   expect(
-  //     () => walkFhirPath(
-  //       context: patient3,
-  //       pathExpression: 'iif(false, 1, %patient3.blurb)',
-  //     ),
-  //     throwsA(const TypeMatcher<FhirPathEvaluationException>()),
-  //   );
-  // });
-  // test('iif-with-variables', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: 'iif(%smokesCode.exists(), 1, 0)',
-  //       environment: {'smokesCode': <FhirBase>[]},
-  //     ),
-  //     [0.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
-  //       environment: {
-  //         'smokesCode': ['Y'],
-  //       },
-  //     ),
-  //     [1.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
-  //       environment: {
-  //         'smokesCode': ['N'],
-  //       },
-  //     ),
-  //     [0.toFhirInteger],
-  //   );
-  // });
-  // test('iif-nested-fxns', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: 'iif(%smokesCode.exists(), {}.empty(), {}.exists())',
-  //       environment: {'smokesCode': <FhirBase>[]},
-  //     ),
-  //     [false.toFhirBoolean],
-  //   );
-  // });
-  // test('iif-nested-iif-empty-variable', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression:
-  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-  //       environment: {'smokesCode': <FhirBase>[]},
-  //     ),
-  //     <FhirBase>[],
-  //   );
-  // });
-  // test('iif-nested-iif-empty-set', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: "iif({}.exists(), iif({} = 'Y', 1, 0), {})",
-  //     ),
-  //     <FhirBase>[],
-  //   );
-  // });
-  // test('iif-nested-iif-filled-variable', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression:
-  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-  //       environment: {
-  //         'smokesCode': ['Y'],
-  //       },
-  //     ),
-  //     [1.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression:
-  //           "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
-  //       environment: {
-  //         'smokesCode': ['N'],
-  //       },
-  //     ),
-  //     [0.toFhirInteger],
-  //   );
-  // });
-  // test('iif-act-on-score', () {
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: r"(2 + 2).select(iif($this > 2, $this, '<= 2'))",
-  //     ),
-  //     [4.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: r"(1 + 1).select(iif($this > 2, $this, '<= 2'))",
-  //     ),
-  //     ['<= 2'.toFhirString],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: r'(1 + 1).select(iif($this > 2, $this, iif($this < 2, '
-  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
-  //           "2')))",
-  //     ),
-  //     ['2 is above 2'.toFhirString],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: r'(2 + 2).select(iif($this > 2, $this, iif($this < 2, '
-  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
-  //           "2')))",
-  //     ),
-  //     [4.toFhirInteger],
-  //   );
-  //   expect(
-  //     walkFhirPath(
-  //       context: null,
-  //       pathExpression: r'(1 + 0).select(iif($this > 2, $this, iif($this < 2, '
-  //           r"$this.toString() + ' is below 2', $this.toString() + ' is above "
-  //           "2')))",
-  //     ),
-  //     ['1 is below 2'],
-  //   );
-  // });
+  test('iif-basic', () {
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
+      [0.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'),
+      [0.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif(true, 1)'),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(context: null, pathExpression: 'iif(false, 1)'),
+      <FhirBase>[],
+    );
+    expect(
+      () => walkFhirPath(context: null, pathExpression: 'iif(false)'),
+      throwsA(const TypeMatcher<FHIRLexerException>()),
+    );
+  });
 
-  // group('extensions', () {
-  //   test(
-  //     'extensionOnPolymorphic',
-  //     () => expect(
-  //       walkFhirPath(
-  //         context: QuestionnaireResponse.fromJson(questionnaireResponse),
-  //         pathExpression: '%context.repeat(item).answer.value.extension.'
-  //             'where(url=%`ext-ordinalValue`).value',
-  //       ),
-  //       [4.toFhirInteger, 5.toFhirInteger, 4.toFhirInteger],
-  //     ),
-  //   );
-  //   test(
-  //     'extensionOnPrimitive',
-  //     () => expect(
-  //       walkFhirPath(
-  //         context: patientExample(),
-  //         pathExpression: 'Patient.contact.name.family.extension'
-  //             '(%`ext-humanname-own-prefix`).value',
-  //       ),
-  //       ['VV'.toFhirString],
-  //     ),
-  //   );
-  // });
+  test('iif-short-circuit', () {
+    // non-existent identifier should never be evaluated
+    expect(
+      walkFhirPath(
+        context: patient3,
+        pathExpression: 'iif(true, 1, %patient3.blurb)',
+      ),
+      [1.toFhirInteger],
+    );
+    // non-existent identifier should throw
+    expect(
+      () => walkFhirPath(
+        context: patient3,
+        pathExpression: 'iif(false, 1, %patient3.blurb)',
+      ),
+      throwsA(const TypeMatcher<PathEngineException>()),
+    );
+  });
 
-  // TODO(Dokotela):  trace
-  // });
+  test('iif-with-variables', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: 'iif(%smokesCode.exists(), 1, 0)',
+        environment: {'smokesCode': <FhirBase>[]},
+      ),
+      [0.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
+        environment: {
+          'smokesCode': ['Y'.toFhirString],
+        },
+      ),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
+        environment: {
+          'smokesCode': ['N'],
+        },
+      ),
+      [0.toFhirInteger],
+    );
+  });
+
+  test('iif-nested-fxns', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: 'iif(%smokesCode.exists(), {}.empty(), {}.exists())',
+        environment: {'smokesCode': <FhirBase>[]},
+      ),
+      [false.toFhirBoolean],
+    );
+  });
+
+  test('iif-nested-iif-empty-variable', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression:
+            "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+        environment: {'smokesCode': <FhirBase>[]},
+      ),
+      <FhirBase>[],
+    );
+  });
+
+  test('iif-nested-iif-empty-set', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: "iif({}.exists(), iif({} = 'Y', 1, 0), {})",
+      ),
+      <FhirBase>[],
+    );
+  });
+
+  test('iif-nested-iif-filled-variable', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression:
+            "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+        environment: {
+          'smokesCode': ['Y'.toFhirString],
+        },
+      ),
+      [1.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression:
+            "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
+        environment: {
+          'smokesCode': ['N'.toFhirString],
+        },
+      ),
+      [0.toFhirInteger],
+    );
+  });
+
+  test('iif-act-on-score', () {
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: r"(2 + 2).select(iif($this > 2, $this, '<= 2'))",
+      ),
+      [4.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: r"(1 + 1).select(iif($this > 2, $this, '<= 2'))",
+      ),
+      ['<= 2'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: r'(1 + 1).select(iif($this > 2, $this, iif($this < 2, '
+            r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+            "2')))",
+      ),
+      ['2 is above 2'.toFhirString],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: r'(2 + 2).select(iif($this > 2, $this, iif($this < 2, '
+            r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+            "2')))",
+      ),
+      [4.toFhirInteger],
+    );
+    expect(
+      walkFhirPath(
+        context: null,
+        pathExpression: r'(1 + 0).select(iif($this > 2, $this, iif($this < 2, '
+            r"$this.toString() + ' is below 2', $this.toString() + ' is above "
+            "2')))",
+      ),
+      ['1 is below 2'.toFhirString],
+    );
+  });
+
+  group('extensions', () {
+    test(
+      'extensionOnPolymorphic',
+      () => expect(
+        walkFhirPath(
+          context: questionnaireResponse3,
+          pathExpression: '%context.repeat(item).answer.value.extension.'
+              'where(url=%`ext-ordinalValue`).value',
+        ),
+        [4.toFhirDecimal, 5.toFhirDecimal, 4.toFhirDecimal],
+      ),
+    );
+    test(
+      'extensionOnPrimitive',
+      () => expect(
+        walkFhirPath(
+          context: patient1,
+          pathExpression: 'Patient.contact.name.family.extension'
+              '(%`ext-humanname-own-prefix`).value',
+        ),
+        ['VV'.toFhirString],
+      ),
+    );
+  });
+
+  // TODO(Dokotela): trace
 }
