@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 Future<void> main() async {
   // Create a sample ValueSet with concepts
@@ -30,7 +30,7 @@ Future<void> main() async {
   final context = WorkerContext();
 
   // Validate the code
-  final result = await context.validateCodeWithCoding(
+  final result = context.validateCodeWithCoding(
     ValidationOptions(),
     coding,
     valueSet,

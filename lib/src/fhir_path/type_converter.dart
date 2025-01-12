@@ -1,6 +1,6 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 /// Extension to convert a [String] to [FhirBase64Binary]
 abstract class TypeConvertor {

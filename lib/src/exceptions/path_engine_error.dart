@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 /// An error that occurs during FHIRPath evaluation.
 class PathEngineError extends FHIRError {
@@ -9,9 +9,9 @@ class PathEngineError extends FHIRError {
     this.location,
     this.expression,
     this.id,
-    Error? cause,
-    StackTrace? stackTrace,
-  }) : super(message: message, cause: cause, stackTrace: stackTrace);
+    Error? super.cause,
+    super.stackTrace,
+  }) : super(message: message);
 
   /// The location in the FHIRPath where the error occurred.
   final SourceLocation? location;

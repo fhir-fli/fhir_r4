@@ -6,7 +6,7 @@ import 'dart:math';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
@@ -2717,7 +2717,7 @@ class FHIRPathEngine {
         return isBoolean(left, true) ? makeBoolean(true) : null;
       case FpOperation.Implies:
         final v = asBoolFromList(left, expr);
-        return v == Equality.false_ ? makeBoolean(true) : null;
+        return v == FpEquality.false_ ? makeBoolean(true) : null;
       // ignore: no_default_cases
       default:
         return null;
@@ -3287,17 +3287,17 @@ class FHIRPathEngine {
     final l = asBoolList(left, expr);
     final r = asBoolList(right, expr);
     switch (l) {
-      case Equality.true_:
+      case FpEquality.true_:
         return makeBoolean(true);
-      case Equality.null_:
-        return r == Equality.true_ ? makeBoolean(true) : makeNull();
-      case Equality.false_:
+      case FpEquality.null_:
+        return r == FpEquality.true_ ? makeBoolean(true) : makeNull();
+      case FpEquality.false_:
         switch (r) {
-          case Equality.false_:
+          case FpEquality.false_:
             return makeBoolean(false);
-          case Equality.null_:
+          case FpEquality.null_:
             return makeNull();
-          case Equality.true_:
+          case FpEquality.true_:
             return makeBoolean(true);
         }
     }
@@ -3311,17 +3311,17 @@ class FHIRPathEngine {
     final l = asBoolList(left, expr);
     final r = asBoolList(right, expr);
     switch (l) {
-      case Equality.false_:
+      case FpEquality.false_:
         return makeBoolean(false);
-      case Equality.null_:
-        return r == Equality.false_ ? makeBoolean(false) : makeNull();
-      case Equality.true_:
+      case FpEquality.null_:
+        return r == FpEquality.false_ ? makeBoolean(false) : makeNull();
+      case FpEquality.true_:
         switch (r) {
-          case Equality.false_:
+          case FpEquality.false_:
             return makeBoolean(false);
-          case Equality.null_:
+          case FpEquality.null_:
             return makeNull();
-          case Equality.true_:
+          case FpEquality.true_:
             return makeBoolean(true);
         }
     }
@@ -3335,24 +3335,24 @@ class FHIRPathEngine {
     final l = asBoolList(left, expr);
     final r = asBoolList(right, expr);
     switch (l) {
-      case Equality.true_:
+      case FpEquality.true_:
         switch (r) {
-          case Equality.false_:
+          case FpEquality.false_:
             return makeBoolean(true);
-          case Equality.true_:
+          case FpEquality.true_:
             return makeBoolean(false);
-          case Equality.null_:
+          case FpEquality.null_:
             return makeNull();
         }
-      case Equality.null_:
+      case FpEquality.null_:
         return makeNull();
-      case Equality.false_:
+      case FpEquality.false_:
         switch (r) {
-          case Equality.false_:
+          case FpEquality.false_:
             return makeBoolean(false);
-          case Equality.true_:
+          case FpEquality.true_:
             return makeBoolean(true);
-          case Equality.null_:
+          case FpEquality.null_:
             return makeNull();
         }
     }
@@ -3364,17 +3364,17 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     final eq = asBoolList(left, expr);
-    if (eq == Equality.false_) {
+    if (eq == FpEquality.false_) {
       return makeBoolean(true);
     } else if (right.isEmpty) {
       return makeNull();
     } else {
       switch (asBoolList(right, expr)) {
-        case Equality.false_:
-          return eq == Equality.null_ ? makeNull() : makeBoolean(false);
-        case Equality.null_:
+        case FpEquality.false_:
+          return eq == FpEquality.null_ ? makeNull() : makeBoolean(false);
+        case FpEquality.null_:
           return makeNull();
-        case Equality.true_:
+        case FpEquality.true_:
           return makeBoolean(true);
       }
     }
@@ -4142,8 +4142,8 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     final v = asBoolList(focus, exp);
 
-    if (v != Equality.null_) {
-      result.add(FhirBoolean(v != Equality.true_));
+    if (v != FpEquality.null_) {
+      result.add(FhirBoolean(v != FpEquality.true_));
     }
     return result;
   }
@@ -4170,7 +4170,7 @@ class FHIRPathEngine {
           ),
           exp,
         );
-        if (v == Equality.true_) {
+        if (v == FpEquality.true_) {
           empty = false;
         }
       } else if (!f.isEmpty()) {
@@ -4300,7 +4300,7 @@ class FHIRPathEngine {
         ),
         exp,
       );
-      if (v == Equality.true_) {
+      if (v == FpEquality.true_) {
         result.add(item);
       }
     }
@@ -4354,7 +4354,7 @@ class FHIRPathEngine {
           ),
           exp,
         );
-        if (eq != Equality.true_) {
+        if (eq != FpEquality.true_) {
           all = false;
           break;
         }
@@ -4364,7 +4364,7 @@ class FHIRPathEngine {
       var all = true;
       for (final item in focus) {
         final eq = asBool(item, true);
-        if (eq != Equality.true_) {
+        if (eq != FpEquality.true_) {
           all = false;
           break;
         }
@@ -4860,7 +4860,7 @@ class FHIRPathEngine {
     );
 
     final v = asBoolList(n1, exp);
-    if (v == Equality.true_) {
+    if (v == FpEquality.true_) {
       return execute(context, focus, exp.parameters[1], true);
     } else if (exp.parameters.length < 3) {
       return [];
@@ -5362,8 +5362,8 @@ class FHIRPathEngine {
           ..add(item);
         final res = execute(context, pc, exp.parameters.first, true);
         final v = asBoolList(res, exp);
-        if (v != Equality.false_) {
-          // Assuming Equality.falseValue corresponds to `Equality.False`
+        if (v != FpEquality.false_) {
+          // Assuming FpEquality.falseValue corresponds to `FpEquality.False`
           all = false;
           break;
         }
@@ -5380,7 +5380,7 @@ class FHIRPathEngine {
         }
 
         final v = asBool(item, true);
-        if (v != Equality.false_) {
+        if (v != FpEquality.false_) {
           all = false;
           break;
         }
@@ -5405,7 +5405,7 @@ class FHIRPathEngine {
           ..add(item);
         final res = execute(context, pc, exp.parameters.first, true);
         final v = asBoolList(res, exp);
-        if (v == Equality.false_) {
+        if (v == FpEquality.false_) {
           any = true;
           break;
         }
@@ -5422,7 +5422,7 @@ class FHIRPathEngine {
         }
 
         final v = asBool(item, true);
-        if (v == Equality.false_) {
+        if (v == FpEquality.false_) {
           any = true;
           break;
         }
@@ -5449,7 +5449,7 @@ class FHIRPathEngine {
           ..add(item);
         final res = execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
-        if (v == Equality.true_) {
+        if (v == FpEquality.true_) {
           any = true;
           break;
         }
@@ -5465,7 +5465,7 @@ class FHIRPathEngine {
           );
         }
         final v = asBool(item, true);
-        if (v == Equality.true_) {
+        if (v == FpEquality.true_) {
           any = true;
           break;
         }
@@ -5492,7 +5492,7 @@ class FHIRPathEngine {
           ..add(item);
         final res = execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
-        if (v == Equality.true_) {
+        if (v == FpEquality.true_) {
           any = true;
           break;
         }
@@ -5508,7 +5508,7 @@ class FHIRPathEngine {
           );
         }
         final v = asBool(item, true);
-        if (v == Equality.true_) {
+        if (v == FpEquality.true_) {
           any = true;
           break;
         }
@@ -7049,13 +7049,13 @@ class FHIRPathEngine {
         (list.first as FhirBoolean).value == b;
   }
 
-  Equality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
+  FpEquality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
     if (items.isEmpty) {
-      return Equality.null_;
+      return FpEquality.null_;
     } else if (items.length == 1 && items.first is FhirBoolean) {
       return asBool(items.first, true);
     } else if (items.length == 1) {
-      return Equality.true_;
+      return FpEquality.true_;
     } else {
       throw makeException(
         expr,
@@ -7065,11 +7065,11 @@ class FHIRPathEngine {
     }
   }
 
-  Equality asBool(FhirBase item, bool narrow) {
+  FpEquality asBool(FhirBase item, bool narrow) {
     if (item is FhirBoolean && item.value != null) {
       return boolToTriState(item.value!);
     } else if (narrow) {
-      return Equality.false_;
+      return FpEquality.false_;
     } else if (item is FhirNumber && item.value != null) {
       if (item is FhirInteger ||
           item is FhirUnsignedInt ||
@@ -7079,25 +7079,25 @@ class FHIRPathEngine {
         return asBoolFromDec(item.value.toString());
       } else if (item is FhirString) {
         if (['true', 't', 'yes', 'y'].contains((item as FhirString).value)) {
-          return Equality.true_;
+          return FpEquality.true_;
         } else if (['false', 'f', 'no', 'n']
             .contains((item as FhirString).value)) {
-          return Equality.false_;
+          return FpEquality.false_;
         } else {
-          return Equality.null_;
+          return FpEquality.null_;
         }
       }
     }
-    return Equality.null_;
+    return FpEquality.null_;
   }
 
-  Equality asBoolList(List<FhirBase> items, ExpressionNode expr) {
+  FpEquality asBoolList(List<FhirBase> items, ExpressionNode expr) {
     if (items.isEmpty) {
-      return Equality.null_;
+      return FpEquality.null_;
     } else if (items.length == 1 && items.first is FhirBoolean) {
       return asBool(items.first, true);
     } else if (items.length == 1) {
-      return Equality.true_;
+      return FpEquality.true_;
     } else {
       throw makeException(
         expr,
@@ -7107,39 +7107,39 @@ class FHIRPathEngine {
     }
   }
 
-  Equality boolToTriState(bool b) {
-    return b ? Equality.true_ : Equality.false_;
+  FpEquality boolToTriState(bool b) {
+    return b ? FpEquality.true_ : FpEquality.false_;
   }
 
-  Equality asBoolFromInt(String s) {
+  FpEquality asBoolFromInt(String s) {
     try {
       final i = int.tryParse(s);
       switch (i) {
         case 0:
-          return Equality.false_;
+          return FpEquality.false_;
         case 1:
-          return Equality.true_;
+          return FpEquality.true_;
         default:
-          return Equality.null_;
+          return FpEquality.null_;
       }
     } catch (e) {
-      return Equality.null_;
+      return FpEquality.null_;
     }
   }
 
-  Equality asBoolFromDec(String s) {
+  FpEquality asBoolFromDec(String s) {
     try {
       final d =
           BigInt.parse(s); // Use BigInt for arbitrary precision numbers in Dart
       if (d == BigInt.zero) {
-        return Equality.false_;
+        return FpEquality.false_;
       } else if (d == BigInt.one) {
-        return Equality.true_;
+        return FpEquality.true_;
       } else {
-        return Equality.null_;
+        return FpEquality.null_;
       }
     } catch (e) {
-      return Equality.null_;
+      return FpEquality.null_;
     }
   }
 

@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
 
 /// A simple value set checker that only checks for membership
 class ValueSetChecker {
@@ -325,17 +324,6 @@ abstract class ValueSetExpander {
     ValueSet source,
     Parameters? parameters,
   );
-}
-
-/// A value set expander that uses a terminology service
-class ETooCostly implements Exception {
-  /// Create a new too costly exception
-  ETooCostly(this.message);
-
-  /// Create a new too costly exception
-  final String message;
-  @override
-  String toString() => 'ETooCostly: $message';
 }
 
 /// A value set expander that uses a terminology service

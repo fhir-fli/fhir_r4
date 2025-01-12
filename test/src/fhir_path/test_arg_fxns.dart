@@ -1050,7 +1050,8 @@ void testArgFxns() {
 
   test('combine', () {
     expect(
-      deepEquals(
+      // ignore: inference_failure_on_function_invocation
+      listEquals(
         walkFhirPath(
           context: patient3,
           pathExpression: '%a.combine(%b)',

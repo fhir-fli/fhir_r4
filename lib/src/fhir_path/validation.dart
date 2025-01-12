@@ -4,12 +4,12 @@ import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 /// A class representing validation options for FHIR validation processes.
 class ValidationOptions {
   /// Constructs validation options with a default FHIR version.
-  ValidationOptions({this.fhirVersion = FhirPublication.R4});
+  ValidationOptions({this.fhirVersion = FhirPublication.r4});
 
   /// Constructs validation options with a specified language.
   ValidationOptions.withLanguage(this.fhirVersion, String language) {
@@ -20,7 +20,7 @@ class ValidationOptions {
 
   /// Creates a default instance of validation options.
   factory ValidationOptions.defaults() {
-    return ValidationOptions.withLanguage(FhirPublication.R4, 'en, en-US');
+    return ValidationOptions.withLanguage(FhirPublication.r4, 'en, en-US');
   }
 
   /// The accepted language header for validation.

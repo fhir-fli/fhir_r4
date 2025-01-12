@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 final worker = WorkerContext();
 // ..loadStructureDefinitions(getStructureDefinitions());

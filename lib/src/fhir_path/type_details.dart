@@ -4,7 +4,7 @@ import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {

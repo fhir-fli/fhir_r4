@@ -1,6 +1,6 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-main() {
+void main() {
   final string = FhirString(
     'Hello',
     element: Element(

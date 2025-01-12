@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-import 'package:fhir_r4/src/fhir_path/java/java.dart';
+
 
 bool isWhitespace(dynamic value) {
   if (value is String) {
@@ -34,7 +34,7 @@ class FunctionDetails {
   }
 }
 
-enum Equality {
+enum FpEquality {
   null_,
   true_,
   false_,
@@ -352,13 +352,6 @@ class ElementDefinitionMatch {
 
   ElementDefinition? definition;
   String? fixedType;
-}
-
-extension ElementDefinitionExtension on ElementDefinition {
-  bool hasContentReference() {
-    return contentReference != null &&
-        (contentReference!.value?.toString().isNotEmpty ?? false);
-  }
 }
 
 class ClassTypeInfo extends FhirBase {
