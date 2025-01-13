@@ -72,6 +72,7 @@ class FhirInstanceValidator {
       if (fieldName != null) {
         final fieldValue = resource[fieldName];
 
+        // Recursively validate child elements
         if (childElements != null && fieldValue is Map<String, dynamic>) {
           messages.addAll(
             await _validateElements(fieldValue, childElements, currentPath),
@@ -90,6 +91,7 @@ class FhirInstanceValidator {
             }
           }
         } else {
+          // Validate the current field
           messages.addAll(
             await _validateElement(
               resource,
@@ -97,7 +99,7 @@ class FhirInstanceValidator {
               element,
               currentPath,
             ),
-          ); // Pass path for precise error localization
+          );
         }
       }
     }
@@ -109,51 +111,41 @@ class FhirInstanceValidator {
     Map<String, dynamic> resource,
     String fieldName,
     Map<String, dynamic> element,
-    String? path, // Full path for error localization
+    String? path,
   ) async {
     final messages = <ValidationMessage>[];
 
-    // Type validation
+    // Check if the field is required
+    final isRequired = element['required'] as bool? ?? false;
+    if (isRequired && resource[fieldName] == null) {
+      messages.add(
+        ValidationMessage(
+          severity: Severity.error,
+          message: 'Missing required field: $fieldName.',
+          path: path,
+        ),
+      );
+    }
+
+    // Validate field type
     final expectedType = element['type'] as String?;
-    if (expectedType != null && resource[fieldName] != null) {
-      final fieldValue = resource[fieldName];
-      if (fieldValue is Object &&
-          !_validateFieldType(fieldValue, expectedType)) {
+    final fieldValue = resource[fieldName];
+    if (expectedType != null && fieldValue != null && fieldValue is Object) {
+      if (!_validateFieldType(fieldValue, expectedType)) {
         messages.add(
           ValidationMessage(
             severity: Severity.error,
             message:
-                'Field $fieldName has an invalid type. Expected $expectedType.',
-            location: path ?? fieldName,
+                'Field "$fieldName" has invalid type. Expected $expectedType.',
+            path: path,
           ),
         );
-      }
-    }
-
-    // Terminology validation
-    final binding = element['binding'] as Map<String, dynamic>?;
-    if (binding != null) {
-      final valueSetUrl = binding['valueSet'] as String?;
-      final code = resource[fieldName] as String?;
-      final system = resource['system'] as String?;
-
-      if (valueSetUrl != null && code != null && system != null) {
-        final message = await terminologyValidator.validateCodeAgainstValueSet(
-          code,
-          system,
-          valueSetUrl,
-        );
-
-        if (message != null) {
-          messages.add(message.copyWith(location: path ?? fieldName));
-        }
       }
     }
 
     return messages;
   }
 
-  /// Validate the type of a field value
   bool _validateFieldType(Object value, String expectedType) {
     switch (expectedType) {
       case 'string':
@@ -165,7 +157,25 @@ class FhirInstanceValidator {
       case 'array':
         return value is List;
       default:
-        return false; // Unsupported types return false
+        return false; // Unsupported types
     }
+  }
+
+  /// Validate a code against a value set
+  Future<bool> validateCode(
+    String code,
+    String system,
+    String valueSetUrl,
+  ) async {
+    final valueSet = await validationSupport.fetchValueSet(valueSetUrl);
+    if (valueSet == null) return false;
+
+    final codes = valueSet['codes'] as List<dynamic>?;
+    return codes?.any((entry) {
+          return entry is Map<String, dynamic> &&
+              entry['code'] == code &&
+              entry['system'] == system;
+        }) ??
+        false;
   }
 }
