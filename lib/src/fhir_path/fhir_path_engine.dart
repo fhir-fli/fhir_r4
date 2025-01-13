@@ -6,7 +6,6 @@ import 'dart:math';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
@@ -234,11 +233,15 @@ class FHIRPathEngine {
           ucum = lexer.readConstant('units');
         }
 
+        num? value;
+        if (result.constant is FhirNumber) {
+          value = (result.constant! as FhirNumber).value;
+        } else if (result.constant?.primitiveValue is String) {
+          value = int.tryParse(result.constant!.primitiveValue!) ??
+              double.tryParse(result.constant!.primitiveValue!);
+        }
         result.constant = Quantity(
-          value: result.constant?.primitiveValue == null ||
-                  double.tryParse(result.constant!.primitiveValue!) == null
-              ? null
-              : double.parse(result.constant!.primitiveValue!).toFhirDecimal,
+          value: value?.toFhirDecimal,
           unit: unit?.toFhirString,
           system: ucum == null ? null : 'http://unitsofmeasure.org'.toFhirUri,
           code: ucum?.toFhirCode,
@@ -1045,6 +1048,7 @@ class FHIRPathEngine {
         // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
+
         work.addAll(constants);
 
       case ExpressionNodeKind.group:
@@ -3685,6 +3689,7 @@ class FHIRPathEngine {
       final pr = qtyToPair(r);
       if (pl != null && pr != null) {
         final p = worker.ucumService.divideBy(pl, pr);
+
         result.add(pairToQty(p));
       }
     } else {
@@ -3824,7 +3829,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opIs $left $right');
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
@@ -3832,11 +3836,10 @@ class FHIRPathEngine {
       result.add(FhirBoolean(false).noExtensions());
     } else {
       final tn = convertToStringList(right);
-      print('tn $tn');
+
       if (left.first is Element) {
         final element = left.first as Element;
-        print(element.fhirType.capitalize());
-        print(element.disallowExtensions ?? false);
+
         if (element.disallowExtensions ?? false) {
           result.add(
             FhirBoolean(
@@ -3846,7 +3849,8 @@ class FHIRPathEngine {
           );
         } else {
           final currentType = element.fhirType;
-          return makeBoolean(currentType == tn);
+
+          return makeBoolean(currentType.toLowerCase() == tn.toLowerCase());
           // TODO(Dokotela): I don't think we really need all this
           // var sd = _fetchTypeDefinition(currentType);
           // while (sd != null) {
@@ -3863,7 +3867,7 @@ class FHIRPathEngine {
         result.add(FhirBoolean(true).noExtensions());
       }
     }
-    print('result $result');
+
     return result;
   }
 
@@ -4145,6 +4149,7 @@ class FHIRPathEngine {
     if (v != FpEquality.null_) {
       result.add(FhirBoolean(v != FpEquality.true_));
     }
+
     return result;
   }
 
@@ -5953,7 +5958,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('funcToQuantity');
     final result = <FhirBase>[];
     if (focus.length == 1) {
       final item = focus.first;
@@ -5984,6 +5988,7 @@ class FHIRPathEngine {
     var s = str.trim();
     if (s.contains(' ')) {
       final v = s.substring(0, s.indexOf(' ')).trim();
+
       s = s.substring(s.indexOf(' ')).trim();
 
       if (!Utilities.isDecimal(v)) {
@@ -5997,27 +6002,35 @@ class FHIRPathEngine {
       switch (s) {
         case 'year':
         case 'years':
+        case 'a':
           return quantityFromUcum(v, 'a');
         case 'month':
         case 'months':
+        case 'mo_s':
           return quantityFromUcum(v, 'mo_s');
         case 'week':
         case 'weeks':
+        case 'wk':
           return quantityFromUcum(v, 'wk');
         case 'day':
         case 'days':
+        case 'd':
           return quantityFromUcum(v, 'd');
         case 'hour':
         case 'hours':
+        case 'h':
           return quantityFromUcum(v, 'h');
         case 'minute':
         case 'minutes':
+        case 'min':
           return quantityFromUcum(v, 'min');
         case 'second':
         case 'seconds':
+        case 's':
           return quantityFromUcum(v, 's');
         case 'millisecond':
         case 'milliseconds':
+        case 'ms':
           return quantityFromUcum(v, 'ms');
         default:
           return null;
@@ -6025,7 +6038,7 @@ class FHIRPathEngine {
     } else {
       if (Utilities.isDecimal(s)) {
         return Quantity(
-          value: FhirDecimal(double.parse(s)),
+          value: FhirDecimal(int.tryParse(s) ?? double.parse(s)),
           system: FhirUri('http://unitsofmeasure.org'),
           code: FhirCode('1'),
         );
@@ -6131,7 +6144,8 @@ class FHIRPathEngine {
     final s = convertToStringList(focus);
     final result = <FhirBase>[];
     if (Utilities.isDecimal(s)) {
-      result.add(FhirDecimal(double.parse(s)).noExtensions());
+      result
+          .add(FhirDecimal(int.tryParse(s) ?? double.parse(s)).noExtensions());
     } else if (s == 'true') {
       result.add(FhirDecimal(1).noExtensions());
     } else if (s == 'false') {
@@ -6261,8 +6275,9 @@ class FHIRPathEngine {
       return [FhirBoolean(true)];
     } else if (focus.first is FhirString) {
       final regex = RegExp(
-        r'(T)?([01]\d|2[0-3]):[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|([-+](0[0-9]|1[0-3]):[0-5]\d|14:00))?',
+        r'(T)?([01]\d|2[0-3])(:[0-5]\d(:[0-5]\d(\.\d+)?)?)?(Z|([-+](0[0-9]|1[0-3]):[0-5]\d|14:00))?',
       );
+
       return [FhirBoolean(regex.hasMatch(focus.first.toString()))];
     } else {
       return [FhirBoolean(false)];
@@ -6333,7 +6348,8 @@ class FHIRPathEngine {
         precision = int.tryParse(n1[0].toString());
       }
 
-      final value = double.tryParse(base.toString());
+      final value =
+          int.tryParse(base.toString()) ?? double.tryParse(base.toString());
       if (value == null) {
         throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
           'round',
@@ -6350,7 +6366,10 @@ class FHIRPathEngine {
           'integer',
         ]);
       }
-      result.add(FhirDecimal(double.parse(value.toStringAsFixed(precision))));
+      final valueString = value.toStringAsFixed(precision);
+      result.add(
+        FhirDecimal(int.tryParse(valueString) ?? double.parse(valueString)),
+      );
     } else {
       throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
         'round',
@@ -6381,7 +6400,8 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
 
     if (base is FhirNumber) {
-      final value = double.tryParse(base.primitiveValue ?? '');
+      final value = int.tryParse(base.primitiveValue ?? '') ??
+          double.tryParse(base.primitiveValue ?? '');
       if (value != null) {
         try {
           final val = sqrt(value);
@@ -6466,8 +6486,8 @@ class FHIRPathEngine {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final value = double.tryParse(base.primitiveValue ?? '');
+    if (base is FhirNumber) {
+      final value = base.value;
       if (value != null) {
         try {
           result.add(FhirInteger(value.ceil()).noExtensions());
@@ -6504,8 +6524,8 @@ class FHIRPathEngine {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final value = double.tryParse(base.primitiveValue ?? '');
+    if (base is FhirNumber) {
+      final value = base.value;
       if (value != null) {
         try {
           result.add(FhirInteger(value.floor()).noExtensions());
@@ -6542,8 +6562,9 @@ class FHIRPathEngine {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final value = double.tryParse(base.primitiveValue ?? '');
+    if (base is FhirNumber) {
+      final value = int.tryParse(base.primitiveValue ?? '') ??
+          double.tryParse(base.primitiveValue ?? '');
       if (value != null) {
         try {
           result.add(FhirDecimal(log(value)).noExtensions());
@@ -6591,8 +6612,10 @@ class FHIRPathEngine {
         ]);
       }
 
-      final exponent = double.tryParse(n1[0].primitiveValue ?? '');
-      final value = double.tryParse(base.primitiveValue ?? '');
+      final exponent = int.tryParse(n1[0].primitiveValue ?? '') ??
+          double.tryParse(n1[0].primitiveValue ?? '');
+      final value = int.tryParse(base.primitiveValue ?? '') ??
+          double.tryParse(base.primitiveValue ?? '');
       if (exponent != null && value != null) {
         try {
           final res = pow(value, exponent);
@@ -6661,8 +6684,9 @@ class FHIRPathEngine {
 
     final base = focus.first;
     final result = <FhirBase>[];
-    if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final d = double.tryParse(base.primitiveValue ?? '');
+    if (base is FhirNumber) {
+      final d = int.tryParse(base.primitiveValue ?? '') ??
+          double.tryParse(base.primitiveValue ?? '');
       if (d != null) {
         try {
           result.add(FhirDecimal(exp(d)).noExtensions());
@@ -6708,8 +6732,10 @@ class FHIRPathEngine {
           'integer or decimal',
         ]);
       }
-      final e = double.tryParse(n1.first.primitiveValue ?? '');
-      final d = double.tryParse(base.primitiveValue ?? '');
+      final e = int.tryParse(n1.first.primitiveValue ?? '') ??
+          double.tryParse(n1.first.primitiveValue ?? '');
+      final d = int.tryParse(base.primitiveValue ?? '') ??
+          double.tryParse(base.primitiveValue ?? '');
       if (e != null && d != null) {
         try {
           result.add(FhirDecimal(log(d) / log(e)).noExtensions());
@@ -7039,65 +7065,127 @@ class FHIRPathEngine {
   /// UTILITIES
   /// ***************************************
   ///
-  List<FhirBase> makeBoolean(bool b) {
-    return <FhirBase>[FhirBoolean(b).noExtensions()];
+  List<FhirBase> makeBoolean(bool value) {
+    return <FhirBase>[FhirBoolean(value).noExtensions()];
   }
 
-  bool isBoolean(List<FhirBase> list, bool b) {
+  bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
         list.first is FhirBoolean &&
-        (list.first as FhirBoolean).value == b;
+        (list.first as FhirBoolean).value == value;
   }
 
-  FpEquality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
-    if (items.isEmpty) {
-      return FpEquality.null_;
-    } else if (items.length == 1 && items.first is FhirBoolean) {
-      return asBool(items.first, true);
-    } else if (items.length == 1) {
-      return FpEquality.true_;
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_UNABLE_BOOLEAN',
-        items.map((e) => e.toString()).toList(),
-      );
-    }
-  }
-
-  FpEquality asBool(FhirBase item, bool narrow) {
+  FpEquality asBool(FhirBase item, [bool narrow = false]) {
     if (item is FhirBoolean && item.value != null) {
-      return boolToTriState(item.value!);
-    } else if (narrow) {
-      return FpEquality.false_;
-    } else if (item is FhirNumber && item.value != null) {
+      return item.value! ? FpEquality.true_ : FpEquality.false_;
+    }
+
+    if (!narrow) {
       if (item is FhirInteger ||
-          item is FhirUnsignedInt ||
-          item is FhirPositiveInt) {
-        return asBoolFromInt(item.value.toString());
+          item is FhirPositiveInt ||
+          item is FhirUnsignedInt) {
+        return asBoolFromInt((item as FhirNumber).value.toString());
       } else if (item is FhirDecimal) {
         return asBoolFromDec(item.value.toString());
       } else if (item is FhirString) {
-        if (['true', 't', 'yes', 'y'].contains((item as FhirString).value)) {
+        final lowerValue = (item.value ?? '').toLowerCase();
+        if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
           return FpEquality.true_;
-        } else if (['false', 'f', 'no', 'n']
-            .contains((item as FhirString).value)) {
+        } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
           return FpEquality.false_;
-        } else {
-          return FpEquality.null_;
         }
       }
     }
     return FpEquality.null_;
   }
 
+  FpEquality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
+    if (items.isEmpty) return FpEquality.null_;
+
+    if (items.length == 1) {
+      if (items.first is FhirBoolean) {
+        return asBool(items.first, true);
+      }
+      return FpEquality.true_;
+    }
+
+    throw makeException(
+      expr,
+      'FHIRPATH_UNABLE_BOOLEAN',
+      items.map((e) => e.toString()).toList(),
+    );
+  }
+
+  FpEquality asBoolFromInt(String value) {
+    final parsedValue = int.tryParse(value);
+
+    if (parsedValue == null) return FpEquality.null_;
+    if (parsedValue == 0) return FpEquality.false_;
+    if (parsedValue == 1) return FpEquality.true_;
+    return FpEquality.null_;
+  }
+
+  FpEquality asBoolFromDec(String value) {
+    try {
+      final parsedValue = BigInt.parse(value);
+      if (parsedValue == BigInt.zero) return FpEquality.false_;
+      if (parsedValue == BigInt.one) return FpEquality.true_;
+      return FpEquality.null_;
+    } catch (e) {
+      return FpEquality.null_;
+    }
+  }
+
+  bool canConvertToBoolean(FhirBase item) {
+    if (item is FhirBoolean) return true;
+
+    if (item is PrimitiveType) {
+      final value = item.toString().toLowerCase();
+      return [
+        'true',
+        't',
+        'yes',
+        'y',
+        '1',
+        '1.0',
+        'false',
+        'f',
+        'no',
+        'n',
+        '0',
+        '0.0',
+      ].contains(value);
+    }
+
+    return false;
+  }
+
+  bool convertToBoolean(List<FhirBase>? items) {
+    if (items == null || items.isEmpty) return false;
+
+    if (items.length == 1) {
+      final first = items.first;
+      if (first is FhirBoolean) {
+        return first.value ?? false;
+      }
+
+      final lowerValue = first.toString().toLowerCase();
+      if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
+        return true;
+      } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
+        return false;
+      }
+    }
+
+    return items.isNotEmpty;
+  }
+
   FpEquality asBoolList(List<FhirBase> items, ExpressionNode expr) {
     if (items.isEmpty) {
       return FpEquality.null_;
-    } else if (items.length == 1 && items.first is FhirBoolean) {
-      return asBool(items.first, true);
     } else if (items.length == 1) {
-      return FpEquality.true_;
+      final eqBool = asBool(items.first);
+      return eqBool == FpEquality.null_ ? FpEquality.true_ : eqBool;
     } else {
       throw makeException(
         expr,
@@ -7109,38 +7197,6 @@ class FHIRPathEngine {
 
   FpEquality boolToTriState(bool b) {
     return b ? FpEquality.true_ : FpEquality.false_;
-  }
-
-  FpEquality asBoolFromInt(String s) {
-    try {
-      final i = int.tryParse(s);
-      switch (i) {
-        case 0:
-          return FpEquality.false_;
-        case 1:
-          return FpEquality.true_;
-        default:
-          return FpEquality.null_;
-      }
-    } catch (e) {
-      return FpEquality.null_;
-    }
-  }
-
-  FpEquality asBoolFromDec(String s) {
-    try {
-      final d =
-          BigInt.parse(s); // Use BigInt for arbitrary precision numbers in Dart
-      if (d == BigInt.zero) {
-        return FpEquality.false_;
-      } else if (d == BigInt.one) {
-        return FpEquality.true_;
-      } else {
-        return FpEquality.null_;
-      }
-    } catch (e) {
-      return FpEquality.null_;
-    }
   }
 
   void addTypeAndDescendents(
@@ -7272,6 +7328,8 @@ class FHIRPathEngine {
 
     if (value.startsWith('T')) {
       result = FhirTime.tryParse(value.replaceFirst('T', ''));
+    } else if (value.contains('T')) {
+      result = FhirDateTime.tryParse(value) ?? FhirTime.tryParse(value);
     } else {
       result = FhirDate.tryParse(value) ??
           FhirDateTime.tryParse(value) ??
@@ -7327,6 +7385,15 @@ class FHIRPathEngine {
   bool? doEquals(FhirBase left, FhirBase right) {
     if (left is Quantity && right is Quantity) {
       return qtyEqual(left, right);
+    } else if (left is Quantity && right is FhirNumber && right.value != null) {
+      return qtyEqual(
+        left,
+        Quantity(
+          value: FhirDecimal(right.value),
+          system: 'http://unitsofmeasure.org'.toFhirUri,
+          code: '1'.toFhirCode,
+        ),
+      );
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return datesEqual(left, right);
     } else if (left is FhirDecimal || right is FhirDecimal) {
@@ -7435,7 +7502,7 @@ class FHIRPathEngine {
     return Quantity(
       value: FhirDecimal(pair.value.asDouble),
       system: FhirUri('http://unitsofmeasure.org'),
-      code: pair.unit.toFhirCode,
+      code: pair.unit.isEmpty ? null : pair.unit.toFhirCode,
       disallowExtensions: true,
     );
   }
@@ -7485,7 +7552,7 @@ class FHIRPathEngine {
         return null;
       }
     }
-    return doEquivalent(left, right);
+    return doEquivalent(left.value!, right.value!);
   }
 
   String convertToStringList(List<FhirBase> items) {
@@ -7549,6 +7616,16 @@ class FHIRPathEngine {
   bool? doEquivalent(FhirBase left, FhirBase right) {
     if (left is Quantity && right is Quantity) {
       return qtyEquivalent(left, right);
+    }
+    if (left is Quantity && right is FhirNumber) {
+      return qtyEquivalent(
+        left,
+        Quantity(
+          value: FhirDecimal(right.value),
+          system: 'http://unitsofmeasure.org'.toFhirUri,
+          code: '1'.toFhirCode,
+        ),
+      );
     }
     if (left is FhirBoolean && right is FhirBoolean) {
       return doEquals(left, right);
@@ -7647,8 +7724,8 @@ class FHIRPathEngine {
       return false;
     }
 
-    final dl = double.parse(l);
-    final dr = double.parse(r);
+    final dl = int.tryParse(l) ?? double.parse(l);
+    final dr = int.tryParse(r) ?? double.parse(r);
 
     return dl == dr;
   }
@@ -7876,25 +7953,6 @@ class FHIRPathEngine {
     return newContext;
   }
 
-  bool canConvertToBoolean(FhirBase item) {
-    return item is FhirBoolean ||
-        (item is PrimitiveType &&
-            <String>[
-              'true',
-              't',
-              'yes',
-              'y',
-              '1',
-              '1.0',
-              'false',
-              'f',
-              'no',
-              'n',
-              '0',
-              '0.0',
-            ].contains(item.toString().toLowerCase()));
-  }
-
   List<FhirBase> baseToList(FhirBase b) {
     return [b];
   }
@@ -7927,23 +7985,6 @@ class FHIRPathEngine {
     }
   }
 
-  bool convertToBoolean(List<FhirBase>? items) {
-    if (items == null) {
-      return false;
-    } else if (items.length == 1 && items.first is PrimitiveType) {
-      if (items.first is FhirBoolean) {
-        return (items.first as FhirBoolean).value ?? false;
-      } else if (<String>['true', 't', 'yes', 'y', '1', '1.0']
-          .contains(items.first.toString().toLowerCase())) {
-        return true;
-      } else if (<String>['false', 'f', 'no', 'n', '0', '0.0']
-          .contains(items.first.toString().toLowerCase())) {
-        return false;
-      }
-    }
-    return items.isNotEmpty;
-  }
-
   bool hasType(FhirBase b, List<String> names) {
     final t = b.fhirType;
     for (final n in names) {
@@ -7954,7 +7995,7 @@ class FHIRPathEngine {
 
   Quantity quantityFromUcum(String v, String code) {
     return Quantity(
-      value: FhirDecimal(double.parse(v)),
+      value: FhirDecimal(int.tryParse(v) ?? double.parse(v)),
       system: FhirUri('http://unitsofmeasure.org'),
       code: FhirCode(code),
     );
