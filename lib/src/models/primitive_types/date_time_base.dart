@@ -261,12 +261,47 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
       return _comparatorResult(comparator, 0);
     }
 
-    final lhs = constructor<FhirDateTime>(input: this) as FhirDateTime;
-    final rhs = o is FhirDateTimeBase
+    var lhs = constructor<FhirDateTime>(input: this) as FhirDateTime;
+    var rhs = o is FhirDateTimeBase
         ? constructor<FhirDateTime>(input: o.value) as FhirDateTime
         : o is DateTime || o is String
             ? constructor<FhirDateTime>(input: o) as FhirDateTime
             : null;
+    final lhsTimeZoneOffset = ExtendedDuration(
+      hours: (lhs.timeZoneOffset?.toInt() ?? 0) * -1,
+      minutes: (((lhs.timeZoneOffset ?? 0) % 1 * 60).toInt()) * -1,
+    );
+    final rhsTimeZoneOffset = ExtendedDuration(
+      hours: (rhs?.timeZoneOffset?.toInt() ?? 0) * -1,
+      minutes: (((rhs?.timeZoneOffset ?? 0) % 1 * 60).toInt()) * -1,
+    );
+
+    lhs = lhs + lhsTimeZoneOffset;
+    rhs = rhs == null ? null : rhs + rhsTimeZoneOffset;
+    lhs = FhirDateTime.fromUnits(
+      year: lhs.year!,
+      month: lhs.month,
+      day: lhs.day,
+      hour: lhs.hour,
+      minute: lhs.minute,
+      second: lhs.second,
+      millisecond: lhs.millisecond,
+      microsecond:
+          lhs.microsecond == null ? null : int.tryParse(lhs.microsecond!),
+    );
+    rhs = rhs == null
+        ? null
+        : FhirDateTime.fromUnits(
+            year: rhs.year!,
+            month: rhs.month,
+            day: rhs.day,
+            hour: rhs.hour,
+            minute: rhs.minute,
+            second: rhs.second,
+            millisecond: rhs.millisecond,
+            microsecond:
+                rhs.microsecond == null ? null : int.tryParse(rhs.microsecond!),
+          );
 
     if (rhs == null) {
       return false;
