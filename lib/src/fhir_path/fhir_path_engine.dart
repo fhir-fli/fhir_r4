@@ -402,6 +402,15 @@ class FHIRPathEngine {
       {FpOperation.Plus, FpOperation.Minus, FpOperation.Concatenate},
     );
 
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {
+        FpOperation.Is,
+        FpOperation.As,
+      },
+    );
+
     // Union
     node = _gatherPrecedence(lexer, node, {FpOperation.Union});
     // <, >, <=, >=
@@ -2832,6 +2841,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opEquivalent $left $right');
     if (left.length != right.length) {
       return makeBoolean(false);
     }
@@ -2841,11 +2851,7 @@ class FHIRPathEngine {
     for (var i = 0; i < left.length; i++) {
       var found = false;
       for (var j = 0; j < right.length; j++) {
-        // TODO(Dokotela): unclear if this is the correct way to handle null
-        final equivalent = doEquivalent(left[i], right[j]);
-        if (equivalent == null) {
-          return <FhirBase>[];
-        } else if (equivalent) {
+        if (doEquivalent(left[i], right[j]) ?? false) {
           found = true;
           break;
         }
@@ -2898,6 +2904,7 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opNotEquivalent $left $right');
     if (left.length != right.length) {
       return makeBoolean(true);
     }
@@ -3796,23 +3803,25 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     final l = left.first;
     final r = right.first;
-
-    if (l.fhirType == 'integer' && r.fhirType == 'integer') {
-      final modulus = r.primitiveValue! as int;
-      if (modulus != 0) {
-        result.add(FhirInteger((l.primitiveValue! as int) % modulus));
+    if (l is FhirNumber && r is FhirNumber) {
+      if (l is FhirDecimal || r is FhirDecimal) {
+        try {
+          final d1 = l;
+          final d2 = r;
+          if (d2.value != 0) {
+            result.add((d1 % d2)!);
+          }
+        } catch (e) {
+          throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
+        }
+      } else {
+        final modulus = r.value as int?;
+        if (modulus != null && modulus != 0) {
+          result.add(FhirInteger((l % modulus)!.value));
+        }
       }
     } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
         (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
-      try {
-        final d1 = l as FhirNumber;
-        final d2 = r as FhirNumber;
-        if (d2.value != 0) {
-          result.add((d1 % d2)!);
-        }
-      } catch (e) {
-        throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
-      }
     } else {
       throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
         'mod',
@@ -3829,16 +3838,19 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
+    print('opIs $left $right');
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
     } else if (left.length != 1 || right.length != 1) {
       result.add(FhirBoolean(false).noExtensions());
     } else {
-      final tn = convertToStringList(right);
+      final tn = convertListToString(right);
+      print('tn $tn');
 
       if (left.first is Element) {
         final element = left.first as Element;
+        print('element ${element.disallowExtensions}');
 
         if (element.disallowExtensions ?? false) {
           result.add(
@@ -3849,8 +3861,13 @@ class FHIRPathEngine {
           );
         } else {
           final currentType = element.fhirType;
+          print('currentType $currentType');
+          print('tn $tn');
 
-          return makeBoolean(currentType.toLowerCase() == tn.toLowerCase());
+          return makeBoolean(
+            currentType.toLowerCase() == tn.toLowerCase() ||
+                currentType == tn.replaceFirst('FHIR.', ''),
+          );
           // TODO(Dokotela): I don't think we really need all this
           // var sd = _fetchTypeDefinition(currentType);
           // while (sd != null) {
@@ -3864,6 +3881,8 @@ class FHIRPathEngine {
           // return makeBoolean(false);
         }
       } else if (left.first.fhirType == tn) {
+        result.add(FhirBoolean(true).noExtensions());
+      } else if (left.first.fhirType == tn.replaceFirst('FHIR.', '')) {
         result.add(FhirBoolean(true).noExtensions());
       }
     }
@@ -3881,7 +3900,7 @@ class FHIRPathEngine {
       return result;
     }
 
-    final tn = convertToStringList(right);
+    final tn = convertListToString(right);
 
     if (!isKnownType(tn)) {
       throw PathEngineException('The type $tn is not valid');
@@ -4470,7 +4489,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     final result = <FhirBase>[];
-    final s = convertToStringList(
+    final s = convertListToString(
       execute(context, focus, exp.parameters[0], true),
     );
     if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
@@ -4932,7 +4951,7 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final swb = execute(context, focus, exp.parameters[0], true);
-    final sw = convertToStringList(swb);
+    final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
       result.add(FhirInteger(0).noExtensions());
@@ -4990,7 +5009,7 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final swb = execute(context, focus, exp.parameters[0], true);
-    final sw = convertToStringList(swb);
+    final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
@@ -5013,7 +5032,7 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final swb = execute(context, focus, exp.parameters[0], true);
-    final sw = convertToStringList(swb);
+    final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
@@ -5036,7 +5055,7 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final swb = execute(context, focus, exp.parameters[0], true);
-    final sw = convertToStringList(swb);
+    final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
@@ -5061,7 +5080,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     final result = <FhirBase>[];
-    final sw = convertToStringList(
+    final sw = convertListToString(
       execute(context, focus, exp.parameters[0], true),
     );
 
@@ -5087,9 +5106,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final regexB = execute(context, focus, exp.parameters[0], true);
-    final regex = convertToStringList(regexB);
+    final regex = convertListToString(regexB);
     final replB = execute(context, focus, exp.parameters[1], true);
-    final repl = convertToStringList(replB);
+    final repl = convertListToString(replB);
 
     if (focus.isEmpty || regexB.isEmpty || replB.isEmpty) {
       return result;
@@ -5122,7 +5141,7 @@ class FHIRPathEngine {
       exp.parameters[0],
       true,
     );
-    final sw = convertToStringList(swb);
+    final sw = convertListToString(swb);
 
     if (focus.length != 1 || swb.length != 1) {
       return result;
@@ -5142,9 +5161,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     final tB = execute(context, focus, exp.parameters[0], true);
-    final t = convertToStringList(tB);
+    final t = convertListToString(tB);
     final rB = execute(context, focus, exp.parameters[1], true);
-    final r = convertToStringList(rB);
+    final r = convertListToString(rB);
 
     if (focus.isEmpty || tB.isEmpty || rB.isEmpty) {
       return result;
@@ -5619,7 +5638,7 @@ class FHIRPathEngine {
       for (final ex in ext) {
         final vl = <FhirBase>[];
         getChildrenByName(ex, 'url', vl);
-        if (convertToStringList(vl) == url) {
+        if (convertListToString(vl) == url) {
           result.add(ex);
         }
       }
@@ -5876,7 +5895,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    final s = convertToStringList(focus);
+    final s = convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isInteger(s)) {
       result.add(FhirInteger(int.parse(s)).noExtensions());
@@ -6141,7 +6160,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    final s = convertToStringList(focus);
+    final s = convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isDecimal(s)) {
       result
@@ -6251,7 +6270,7 @@ class FHIRPathEngine {
     if (focus.length != 1) {
       result.add(FhirBoolean(false).noExtensions());
     } else {
-      final url = convertToStringList(
+      final url = convertListToString(
         execute(context, focus, expr.parameters.first, true),
       );
       result.add(
@@ -7190,7 +7209,7 @@ class FHIRPathEngine {
       throw makeException(
         expr,
         'FHIRPATH_UNABLE_BOOLEAN',
-        [convertToStringList(items)],
+        [convertListToString(items)],
       );
     }
   }
@@ -7555,7 +7574,7 @@ class FHIRPathEngine {
     return doEquivalent(left.value!, right.value!);
   }
 
-  String convertToStringList(List<FhirBase> items) {
+  String convertListToString(List<FhirBase> items) {
     final b = StringBuffer();
     var first = true;
     for (final item in items) {
@@ -7650,37 +7669,7 @@ class FHIRPathEngine {
       );
     }
     if (!left.isPrimitive && !right.isPrimitive) {
-      // TODO(Dokotela): Implement this
-      throw UnimplementedError();
-      // final props = MergedList<Property>(
-      //   left.listChildren(),
-      //   right.listChildren(),
-      //   PropertyMatcher(),
-      // );
-      // for (final t in props) {
-      //   if (t.hasLeft && t.hasRight) {
-      //     if (t.left.hasValues() && t.right.hasValues()) {
-      //       final values = MergedList<FhirBase>(
-      //         t.left.values(),
-      //         t.right.values(),
-      //       );
-      //       for (final v in values) {
-      //         if (v.hasLeft && v.hasRight) {
-      //           if (!doEquivalent(v.left, v.right)) {
-      //             return false;
-      //           }
-      //         } else if (v.hasLeft || v.hasRight) {
-      //           return false;
-      //         }
-      //       }
-      //     } else if (t.left.hasValues() || t.right.hasValues()) {
-      //       return false;
-      //     }
-      //   } else {
-      //     return false;
-      //   }
-      // }
-      // return true;
+      return equalsDeepWithNull(left, right);
     } else {
       return false;
     }

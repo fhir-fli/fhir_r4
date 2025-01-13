@@ -2,8 +2,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
-
 bool isWhitespace(dynamic value) {
   if (value is String) {
     return value.isWhiteSpace();
@@ -370,7 +368,6 @@ class ClassTypeInfo extends FhirBase {
       return [FhirString(getNamespace())];
     } else {
       throw PathEngineException('Unknown property $name');
-      // return super.getProperty(hash, name, checkValid);
     }
   }
 
@@ -398,7 +395,7 @@ class ClassTypeInfo extends FhirBase {
 
   @override
   FhirBase clone() {
-    throw UnimplementedError();
+    return ClassTypeInfo(instance);
   }
 
   @override
@@ -408,21 +405,35 @@ class ClassTypeInfo extends FhirBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
-    throw UnimplementedError();
+    return ClassTypeInfo(instance);
   }
 
   @override
   FhirBase? getChildValueByName(String name) {
-    throw UnimplementedError();
+    if (name == 'name') {
+      return FhirString(getName());
+    } else if (name == 'namespace') {
+      return FhirString(getNamespace());
+    } else {
+      return null;
+    }
   }
 
   @override
   List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
-    throw UnimplementedError();
+    if (name == 'name') {
+      return [FhirString(getName())];
+    } else if (name == 'namespace') {
+      return [FhirString(getNamespace())];
+    }
+    return [];
   }
 
   @override
   Map<String, dynamic> toJson() {
-    throw UnimplementedError();
+    return {
+      'name': getName(),
+      'namespace': getNamespace(),
+    };
   }
 }

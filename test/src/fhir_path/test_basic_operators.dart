@@ -307,7 +307,7 @@ void testBasicOperators() {
         final node20 = testEngine.parse('@2012-01 ~ @2012');
         expect(
           testEngine.evaluate(patient3, node20),
-          <FhirBase>[],
+          <FhirBase>[false.toFhirBoolean],
         );
 
         final node21 =
@@ -328,7 +328,7 @@ void testBasicOperators() {
             testEngine.parse('@2012-01-01T10:30:31 ~ @2012-01-01T10:30');
         expect(
           testEngine.evaluate(patient3, node23),
-          <FhirBase>[],
+          <FhirBase>[false.toFhirBoolean],
         );
 
         final node24 =
