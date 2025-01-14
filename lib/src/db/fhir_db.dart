@@ -811,6 +811,113 @@ class FhirDb {
   }
 
   /// ************************************************************************
+  /// Special Box for CanonicalResources functions as a simple Key:Value store
+  /// ************************************************************************
+
+  /// Checks if the key passed is stored in the cache
+  Future<bool> containsCanonicalKey({required String key, String? pw}) async {
+    await _ensureInit(pw: pw);
+    final cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Map<String, dynamic>> box;
+      if (!Hive.isBoxOpen('canonical_resources')) {
+        box = await Hive.openBox<Map<String, dynamic>>(
+          'canonical_resources',
+          encryptionCipher: cipher,
+        );
+      } else {
+        box = Hive.box('canonical_resources');
+      }
+      return box.containsKey(key);
+    } catch (e) {
+      log('Failed to save canonical resource: $e');
+      rethrow;
+    }
+  }
+
+  /// Checks if the key passed is stored in the cache
+  Future<List<String>> listCanonicalKeys({String? pw}) async {
+    await _ensureInit(pw: pw);
+    final cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Map<String, dynamic>> box;
+      if (!Hive.isBoxOpen('canonical_resources')) {
+        box = await Hive.openBox<Map<String, dynamic>>(
+          'canonical_resources',
+          encryptionCipher: cipher,
+        );
+      } else {
+        box = Hive.box('canonical_resources');
+      }
+      return box.keys.toList() as List<String>;
+    } catch (e) {
+      log('Failed to save canonical resource: $e');
+      rethrow;
+    }
+  }
+
+  /// Saves a Canonical Resource to the database
+  Future<void> saveCanonicalResource({
+    required CanonicalResource resource,
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Map<String, dynamic>> box;
+      if (!Hive.isBoxOpen('canonical_resources')) {
+        box = await Hive.openBox<Map<String, dynamic>>(
+          'canonical_resources',
+          encryptionCipher: cipher,
+        );
+      } else {
+        box = Hive.box('canonical_resources');
+      }
+      await box.put(
+        resource.url.toString(),
+        resource.toJson(),
+      );
+    } catch (e) {
+      log('Failed to save canonical resource: $e');
+      rethrow;
+    }
+  }
+
+  /// Retrieves a Canonical Resource from the database
+  Future<CanonicalResource?> getCanonicalResource({
+    required String url,
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Map<String, dynamic>> box;
+      if (!Hive.isBoxOpen('canonical_resources')) {
+        box = await Hive.openBox<Map<String, dynamic>>(
+          'canonical_resources',
+          encryptionCipher: cipher,
+        );
+      } else {
+        box = Hive.box('canonical_resources');
+      }
+      final canonicalMap = box.get(url) ??
+          (!url.contains('http')
+              ? box.get('http://hl7.org/fhir/StructureDefinition/$url')
+              : null);
+
+      final resource =
+          canonicalMap == null ? null : Resource.fromJson(canonicalMap);
+      if (resource is CanonicalResource) {
+        return resource;
+      }
+    } catch (e) {
+      log('Failed to get canonical resource: $e');
+      return null;
+    }
+    return null;
+  }
+
+  /// ************************************************************************
   /// All of the above has been for FHIR resources and data, below is if you
   /// need to store whatever else as well
   /// ************************************************************************
