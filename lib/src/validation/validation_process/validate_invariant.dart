@@ -8,7 +8,7 @@ Future<ValidationResults> validateInvariants({
   required ElementDefinition element,
   required ValidationResults results,
   String? url,
-  Client client,
+  required Client client,
 }) async {
   if (element.constraint != null) {
     final dynamic context = _getContext(node);

@@ -112,7 +112,7 @@ class FhirValidator {
           Severity.error,
         );
     }
-    final url = structureDefinition.url?.primitiveValue ?? '';
+    final url = structureDefinition.getUrl() ?? '';
 
     // Step 1: Validate structure
     results

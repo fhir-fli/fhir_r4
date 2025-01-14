@@ -2,8 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
-/// Validates the cardinality of a [Node] against the corresponding
-/// [ElementDefinition].
+/// Validates the cardinality of a [Node] against its corresponding
+/// [ElementDefinition] in the FHIR StructureDefinition.
 Future<ValidationResults> validateCardinality({
   required ObjectNode node,
   required Map<String, ElementDefinition> elements,
@@ -11,59 +11,58 @@ Future<ValidationResults> validateCardinality({
   required String originalPath,
   required String replacePath,
   required ValidationResults results,
-  Client client,
+  required Client client,
 }) async {
   var newResults = results.copyWith();
   final currentPath = cleanLocalPath(originalPath, replacePath, node.path);
   final missingPaths = <String>[];
 
-  for (final element in elements) {
-    final path = element.path.value;
-    if (path != null) {
-      if (!_isPathAlreadyChecked(missingPaths, path)) {
-        final foundNode = _findNodeRecursively(
-              node,
-              originalPath,
-              replacePath,
-              cleanLocalPath(originalPath, replacePath, path),
-            ) ??
-            _checkForPolymorphism(
-              node,
-              element,
-              currentPath,
-              originalPath,
-              replacePath,
-            );
+  for (final key in elements.keys) {
+    if (!_isPathAlreadyChecked(missingPaths, key)) {
+      final foundNode = _findNodeRecursively(
+            node,
+            originalPath,
+            replacePath,
+            cleanLocalPath(originalPath, replacePath, key),
+          ) ??
+          _checkForPolymorphism(
+            node,
+            elements[key]!,
+            currentPath,
+            originalPath,
+            replacePath,
+          );
 
-        if (foundNode == null && path != originalPath) {
-          missingPaths.add(path);
-        }
-
-        newResults = await _validateElementCardinality(
-          url: url,
-          node: node,
-          element: element,
-          foundNode: foundNode,
-          path: path,
-          originalPath: originalPath,
-          replacePath: replacePath,
-          elements: elements,
-          results: newResults,
-          client: client,
-        );
+      if (foundNode == null && key != originalPath) {
+        missingPaths.add(key);
       }
+
+      newResults = await _validateElementCardinality(
+        url: url,
+        node: node,
+        element: elements[key]!,
+        foundNode: foundNode,
+        path: key,
+        originalPath: originalPath,
+        replacePath: replacePath,
+        elements: elements,
+        results: newResults,
+        client: client,
+      );
     }
   }
 
   return newResults;
 }
 
+/// Checks if the [path] is already present in the list of checked paths.
 bool _isPathAlreadyChecked(List<String> missingPaths, String path) {
   return missingPaths
           .indexWhere((String element) => path.startsWith(element)) !=
       -1;
 }
 
+/// Validates the cardinality of a single element.
 Future<ValidationResults> _validateElementCardinality({
   required String? url,
   required ObjectNode node,
@@ -72,11 +71,12 @@ Future<ValidationResults> _validateElementCardinality({
   required String path,
   required String originalPath,
   required String replacePath,
-  required List<ElementDefinition> elements,
+  required Map<String, ElementDefinition> elements,
   required ValidationResults results,
   required Client client,
 }) async {
   var newResults = results.copyWith();
+
   // Check for missing required elements
   if (element.min != null && element.min! > 0 && foundNode == null) {
     newResults.addMissingResult(
@@ -126,15 +126,18 @@ Future<ValidationResults> _validateElementCardinality({
       );
     }
   }
+
   return newResults;
 }
 
+/// Checks if a [Node] is populated or not.
 bool _isNodePopulated(Node foundNode) {
   return !(foundNode is LiteralNode && foundNode.value == null) &&
       !(foundNode is ObjectNode && foundNode.children.isEmpty) &&
       !(foundNode is PropertyNode && foundNode.value == null);
 }
 
+/// Validates nested elements recursively if they are complex types.
 Future<ValidationResults> _validateNestedElements({
   required ElementDefinition element,
   required Node foundNode,
@@ -144,6 +147,7 @@ Future<ValidationResults> _validateNestedElements({
   required Client client,
 }) async {
   var newResults = results.copyWith();
+
   if (element.type != null && element.type!.isNotEmpty) {
     final typeCode = findCode(element, foundNode.path);
     if (typeCode != null && !isPrimitiveType(typeCode)) {
@@ -153,23 +157,26 @@ Future<ValidationResults> _validateNestedElements({
         final structureDefinition =
             StructureDefinition.fromJson(structureDefinitionMap);
         final newElements = extractElements(structureDefinition);
+
         if (foundNode is ObjectNode) {
           newResults = await validateCardinality(
-            structureDefinition.getUrl(),
-            foundNode,
-            originalPath,
-            replacePath,
-            newElements,
-            newResults,
-            client,
+            node: foundNode,
+            elements: newElements,
+            url: structureDefinition.getUrl(),
+            originalPath: originalPath,
+            replacePath: replacePath,
+            results: newResults,
+            client: client,
           );
         }
       }
     }
   }
+
   return newResults;
 }
 
+/// Recursively finds a [Node] in the AST based on the [targetPath].
 Node? _findNodeRecursively(
   Node node,
   String originalPath,
@@ -213,6 +220,8 @@ Node? _findNodeRecursively(
   return null;
 }
 
+/// Checks for polymorphism in the given [ElementDefinition] and attempts to
+/// find the correct node for polymorphic elements.
 Node? _checkForPolymorphism(
   ObjectNode node,
   ElementDefinition element,
@@ -231,5 +240,6 @@ Node? _checkForPolymorphism(
   return null;
 }
 
+/// Determines if an [ElementDefinition] is polymorphic (ends with `[x]`).
 bool _isAPolymorphicElement(ElementDefinition element) =>
     element.path.value?.endsWith('[x]') ?? false;
