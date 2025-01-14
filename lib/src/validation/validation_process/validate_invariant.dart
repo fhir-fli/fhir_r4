@@ -16,8 +16,10 @@ ValidationResults validateInvariants({
       if (constraint.expression != null) {
         if (!_constraintsIDontWantToDo(node, constraint.expression!.value!)) {
           if (!_evaluateConstraint(
+            node,
             context,
             constraint.expression!.value!,
+            results,
           )) {
             results.addResult(
               node,
@@ -42,9 +44,8 @@ FhirBase? _getContext(
   Node node,
   ElementDefinition element,
   ValidationResults results,
-)  {
+) {
   final dynamic rawContext = _nodeToMap(node);
-  print('Raw context for node: ${node.path} -> $rawContext');
 
   if (element.type == null || element.path.value == null) {
     results.addResult(
@@ -61,9 +62,19 @@ FhirBase? _getContext(
       : rawContext;
 
   for (final type in element.type!) {
-    final context = fromType(extractedContext, type.code.toString());
-    if (context != null) {
-      return context;
+    try {
+      final context = fromType(extractedContext, type.code.toString());
+      if (context != null) {
+        return context;
+      }
+    } catch (e) {
+      results.addResult(
+        node,
+        'Type conversion failed: Unable to convert '
+        '${extractedContext.runtimeType} '
+        'to FHIR type "${type.code}". Error: $e',
+        Severity.error,
+      );
     }
   }
 
@@ -79,9 +90,19 @@ FhirBase? _getContext(
 }
 
 /// Evaluates a FHIRPath expression against a [FhirBase] context.
-bool _evaluateConstraint(FhirBase? context, String expression) {
+bool _evaluateConstraint(
+  Node node,
+  FhirBase? context,
+  String expression,
+  ValidationResults results,
+) {
   if (context == null) {
-    throw Exception('Context is null for FHIRPath evaluation.');
+    results.addResult(
+      node,
+      'Context is null for $expression',
+      Severity.error,
+    );
+    return false;
   }
 
   // Evaluate the FHIRPath expression using the context
