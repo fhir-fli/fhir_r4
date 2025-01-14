@@ -27,7 +27,7 @@ Future<ValidationResults> validateBindings({
 
         // Validate the target node against the valid codes from the ValueSet.
         if (targetNode != null) {
-          newResults = await _validateNodeAgainstValueSet(
+          newResults = _validateNodeAgainstValueSet(
             targetNode,
             validCodes,
             newResults,
@@ -46,19 +46,19 @@ Future<ValidationResults> validateBindings({
 ///
 /// Checks if the [Node]'s value is part of the allowed codes in the ValueSet.
 /// If not, adds a diagnostic to the [ValidationResults].
-Future<ValidationResults> _validateNodeAgainstValueSet(
+ValidationResults _validateNodeAgainstValueSet(
   Node node,
   Set<String> validCodes,
   ValidationResults results,
   BindingStrength? strength,
   String valueSetUrl,
-) async {
+) {
   var newResults = results.copyWith();
 
   if (node is ObjectNode) {
     // Recursively validate all child nodes.
     for (final child in node.children) {
-      newResults = await _validateNodeAgainstValueSet(
+      newResults = _validateNodeAgainstValueSet(
         child,
         validCodes,
         newResults,

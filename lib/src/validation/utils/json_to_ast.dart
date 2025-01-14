@@ -307,6 +307,40 @@ class Node {
   String toString() {
     return '$type($loc)';
   }
+
+  /// Prints the node and its children in a hierarchical format.
+  String printNode({int depth = 0}) {
+    final stringBuffer = StringBuffer();
+    final indent = '  ' * depth;
+
+    // Print the current node's basic details
+    stringBuffer.writeln('$indent$runtimeType - Type: $type, Path: $path');
+
+    // Handle specific node types
+    switch (runtimeType) {
+      case LiteralNode:
+        final value = (this as LiteralNode).value;
+        stringBuffer.writeln('$indent  Value: $value');
+      case PropertyNode:
+        final propertyNode = this as PropertyNode;
+        stringBuffer.writeln('$indent  Key: ${propertyNode.key?.value}');
+        if (propertyNode.value != null) {
+          stringBuffer.write(propertyNode.value!.printNode(depth: depth + 1));
+        }
+      case ObjectNode:
+        for (final property in (this as ObjectNode).children) {
+          stringBuffer.write(property.printNode(depth: depth + 1));
+        }
+      case ArrayNode:
+        for (final child in (this as ArrayNode).children) {
+          stringBuffer.write(child.printNode(depth: depth + 1));
+        }
+      default:
+        stringBuffer.writeln('$indent  [Unhandled node type]');
+    }
+
+    return stringBuffer.toString();
+  }
 }
 
 /// Generates a path for the given node in the AST.

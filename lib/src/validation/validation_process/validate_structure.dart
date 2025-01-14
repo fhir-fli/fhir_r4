@@ -108,7 +108,7 @@ Future<ValidationResults> _objectNode(
   final element =
       _findElementDefinitionFromNode(originalPath, replacePath, node, elements);
   if (element != null) {
-    newResults = await validateInvariants(
+    newResults = validateInvariants(
       url: url,
       node: node,
       element: element,
@@ -213,7 +213,7 @@ Future<ValidationResults> _propertyNode(
     );
 
     // Validate invariants defined for the element.
-    newResults = await validateInvariants(
+    newResults = validateInvariants(
       url: url,
       node: node,
       element: element,
