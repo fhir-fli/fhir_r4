@@ -1,7 +1,20 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, avoid_print
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+
+// Updated logging function with verbosity control and log levels
+void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
+  final logLevels = ['DEBUG', 'INFO', 'WARNING', 'ERROR'];
+  final levelIndex = logLevels.indexOf(level.toUpperCase());
+
+  // Adjust based on the level of log desired
+  const currentLogLevel = 1; // 0=DEBUG, 1=INFO, 2=WARNING, 3=ERROR
+
+  if (levelIndex >= currentLogLevel) {
+    if (shouldPrint) print('[$level] $message');
+  }
+}
 
 abstract class ElementNode with Annotatable {
   ElementNode(
@@ -151,7 +164,7 @@ abstract class ElementNode with Annotatable {
 
     // If element definition is found, return the single type string
     if (elementDefinition != null &&
-        elementDefinition.type?.isNotEmpty == true) {
+        (elementDefinition.type?.isNotEmpty ?? false)) {
       return elementDefinition.singleTypeString;
     }
 
@@ -255,8 +268,8 @@ abstract class ElementNode with Annotatable {
       }
     } else {
       // Create a new ListNode
-      listNode = ListNode(key, location, objectLocation, []);
-      listNode.addChild(newValue);
+      listNode = ListNode(key, location, objectLocation, [])
+        ..addChild(newValue);
       if (compositeNode is ListNode) {
         final mapContainer =
             MapNode(null, location, objectLocation, [listNode]);
@@ -269,10 +282,8 @@ abstract class ElementNode with Annotatable {
 
 // Method to handle MapNode properties
   void _handleMapProperty(ElementNode newValue) {
-    final mapNode = this as MapNode;
-
     // Replace or add the new child
-    mapNode.replaceChild(newValue);
+    (this as MapNode).replaceChild(newValue);
   }
 
 // Method to handle ListNode properties
@@ -318,11 +329,11 @@ abstract class ElementNode with Annotatable {
   void _addOrReplaceMapInList(String key, ListNode listNode, MapNode newValue) {
     final listObjectNode =
         MapNode(null, childLocation, childObjectLocation, []);
-    newValue = newValue.copyWithNull(
+    final value = newValue.copyWithNull(
       newLocation: listObjectNode.childLocation,
       newObjectLocation: listObjectNode.childObjectLocation,
     ) as MapNode;
-    listObjectNode.addChild(newValue);
+    listObjectNode.addChild(value);
 
     listNode.addChild(listObjectNode);
   }
@@ -336,24 +347,6 @@ abstract class ElementNode with Annotatable {
 
   @override
   String toString() => summary(2);
-  //   switch (this) {
-  //     case LeafNode _:
-  //       return 'LeafNode(${name == null ? "" : "name: $name, "}'
-  //           '${location == null ? "" : "location: $location, "}'
-  //           '${objectLocation == null ? "" : "objectLocation: $objectLocation, "}'
-  //           'value: $value)';
-  //     case CompositeNode _:
-  //       return '$runtimeType(${name == null ? "" : "name: $name, "}'
-  //           '${location == null ? "" : "location: $location, "}'
-  //           '${objectLocation == null ? "" : "objectLocation: $objectLocation, "}'
-  //           'value: [\n'
-  //           // Indent each child of the list properly
-  //           '${value.map((child) => child.toString()).join('\n')}\n'
-  //           '])';
-  //     default:
-  //       return 'ElementNode(name: $name, location: $location, parent: ${parent?.name ?? 'null'})';
-  //   }
-  // }
 
   dynamic toMap() {
     if (isLeaf) {
@@ -401,7 +394,8 @@ abstract class ElementNode with Annotatable {
     final indent = '  ' * depth;
 
     if (isLeaf) {
-      return '${indent}LeafNode(name: $name, location: $location, objectLocation: $objectLocation, value: $value)';
+      return '${indent}LeafNode(name: $name, location: $location, '
+          'objectLocation: $objectLocation, value: $value)';
     }
 
     final childrenSummary = (value as List<ElementNode>)
@@ -515,6 +509,7 @@ abstract class CompositeNode extends ElementNode {
         super(name, location, objectLocation, value ?? <ElementNode>[]);
 
   @override
+  // ignore: overridden_fields
   final List<ElementNode> value;
 
   // Utility method to add multiple children
@@ -599,7 +594,8 @@ abstract class CompositeNode extends ElementNode {
         addChild(newChild);
         return newChild;
       } else if (this is ListNode) {
-        // Only add the request to the first map in the list that doesn't already have it
+        // Only add the request to the first map in the list that doesn't 
+        //already have it
         final firstAvailableMapNode = value.firstWhereOrNull(
           (child) => child is MapNode && !child.hasChildWithName(name),
         );
@@ -770,19 +766,6 @@ class ListNode extends CompositeNode {
       newObjectLocation,
       updatedChildren,
     );
-  }
-}
-
-// Updated logging function with verbosity control and log levels
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
-  final logLevels = ['DEBUG', 'INFO', 'WARNING', 'ERROR'];
-  final levelIndex = logLevels.indexOf(level.toUpperCase());
-
-  // Adjust based on the level of log desired
-  const currentLogLevel = 1; // 0=DEBUG, 1=INFO, 2=WARNING, 3=ERROR
-
-  if (levelIndex >= currentLogLevel) {
-    if (shouldPrint) print('[$level] $message');
   }
 }
 

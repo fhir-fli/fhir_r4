@@ -5,7 +5,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:uuid/uuid.dart';
 
 // Logging function with control for verbosity
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
+void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
   if (shouldPrint) print('[$level] $message');
 }
 

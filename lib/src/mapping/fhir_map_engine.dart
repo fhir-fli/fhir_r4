@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
+void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
   if (shouldPrint) {
     print('[$level] $message');
   }
@@ -307,7 +307,6 @@ class FhirMapEngine {
     if (rg.target == null || rg.targetMap == null) {
       _log(
         "Resolved group for '${dependent.name}' has null target or targetMap.",
-        true,
       );
       return;
     }
