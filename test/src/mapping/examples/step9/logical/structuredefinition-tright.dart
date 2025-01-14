@@ -1,0 +1,53 @@
+// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+final structureDefinitionTRight9 = StructureDefinition.fromJson({
+  "resourceType": "StructureDefinition",
+  "id": "TRight",
+  "extension": [
+    {
+      "url":
+          "http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace",
+      "valueUri": "http://hl7.org/fhir/tutorial",
+    }
+  ],
+  "url": "http://hl7.org/fhir/StructureDefinition/tutorial-right-9",
+  "name": "TRight",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": true,
+  "type": "TRight",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "differential": {
+    "element": [
+      {
+        "id": "TRight",
+        "path": "TRight",
+        "definition": "TRight definition",
+        "min": 1,
+        "max": "1",
+      },
+      {
+        "id": "TRight.j",
+        "path": "TRight.j",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {"code": "string"},
+        ],
+      },
+      {
+        "id": "TRight.k",
+        "path": "TRight.k",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {"code": "string"},
+        ],
+      }
+    ],
+  },
+});
