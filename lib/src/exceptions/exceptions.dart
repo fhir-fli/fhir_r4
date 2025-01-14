@@ -1,6 +1,7 @@
 export 'fhir_error.dart';
 export 'fhir_exception.dart';
 export 'fhir_lexer_exception.dart';
+export 'mapping_exceptions.dart';
 export 'no_terminology_service_exception.dart';
 export 'path_engine_error.dart';
 export 'path_engine_exception.dart';

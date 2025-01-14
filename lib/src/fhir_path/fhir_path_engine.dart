@@ -81,6 +81,17 @@ class FHIRPathEngine {
   /// PARSING AND PRECEDENCE MANAGEMENT
   /// ***************************************
   ///
+  /// Check if an Expression is valid FHIRPath
+  bool isValid(String path) {
+    try {
+      parse(path);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Parse a FHIRPath expression
   ExpressionNode parse(String path, [String? name]) {
     final lexer = FHIRLexer(
       source: path,
@@ -595,11 +606,41 @@ class FHIRPathEngine {
     return evaluate(base, node);
   }
 
+  String evaluateToString(
+    Object appInfo,
+    FhirBase? focusResource,
+    FhirBase? rootResource,
+    FhirBase base,
+    ExpressionNode node,
+  ) {
+    return convertListToString(
+      evaluateWithContext(
+        appInfo,
+        focusResource,
+        rootResource,
+        base,
+        node,
+      ),
+    );
+  }
+
+  bool evaluateToBoolean(
+    Object appInfo,
+    FhirBase? focusResource,
+    FhirBase? rootResource,
+    FhirBase base,
+    ExpressionNode node,
+  ) {
+    return convertToBoolean(
+      evaluateWithContext(appInfo, focusResource, rootResource, base, node),
+    );
+  }
+
   // Evaluation with appContext and additional parameters
   List<FhirBase> evaluateWithContext(
     Object? appContext,
-    Resource? focusResource,
-    Resource? rootResource,
+    FhirBase? focusResource,
+    FhirBase? rootResource,
     FhirBase? base,
     ExpressionNode node, {
     Map<String, dynamic>? environment,

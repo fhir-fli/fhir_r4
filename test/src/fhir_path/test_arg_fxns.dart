@@ -6,9 +6,9 @@ import 'test_data.dart';
 void testArgFxns() {
   group('Functions with Arguments: ', () {
     test('%variables', () {
-      var node = engine.parse('%var');
+      var node = fhirPathEngine.parse('%var');
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -21,11 +21,11 @@ void testArgFxns() {
         [5.toFhirInteger],
       );
 
-      node = engine.parse('%var');
+      node = fhirPathEngine.parse('%var');
 
       // Valid variable
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -40,7 +40,7 @@ void testArgFxns() {
 
       // Invalid variable
       expect(
-        () => engine.evaluateWithContext(
+        () => fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -54,11 +54,11 @@ void testArgFxns() {
       );
 
       // test('Lazy %variables', () {
-      node = engine.parse('%var');
+      node = fhirPathEngine.parse('%var');
 
       // Lazy variable with a list
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -73,7 +73,7 @@ void testArgFxns() {
 
       // Lazy variable with a single value
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -88,7 +88,7 @@ void testArgFxns() {
 
       // Invalid lazy variable
       expect(
-        () => engine.evaluateWithContext(
+        () => fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -103,7 +103,7 @@ void testArgFxns() {
 
       // Mixed variables
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -117,9 +117,9 @@ void testArgFxns() {
         [5.toFhirInteger],
       );
 
-      final bombNode = engine.parse('%da_bomb');
+      final bombNode = fhirPathEngine.parse('%da_bomb');
       expect(
-        () => engine.evaluateWithContext(
+        () => fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -135,11 +135,11 @@ void testArgFxns() {
     });
 
     test('%variables and math', () {
-      final node = engine.parse('%a + %b + %c > 5');
+      final node = fhirPathEngine.parse('%a + %b + %c > 5');
 
       // All variables as empty lists
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -156,7 +156,7 @@ void testArgFxns() {
 
       // Lazy variables as empty lists
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -173,7 +173,7 @@ void testArgFxns() {
 
       // Variables with valid values
       expect(
-        engine.evaluateWithContext(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -210,15 +210,15 @@ void testArgFxns() {
       ],
     );
 
-    var node = engine.parse(r'Patient.name.exists($this)');
+    var node = fhirPathEngine.parse(r'Patient.name.exists($this)');
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
-    node = engine.parse(r'Patient.name.where($this)');
+    node = fhirPathEngine.parse(r'Patient.name.where($this)');
     expect(
-      engine.evaluate(resource, node).map((e) => e.toJson()),
+      fhirPathEngine.evaluate(resource, node).map((e) => e.toJson()),
       [
         {
           'use': 'official',
@@ -236,9 +236,9 @@ void testArgFxns() {
       ],
     );
 
-    node = engine.parse(r'Patient.name.given.where($this)');
+    node = fhirPathEngine.parse(r'Patient.name.given.where($this)');
     expect(
-      engine.evaluate(resource, node).map((e) => e.primitiveValue),
+      fhirPathEngine.evaluate(resource, node).map((e) => e.primitiveValue),
       ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
     );
   });
@@ -257,33 +257,33 @@ void testArgFxns() {
       ],
     );
 
-    var node = engine.parse('name.given.exists()');
+    var node = fhirPathEngine.parse('name.given.exists()');
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
-    node = engine.parse('Patient.language.exists()');
+    node = fhirPathEngine.parse('Patient.language.exists()');
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [false.toFhirBoolean],
     );
 
-    node = engine.parse("telecom.exists(system = 'email')");
+    node = fhirPathEngine.parse("telecom.exists(system = 'email')");
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
-    node = engine.parse("telecom.exists(system = 'email' and use = 'mobile')");
+    node = fhirPathEngine.parse("telecom.exists(system = 'email' and use = 'mobile')");
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
-    node = engine.parse('{}.exists()');
+    node = fhirPathEngine.parse('{}.exists()');
     expect(
-      engine.evaluate(resource, node),
+      fhirPathEngine.evaluate(resource, node),
       [false.toFhirBoolean],
     );
   });
@@ -553,9 +553,9 @@ void testArgFxns() {
 
   test('subsetOf', () {
     final node =
-        engine.parse('Patient.name.given[2].subsetOf(Patient.name.given)');
+        fhirPathEngine.parse('Patient.name.given[2].subsetOf(Patient.name.given)');
     expect(
-      engine.evaluate(patient3, node),
+      fhirPathEngine.evaluate(patient3, node),
       [true.toFhirBoolean],
     );
     expect(

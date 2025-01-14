@@ -932,6 +932,10 @@ extension StringExtensionForFHIR on String {
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isBackboneElement => this == 'BackboneElement';
+
+  bool get isLetter => RegExp(r'^[A-Za-z]$').hasMatch(this);
+  bool get isWhitespace => trim().isEmpty;
+
 }
 
 /// Status for the decimal

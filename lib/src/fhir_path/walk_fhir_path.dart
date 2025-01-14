@@ -77,11 +77,11 @@ List<FhirBase> walkFhirPath({
 }
 
 /// The FHIRPath engine.
-final engine = FHIRPathEngine(WorkerContext());
+final fhirPathEngine = FHIRPathEngine(WorkerContext());
 
 /// Parse a FHIRPath for repeated use with different inputs later.
 ExpressionNode parseFhirPath(String pathExpression) {
-  return engine.parse(pathExpression);
+  return fhirPathEngine.parse(pathExpression);
 }
 
 /// Execute the FHIRPath as pre-parsed by [parseFhirPath].
@@ -108,7 +108,7 @@ List<FhirBase> executeFhirPath({
 
     try {
       // Evaluate the FHIRPath expression
-      return engine.evaluateWithContext(
+      return fhirPathEngine.evaluateWithContext(
         null,
         resource,
         rootResource,
@@ -138,7 +138,7 @@ List<FhirBase> executeFhirPath({
   } else {
     try {
       // Evaluate the FHIRPath expression
-      return engine.evaluate(context, parsedFhirPath);
+      return fhirPathEngine.evaluate(context, parsedFhirPath);
     } catch (error, st) {
       if (error is PathEngineException) {
         rethrow;
