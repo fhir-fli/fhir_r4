@@ -4,8 +4,6 @@ import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
-
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {
     if (names != null) {

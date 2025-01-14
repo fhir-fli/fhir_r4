@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 ///
 /// This manages a cached list of resources, and provides high speed access by
 /// URL / URL+version, and assumes that patch version doesn't matter for access

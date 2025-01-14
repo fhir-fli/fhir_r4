@@ -1,14 +1,14 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
-/// Validates the extensions of a [Node] against the corresponding 
+/// Validates the extensions of a [Node] against the corresponding
 /// [ElementDefinition].
 ///
 /// This function ensures that extensions within the FHIR resource comply with
 /// the rules defined in the StructureDefinition for the extension type.
 ///
 /// - Fetches the StructureDefinition for the extension.
-/// - Validates the structure of the extension node against the fetched 
+/// - Validates the structure of the extension node against the fetched
 /// elements.
 ///
 /// [node] - The node being validated.

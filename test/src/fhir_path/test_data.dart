@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 final worker = WorkerContext();
 // ..loadStructureDefinitions(getStructureDefinitions());
 final testEngine = FHIRPathEngine(worker);

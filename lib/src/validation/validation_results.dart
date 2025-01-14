@@ -124,8 +124,7 @@ class ValidationResults {
                     url: FhirString(
                       'http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col',
                     ),
-                    valueX:
-                        e.column == null ? null : FhirInteger(e.column),
+                    valueX: e.column == null ? null : FhirInteger(e.column),
                   ),
               ],
         location: <FhirString>[

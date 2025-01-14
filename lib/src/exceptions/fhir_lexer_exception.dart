@@ -1,6 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 /// Represents an error that occurred during the lexing phase of
 /// FHIRPath parsing.
 class FHIRLexerException extends FHIRException {

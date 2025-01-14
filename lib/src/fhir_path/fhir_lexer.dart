@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 class FHIRLexer {
   FHIRLexer({
     String? source,

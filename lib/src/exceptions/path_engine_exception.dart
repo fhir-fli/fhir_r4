@@ -1,6 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 /// An exception that occurs during FHIRPath evaluation.
 class PathEngineException extends FHIRException {
   /// Constructs a new [PathEngineException].

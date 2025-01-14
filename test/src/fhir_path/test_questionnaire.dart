@@ -183,7 +183,7 @@ void testQuestionnaire() {
         [2.toFhirDecimal],
       );
     });
-  
+
     test('Risk scoring', () {
       expect(
         walkFhirPath(

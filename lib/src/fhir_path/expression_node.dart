@@ -3,7 +3,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 // Converted from Java to Dart
 
 class ExpressionNode {

@@ -129,7 +129,7 @@ class FhirValidator {
       // Step 2: Validate cardinality
       ..combineResults(
         await validateCardinality(
-          node: node ,
+          node: node,
           elements: elements,
           url: url,
           originalPath: type,

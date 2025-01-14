@@ -1,6 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 Future<void> main() async {
   // Create a sample ValueSet with concepts
   final valueSet = ValueSet(

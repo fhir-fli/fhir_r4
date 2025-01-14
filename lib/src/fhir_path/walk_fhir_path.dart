@@ -1,6 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 /// Start here! This is where the fun begins. This is a bit confusing, so we'll
 /// explain the arguments that can be passed.
 ///

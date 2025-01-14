@@ -1,6 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 /// An error that occurs during FHIRPath evaluation.
 class PathEngineError extends FHIRError {
   /// Constructs a new [PathEngineError].

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
-/// Validates the structure of a FHIR resource against a given 
+/// Validates the structure of a FHIR resource against a given
 /// StructureDefinition.
 ///
 /// Starts from the root node and traverses its structure recursively,
@@ -77,8 +77,8 @@ Future<ValidationResults> _traverseAst(
 
 /// Validates the structure of an ObjectNode.
 ///
-/// Iterates through all child properties and validates each one using 
-/// `_propertyNode`. Additionally, validates invariants defined for the 
+/// Iterates through all child properties and validates each one using
+/// `_propertyNode`. Additionally, validates invariants defined for the
 /// current [ElementDefinition].
 Future<ValidationResults> _objectNode(
   String? url,
@@ -292,7 +292,7 @@ Future<ValidationResults> _withoutCode(
     final url = ext.url.toString();
     final structureDefinition = await getResource(url, client);
 
-    // If the extension references a StructureDefinition, extract elements 
+    // If the extension references a StructureDefinition, extract elements
     //and validate.
     if (structureDefinition != null &&
         structureDefinition['resourceType'] == 'StructureDefinition') {

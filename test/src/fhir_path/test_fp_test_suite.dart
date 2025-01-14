@@ -2760,7 +2760,7 @@ void testFpTestSuite() {
     // test("testIndexer1", () {
     //   expect(
     //       walkFhirPath(
-    //           context: patient1, 
+    //           context: patient1,
     //          pathExpression: r"Patient.name[0].given = 'Peter' | 'James'"),
     //       [true]);
     // });
@@ -2805,7 +2805,7 @@ void testFpTestSuite() {
     // guarantee an order
     // test("testFirstLast1", () {
     //   expect(
-    //       walkFhirPath(context: patient1, 
+    //       walkFhirPath(context: patient1,
     //      pathExpression: r"Patient.name.first().given = 'Peter' | 'James'"),
     //       [true]);
     // });

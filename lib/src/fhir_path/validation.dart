@@ -4,8 +4,6 @@ import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
-
 /// A class representing validation options for FHIR validation processes.
 class ValidationOptions {
   /// Constructs validation options with a default FHIR version.

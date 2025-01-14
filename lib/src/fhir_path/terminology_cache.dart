@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-
 /// A two-level cache for managing terminology operations.
 class TerminologyCache {
   /// Constructs a new terminology cache.
