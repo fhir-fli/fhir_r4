@@ -4,6 +4,8 @@ export 'source/source3min.dart';
 export 'source/source3.dart';
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';
+export 'logical/tleft3.dart';
+export 'logical/tright3.dart';
 export 'result/step3a.source3.dart';
 export 'result/step3b.source3.dart';
 export 'result/step3c.source3.dart';

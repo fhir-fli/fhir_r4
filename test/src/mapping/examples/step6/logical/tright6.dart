@@ -1,0 +1,77 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// [TRight6]
+/// TRight definition
+class TRight6 extends Element {
+  const TRight6({
+    super.id,
+    super.extension_,
+    this.a23,
+    super.disallowExtensions,
+    super.objectPath = 'TRight6',
+  });
+
+  /// FromJson Factory Constructor
+  factory TRight6.fromJson(Map<String, dynamic> json) {
+    const objectPath = 'TRight6';
+    return TRight6(
+      id: JsonParser.parsePrimitive<FhirString>(
+        json,
+        'id',
+        FhirString.fromJson,
+        '$objectPath.id',
+      ),
+      extension_: (json['extension'] as List<dynamic>?)
+          ?.map<FhirExtension>(
+            (v) => FhirExtension.fromJson(
+              {
+                ...v as Map<String, dynamic>,
+                'objectPath': '$objectPath.extension',
+              },
+            ),
+          )
+          .toList(),
+      a23: JsonParser.parsePrimitive<FhirInteger>(
+        json,
+        'a23',
+        FhirInteger.fromJson,
+        '$objectPath.a23',
+      ),
+    );
+  }
+
+  /// [a23]
+  /// TRight definition
+  final FhirInteger? a23;
+
+  @override
+  TRight6 copyWith({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    FhirInteger? a23,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    String? objectPath,
+  }) {
+    return TRight6(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      a23: a23 ?? this.a23,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{'resourceType': 'TRight'};
+    if (id != null) json['id'] = id!.value;
+    if (extension_ != null) {
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
+    }
+    if (a23 != null) {
+      json['a23'] = a23!.value;
+    }
+    return json;
+  }
+}

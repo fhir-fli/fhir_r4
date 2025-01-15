@@ -2,6 +2,8 @@
 
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';
+export 'logical/tleft1.dart';
+export 'logical/tright1.dart';
 export 'map/step1b.dart';
 export 'map/step1.dart';
 export 'source/source1.dart';

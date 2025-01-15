@@ -58,8 +58,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 List<FhirBase> walkFhirPath({
   required FhirBase? context,
   required String pathExpression,
-  Resource? resource,
-  Resource? rootResource,
+  FhirBase? resource,
+  FhirBase? rootResource,
   Map<String, dynamic>? environment,
 }) {
   final ast = parseFhirPath(pathExpression);
@@ -94,8 +94,8 @@ List<FhirBase> executeFhirPath({
   required FhirBase? context,
   required ExpressionNode parsedFhirPath,
   required String pathExpression,
-  Resource? resource,
-  Resource? rootResource,
+  FhirBase? resource,
+  FhirBase? rootResource,
   Map<String, dynamic>? environment,
 }) {
   if (environment != null) {

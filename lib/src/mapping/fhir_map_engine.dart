@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -7,13 +9,16 @@ void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
   }
 }
 
-Future<Map<String, dynamic>?> fhirMappingEngine(
-  Map<String, dynamic> source,
+Future<FhirBase?> fhirMappingEngine(
+  FhirBase source,
   StructureMap map,
-  FhirDb cache,
-) async {
+  FhirDb cache, [
+  FhirBase? Function(Map<String, dynamic>)? leftFromMap,
+  FhirBase? Function(Map<String, dynamic>)? rightFromMap,
+]) async {
   final mapEngine = FhirMapEngine(cache, map);
-  final transform = await mapEngine.transform(source, null);
+  final transform =
+      await mapEngine.transform(source, null, leftFromMap, rightFromMap);
   return transform;
 }
 
@@ -29,26 +34,30 @@ class FhirMapEngine {
   late final TransformationContext context;
   late final Transformer transformer;
   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
+  FhirBase? Function(Map<String, dynamic>)? _leftFromMap;
 
   void transformFromFhir(
     Resource sourceResource,
     StructureMap map,
     Resource? targetResource,
   ) {
-    transform(sourceResource.toJson(), targetResource?.toJson());
+    transform(sourceResource, targetResource);
   }
 
-  Future<Map<String, dynamic>?> transform(
-    Map<String, dynamic> source,
-    Map<String, dynamic>? target,
-  ) async {
+  Future<FhirBase?> transform(
+    FhirBase source,
+    FhirBase? target, [
+    FhirBase? Function(Map<String, dynamic>)? leftFromMap,
+    FhirBase? Function(Map<String, dynamic>)? rightFromMap,
+  ]) async {
+    _leftFromMap = leftFromMap;
     try {
       final group = map.group.first;
       final sourceType = await _getInputType(group, 'source');
       final targetType = await _getInputType(group, 'target');
 
-      final sourceNode = await _createMapNode(sourceType, source);
-      final newTarget = target ?? await _generateEmptyTarget(map);
+      final sourceNode = await _createMapNode(sourceType, source.toJson());
+      final newTarget = target?.toJson() ?? await _generateEmptyTarget(map);
       final targetNode = await _createMapNode(targetType, newTarget);
       _log('Source: ${sourceNode.summary(2)}');
       _log('Target: ${targetNode.summary(2)}');
@@ -58,7 +67,10 @@ class FhirMapEngine {
 
       await _executeGroup('', context, map, vars, group, true);
 
-      return _retrieveTransformedTarget(vars, outputVarName, targetType);
+      final finalMap =
+          _retrieveTransformedTarget(vars, outputVarName, targetType);
+      return fromType(finalMap, targetType) ??
+          (rightFromMap != null ? rightFromMap(finalMap) : null);
     } catch (e) {
       _log('Error transforming source to target: $e');
       // _log('Stack trace: $s');
@@ -142,21 +154,20 @@ class FhirMapEngine {
     return map;
   }
 
-  Map<String, dynamic> createOperationOutcomeErrorNode(
+  OperationOutcome createOperationOutcomeErrorNode(
     String error,
     StructureMap map,
     FhirDb cache,
   ) =>
-      {
-        'resourceType': 'OperationOutcome',
-        'issue': [
-          {
-            'severity': 'error',
-            'code': 'processing',
-            'diagnostics': error.trim(),
-          }
+      OperationOutcome(
+        issue: [
+          OperationOutcomeIssue(
+            severity: IssueSeverity.error,
+            code: IssueType.processing,
+            diagnostics: error.toFhirString,
+          ),
         ],
-      };
+      );
 
   Future<Map<String, dynamic>> _generateEmptyTarget(StructureMap map) async {
     final targetStructure =
@@ -198,7 +209,7 @@ class FhirMapEngine {
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
         : null;
     if (resolvedGroup != null) {
-      _executeGroup(
+      await _executeGroup(
         '$indent ',
         context,
         resolvedGroup.targetMap,
@@ -223,7 +234,6 @@ class FhirMapEngine {
     StructureMapRule rule,
     bool atRoot,
   ) async {
-    print('${indent}Executing rule: ${rule.name}');
     // Ensure single source and create copy of variables
     if (rule.source.length != 1) {
       throw Exception('Rule "${rule.name}" has multiple sources.');
@@ -240,7 +250,6 @@ class FhirMapEngine {
       indent,
     );
     for (final sourceVars in sourceVarsList) {
-      print(sourceVars.summary());
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         await _processTarget(
           rule.name.toString(),
@@ -256,7 +265,7 @@ class FhirMapEngine {
       }
 
       // Process nested rules or dependencies if available
-      _processNestedRulesOrDependencies(
+      await _processNestedRulesOrDependencies(
         rule,
         indent,
         context,
@@ -268,21 +277,29 @@ class FhirMapEngine {
   }
 
   // Helper to handle nested rules or dependencies in a rule
-  void _processNestedRulesOrDependencies(
+  Future<void> _processNestedRulesOrDependencies(
     StructureMapRule rule,
     String indent,
     TransformationContext context,
     StructureMap? map,
     Variables vars,
     StructureMapGroup? group,
-  ) {
+  ) async {
     if (rule.rule?.isNotEmpty ?? false) {
       for (final childRule in rule.rule!) {
-        _executeRule('$indent  ', context, map, vars, group, childRule, false);
+        await _executeRule(
+          '$indent  ',
+          context,
+          map,
+          vars,
+          group,
+          childRule,
+          false,
+        );
       }
     } else if (rule.dependent?.isNotEmpty ?? false) {
       for (final dependent in rule.dependent!) {
-        _executeDependency(
+        await _executeDependency(
           '$indent  ',
           context,
           map,
@@ -295,7 +312,7 @@ class FhirMapEngine {
     }
   }
 
-  void _executeDependency(
+  Future<void> _executeDependency(
     String indent,
     TransformationContext context,
     StructureMap? map,
@@ -303,7 +320,7 @@ class FhirMapEngine {
     StructureMapGroup? group,
     StructureMapDependent dependent,
     String? ruleName,
-  ) {
+  ) async {
     final rg = _resolveGroupReference(map, group, dependent.name.toString());
 
     // Ensure both target and targetMap are not null before continuing
@@ -352,7 +369,14 @@ class FhirMapEngine {
     }
 
     // Execute the resolved group
-    _executeGroup('$indent  ', context, rg.targetMap, v, rg.target, false);
+    await _executeGroup(
+      '$indent  ',
+      context,
+      rg.targetMap,
+      v,
+      rg.target,
+      false,
+    );
   }
 
   Future<List<Variables>> _processSource(
@@ -471,14 +495,12 @@ class FhirMapEngine {
       final node = fhirPathEngine.parse(source.condition?.value ?? '');
       final filteredItems = <ElementNode>[];
 
+      // final src = vars.getInputVar(source.context.toString());
+      // print('src: ${src?.summary()}');
+
       for (final item in items) {
         final base =
             (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
-        print('**************************');
-        print('base: $base ${base.runtimeType}');
-        print(vars.summary());
-        node.printExpressionTree();
-        print('**************************');
         final conditionResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
