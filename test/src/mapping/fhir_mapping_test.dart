@@ -31,8 +31,11 @@ Future<void> main() async {
     );
 
     test('Test Step 1', () async {
+      final result =
+          await fhirMappingEngine(source1, structureMapStep1, resourceCache);
+
       expect(
-        await fhirMappingEngine(source1, structureMapStep1, resourceCache),
+        result,
         equals(resultStep1Source1),
       );
     });
@@ -46,69 +49,71 @@ Future<void> main() async {
     // });
   });
 
-  // group('2', () {
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTLeft2,
-  //   );
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTRight2,
-  //   );
+  group('2', () {
+    resourceCache.saveCanonicalResource(
+      resource: structureDefinitionTLeft2,
+    );
+    resourceCache.saveCanonicalResource(
+      resource: structureDefinitionTRight2,
+    );
 
-  //   test('Test Step 2', () async {
-  //     expect(
-  //       await fhirMappingEngine(source2, structureMapStep2, resourceCache),
-  //       equals(resultStep2Source2),
-  //     );
-  //   });
-  // });
+    test('Test Step 2', () async {
+      expect(
+        await fhirMappingEngine(source2, structureMapStep2, resourceCache),
+        equals(resultStep2Source2),
+      );
+    });
+  });
 
-  // group('3', () {
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTLeft3,
-  //   );
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTRight3,
-  //   );
+  group('3', () {
+    resourceCache.saveCanonicalResource(
+      resource: structureDefinitionTLeft3,
+    );
+    resourceCache.saveCanonicalResource(
+      resource: structureDefinitionTRight3,
+    );
 
-  //   test('Test Step 3a Source 3', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3, structureMapStep3a, resourceCache),
-  //       equals(resultStep3aSource3),
-  //     );
-  //   });
+    test('Test Step 3a Source 3', () async {
+      expect(
+        await fhirMappingEngine(source3, structureMapStep3a, resourceCache),
+        equals(resultStep3aSource3),
+      );
+    });
 
-  //   test('Test Step 3a Source 3min', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3min, structureMapStep3a, resourceCache),
-  //       equals(resultStep3aSource3min),
-  //     );
-  //   });
-  //   test('Test Step 3b Source 3', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3, structureMapStep3b, resourceCache),
-  //       equals(resultStep3bSource3),
-  //     );
-  //   });
-  //   test('Test Step 3b Source 3min', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3min, structureMapStep3b, resourceCache),
-  //       equals(resultStep3bSource3min),
-  //     );
-  //   });
+    test('Test Step 3a Source 3min', () async {
+      expect(
+        await fhirMappingEngine(source3min, structureMapStep3a, resourceCache),
+        equals(resultStep3aSource3min),
+      );
+    });
 
-  //   test('Test Step 3c Source 3', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3, structureMapStep3c, resourceCache),
-  //       equals(resultStep3cSource3),
-  //     );
-  //   });
-  //   test('Test Step 3c Source 3min', () async {
-  //     expect(
-  //       await fhirMappingEngine(source3min, structureMapStep3c, resourceCache),
-  //       equals(resultStep3cSource3min),
-  //     );
-  //   });
-  // });
+    test('Test Step 3b Source 3', () async {
+      expect(
+        await fhirMappingEngine(source3, structureMapStep3b, resourceCache),
+        equals(resultStep3bSource3),
+      );
+    });
+
+    test('Test Step 3b Source 3min', () async {
+      expect(
+        await fhirMappingEngine(source3min, structureMapStep3b, resourceCache),
+        equals(resultStep3bSource3min),
+      );
+    });
+
+    // test('Test Step 3c Source 3', () async {
+    //   expect(
+    //     await fhirMappingEngine(source3, structureMapStep3c, resourceCache),
+    //     equals(resultStep3cSource3),
+    //   );
+    // });
+    // test('Test Step 3c Source 3min', () async {
+    //   expect(
+    //     await fhirMappingEngine(source3min, structureMapStep3c, resourceCache),
+    //     equals(resultStep3cSource3min),
+    //   );
+    // });
+  });
 
   // group('4', () {
   //   resourceCache.saveCanonicalResource(

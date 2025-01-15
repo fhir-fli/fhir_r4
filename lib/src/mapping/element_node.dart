@@ -594,7 +594,7 @@ abstract class CompositeNode extends ElementNode {
         addChild(newChild);
         return newChild;
       } else if (this is ListNode) {
-        // Only add the request to the first map in the list that doesn't 
+        // Only add the request to the first map in the list that doesn't
         //already have it
         final firstAvailableMapNode = value.firstWhereOrNull(
           (child) => child is MapNode && !child.hasChildWithName(name),

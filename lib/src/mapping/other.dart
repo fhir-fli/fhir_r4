@@ -65,7 +65,8 @@ class DefinitionResolver {
   }
 
   Future<ElementDefinition?> resolveElementDefinition(
-      String? objectLocation,) async {
+    String? objectLocation,
+  ) async {
     if (objectLocation == null) {
       _log('Cannot resolve ElementDefinition for null location.', true);
       return null;
@@ -80,7 +81,8 @@ class DefinitionResolver {
           _resolveElementDefinitionFromStructure(structureDef, currentPath);
       if (elementDef == null) return null;
 
-      if (i < locationParts.length - 1 && elementDef.type?.isNotEmpty == true) {
+      if (i < locationParts.length - 1 &&
+          (elementDef.type?.isNotEmpty ?? false)) {
         final nextType = elementDef.singleTypeString;
         if (nextType != 'BackboneElement') {
           structureDef = await resolveByType(nextType);
@@ -159,7 +161,7 @@ class DefinitionResolver {
     return type;
   }
 
-  Future<T?> fetchResource<T extends CanonicalResource>(String uri)async  {
+  Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
     final resource = await cache.getCanonicalResource(url: uri);
     if (resource is T) return resource;
     _log(

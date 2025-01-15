@@ -25,6 +25,7 @@ class Transformer {
     ElementNode? dest,
     String elementName,
     String? srcVar,
+    // ignore: avoid_positional_boolean_parameters
     bool atRoot,
   ) async {
     switch (target.transform?.toString()) {
@@ -382,8 +383,8 @@ class Transformer {
       if (value is String) return int.tryParse(value);
     }
     throw FHIRException(
-      message:
-          'Length parameter for truncate must be an integer or a string convertible to an integer',
+      message: 'Length parameter for truncate must be an integer or a string '
+          'convertible to an integer',
     );
   }
 
@@ -492,8 +493,8 @@ class Transformer {
       }
     } catch (e) {
       throw FHIRMappingCastException(
-        message:
-            "Rule '$ruleId': Failed to cast '${value.value}' to type '$targetType'. $e",
+        message: "Rule '$ruleId': Failed to cast '${value.value}' to type "
+            "'$targetType'. $e",
       );
     }
   }
@@ -504,8 +505,10 @@ class Transformer {
       return LeafNode(null, null, null, intValue, 'integer');
     } catch (e) {
       final errorMessage = e is FormatException
-          ? "Rule '$ruleId': Failed to cast '${value.value}' to type '$targetType'. Invalid number format."
-          : "Rule '$ruleId': Failed to cast '${value.value}' to type '$targetType'. $e";
+          ? "Rule '$ruleId': Failed to cast '${value.value}' to type "
+              "'$targetType'. Invalid number format."
+          : "Rule '$ruleId': Failed to cast '${value.value}' to type "
+              "'$targetType'. $e";
       throw FHIRMappingCastException(message: errorMessage);
     }
   }
@@ -577,7 +580,7 @@ class Transformer {
       throw Exception('Cannot create reference to non-resource element');
     }
 
-    final sourceMap = sourceElement.toMap();
+    final sourceMap = sourceElement.toMap() as Map<String, dynamic>;
     final resourceType = sourceMap['resourceType'] as String?;
     final id = sourceMap['id'] as String?;
 
@@ -606,7 +609,7 @@ class Transformer {
       throw Exception('Cannot create pointer to non-resource element');
     }
 
-    final sourceMap = sourceElement.toMap();
+    final sourceMap = sourceElement.toMap() as Map<String, dynamic>;
     final id = sourceMap['id'] as String?;
 
     if (id == null) {
@@ -747,9 +750,9 @@ class Transformer {
 
     if (throwIfNull) {
       throw FHIRException(
-        message:
-            'Expected a non-null, string-compatible value for parameter "$parameter" '
-            'in context: $contextMessage, but found ${paramValue.runtimeType}',
+        message: 'Expected a non-null, string-compatible value for parameter '
+            '"$parameter" in context: $contextMessage, but found '
+            '${paramValue.runtimeType}',
       );
     }
     return null;
@@ -803,7 +806,7 @@ class Transformer {
     String? fieldToReturn,
     StructureMap map,
   ) async {
-    final sourceMap = sourceElement.toMap();
+    final sourceMap = sourceElement.toMap() as Map<String, dynamic>;
     final sourceCoding = sourceMap is String ? sourceMap : sourceMap['coding'];
 
     final conceptMap = await _findConceptMap(conceptMapUrl, map);
@@ -852,7 +855,8 @@ class Transformer {
 
     if (outcome == null) {
       throw Exception(
-        'No translation found for ${sourceCoding is String ? sourceCoding : sourceCoding.code}',
+        'No translation found for '
+        '${sourceCoding is String ? sourceCoding : sourceCoding.code}',
       );
     }
 
@@ -917,7 +921,8 @@ class Transformer {
           structure.url.toString().endsWith('/$statedType') == true,
     );
 
-    // If a matching structure is found, resolve and return its type; otherwise, return statedType
+    // If a matching structure is found, resolve and return its type;
+    // otherwise, return statedType
     if (structure != null) {
       final resolvedDefinition =
           await resolver.resolve(structure.url.toString());
@@ -992,8 +997,8 @@ class Transformer {
   ElementNode _dateOp(Variables vars, StructureMapTarget target) {
     if (target.parameter == null || target.parameter!.length < 2) {
       throw FHIRException(
-        message:
-            'dateOp transform requires a source date and an operation parameter',
+        message: 'dateOp transform requires a source date and an '
+            'operation parameter',
       );
     }
 
@@ -1052,7 +1057,8 @@ class Transformer {
       final newBase =
           (await base?.preprocessElementNodeAsync(resolver)) as FhirBase?;
       final node = fhirPathEngine.parse(expression);
-      // Use `evaluateWithAppContextAndPath` to evaluate the expression within the FHIRPath context.
+      // Use `evaluateWithAppContextAndPath` to evaluate the expression within 
+      // the FHIRPath context.
       final result = fhirPathEngine.evaluateWithContext(
         vars,
         null,
@@ -1061,7 +1067,8 @@ class Transformer {
         node,
       );
 
-      // Return the result as an ElementNode. We handle primitive types with `LeafNode` and complex structures with `MapNode`.
+      // Return the result as an ElementNode. We handle primitive types with 
+      // `LeafNode` and complex structures with `MapNode`.
       if (result.isEmpty) {
         return null;
       } else if (result.length == 1) {

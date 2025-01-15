@@ -13,7 +13,7 @@ Future<Map<String, dynamic>?> fhirMappingEngine(
   FhirDb cache,
 ) async {
   final mapEngine = FhirMapEngine(cache, map);
-  final transform = mapEngine.transform(source, null);
+  final transform = await mapEngine.transform(source, null);
   return transform;
 }
 
@@ -56,7 +56,7 @@ class FhirMapEngine {
       final vars = _initializeVariables(group, sourceNode, targetNode);
       final outputVarName = _getOutputVarName(group, targetType);
 
-      _executeGroup('', context, map, vars, group, true);
+      await _executeGroup('', context, map, vars, group, true);
 
       return _retrieveTransformedTarget(vars, outputVarName, targetType);
     } catch (e) {
@@ -73,7 +73,8 @@ class FhirMapEngine {
         .type
         ?.value;
 
-    // Attempt resolution only if type is not null and hasn't already been resolved
+    // Attempt resolution only if type is not null and hasn't already been
+    // resolved
     final resolvedType = type != null && type.isNotEmpty
         ? (await resolver.resolveByType(type))?.type.toString() ?? type
         : type;
@@ -184,14 +185,14 @@ class FhirMapEngine {
     return null;
   }
 
-  void _executeGroup(
+  Future<void> _executeGroup(
     String indent,
     TransformationContext context,
     StructureMap? map,
     Variables vars,
     StructureMapGroup? group,
     bool atRoot,
-  ) {
+  ) async {
     // Resolve and execute extended group first if it exists
     final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
@@ -209,7 +210,7 @@ class FhirMapEngine {
 
     // Execute rules within the group
     for (final rule in group?.rule ?? <StructureMapRule>[]) {
-      _executeRule('$indent  ', context, map, vars, group, rule, atRoot);
+      await _executeRule('$indent  ', context, map, vars, group, rule, atRoot);
     }
   }
 
@@ -222,6 +223,7 @@ class FhirMapEngine {
     StructureMapRule rule,
     bool atRoot,
   ) async {
+    print('${indent}Executing rule: ${rule.name}');
     // Ensure single source and create copy of variables
     if (rule.source.length != 1) {
       throw Exception('Rule "${rule.name}" has multiple sources.');
@@ -238,8 +240,9 @@ class FhirMapEngine {
       indent,
     );
     for (final sourceVars in sourceVarsList) {
+      print(sourceVars.summary());
       for (final target in rule.target ?? <StructureMapTarget>[]) {
-        _processTarget(
+        await _processTarget(
           rule.name.toString(),
           context,
           sourceVars,
@@ -314,8 +317,8 @@ class FhirMapEngine {
     // Check that the number of input variables matches
     if (rg.target!.input.length != dependent.variable.length) {
       throw FHIRException(
-        message:
-            "Rule '${dependent.name}' expects ${rg.target!.input.length} variables, but got ${dependent.variable.length}",
+        message: "Rule '${dependent.name}' expects ${rg.target!.input.length} "
+            'variables, but got ${dependent.variable.length}',
       );
     }
 
@@ -340,8 +343,8 @@ class FhirMapEngine {
       // If the variable is still null, throw an exception
       if (vv == null) {
         throw FHIRException(
-          message:
-              "Rule '${dependent.name}' $mode variable '${input.name}' named '$varVal' has no value (vars = ${vin.summary()})",
+          message: "Rule '${dependent.name}' $mode variable '${input.name}' "
+              "named '$varVal' has no value (vars = ${vin.summary()})",
         );
       }
 
@@ -379,14 +382,15 @@ class FhirMapEngine {
       final sourceValue = vars.getInputVar(source.context.toString());
       if (sourceValue == null) {
         throw Exception(
-          'Unknown input variable ${source.context} in rule $ruleId (vars = ${vars.summary()})',
+          'Unknown input variable ${source.context} in rule $ruleId '
+          '(vars = ${vars.summary()})',
         );
       }
       items = await _getItemsFromSourceValue(source, sourceValue);
     }
 
     // Apply condition and checks, if present
-    items = _applyCondition(source, ruleId, vars, items, resolver);
+    items = await _applyCondition(source, ruleId, vars, items, resolver);
     await _applyCheck(source, ruleId, vars, items, resolver);
 
     // Handle list modes
@@ -428,7 +432,8 @@ class FhirMapEngine {
   ) async {
     if (sourceValue == null) {
       throw Exception(
-        'Failed to locate input variable ${source.context} for rule processing in `_getItemsFromSourceValue`.',
+        'Failed to locate input variable ${source.context} '
+        'for rule processing in `_getItemsFromSourceValue`.',
       );
     }
 
@@ -436,7 +441,7 @@ class FhirMapEngine {
     if (source.element?.value == null || source.element!.value!.isEmpty) {
       items.add(sourceValue);
     } else {
-      _getChildrenByName(
+      await _getChildrenByName(
         sourceValue,
         source.element!.value,
         items,
@@ -451,22 +456,29 @@ class FhirMapEngine {
   }
 
   // Helper function to evaluate condition
-  List<ElementNode> _applyCondition(
+  Future<List<ElementNode>> _applyCondition(
     StructureMapSource source,
     String ruleId,
     Variables vars,
     List<ElementNode> items,
     DefinitionResolver resolver,
-  ) {
+  ) async {
     if (source.condition != null && source.condition!.isNotEmpty) {
       final conditionExpr =
           source.getUserData('MAP_WHERE_EXPRESSION') as ExpressionNode? ??
               parseFhirPath(source.condition!.value!);
       source.setUserData('MAP_WHERE_EXPRESSION', conditionExpr);
       final node = fhirPathEngine.parse(source.condition?.value ?? '');
+      final filteredItems = <ElementNode>[];
 
-      items.removeWhere((item) {
-        final base = item.preprocessElementNodeAsync(resolver) as FhirBase;
+      for (final item in items) {
+        final base =
+            (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
+        print('**************************');
+        print('base: $base ${base.runtimeType}');
+        print(vars.summary());
+        node.printExpressionTree();
+        print('**************************');
         final conditionResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
@@ -474,10 +486,13 @@ class FhirMapEngine {
           base,
           node,
         );
-        if (!conditionResult)
+        if (conditionResult) {
+          filteredItems.add(item);
+        } else {
           _log('Skipping rule $ruleId due to condition ${source.condition}');
-        return !conditionResult;
-      });
+        }
+      }
+      return filteredItems;
     }
     return items;
   }
@@ -498,7 +513,8 @@ class FhirMapEngine {
       final node = fhirPathEngine.parse(source.check?.value ?? '');
 
       for (final item in items) {
-        final base = await item.preprocessElementNodeAsync(resolver) as FhirBase;
+        final base =
+            (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final checkResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
@@ -506,10 +522,11 @@ class FhirMapEngine {
           base,
           node,
         );
-        if (!checkResult)
+        if (!checkResult) {
           throw FHIRException(
             message: "Rule '$ruleId', Check condition failed, ${source.check}",
           );
+        }
       }
     }
   }
@@ -553,8 +570,9 @@ class FhirMapEngine {
     final result = <Variables>[];
     for (final item in items) {
       final newVars = vars.copy();
-      if (variableName != null && variableName.isNotEmpty)
+      if (variableName != null && variableName.isNotEmpty) {
         newVars.add(VariableMode.INPUT, variableName, item);
+      }
       result.add(newVars);
     }
     _log('_processSourceFinal: ${vars.targetSummary()}');
@@ -625,7 +643,8 @@ class FhirMapEngine {
     }
 
     ElementNode? value;
-    // Check if there's a transformation and run it to get the value for the target
+    // Check if there's a transformation and run it to get the value for the
+    // target
     if (target.transform != null) {
       value = await transformer.runTransform(
         ruleId,
@@ -637,12 +656,15 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
+      print('Value: $value');
 
       if (dest != null && value != null) {
+        print('dest before set property: ${dest.summary()}');
         // Set property based on the resolved element
         value = await dest.setProperty(target.element!.value!, value, resolver);
-
         dest = dest.updatePaths(dest.location!, dest.objectLocation!);
+        print('value after set property: ${value.summary()}');
+        print('dest after set property: ${dest.summary()}');
       }
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared
@@ -661,7 +683,8 @@ class FhirMapEngine {
           } else {
             throw FHIRException(
               message:
-                  "Rule '$ruleId': ListMode.Share requires a CompositeNode destination",
+                  "Rule '$ruleId': ListMode.Share requires a CompositeNode "
+                  'destination',
             );
           }
         }
@@ -698,8 +721,9 @@ class FhirMapEngine {
     for (final group in map?.group ?? <StructureMapGroup>[]) {
       if (group.name.toString() == name) {
         if (res.targetMap == null) {
-          res.targetMap = map;
-          res.target = group;
+          res
+            ..targetMap = map
+            ..target = group;
         } else {
           throw FHIRException(
             message: "Multiple possible matches for rule '$name'",
@@ -729,8 +753,9 @@ class FhirMapEngine {
           for (final grp in impMap.group) {
             if (grp.name.toString() == name) {
               if (res.targetMap == null) {
-                res.targetMap = impMap;
-                res.target = grp;
+                res
+                  ..targetMap = impMap
+                  ..target = grp;
               } else {
                 throw FHIRException(
                   message:
@@ -776,12 +801,12 @@ class FhirMapEngine {
     return result;
   }
 
-  // Helper function to fetch a StructureDefinition resource
+  /// Helper function to fetch a StructureDefinition resource
   Future<StructureDefinition?> fetchStructureDefinition(String? url) async {
     return url == null ? null : await resolver.resolve(url);
   }
 
-  // Utility function to check if a string is an absolute URL
+  /// Utility function to check if a string is an absolute URL
   bool isAbsoluteUrl(String? url) {
     // This can be a simple check for 'http://' or 'https://'
     return url != null && (Uri.tryParse(url)?.hasAbsolutePath ?? false);
