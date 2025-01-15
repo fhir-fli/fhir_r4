@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes, prefer_const_literals_to_create_immutables, lines_longer_than_80_chars
+// ignore_for_file: prefer_single_quotes, always_specify_types,
+// ignore_for_file: avoid_escaping_inner_quotes, prefer_const_literals_to_create_immutables, lines_longer_than_80_chars
 
 import 'package:fhir_r4/fhir_r4.dart';
 

@@ -923,7 +923,8 @@ class StructureMapParser {
 
       // Find or create the appropriate group
       var group = groups.firstWhereOrNull(
-          (g) => g.source?.toString() == srcs && g.target?.toString() == tgts,);
+        (g) => g.source?.toString() == srcs && g.target?.toString() == tgts,
+      );
       if (group == null) {
         ConceptMapUnmapped? unmapped;
         if (unmappedModes.containsKey(srcs)) {

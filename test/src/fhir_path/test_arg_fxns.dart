@@ -275,7 +275,8 @@ void testArgFxns() {
       [true.toFhirBoolean],
     );
 
-    node = fhirPathEngine.parse("telecom.exists(system = 'email' and use = 'mobile')");
+    node = fhirPathEngine
+        .parse("telecom.exists(system = 'email' and use = 'mobile')");
     expect(
       fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
@@ -552,8 +553,8 @@ void testArgFxns() {
   });
 
   test('subsetOf', () {
-    final node =
-        fhirPathEngine.parse('Patient.name.given[2].subsetOf(Patient.name.given)');
+    final node = fhirPathEngine
+        .parse('Patient.name.given[2].subsetOf(Patient.name.given)');
     expect(
       fhirPathEngine.evaluate(patient3, node),
       [true.toFhirBoolean],

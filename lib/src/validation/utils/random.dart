@@ -146,7 +146,7 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
   return codes;
 }
 
-/// Recursively fetches and extracts codes from an included ValueSet or 
+/// Recursively fetches and extracts codes from an included ValueSet or
 /// CodeSystem.
 Future<Set<String>> _fetchIncludedValueSetCodes(
   String includedValueSetUrl,

@@ -1057,7 +1057,7 @@ class Transformer {
       final newBase =
           (await base?.preprocessElementNodeAsync(resolver)) as FhirBase?;
       final node = fhirPathEngine.parse(expression);
-      // Use `evaluateWithAppContextAndPath` to evaluate the expression within 
+      // Use `evaluateWithAppContextAndPath` to evaluate the expression within
       // the FHIRPath context.
       final result = fhirPathEngine.evaluateWithContext(
         vars,
@@ -1067,7 +1067,7 @@ class Transformer {
         node,
       );
 
-      // Return the result as an ElementNode. We handle primitive types with 
+      // Return the result as an ElementNode. We handle primitive types with
       // `LeafNode` and complex structures with `MapNode`.
       if (result.isEmpty) {
         return null;

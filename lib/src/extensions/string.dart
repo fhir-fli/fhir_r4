@@ -938,7 +938,6 @@ extension StringExtensionForFHIR on String {
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isWhitespace => trim().isEmpty;
-
 }
 
 /// Status for the decimal

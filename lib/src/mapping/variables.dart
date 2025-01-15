@@ -41,7 +41,6 @@ class Variables {
   final List<Variable> _variables = [];
 
   void add(VariableMode mode, String name, ElementNode value) {
-    
     _variables.removeWhere((v) => v.mode == mode && v.name == name);
     _variables.add(Variable(mode, name, value));
   }

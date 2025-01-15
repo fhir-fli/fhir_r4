@@ -631,9 +631,10 @@ class FHIRPathEngine {
     FhirBase base,
     ExpressionNode node,
   ) {
-    return convertToBoolean(
-      evaluateWithContext(appInfo, focusResource, rootResource, base, node),
-    );
+    final result =
+        evaluateWithContext(appInfo, focusResource, rootResource, base, node);
+    print('Result: $result');
+    return convertToBoolean(result);
   }
 
   // Evaluation with appContext and additional parameters
@@ -1086,6 +1087,7 @@ class FHIRPathEngine {
         } else {
           for (final item in focus) {
             final outcome = executeForItem(context, item, exp, atEntry: true);
+            print('Outcome: $outcome');
             work.addAll(outcome);
           }
         }
@@ -1173,11 +1175,16 @@ class FHIRPathEngine {
     ExpressionNode exp, {
     required bool atEntry,
   }) {
+    print('executeForItem: $item');
+    exp.printExpressionTree();
     final result = <FhirBase>[];
+    print(
+        'start: ${atEntry && context.appInfo != null && hostServices != null}');
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
+      print('Temp: $temp');
       if (temp.isNotEmpty) {
         result.addAll(temp);
         return result;
@@ -1237,6 +1244,7 @@ class FHIRPathEngine {
       );
     }
 
+    print('executeForItem: $result');
     return result;
   }
 
@@ -1681,6 +1689,7 @@ class FHIRPathEngine {
     } else {
       String? tn;
       var name = oldName;
+      print('getChildrenByName: $name');
 
       if (allowPolymorphicNames) {
         // we'll look to see whether we have a polymorphic name
@@ -1697,6 +1706,7 @@ class FHIRPathEngine {
       }
 
       final list = item.listChildrenByName(name);
+      print('list: $list');
       if (list.isNotEmpty) {
         for (final v in list) {
           if (tn == null || tn.isEmpty || v.fhirType.equalsIgnoreCase(tn)) {
@@ -2882,7 +2892,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opEquivalent $left $right');
     if (left.length != right.length) {
       return makeBoolean(false);
     }
@@ -2945,7 +2954,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opNotEquivalent $left $right');
     if (left.length != right.length) {
       return makeBoolean(true);
     }
@@ -3879,7 +3887,6 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    print('opIs $left $right');
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
@@ -3887,11 +3894,9 @@ class FHIRPathEngine {
       result.add(FhirBoolean(false).noExtensions());
     } else {
       final tn = convertListToString(right);
-      print('tn $tn');
 
       if (left.first is Element) {
         final element = left.first as Element;
-        print('element ${element.disallowExtensions}');
 
         if (element.disallowExtensions ?? false) {
           result.add(
@@ -3902,8 +3907,6 @@ class FHIRPathEngine {
           );
         } else {
           final currentType = element.fhirType;
-          print('currentType $currentType');
-          print('tn $tn');
 
           return makeBoolean(
             currentType.toLowerCase() == tn.toLowerCase() ||
