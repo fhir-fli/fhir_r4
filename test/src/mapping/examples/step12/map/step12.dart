@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types,
+// ignore_for_file: avoid_escaping_inner_quotes
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -12,12 +13,12 @@ final structureMapStep12 = StructureMap.fromJson({
     {
       "url": "http://hl7.org/fhir/StructureDefinition/tutorial-left-12",
       "mode": "source",
-      "alias": "TLeft"
+      "alias": "TLeft",
     },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/tutorial-right-12",
       "mode": "target",
-      "alias": "TRight"
+      "alias": "TRight",
     }
   ],
   "group": [
@@ -26,33 +27,33 @@ final structureMapStep12 = StructureMap.fromJson({
       "typeMode": "none",
       "input": [
         {"name": "src", "type": "TLeft", "mode": "source"},
-        {"name": "tgt", "type": "TRight", "mode": "target"}
+        {"name": "tgt", "type": "TRight", "mode": "target"},
       ],
       "rule": [
         {
           "name": "rule_saz1",
           "source": [
-            {"context": "src", "element": "az1", "variable": "s_az1"}
+            {"context": "src", "element": "az1", "variable": "s_az1"},
           ],
           "rule": [
             {
               "name": "rule_taz1",
               "source": [
-                {"context": "s_az1", "element": "az3", "variable": "s_az3"}
+                {"context": "s_az1", "element": "az3", "variable": "s_az3"},
               ],
               "target": [
                 {
                   "context": "tgt",
                   "contextType": "variable",
                   "element": "az1",
-                  "variable": "t_az1"
+                  "variable": "t_az1",
                 }
               ],
               "rule": [
                 {
                   "name": "rule_az2",
                   "source": [
-                    {"context": "s_az1", "element": "az2", "variable": "az2"}
+                    {"context": "s_az1", "element": "az2", "variable": "az2"},
                   ],
                   "target": [
                     {
@@ -61,17 +62,17 @@ final structureMapStep12 = StructureMap.fromJson({
                       "element": "az2",
                       "transform": "copy",
                       "parameter": [
-                        {"valueId": "az2"}
-                      ]
+                        {"valueId": "az2"},
+                      ],
                     }
                   ],
                   "documentation":
-                      "value for az2. Note that this refers to a previous context in the source\nvalue for az3"
+                      "value for az2. Note that this refers to a previous context in the source\nvalue for az3",
                 },
                 {
                   "name": "rule_az3",
                   "source": [
-                    {"context": "s_az3"}
+                    {"context": "s_az3"},
                   ],
                   "target": [
                     {
@@ -80,18 +81,18 @@ final structureMapStep12 = StructureMap.fromJson({
                       "element": "az3",
                       "transform": "copy",
                       "parameter": [
-                        {"valueId": "s_az3"}
-                      ]
+                        {"valueId": "s_az3"},
+                      ],
                     }
-                  ]
+                  ],
                 }
               ],
-              "documentation": "one tgt.az1 for each az3"
+              "documentation": "one tgt.az1 for each az3",
             }
           ],
-          "documentation": "setting up a variable for the parent"
+          "documentation": "setting up a variable for the parent",
         }
-      ]
+      ],
     }
-  ]
+  ],
 });

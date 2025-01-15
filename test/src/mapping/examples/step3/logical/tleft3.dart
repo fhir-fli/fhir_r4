@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// [TLeft3]
@@ -11,7 +12,7 @@ class TLeft3 extends Element {
     super.objectPath = 'TLeft3',
   });
 
-  /// FromJson Factory Constructor
+  /// Factory constructor to create an instance of [TLeft3] from JSON
   factory TLeft3.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TLeft3';
     return TLeft3(
@@ -41,7 +42,7 @@ class TLeft3 extends Element {
   }
 
   /// [a2]
-  /// TLeft definition
+  /// Represents the a2 field in TLeft definition
   final FhirString? a2;
 
   @override
@@ -64,7 +65,7 @@ class TLeft3 extends Element {
 
   @override
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final json = <String, dynamic>{'resourceType': 'TLeft3'};
     if (id != null) json['id'] = id!.value;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
@@ -73,5 +74,47 @@ class TLeft3 extends Element {
       json['a2'] = a2!.value;
     }
     return json;
+  }
+
+  @override
+  List<String> children() {
+    return ['id', 'extension', 'a2'];
+  }
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'a2':
+        if (a2 != null) fields.add(a2!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Multiple values found for $name');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TLeft3) return false;
+    if (identical(this, o)) return true;
+    return id == o.id &&
+        const DeepCollectionEquality().equals(extension_, o.extension_) &&
+        a2 == o.a2;
   }
 }

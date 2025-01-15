@@ -17,12 +17,14 @@ Future<void> compare(int i) async {
     if (file.path.endsWith('.map')) {
       final fhirMap = await File(file.path).readAsString();
       final result = await post(
-          Uri.parse(
-              r'https://test.ahdis.ch/matchbox/fhir/StructureMap/$convert',),
-          headers: <String, String>{
-            'Content-Type': 'text/fhir-mapping',
-          },
-          body: fhirMap,);
+        Uri.parse(
+          r'https://test.ahdis.ch/matchbox/fhir/StructureMap/$convert',
+        ),
+        headers: <String, String>{
+          'Content-Type': 'text/fhir-mapping',
+        },
+        body: fhirMap,
+      );
       final body = jsonDecode(result.body);
       (body as Map).remove('text');
       await File(file.path.replaceAll('.map', '.json'))
@@ -38,12 +40,14 @@ Future<void> compareDir(String directory) async {
     if (file.path.endsWith('.map')) {
       final fhirMap = await File(file.path).readAsString();
       final result = await post(
-          Uri.parse(
-              r'https://test.ahdis.ch/matchbox/fhir/StructureMap/$convert',),
-          headers: <String, String>{
-            'Content-Type': 'text/fhir-mapping',
-          },
-          body: fhirMap,);
+        Uri.parse(
+          r'https://test.ahdis.ch/matchbox/fhir/StructureMap/$convert',
+        ),
+        headers: <String, String>{
+          'Content-Type': 'text/fhir-mapping',
+        },
+        body: fhirMap,
+      );
       final body = jsonDecode(result.body);
       (body as Map).remove('text');
       await File(file.path.replaceAll('.map', '.json'))

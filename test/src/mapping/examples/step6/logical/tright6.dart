@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// [TRight6]
@@ -73,5 +74,44 @@ class TRight6 extends Element {
       json['a23'] = a23!.value;
     }
     return json;
+  }
+
+  @override
+  List<String> children() => ['id', 'extension', 'a23'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'a23':
+        if (a23 != null) fields.add(a23!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Multiple values found for $name');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TRight6) return false;
+    return id == o.id &&
+        const DeepCollectionEquality().equals(extension_, o.extension_) &&
+        a23 == o.a23;
   }
 }

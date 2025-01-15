@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types,
+// ignore_for_file: avoid_escaping_inner_quotes
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -9,7 +10,7 @@ final structureDefinitionTLeft15 = StructureDefinition.fromJson({
     {
       "url":
           "http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace",
-      "valueUri": "http://hl7.org/fhir/tutorial"
+      "valueUri": "http://hl7.org/fhir/tutorial",
     }
   ],
   "meta": {"lastUpdated": "2016-11-21T16:11:04.708+01:00"},
@@ -28,25 +29,25 @@ final structureDefinitionTLeft15 = StructureDefinition.fromJson({
         "min": 0,
         "max": "*",
         "type": [
-          {"code": "string"}
-        ]
+          {"code": "string"},
+        ],
       },
       {
         "path": "TLeft.b",
         "min": 0,
         "max": "*",
         "type": [
-          {"code": "string"}
-        ]
+          {"code": "string"},
+        ],
       },
       {
         "path": "TLeft.test",
         "min": 0,
         "max": "1",
         "type": [
-          {"code": "string"}
-        ]
+          {"code": "string"},
+        ],
       }
-    ]
-  }
+    ],
+  },
 });

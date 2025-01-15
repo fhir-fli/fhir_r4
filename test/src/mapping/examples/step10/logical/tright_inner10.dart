@@ -73,4 +73,42 @@ class TRightInner10 extends Element {
     }
     return json;
   }
+
+  @override
+  List<String> children() => ['id', 'extension', 'ab'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'ab':
+        if (ab != null) fields.add(ab!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TRightInner10) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        ab == other.ab;
+  }
 }

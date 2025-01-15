@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// [TRight4]
@@ -11,7 +12,7 @@ class TRight4 extends Element {
     super.objectPath = 'TRight4',
   });
 
-  /// FromJson Factory Constructor
+  /// Factory constructor to create an instance of [TRight4] from JSON
   factory TRight4.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight4';
     return TRight4(
@@ -64,7 +65,7 @@ class TRight4 extends Element {
 
   @override
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{'resourceType': 'TRight'};
+    final json = <String, dynamic>{'resourceType': 'TRight4'};
     if (id != null) json['id'] = id!.value;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
@@ -73,5 +74,46 @@ class TRight4 extends Element {
       json['a21'] = a21!.value;
     }
     return json;
+  }
+
+  @override
+  List<String> children() {
+    return ['id', 'extension', 'a21'];
+  }
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'a21':
+        if (a21 != null) fields.add(a21!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Multiple values found for $name');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? o) {
+    if (o is! TRight4) return false;
+    return id == o.id &&
+        const DeepCollectionEquality().equals(extension_, o.extension_) &&
+        a21 == o.a21;
   }
 }

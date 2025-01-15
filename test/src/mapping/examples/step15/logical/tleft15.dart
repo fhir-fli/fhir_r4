@@ -99,4 +99,48 @@ class TLeft15 extends Element {
     if (test != null) json['test'] = test!.value;
     return json;
   }
+
+  @override
+  List<String> children() => ['id', 'extension', 'a', 'b', 'test'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'a':
+        if (a != null) fields.addAll(a!);
+      case 'b':
+        if (b != null) fields.addAll(b!);
+      case 'test':
+        if (test != null) fields.add(test!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TLeft15) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        listEquals<FhirBase>(a, other.a) &&
+        listEquals<FhirBase>(b, other.b) &&
+        test == other.test;
+  }
 }

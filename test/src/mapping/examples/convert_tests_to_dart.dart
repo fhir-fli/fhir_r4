@@ -15,19 +15,30 @@ void main() async {
         !stepDir.path.contains('15')) {
       // Process the logical directory JSON files
       await processDirectory(
-          Directory('${stepDir.path}/logical'), stepDir.path, 'logical',);
+        Directory('${stepDir.path}/logical'),
+        stepDir.path,
+        'logical',
+      );
 
       // Process the map directory JSON files
       await processDirectory(
-          Directory('${stepDir.path}/map'), stepDir.path, 'map',);
+        Directory('${stepDir.path}/map'),
+        stepDir.path,
+        'map',
+      );
 
       // Process the source directory
       await processSourceDirectory(
-          Directory('${stepDir.path}/source'), stepDir.path,);
+        Directory('${stepDir.path}/source'),
+        stepDir.path,
+      );
 
       // Process the result directory
       await processSourceDirectory(
-          Directory('${stepDir.path}/result'), stepDir.path, 'result',);
+        Directory('${stepDir.path}/result'),
+        stepDir.path,
+        'result',
+      );
 
       // Generate the export file for the current step
       await createExportFile(stepDir);
@@ -39,7 +50,10 @@ void main() async {
 
 // Function to process JSON files in the specified directory and generate Dart classes
 Future<void> processDirectory(
-    Directory directory, String stepDirPath, String type,) async {
+  Directory directory,
+  String stepDirPath,
+  String type,
+) async {
   if (directory.existsSync()) {
     for (final jsonFile in directory.listSync()) {
       if (jsonFile is File && jsonFile.path.endsWith('.json')) {
@@ -86,8 +100,11 @@ Future<void> processDirectory(
 }
 
 // Function to process source and result files and generate Dart source map
-Future<void> processSourceDirectory(Directory directory, String stepDirPath,
-    [String? type,]) async {
+Future<void> processSourceDirectory(
+  Directory directory,
+  String stepDirPath, [
+  String? type,
+]) async {
   if (directory.existsSync()) {
     for (final jsonFile in directory.listSync()) {
       if (jsonFile is File && jsonFile.path.endsWith('.json')) {
@@ -95,7 +112,7 @@ Future<void> processSourceDirectory(Directory directory, String stepDirPath,
 
         // Read the JSON file as a map
         final jsonContent = await jsonFile.readAsString();
-        final jsonMap = jsonDecode(jsonContent) as Map<String, dynamic>; 
+        final jsonMap = jsonDecode(jsonContent) as Map<String, dynamic>;
 
         // Initialize className with a default value
         var className = 'unknownSourceClass';
@@ -128,13 +145,17 @@ Future<void> processSourceDirectory(Directory directory, String stepDirPath,
 
 // Function to generate Dart code for StructureDefinition or StructureMap
 String _generateDartCode(
-    String className, Map<String, dynamic> jsonContent, String type,) {
+  String className,
+  Map<String, dynamic> jsonContent,
+  String type,
+) {
   final prettyJson = const JsonEncoder.withIndent('  ').convert(jsonContent);
   final fromJsonType =
       type == 'logical' ? 'StructureDefinition' : 'StructureMap';
   className = className.replaceAll('step', 'Step');
   return '''
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types, 
+// ignore_for_file: avoid_escaping_inner_quotes
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -146,14 +167,17 @@ final $className = $fromJsonType.fromJson(
 
 // Function to generate Dart source code without fromJson()
 String _generateDartSourceCode(
-    String className, Map<String, dynamic> jsonContent,) {
+  String className,
+  Map<String, dynamic> jsonContent,
+) {
   final prettyJson = const JsonEncoder.withIndent('  ').convert(jsonContent);
   className = className.replaceAll('step', 'Step');
   if (className.contains('source') && !className.startsWith('source')) {
     className = className.replaceAll('source', 'Source');
   }
   return '''
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types, 
+// ignore_for_file: avoid_escaping_inner_quotes
 
 final $className = $prettyJson;
 ''';
@@ -161,7 +185,9 @@ final $className = $prettyJson;
 
 // Function to generate StructureDefinition class name
 String _generateStructureDefinitionClassName(
-    String filePath, String? stepNumber,) {
+  String filePath,
+  String? stepNumber,
+) {
   filePath = filePath.toLowerCase(); // Ensure case-insensitivity
   if (filePath.contains('tleftinner')) {
     return 'structureDefinitionTLeftInner$stepNumber';

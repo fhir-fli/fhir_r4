@@ -77,6 +77,44 @@ class TRight11 extends Element {
     }
     return json;
   }
+
+  @override
+  List<String> children() => ['id', 'extension', 'e'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'e':
+        if (e != null) fields.addAll(e!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TRight11) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        listEquals<FhirBase>(e, other.e);
+  }
 }
 
 /// [TRight11e]
@@ -164,5 +202,46 @@ class TRight11e extends BackboneElement {
     if (f != null) json['f'] = f!.value;
     if (g != null) json['g'] = g!.value;
     return json;
+  }
+
+  @override
+  List<String> children() => ['id', 'extension', 'f', 'g'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'f':
+        if (f != null) fields.add(f!);
+      case 'g':
+        if (g != null) fields.add(g!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TRight11e) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        f == other.f &&
+        g == other.g;
   }
 }

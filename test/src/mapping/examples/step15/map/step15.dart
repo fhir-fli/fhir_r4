@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types,
+// ignore_for_file: avoid_escaping_inner_quotes
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -9,7 +10,7 @@ final structureMapStep15 = StructureMap.fromJson({
   "text": {
     "status": "generated",
     "div":
-        "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>/// url = &quot;http://hl7.org/fhir/StructureMap/unioncollection&quot;\r\n/// name = &quot;unioncollection&quot;\r\n/// title = &quot;null&quot;\r\n/// status = &quot;draft&quot;\r\n\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/tutorial-left&quot; alias TLeft as source\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/tutorial-right&quot; alias TRight as target\r\n\r\ngroup combine(source source : TLeft, target target : TRight) {\r\n  source.a first as a -&gt; target.c = (%source.a[0] + %source.b[0]) &quot;concatenated&quot;;\r\n}\r\n\r\n</pre></div>"
+        "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>/// url = &quot;http://hl7.org/fhir/StructureMap/unioncollection&quot;\r\n/// name = &quot;unioncollection&quot;\r\n/// title = &quot;null&quot;\r\n/// status = &quot;draft&quot;\r\n\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/tutorial-left&quot; alias TLeft as source\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/tutorial-right&quot; alias TRight as target\r\n\r\ngroup combine(source source : TLeft, target target : TRight) {\r\n  source.a first as a -&gt; target.c = (%source.a[0] + %source.b[0]) &quot;concatenated&quot;;\r\n}\r\n\r\n</pre></div>",
   },
   "url": "http://hl7.org/fhir/StructureMap/unioncollection",
   "name": "unioncollection",
@@ -18,12 +19,12 @@ final structureMapStep15 = StructureMap.fromJson({
     {
       "url": "http://hl7.org/fhir/StructureDefinition/tutorial-left",
       "mode": "source",
-      "alias": "TLeft"
+      "alias": "TLeft",
     },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/tutorial-right",
       "mode": "target",
-      "alias": "TRight"
+      "alias": "TRight",
     }
   ],
   "group": [
@@ -32,7 +33,7 @@ final structureMapStep15 = StructureMap.fromJson({
       "typeMode": "none",
       "input": [
         {"name": "source", "type": "TLeft", "mode": "source"},
-        {"name": "target", "type": "TRight", "mode": "target"}
+        {"name": "target", "type": "TRight", "mode": "target"},
       ],
       "rule": [
         {
@@ -42,7 +43,7 @@ final structureMapStep15 = StructureMap.fromJson({
               "context": "source",
               "element": "a",
               "listMode": "first",
-              "variable": "a"
+              "variable": "a",
             }
           ],
           "target": [
@@ -52,12 +53,12 @@ final structureMapStep15 = StructureMap.fromJson({
               "element": "c",
               "transform": "evaluate",
               "parameter": [
-                {"valueString": "%source.a[0] + %source.b[0]"}
-              ]
+                {"valueString": "%source.a[0] + %source.b[0]"},
+              ],
             }
-          ]
+          ],
         }
-      ]
+      ],
     }
-  ]
+  ],
 });

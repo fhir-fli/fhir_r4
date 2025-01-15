@@ -77,6 +77,44 @@ class TRight12 extends Element {
     }
     return json;
   }
+
+  @override
+  List<String> children() => ['id', 'extension', 'az1'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'az1':
+        if (az1 != null) fields.addAll(az1!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TRight12) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        listEquals<FhirBase>(az1, other.az1);
+  }
 }
 
 /// [TRight12az1]
@@ -164,5 +202,46 @@ class TRight12az1 extends BackboneElement {
     if (az2 != null) json['az2'] = az2!.value;
     if (az3 != null) json['az3'] = az3!.value;
     return json;
+  }
+
+  @override
+  List<String> children() => ['id', 'extension', 'az2', 'az3'];
+
+  @override
+  List<FhirBase> listChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) fields.add(id!);
+      case 'extension':
+        if (extension_ != null) fields.addAll(extension_!);
+      case 'az2':
+        if (az2 != null) fields.add(az2!);
+      case 'az3':
+        if (az3 != null) fields.add(az3!);
+      default:
+        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
+    }
+    return fields;
+  }
+
+  @override
+  FhirBase? getChildValueByName(String name) {
+    final values = listChildrenByName(name);
+    if (values.length > 1) throw StateError('Too many values for $name found');
+    return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other is! TRight12az1) return false;
+    if (identical(this, other)) return true;
+    return id == other.id &&
+        listEquals<FhirBase>(extension_, other.extension_) &&
+        az2 == other.az2 &&
+        az3 == other.az3;
   }
 }
