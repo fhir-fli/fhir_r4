@@ -119,7 +119,7 @@ class TRight7Aa extends BackboneElement {
 
   @override
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{'resourceType': 'TRight'};
+    final json = <String, dynamic>{};
     if (id != null) json['id'] = id!.value;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();

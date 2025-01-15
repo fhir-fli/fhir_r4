@@ -12,6 +12,8 @@ export 'result/step4a.source4b.dart';
 export 'result/step4c.source4b.dart';
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';
+export 'logical/tleft4.dart';
+export 'logical/tright4.dart';
 export 'map/step4b3.dart';
 export 'map/step4b2.dart';
 export 'map/step4a.dart';

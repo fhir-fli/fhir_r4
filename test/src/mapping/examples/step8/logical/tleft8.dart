@@ -64,7 +64,7 @@ class TLeft8 extends Element {
 
   @override
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final json = <String, dynamic>{'resourceType': 'TLeft'};
     if (id != null) json['id'] = id!.value;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
