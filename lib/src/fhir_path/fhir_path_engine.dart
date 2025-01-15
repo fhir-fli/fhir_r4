@@ -975,13 +975,21 @@ class FHIRPathEngine {
       case FpFunction.AllTrue:
       case FpFunction.AnyTrue:
       case FpFunction.HasValue:
+      case FpFunction.IsBoolean:
       case FpFunction.ConvertsToBoolean:
+      case FpFunction.IsInteger:
       case FpFunction.ConvertsToInteger:
+      case FpFunction.IsString:
       case FpFunction.ConvertsToString:
+      case FpFunction.IsDecimal:
       case FpFunction.ConvertsToDecimal:
+      case FpFunction.IsQuantity:
       case FpFunction.ConvertsToQuantity:
+      case FpFunction.IsDateTime:
       case FpFunction.ConvertsToDateTime:
+      case FpFunction.IsDate:
       case FpFunction.ConvertsToDate:
+      case FpFunction.IsTime:
       case FpFunction.ConvertsToTime:
       case FpFunction.ConformsTo:
       case FpFunction.Round:
@@ -1179,7 +1187,8 @@ class FHIRPathEngine {
     exp.printExpressionTree();
     final result = <FhirBase>[];
     print(
-        'start: ${atEntry && context.appInfo != null && hostServices != null}');
+      'start: ${atEntry && context.appInfo != null && hostServices != null}',
+    );
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
       final temp = hostServices!
@@ -2399,19 +2408,35 @@ class FHIRPathEngine {
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ToTime:
         return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsInteger:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToInteger:
+        return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsDecimal:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToDecimal:
         return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsString:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToString:
+        return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsQuantity:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToQuantity:
         return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsBoolean:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToBoolean:
+        return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsDateTime:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToDateTime:
         return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsDate:
+        return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToDate:
+        return checkParamCount(lexer, location, exp, 0);
+      case FpFunction.IsTime:
         return checkParamCount(lexer, location, exp, 0);
       case FpFunction.ConvertsToTime:
         return checkParamCount(lexer, location, exp, 0);
@@ -4126,20 +4151,28 @@ class FHIRPathEngine {
         return funcToDate(context, focus, exp);
       case FpFunction.ToTime:
         return funcToTime(context, focus, exp);
+      case FpFunction.IsInteger:
       case FpFunction.ConvertsToInteger:
         return funcIsInteger(focus);
+      case FpFunction.IsDecimal:
       case FpFunction.ConvertsToDecimal:
         return funcIsDecimal(context, focus, exp);
+      case FpFunction.IsString:
       case FpFunction.ConvertsToString:
         return funcIsString(focus);
+      case FpFunction.IsBoolean:
       case FpFunction.ConvertsToBoolean:
         return funcIsBoolean(focus);
+      case FpFunction.IsQuantity:
       case FpFunction.ConvertsToQuantity:
         return funcIsQuantity(focus);
+      case FpFunction.IsDateTime:
       case FpFunction.ConvertsToDateTime:
         return funcIsDateTime(focus);
+      case FpFunction.IsDate:
       case FpFunction.ConvertsToDate:
         return funcIsDate(focus);
+      case FpFunction.IsTime:
       case FpFunction.ConvertsToTime:
         return funcIsTime(focus);
       case FpFunction.ConformsTo:
