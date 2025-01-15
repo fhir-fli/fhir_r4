@@ -135,111 +135,183 @@ Future<void> main() async {
       );
     });
 
-    // test('Test Step 3c Source 3', () async {
+    test('Test Step 3c Source 3', () async {
+      final result = await fhirMappingEngine(
+        TLeft3.fromJson(source3),
+        structureMapStep3c,
+        resourceCache,
+        TLeft3.fromJson,
+        TRight3.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep3cSource3),
+      );
+    });
+    test('Test Step 3c Source 3min', () async {
+      final result = await fhirMappingEngine(
+        TLeft3.fromJson(source3min),
+        structureMapStep3c,
+        resourceCache,
+        TLeft3.fromJson,
+        TRight3.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep3cSource3min),
+      );
+    });
+  });
+
+  group('4', () {
+    resourceCache
+      ..saveCanonicalResource(
+        resource: structureDefinitionTLeft4,
+      )
+      ..saveCanonicalResource(
+        resource: structureDefinitionTRight4,
+      );
+
+    test('Test Step 4a Source 4', () async {
+      final result = await fhirMappingEngine(
+        TLeft4.fromJson(source4),
+        structureMapStep4a,
+        resourceCache,
+        TLeft4.fromJson,
+        TRight4.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep4aSource4),
+      );
+    });
+
+    test('Test Step 4a Source 4b', () async {
+      final result = await fhirMappingEngine(
+        TLeft4.fromJson(source4b),
+        structureMapStep4a,
+        resourceCache,
+        TLeft4.fromJson,
+        TRight4.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep4aSource4b),
+      );
+    });
+
+    test('Test Step 4b Source 4', () async {
+      final result = await fhirMappingEngine(
+        TLeft4.fromJson(source4),
+        structureMapStep4b,
+        resourceCache,
+        TLeft4.fromJson,
+        TRight4.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep4bSource4),
+      );
+    });
+
+    test('Test Step 4b Source 4b', () async {
+      final result = await fhirMappingEngine(
+        TLeft4.fromJson(source4b),
+        structureMapStep4b,
+        resourceCache,
+        TLeft4.fromJson,
+        TRight4.fromJson,
+      );
+      expect(
+        result?.toJson(),
+        equals(resultStep4bSource4b),
+      );
+    });
+
+    // test('Test Step 4b2 Source 4', () async {
     //   final result = await fhirMappingEngine(
-    //     TLeft3.fromJson(source3),
-    //     structureMapStep3c,
+    //     TLeft4.fromJson(source4),
+    //     structureMapStep4b2,
     //     resourceCache,
-    //     TRight3.fromJson,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
     //   );
     //   expect(
     //     result?.toJson(),
-    //     equals(resultStep3cSource3),
+    //     equals(resultStep4b2Source4),
     //   );
     // });
-    // test('Test Step 3c Source 3min', () async {
+
+    // test('Test Step 4b2 Source 4b', () async {
     //   final result = await fhirMappingEngine(
-    //     TLeft3.fromJson(source3min),
-    //     structureMapStep3c,
+    //     TLeft4.fromJson(source4b),
+    //     structureMapStep4b2,
     //     resourceCache,
-    //     TRight3.fromJson,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
     //   );
     //   expect(
     //     result?.toJson(),
-    //     equals(resultStep3cSource3min),
+    //     equals(resultStep4b2Source4b),
+    //   );
+    // });
+
+    // test('Test Step 4b3 Source 4', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft4.fromJson(source4),
+    //     structureMapStep4b3,
+    //     resourceCache,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
+    //   );
+    //   expect(
+    //     result?.toJson(),
+    //     equals(resultStep4b3Source4),
+    //   );
+    // });
+
+    // test('Test Step 4b3 Source 4b', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft4.fromJson(source4b),
+    //     structureMapStep4b3,
+    //     resourceCache,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
+    //   );
+    //   expect(
+    //     result?.toJson(),
+    //     equals(resultStep4b3Source4b),
+    //   );
+    // });
+
+    // test('Test Step 4c Source 4', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft4.fromJson(source4),
+    //     structureMapStep4c,
+    //     resourceCache,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
+    //   );
+    //   expect(
+    //     result?.toJson(),
+    //     equals(resultStep4cSource4),
+    //   );
+    // });
+
+    // test('Test Step 4c Source 4b', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft4.fromJson(source4b),
+    //     structureMapStep4c,
+    //     resourceCache,
+    //     TLeft4.fromJson,
+    //     TRight4.fromJson,
+    //   );
+    //   expect(
+    //     result?.toJson(),
+    //     equals(resultStep4cSource4b),
     //   );
     // });
   });
-
-  // group('4', () {
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTLeft4,
-  //   );
-  //   resourceCache.saveCanonicalResource(
-  //     resource: structureDefinitionTRight4,
-  //   );
-
-  //   test('Test Step 4a Source 4', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4, structureMapStep4a, resourceCache),
-  //       equals(resultStep4aSource4),
-  //     );
-  //   });
-
-  //   test('Test Step 4a Source 4b', () async {
-  //     print(fhirMappingEngine(source4b, structureMapStep4a, resourceCache));
-  //     expect(
-  //       await fhirMappingEngine(source4b, structureMapStep4a, resourceCache),
-  //       equals(resultStep4aSource4b),
-  //     );
-  //   });
-
-  //   // TODO(Dokotela): - single quotes around FHIRPath
-  //   // Skipping rule rule_a21b due to condition 'a21.isInteger()'
-  //   // test('Test Step 4b Source 4', ()  async {
-  //   //   expect(fhirMappingEngine(source4, structureMapStep4b, resourceCache),
-  //   //       equals(resultStep4bSource4));
-  //   // });
-
-  //   test('Test Step 4b Source 4b', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4b, structureMapStep4b, resourceCache),
-  //       equals(resultStep4bSource4b),
-  //     );
-  //   });
-
-  //   test('Test Step 4b2 Source 4', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4, structureMapStep4b2, resourceCache),
-  //       equals(resultStep4b2Source4),
-  //     );
-  //   });
-
-  //   test('Test Step 4b2 Source 4b', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4b, structureMapStep4b2, resourceCache),
-  //       equals(resultStep4b2Source4b),
-  //     );
-  //   });
-
-  //   test('Test Step 4b3 Source 4', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4, structureMapStep4b3, resourceCache),
-  //       equals(resultStep4b3Source4),
-  //     );
-  //   });
-
-  //   test('Test Step 4b3 Source 4b', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4b, structureMapStep4b3, resourceCache),
-  //       equals(resultStep4b3Source4b),
-  //     );
-  //   });
-
-  //   test('Test Step 4c Source 4', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4, structureMapStep4c, resourceCache),
-  //       equals(resultStep4cSource4),
-  //     );
-  //   });
-
-  //   test('Test Step 4c Source 4b', () async {
-  //     expect(
-  //       await fhirMappingEngine(source4b, structureMapStep4c, resourceCache),
-  //       equals(resultStep4cSource4b),
-  //     );
-  //   });
-  // });
 
   // group('5', () {
   //   resourceCache.saveCanonicalResource(

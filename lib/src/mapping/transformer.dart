@@ -492,10 +492,14 @@ class Transformer {
           );
       }
     } catch (e) {
-      throw FHIRMappingCastException(
-        message: "Rule '$ruleId': Failed to cast '${value.value}' to type "
-            "'$targetType'. $e",
-      );
+      if (e is FHIRMappingCastException) {
+        rethrow;
+      } else {
+        throw FHIRMappingCastException(
+          message: "Rule '$ruleId': Failed to cast '${value.value}' to type "
+              "'$targetType'. $e",
+        );
+      }
     }
   }
 

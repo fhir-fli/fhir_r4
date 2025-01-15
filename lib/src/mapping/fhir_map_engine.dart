@@ -71,9 +71,9 @@ class FhirMapEngine {
           _retrieveTransformedTarget(vars, outputVarName, targetType);
       return fromType(finalMap, targetType) ??
           (rightFromMap != null ? rightFromMap(finalMap) : null);
-    } catch (e) {
+    } catch (e, s) {
       _log('Error transforming source to target: $e');
-      // _log('Stack trace: $s');
+      _log('Stack trace: $s');
       return createOperationOutcomeErrorNode(e.toString(), map, cache);
     }
   }
@@ -495,17 +495,26 @@ class FhirMapEngine {
       final node = fhirPathEngine.parse(source.condition?.value ?? '');
       final filteredItems = <ElementNode>[];
 
-      // final src = vars.getInputVar(source.context.toString());
-      // print('src: ${src?.summary()}');
+      final src = vars.getInputVar(source.context.toString());
+      final srcMap = src?.toMap();
+      final srcType = await src?.getInstanceType(resolver);
+
+      FhirBase? srcBase;
+      if (srcMap is Map<String, dynamic>) {
+        if (srcType != null) {
+          srcBase = fromType(srcMap, srcType);
+        }
+        srcBase ??= _leftFromMap?.call(srcMap);
+      }
 
       for (final item in items) {
         final base =
             (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final conditionResult = fhirPathEngine.evaluateToBoolean(
-          vars,
+          '',
           null,
           null,
-          base,
+          srcBase ?? base,
           node,
         );
         if (conditionResult) {
@@ -534,6 +543,18 @@ class FhirMapEngine {
       source.setUserData('MAP_WHERE_CHECK', checkExpr);
       final node = fhirPathEngine.parse(source.check?.value ?? '');
 
+      final src = vars.getInputVar(source.context.toString());
+      final srcMap = src?.toMap();
+      final srcType = await src?.getInstanceType(resolver);
+
+      FhirBase? srcBase;
+      if (srcMap is Map<String, dynamic>) {
+        if (srcType != null) {
+          srcBase = fromType(srcMap, srcType);
+        }
+        srcBase ??= _leftFromMap?.call(srcMap);
+      }
+
       for (final item in items) {
         final base =
             (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
@@ -541,7 +562,7 @@ class FhirMapEngine {
           vars,
           null,
           null,
-          base,
+          srcBase ?? base,
           node,
         );
         if (!checkResult) {
@@ -678,15 +699,11 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
-      print('Value: $value');
 
       if (dest != null && value != null) {
-        print('dest before set property: ${dest.summary()}');
         // Set property based on the resolved element
         value = await dest.setProperty(target.element!.value!, value, resolver);
         dest = dest.updatePaths(dest.location!, dest.objectLocation!);
-        print('value after set property: ${value.summary()}');
-        print('dest after set property: ${dest.summary()}');
       }
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared

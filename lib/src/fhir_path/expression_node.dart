@@ -348,13 +348,21 @@ enum FpFunction {
   OfType,
   Type,
   ConvertsToBoolean,
+  IsBoolean,
   ConvertsToInteger,
+  IsInteger,
   ConvertsToString,
+  IsString,
   ConvertsToDecimal,
+  IsDecimal,
   ConvertsToQuantity,
+  IsQuantity,
   ConvertsToDateTime,
+  IsDateTime,
   ConvertsToDate,
+  IsDate,
   ConvertsToTime,
+  IsTime,
   ToBoolean,
   ToInteger,
   ToString,
@@ -546,20 +554,36 @@ enum FpFunction {
         return FpFunction.ToDate;
       case 'toTime':
         return FpFunction.ToTime;
+      case 'isInteger':
+        return FpFunction.IsInteger;
       case 'convertsToInteger':
         return FpFunction.ConvertsToInteger;
+      case 'isDecimal':
+        return FpFunction.IsDecimal;
       case 'convertsToDecimal':
         return FpFunction.ConvertsToDecimal;
+      case 'isString':
+        return FpFunction.IsString;
       case 'convertsToString':
         return FpFunction.ConvertsToString;
+      case 'isQuantity':
+        return FpFunction.IsQuantity;
       case 'convertsToQuantity':
         return FpFunction.ConvertsToQuantity;
+      case 'isBoolean':
+        return FpFunction.IsBoolean;
       case 'convertsToBoolean':
         return FpFunction.ConvertsToBoolean;
+      case 'isDateTime':
+        return FpFunction.IsDateTime;
       case 'convertsToDateTime':
         return FpFunction.ConvertsToDateTime;
+      case 'isDate':
+        return FpFunction.IsDate;
       case 'convertsToDate':
         return FpFunction.ConvertsToDate;
+      case 'isTime':
+        return FpFunction.IsTime;
       case 'convertsToTime':
         return FpFunction.ConvertsToTime;
       case 'conformsTo':
@@ -717,20 +741,36 @@ enum FpFunction {
         return 'ofType';
       case FpFunction.Type:
         return 'type';
+      case FpFunction.IsBoolean:
+        return 'isBoolean';
       case FpFunction.ConvertsToBoolean:
         return 'convertsToBoolean';
+      case FpFunction.IsInteger:
+        return 'isInteger';
       case FpFunction.ConvertsToInteger:
         return 'convertsToInteger';
+      case FpFunction.IsString:
+        return 'isString';
       case FpFunction.ConvertsToString:
         return 'convertsToString';
+      case FpFunction.IsDecimal:
+        return 'isDecimal';
       case FpFunction.ConvertsToDecimal:
         return 'convertsToDecimal';
+      case FpFunction.IsQuantity:
+        return 'isQuantity';
       case FpFunction.ConvertsToQuantity:
         return 'convertsToQuantity';
+      case FpFunction.IsDateTime:
+        return 'isDateTime';
       case FpFunction.ConvertsToDateTime:
         return 'convertsToDateTime';
+      case FpFunction.IsDate:
+        return 'isDate';
       case FpFunction.ConvertsToDate:
         return 'convertsToDate';
+      case FpFunction.IsTime:
+        return 'isTime';
       case FpFunction.ConvertsToTime:
         return 'convertsToTime';
       case FpFunction.ToBoolean:
