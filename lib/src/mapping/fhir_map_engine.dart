@@ -513,7 +513,7 @@ class FhirMapEngine {
         srcBase ??= _leftFromMap?.call(srcMap);
       }
 
-      for (final item in items) { 
+      for (final item in items) {
         print(srcBase);
         print(item);
         final type = await item.getInstanceType(resolver);

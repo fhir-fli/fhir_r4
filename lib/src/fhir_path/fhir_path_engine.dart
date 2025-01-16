@@ -632,7 +632,8 @@ class FHIRPathEngine {
     ExpressionNode node,
   ) {
     return convertToBoolean(
-        evaluateWithContext(appInfo, focusResource, rootResource, base, node),);
+      evaluateWithContext(appInfo, focusResource, rootResource, base, node),
+    );
   }
 
   // Evaluation with appContext and additional parameters
