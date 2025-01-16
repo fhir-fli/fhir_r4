@@ -226,7 +226,8 @@ abstract class ElementNode with Annotatable {
         (await resolver.resolveElementDefinition(pathForResolver(key))) ??
         (await resolver
             .resolveElementDefinition('$childObjectLocation.$key')) ??
-        resolver.resolveElementDefinition('${valueNode.objectLocation}.$key');
+        await resolver
+            .resolveElementDefinition('${valueNode.objectLocation}.$key');
   }
 
 // Helper for polymorphic name assignment
@@ -294,7 +295,7 @@ abstract class ElementNode with Annotatable {
     (this as MapNode).replaceChild(newValue);
   }
 
-// Method to handle ListNode properties
+  // Method to handle ListNode properties
   void _handleListProperty(String key, ElementNode newValue) {
     final listNode = this as ListNode;
 
@@ -659,11 +660,10 @@ class MapNode extends CompositeNode {
       final elementDefinition =
           await resolver.resolveElementDefinition(node.pathForResolver(key));
 
-      final type = elementDefinition?.singleTypeString ??
-          (elementDefinition?.path != null &&
-                  key.endsWith(elementDefinition!.path.value!)
-              ? elementDefinition.path.value
-              : null);
+      final type = elementDefinition == null
+          ? null
+          : elementDefinition.singleTypeString ??
+              resolvePolymorphicType(elementDefinition, key);
 
       if (value is Map<String, dynamic>) {
         final isNewObject =

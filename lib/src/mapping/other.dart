@@ -83,7 +83,8 @@ class DefinitionResolver {
 
       if (i < locationParts.length - 1 &&
           (elementDef.type?.isNotEmpty ?? false)) {
-        final nextType = elementDef.singleTypeString;
+        final nextType = elementDef.singleTypeString ??
+            resolvePolymorphicType(elementDef, currentPath);
         if (nextType != 'BackboneElement') {
           structureDef = await resolveByType(nextType);
         }
@@ -169,6 +170,24 @@ class DefinitionResolver {
       true,
       'WARNING',
     );
+    return null;
+  }
+}
+
+String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
+  final edPath = elementDef.path.value;
+  if (edPath == null || !edPath.endsWith('[x]')) return null;
+  final polyMorphicBase =
+      edPath.substring(0, edPath.length - 3).split('.').last;
+  final finalPath = path.split('.').last;
+  if (finalPath.contains(polyMorphicBase)) {
+    final type = finalPath.substring(polyMorphicBase.length);
+    if (elementDef.type?.any((t) => t.code.toString() == type) ?? false) {
+      return type;
+    } else {
+      return null;
+    }
+  } else {
     return null;
   }
 }
