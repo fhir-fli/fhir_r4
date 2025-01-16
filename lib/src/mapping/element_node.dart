@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 // Updated logging function with verbosity control and log levels
-void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
+void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
   final logLevels = ['DEBUG', 'INFO', 'WARNING', 'ERROR'];
   final levelIndex = logLevels.indexOf(level.toUpperCase());
 
@@ -188,14 +188,21 @@ abstract class ElementNode with Annotatable {
 
     final name = _getPolymorphicName(key, elementDefinition, valueNode);
 
-    valueNode = valueNode.copyWith(
-      newName: name,
-      newLocation: childLocation,
-      newObjectLocation: _determineObjectLocation(elementDefinition, valueNode),
-    );
+    if (valueNode is LeafNode) {
+      // Cast the value using elementDefinition type
+      final expectedType = elementDefinition.singleTypeString;
+      if (expectedType != null) {
+        valueNode = valueNode.copyWith(
+          value: castValue(valueNode.value, expectedType),
+          newName: name,
+          newLocation: childLocation,
+          newObjectLocation:
+              _determineObjectLocation(elementDefinition, valueNode),
+        );
+      }
+    }
 
     final isCollection = elementDefinition.isCollection;
-
     if (isCollection) {
       _handleCollectionProperty(key, valueNode, compositeNode);
     } else if (isMap) {
@@ -205,6 +212,7 @@ abstract class ElementNode with Annotatable {
     } else {
       throw Exception('Unknown CompositeNode type.');
     }
+
     return valueNode;
   }
 
@@ -395,7 +403,8 @@ abstract class ElementNode with Annotatable {
 
     if (isLeaf) {
       return '${indent}LeafNode(name: $name, location: $location, '
-          'objectLocation: $objectLocation, value: $value)';
+          'objectLocation: $objectLocation, value: $value, '
+          'type: ${(this as LeafNode).type})';
     }
 
     final childrenSummary = (value as List<ElementNode>)
@@ -465,6 +474,15 @@ class LeafNode extends ElementNode {
     super.value,
     this.type,
   );
+
+  factory LeafNode.withCast(
+    String? name,
+    String? location,
+    String? objectLocation,
+    dynamic value,
+    String? type,
+  ) =>
+      LeafNode(name, location, objectLocation, castValue(value, type), type);
 
   String? type;
 
@@ -673,7 +691,7 @@ class MapNode extends CompositeNode {
       } else {
         // Create a LeafNode
         node.addChild(
-          LeafNode(key, nodeLocation, nodeObjectLocation, value, type),
+          LeafNode.withCast(key, nodeLocation, nodeObjectLocation, value, type),
         );
       }
     }
@@ -738,7 +756,7 @@ class ListNode extends CompositeNode {
       } else {
         // Create a LeafNode for this item
         node.addChild(
-          LeafNode(null, nodeLocation, nodeObjectLocation, item, type),
+          LeafNode.withCast(null, nodeLocation, nodeObjectLocation, item, type),
         );
       }
     }
@@ -785,5 +803,87 @@ mixin Annotatable {
 
   void addUserData(String key, dynamic value) {
     userData[key] = value;
+  }
+}
+
+// Helper to cast values
+dynamic castValue(dynamic value, String? expectedType) {
+  if (value == null) {
+    return null;
+  }
+  if (expectedType == null) {
+    return value;
+  }
+  try {
+    switch (expectedType) {
+      case 'unsignedint':
+      case 'fhirunsignedint':
+      case 'fhir.unsignedint':
+      case 'integer':
+      case 'fhirinteger':
+      case 'fhir.integer':
+      case 'positiveint':
+      case 'fhirpositiveint':
+      case 'fhir.positiveint':
+        return int.parse(value.toString());
+      case 'decimal':
+      case 'fhirdecimal':
+      case 'fhir.decimal':
+        return double.parse(value.toString());
+      case 'boolean':
+      case 'fhirboolean':
+      case 'fhir.boolean':
+        return value.toString().toLowerCase() == 'true'
+            ? true
+            : value.toString().toLowerCase() == 'false'
+                ? false
+                : null;
+      case 'string':
+      case 'fhirstring':
+      case 'fhir.string':
+      case 'date':
+      case 'fhirdate':
+      case 'fhir.date':
+      case 'datetime':
+      case 'fhirdatetime':
+      case 'fhir.datetime':
+      case 'time':
+      case 'fhirtime':
+      case 'fhir.time':
+      case 'instant':
+      case 'fhirinstant':
+      case 'fhir.instant':
+      case 'uri':
+      case 'fhiruri':
+      case 'fhir.uri':
+      case 'oid':
+      case 'fhiroid':
+      case 'fhir.oid':
+      case 'id':
+      case 'fhirid':
+      case 'fhir.id':
+      case 'base64binary':
+      case 'fhirbase64binary':
+      case 'fhir.base64binary':
+      case 'code':
+      case 'fhircode':
+      case 'fhir.code':
+      case 'canonical':
+      case 'fhircanonical':
+      case 'fhir.canonical':
+      case 'url':
+      case 'fhirurl':
+      case 'fhir.url':
+      case 'markdown':
+      case 'fhirmarkdown':
+      case 'fhir.markdown':
+        return value.toString();
+      default:
+        return value; // Keep as-is for unsupported types
+    }
+  } catch (e) {
+    throw Exception(
+      'Failed to cast value "$value" to type $expectedType: $e',
+    );
   }
 }

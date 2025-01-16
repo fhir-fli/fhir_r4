@@ -5,7 +5,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:uuid/uuid.dart';
 
 // Logging function with control for verbosity
-void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
+void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
   if (shouldPrint) print('[$level] $message');
 }
 
@@ -336,12 +336,12 @@ class Transformer {
               Map<String, dynamic>.from(paramValue),
               resolver,
             )
-          : LeafNode(null, null, null, paramValue, type);
+          : LeafNode.withCast(null, null, null, paramValue, type);
     }
 
     return vars.getInputVar(paramValue) ??
         vars.getOutputVar(paramValue) ??
-        LeafNode(null, null, null, paramValue, type);
+        LeafNode.withCast(null, null, null, paramValue, type);
   }
 
   LeafNode? _truncate(Variables variables, StructureMapTarget target) {

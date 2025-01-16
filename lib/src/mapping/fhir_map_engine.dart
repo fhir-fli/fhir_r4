@@ -3,7 +3,7 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
-void _log(String message, [bool shouldPrint = true, String level = 'INFO']) {
+void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
   if (shouldPrint) {
     print('[$level] $message');
   }
@@ -699,6 +699,8 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
+
+      print('value after transform: $value');
 
       if (dest != null && value != null) {
         // Set property based on the resolved element

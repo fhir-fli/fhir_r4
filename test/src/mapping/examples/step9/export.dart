@@ -10,3 +10,5 @@ export 'source/source9b.dart';
 export 'source/source9.dart';
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';
+export 'logical/tleft9.dart';
+export 'logical/tright9.dart';

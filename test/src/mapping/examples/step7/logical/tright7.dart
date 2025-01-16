@@ -11,6 +11,22 @@ class TRight7 extends Element {
     super.objectPath = 'TRight7',
   });
 
+  factory TRight7.fromJson(Map<String, dynamic> json) {
+    return TRight7(
+      id: json['id'] != null ? FhirString(json['id'] as String) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List)
+              .map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : null,
+      aa: json['aa'] != null
+          ? (json['aa'] as List)
+              .map((e) => TRight7Aa.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
+
   /// [aa]
   /// Nested BackboneElement
   final List<TRight7Aa>? aa;
@@ -93,6 +109,18 @@ class TRight7Aa extends BackboneElement {
     this.ab,
     super.objectPath = 'TRight7Aa',
   });
+
+  factory TRight7Aa.fromJson(Map<String, dynamic> json) {
+    return TRight7Aa(
+      id: json['id'] != null ? FhirString(json['id'] as String) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List)
+              .map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : null,
+      ab: json['ab'] != null ? FhirString(json['ab'] as String) : null,
+    );
+  }
 
   /// [ab]
   /// String field within the BackboneElement

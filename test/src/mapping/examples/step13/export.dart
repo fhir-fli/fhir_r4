@@ -5,3 +5,5 @@ export 'map/step13.dart';
 export 'result/step13.source13.dart';
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';
+export 'logical/tleft13.dart';
+export 'logical/tright13.dart';

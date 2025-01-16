@@ -12,6 +12,8 @@ export 'source/source6b.dart';
 export 'source/source6.dart';
 export 'logical/structuredefinition-tleft.dart';
 export 'logical/structuredefinition-tright.dart';
+export 'logical/tleft6.dart';
+export 'logical/tright6.dart';
 export 'map/step6b.dart';
 export 'map/step6c.dart';
 export 'map/step6a.dart';
