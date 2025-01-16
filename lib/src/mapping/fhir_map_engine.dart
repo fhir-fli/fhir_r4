@@ -514,17 +514,14 @@ class FhirMapEngine {
       }
 
       for (final item in items) {
-        print(srcBase);
-        print(item);
         final type = await item.getInstanceType(resolver);
-        print(type);
-        final base =
-            (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
+        final base = await item.toFhirBase(resolver);
+        // (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final conditionResult = fhirPathEngine.evaluateToBoolean(
           '',
           null,
           null,
-          srcBase ?? base,
+          srcBase ?? base ?? ''.toFhirString,
           node,
         );
         if (conditionResult) {
@@ -570,13 +567,13 @@ class FhirMapEngine {
       }
 
       for (final item in items) {
-        final base =
-            (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
+        final base = await item.toFhirBase(resolver);
+        // (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final checkResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
           null,
-          srcBase ?? base,
+          srcBase ?? base ?? ''.toFhirString,
           node,
         );
         if (!checkResult) {

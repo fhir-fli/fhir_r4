@@ -1,6 +1,7 @@
 export 'accept_language_header.dart';
 export 'compare.dart';
 export 'fhir_field_map.dart';
+export 'from_path.dart';
 export 'from_type.dart';
 export 'generate_id.dart';
 export 'json_parser.dart';

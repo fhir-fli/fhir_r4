@@ -375,6 +375,7 @@ abstract class ElementNode with Annotatable {
             resultMap[child.name!] = childMap;
           }
         } else {
+          print('CHILD: $child');
           throw Exception('Child node has no name');
         }
       }
@@ -420,38 +421,15 @@ $indent  ]
   ''';
   }
 
-  Future<dynamic> preprocessElementNodeAsync(
-    DefinitionResolver resolver,
-  ) async {
-    if (isLeaf) {
-      // For LeafNodes, resolve directly to FhirBase
-      return toFhirBase(resolver);
-    } else if (isComposite) {
-      // For CompositeNodes, create a Map or List of preprocessed children
-      if (isMap) {
-        final resultMap = <String, dynamic>{};
-        for (final child in value as List<ElementNode>) {
-          if (child.name != null) {
-            resultMap[child.name!] =
-                await child.preprocessElementNodeAsync(resolver);
-          }
-        }
-        return resultMap;
-      } else if (isList) {
-        final resultList = <dynamic>[];
-        for (final child in value as List<ElementNode>) {
-          resultList.add(await child.preprocessElementNodeAsync(resolver));
-        }
-        return resultList;
-      }
-    }
-    throw Exception('Unsupported ElementNode type: $runtimeType');
-  }
-
   /// Converts an `ElementNode` to a `FhirBase` object using its type
   Future<FhirBase?> toFhirBase(DefinitionResolver resolver) async {
     // Resolve the type of the node
-    final instanceType = await getInstanceType(resolver);
+    var instanceType = await getInstanceType(resolver);
+
+    if (instanceType == 'BackboneElement') {
+      final ed = await resolver.resolveElementDefinition(pathForResolver());
+      instanceType = typeFromPath(ed?.path.value);
+    }
 
     if (instanceType == null) {
       throw Exception(

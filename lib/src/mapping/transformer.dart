@@ -1060,8 +1060,7 @@ class Transformer {
     _log('Evaluating FHIRPath expression: $expression');
 
     try {
-      final newBase =
-          (await base?.preprocessElementNodeAsync(resolver)) as FhirBase?;
+      final newBase = await base?.toFhirBase(resolver);
       final node = fhirPathEngine.parse(expression);
       // Use `evaluateWithAppContextAndPath` to evaluate the expression within
       // the FHIRPath context.
