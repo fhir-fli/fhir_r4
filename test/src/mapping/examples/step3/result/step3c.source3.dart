@@ -7,10 +7,8 @@ final resultStep3cSource3 = {
     {
       'severity': 'error',
       'code': 'processing',
-      'diagnostics': 'FHIRException:\n'
-          'Message: Rule \'rule_a20c\', '
-          'Check condition failed, a2.length() <= 20\n'
-          '',
+      'diagnostics':
+          'Rule \'rule_a20c\', Check condition failed, a2.length() <= 20',
     }
   ],
 };

@@ -74,7 +74,7 @@ class FhirMapEngine {
     } catch (e, s) {
       _log('Error transforming source to target: $e');
       _log('Stack trace: $s');
-      return createOperationOutcomeErrorNode(e.toString(), map, cache);
+      return createOperationOutcomeErrorNode(e, map, cache);
     }
   }
 
@@ -155,7 +155,7 @@ class FhirMapEngine {
   }
 
   OperationOutcome createOperationOutcomeErrorNode(
-    String error,
+    Object error,
     StructureMap map,
     FhirDb cache,
   ) =>
@@ -164,7 +164,9 @@ class FhirMapEngine {
           OperationOutcomeIssue(
             severity: IssueSeverity.error,
             code: IssueType.processing,
-            diagnostics: error.toFhirString,
+            diagnostics: error is FHIRException
+                ? error.message?.toFhirString
+                : error.toString().toFhirString,
           ),
         ],
       );
@@ -492,7 +494,11 @@ class FhirMapEngine {
           source.getUserData('MAP_WHERE_EXPRESSION') as ExpressionNode? ??
               parseFhirPath(source.condition!.value!);
       source.setUserData('MAP_WHERE_EXPRESSION', conditionExpr);
-      final node = fhirPathEngine.parse(source.condition?.value ?? '');
+      var expression = source.condition?.value ?? '';
+      if (expression.startsWith('${source.context}.')) {
+        expression = expression.replaceFirst('${source.context}.', '');
+      }
+      final node = fhirPathEngine.parse(expression);
       final filteredItems = <ElementNode>[];
 
       final src = vars.getInputVar(source.context.toString());
@@ -541,7 +547,11 @@ class FhirMapEngine {
           source.getUserData('MAP_WHERE_CHECK') as ExpressionNode? ??
               parseFhirPath(source.check!.value!);
       source.setUserData('MAP_WHERE_CHECK', checkExpr);
-      final node = fhirPathEngine.parse(source.check?.value ?? '');
+      var expression = source.check?.value ?? '';
+      if (expression.startsWith('${source.context}.')) {
+        expression = expression.replaceFirst('${source.context}.', '');
+      }
+      final node = fhirPathEngine.parse(expression);
 
       final src = vars.getInputVar(source.context.toString());
       final srcMap = src?.toMap();
@@ -699,8 +709,6 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
-
-      print('value after transform: $value');
 
       if (dest != null && value != null) {
         // Set property based on the resolved element

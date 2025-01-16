@@ -810,14 +810,15 @@ class Transformer {
     String? fieldToReturn,
     StructureMap map,
   ) async {
-    final sourceMap = sourceElement.toMap() as Map<String, dynamic>;
-    final sourceCoding = sourceMap is String ? sourceMap : sourceMap['coding'];
-
+    final sourceMap = sourceElement.toMap();
+    final sourceCoding = sourceMap is String
+        ? sourceMap
+        : (sourceMap as Map<String, dynamic>)['coding'];
     final conceptMap = await _findConceptMap(conceptMapUrl, map);
 
     return conceptMap == null
         ? null
-        : _translateCoding(conceptMap, sourceCoding, fieldToReturn);
+        : await _translateCoding(conceptMap, sourceCoding, fieldToReturn);
   }
 
   Future<ConceptMap?> _findConceptMap(
@@ -860,7 +861,8 @@ class Transformer {
     if (outcome == null) {
       throw Exception(
         'No translation found for '
-        '${sourceCoding is String ? sourceCoding : sourceCoding.code}',
+        // ignore: lines_longer_than_80_chars
+        '${sourceCoding is String ? sourceCoding : (sourceCoding as Map<String, dynamic>)["code"]}',
       );
     }
 

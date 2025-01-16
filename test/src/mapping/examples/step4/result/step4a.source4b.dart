@@ -9,8 +9,7 @@ final resultStep4aSource4b = {
       'code': 'processing',
       'diagnostics':
           // ignore: lines_longer_than_80_chars
-          'Message: Rule \'rule_a21a\': Failed to cast \'notanumber\' to type \'integer\'. Invalid number format.\n'
-              '',
+          'Rule \'rule_a21a\': Failed to cast \'notanumber\' to type \'integer\'. Invalid number format.',
     }
   ],
 };
