@@ -375,7 +375,6 @@ abstract class ElementNode with Annotatable {
             resultMap[child.name!] = childMap;
           }
         } else {
-          print('CHILD: $child');
           throw Exception('Child node has no name');
         }
       }
@@ -626,6 +625,8 @@ class MapNode extends CompositeNode {
     Map<String, dynamic> map,
     DefinitionResolver resolver,
   ) async {
+    print('Creating MapNode - name: $name - location: $location '
+        'newObjectLocation: $newObjectLocation \nmap: $map');
     final node = MapNode(name, location, newObjectLocation, null);
     final nodeLocation = location ?? location;
     final nodeObjectLocation = node.objectLocation ?? newObjectLocation;

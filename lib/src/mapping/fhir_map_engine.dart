@@ -514,9 +514,7 @@ class FhirMapEngine {
       }
 
       for (final item in items) {
-        final type = await item.getInstanceType(resolver);
         final base = await item.toFhirBase(resolver);
-        // (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final conditionResult = fhirPathEngine.evaluateToBoolean(
           '',
           null,
@@ -568,7 +566,6 @@ class FhirMapEngine {
 
       for (final item in items) {
         final base = await item.toFhirBase(resolver);
-        // (await item.preprocessElementNodeAsync(resolver)) as FhirBase;
         final checkResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
@@ -716,6 +713,7 @@ class FhirMapEngine {
         value = await dest.setProperty(target.element!.value!, value, resolver);
         dest = dest.updatePaths(dest.location!, dest.objectLocation!);
       }
+      // print('variables: ${vars.summary()}');
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared
       if (target.listMode?.contains(FhirCode('share')) ?? false) {
