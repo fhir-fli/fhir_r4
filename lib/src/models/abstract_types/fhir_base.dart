@@ -261,4 +261,7 @@ abstract class FhirBase {
 
   /// Subclasses must implement the clone method.
   FhirBase clone();
+
+  /// Returns an Object cast as a Type if it is that type.
+  T? isAs<T extends FhirBase>() => this is T ? this as T : null;
 }

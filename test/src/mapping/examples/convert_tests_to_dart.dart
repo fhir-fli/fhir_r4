@@ -57,8 +57,6 @@ Future<void> processDirectory(
   if (directory.existsSync()) {
     for (final jsonFile in directory.listSync()) {
       if (jsonFile is File && jsonFile.path.endsWith('.json')) {
-        print('Processing ${jsonFile.path}');
-
         // Read the JSON file
         final jsonContent = await jsonFile.readAsString();
         final jsonMap = jsonDecode(jsonContent) as Map<String, dynamic>;
@@ -108,8 +106,6 @@ Future<void> processSourceDirectory(
   if (directory.existsSync()) {
     for (final jsonFile in directory.listSync()) {
       if (jsonFile is File && jsonFile.path.endsWith('.json')) {
-        print('Processing ${type ?? 'source'} ${jsonFile.path}');
-
         // Read the JSON file as a map
         final jsonContent = await jsonFile.readAsString();
         final jsonMap = jsonDecode(jsonContent) as Map<String, dynamic>;

@@ -8,6 +8,19 @@ const defHighTimezone = '-12:00';
 
 /// Extensions for the [String] class
 extension StringExtensionForFHIR on String {
+  /// Returns a string as lower snake case
+  String toLowerSnakeCase() {
+    return replaceAllMapped(
+      RegExp('([a-z0-9])([A-Z])'),
+      (match) => '${match[1]}_${match[2]}',
+    )
+        .replaceAll(
+          RegExp(r'[\s-]+'),
+          '_',
+        ) // Replace spaces and hyphens with underscores
+        .toLowerCase();
+  }
+
   /// Returns true if the string matches another string ignoring case
   bool equalsIgnoreCase(String? anotherString) {
     return this == anotherString ||
@@ -923,6 +936,29 @@ extension StringExtensionForFHIR on String {
       'timing',
     }.contains(toLowerCase());
   }
+
+  /// Returns `true` if the [String] represents a [CanonicalResource].
+  bool get isCanonicalResource => <String>[
+        'activitydefinition',
+        'capabilitystatement',
+        'codesystem',
+        'conceptmap',
+        'eventdefinition',
+        'graphdefinition',
+        'implementationguide',
+        'library',
+        'measure',
+        'messagedefinition',
+        'operationdefinition',
+        'plandefinition',
+        'questionnaire',
+        'searchparameter',
+        'structuredefinition',
+        'structuremap',
+        'subscriptiontopic',
+        'terminologycapabilities',
+        'valueset',
+      ].contains(toLowerCase());
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isFhirResourceType =>
