@@ -703,7 +703,9 @@ class OrganizationAffiliation extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        participatingOrganization, o.participatingOrganization)) {
+      participatingOrganization,
+      o.participatingOrganization,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(

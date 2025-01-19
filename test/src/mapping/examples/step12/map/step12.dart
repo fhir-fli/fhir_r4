@@ -67,6 +67,7 @@ final structureMapStep12 = StructureMap.fromJson({
                     }
                   ],
                   "documentation":
+                      // ignore: lines_longer_than_80_chars
                       "value for az2. Note that this refers to a previous context in the source\nvalue for az3",
                 },
                 {

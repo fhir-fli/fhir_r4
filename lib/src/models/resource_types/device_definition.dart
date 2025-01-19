@@ -1011,7 +1011,9 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        physicalCharacteristics, o.physicalCharacteristics)) {
+      physicalCharacteristics,
+      o.physicalCharacteristics,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

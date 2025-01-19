@@ -1329,11 +1329,6 @@ void testNoArgFxns() {
       ]);
       node =
           testEngine.parse('Patient.address[1].period.extension.descendants()');
-      testEngine
-          .evaluate(patient3, node)
-          .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson())
-          .toList()
-          .forEach(print);
       expect(
           testEngine
               .evaluate(patient3, node)

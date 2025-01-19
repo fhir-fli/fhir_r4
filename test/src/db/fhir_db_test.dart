@@ -576,8 +576,8 @@ Future<bool> compareTwoResources(
     resourceType: originalResource.resourceType,
     id: originalResource.id!.value!,
   );
-  final Map<String, dynamic> resource1Json = originalResource.toJson();
-  final Map<String, dynamic>? resource2json = dbResource?.toJson();
+  final resource1Json = originalResource.toJson();
+  final resource2json = dbResource?.toJson();
   resource1Json.remove('meta');
   resource2json?.remove('meta');
   if (!(const DeepCollectionEquality()).equals(resource1Json, resource2json)) {

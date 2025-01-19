@@ -312,8 +312,6 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
   }
 
   int? _compareWithPrecision(FhirDateTimeBase lhs, FhirDateTimeBase rhs) {
-    print(lhs);
-    print(rhs);
     if (lhs.year != null || rhs.year != null) {
       if (lhs.year == null || rhs.year == null) {
         return null;

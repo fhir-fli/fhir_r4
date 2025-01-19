@@ -2788,7 +2788,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        administrationInstruction, o.administrationInstruction)) {
+      administrationInstruction,
+      o.administrationInstruction,
+    )) {
       return false;
     }
     return true;

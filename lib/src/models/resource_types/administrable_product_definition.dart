@@ -1461,7 +1461,9 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
+      maxDosePerTreatmentPeriod,
+      o.maxDosePerTreatmentPeriod,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -1492,6 +1494,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
+              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies',
         );
 
@@ -1797,6 +1800,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
+              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod',
         );
 
@@ -1805,6 +1809,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     const objectPath =
+        // ignore: lines_longer_than_80_chars
         'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod';
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: JsonParser.parsePrimitive<FhirString>(

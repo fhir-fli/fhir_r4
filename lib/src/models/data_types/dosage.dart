@@ -610,7 +610,9 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerAdministration, o.maxDosePerAdministration)) {
+      maxDosePerAdministration,
+      o.maxDosePerAdministration,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {

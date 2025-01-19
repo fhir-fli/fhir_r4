@@ -314,6 +314,7 @@ class Node {
     final indent = '  ' * depth;
 
     // Print the current node's basic details
+    // ignore: no_runtimetype_tostring
     stringBuffer.writeln('$indent$runtimeType - Type: $type, Path: $path');
 
     // Handle specific node types

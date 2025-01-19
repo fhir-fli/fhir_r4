@@ -28,7 +28,7 @@ class ICoding {
 
     if (b is FhirCode) {
       // TODO(Dokotela): Implement this
-      // if (property.getDefinition().getBinding().getStrength() 
+      // if (property.getDefinition().getBinding().getStrength()
       // != BindingStrength.REQUIRED)
       //   return null;
       // final c = ICodingImpl(true, true, false, false);
@@ -37,7 +37,7 @@ class ICoding {
       // .expandVS(property.getDefinition().getBinding(), true, false);
       // if (vse.getValueset() == null)
       //   return null;
-      // for (final ValueSetExpansionContainsComponent cc in 
+      // for (final ValueSetExpansionContainsComponent cc in
       // vse.getValueset().getExpansion().getContains()) {
       //   if (cc.getCode().equals(c.code)) {
       //     c.system = cc.getSystem();

@@ -6442,6 +6442,7 @@ class CitationDateOfPublication extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
+              // ignore: lines_longer_than_80_chars
               'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication',
         );
 
@@ -6450,6 +6451,7 @@ class CitationDateOfPublication extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     const objectPath =
+        // ignore: lines_longer_than_80_chars
         'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication';
     return CitationDateOfPublication(
       id: JsonParser.parsePrimitive<FhirString>(
@@ -9088,6 +9090,7 @@ class CitationContributionInstance extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
+              // ignore: lines_longer_than_80_chars
               'Citation.citedArtifact.contributorship.entry.contributionInstance',
         );
 
