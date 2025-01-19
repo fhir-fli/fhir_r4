@@ -28,14 +28,17 @@ class ICoding {
 
     if (b is FhirCode) {
       // TODO(Dokotela): Implement this
-      // if (property.getDefinition().getBinding().getStrength() != BindingStrength.REQUIRED)
+      // if (property.getDefinition().getBinding().getStrength() 
+      // != BindingStrength.REQUIRED)
       //   return null;
       // final c = ICodingImpl(true, true, false, false);
       // c.code = primitiveValue();
-      // final var vse = property.getContext().expandVS(property.getDefinition().getBinding(), true, false);
+      // final var vse = property.getContext()
+      // .expandVS(property.getDefinition().getBinding(), true, false);
       // if (vse.getValueset() == null)
       //   return null;
-      // for (final ValueSetExpansionContainsComponent cc in vse.getValueset().getExpansion().getContains()) {
+      // for (final ValueSetExpansionContainsComponent cc in 
+      // vse.getValueset().getExpansion().getContains()) {
       //   if (cc.getCode().equals(c.code)) {
       //     c.system = cc.getSystem();
       //     if (cc.hasVersion()) {

@@ -32,6 +32,7 @@ final structureMapStep14 = StructureMap.fromJson({
     }
   ],
   "description":
+      // ignore: lines_longer_than_80_chars
       "A StructureMap instance that represents the resource that transforms specific questions and answers from the PRAPARE questionnaire represented in LOINC (code 93025-5) into their corresponding Observations and derived Conditions (health concerns)",
   "jurisdiction": [
     {
@@ -3609,7 +3610,7 @@ final structureMapStep14 = StructureMap.fromJson({
             {
               "context": "answerItem",
               "element": "answer",
-              "variable": "answer"
+              "variable": "answer",
             },
           ],
           "target": [

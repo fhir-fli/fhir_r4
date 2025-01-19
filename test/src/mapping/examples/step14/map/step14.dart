@@ -32,6 +32,7 @@ final structureMapStep14 = StructureMap.fromJson({
     }
   ],
   "description":
+      // ignore: lines_longer_than_80_chars
       "A StructureMap instance that represents the resource that transforms a specific question and answer from the LOINC Hunger Vital Sign [HVS] questionnaire (LOINC code 88121-9) into a corresponding Observation (SDOHCC Observation response Hunger Vital Sign Q3 Example) and derived Condition (SDOHCC Condition Food Insecurity Example)",
   "jurisdiction": [
     {
@@ -261,6 +262,7 @@ final structureMapStep14 = StructureMap.fromJson({
               "parameter": [
                 {
                   "valueString":
+                      // ignore: lines_longer_than_80_chars
                       "SDOHCC-ObservationResponseHungerVitalSignQuestion3Example",
                 }
               ],
@@ -509,7 +511,7 @@ final structureMapStep14 = StructureMap.fromJson({
             {
               "context": "answerItem",
               "element": "answer",
-              "variable": "answer"
+              "variable": "answer",
             },
           ],
           "target": [
