@@ -318,6 +318,7 @@ class CodeInValueSetResult {
 }
 
 /// A value set expander
+// ignore: one_member_abstracts
 abstract class ValueSetExpander {
   /// Expand a value set
   Future<ValueSetExpansionOutcome> expand(

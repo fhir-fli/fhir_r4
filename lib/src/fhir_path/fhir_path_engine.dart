@@ -2222,7 +2222,6 @@ class FHIRPathEngine {
           default:
             // Ignore the backslash for unrecognized escape sequences
             buffer.write(s[i]);
-            break;
         }
       } else {
         buffer.write(ch);

@@ -964,9 +964,12 @@ abstract class TypeConvertor {
     //   } catch (IOException e) {
     //     throw FHIRException(message: e);
     //   }
-    // } else {throw  FHIRException(message: 'Unable to convert a ${b.fhirType}  to XHtml'); }
+    // } else {
+    //throw  FHIRException(
+    //message: 'Unable to convert a ${b.fhirType}  to XHtml'); }
   }
 
+  /// Converts a [FhirBase] to [UsageContext], if possible
   String? castToXhtmlString(FhirBase? b) {
     if (b == null) {
       return null;
@@ -982,6 +985,8 @@ abstract class TypeConvertor {
     //   }
     // } else if (b is FhirString) {
     //   return FhirString b.asStringValue();
-    // } else {throw  FHIRException(message: 'Unable to convert a ${b.fhirType}  to XHtml string'); }
+    // } else {
+    // throw  FHIRException(
+    // message: 'Unable to convert a ${b.fhirType}  to XHtml string'); }
   }
 }

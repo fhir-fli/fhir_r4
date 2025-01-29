@@ -1,6 +1,8 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
+/// Extension on [Map<String, dynamic] to check if it is a resource.
 extension IsResource on Map<String, dynamic> {
+  /// Returns true if the map is a resource.
   bool isResource() {
     final type = this['resourceType'] as String?;
     if (type == null) {
@@ -12,7 +14,9 @@ extension IsResource on Map<String, dynamic> {
   }
 }
 
+/// Extension on [Map<String, dynamic] to check if it is a bundle.
 extension FhirBaseChildren on FhirBase {
+  /// Returns the children of the [FhirBase] as a map.
   Future<ElementNode> toTypedElement(DefinitionResolver resolver) async =>
       this is PrimitiveType
           ? LeafNode(

@@ -537,7 +537,7 @@ class WorkerContext {
         cached.add(cs.url!.primitiveValue!);
         cache = true;
       }
-      // TODO: handle supplements
+      // TODO(Dokotela): handle supplements
     }
     return (cache, pin);
   }
@@ -576,7 +576,6 @@ class WorkerContext {
                 errorClass = TerminologyServiceErrorClass.valueSetUnsupported;
               default:
                 errorClass = TerminologyServiceErrorClass.unknown;
-                break;
             }
           } catch (e) {
             // Handle exceptions gracefully

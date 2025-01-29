@@ -565,6 +565,7 @@ class ValidationContextCarrier {
 
 /// Interface for a resource loader in the validation context.
 /// Allows partially loaded resources to be fully resolved when needed.
+// ignore: one_member_abstracts
 abstract class IValidationContextResourceLoader {
   /// Load a contained resource by its ID and type.
   Resource? loadContainedResource({
