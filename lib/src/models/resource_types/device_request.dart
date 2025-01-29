@@ -395,6 +395,12 @@ class DeviceRequest extends DomainResource {
   /// The details of the device to be used.
   final CodeXDeviceRequest codeX;
 
+  /// Getter for [codeReference] as a Reference
+  Reference? get codeReference => codeX.isAs<Reference>();
+
+  /// Getter for [codeCodeableConcept] as a CodeableConcept
+  CodeableConcept? get codeCodeableConcept => codeX.isAs<CodeableConcept>();
+
   /// [parameter]
   /// Specific parameters for the ordered item. For example, the prism value
   /// for lenses.
@@ -415,6 +421,15 @@ class DeviceRequest extends DomainResource {
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
   final OccurrenceXDeviceRequest? occurrenceX;
+
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -1242,6 +1257,18 @@ class DeviceRequestParameter extends BackboneElement {
   /// [valueX]
   /// The value of the device detail.
   final ValueXDeviceRequestParameter? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX?.isAs<Range>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

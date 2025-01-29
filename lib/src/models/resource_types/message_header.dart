@@ -232,6 +232,12 @@ class MessageHeader extends DomainResource {
   /// uri to the EventDefinition.
   final EventXMessageHeader eventX;
 
+  /// Getter for [eventCoding] as a Coding
+  Coding? get eventCoding => eventX.isAs<Coding>();
+
+  /// Getter for [eventUri] as a FhirUri
+  FhirUri? get eventUri => eventX.isAs<FhirUri>();
+
   /// [destination]
   /// The destination application which the message is intended for.
   final List<MessageHeaderDestination>? destination;

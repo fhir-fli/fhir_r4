@@ -350,6 +350,12 @@ class EvidenceReport extends DomainResource {
   /// Citation Resource or display of suggested citation for this report.
   final CiteAsXEvidenceReport? citeAsX;
 
+  /// Getter for [citeAsReference] as a Reference
+  Reference? get citeAsReference => citeAsX?.isAs<Reference>();
+
+  /// Getter for [citeAsMarkdown] as a FhirMarkdown
+  FhirMarkdown? get citeAsMarkdown => citeAsX?.isAs<FhirMarkdown>();
+
   /// [type]
   /// Specifies the kind of report, such as grouping of classifiers, search
   /// results, or human-compiled expression.
@@ -1415,6 +1421,21 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// Characteristic value.
   final ValueXEvidenceReportCharacteristic valueX;
 
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX.isAs<Range>();
+
   /// [exclude]
   /// Is used to express not the characteristic.
   final FhirBoolean? exclude;
@@ -1764,6 +1785,12 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// [targetX]
   /// The target composition/document of this relationship.
   final TargetXEvidenceReportRelatesTo targetX;
+
+  /// Getter for [targetIdentifier] as a Identifier
+  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+
+  /// Getter for [targetReference] as a Reference
+  Reference? get targetReference => targetX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

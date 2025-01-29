@@ -1004,6 +1004,13 @@ class SubstanceIngredient extends BackboneElement {
   /// [substanceX]
   /// Another substance that is a component of this substance.
   final SubstanceXSubstanceIngredient substanceX;
+
+  /// Getter for [substanceCodeableConcept] as a CodeableConcept
+  CodeableConcept? get substanceCodeableConcept =>
+      substanceX.isAs<CodeableConcept>();
+
+  /// Getter for [substanceReference] as a Reference
+  Reference? get substanceReference => substanceX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

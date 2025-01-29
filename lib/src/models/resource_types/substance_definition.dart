@@ -1158,6 +1158,12 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// Quantitative value for this moiety.
   final AmountXSubstanceDefinitionMoiety? amountX;
 
+  /// Getter for [amountQuantity] as a Quantity
+  Quantity? get amountQuantity => amountX?.isAs<Quantity>();
+
+  /// Getter for [amountString] as a FhirString
+  FhirString? get amountString => amountX?.isAs<FhirString>();
+
   /// [measurementType]
   /// The measurement type of the quantitative value. In capturing the actual
   /// relative amounts of substances or molecular fragments it may be
@@ -1555,6 +1561,21 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// [valueX]
   /// A value for the property.
   final ValueXSubstanceDefinitionProperty? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2523,9 +2544,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      molecularFormulaByMoiety,
-      o.molecularFormulaByMoiety,
-    )) {
+        molecularFormulaByMoiety, o.molecularFormulaByMoiety)) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -4353,6 +4372,14 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   final SubstanceDefinitionXSubstanceDefinitionRelationship?
       substanceDefinitionX;
 
+  /// Getter for [substanceDefinitionReference] as a Reference
+  Reference? get substanceDefinitionReference =>
+      substanceDefinitionX?.isAs<Reference>();
+
+  /// Getter for [substanceDefinitionCodeableConcept] as a CodeableConcept
+  CodeableConcept? get substanceDefinitionCodeableConcept =>
+      substanceDefinitionX?.isAs<CodeableConcept>();
+
   /// [type]
   /// For example "salt to parent", "active moiety", "starting material",
   /// "polymorph", "impurity of".
@@ -4369,6 +4396,15 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// salt of a substance has some percentage of the active substance in
   /// relation to some other.
   final AmountXSubstanceDefinitionRelationship? amountX;
+
+  /// Getter for [amountQuantity] as a Quantity
+  Quantity? get amountQuantity => amountX?.isAs<Quantity>();
+
+  /// Getter for [amountRatio] as a Ratio
+  Ratio? get amountRatio => amountX?.isAs<Ratio>();
+
+  /// Getter for [amountString] as a FhirString
+  FhirString? get amountString => amountX?.isAs<FhirString>();
 
   /// [ratioHighLimitAmount]
   /// For use when the numeric has an uncertain range.
@@ -4417,9 +4453,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-        'substanceDefinition${fhirType.capitalize()}',
-        substanceDefinitionX,
-      );
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
     addField('type', type);

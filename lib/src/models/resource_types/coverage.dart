@@ -1286,6 +1286,12 @@ class CoverageCostToBeneficiary extends BackboneElement {
   /// The amount due from the patient for the cost category.
   final ValueXCoverageCostToBeneficiary valueX;
 
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueMoney] as a Money
+  Money? get valueMoney => valueX.isAs<Money>();
+
   /// [exception]
   /// A suite of codes indicating exceptions or reductions to patient costs
   /// and their effective periods.

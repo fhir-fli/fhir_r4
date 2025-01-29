@@ -920,6 +920,12 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Relevant date for this case.
   final DateXRegulatedAuthorizationCase? dateX;
 
+  /// Getter for [datePeriod] as a Period
+  Period? get datePeriod => dateX?.isAs<Period>();
+
+  /// Getter for [dateDateTime] as a FhirDateTime
+  FhirDateTime? get dateDateTime => dateX?.isAs<FhirDateTime>();
+
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
   /// an assessing case. Multiple applications may occur over time, with more

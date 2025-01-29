@@ -1053,9 +1053,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      diseaseSymptomProcedure,
-      o.diseaseSymptomProcedure,
-    )) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1553,6 +1551,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// (from 7 days until less than 6 months).
   final DurationXClinicalUseDefinitionIndication? durationX;
 
+  /// Getter for [durationRange] as a Range
+  Range? get durationRange => durationX?.isAs<Range>();
+
+  /// Getter for [durationString] as a FhirString
+  FhirString? get durationString => durationX?.isAs<FhirString>();
+
   /// [undesirableEffect]
   /// An unwanted side effect or negative outcome that may happen if you use
   /// the drug (or other subject of this resource) for this indication.
@@ -1809,9 +1813,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      diseaseSymptomProcedure,
-      o.diseaseSymptomProcedure,
-    )) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -2340,6 +2342,12 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// [itemX]
   /// The specific medication, food or laboratory test that interacts.
   final ItemXClinicalUseDefinitionInteractant itemX;
+
+  /// Getter for [itemReference] as a Reference
+  Reference? get itemReference => itemX.isAs<Reference>();
+
+  /// Getter for [itemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get itemCodeableConcept => itemX.isAs<CodeableConcept>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

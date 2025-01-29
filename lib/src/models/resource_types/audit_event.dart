@@ -2448,6 +2448,12 @@ class AuditEventDetail extends BackboneElement {
   /// [valueX]
   /// The value of the extra detail.
   final ValueXAuditEventDetail valueX;
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get valueBase64Binary => valueX.isAs<FhirBase64Binary>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

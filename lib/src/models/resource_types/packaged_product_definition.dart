@@ -1339,8 +1339,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// [package]
   /// Allows containers (and parts of containers) parwithin containers, still
   /// a single packaged product. See also
-  /// PackagedProductDefinition.package.containedItem
-  /// .item(PackagedProductDefinition).
+  /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
   final List<PackagedProductDefinitionPackage>? package;
   @override
   Map<String, dynamic> toJson() {
@@ -1825,6 +1824,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// used.
   final PeriodXPackagedProductDefinitionShelfLifeStorage? periodX;
 
+  /// Getter for [periodDuration] as a FhirDuration
+  FhirDuration? get periodDuration => periodX?.isAs<FhirDuration>();
+
+  /// Getter for [periodString] as a FhirString
+  FhirString? get periodString => periodX?.isAs<FhirString>();
+
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary. The controlled term and the
@@ -2160,6 +2165,21 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// [valueX]
   /// A value for the characteristic.
   final ValueXPackagedProductDefinitionProperty? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

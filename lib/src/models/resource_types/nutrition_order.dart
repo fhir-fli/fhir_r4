@@ -2788,9 +2788,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      administrationInstruction,
-      o.administrationInstruction,
-    )) {
+        administrationInstruction, o.administrationInstruction)) {
       return false;
     }
     return true;
@@ -2930,6 +2928,12 @@ class NutritionOrderAdministration extends BackboneElement {
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
   final RateXNutritionOrderAdministration? rateX;
+
+  /// Getter for [rateQuantity] as a Quantity
+  Quantity? get rateQuantity => rateX?.isAs<Quantity>();
+
+  /// Getter for [rateRatio] as a Ratio
+  Ratio? get rateRatio => rateX?.isAs<Ratio>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

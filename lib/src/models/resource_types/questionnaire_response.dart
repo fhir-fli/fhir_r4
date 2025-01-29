@@ -1188,6 +1188,42 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// question.
   final ValueXQuestionnaireResponseAnswer? valueX;
 
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX?.isAs<FhirDecimal>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX?.isAs<FhirTime>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueUri] as a FhirUri
+  FhirUri? get valueUri => valueX?.isAs<FhirUri>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
+
+  /// Getter for [valueCoding] as a Coding
+  Coding? get valueCoding => valueX?.isAs<Coding>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX?.isAs<Reference>();
+
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
   final List<QuestionnaireResponseItem>? item;

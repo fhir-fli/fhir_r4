@@ -284,6 +284,15 @@ class GuidanceResponse extends DomainResource {
   /// that was requested.
   final ModuleXGuidanceResponse moduleX;
 
+  /// Getter for [moduleUri] as a FhirUri
+  FhirUri? get moduleUri => moduleX.isAs<FhirUri>();
+
+  /// Getter for [moduleCanonical] as a FhirCanonical
+  FhirCanonical? get moduleCanonical => moduleX.isAs<FhirCanonical>();
+
+  /// Getter for [moduleCodeableConcept] as a CodeableConcept
+  CodeableConcept? get moduleCodeableConcept => moduleX.isAs<CodeableConcept>();
+
   /// [status]
   /// The status of the response. If the evaluation is completed
   /// successfully, the status will indicate success. However, in order to

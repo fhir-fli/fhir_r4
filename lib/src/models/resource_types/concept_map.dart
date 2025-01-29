@@ -313,12 +313,24 @@ class ConceptMap extends CanonicalResource {
   /// being mapped and provides context for the mappings.
   final SourceXConceptMap? sourceX;
 
+  /// Getter for [sourceUri] as a FhirUri
+  FhirUri? get sourceUri => sourceX?.isAs<FhirUri>();
+
+  /// Getter for [sourceCanonical] as a FhirCanonical
+  FhirCanonical? get sourceCanonical => sourceX?.isAs<FhirCanonical>();
+
   /// [targetX]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
   final TargetXConceptMap? targetX;
+
+  /// Getter for [targetUri] as a FhirUri
+  FhirUri? get targetUri => targetX?.isAs<FhirUri>();
+
+  /// Getter for [targetCanonical] as a FhirCanonical
+  FhirCanonical? get targetCanonical => targetX?.isAs<FhirCanonical>();
 
   /// [group]
   /// A group of mappings that all have the same source and target system.

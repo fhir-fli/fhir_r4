@@ -1094,9 +1094,7 @@ class EvidenceVariable extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      characteristicCombination,
-      o.characteristicCombination,
-    )) {
+        characteristicCombination, o.characteristicCombination)) {
       return false;
     }
     if (!listEquals<EvidenceVariableCharacteristic>(
@@ -1276,6 +1274,20 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
   /// diagnosis onset in the last year).
   final DefinitionXEvidenceVariableCharacteristic definitionX;
+
+  /// Getter for [definitionReference] as a Reference
+  Reference? get definitionReference => definitionX.isAs<Reference>();
+
+  /// Getter for [definitionCanonical] as a FhirCanonical
+  FhirCanonical? get definitionCanonical => definitionX.isAs<FhirCanonical>();
+
+  /// Getter for [definitionCodeableConcept] as a CodeableConcept
+  CodeableConcept? get definitionCodeableConcept =>
+      definitionX.isAs<CodeableConcept>();
+
+  /// Getter for [definitionExpression] as a FhirExpression
+  FhirExpression? get definitionExpression =>
+      definitionX.isAs<FhirExpression>();
 
   /// [method]
   /// Method used for describing characteristic.
@@ -2035,6 +2047,15 @@ class EvidenceVariableCategory extends BackboneElement {
   /// [valueX]
   /// Value or set of values that define the grouping.
   final ValueXEvidenceVariableCategory? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX?.isAs<Range>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

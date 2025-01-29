@@ -357,6 +357,13 @@ class MedicationAdministration extends DomainResource {
   /// list of medications.
   final MedicationXMedicationAdministration medicationX;
 
+  /// Getter for [medicationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get medicationCodeableConcept =>
+      medicationX.isAs<CodeableConcept>();
+
+  /// Getter for [medicationReference] as a Reference
+  Reference? get medicationReference => medicationX.isAs<Reference>();
+
   /// [subject]
   /// The person or animal or group receiving the medication.
   final Reference subject;
@@ -377,6 +384,12 @@ class MedicationAdministration extends DomainResource {
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
   final EffectiveXMedicationAdministration effectiveX;
+
+  /// Getter for [effectiveDateTime] as a FhirDateTime
+  FhirDateTime? get effectiveDateTime => effectiveX.isAs<FhirDateTime>();
+
+  /// Getter for [effectivePeriod] as a Period
+  Period? get effectivePeriod => effectiveX.isAs<Period>();
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
@@ -1459,6 +1472,12 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
   final RateXMedicationAdministrationDosage? rateX;
+
+  /// Getter for [rateRatio] as a Ratio
+  Ratio? get rateRatio => rateX?.isAs<Ratio>();
+
+  /// Getter for [rateQuantity] as a Quantity
+  Quantity? get rateQuantity => rateX?.isAs<Quantity>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -351,6 +351,12 @@ class ClinicalImpression extends DomainResource {
   /// The point in time or period over which the subject was assessed.
   final EffectiveXClinicalImpression? effectiveX;
 
+  /// Getter for [effectiveDateTime] as a FhirDateTime
+  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [effectivePeriod] as a Period
+  Period? get effectivePeriod => effectiveX?.isAs<Period>();
+
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
   final FhirDateTime? date;

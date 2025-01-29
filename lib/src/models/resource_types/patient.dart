@@ -324,6 +324,12 @@ class Patient extends DomainResource {
   /// Indicates if the individual is deceased or not.
   final DeceasedXPatient? deceasedX;
 
+  /// Getter for [deceasedBoolean] as a FhirBoolean
+  FhirBoolean? get deceasedBoolean => deceasedX?.isAs<FhirBoolean>();
+
+  /// Getter for [deceasedDateTime] as a FhirDateTime
+  FhirDateTime? get deceasedDateTime => deceasedX?.isAs<FhirDateTime>();
+
   /// [address]
   /// An address for the individual.
   final List<Address>? address;
@@ -336,6 +342,12 @@ class Patient extends DomainResource {
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
   final MultipleBirthXPatient? multipleBirthX;
+
+  /// Getter for [multipleBirthBoolean] as a FhirBoolean
+  FhirBoolean? get multipleBirthBoolean => multipleBirthX?.isAs<FhirBoolean>();
+
+  /// Getter for [multipleBirthInteger] as a FhirInteger
+  FhirInteger? get multipleBirthInteger => multipleBirthX?.isAs<FhirInteger>();
 
   /// [photo]
   /// Image of the patient.

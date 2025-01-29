@@ -2834,9 +2834,25 @@ class ClaimResponseAddItem extends BackboneElement {
   /// or completed.
   final ServicedXClaimResponseAddItem? servicedX;
 
+  /// Getter for [servicedDate] as a FhirDate
+  FhirDate? get servicedDate => servicedX?.isAs<FhirDate>();
+
+  /// Getter for [servicedPeriod] as a Period
+  Period? get servicedPeriod => servicedX?.isAs<Period>();
+
   /// [locationX]
   /// Where the product or service was provided.
   final LocationXClaimResponseAddItem? locationX;
+
+  /// Getter for [locationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get locationCodeableConcept =>
+      locationX?.isAs<CodeableConcept>();
+
+  /// Getter for [locationAddress] as a Address
+  Address? get locationAddress => locationX?.isAs<Address>();
+
+  /// Getter for [locationReference] as a Reference
+  Reference? get locationReference => locationX?.isAs<Reference>();
 
   /// [quantity]
   /// The number of repetitions of a service or product.

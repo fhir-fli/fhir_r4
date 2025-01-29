@@ -317,6 +317,12 @@ class RiskAssessment extends DomainResource {
   /// The date (and possibly time) the risk assessment was performed.
   final OccurrenceXRiskAssessment? occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
   /// [condition]
   /// For assessments or prognosis specific to a particular condition,
   /// indicates the condition being assessed.
@@ -1006,6 +1012,12 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// Indicates how likely the outcome is (in the specified timeframe).
   final ProbabilityXRiskAssessmentPrediction? probabilityX;
 
+  /// Getter for [probabilityDecimal] as a FhirDecimal
+  FhirDecimal? get probabilityDecimal => probabilityX?.isAs<FhirDecimal>();
+
+  /// Getter for [probabilityRange] as a Range
+  Range? get probabilityRange => probabilityX?.isAs<Range>();
+
   /// [qualitativeRisk]
   /// Indicates how likely the outcome is (in the specified timeframe),
   /// expressed as a qualitative value (e.g. low, medium, or high).
@@ -1022,6 +1034,12 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
   final WhenXRiskAssessmentPrediction? whenX;
+
+  /// Getter for [whenPeriod] as a Period
+  Period? get whenPeriod => whenX?.isAs<Period>();
+
+  /// Getter for [whenRange] as a Range
+  Range? get whenRange => whenX?.isAs<Range>();
 
   /// [rationale]
   /// Additional information explaining the basis for the prediction.

@@ -180,6 +180,13 @@ class DataRequirement extends DataType
   /// provided, a Patient subject is assumed.
   final SubjectXDataRequirement? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
   /// knowledge module and must be supported by the consumer in order to
@@ -973,6 +980,15 @@ class DataRequirementDateFilter extends Element {
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
   final ValueXDataRequirementDateFilter? valueX;
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+
+  /// Getter for [valuePeriod] as a Period
+  Period? get valuePeriod => valueX?.isAs<Period>();
+
+  /// Getter for [valueDuration] as a FhirDuration
+  FhirDuration? get valueDuration => valueX?.isAs<FhirDuration>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

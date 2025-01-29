@@ -459,6 +459,21 @@ class Procedure extends DomainResource {
   /// be captured.
   final PerformedXProcedure? performedX;
 
+  /// Getter for [performedDateTime] as a FhirDateTime
+  FhirDateTime? get performedDateTime => performedX?.isAs<FhirDateTime>();
+
+  /// Getter for [performedPeriod] as a Period
+  Period? get performedPeriod => performedX?.isAs<Period>();
+
+  /// Getter for [performedString] as a FhirString
+  FhirString? get performedString => performedX?.isAs<FhirString>();
+
+  /// Getter for [performedAge] as a Age
+  Age? get performedAge => performedX?.isAs<Age>();
+
+  /// Getter for [performedRange] as a Range
+  Range? get performedRange => performedX?.isAs<Range>();
+
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.

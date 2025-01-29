@@ -264,6 +264,12 @@ class DetectedIssue extends DomainResource {
   /// The date or period when the detected issue was initially identified.
   final IdentifiedXDetectedIssue? identifiedX;
 
+  /// Getter for [identifiedDateTime] as a FhirDateTime
+  FhirDateTime? get identifiedDateTime => identifiedX?.isAs<FhirDateTime>();
+
+  /// Getter for [identifiedPeriod] as a Period
+  Period? get identifiedPeriod => identifiedX?.isAs<Period>();
+
   /// [author]
   /// Individual or device responsible for the issue being raised. For
   /// example, a decision support application or a pharmacist conducting a

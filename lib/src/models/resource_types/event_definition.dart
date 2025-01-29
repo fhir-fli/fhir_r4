@@ -402,6 +402,13 @@ class EventDefinition extends CanonicalResource {
   /// event definition.
   final SubjectXEventDefinition? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
   /// [purpose]
   /// Explanation of why this event definition is needed and why it has been
   /// designed as it has.

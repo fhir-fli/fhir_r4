@@ -334,12 +334,42 @@ class Condition extends DomainResource {
   /// opinion of the clinician.
   final OnsetXCondition? onsetX;
 
+  /// Getter for [onsetDateTime] as a FhirDateTime
+  FhirDateTime? get onsetDateTime => onsetX?.isAs<FhirDateTime>();
+
+  /// Getter for [onsetAge] as a Age
+  Age? get onsetAge => onsetX?.isAs<Age>();
+
+  /// Getter for [onsetPeriod] as a Period
+  Period? get onsetPeriod => onsetX?.isAs<Period>();
+
+  /// Getter for [onsetRange] as a Range
+  Range? get onsetRange => onsetX?.isAs<Range>();
+
+  /// Getter for [onsetString] as a FhirString
+  FhirString? get onsetString => onsetX?.isAs<FhirString>();
+
   /// [abatementX]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
   final AbatementXCondition? abatementX;
+
+  /// Getter for [abatementDateTime] as a FhirDateTime
+  FhirDateTime? get abatementDateTime => abatementX?.isAs<FhirDateTime>();
+
+  /// Getter for [abatementAge] as a Age
+  Age? get abatementAge => abatementX?.isAs<Age>();
+
+  /// Getter for [abatementPeriod] as a Period
+  Period? get abatementPeriod => abatementX?.isAs<Period>();
+
+  /// Getter for [abatementRange] as a Range
+  Range? get abatementRange => abatementX?.isAs<Range>();
+
+  /// Getter for [abatementString] as a FhirString
+  FhirString? get abatementString => abatementX?.isAs<FhirString>();
 
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was

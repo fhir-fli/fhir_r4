@@ -743,9 +743,23 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// the next recommended dose).
   final DoseNumberXImmunizationRecommendationRecommendation? doseNumberX;
 
+  /// Getter for [doseNumberPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get doseNumberPositiveInt =>
+      doseNumberX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [doseNumberString] as a FhirString
+  FhirString? get doseNumberString => doseNumberX?.isAs<FhirString>();
+
   /// [seriesDosesX]
   /// The recommended number of doses to achieve immunity.
   final SeriesDosesXImmunizationRecommendationRecommendation? seriesDosesX;
+
+  /// Getter for [seriesDosesPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get seriesDosesPositiveInt =>
+      seriesDosesX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [seriesDosesString] as a FhirString
+  FhirString? get seriesDosesString => seriesDosesX?.isAs<FhirString>();
 
   /// [supportingImmunization]
   /// Immunization event history and/or evaluation that supports the status

@@ -440,6 +440,13 @@ class Library extends CanonicalResource {
   /// contents of the library.
   final SubjectXLibrary? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed
   /// as it has.

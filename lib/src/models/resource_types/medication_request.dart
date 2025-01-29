@@ -454,12 +454,25 @@ class MedicationRequest extends DomainResource {
   /// indicate the source of the report.
   final ReportedXMedicationRequest? reportedX;
 
+  /// Getter for [reportedBoolean] as a FhirBoolean
+  FhirBoolean? get reportedBoolean => reportedX?.isAs<FhirBoolean>();
+
+  /// Getter for [reportedReference] as a Reference
+  Reference? get reportedReference => reportedX?.isAs<Reference>();
+
   /// [medicationX]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
   final MedicationXMedicationRequest medicationX;
+
+  /// Getter for [medicationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get medicationCodeableConcept =>
+      medicationX.isAs<CodeableConcept>();
+
+  /// Getter for [medicationReference] as a Reference
+  Reference? get medicationReference => medicationX.isAs<Reference>();
 
   /// [subject]
   /// A link to a resource representing the person or set of individuals to
@@ -2199,6 +2212,13 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// True if the prescriber allows a different drug to be dispensed from
   /// what was prescribed.
   final AllowedXMedicationRequestSubstitution allowedX;
+
+  /// Getter for [allowedBoolean] as a FhirBoolean
+  FhirBoolean? get allowedBoolean => allowedX.isAs<FhirBoolean>();
+
+  /// Getter for [allowedCodeableConcept] as a CodeableConcept
+  CodeableConcept? get allowedCodeableConcept =>
+      allowedX.isAs<CodeableConcept>();
 
   /// [reason]
   /// Indicates the reason for the substitution, or why substitution must or

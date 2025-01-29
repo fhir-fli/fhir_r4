@@ -3103,6 +3103,27 @@ class ValueSetParameter extends BackboneElement {
   /// [valueX]
   /// The value of the parameter.
   final ValueXValueSetParameter? valueX;
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX?.isAs<FhirDecimal>();
+
+  /// Getter for [valueUri] as a FhirUri
+  FhirUri? get valueUri => valueX?.isAs<FhirUri>();
+
+  /// Getter for [valueCode] as a FhirCode
+  FhirCode? get valueCode => valueX?.isAs<FhirCode>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

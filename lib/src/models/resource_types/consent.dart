@@ -299,6 +299,12 @@ class Consent extends DomainResource {
   /// XDS) that stores the original consent document.
   final SourceXConsent? sourceX;
 
+  /// Getter for [sourceAttachment] as a Attachment
+  Attachment? get sourceAttachment => sourceX?.isAs<Attachment>();
+
+  /// Getter for [sourceReference] as a Reference
+  Reference? get sourceReference => sourceX?.isAs<Reference>();
+
   /// [policy]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,

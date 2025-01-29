@@ -775,6 +775,21 @@ class GroupCharacteristic extends BackboneElement {
   /// for members of the group.
   final ValueXGroupCharacteristic valueX;
 
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX.isAs<Range>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
+
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
   /// members of the group.

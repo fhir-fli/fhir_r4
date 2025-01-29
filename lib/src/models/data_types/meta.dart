@@ -161,8 +161,7 @@ class FhirMeta extends DataType
   /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
-  /// [StructureDefinition.url](structuredefinition-definitions.html
-  /// #StructureDefinition.url).
+  /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
   final List<FhirCanonical>? profile;
 
   /// [security]

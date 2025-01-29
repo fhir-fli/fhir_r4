@@ -280,6 +280,12 @@ class CoverageEligibilityResponse extends DomainResource {
   /// completed.
   final ServicedXCoverageEligibilityResponse? servicedX;
 
+  /// Getter for [servicedDate] as a FhirDate
+  FhirDate? get servicedDate => servicedX?.isAs<FhirDate>();
+
+  /// Getter for [servicedPeriod] as a Period
+  Period? get servicedPeriod => servicedX?.isAs<Period>();
+
   /// [created]
   /// The date this resource was created.
   final FhirDateTime created;
@@ -1898,9 +1904,27 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
   /// The quantity of the benefit which is permitted under the coverage.
   final AllowedXCoverageEligibilityResponseBenefit? allowedX;
 
+  /// Getter for [allowedUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get allowedUnsignedInt => allowedX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [allowedString] as a FhirString
+  FhirString? get allowedString => allowedX?.isAs<FhirString>();
+
+  /// Getter for [allowedMoney] as a Money
+  Money? get allowedMoney => allowedX?.isAs<Money>();
+
   /// [usedX]
   /// The quantity of the benefit which have been consumed to date.
   final UsedXCoverageEligibilityResponseBenefit? usedX;
+
+  /// Getter for [usedUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get usedUnsignedInt => usedX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [usedString] as a FhirString
+  FhirString? get usedString => usedX?.isAs<FhirString>();
+
+  /// Getter for [usedMoney] as a Money
+  Money? get usedMoney => usedX?.isAs<Money>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

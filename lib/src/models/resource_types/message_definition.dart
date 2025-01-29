@@ -374,6 +374,12 @@ class MessageDefinition extends CanonicalResource {
   /// Event code or link to the EventDefinition.
   final EventXMessageDefinition eventX;
 
+  /// Getter for [eventCoding] as a Coding
+  Coding? get eventCoding => eventX.isAs<Coding>();
+
+  /// Getter for [eventUri] as a FhirUri
+  FhirUri? get eventUri => eventX.isAs<FhirUri>();
+
   /// [category]
   /// The impact of the content of the message.
   final MessageSignificanceCategory? category;

@@ -483,6 +483,13 @@ class ResearchDefinition extends DomainResource {
   /// ResearchDefinition can be anything.
   final SubjectXResearchDefinition? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
   /// [date]
   /// The date (and optionally time) when the research definition was
   /// published. The date must change when the business version changes and

@@ -513,6 +513,15 @@ class ServiceRequest extends DomainResource {
   /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
   final QuantityXServiceRequest? quantityX;
 
+  /// Getter for [quantityQuantity] as a Quantity
+  Quantity? get quantityQuantity => quantityX?.isAs<Quantity>();
+
+  /// Getter for [quantityRatio] as a Ratio
+  Ratio? get quantityRatio => quantityX?.isAs<Ratio>();
+
+  /// Getter for [quantityRange] as a Range
+  Range? get quantityRange => quantityX?.isAs<Range>();
+
   /// [subject]
   /// On whom or what the service is to be performed. This is usually a human
   /// patient, but can also be requested on animals, groups of humans or
@@ -529,10 +538,26 @@ class ServiceRequest extends DomainResource {
   /// The date/time at which the requested service should occur.
   final OccurrenceXServiceRequest? occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+
   /// [asNeededX]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
   final AsNeededXServiceRequest? asNeededX;
+
+  /// Getter for [asNeededBoolean] as a FhirBoolean
+  FhirBoolean? get asNeededBoolean => asNeededX?.isAs<FhirBoolean>();
+
+  /// Getter for [asNeededCodeableConcept] as a CodeableConcept
+  CodeableConcept? get asNeededCodeableConcept =>
+      asNeededX?.isAs<CodeableConcept>();
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.

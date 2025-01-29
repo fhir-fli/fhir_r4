@@ -122,6 +122,18 @@ class UsageContext extends DataType
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
   final ValueXUsageContext valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX.isAs<Range>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -540,6 +540,12 @@ class Contract extends DomainResource {
   /// specific contractual objectives.
   final TopicXContract? topicX;
 
+  /// Getter for [topicCodeableConcept] as a CodeableConcept
+  CodeableConcept? get topicCodeableConcept => topicX?.isAs<CodeableConcept>();
+
+  /// Getter for [topicReference] as a Reference
+  Reference? get topicReference => topicX?.isAs<Reference>();
+
   /// [type]
   /// A high-level category for the legal instrument, whether constructed as
   /// a Contract definition, derivative, or instance in any legal state.
@@ -611,6 +617,13 @@ class Contract extends DomainResource {
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
   final LegallyBindingXContract? legallyBindingX;
+
+  /// Getter for [legallyBindingAttachment] as a Attachment
+  Attachment? get legallyBindingAttachment =>
+      legallyBindingX?.isAs<Attachment>();
+
+  /// Getter for [legallyBindingReference] as a Reference
+  Reference? get legallyBindingReference => legallyBindingX?.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2024,6 +2037,12 @@ class ContractTerm extends BackboneElement {
   /// [topicX]
   /// The entity that the term applies to.
   final TopicXContractTerm? topicX;
+
+  /// Getter for [topicCodeableConcept] as a CodeableConcept
+  CodeableConcept? get topicCodeableConcept => topicX?.isAs<CodeableConcept>();
+
+  /// Getter for [topicReference] as a Reference
+  Reference? get topicReference => topicX?.isAs<Reference>();
 
   /// [type]
   /// A legal clause or condition contained within a contract that requires
@@ -3756,6 +3775,42 @@ class ContractAnswer extends BackboneElement {
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
   final ValueXContractAnswer valueX;
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX.isAs<FhirDateTime>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueUri] as a FhirUri
+  FhirUri? get valueUri => valueX.isAs<FhirUri>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+
+  /// Getter for [valueCoding] as a Coding
+  Coding? get valueCoding => valueX.isAs<Coding>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5228,6 +5283,13 @@ class ContractValuedItem extends BackboneElement {
   /// Specific type of Contract Valued Item that may be priced.
   final EntityXContractValuedItem? entityX;
 
+  /// Getter for [entityCodeableConcept] as a CodeableConcept
+  CodeableConcept? get entityCodeableConcept =>
+      entityX?.isAs<CodeableConcept>();
+
+  /// Getter for [entityReference] as a Reference
+  Reference? get entityReference => entityX?.isAs<Reference>();
+
   /// [identifier]
   /// Identifies a Contract Valued Item instance.
   final Identifier? identifier;
@@ -5972,6 +6034,15 @@ class ContractAction extends BackboneElement {
   /// [occurrenceX]
   /// When action happens.
   final OccurrenceXContractAction? occurrenceX;
+
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
 
   /// [requester]
   /// Who or what initiated the action and has responsibility for its
@@ -7312,6 +7383,12 @@ class ContractFriendly extends BackboneElement {
   /// representation intended to enhance comprehension and ensure
   /// understandability.
   final ContentXContractFriendly contentX;
+
+  /// Getter for [contentAttachment] as a Attachment
+  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+
+  /// Getter for [contentReference] as a Reference
+  Reference? get contentReference => contentX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7589,6 +7666,12 @@ class ContractLegal extends BackboneElement {
   /// [contentX]
   /// Contract legal text in human renderable form.
   final ContentXContractLegal contentX;
+
+  /// Getter for [contentAttachment] as a Attachment
+  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+
+  /// Getter for [contentReference] as a Reference
+  Reference? get contentReference => contentX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7868,6 +7951,12 @@ class ContractRule extends BackboneElement {
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
   final ContentXContractRule contentX;
+
+  /// Getter for [contentAttachment] as a Attachment
+  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+
+  /// Getter for [contentReference] as a Reference
+  Reference? get contentReference => contentX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

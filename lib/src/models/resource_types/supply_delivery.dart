@@ -266,6 +266,15 @@ class SupplyDelivery extends DomainResource {
   /// The date or time(s) the activity occurred.
   final OccurrenceXSupplyDelivery? occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
   /// device.
@@ -813,6 +822,12 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// either a link to a resource representing the details of the item or a
   /// code that identifies the item from a known list.
   final ItemXSupplyDeliverySuppliedItem? itemX;
+
+  /// Getter for [itemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get itemCodeableConcept => itemX?.isAs<CodeableConcept>();
+
+  /// Getter for [itemReference] as a Reference
+  Reference? get itemReference => itemX?.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

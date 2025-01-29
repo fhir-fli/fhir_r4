@@ -127,6 +127,12 @@ class Population extends BackboneType {
   /// The age of the specific population.
   final AgeXPopulation? ageX;
 
+  /// Getter for [ageRange] as a Range
+  Range? get ageRange => ageX?.isAs<Range>();
+
+  /// Getter for [ageCodeableConcept] as a CodeableConcept
+  CodeableConcept? get ageCodeableConcept => ageX?.isAs<CodeableConcept>();
+
   /// [gender]
   /// The gender of the specific population.
   final CodeableConcept? gender;

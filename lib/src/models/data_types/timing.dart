@@ -553,6 +553,15 @@ class TimingRepeat extends Element {
   /// timing schedule.
   final BoundsXTimingRepeat? boundsX;
 
+  /// Getter for [boundsDuration] as a FhirDuration
+  FhirDuration? get boundsDuration => boundsX?.isAs<FhirDuration>();
+
+  /// Getter for [boundsRange] as a Range
+  Range? get boundsRange => boundsX?.isAs<Range>();
+
+  /// Getter for [boundsPeriod] as a Period
+  Period? get boundsPeriod => boundsX?.isAs<Period>();
+
   /// [count]
   /// A total count of the desired number of repetitions across the duration
   /// of the entire timing specification. If countMax is present, this

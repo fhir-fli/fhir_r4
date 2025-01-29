@@ -568,6 +568,16 @@ class ActivityDefinition extends CanonicalResource {
   /// PackagedProductDefinition resource.
   final SubjectXActivityDefinition? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
+  /// Getter for [subjectCanonical] as a FhirCanonical
+  FhirCanonical? get subjectCanonical => subjectX?.isAs<FhirCanonical>();
+
   /// [purpose]
   /// Explanation of why this activity definition is needed and why it has
   /// been designed as it has.
@@ -677,6 +687,24 @@ class ActivityDefinition extends CanonicalResource {
   /// occur.
   final TimingXActivityDefinition? timingX;
 
+  /// Getter for [timingTiming] as a Timing
+  Timing? get timingTiming => timingX?.isAs<Timing>();
+
+  /// Getter for [timingDateTime] as a FhirDateTime
+  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+
+  /// Getter for [timingAge] as a Age
+  Age? get timingAge => timingX?.isAs<Age>();
+
+  /// Getter for [timingPeriod] as a Period
+  Period? get timingPeriod => timingX?.isAs<Period>();
+
+  /// Getter for [timingRange] as a Range
+  Range? get timingRange => timingX?.isAs<Range>();
+
+  /// Getter for [timingDuration] as a FhirDuration
+  FhirDuration? get timingDuration => timingX?.isAs<FhirDuration>();
+
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
   /// hospital, specific clinic, etc.
@@ -690,6 +718,13 @@ class ActivityDefinition extends CanonicalResource {
   /// Identifies the food, drug or other product being consumed or supplied
   /// in the activity.
   final ProductXActivityDefinition? productX;
+
+  /// Getter for [productReference] as a Reference
+  Reference? get productReference => productX?.isAs<Reference>();
+
+  /// Getter for [productCodeableConcept] as a CodeableConcept
+  CodeableConcept? get productCodeableConcept =>
+      productX?.isAs<CodeableConcept>();
 
   /// [quantity]
   /// Identifies the quantity expected to be consumed at once (per dose, per

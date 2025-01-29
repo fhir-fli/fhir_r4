@@ -2361,6 +2361,12 @@ class ImplementationGuideResource extends BackboneElement {
   /// the specified profile.
   final ExampleXImplementationGuideResource? exampleX;
 
+  /// Getter for [exampleBoolean] as a FhirBoolean
+  FhirBoolean? get exampleBoolean => exampleX?.isAs<FhirBoolean>();
+
+  /// Getter for [exampleCanonical] as a FhirCanonical
+  FhirCanonical? get exampleCanonical => exampleX?.isAs<FhirCanonical>();
+
   /// [groupingId]
   /// Reference to the id of the grouping this resource appears in.
   final FhirId? groupingId;
@@ -2744,6 +2750,12 @@ class ImplementationGuidePage extends BackboneElement {
   /// [nameX]
   /// The source address for the page.
   final NameXImplementationGuidePage nameX;
+
+  /// Getter for [nameUrl] as a FhirUrl
+  FhirUrl? get nameUrl => nameX.isAs<FhirUrl>();
+
+  /// Getter for [nameReference] as a Reference
+  Reference? get nameReference => nameX.isAs<Reference>();
 
   /// [title]
   /// A short title used to represent this page in navigational structures
@@ -4108,6 +4120,12 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
   final ExampleXImplementationGuideResource1? exampleX;
+
+  /// Getter for [exampleBoolean] as a FhirBoolean
+  FhirBoolean? get exampleBoolean => exampleX?.isAs<FhirBoolean>();
+
+  /// Getter for [exampleCanonical] as a FhirCanonical
+  FhirCanonical? get exampleCanonical => exampleX?.isAs<FhirCanonical>();
 
   /// [relativePath]
   /// The relative path for primary page for this resource within the IG.

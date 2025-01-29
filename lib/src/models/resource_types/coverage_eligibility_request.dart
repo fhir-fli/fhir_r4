@@ -284,6 +284,12 @@ class CoverageEligibilityRequest extends DomainResource {
   /// completed.
   final ServicedXCoverageEligibilityRequest? servicedX;
 
+  /// Getter for [servicedDate] as a FhirDate
+  FhirDate? get servicedDate => servicedX?.isAs<FhirDate>();
+
+  /// Getter for [servicedPeriod] as a Period
+  Period? get servicedPeriod => servicedX?.isAs<Period>();
+
   /// [created]
   /// The date when this resource was created.
   final FhirDateTime created;
@@ -2050,6 +2056,13 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
   final DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX;
+
+  /// Getter for [diagnosisCodeableConcept] as a CodeableConcept
+  CodeableConcept? get diagnosisCodeableConcept =>
+      diagnosisX?.isAs<CodeableConcept>();
+
+  /// Getter for [diagnosisReference] as a Reference
+  Reference? get diagnosisReference => diagnosisX?.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

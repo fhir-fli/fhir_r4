@@ -1179,6 +1179,12 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// The minimum volume to be conditioned in the container.
   final MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX;
 
+  /// Getter for [minimumVolumeQuantity] as a Quantity
+  Quantity? get minimumVolumeQuantity => minimumVolumeX?.isAs<Quantity>();
+
+  /// Getter for [minimumVolumeString] as a FhirString
+  FhirString? get minimumVolumeString => minimumVolumeX?.isAs<FhirString>();
+
   /// [additive]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
@@ -1575,6 +1581,13 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   final AdditiveXSpecimenDefinitionAdditive additiveX;
+
+  /// Getter for [additiveCodeableConcept] as a CodeableConcept
+  CodeableConcept? get additiveCodeableConcept =>
+      additiveX.isAs<CodeableConcept>();
+
+  /// Getter for [additiveReference] as a Reference
+  Reference? get additiveReference => additiveX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

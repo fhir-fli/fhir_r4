@@ -1403,6 +1403,24 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// [valueX]
   /// The actual characteristic value corresponding to the type.
   final ValueXNutritionProductProductCharacteristic valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get valueBase64Binary => valueX.isAs<FhirBase64Binary>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

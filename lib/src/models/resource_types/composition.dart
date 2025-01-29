@@ -1238,6 +1238,12 @@ class CompositionRelatesTo extends BackboneElement {
   /// [targetX]
   /// The target composition/document of this relationship.
   final TargetXCompositionRelatesTo targetX;
+
+  /// Getter for [targetIdentifier] as a Identifier
+  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+
+  /// Getter for [targetReference] as a Reference
+  Reference? get targetReference => targetX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

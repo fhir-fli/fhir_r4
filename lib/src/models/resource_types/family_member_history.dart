@@ -345,10 +345,28 @@ class FamilyMemberHistory extends DomainResource {
   /// The actual or approximate date of birth of the relative.
   final BornXFamilyMemberHistory? bornX;
 
+  /// Getter for [bornPeriod] as a Period
+  Period? get bornPeriod => bornX?.isAs<Period>();
+
+  /// Getter for [bornDate] as a FhirDate
+  FhirDate? get bornDate => bornX?.isAs<FhirDate>();
+
+  /// Getter for [bornString] as a FhirString
+  FhirString? get bornString => bornX?.isAs<FhirString>();
+
   /// [ageX]
   /// The age of the relative at the time the family member history is
   /// recorded.
   final AgeXFamilyMemberHistory? ageX;
+
+  /// Getter for [ageAge] as a Age
+  Age? get ageAge => ageX?.isAs<Age>();
+
+  /// Getter for [ageRange] as a Range
+  Range? get ageRange => ageX?.isAs<Range>();
+
+  /// Getter for [ageString] as a FhirString
+  FhirString? get ageString => ageX?.isAs<FhirString>();
 
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
@@ -358,6 +376,21 @@ class FamilyMemberHistory extends DomainResource {
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
   final DeceasedXFamilyMemberHistory? deceasedX;
+
+  /// Getter for [deceasedBoolean] as a FhirBoolean
+  FhirBoolean? get deceasedBoolean => deceasedX?.isAs<FhirBoolean>();
+
+  /// Getter for [deceasedAge] as a Age
+  Age? get deceasedAge => deceasedX?.isAs<Age>();
+
+  /// Getter for [deceasedRange] as a Range
+  Range? get deceasedRange => deceasedX?.isAs<Range>();
+
+  /// Getter for [deceasedDate] as a FhirDate
+  FhirDate? get deceasedDate => deceasedX?.isAs<FhirDate>();
+
+  /// Getter for [deceasedString] as a FhirString
+  FhirString? get deceasedString => deceasedX?.isAs<FhirString>();
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
@@ -1111,6 +1144,18 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
   final OnsetXFamilyMemberHistoryCondition? onsetX;
+
+  /// Getter for [onsetAge] as a Age
+  Age? get onsetAge => onsetX?.isAs<Age>();
+
+  /// Getter for [onsetRange] as a Range
+  Range? get onsetRange => onsetX?.isAs<Range>();
+
+  /// Getter for [onsetPeriod] as a Period
+  Period? get onsetPeriod => onsetX?.isAs<Period>();
+
+  /// Getter for [onsetString] as a FhirString
+  FhirString? get onsetString => onsetX?.isAs<FhirString>();
 
   /// [note]
   /// An area where general notes can be placed about this specific

@@ -528,9 +528,7 @@ class SubscriptionStatus extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      eventsSinceSubscriptionStart,
-      o.eventsSinceSubscriptionStart,
-    )) {
+        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart)) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(

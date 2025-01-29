@@ -1182,9 +1182,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      combinedPharmaceuticalDoseForm,
-      o.combinedPharmaceuticalDoseForm,
-    )) {
+        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1200,9 +1198,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      additionalMonitoringIndicator,
-      o.additionalMonitoringIndicator,
-    )) {
+        additionalMonitoringIndicator, o.additionalMonitoringIndicator)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3196,9 +3192,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      confidentialityIndicator,
-      o.confidentialityIndicator,
-    )) {
+        confidentialityIndicator, o.confidentialityIndicator)) {
       return false;
     }
     return true;
@@ -3325,6 +3319,21 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// [valueX]
   /// A value for the characteristic.
   final ValueXMedicinalProductDefinitionCharacteristic? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

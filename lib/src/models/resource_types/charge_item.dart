@@ -402,6 +402,15 @@ class ChargeItem extends DomainResource {
   /// Date/time(s) or duration when the charged service was applied.
   final OccurrenceXChargeItem? occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+
   /// [performer]
   /// Indicates who or what performed or participated in the charged service.
   final List<ChargeItemPerformer>? performer;
@@ -462,6 +471,13 @@ class ChargeItem extends DomainResource {
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
   final ProductXChargeItem? productX;
+
+  /// Getter for [productReference] as a Reference
+  Reference? get productReference => productX?.isAs<Reference>();
+
+  /// Getter for [productCodeableConcept] as a CodeableConcept
+  CodeableConcept? get productCodeableConcept =>
+      productX?.isAs<CodeableConcept>();
 
   /// [account]
   /// Account into which this ChargeItems belongs.

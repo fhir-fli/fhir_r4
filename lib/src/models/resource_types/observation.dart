@@ -427,6 +427,18 @@ class Observation extends DomainResource {
   /// the date/time is not known, only the date/time itself.
   final EffectiveXObservation? effectiveX;
 
+  /// Getter for [effectiveDateTime] as a FhirDateTime
+  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [effectivePeriod] as a Period
+  Period? get effectivePeriod => effectiveX?.isAs<Period>();
+
+  /// Getter for [effectiveTiming] as a Timing
+  Timing? get effectiveTiming => effectiveX?.isAs<Timing>();
+
+  /// Getter for [effectiveInstant] as a FhirInstant
+  FhirInstant? get effectiveInstant => effectiveX?.isAs<FhirInstant>();
+
   /// [issued]
   /// The date and time this version of the observation was made available to
   /// providers, typically after the results have been reviewed and verified.
@@ -440,6 +452,39 @@ class Observation extends DomainResource {
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final ValueXObservation? valueX;
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX?.isAs<Range>();
+
+  /// Getter for [valueRatio] as a Ratio
+  Ratio? get valueRatio => valueX?.isAs<Ratio>();
+
+  /// Getter for [valueSampledData] as a SampledData
+  SampledData? get valueSampledData => valueX?.isAs<SampledData>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX?.isAs<FhirTime>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+
+  /// Getter for [valuePeriod] as a Period
+  Period? get valuePeriod => valueX?.isAs<Period>();
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
@@ -1780,6 +1825,39 @@ class ObservationComponent extends BackboneElement {
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final ValueXObservationComponent? valueX;
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX?.isAs<Range>();
+
+  /// Getter for [valueRatio] as a Ratio
+  Ratio? get valueRatio => valueX?.isAs<Ratio>();
+
+  /// Getter for [valueSampledData] as a SampledData
+  SampledData? get valueSampledData => valueX?.isAs<SampledData>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX?.isAs<FhirTime>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+
+  /// Getter for [valuePeriod] as a Period
+  Period? get valuePeriod => valueX?.isAs<Period>();
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element

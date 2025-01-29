@@ -2299,6 +2299,18 @@ class CitationRelatesTo extends BackboneElement {
   /// [targetX]
   /// The article or artifact that the Citation Resource is related to.
   final TargetXCitationRelatesTo targetX;
+
+  /// Getter for [targetUri] as a FhirUri
+  FhirUri? get targetUri => targetX.isAs<FhirUri>();
+
+  /// Getter for [targetIdentifier] as a Identifier
+  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+
+  /// Getter for [targetReference] as a Reference
+  Reference? get targetReference => targetX.isAs<Reference>();
+
+  /// Getter for [targetAttachment] as a Attachment
+  Attachment? get targetAttachment => targetX.isAs<Attachment>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4962,6 +4974,18 @@ class CitationRelatesTo1 extends BackboneElement {
   /// [targetX]
   /// The article or artifact that the cited artifact is related to.
   final TargetXCitationRelatesTo1 targetX;
+
+  /// Getter for [targetUri] as a FhirUri
+  FhirUri? get targetUri => targetX.isAs<FhirUri>();
+
+  /// Getter for [targetIdentifier] as a Identifier
+  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+
+  /// Getter for [targetReference] as a Reference
+  Reference? get targetReference => targetX.isAs<Reference>();
+
+  /// Getter for [targetAttachment] as a Attachment
+  Attachment? get targetAttachment => targetX.isAs<Attachment>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6442,7 +6466,6 @@ class CitationDateOfPublication extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication',
         );
 
@@ -6451,7 +6474,6 @@ class CitationDateOfPublication extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     const objectPath =
-        // ignore: lines_longer_than_80_chars
         'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication';
     return CitationDateOfPublication(
       id: JsonParser.parsePrimitive<FhirString>(
@@ -9090,7 +9112,6 @@ class CitationContributionInstance extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'Citation.citedArtifact.contributorship.entry.contributionInstance',
         );
 

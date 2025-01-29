@@ -822,6 +822,12 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// [collectedX]
   /// Time of product collection.
   final CollectedXBiologicallyDerivedProductCollection? collectedX;
+
+  /// Getter for [collectedDateTime] as a FhirDateTime
+  FhirDateTime? get collectedDateTime => collectedX?.isAs<FhirDateTime>();
+
+  /// Getter for [collectedPeriod] as a Period
+  Period? get collectedPeriod => collectedX?.isAs<Period>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1165,6 +1171,12 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// [timeX]
   /// Time of processing.
   final TimeXBiologicallyDerivedProductProcessing? timeX;
+
+  /// Getter for [timeDateTime] as a FhirDateTime
+  FhirDateTime? get timeDateTime => timeX?.isAs<FhirDateTime>();
+
+  /// Getter for [timePeriod] as a Period
+  Period? get timePeriod => timeX?.isAs<Period>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1500,6 +1512,12 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// [timeX]
   /// Time of manipulation.
   final TimeXBiologicallyDerivedProductManipulation? timeX;
+
+  /// Getter for [timeDateTime] as a FhirDateTime
+  FhirDateTime? get timeDateTime => timeX?.isAs<FhirDateTime>();
+
+  /// Getter for [timePeriod] as a Period
+  Period? get timePeriod => timeX?.isAs<Period>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

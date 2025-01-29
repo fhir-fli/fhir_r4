@@ -325,6 +325,21 @@ class AllergyIntolerance extends DomainResource {
   /// was identified.
   final OnsetXAllergyIntolerance? onsetX;
 
+  /// Getter for [onsetDateTime] as a FhirDateTime
+  FhirDateTime? get onsetDateTime => onsetX?.isAs<FhirDateTime>();
+
+  /// Getter for [onsetAge] as a Age
+  Age? get onsetAge => onsetX?.isAs<Age>();
+
+  /// Getter for [onsetPeriod] as a Period
+  Period? get onsetPeriod => onsetX?.isAs<Period>();
+
+  /// Getter for [onsetRange] as a Range
+  Range? get onsetRange => onsetX?.isAs<Range>();
+
+  /// Getter for [onsetString] as a FhirString
+  FhirString? get onsetString => onsetX?.isAs<FhirString>();
+
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
   /// record was created in the system, which is often a system-generated

@@ -1201,6 +1201,15 @@ class CommunicationPayload extends BackboneElement {
   /// A communicated content (or for multi-part communications, one portion
   /// of the communication).
   final ContentXCommunicationPayload contentX;
+
+  /// Getter for [contentString] as a FhirString
+  FhirString? get contentString => contentX.isAs<FhirString>();
+
+  /// Getter for [contentAttachment] as a Attachment
+  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+
+  /// Getter for [contentReference] as a Reference
+  Reference? get contentReference => contentX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

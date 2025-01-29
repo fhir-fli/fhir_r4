@@ -354,6 +354,12 @@ class DeviceDefinition extends DomainResource {
   /// A name of the manufacturer.
   final ManufacturerXDeviceDefinition? manufacturerX;
 
+  /// Getter for [manufacturerString] as a FhirString
+  FhirString? get manufacturerString => manufacturerX?.isAs<FhirString>();
+
+  /// Getter for [manufacturerReference] as a Reference
+  Reference? get manufacturerReference => manufacturerX?.isAs<Reference>();
+
   /// [deviceName]
   /// A name given to the device to identify it.
   final List<DeviceDefinitionDeviceName>? deviceName;
@@ -1011,9 +1017,7 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      physicalCharacteristics,
-      o.physicalCharacteristics,
-    )) {
+        physicalCharacteristics, o.physicalCharacteristics)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

@@ -150,6 +150,18 @@ class TriggerDefinition extends DataType
   /// The timing of the event (if this is a periodic trigger).
   final TimingXTriggerDefinition? timingX;
 
+  /// Getter for [timingTiming] as a Timing
+  Timing? get timingTiming => timingX?.isAs<Timing>();
+
+  /// Getter for [timingReference] as a Reference
+  Reference? get timingReference => timingX?.isAs<Reference>();
+
+  /// Getter for [timingDate] as a FhirDate
+  FhirDate? get timingDate => timingX?.isAs<FhirDate>();
+
+  /// Getter for [timingDateTime] as a FhirDateTime
+  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
   /// than one data is requirement is specified, then all the data

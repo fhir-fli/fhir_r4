@@ -2598,6 +2598,171 @@ class StructureMapSource extends BackboneElement {
   /// A value to use if there is no existing value in the source object.
   final DefaultValueXStructureMapSource? defaultValueX;
 
+  /// Getter for [defaultValueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get defaultValueBase64Binary =>
+      defaultValueX?.isAs<FhirBase64Binary>();
+
+  /// Getter for [defaultValueBoolean] as a FhirBoolean
+  FhirBoolean? get defaultValueBoolean => defaultValueX?.isAs<FhirBoolean>();
+
+  /// Getter for [defaultValueCanonical] as a FhirCanonical
+  FhirCanonical? get defaultValueCanonical =>
+      defaultValueX?.isAs<FhirCanonical>();
+
+  /// Getter for [defaultValueCode] as a FhirCode
+  FhirCode? get defaultValueCode => defaultValueX?.isAs<FhirCode>();
+
+  /// Getter for [defaultValueDate] as a FhirDate
+  FhirDate? get defaultValueDate => defaultValueX?.isAs<FhirDate>();
+
+  /// Getter for [defaultValueDateTime] as a FhirDateTime
+  FhirDateTime? get defaultValueDateTime => defaultValueX?.isAs<FhirDateTime>();
+
+  /// Getter for [defaultValueDecimal] as a FhirDecimal
+  FhirDecimal? get defaultValueDecimal => defaultValueX?.isAs<FhirDecimal>();
+
+  /// Getter for [defaultValueId] as a FhirId
+  FhirId? get defaultValueId => defaultValueX?.isAs<FhirId>();
+
+  /// Getter for [defaultValueInstant] as a FhirInstant
+  FhirInstant? get defaultValueInstant => defaultValueX?.isAs<FhirInstant>();
+
+  /// Getter for [defaultValueInteger] as a FhirInteger
+  FhirInteger? get defaultValueInteger => defaultValueX?.isAs<FhirInteger>();
+
+  /// Getter for [defaultValueMarkdown] as a FhirMarkdown
+  FhirMarkdown? get defaultValueMarkdown => defaultValueX?.isAs<FhirMarkdown>();
+
+  /// Getter for [defaultValueOid] as a FhirOid
+  FhirOid? get defaultValueOid => defaultValueX?.isAs<FhirOid>();
+
+  /// Getter for [defaultValuePositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get defaultValuePositiveInt =>
+      defaultValueX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [defaultValueString] as a FhirString
+  FhirString? get defaultValueString => defaultValueX?.isAs<FhirString>();
+
+  /// Getter for [defaultValueTime] as a FhirTime
+  FhirTime? get defaultValueTime => defaultValueX?.isAs<FhirTime>();
+
+  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get defaultValueUnsignedInt =>
+      defaultValueX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [defaultValueUri] as a FhirUri
+  FhirUri? get defaultValueUri => defaultValueX?.isAs<FhirUri>();
+
+  /// Getter for [defaultValueUrl] as a FhirUrl
+  FhirUrl? get defaultValueUrl => defaultValueX?.isAs<FhirUrl>();
+
+  /// Getter for [defaultValueUuid] as a FhirUuid
+  FhirUuid? get defaultValueUuid => defaultValueX?.isAs<FhirUuid>();
+
+  /// Getter for [defaultValueAddress] as a Address
+  Address? get defaultValueAddress => defaultValueX?.isAs<Address>();
+
+  /// Getter for [defaultValueAge] as a Age
+  Age? get defaultValueAge => defaultValueX?.isAs<Age>();
+
+  /// Getter for [defaultValueAnnotation] as a Annotation
+  Annotation? get defaultValueAnnotation => defaultValueX?.isAs<Annotation>();
+
+  /// Getter for [defaultValueAttachment] as a Attachment
+  Attachment? get defaultValueAttachment => defaultValueX?.isAs<Attachment>();
+
+  /// Getter for [defaultValueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get defaultValueCodeableConcept =>
+      defaultValueX?.isAs<CodeableConcept>();
+
+  /// Getter for [defaultValueCoding] as a Coding
+  Coding? get defaultValueCoding => defaultValueX?.isAs<Coding>();
+
+  /// Getter for [defaultValueContactPoint] as a ContactPoint
+  ContactPoint? get defaultValueContactPoint =>
+      defaultValueX?.isAs<ContactPoint>();
+
+  /// Getter for [defaultValueCount] as a Count
+  Count? get defaultValueCount => defaultValueX?.isAs<Count>();
+
+  /// Getter for [defaultValueDistance] as a Distance
+  Distance? get defaultValueDistance => defaultValueX?.isAs<Distance>();
+
+  /// Getter for [defaultValueDuration] as a FhirDuration
+  FhirDuration? get defaultValueDuration => defaultValueX?.isAs<FhirDuration>();
+
+  /// Getter for [defaultValueHumanName] as a HumanName
+  HumanName? get defaultValueHumanName => defaultValueX?.isAs<HumanName>();
+
+  /// Getter for [defaultValueIdentifier] as a Identifier
+  Identifier? get defaultValueIdentifier => defaultValueX?.isAs<Identifier>();
+
+  /// Getter for [defaultValueMoney] as a Money
+  Money? get defaultValueMoney => defaultValueX?.isAs<Money>();
+
+  /// Getter for [defaultValuePeriod] as a Period
+  Period? get defaultValuePeriod => defaultValueX?.isAs<Period>();
+
+  /// Getter for [defaultValueQuantity] as a Quantity
+  Quantity? get defaultValueQuantity => defaultValueX?.isAs<Quantity>();
+
+  /// Getter for [defaultValueRange] as a Range
+  Range? get defaultValueRange => defaultValueX?.isAs<Range>();
+
+  /// Getter for [defaultValueRatio] as a Ratio
+  Ratio? get defaultValueRatio => defaultValueX?.isAs<Ratio>();
+
+  /// Getter for [defaultValueReference] as a Reference
+  Reference? get defaultValueReference => defaultValueX?.isAs<Reference>();
+
+  /// Getter for [defaultValueSampledData] as a SampledData
+  SampledData? get defaultValueSampledData =>
+      defaultValueX?.isAs<SampledData>();
+
+  /// Getter for [defaultValueSignature] as a Signature
+  Signature? get defaultValueSignature => defaultValueX?.isAs<Signature>();
+
+  /// Getter for [defaultValueTiming] as a Timing
+  Timing? get defaultValueTiming => defaultValueX?.isAs<Timing>();
+
+  /// Getter for [defaultValueContactDetail] as a ContactDetail
+  ContactDetail? get defaultValueContactDetail =>
+      defaultValueX?.isAs<ContactDetail>();
+
+  /// Getter for [defaultValueContributor] as a Contributor
+  Contributor? get defaultValueContributor =>
+      defaultValueX?.isAs<Contributor>();
+
+  /// Getter for [defaultValueDataRequirement] as a DataRequirement
+  DataRequirement? get defaultValueDataRequirement =>
+      defaultValueX?.isAs<DataRequirement>();
+
+  /// Getter for [defaultValueExpression] as a FhirExpression
+  FhirExpression? get defaultValueExpression =>
+      defaultValueX?.isAs<FhirExpression>();
+
+  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinition
+  ParameterDefinition? get defaultValueParameterDefinition =>
+      defaultValueX?.isAs<ParameterDefinition>();
+
+  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifact
+  RelatedArtifact? get defaultValueRelatedArtifact =>
+      defaultValueX?.isAs<RelatedArtifact>();
+
+  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinition
+  TriggerDefinition? get defaultValueTriggerDefinition =>
+      defaultValueX?.isAs<TriggerDefinition>();
+
+  /// Getter for [defaultValueUsageContext] as a UsageContext
+  UsageContext? get defaultValueUsageContext =>
+      defaultValueX?.isAs<UsageContext>();
+
+  /// Getter for [defaultValueDosage] as a Dosage
+  Dosage? get defaultValueDosage => defaultValueX?.isAs<Dosage>();
+
+  /// Getter for [defaultValueMeta] as a FhirMeta
+  FhirMeta? get defaultValueMeta => defaultValueX?.isAs<FhirMeta>();
+
   /// [element]
   /// Optional field for this source.
   final FhirString? element;
@@ -3693,6 +3858,21 @@ class StructureMapParameter extends BackboneElement {
   /// [valueX]
   /// Parameter value - variable or literal.
   final ValueXStructureMapParameter valueX;
+
+  /// Getter for [valueId] as a FhirId
+  FhirId? get valueId => valueX.isAs<FhirId>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

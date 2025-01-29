@@ -1799,6 +1799,12 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// another medication.
   final ItemXMedicationKnowledgeIngredient itemX;
 
+  /// Getter for [itemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get itemCodeableConcept => itemX.isAs<CodeableConcept>();
+
+  /// Getter for [itemReference] as a Reference
+  Reference? get itemReference => itemX.isAs<Reference>();
+
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
   /// the drug.
@@ -2745,6 +2751,13 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// guidelines.
   final IndicationXMedicationKnowledgeAdministrationGuidelines? indicationX;
 
+  /// Getter for [indicationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get indicationCodeableConcept =>
+      indicationX?.isAs<CodeableConcept>();
+
+  /// Getter for [indicationReference] as a Reference
+  Reference? get indicationReference => indicationX?.isAs<Reference>();
+
   /// [patientCharacteristics]
   /// Characteristics of the patient that are relevant to the administration
   /// guidelines (for example, height, weight, gender, etc.).
@@ -3281,7 +3294,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'MedicationKnowledge.administrationGuidelines.patientCharacteristics',
         );
 
@@ -3384,6 +3396,13 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   final CharacteristicXMedicationKnowledgePatientCharacteristics
       characteristicX;
 
+  /// Getter for [characteristicCodeableConcept] as a CodeableConcept
+  CodeableConcept? get characteristicCodeableConcept =>
+      characteristicX.isAs<CodeableConcept>();
+
+  /// Getter for [characteristicQuantity] as a Quantity
+  Quantity? get characteristicQuantity => characteristicX.isAs<Quantity>();
+
   /// [value]
   /// The specific characteristic (e.g. height, weight, gender, etc.).
   final List<FhirString>? value;
@@ -3420,10 +3439,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     addField('extension', extension_);
     addField('modifierExtension', modifierExtension);
     final characteristicXFhirType = characteristicX.fhirType;
-    addField(
-      'characteristic${characteristicXFhirType.capitalize()}',
-      characteristicX,
-    );
+    addField('characteristic${characteristicXFhirType.capitalize()}',
+        characteristicX);
 
     addField('value', value);
     return json;
@@ -4299,6 +4316,18 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// [valueX]
   /// Description of the characteristic.
   final ValueXMedicationKnowledgeDrugCharacteristic? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get valueBase64Binary => valueX?.isAs<FhirBase64Binary>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

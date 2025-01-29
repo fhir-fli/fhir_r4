@@ -351,6 +351,12 @@ class DiagnosticReport extends DomainResource {
   /// of the date/time is not known, only the date/time itself.
   final EffectiveXDiagnosticReport? effectiveX;
 
+  /// Getter for [effectiveDateTime] as a FhirDateTime
+  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [effectivePeriod] as a Period
+  Period? get effectivePeriod => effectiveX?.isAs<Period>();
+
   /// [issued]
   /// The date and time that this version of the report was made available to
   /// providers, typically after the report was reviewed and verified.

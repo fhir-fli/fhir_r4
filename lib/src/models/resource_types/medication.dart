@@ -706,6 +706,12 @@ class MedicationIngredient extends BackboneElement {
   /// another medication of a medication.
   final ItemXMedicationIngredient itemX;
 
+  /// Getter for [itemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get itemCodeableConcept => itemX.isAs<CodeableConcept>();
+
+  /// Getter for [itemReference] as a Reference
+  Reference? get itemReference => itemX.isAs<Reference>();
+
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
   /// the drug.

@@ -827,6 +827,21 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// A value for the characteristic.
   final ValueXAdministrableProductDefinitionProperty? valueX;
 
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
+
   /// [status]
   /// The status of characteristic e.g. assigned or pending.
   final CodeableConcept? status;
@@ -1461,9 +1476,7 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-      maxDosePerTreatmentPeriod,
-      o.maxDosePerTreatmentPeriod,
-    )) {
+        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -1494,7 +1507,6 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies',
         );
 
@@ -1800,7 +1812,6 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod',
         );
 
@@ -1809,7 +1820,6 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     Map<String, dynamic> json,
   ) {
     const objectPath =
-        // ignore: lines_longer_than_80_chars
         'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod';
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: JsonParser.parsePrimitive<FhirString>(

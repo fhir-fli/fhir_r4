@@ -372,6 +372,13 @@ class MedicationDispense extends DomainResource {
   /// Indicates the reason why a dispense was not performed.
   final StatusReasonXMedicationDispense? statusReasonX;
 
+  /// Getter for [statusReasonCodeableConcept] as a CodeableConcept
+  CodeableConcept? get statusReasonCodeableConcept =>
+      statusReasonX?.isAs<CodeableConcept>();
+
+  /// Getter for [statusReasonReference] as a Reference
+  Reference? get statusReasonReference => statusReasonX?.isAs<Reference>();
+
   /// [category]
   /// Indicates the type of medication dispense (for example, where the
   /// medication is expected to be consumed or administered (i.e. inpatient
@@ -384,6 +391,13 @@ class MedicationDispense extends DomainResource {
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
   final MedicationXMedicationDispense medicationX;
+
+  /// Getter for [medicationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get medicationCodeableConcept =>
+      medicationX.isAs<CodeableConcept>();
+
+  /// Getter for [medicationReference] as a Reference
+  Reference? get medicationReference => medicationX.isAs<Reference>();
 
   /// [subject]
   /// A link to a resource representing the person or the group to whom the

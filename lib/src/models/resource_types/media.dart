@@ -357,6 +357,12 @@ class Media extends DomainResource {
   /// The date and time(s) at which the media was collected.
   final CreatedXMedia? createdX;
 
+  /// Getter for [createdDateTime] as a FhirDateTime
+  FhirDateTime? get createdDateTime => createdX?.isAs<FhirDateTime>();
+
+  /// Getter for [createdPeriod] as a Period
+  Period? get createdPeriod => createdX?.isAs<Period>();
+
   /// [issued]
   /// The date and time this version of the media was made available to
   /// providers, typically after having been reviewed.

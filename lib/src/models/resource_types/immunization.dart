@@ -402,6 +402,12 @@ class Immunization extends DomainResource {
   /// Date vaccine administered or was to be administered.
   final OccurrenceXImmunization occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX.isAs<FhirDateTime>();
+
+  /// Getter for [occurrenceString] as a FhirString
+  FhirString? get occurrenceString => occurrenceX.isAs<FhirString>();
+
   /// [recorded]
   /// The date the occurrence of the immunization was first captured in the
   /// record - potentially significantly after the occurrence of the event.
@@ -2288,9 +2294,23 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// Nominal position in a series.
   final DoseNumberXImmunizationProtocolApplied doseNumberX;
 
+  /// Getter for [doseNumberPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get doseNumberPositiveInt =>
+      doseNumberX.isAs<FhirPositiveInt>();
+
+  /// Getter for [doseNumberString] as a FhirString
+  FhirString? get doseNumberString => doseNumberX.isAs<FhirString>();
+
   /// [seriesDosesX]
   /// The recommended number of doses to achieve immunity.
   final SeriesDosesXImmunizationProtocolApplied? seriesDosesX;
+
+  /// Getter for [seriesDosesPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get seriesDosesPositiveInt =>
+      seriesDosesX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [seriesDosesString] as a FhirString
+  FhirString? get seriesDosesString => seriesDosesX?.isAs<FhirString>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

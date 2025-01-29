@@ -317,6 +317,12 @@ class Goal extends DomainResource {
   /// The date or event after which the goal should begin being pursued.
   final StartXGoal? startX;
 
+  /// Getter for [startDate] as a FhirDate
+  FhirDate? get startDate => startX?.isAs<FhirDate>();
+
+  /// Getter for [startCodeableConcept] as a CodeableConcept
+  CodeableConcept? get startCodeableConcept => startX?.isAs<CodeableConcept>();
+
   /// [target]
   /// Indicates what should be done by when.
   final List<GoalTarget>? target;
@@ -985,10 +991,38 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or above the low value.
   final DetailXGoalTarget? detailX;
 
+  /// Getter for [detailQuantity] as a Quantity
+  Quantity? get detailQuantity => detailX?.isAs<Quantity>();
+
+  /// Getter for [detailRange] as a Range
+  Range? get detailRange => detailX?.isAs<Range>();
+
+  /// Getter for [detailCodeableConcept] as a CodeableConcept
+  CodeableConcept? get detailCodeableConcept =>
+      detailX?.isAs<CodeableConcept>();
+
+  /// Getter for [detailString] as a FhirString
+  FhirString? get detailString => detailX?.isAs<FhirString>();
+
+  /// Getter for [detailBoolean] as a FhirBoolean
+  FhirBoolean? get detailBoolean => detailX?.isAs<FhirBoolean>();
+
+  /// Getter for [detailInteger] as a FhirInteger
+  FhirInteger? get detailInteger => detailX?.isAs<FhirInteger>();
+
+  /// Getter for [detailRatio] as a Ratio
+  Ratio? get detailRatio => detailX?.isAs<Ratio>();
+
   /// [dueX]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
   final DueXGoalTarget? dueX;
+
+  /// Getter for [dueDate] as a FhirDate
+  FhirDate? get dueDate => dueX?.isAs<FhirDate>();
+
+  /// Getter for [dueDuration] as a FhirDuration
+  FhirDuration? get dueDuration => dueX?.isAs<FhirDuration>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

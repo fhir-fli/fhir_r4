@@ -1210,6 +1210,24 @@ class RequestGroupAction extends BackboneElement {
   /// An optional value describing when the action should be performed.
   final TimingXRequestGroupAction? timingX;
 
+  /// Getter for [timingDateTime] as a FhirDateTime
+  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+
+  /// Getter for [timingAge] as a Age
+  Age? get timingAge => timingX?.isAs<Age>();
+
+  /// Getter for [timingPeriod] as a Period
+  Period? get timingPeriod => timingX?.isAs<Period>();
+
+  /// Getter for [timingDuration] as a FhirDuration
+  FhirDuration? get timingDuration => timingX?.isAs<FhirDuration>();
+
+  /// Getter for [timingRange] as a Range
+  Range? get timingRange => timingX?.isAs<Range>();
+
+  /// Getter for [timingTiming] as a Timing
+  Timing? get timingTiming => timingX?.isAs<Timing>();
+
   /// [participant]
   /// The participant that should perform or be responsible for this action.
   final List<Reference>? participant;
@@ -2149,6 +2167,12 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
   final OffsetXRequestGroupRelatedAction? offsetX;
+
+  /// Getter for [offsetDuration] as a FhirDuration
+  FhirDuration? get offsetDuration => offsetX?.isAs<FhirDuration>();
+
+  /// Getter for [offsetRange] as a Range
+  Range? get offsetRange => offsetX?.isAs<Range>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

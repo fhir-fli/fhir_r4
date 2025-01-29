@@ -1240,6 +1240,13 @@ class InvoiceLineItem extends BackboneElement {
   /// of the Reference.
   final ChargeItemXInvoiceLineItem chargeItemX;
 
+  /// Getter for [chargeItemReference] as a Reference
+  Reference? get chargeItemReference => chargeItemX.isAs<Reference>();
+
+  /// Getter for [chargeItemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get chargeItemCodeableConcept =>
+      chargeItemX.isAs<CodeableConcept>();
+
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
   /// surcharges/deductions that apply in certain conditions. A

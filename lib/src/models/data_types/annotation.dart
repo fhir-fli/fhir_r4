@@ -120,6 +120,12 @@ class Annotation extends DataType
   /// The individual responsible for making the annotation.
   final AuthorXAnnotation? authorX;
 
+  /// Getter for [authorReference] as a Reference
+  Reference? get authorReference => authorX?.isAs<Reference>();
+
+  /// Getter for [authorString] as a FhirString
+  FhirString? get authorString => authorX?.isAs<FhirString>();
+
   /// [time]
   /// Indicates when this particular annotation was made.
   final FhirDateTime? time;

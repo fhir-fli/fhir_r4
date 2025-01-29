@@ -290,6 +290,12 @@ class SupplyRequest extends DomainResource {
   /// the item from a known list.
   final ItemXSupplyRequest itemX;
 
+  /// Getter for [itemCodeableConcept] as a CodeableConcept
+  CodeableConcept? get itemCodeableConcept => itemX.isAs<CodeableConcept>();
+
+  /// Getter for [itemReference] as a Reference
+  Reference? get itemReference => itemX.isAs<Reference>();
+
   /// [quantity]
   /// The amount that is being ordered of the indicated item.
   final Quantity quantity;
@@ -302,6 +308,15 @@ class SupplyRequest extends DomainResource {
   /// [occurrenceX]
   /// When the request should be fulfilled.
   final OccurrenceXSupplyRequest? occurrenceX;
+
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
+  /// Getter for [occurrenceTiming] as a Timing
+  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
 
   /// [authoredOn]
   /// When the request was made.
@@ -936,6 +951,18 @@ class SupplyRequestParameter extends BackboneElement {
   /// [valueX]
   /// The value of the device detail.
   final ValueXSupplyRequestParameter? valueX;
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX?.isAs<Range>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -395,6 +395,12 @@ class Evidence extends DomainResource {
   /// Citation Resource or display of suggested citation for this evidence.
   final CiteAsXEvidence? citeAsX;
 
+  /// Getter for [citeAsReference] as a Reference
+  Reference? get citeAsReference => citeAsX?.isAs<Reference>();
+
+  /// Getter for [citeAsMarkdown] as a FhirMarkdown
+  FhirMarkdown? get citeAsMarkdown => citeAsX?.isAs<FhirMarkdown>();
+
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
   /// content.

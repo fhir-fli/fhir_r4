@@ -407,6 +407,12 @@ class CommunicationRequest extends DomainResource {
   /// The time when this communication is to occur.
   final OccurrenceXCommunicationRequest? occurrenceX;
 
+  /// Getter for [occurrenceDateTime] as a FhirDateTime
+  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+
+  /// Getter for [occurrencePeriod] as a Period
+  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+
   /// [authoredOn]
   /// For draft requests, indicates the date of initial creation. For
   /// requests with other statuses, indicates the date of activation.
@@ -1162,6 +1168,15 @@ class CommunicationRequestPayload extends BackboneElement {
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
   final ContentXCommunicationRequestPayload contentX;
+
+  /// Getter for [contentString] as a FhirString
+  FhirString? get contentString => contentX.isAs<FhirString>();
+
+  /// Getter for [contentAttachment] as a Attachment
+  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+
+  /// Getter for [contentReference] as a Reference
+  Reference? get contentReference => contentX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

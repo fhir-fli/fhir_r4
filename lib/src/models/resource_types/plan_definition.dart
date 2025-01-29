@@ -441,6 +441,16 @@ class PlanDefinition extends CanonicalResource {
   /// PackagedProductDefinition resource.
   final SubjectXPlanDefinition? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
+  /// Getter for [subjectCanonical] as a FhirCanonical
+  FhirCanonical? get subjectCanonical => subjectX?.isAs<FhirCanonical>();
+
   /// [purpose]
   /// Explanation of why this plan definition is needed and why it has been
   /// designed as it has.
@@ -1873,6 +1883,16 @@ class PlanDefinitionTarget extends BackboneElement {
   /// goal is achieved at any value at or above the low value.
   final DetailXPlanDefinitionTarget? detailX;
 
+  /// Getter for [detailQuantity] as a Quantity
+  Quantity? get detailQuantity => detailX?.isAs<Quantity>();
+
+  /// Getter for [detailRange] as a Range
+  Range? get detailRange => detailX?.isAs<Range>();
+
+  /// Getter for [detailCodeableConcept] as a CodeableConcept
+  CodeableConcept? get detailCodeableConcept =>
+      detailX?.isAs<CodeableConcept>();
+
   /// [due]
   /// Indicates the timeframe after the start of the goal in which the goal
   /// should be met.
@@ -2486,6 +2506,16 @@ class PlanDefinitionAction extends BackboneElement {
   /// PackagedProductDefinition resource.
   final SubjectXPlanDefinitionAction? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
+  /// Getter for [subjectCanonical] as a FhirCanonical
+  FhirCanonical? get subjectCanonical => subjectX?.isAs<FhirCanonical>();
+
   /// [trigger]
   /// A description of when the action should be triggered.
   final List<TriggerDefinition>? trigger;
@@ -2511,6 +2541,24 @@ class PlanDefinitionAction extends BackboneElement {
   /// [timingX]
   /// An optional value describing when the action should be performed.
   final TimingXPlanDefinitionAction? timingX;
+
+  /// Getter for [timingDateTime] as a FhirDateTime
+  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+
+  /// Getter for [timingAge] as a Age
+  Age? get timingAge => timingX?.isAs<Age>();
+
+  /// Getter for [timingPeriod] as a Period
+  Period? get timingPeriod => timingX?.isAs<Period>();
+
+  /// Getter for [timingDuration] as a FhirDuration
+  FhirDuration? get timingDuration => timingX?.isAs<FhirDuration>();
+
+  /// Getter for [timingRange] as a Range
+  Range? get timingRange => timingX?.isAs<Range>();
+
+  /// Getter for [timingTiming] as a Timing
+  Timing? get timingTiming => timingX?.isAs<Timing>();
 
   /// [participant]
   /// Indicates who should participate in performing the action described.
@@ -2545,6 +2593,12 @@ class PlanDefinitionAction extends BackboneElement {
   /// taken in detail, or a PlanDefinition that describes a series of actions
   /// to be taken.
   final DefinitionXPlanDefinitionAction? definitionX;
+
+  /// Getter for [definitionCanonical] as a FhirCanonical
+  FhirCanonical? get definitionCanonical => definitionX?.isAs<FhirCanonical>();
+
+  /// Getter for [definitionUri] as a FhirUri
+  FhirUri? get definitionUri => definitionX?.isAs<FhirUri>();
 
   /// [transform]
   /// A reference to a StructureMap resource that defines a transform that
@@ -3651,6 +3705,12 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
   final OffsetXPlanDefinitionRelatedAction? offsetX;
+
+  /// Getter for [offsetDuration] as a FhirDuration
+  FhirDuration? get offsetDuration => offsetX?.isAs<FhirDuration>();
+
+  /// Getter for [offsetRange] as a Range
+  Range? get offsetRange => offsetX?.isAs<Range>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

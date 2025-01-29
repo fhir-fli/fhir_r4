@@ -1823,6 +1823,36 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final AnswerXQuestionnaireEnableWhen answerX;
+
+  /// Getter for [answerBoolean] as a FhirBoolean
+  FhirBoolean? get answerBoolean => answerX.isAs<FhirBoolean>();
+
+  /// Getter for [answerDecimal] as a FhirDecimal
+  FhirDecimal? get answerDecimal => answerX.isAs<FhirDecimal>();
+
+  /// Getter for [answerInteger] as a FhirInteger
+  FhirInteger? get answerInteger => answerX.isAs<FhirInteger>();
+
+  /// Getter for [answerDate] as a FhirDate
+  FhirDate? get answerDate => answerX.isAs<FhirDate>();
+
+  /// Getter for [answerDateTime] as a FhirDateTime
+  FhirDateTime? get answerDateTime => answerX.isAs<FhirDateTime>();
+
+  /// Getter for [answerTime] as a FhirTime
+  FhirTime? get answerTime => answerX.isAs<FhirTime>();
+
+  /// Getter for [answerString] as a FhirString
+  FhirString? get answerString => answerX.isAs<FhirString>();
+
+  /// Getter for [answerCoding] as a Coding
+  Coding? get answerCoding => answerX.isAs<Coding>();
+
+  /// Getter for [answerQuantity] as a Quantity
+  Quantity? get answerQuantity => answerX.isAs<Quantity>();
+
+  /// Getter for [answerReference] as a Reference
+  Reference? get answerReference => answerX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2168,6 +2198,24 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// A potential answer that's allowed as the answer to this question.
   final ValueXQuestionnaireAnswerOption valueX;
 
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueCoding] as a Coding
+  Coding? get valueCoding => valueX.isAs<Coding>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
+
   /// [initialSelected]
   /// Indicates whether the answer value is selected when the list of
   /// possible answers is initially shown.
@@ -2490,6 +2538,42 @@ class QuestionnaireInitial extends BackboneElement {
   /// [valueX]
   /// The actual value to for an initial answer.
   final ValueXQuestionnaireInitial valueX;
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX.isAs<FhirDateTime>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueUri] as a FhirUri
+  FhirUri? get valueUri => valueX.isAs<FhirUri>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+
+  /// Getter for [valueCoding] as a Coding
+  Coding? get valueCoding => valueX.isAs<Coding>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -281,6 +281,15 @@ class DeviceUseStatement extends DomainResource {
   /// How often the device was used.
   final TimingXDeviceUseStatement? timingX;
 
+  /// Getter for [timingTiming] as a Timing
+  Timing? get timingTiming => timingX?.isAs<Timing>();
+
+  /// Getter for [timingPeriod] as a Period
+  Period? get timingPeriod => timingX?.isAs<Period>();
+
+  /// Getter for [timingDateTime] as a FhirDateTime
+  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
   final FhirDateTime? recordedOn;

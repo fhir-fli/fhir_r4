@@ -355,6 +355,13 @@ class MedicationStatement extends DomainResource {
   /// list of medications.
   final MedicationXMedicationStatement medicationX;
 
+  /// Getter for [medicationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get medicationCodeableConcept =>
+      medicationX.isAs<CodeableConcept>();
+
+  /// Getter for [medicationReference] as a Reference
+  Reference? get medicationReference => medicationX.isAs<Reference>();
+
   /// [subject]
   /// The person, animal or group who is/was taking the medication.
   final Reference subject;
@@ -369,6 +376,12 @@ class MedicationStatement extends DomainResource {
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
   final EffectiveXMedicationStatement? effectiveX;
+
+  /// Getter for [effectiveDateTime] as a FhirDateTime
+  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [effectivePeriod] as a Period
+  Period? get effectivePeriod => effectiveX?.isAs<Period>();
 
   /// [dateAsserted]
   /// The date when the medication statement was asserted by the information

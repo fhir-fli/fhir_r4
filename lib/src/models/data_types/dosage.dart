@@ -235,6 +235,13 @@ class Dosage extends BackboneType
   /// precondition for taking the Medication (CodeableConcept).
   final AsNeededXDosage? asNeededX;
 
+  /// Getter for [asNeededBoolean] as a FhirBoolean
+  FhirBoolean? get asNeededBoolean => asNeededX?.isAs<FhirBoolean>();
+
+  /// Getter for [asNeededCodeableConcept] as a CodeableConcept
+  CodeableConcept? get asNeededCodeableConcept =>
+      asNeededX?.isAs<CodeableConcept>();
+
   /// [site]
   /// Body site to administer to.
   final CodeableConcept? site;
@@ -610,9 +617,7 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-      maxDosePerAdministration,
-      o.maxDosePerAdministration,
-    )) {
+        maxDosePerAdministration, o.maxDosePerAdministration)) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
@@ -736,9 +741,24 @@ class DosageDoseAndRate extends Element {
   /// Amount of medication per dose.
   final DoseXDosageDoseAndRate? doseX;
 
+  /// Getter for [doseRange] as a Range
+  Range? get doseRange => doseX?.isAs<Range>();
+
+  /// Getter for [doseQuantity] as a Quantity
+  Quantity? get doseQuantity => doseX?.isAs<Quantity>();
+
   /// [rateX]
   /// Amount of medication per unit of time.
   final RateXDosageDoseAndRate? rateX;
+
+  /// Getter for [rateRatio] as a Ratio
+  Ratio? get rateRatio => rateX?.isAs<Ratio>();
+
+  /// Getter for [rateRange] as a Range
+  Range? get rateRange => rateX?.isAs<Range>();
+
+  /// Getter for [rateQuantity] as a Quantity
+  Quantity? get rateQuantity => rateX?.isAs<Quantity>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

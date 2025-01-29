@@ -1799,6 +1799,15 @@ class CarePlanDetail extends BackboneElement {
   /// occur.
   final ScheduledXCarePlanDetail? scheduledX;
 
+  /// Getter for [scheduledTiming] as a Timing
+  Timing? get scheduledTiming => scheduledX?.isAs<Timing>();
+
+  /// Getter for [scheduledPeriod] as a Period
+  Period? get scheduledPeriod => scheduledX?.isAs<Period>();
+
+  /// Getter for [scheduledString] as a FhirString
+  FhirString? get scheduledString => scheduledX?.isAs<FhirString>();
+
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
   /// hospital, specific clinic, etc.
@@ -1812,6 +1821,13 @@ class CarePlanDetail extends BackboneElement {
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
   final ProductXCarePlanDetail? productX;
+
+  /// Getter for [productCodeableConcept] as a CodeableConcept
+  CodeableConcept? get productCodeableConcept =>
+      productX?.isAs<CodeableConcept>();
+
+  /// Getter for [productReference] as a Reference
+  Reference? get productReference => productX?.isAs<Reference>();
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.

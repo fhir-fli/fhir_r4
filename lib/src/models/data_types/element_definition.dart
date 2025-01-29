@@ -641,6 +641,175 @@ class ElementDefinition extends BackboneType {
   /// instance (e.g. 'if not otherwise specified, the abstract is false').
   final DefaultValueXElementDefinition? defaultValueX;
 
+  /// Getter for [defaultValueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get defaultValueBase64Binary =>
+      defaultValueX?.isAs<FhirBase64Binary>();
+
+  /// Getter for [defaultValueBoolean] as a FhirBoolean
+  FhirBoolean? get defaultValueBoolean => defaultValueX?.isAs<FhirBoolean>();
+
+  /// Getter for [defaultValueCanonical] as a FhirCanonical
+  FhirCanonical? get defaultValueCanonical =>
+      defaultValueX?.isAs<FhirCanonical>();
+
+  /// Getter for [defaultValueCode] as a FhirCode
+  FhirCode? get defaultValueCode => defaultValueX?.isAs<FhirCode>();
+
+  /// Getter for [defaultValueDate] as a FhirDate
+  FhirDate? get defaultValueDate => defaultValueX?.isAs<FhirDate>();
+
+  /// Getter for [defaultValueDateTime] as a FhirDateTime
+  FhirDateTime? get defaultValueDateTime => defaultValueX?.isAs<FhirDateTime>();
+
+  /// Getter for [defaultValueDecimal] as a FhirDecimal
+  FhirDecimal? get defaultValueDecimal => defaultValueX?.isAs<FhirDecimal>();
+
+  /// Getter for [defaultValueId] as a FhirId
+  FhirId? get defaultValueId => defaultValueX?.isAs<FhirId>();
+
+  /// Getter for [defaultValueInstant] as a FhirInstant
+  FhirInstant? get defaultValueInstant => defaultValueX?.isAs<FhirInstant>();
+
+  /// Getter for [defaultValueInteger] as a FhirInteger
+  FhirInteger? get defaultValueInteger => defaultValueX?.isAs<FhirInteger>();
+
+  /// Getter for [defaultValueMarkdown] as a FhirMarkdown
+  FhirMarkdown? get defaultValueMarkdown => defaultValueX?.isAs<FhirMarkdown>();
+
+  /// Getter for [defaultValueOid] as a FhirOid
+  FhirOid? get defaultValueOid => defaultValueX?.isAs<FhirOid>();
+
+  /// Getter for [defaultValuePositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get defaultValuePositiveInt =>
+      defaultValueX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [defaultValueString] as a FhirString
+  FhirString? get defaultValueString => defaultValueX?.isAs<FhirString>();
+
+  /// Getter for [defaultValueTime] as a FhirTime
+  FhirTime? get defaultValueTime => defaultValueX?.isAs<FhirTime>();
+
+  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get defaultValueUnsignedInt =>
+      defaultValueX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [defaultValueUri] as a FhirUri
+  FhirUri? get defaultValueUri => defaultValueX?.isAs<FhirUri>();
+
+  /// Getter for [defaultValueUrl] as a FhirUrl
+  FhirUrl? get defaultValueUrl => defaultValueX?.isAs<FhirUrl>();
+
+  /// Getter for [defaultValueUuid] as a FhirUuid
+  FhirUuid? get defaultValueUuid => defaultValueX?.isAs<FhirUuid>();
+
+  /// Getter for [defaultValueAddress] as a Address
+  Address? get defaultValueAddress => defaultValueX?.isAs<Address>();
+
+  /// Getter for [defaultValueAge] as a Age
+  Age? get defaultValueAge => defaultValueX?.isAs<Age>();
+
+  /// Getter for [defaultValueAnnotation] as a Annotation
+  Annotation? get defaultValueAnnotation => defaultValueX?.isAs<Annotation>();
+
+  /// Getter for [defaultValueAttachment] as a Attachment
+  Attachment? get defaultValueAttachment => defaultValueX?.isAs<Attachment>();
+
+  /// Getter for [defaultValueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get defaultValueCodeableConcept =>
+      defaultValueX?.isAs<CodeableConcept>();
+
+  /// Getter for [defaultValueCodeableReference] as a CodeableReference
+  CodeableReference? get defaultValueCodeableReference =>
+      defaultValueX?.isAs<CodeableReference>();
+
+  /// Getter for [defaultValueCoding] as a Coding
+  Coding? get defaultValueCoding => defaultValueX?.isAs<Coding>();
+
+  /// Getter for [defaultValueContactPoint] as a ContactPoint
+  ContactPoint? get defaultValueContactPoint =>
+      defaultValueX?.isAs<ContactPoint>();
+
+  /// Getter for [defaultValueCount] as a Count
+  Count? get defaultValueCount => defaultValueX?.isAs<Count>();
+
+  /// Getter for [defaultValueDistance] as a Distance
+  Distance? get defaultValueDistance => defaultValueX?.isAs<Distance>();
+
+  /// Getter for [defaultValueDuration] as a FhirDuration
+  FhirDuration? get defaultValueDuration => defaultValueX?.isAs<FhirDuration>();
+
+  /// Getter for [defaultValueHumanName] as a HumanName
+  HumanName? get defaultValueHumanName => defaultValueX?.isAs<HumanName>();
+
+  /// Getter for [defaultValueIdentifier] as a Identifier
+  Identifier? get defaultValueIdentifier => defaultValueX?.isAs<Identifier>();
+
+  /// Getter for [defaultValueMoney] as a Money
+  Money? get defaultValueMoney => defaultValueX?.isAs<Money>();
+
+  /// Getter for [defaultValuePeriod] as a Period
+  Period? get defaultValuePeriod => defaultValueX?.isAs<Period>();
+
+  /// Getter for [defaultValueQuantity] as a Quantity
+  Quantity? get defaultValueQuantity => defaultValueX?.isAs<Quantity>();
+
+  /// Getter for [defaultValueRange] as a Range
+  Range? get defaultValueRange => defaultValueX?.isAs<Range>();
+
+  /// Getter for [defaultValueRatio] as a Ratio
+  Ratio? get defaultValueRatio => defaultValueX?.isAs<Ratio>();
+
+  /// Getter for [defaultValueRatioRange] as a RatioRange
+  RatioRange? get defaultValueRatioRange => defaultValueX?.isAs<RatioRange>();
+
+  /// Getter for [defaultValueReference] as a Reference
+  Reference? get defaultValueReference => defaultValueX?.isAs<Reference>();
+
+  /// Getter for [defaultValueSampledData] as a SampledData
+  SampledData? get defaultValueSampledData =>
+      defaultValueX?.isAs<SampledData>();
+
+  /// Getter for [defaultValueSignature] as a Signature
+  Signature? get defaultValueSignature => defaultValueX?.isAs<Signature>();
+
+  /// Getter for [defaultValueTiming] as a Timing
+  Timing? get defaultValueTiming => defaultValueX?.isAs<Timing>();
+
+  /// Getter for [defaultValueContactDetail] as a ContactDetail
+  ContactDetail? get defaultValueContactDetail =>
+      defaultValueX?.isAs<ContactDetail>();
+
+  /// Getter for [defaultValueContributor] as a Contributor
+  Contributor? get defaultValueContributor =>
+      defaultValueX?.isAs<Contributor>();
+
+  /// Getter for [defaultValueDataRequirement] as a DataRequirement
+  DataRequirement? get defaultValueDataRequirement =>
+      defaultValueX?.isAs<DataRequirement>();
+
+  /// Getter for [defaultValueExpression] as a FhirExpression
+  FhirExpression? get defaultValueExpression =>
+      defaultValueX?.isAs<FhirExpression>();
+
+  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinition
+  ParameterDefinition? get defaultValueParameterDefinition =>
+      defaultValueX?.isAs<ParameterDefinition>();
+
+  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifact
+  RelatedArtifact? get defaultValueRelatedArtifact =>
+      defaultValueX?.isAs<RelatedArtifact>();
+
+  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinition
+  TriggerDefinition? get defaultValueTriggerDefinition =>
+      defaultValueX?.isAs<TriggerDefinition>();
+
+  /// Getter for [defaultValueUsageContext] as a UsageContext
+  UsageContext? get defaultValueUsageContext =>
+      defaultValueX?.isAs<UsageContext>();
+
+  /// Getter for [defaultValueDosage] as a Dosage
+  Dosage? get defaultValueDosage => defaultValueX?.isAs<Dosage>();
+
   /// [meaningWhenMissing]
   /// The Implicit meaning that is to be understood when this element is
   /// missing (e.g. 'when this element is missing, the period is ongoing').
@@ -658,6 +827,162 @@ class ElementDefinition extends BackboneType {
   /// ignored, and all values must be an exact match (case and accent
   /// sensitive). Missing elements/attributes must also be missing.
   final FixedXElementDefinition? fixedX;
+
+  /// Getter for [fixedBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get fixedBase64Binary => fixedX?.isAs<FhirBase64Binary>();
+
+  /// Getter for [fixedBoolean] as a FhirBoolean
+  FhirBoolean? get fixedBoolean => fixedX?.isAs<FhirBoolean>();
+
+  /// Getter for [fixedCanonical] as a FhirCanonical
+  FhirCanonical? get fixedCanonical => fixedX?.isAs<FhirCanonical>();
+
+  /// Getter for [fixedCode] as a FhirCode
+  FhirCode? get fixedCode => fixedX?.isAs<FhirCode>();
+
+  /// Getter for [fixedDate] as a FhirDate
+  FhirDate? get fixedDate => fixedX?.isAs<FhirDate>();
+
+  /// Getter for [fixedDateTime] as a FhirDateTime
+  FhirDateTime? get fixedDateTime => fixedX?.isAs<FhirDateTime>();
+
+  /// Getter for [fixedDecimal] as a FhirDecimal
+  FhirDecimal? get fixedDecimal => fixedX?.isAs<FhirDecimal>();
+
+  /// Getter for [fixedId] as a FhirId
+  FhirId? get fixedId => fixedX?.isAs<FhirId>();
+
+  /// Getter for [fixedInstant] as a FhirInstant
+  FhirInstant? get fixedInstant => fixedX?.isAs<FhirInstant>();
+
+  /// Getter for [fixedInteger] as a FhirInteger
+  FhirInteger? get fixedInteger => fixedX?.isAs<FhirInteger>();
+
+  /// Getter for [fixedMarkdown] as a FhirMarkdown
+  FhirMarkdown? get fixedMarkdown => fixedX?.isAs<FhirMarkdown>();
+
+  /// Getter for [fixedOid] as a FhirOid
+  FhirOid? get fixedOid => fixedX?.isAs<FhirOid>();
+
+  /// Getter for [fixedPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get fixedPositiveInt => fixedX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [fixedString] as a FhirString
+  FhirString? get fixedString => fixedX?.isAs<FhirString>();
+
+  /// Getter for [fixedTime] as a FhirTime
+  FhirTime? get fixedTime => fixedX?.isAs<FhirTime>();
+
+  /// Getter for [fixedUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get fixedUnsignedInt => fixedX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [fixedUri] as a FhirUri
+  FhirUri? get fixedUri => fixedX?.isAs<FhirUri>();
+
+  /// Getter for [fixedUrl] as a FhirUrl
+  FhirUrl? get fixedUrl => fixedX?.isAs<FhirUrl>();
+
+  /// Getter for [fixedUuid] as a FhirUuid
+  FhirUuid? get fixedUuid => fixedX?.isAs<FhirUuid>();
+
+  /// Getter for [fixedAddress] as a Address
+  Address? get fixedAddress => fixedX?.isAs<Address>();
+
+  /// Getter for [fixedAge] as a Age
+  Age? get fixedAge => fixedX?.isAs<Age>();
+
+  /// Getter for [fixedAnnotation] as a Annotation
+  Annotation? get fixedAnnotation => fixedX?.isAs<Annotation>();
+
+  /// Getter for [fixedAttachment] as a Attachment
+  Attachment? get fixedAttachment => fixedX?.isAs<Attachment>();
+
+  /// Getter for [fixedCodeableConcept] as a CodeableConcept
+  CodeableConcept? get fixedCodeableConcept => fixedX?.isAs<CodeableConcept>();
+
+  /// Getter for [fixedCodeableReference] as a CodeableReference
+  CodeableReference? get fixedCodeableReference =>
+      fixedX?.isAs<CodeableReference>();
+
+  /// Getter for [fixedCoding] as a Coding
+  Coding? get fixedCoding => fixedX?.isAs<Coding>();
+
+  /// Getter for [fixedContactPoint] as a ContactPoint
+  ContactPoint? get fixedContactPoint => fixedX?.isAs<ContactPoint>();
+
+  /// Getter for [fixedCount] as a Count
+  Count? get fixedCount => fixedX?.isAs<Count>();
+
+  /// Getter for [fixedDistance] as a Distance
+  Distance? get fixedDistance => fixedX?.isAs<Distance>();
+
+  /// Getter for [fixedDuration] as a FhirDuration
+  FhirDuration? get fixedDuration => fixedX?.isAs<FhirDuration>();
+
+  /// Getter for [fixedHumanName] as a HumanName
+  HumanName? get fixedHumanName => fixedX?.isAs<HumanName>();
+
+  /// Getter for [fixedIdentifier] as a Identifier
+  Identifier? get fixedIdentifier => fixedX?.isAs<Identifier>();
+
+  /// Getter for [fixedMoney] as a Money
+  Money? get fixedMoney => fixedX?.isAs<Money>();
+
+  /// Getter for [fixedPeriod] as a Period
+  Period? get fixedPeriod => fixedX?.isAs<Period>();
+
+  /// Getter for [fixedQuantity] as a Quantity
+  Quantity? get fixedQuantity => fixedX?.isAs<Quantity>();
+
+  /// Getter for [fixedRange] as a Range
+  Range? get fixedRange => fixedX?.isAs<Range>();
+
+  /// Getter for [fixedRatio] as a Ratio
+  Ratio? get fixedRatio => fixedX?.isAs<Ratio>();
+
+  /// Getter for [fixedRatioRange] as a RatioRange
+  RatioRange? get fixedRatioRange => fixedX?.isAs<RatioRange>();
+
+  /// Getter for [fixedReference] as a Reference
+  Reference? get fixedReference => fixedX?.isAs<Reference>();
+
+  /// Getter for [fixedSampledData] as a SampledData
+  SampledData? get fixedSampledData => fixedX?.isAs<SampledData>();
+
+  /// Getter for [fixedSignature] as a Signature
+  Signature? get fixedSignature => fixedX?.isAs<Signature>();
+
+  /// Getter for [fixedTiming] as a Timing
+  Timing? get fixedTiming => fixedX?.isAs<Timing>();
+
+  /// Getter for [fixedContactDetail] as a ContactDetail
+  ContactDetail? get fixedContactDetail => fixedX?.isAs<ContactDetail>();
+
+  /// Getter for [fixedContributor] as a Contributor
+  Contributor? get fixedContributor => fixedX?.isAs<Contributor>();
+
+  /// Getter for [fixedDataRequirement] as a DataRequirement
+  DataRequirement? get fixedDataRequirement => fixedX?.isAs<DataRequirement>();
+
+  /// Getter for [fixedExpression] as a FhirExpression
+  FhirExpression? get fixedExpression => fixedX?.isAs<FhirExpression>();
+
+  /// Getter for [fixedParameterDefinition] as a ParameterDefinition
+  ParameterDefinition? get fixedParameterDefinition =>
+      fixedX?.isAs<ParameterDefinition>();
+
+  /// Getter for [fixedRelatedArtifact] as a RelatedArtifact
+  RelatedArtifact? get fixedRelatedArtifact => fixedX?.isAs<RelatedArtifact>();
+
+  /// Getter for [fixedTriggerDefinition] as a TriggerDefinition
+  TriggerDefinition? get fixedTriggerDefinition =>
+      fixedX?.isAs<TriggerDefinition>();
+
+  /// Getter for [fixedUsageContext] as a UsageContext
+  UsageContext? get fixedUsageContext => fixedX?.isAs<UsageContext>();
+
+  /// Getter for [fixedDosage] as a Dosage
+  Dosage? get fixedDosage => fixedX?.isAs<Dosage>();
 
   /// [patternX]
   /// Specifies a value that the value in the instance SHALL follow - that
@@ -681,6 +1006,166 @@ class ElementDefinition extends BackboneType {
   /// 3. If an array: it must match (recursively) the pattern value.
   final PatternXElementDefinition? patternX;
 
+  /// Getter for [patternBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get patternBase64Binary =>
+      patternX?.isAs<FhirBase64Binary>();
+
+  /// Getter for [patternBoolean] as a FhirBoolean
+  FhirBoolean? get patternBoolean => patternX?.isAs<FhirBoolean>();
+
+  /// Getter for [patternCanonical] as a FhirCanonical
+  FhirCanonical? get patternCanonical => patternX?.isAs<FhirCanonical>();
+
+  /// Getter for [patternCode] as a FhirCode
+  FhirCode? get patternCode => patternX?.isAs<FhirCode>();
+
+  /// Getter for [patternDate] as a FhirDate
+  FhirDate? get patternDate => patternX?.isAs<FhirDate>();
+
+  /// Getter for [patternDateTime] as a FhirDateTime
+  FhirDateTime? get patternDateTime => patternX?.isAs<FhirDateTime>();
+
+  /// Getter for [patternDecimal] as a FhirDecimal
+  FhirDecimal? get patternDecimal => patternX?.isAs<FhirDecimal>();
+
+  /// Getter for [patternId] as a FhirId
+  FhirId? get patternId => patternX?.isAs<FhirId>();
+
+  /// Getter for [patternInstant] as a FhirInstant
+  FhirInstant? get patternInstant => patternX?.isAs<FhirInstant>();
+
+  /// Getter for [patternInteger] as a FhirInteger
+  FhirInteger? get patternInteger => patternX?.isAs<FhirInteger>();
+
+  /// Getter for [patternMarkdown] as a FhirMarkdown
+  FhirMarkdown? get patternMarkdown => patternX?.isAs<FhirMarkdown>();
+
+  /// Getter for [patternOid] as a FhirOid
+  FhirOid? get patternOid => patternX?.isAs<FhirOid>();
+
+  /// Getter for [patternPositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get patternPositiveInt => patternX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [patternString] as a FhirString
+  FhirString? get patternString => patternX?.isAs<FhirString>();
+
+  /// Getter for [patternTime] as a FhirTime
+  FhirTime? get patternTime => patternX?.isAs<FhirTime>();
+
+  /// Getter for [patternUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get patternUnsignedInt => patternX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [patternUri] as a FhirUri
+  FhirUri? get patternUri => patternX?.isAs<FhirUri>();
+
+  /// Getter for [patternUrl] as a FhirUrl
+  FhirUrl? get patternUrl => patternX?.isAs<FhirUrl>();
+
+  /// Getter for [patternUuid] as a FhirUuid
+  FhirUuid? get patternUuid => patternX?.isAs<FhirUuid>();
+
+  /// Getter for [patternAddress] as a Address
+  Address? get patternAddress => patternX?.isAs<Address>();
+
+  /// Getter for [patternAge] as a Age
+  Age? get patternAge => patternX?.isAs<Age>();
+
+  /// Getter for [patternAnnotation] as a Annotation
+  Annotation? get patternAnnotation => patternX?.isAs<Annotation>();
+
+  /// Getter for [patternAttachment] as a Attachment
+  Attachment? get patternAttachment => patternX?.isAs<Attachment>();
+
+  /// Getter for [patternCodeableConcept] as a CodeableConcept
+  CodeableConcept? get patternCodeableConcept =>
+      patternX?.isAs<CodeableConcept>();
+
+  /// Getter for [patternCodeableReference] as a CodeableReference
+  CodeableReference? get patternCodeableReference =>
+      patternX?.isAs<CodeableReference>();
+
+  /// Getter for [patternCoding] as a Coding
+  Coding? get patternCoding => patternX?.isAs<Coding>();
+
+  /// Getter for [patternContactPoint] as a ContactPoint
+  ContactPoint? get patternContactPoint => patternX?.isAs<ContactPoint>();
+
+  /// Getter for [patternCount] as a Count
+  Count? get patternCount => patternX?.isAs<Count>();
+
+  /// Getter for [patternDistance] as a Distance
+  Distance? get patternDistance => patternX?.isAs<Distance>();
+
+  /// Getter for [patternDuration] as a FhirDuration
+  FhirDuration? get patternDuration => patternX?.isAs<FhirDuration>();
+
+  /// Getter for [patternHumanName] as a HumanName
+  HumanName? get patternHumanName => patternX?.isAs<HumanName>();
+
+  /// Getter for [patternIdentifier] as a Identifier
+  Identifier? get patternIdentifier => patternX?.isAs<Identifier>();
+
+  /// Getter for [patternMoney] as a Money
+  Money? get patternMoney => patternX?.isAs<Money>();
+
+  /// Getter for [patternPeriod] as a Period
+  Period? get patternPeriod => patternX?.isAs<Period>();
+
+  /// Getter for [patternQuantity] as a Quantity
+  Quantity? get patternQuantity => patternX?.isAs<Quantity>();
+
+  /// Getter for [patternRange] as a Range
+  Range? get patternRange => patternX?.isAs<Range>();
+
+  /// Getter for [patternRatio] as a Ratio
+  Ratio? get patternRatio => patternX?.isAs<Ratio>();
+
+  /// Getter for [patternRatioRange] as a RatioRange
+  RatioRange? get patternRatioRange => patternX?.isAs<RatioRange>();
+
+  /// Getter for [patternReference] as a Reference
+  Reference? get patternReference => patternX?.isAs<Reference>();
+
+  /// Getter for [patternSampledData] as a SampledData
+  SampledData? get patternSampledData => patternX?.isAs<SampledData>();
+
+  /// Getter for [patternSignature] as a Signature
+  Signature? get patternSignature => patternX?.isAs<Signature>();
+
+  /// Getter for [patternTiming] as a Timing
+  Timing? get patternTiming => patternX?.isAs<Timing>();
+
+  /// Getter for [patternContactDetail] as a ContactDetail
+  ContactDetail? get patternContactDetail => patternX?.isAs<ContactDetail>();
+
+  /// Getter for [patternContributor] as a Contributor
+  Contributor? get patternContributor => patternX?.isAs<Contributor>();
+
+  /// Getter for [patternDataRequirement] as a DataRequirement
+  DataRequirement? get patternDataRequirement =>
+      patternX?.isAs<DataRequirement>();
+
+  /// Getter for [patternExpression] as a FhirExpression
+  FhirExpression? get patternExpression => patternX?.isAs<FhirExpression>();
+
+  /// Getter for [patternParameterDefinition] as a ParameterDefinition
+  ParameterDefinition? get patternParameterDefinition =>
+      patternX?.isAs<ParameterDefinition>();
+
+  /// Getter for [patternRelatedArtifact] as a RelatedArtifact
+  RelatedArtifact? get patternRelatedArtifact =>
+      patternX?.isAs<RelatedArtifact>();
+
+  /// Getter for [patternTriggerDefinition] as a TriggerDefinition
+  TriggerDefinition? get patternTriggerDefinition =>
+      patternX?.isAs<TriggerDefinition>();
+
+  /// Getter for [patternUsageContext] as a UsageContext
+  UsageContext? get patternUsageContext => patternX?.isAs<UsageContext>();
+
+  /// Getter for [patternDosage] as a Dosage
+  Dosage? get patternDosage => patternX?.isAs<Dosage>();
+
   /// [example]
   /// A sample value for this element demonstrating the type of information
   /// that would typically be found in the element.
@@ -692,11 +1177,69 @@ class ElementDefinition extends BackboneType {
   /// integer, and Quantity.
   final MinValueXElementDefinition? minValueX;
 
+  /// Getter for [minValueDate] as a FhirDate
+  FhirDate? get minValueDate => minValueX?.isAs<FhirDate>();
+
+  /// Getter for [minValueDateTime] as a FhirDateTime
+  FhirDateTime? get minValueDateTime => minValueX?.isAs<FhirDateTime>();
+
+  /// Getter for [minValueInstant] as a FhirInstant
+  FhirInstant? get minValueInstant => minValueX?.isAs<FhirInstant>();
+
+  /// Getter for [minValueTime] as a FhirTime
+  FhirTime? get minValueTime => minValueX?.isAs<FhirTime>();
+
+  /// Getter for [minValueDecimal] as a FhirDecimal
+  FhirDecimal? get minValueDecimal => minValueX?.isAs<FhirDecimal>();
+
+  /// Getter for [minValueInteger] as a FhirInteger
+  FhirInteger? get minValueInteger => minValueX?.isAs<FhirInteger>();
+
+  /// Getter for [minValuePositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get minValuePositiveInt =>
+      minValueX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [minValueUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get minValueUnsignedInt =>
+      minValueX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [minValueQuantity] as a Quantity
+  Quantity? get minValueQuantity => minValueX?.isAs<Quantity>();
+
   /// [maxValueX]
   /// The maximum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
   final MaxValueXElementDefinition? maxValueX;
+
+  /// Getter for [maxValueDate] as a FhirDate
+  FhirDate? get maxValueDate => maxValueX?.isAs<FhirDate>();
+
+  /// Getter for [maxValueDateTime] as a FhirDateTime
+  FhirDateTime? get maxValueDateTime => maxValueX?.isAs<FhirDateTime>();
+
+  /// Getter for [maxValueInstant] as a FhirInstant
+  FhirInstant? get maxValueInstant => maxValueX?.isAs<FhirInstant>();
+
+  /// Getter for [maxValueTime] as a FhirTime
+  FhirTime? get maxValueTime => maxValueX?.isAs<FhirTime>();
+
+  /// Getter for [maxValueDecimal] as a FhirDecimal
+  FhirDecimal? get maxValueDecimal => maxValueX?.isAs<FhirDecimal>();
+
+  /// Getter for [maxValueInteger] as a FhirInteger
+  FhirInteger? get maxValueInteger => maxValueX?.isAs<FhirInteger>();
+
+  /// Getter for [maxValuePositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get maxValuePositiveInt =>
+      maxValueX?.isAs<FhirPositiveInt>();
+
+  /// Getter for [maxValueUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get maxValueUnsignedInt =>
+      maxValueX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [maxValueQuantity] as a Quantity
+  Quantity? get maxValueQuantity => maxValueX?.isAs<Quantity>();
 
   /// [maxLength]
   /// Indicates the maximum length in characters that is permitted to be
@@ -3543,6 +4086,162 @@ class ElementDefinitionExample extends Element {
   /// The actual value for the element, which must be one of the types
   /// allowed for this element.
   final ValueXElementDefinitionExample valueX;
+
+  /// Getter for [valueBase64Binary] as a FhirBase64Binary
+  FhirBase64Binary? get valueBase64Binary => valueX.isAs<FhirBase64Binary>();
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+
+  /// Getter for [valueCanonical] as a FhirCanonical
+  FhirCanonical? get valueCanonical => valueX.isAs<FhirCanonical>();
+
+  /// Getter for [valueCode] as a FhirCode
+  FhirCode? get valueCode => valueX.isAs<FhirCode>();
+
+  /// Getter for [valueDate] as a FhirDate
+  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+
+  /// Getter for [valueDateTime] as a FhirDateTime
+  FhirDateTime? get valueDateTime => valueX.isAs<FhirDateTime>();
+
+  /// Getter for [valueDecimal] as a FhirDecimal
+  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+
+  /// Getter for [valueId] as a FhirId
+  FhirId? get valueId => valueX.isAs<FhirId>();
+
+  /// Getter for [valueInstant] as a FhirInstant
+  FhirInstant? get valueInstant => valueX.isAs<FhirInstant>();
+
+  /// Getter for [valueInteger] as a FhirInteger
+  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+
+  /// Getter for [valueMarkdown] as a FhirMarkdown
+  FhirMarkdown? get valueMarkdown => valueX.isAs<FhirMarkdown>();
+
+  /// Getter for [valueOid] as a FhirOid
+  FhirOid? get valueOid => valueX.isAs<FhirOid>();
+
+  /// Getter for [valuePositiveInt] as a FhirPositiveInt
+  FhirPositiveInt? get valuePositiveInt => valueX.isAs<FhirPositiveInt>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX.isAs<FhirString>();
+
+  /// Getter for [valueTime] as a FhirTime
+  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+
+  /// Getter for [valueUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get valueUnsignedInt => valueX.isAs<FhirUnsignedInt>();
+
+  /// Getter for [valueUri] as a FhirUri
+  FhirUri? get valueUri => valueX.isAs<FhirUri>();
+
+  /// Getter for [valueUrl] as a FhirUrl
+  FhirUrl? get valueUrl => valueX.isAs<FhirUrl>();
+
+  /// Getter for [valueUuid] as a FhirUuid
+  FhirUuid? get valueUuid => valueX.isAs<FhirUuid>();
+
+  /// Getter for [valueAddress] as a Address
+  Address? get valueAddress => valueX.isAs<Address>();
+
+  /// Getter for [valueAge] as a Age
+  Age? get valueAge => valueX.isAs<Age>();
+
+  /// Getter for [valueAnnotation] as a Annotation
+  Annotation? get valueAnnotation => valueX.isAs<Annotation>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+
+  /// Getter for [valueCodeableConcept] as a CodeableConcept
+  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+
+  /// Getter for [valueCodeableReference] as a CodeableReference
+  CodeableReference? get valueCodeableReference =>
+      valueX.isAs<CodeableReference>();
+
+  /// Getter for [valueCoding] as a Coding
+  Coding? get valueCoding => valueX.isAs<Coding>();
+
+  /// Getter for [valueContactPoint] as a ContactPoint
+  ContactPoint? get valueContactPoint => valueX.isAs<ContactPoint>();
+
+  /// Getter for [valueCount] as a Count
+  Count? get valueCount => valueX.isAs<Count>();
+
+  /// Getter for [valueDistance] as a Distance
+  Distance? get valueDistance => valueX.isAs<Distance>();
+
+  /// Getter for [valueDuration] as a FhirDuration
+  FhirDuration? get valueDuration => valueX.isAs<FhirDuration>();
+
+  /// Getter for [valueHumanName] as a HumanName
+  HumanName? get valueHumanName => valueX.isAs<HumanName>();
+
+  /// Getter for [valueIdentifier] as a Identifier
+  Identifier? get valueIdentifier => valueX.isAs<Identifier>();
+
+  /// Getter for [valueMoney] as a Money
+  Money? get valueMoney => valueX.isAs<Money>();
+
+  /// Getter for [valuePeriod] as a Period
+  Period? get valuePeriod => valueX.isAs<Period>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+
+  /// Getter for [valueRange] as a Range
+  Range? get valueRange => valueX.isAs<Range>();
+
+  /// Getter for [valueRatio] as a Ratio
+  Ratio? get valueRatio => valueX.isAs<Ratio>();
+
+  /// Getter for [valueRatioRange] as a RatioRange
+  RatioRange? get valueRatioRange => valueX.isAs<RatioRange>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX.isAs<Reference>();
+
+  /// Getter for [valueSampledData] as a SampledData
+  SampledData? get valueSampledData => valueX.isAs<SampledData>();
+
+  /// Getter for [valueSignature] as a Signature
+  Signature? get valueSignature => valueX.isAs<Signature>();
+
+  /// Getter for [valueTiming] as a Timing
+  Timing? get valueTiming => valueX.isAs<Timing>();
+
+  /// Getter for [valueContactDetail] as a ContactDetail
+  ContactDetail? get valueContactDetail => valueX.isAs<ContactDetail>();
+
+  /// Getter for [valueContributor] as a Contributor
+  Contributor? get valueContributor => valueX.isAs<Contributor>();
+
+  /// Getter for [valueDataRequirement] as a DataRequirement
+  DataRequirement? get valueDataRequirement => valueX.isAs<DataRequirement>();
+
+  /// Getter for [valueExpression] as a FhirExpression
+  FhirExpression? get valueExpression => valueX.isAs<FhirExpression>();
+
+  /// Getter for [valueParameterDefinition] as a ParameterDefinition
+  ParameterDefinition? get valueParameterDefinition =>
+      valueX.isAs<ParameterDefinition>();
+
+  /// Getter for [valueRelatedArtifact] as a RelatedArtifact
+  RelatedArtifact? get valueRelatedArtifact => valueX.isAs<RelatedArtifact>();
+
+  /// Getter for [valueTriggerDefinition] as a TriggerDefinition
+  TriggerDefinition? get valueTriggerDefinition =>
+      valueX.isAs<TriggerDefinition>();
+
+  /// Getter for [valueUsageContext] as a UsageContext
+  UsageContext? get valueUsageContext => valueX.isAs<UsageContext>();
+
+  /// Getter for [valueDosage] as a Dosage
+  Dosage? get valueDosage => valueX.isAs<Dosage>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

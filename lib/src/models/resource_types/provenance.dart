@@ -245,6 +245,12 @@ class Provenance extends DomainResource {
   /// The period during which the activity occurred.
   final OccurredXProvenance? occurredX;
 
+  /// Getter for [occurredPeriod] as a Period
+  Period? get occurredPeriod => occurredX?.isAs<Period>();
+
+  /// Getter for [occurredDateTime] as a FhirDateTime
+  FhirDateTime? get occurredDateTime => occurredX?.isAs<FhirDateTime>();
+
   /// [recorded]
   /// The instant of time at which the activity was recorded.
   final FhirInstant recorded;

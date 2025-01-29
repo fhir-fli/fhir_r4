@@ -917,6 +917,12 @@ class SpecimenCollection extends BackboneElement {
   /// relevant time.
   final CollectedXSpecimenCollection? collectedX;
 
+  /// Getter for [collectedDateTime] as a FhirDateTime
+  FhirDateTime? get collectedDateTime => collectedX?.isAs<FhirDateTime>();
+
+  /// Getter for [collectedPeriod] as a Period
+  Period? get collectedPeriod => collectedX?.isAs<Period>();
+
   /// [duration]
   /// The span of time over which the collection of a specimen occurred.
   final FhirDuration? duration;
@@ -941,6 +947,14 @@ class SpecimenCollection extends BackboneElement {
   /// Abstinence or reduction from some or all food, drink, or both, for a
   /// period of time prior to sample collection.
   final FastingStatusXSpecimenCollection? fastingStatusX;
+
+  /// Getter for [fastingStatusCodeableConcept] as a CodeableConcept
+  CodeableConcept? get fastingStatusCodeableConcept =>
+      fastingStatusX?.isAs<CodeableConcept>();
+
+  /// Getter for [fastingStatusDuration] as a FhirDuration
+  FhirDuration? get fastingStatusDuration =>
+      fastingStatusX?.isAs<FhirDuration>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1355,6 +1369,12 @@ class SpecimenProcessing extends BackboneElement {
   /// For example the time of sample fixation or the period of time the
   /// sample was in formalin.
   final TimeXSpecimenProcessing? timeX;
+
+  /// Getter for [timeDateTime] as a FhirDateTime
+  FhirDateTime? get timeDateTime => timeX?.isAs<FhirDateTime>();
+
+  /// Getter for [timePeriod] as a Period
+  Period? get timePeriod => timeX?.isAs<Period>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1748,6 +1768,13 @@ class SpecimenContainer extends BackboneElement {
   /// Introduced substance to preserve, maintain or enhance the specimen.
   /// Examples: Formalin, Citrate, EDTA.
   final AdditiveXSpecimenContainer? additiveX;
+
+  /// Getter for [additiveCodeableConcept] as a CodeableConcept
+  CodeableConcept? get additiveCodeableConcept =>
+      additiveX?.isAs<CodeableConcept>();
+
+  /// Getter for [additiveReference] as a Reference
+  Reference? get additiveReference => additiveX?.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

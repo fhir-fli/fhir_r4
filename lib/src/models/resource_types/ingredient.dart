@@ -1359,6 +1359,12 @@ class IngredientStrength extends BackboneElement {
   /// be 'per mg').
   final PresentationXIngredientStrength? presentationX;
 
+  /// Getter for [presentationRatio] as a Ratio
+  Ratio? get presentationRatio => presentationX?.isAs<Ratio>();
+
+  /// Getter for [presentationRatioRange] as a RatioRange
+  RatioRange? get presentationRatioRange => presentationX?.isAs<RatioRange>();
+
   /// [textPresentation]
   /// A textual represention of either the whole of the presentation strength
   /// or a part of it - with the rest being in Strength.presentation as a
@@ -1368,6 +1374,12 @@ class IngredientStrength extends BackboneElement {
   /// [concentrationX]
   /// The strength per unitary volume (or mass).
   final ConcentrationXIngredientStrength? concentrationX;
+
+  /// Getter for [concentrationRatio] as a Ratio
+  Ratio? get concentrationRatio => concentrationX?.isAs<Ratio>();
+
+  /// Getter for [concentrationRatioRange] as a RatioRange
+  RatioRange? get concentrationRatioRange => concentrationX?.isAs<RatioRange>();
 
   /// [textConcentration]
   /// A textual represention of either the whole of the concentration
@@ -1820,6 +1832,12 @@ class IngredientReferenceStrength extends BackboneElement {
   /// [strengthX]
   /// Strength expressed in terms of a reference substance.
   final StrengthXIngredientReferenceStrength strengthX;
+
+  /// Getter for [strengthRatio] as a Ratio
+  Ratio? get strengthRatio => strengthX.isAs<Ratio>();
+
+  /// Getter for [strengthRatioRange] as a RatioRange
+  RatioRange? get strengthRatioRange => strengthX.isAs<RatioRange>();
 
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance.

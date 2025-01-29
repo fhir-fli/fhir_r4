@@ -2739,11 +2739,32 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// The date when or period to which this information refers.
   final TimingXExplanationOfBenefitSupportingInfo? timingX;
 
+  /// Getter for [timingDate] as a FhirDate
+  FhirDate? get timingDate => timingX?.isAs<FhirDate>();
+
+  /// Getter for [timingPeriod] as a Period
+  Period? get timingPeriod => timingX?.isAs<Period>();
+
   /// [valueX]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
   final ValueXExplanationOfBenefitSupportingInfo? valueX;
+
+  /// Getter for [valueBoolean] as a FhirBoolean
+  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+
+  /// Getter for [valueString] as a FhirString
+  FhirString? get valueString => valueX?.isAs<FhirString>();
+
+  /// Getter for [valueQuantity] as a Quantity
+  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+
+  /// Getter for [valueAttachment] as a Attachment
+  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
+
+  /// Getter for [valueReference] as a Reference
+  Reference? get valueReference => valueX?.isAs<Reference>();
 
   /// [reason]
   /// Provides the reason in the situation where a reason code is required in
@@ -3157,6 +3178,13 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// an external defined Condition.
   final DiagnosisXExplanationOfBenefitDiagnosis diagnosisX;
 
+  /// Getter for [diagnosisCodeableConcept] as a CodeableConcept
+  CodeableConcept? get diagnosisCodeableConcept =>
+      diagnosisX.isAs<CodeableConcept>();
+
+  /// Getter for [diagnosisReference] as a Reference
+  Reference? get diagnosisReference => diagnosisX.isAs<Reference>();
+
   /// [type]
   /// When the condition was observed or the relative ranking.
   final List<CodeableConcept>? type;
@@ -3560,6 +3588,13 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// The code or reference to a Procedure resource which identifies the
   /// clinical intervention performed.
   final ProcedureXExplanationOfBenefitProcedure procedureX;
+
+  /// Getter for [procedureCodeableConcept] as a CodeableConcept
+  CodeableConcept? get procedureCodeableConcept =>
+      procedureX.isAs<CodeableConcept>();
+
+  /// Getter for [procedureReference] as a Reference
+  Reference? get procedureReference => procedureX.isAs<Reference>();
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
@@ -4261,6 +4296,12 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// [locationX]
   /// The physical location of the accident event.
   final LocationXExplanationOfBenefitAccident? locationX;
+
+  /// Getter for [locationAddress] as a Address
+  Address? get locationAddress => locationX?.isAs<Address>();
+
+  /// Getter for [locationReference] as a Reference
+  Reference? get locationReference => locationX?.isAs<Reference>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4802,9 +4843,25 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// or completed.
   final ServicedXExplanationOfBenefitItem? servicedX;
 
+  /// Getter for [servicedDate] as a FhirDate
+  FhirDate? get servicedDate => servicedX?.isAs<FhirDate>();
+
+  /// Getter for [servicedPeriod] as a Period
+  Period? get servicedPeriod => servicedX?.isAs<Period>();
+
   /// [locationX]
   /// Where the product or service was provided.
   final LocationXExplanationOfBenefitItem? locationX;
+
+  /// Getter for [locationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get locationCodeableConcept =>
+      locationX?.isAs<CodeableConcept>();
+
+  /// Getter for [locationAddress] as a Address
+  Address? get locationAddress => locationX?.isAs<Address>();
+
+  /// Getter for [locationReference] as a Reference
+  Reference? get locationReference => locationX?.isAs<Reference>();
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -7360,9 +7417,25 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// or completed.
   final ServicedXExplanationOfBenefitAddItem? servicedX;
 
+  /// Getter for [servicedDate] as a FhirDate
+  FhirDate? get servicedDate => servicedX?.isAs<FhirDate>();
+
+  /// Getter for [servicedPeriod] as a Period
+  Period? get servicedPeriod => servicedX?.isAs<Period>();
+
   /// [locationX]
   /// Where the product or service was provided.
   final LocationXExplanationOfBenefitAddItem? locationX;
+
+  /// Getter for [locationCodeableConcept] as a CodeableConcept
+  CodeableConcept? get locationCodeableConcept =>
+      locationX?.isAs<CodeableConcept>();
+
+  /// Getter for [locationAddress] as a Address
+  Address? get locationAddress => locationX?.isAs<Address>();
+
+  /// Getter for [locationReference] as a Reference
+  Reference? get locationReference => locationX?.isAs<Reference>();
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -10499,9 +10572,24 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// The quantity of the benefit which is permitted under the coverage.
   final AllowedXExplanationOfBenefitFinancial? allowedX;
 
+  /// Getter for [allowedUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get allowedUnsignedInt => allowedX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [allowedString] as a FhirString
+  FhirString? get allowedString => allowedX?.isAs<FhirString>();
+
+  /// Getter for [allowedMoney] as a Money
+  Money? get allowedMoney => allowedX?.isAs<Money>();
+
   /// [usedX]
   /// The quantity of the benefit which have been consumed to date.
   final UsedXExplanationOfBenefitFinancial? usedX;
+
+  /// Getter for [usedUnsignedInt] as a FhirUnsignedInt
+  FhirUnsignedInt? get usedUnsignedInt => usedX?.isAs<FhirUnsignedInt>();
+
+  /// Getter for [usedMoney] as a Money
+  Money? get usedMoney => usedX?.isAs<Money>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -481,6 +481,13 @@ class ResearchElementDefinition extends DomainResource {
   /// of the ResearchElementDefinition can be anything.
   final SubjectXResearchElementDefinition? subjectX;
 
+  /// Getter for [subjectCodeableConcept] as a CodeableConcept
+  CodeableConcept? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConcept>();
+
+  /// Getter for [subjectReference] as a Reference
+  Reference? get subjectReference => subjectX?.isAs<Reference>();
+
   /// [date]
   /// The date (and optionally time) when the research element definition was
   /// published. The date must change when the business version changes and
@@ -1586,6 +1593,21 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// diagnosis onset in the last year).
   final DefinitionXResearchElementDefinitionCharacteristic definitionX;
 
+  /// Getter for [definitionCodeableConcept] as a CodeableConcept
+  CodeableConcept? get definitionCodeableConcept =>
+      definitionX.isAs<CodeableConcept>();
+
+  /// Getter for [definitionCanonical] as a FhirCanonical
+  FhirCanonical? get definitionCanonical => definitionX.isAs<FhirCanonical>();
+
+  /// Getter for [definitionExpression] as a FhirExpression
+  FhirExpression? get definitionExpression =>
+      definitionX.isAs<FhirExpression>();
+
+  /// Getter for [definitionDataRequirement] as a DataRequirement
+  DataRequirement? get definitionDataRequirement =>
+      definitionX.isAs<DataRequirement>();
+
   /// [usageContext]
   /// Use UsageContext to define the members of the population, such as Age
   /// Ranges, Genders, Settings.
@@ -1608,6 +1630,20 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Indicates what effective period the study covers.
   final StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX;
 
+  /// Getter for [studyEffectiveDateTime] as a FhirDateTime
+  FhirDateTime? get studyEffectiveDateTime =>
+      studyEffectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [studyEffectivePeriod] as a Period
+  Period? get studyEffectivePeriod => studyEffectiveX?.isAs<Period>();
+
+  /// Getter for [studyEffectiveDuration] as a FhirDuration
+  FhirDuration? get studyEffectiveDuration =>
+      studyEffectiveX?.isAs<FhirDuration>();
+
+  /// Getter for [studyEffectiveTiming] as a Timing
+  Timing? get studyEffectiveTiming => studyEffectiveX?.isAs<Timing>();
+
   /// [studyEffectiveTimeFromStart]
   /// Indicates duration from the study initiation.
   final FhirDuration? studyEffectiveTimeFromStart;
@@ -1625,6 +1661,22 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Indicates what effective period the study covers.
   final ParticipantEffectiveXResearchElementDefinitionCharacteristic?
       participantEffectiveX;
+
+  /// Getter for [participantEffectiveDateTime] as a FhirDateTime
+  FhirDateTime? get participantEffectiveDateTime =>
+      participantEffectiveX?.isAs<FhirDateTime>();
+
+  /// Getter for [participantEffectivePeriod] as a Period
+  Period? get participantEffectivePeriod =>
+      participantEffectiveX?.isAs<Period>();
+
+  /// Getter for [participantEffectiveDuration] as a FhirDuration
+  FhirDuration? get participantEffectiveDuration =>
+      participantEffectiveX?.isAs<FhirDuration>();
+
+  /// Getter for [participantEffectiveTiming] as a Timing
+  Timing? get participantEffectiveTiming =>
+      participantEffectiveX?.isAs<Timing>();
 
   /// [participantEffectiveTimeFromStart]
   /// Indicates duration from the participant's study entry.
@@ -1681,25 +1733,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -2005,45 +2049,33 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveDescription,
-      o.studyEffectiveDescription,
-    )) {
+        studyEffectiveDescription, o.studyEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveTimeFromStart,
-      o.studyEffectiveTimeFromStart,
-    )) {
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveGroupMeasure,
-      o.studyEffectiveGroupMeasure,
-    )) {
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveDescription,
-      o.participantEffectiveDescription,
-    )) {
+        participantEffectiveDescription, o.participantEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (!equalsDeepWithNull(
-      participantEffectiveTimeFromStart,
-      o.participantEffectiveTimeFromStart,
-    )) {
+    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
+        o.participantEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveGroupMeasure,
-      o.participantEffectiveGroupMeasure,
-    )) {
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure)) {
       return false;
     }
     return true;
