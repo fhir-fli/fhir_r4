@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 
 import 'package:fhir_r4/fhir_r4.dart';
 
