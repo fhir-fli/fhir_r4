@@ -4,9 +4,9 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
 /// A modular FHIR Validator class
-class FhirValidator {
+abstract class FhirValidator {
   /// Validate a FHIR resource from a Dart FHIR class
-  Future<ValidationResults> validateFhirResource({
+  static Future<ValidationResults> validateFhirResource({
     required Resource structureToValidate,
     StructureDefinition? structureDefinition,
     Client? client,
@@ -19,9 +19,9 @@ class FhirValidator {
   }
 
   /// Validate a FHIR resource from a JSON string
-  Future<ValidationResults> validateFhirString({
+  static Future<ValidationResults> validateFhirString({
     required String structureToValidate,
-    required Client? client,
+    Client? client,
     StructureDefinition? structureDefinition,
   }) async {
     final resourceMap =
@@ -34,9 +34,9 @@ class FhirValidator {
   }
 
   /// Validate a FHIR resource from a JSON map
-  Future<ValidationResults> validateFhirMap({
+  static Future<ValidationResults> validateFhirMap({
     required Map<String, dynamic> structureToValidate,
-    required Client? client,
+    Client? client,
     StructureDefinition? structureDefinition,
   }) async {
     final type = structureToValidate['resourceType'] as String?;
@@ -69,7 +69,7 @@ class FhirValidator {
   }
 
   /// Fetch the StructureDefinition for a resource type
-  Future<StructureDefinition?> _fetchStructureDefinition(
+  static Future<StructureDefinition?> _fetchStructureDefinition(
     String resourceType,
     Client? client,
   ) async {
@@ -84,7 +84,7 @@ class FhirValidator {
   }
 
   /// Evaluate a resource against its StructureDefinition
-  Future<ValidationResults> _evaluateResource({
+  static Future<ValidationResults> _evaluateResource({
     required Map<String, dynamic> structureToValidate,
     required StructureDefinition structureDefinition,
     required String type,

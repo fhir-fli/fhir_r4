@@ -667,8 +667,9 @@ class StructureMapParser {
     if (name == '(') {
       transform = StructureMapTransform.evaluate;
       final expression = _extractExpressionFromLexer(lexer);
-      if (fpe.isValid(expression))
+      if (fpe.isValid(expression)) {
         parameters.add(StructureMapParameter(valueX: expression.toFhirString));
+      }
       lexer.token(')');
     } else if (lexer.hasToken('(')) {
       transform = StructureMapTransform.fromJson({'value': name});
@@ -681,9 +682,10 @@ class StructureMapParser {
         );
         lexer.token(',');
         final expression = _extractExpressionFromLexer(lexer);
-        if (fpe.isValid(expression))
+        if (fpe.isValid(expression)) {
           parameters
               .add(StructureMapParameter(valueX: expression.toFhirString));
+        }
       } else {
         while (!lexer.hasToken(')')) {
           final params = _parseParameter(lexer);
@@ -696,7 +698,9 @@ class StructureMapParser {
       transform = StructureMapTransform.copy_;
       if (!isConstant) {
         var id = name;
-        while (lexer.hasToken('.')) id += lexer.take() + lexer.take();
+        while (lexer.hasToken('.')) {
+          id += lexer.take() + lexer.take();
+        }
         parameters.add(StructureMapParameter(valueX: id.toFhirId));
       } else if (int.tryParse(name) != null) {
         parameters.add(

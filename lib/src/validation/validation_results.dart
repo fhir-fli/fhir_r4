@@ -8,6 +8,10 @@ class ValidationResults {
   /// List of missing results from validation process
   final List<ValidationDiagnostics> missingResults = <ValidationDiagnostics>[];
 
+  /// returns if the results have any errors
+  bool get hasErrors =>
+      results.any((element) => element.severity == Severity.error);
+
   /// Add a result to the list of results
   void addResult(Node? node, String newItem, Severity severity) {
     final existing = results.any(
