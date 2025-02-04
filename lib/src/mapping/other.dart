@@ -1,50 +1,71 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
+/// Logs messages for debugging purposes.
+/// - [message]: The log message.
+/// - [shouldPrint]: Whether to print the message.
+/// - [level]: The log level (default is 'INFO').
 void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
   if (shouldPrint) {
     print('[$level] $message');
   }
 }
 
+/// Manages the transformation context for mapping FHIR structures.
 class TransformationContext {
+  /// Creates a [TransformationContext] with a [resolver].
   TransformationContext(this.resolver);
+
+  /// The resolver for fetching FHIR definitions.
   final DefinitionResolver resolver;
+
+  /// The currently active structure definition.
   StructureDefinition? currentDefinition;
 
+  /// Sets the structure definition by resolving [structureUrl].
   Future<void> setStructure(String structureUrl) async {
     currentDefinition = await resolver.resolve(structureUrl);
   }
 
-  // Stub for performSearch to be implemented later
+  /// Searches within the structure.
+  ///
+  /// Placeholder method that should be implemented later.
   List<ElementNode> performSearch(String search) {
     return <ElementNode>[]; // Replace with actual search logic later
   }
 }
 
+/// Resolves structure definitions for FHIR mapping.
 class DefinitionResolver {
+  /// Creates a [DefinitionResolver] with a [cache] and optional [map].
   DefinitionResolver(this.cache, this.map);
+
+  /// The database for fetching canonical FHIR resources.
   final FhirDb cache;
+
+  /// The optional structure map for resolving definitions.
   final StructureMap? map;
+
+  /// Cache of resolved structure definitions.
   final Map<String, StructureDefinition?> _cachedDefinitions = {};
 
+  /// Resolves a [StructureDefinition] from [structureUrl].
   Future<StructureDefinition?> resolve(String structureUrl) async {
     return (await cache.getCanonicalResource(url: structureUrl))
         as StructureDefinition?;
   }
 
+  /// Resolves a [StructureDefinition] by [type].
   Future<StructureDefinition?> resolveByType(String? type) async {
     if (type == null) {
       _log('Cannot resolve StructureDefinition for null type.', true);
       return null;
     }
 
-    // Check if the type is already cached
     if (_cachedDefinitions.containsKey(type)) {
       return _cachedDefinitions[type];
     }
 
-    // Find the structure definition
     final structure = map?.structure?.firstWhereOrNull(
           (s) =>
               s.url.toString() == type ||
@@ -55,15 +76,12 @@ class DefinitionResolver {
               s.url.toString().toLowerCase().endsWith('/${type.toLowerCase()}'),
         );
 
-    // Resolve the structure definition
     final resolved = await resolve(structure?.url.toString() ?? type);
-
-    // Cache the result
     _cachedDefinitions[type] = resolved;
-
     return resolved;
   }
 
+  /// Resolves an [ElementDefinition] for [objectLocation].
   Future<ElementDefinition?> resolveElementDefinition(
     String? objectLocation,
   ) async {
@@ -94,6 +112,32 @@ class DefinitionResolver {
     return _resolveElementDefinitionFromStructure(structureDef, objectLocation);
   }
 
+  /// Determines if [objectLocation] is a list.
+  Future<bool> isElementAList(String? objectLocation) async {
+    final elementDef = await resolveElementDefinition(objectLocation);
+    return elementDef?.isCollection ?? false;
+  }
+
+  /// Gets possible types for an element at [objectLocation].
+  Future<List<String>> typesForElement(String? objectLocation) async {
+    if (objectLocation == null) return <String>[];
+    final elementDef = await resolveElementDefinition(objectLocation);
+    return elementDef?.type?.map((t) => t.code.toString()).toList() ??
+        <String>[];
+  }
+
+  /// Fetches a [CanonicalResource] of type [T] from [uri].
+  Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
+    final resource = await cache.getCanonicalResource(url: uri);
+    if (resource is T) return resource;
+    _log(
+      'Resource $uri is not of expected type ${T.runtimeType}',
+      true,
+      'WARNING',
+    );
+    return null;
+  }
+
   ElementDefinition? _resolveElementDefinitionFromStructure(
     StructureDefinition? structureDef,
     String path,
@@ -118,18 +162,21 @@ class DefinitionResolver {
     return null;
   }
 
-  Future<bool> isElementAList(String? objectLocation) async {
-    final elementDef = await resolveElementDefinition(objectLocation);
-    return elementDef?.isCollection ?? false;
-  }
-
-  Future<List<String>> typesForElement(String? objectLocation) async {
-    if (objectLocation == null) return <String>[];
-    final elementDef = await resolveElementDefinition(objectLocation);
-    return elementDef?.type?.map((t) => t.code.toString()).toList() ??
-        <String>[];
-  }
-
+  /// Determines whether the given source and target types match within a
+  /// [StructureMapGroup].
+  ///
+  /// This function is useful for validating type compatibility in 
+  /// transformation rules within FHIR structure maps. It checks if the 
+  /// provided [srcType] and [tgtType] match the expected input types within 
+  /// the specified [group].
+  ///
+  /// - [map]: The [StructureMap] containing the transformation rules.
+  /// - [group]: The [StructureMapGroup] being validated.
+  /// - [srcType]: The source type to compare.
+  /// - [tgtType]: The target type to compare.
+  ///
+  /// Returns `true` if the types match based on the group's input 
+  /// specifications, otherwise returns `false`.
   Future<bool> matchesByType(
     StructureMap map,
     StructureMapGroup group,
@@ -161,19 +208,18 @@ class DefinitionResolver {
     }
     return type;
   }
-
-  Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
-    final resource = await cache.getCanonicalResource(url: uri);
-    if (resource is T) return resource;
-    _log(
-      'Resource $uri is not of expected type ${T.runtimeType}',
-      true,
-      'WARNING',
-    );
-    return null;
-  }
 }
 
+/// Determines the specific type for a polymorphic FHIR element.
+///
+/// Some FHIR elements use `[x]` notation to indicate polymorphism, meaning
+/// they can be of different types. This function resolves the correct type
+/// based on the given [elementDef] and [path].
+///
+/// - [elementDef]: The element definition containing type information.
+/// - [path]: The current path being resolved.
+///
+/// Returns the resolved type as a string, or `null` if no match is found.
 String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
   final edPath = elementDef.path.value;
   if (edPath == null || !edPath.endsWith('[x]')) return null;
@@ -192,40 +238,43 @@ String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
   }
 }
 
+/// Represents a resolved group within a [StructureMap].
 class ResolvedGroup {
+  /// Constructs a [ResolvedGroup] with a [target] and an associated
+  /// [targetMap].
   ResolvedGroup(this.target, this.targetMap);
 
-  // Constructor to initialize with nulls, for when no group is found initially.
+  /// Creates an empty [ResolvedGroup] with no target mapping.
   ResolvedGroup.empty()
       : target = null,
         targetMap = null;
+
+  /// The target group within the structure map.
   StructureMapGroup? target;
+
+  /// The associated structure map for the target group.
   StructureMap? targetMap;
 }
 
+/// Manages the storage and retrieval of [StructureMap] instances.
 class StructureMapService {
+  /// List of available [StructureMap] instances.
   final List<StructureMap> _structureMaps = [];
 
-  // Method to add a StructureMap to the list
+  /// Adds a [StructureMap] to the list of available transformations.
   void addStructureMap(StructureMap structureMap) {
     _structureMaps.add(structureMap);
   }
 
-  // Method to fetch a StructureMap by URL
+  /// Retrieves a [StructureMap] by its canonical URL.
   StructureMap? getTransform(String canonicalUrl) {
     return _structureMaps
         .firstWhereOrNull((map) => map.url.toString() == canonicalUrl);
   }
 
+  /// Lists all [StructureMap] instances that match the given
+  /// [canonicalUrlTemplate].
   List<StructureMap> listTransforms(String canonicalUrlTemplate) {
-    // Quick check for an exact match
-    if (!canonicalUrlTemplate.contains('*')) {
-      return _structureMaps
-          .where((map) => map.url.toString() == canonicalUrlTemplate)
-          .toList();
-    }
-
-    // Apply regex for wildcard patterns
     final pattern = RegExp('^${canonicalUrlTemplate.replaceAll('*', '.*')}\$');
     return _structureMaps
         .where((map) => pattern.hasMatch(map.url.toString()))

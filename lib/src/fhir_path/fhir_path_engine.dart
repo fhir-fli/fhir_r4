@@ -3925,17 +3925,6 @@ class FHIRPathEngine {
             currentType.toLowerCase() == tn.toLowerCase() ||
                 currentType == tn.replaceFirst('FHIR.', ''),
           );
-          // TODO(Dokotela): I don't think we really need all this
-          // var sd = _fetchTypeDefinition(currentType);
-          // while (sd != null) {
-          //   if (tn == sd.type.toString()) {
-          //     return makeBoolean(true);
-          //   }
-          //   sd = worker.fetchResource<StructureDefinition>(
-          //     uri: sd.baseDefinition?.toString(),
-          //   );
-          // }
-          // return makeBoolean(false);
         }
       } else if (left.first.fhirType == tn) {
         result.add(FhirBoolean(true).noExtensions());

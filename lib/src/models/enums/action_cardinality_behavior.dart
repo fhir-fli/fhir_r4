@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Defines behavior for an action or a group for how many times that item may be repeated.
+/// Defines behavior for an action or a group for how many times that item may 
+/// be repeated.
 class ActionCardinalityBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   ActionCardinalityBehavior._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
+/// Estimate of the potential clinical harm, or seriousness, of a reaction to 
+/// an identified substance.
 class AllergyIntoleranceCriticality extends FhirCode {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceCriticality._(

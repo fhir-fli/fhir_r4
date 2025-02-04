@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Indicator for type of action performed during the event that generated the event.
+/// Indicator for type of action performed during the event that generated the 
+/// event.
 class AuditEventAction extends FhirCode {
   // Private constructor for internal use (like enum)
   AuditEventAction._(

@@ -9,14 +9,24 @@ void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
   if (shouldPrint) print('[$level] $message');
 }
 
+/// Class to handle the transformations of a StructureMap
 class Transformer {
+  /// Constructor for the Transformer class
   Transformer(this.map, this.context, this.resolver);
+
+  /// The StructureMap to be transformed
   final StructureMap map;
+
+  /// The context in which the transformation is being performed
   final TransformationContext context;
+
+  /// The resolver to be used for fetching resources
   final DefinitionResolver resolver;
+
+  /// The main function to run the transformation
   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
 
-// runTransform no longer handles create logic directly
+  /// runTransform no longer handles create logic directly
   Future<ElementNode?> runTransform(
     String ruleId,
     StructureMapGroup? group,
