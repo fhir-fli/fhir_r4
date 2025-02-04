@@ -5740,7 +5740,9 @@ class TestScriptAssert extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        compareToSourceExpression, o.compareToSourceExpression)) {
+      compareToSourceExpression,
+      o.compareToSourceExpression,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(compareToSourcePath, o.compareToSourcePath)) {

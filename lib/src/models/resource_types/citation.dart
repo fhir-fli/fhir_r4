@@ -6465,16 +6465,16 @@ class CitationDateOfPublication extends BackboneElement {
     this.text,
     super.disallowExtensions,
   }) : super(
-          objectPath:
-              'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication',
+          objectPath: 'Citation.citedArtifact.publicationForm'
+              '.periodicRelease.dateOfPublication',
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationDateOfPublication.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath =
-        'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication';
+    const objectPath = 'Citation.citedArtifact.publicationForm'
+        '.periodicRelease.dateOfPublication';
     return CitationDateOfPublication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
@@ -9111,8 +9111,8 @@ class CitationContributionInstance extends BackboneElement {
     this.time,
     super.disallowExtensions,
   }) : super(
-          objectPath:
-              'Citation.citedArtifact.contributorship.entry.contributionInstance',
+          objectPath: 'Citation.citedArtifact.contributorship'
+              '.entry.contributionInstance',
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument

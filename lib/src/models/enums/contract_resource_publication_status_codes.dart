@@ -14,7 +14,8 @@ class ContractResourcePublicationStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
-  /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
+  /// Factory constructor to create [ContractResourcePublicationStatusCodes]
+  /// from JSON.
   factory ContractResourcePublicationStatusCodes.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -26,7 +27,8 @@ class ContractResourcePublicationStatusCodes extends FhirCode {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ContractResourcePublicationStatusCodes cannot be constructed from JSON.',
+        'ContractResourcePublicationStatusCodes cannot be constructed '
+        'from JSON.',
       );
     }
     return ContractResourcePublicationStatusCodes._(

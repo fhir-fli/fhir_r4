@@ -1476,7 +1476,9 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
+      maxDosePerTreatmentPeriod,
+      o.maxDosePerTreatmentPeriod,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -1507,6 +1509,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
+              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies',
         );
 
@@ -1811,16 +1814,16 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     this.supportingInformation,
     super.disallowExtensions,
   }) : super(
-          objectPath:
-              'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod',
+          objectPath: 'AdministrableProductDefinition.routeOfAdministration'
+              '.targetSpecies.withdrawalPeriod',
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath =
-        'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod';
+    const objectPath = 'AdministrableProductDefinition.routeOfAdministration'
+        '.targetSpecies.withdrawalPeriod';
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: JsonParser.parsePrimitive<FhirString>(
         json,

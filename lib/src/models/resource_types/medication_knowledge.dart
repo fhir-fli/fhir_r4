@@ -3293,8 +3293,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     this.value,
     super.disallowExtensions,
   }) : super(
-          objectPath:
-              'MedicationKnowledge.administrationGuidelines.patientCharacteristics',
+          objectPath: 'MedicationKnowledge.administrationGuidelines'
+              '.patientCharacteristics',
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3439,8 +3439,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     addField('extension', extension_);
     addField('modifierExtension', modifierExtension);
     final characteristicXFhirType = characteristicX.fhirType;
-    addField('characteristic${characteristicXFhirType.capitalize()}',
-        characteristicX);
+    addField(
+      'characteristic${characteristicXFhirType.capitalize()}',
+      characteristicX,
+    );
 
     addField('value', value);
     return json;

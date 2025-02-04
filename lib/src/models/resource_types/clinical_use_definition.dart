@@ -1053,7 +1053,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1813,7 +1815,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {

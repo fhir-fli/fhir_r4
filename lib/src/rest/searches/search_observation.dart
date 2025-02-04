@@ -126,8 +126,8 @@ class SearchObservation extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters[
-            '${modifier != null ? '$modifier' : ''}component_data_absent_reason'] =
+    parameters["${modifier != null ? '$modifier' : ''}"
+            'component_data_absent_reason'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
