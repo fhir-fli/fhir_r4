@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Codes that reflect the current state of a goal and whether the goal is still being targeted.
+/// Codes that reflect the current state of a goal and whether the goal is
+/// still being targeted.
 class GoalLifecycleStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   GoalLifecycleStatus._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Defines expectations around whether an action or action group is required.
+/// Defines expectations around whether an action or action group is
+/// required.
 class ActionRequiredBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   ActionRequiredBehavior._(

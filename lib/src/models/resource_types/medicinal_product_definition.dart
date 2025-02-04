@@ -1182,7 +1182,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm,)) {
+        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1198,7 +1198,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        additionalMonitoringIndicator, o.additionalMonitoringIndicator,)) {
+        additionalMonitoringIndicator, o.additionalMonitoringIndicator)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3192,7 +3192,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        confidentialityIndicator, o.confidentialityIndicator,)) {
+        confidentialityIndicator, o.confidentialityIndicator)) {
       return false;
     }
     return true;

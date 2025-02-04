@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Codes that reflect the current state of a clinical impression within its overall lifecycle.
+/// Codes that reflect the current state of a clinical impression within
+/// its overall lifecycle.
 class ClinicalImpressionStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   ClinicalImpressionStatus._(

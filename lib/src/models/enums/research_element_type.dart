@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The possible types of research elements (E.g. Population, Exposure, Outcome).
+/// The possible types of research elements (E.g. Population, Exposure,
+/// Outcome).
 class ResearchElementType extends FhirCode {
   // Private constructor for internal use (like enum)
   ResearchElementType._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Controls how multiple enableWhen values are interpreted - whether all or any must be true.
+/// Controls how multiple enableWhen values are interpreted - whether all
+/// or any must be true.
 class EnableWhenBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   EnableWhenBehavior._(

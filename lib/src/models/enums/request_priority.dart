@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Identifies the level of importance to be assigned to actioning the request.
+/// Identifies the level of importance to be assigned to actioning the
+/// request.
 class RequestPriority extends FhirCode {
   // Private constructor for internal use (like enum)
   RequestPriority._(

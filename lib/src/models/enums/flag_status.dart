@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
+/// Indicates whether this flag is active and needs to be displayed to a
+/// user, or whether it is no longer needed or was entered in error.
 class FlagStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   FlagStatus._(

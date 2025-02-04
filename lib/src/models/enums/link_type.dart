@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The type of link between this patient resource and another patient resource.
+/// The type of link between this patient resource and another patient
+/// resource.
 class LinkType extends FhirCode {
   // Private constructor for internal use (like enum)
   LinkType._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
+/// HL7-defined table of codes which identify conditions under which
+/// acknowledgments are required to be returned in response to a message.
 class MessageheaderResponseRequest extends FhirCode {
   // Private constructor for internal use (like enum)
   MessageheaderResponseRequest._(

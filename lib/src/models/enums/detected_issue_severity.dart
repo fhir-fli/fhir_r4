@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Indicates the potential degree of impact of the identified issue on the patient.
+/// Indicates the potential degree of impact of the identified issue on the
+/// patient.
 class DetectedIssueSeverity extends FhirCode {
   // Private constructor for internal use (like enum)
   DetectedIssueSeverity._(

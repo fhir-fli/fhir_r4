@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The possible types of variables for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
+/// The possible types of variables for exposures or outcomes (E.g.
+/// Dichotomous, Continuous, Descriptive).
 class VariableType extends FhirCode {
   // Private constructor for internal use (like enum)
   VariableType._(

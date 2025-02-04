@@ -1094,7 +1094,7 @@ class EvidenceVariable extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        characteristicCombination, o.characteristicCombination,)) {
+        characteristicCombination, o.characteristicCombination)) {
       return false;
     }
     if (!listEquals<EvidenceVariableCharacteristic>(

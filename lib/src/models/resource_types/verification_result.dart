@@ -1640,11 +1640,11 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
+        sourceIdentityCertificate, o.sourceIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
+        proxyIdentityCertificate, o.proxyIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {

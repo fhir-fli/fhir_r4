@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Indicates whether a resource instance represents a specific location or a class of locations.
+/// Indicates whether a resource instance represents a specific location or
+/// a class of locations.
 class LocationMode extends FhirCode {
   // Private constructor for internal use (like enum)
   LocationMode._(

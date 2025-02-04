@@ -165,9 +165,9 @@ class DefinitionResolver {
   /// Determines whether the given source and target types match within a
   /// [StructureMapGroup].
   ///
-  /// This function is useful for validating type compatibility in 
-  /// transformation rules within FHIR structure maps. It checks if the 
-  /// provided [srcType] and [tgtType] match the expected input types within 
+  /// This function is useful for validating type compatibility in
+  /// transformation rules within FHIR structure maps. It checks if the
+  /// provided [srcType] and [tgtType] match the expected input types within
   /// the specified [group].
   ///
   /// - [map]: The [StructureMap] containing the transformation rules.
@@ -175,7 +175,7 @@ class DefinitionResolver {
   /// - [srcType]: The source type to compare.
   /// - [tgtType]: The target type to compare.
   ///
-  /// Returns `true` if the types match based on the group's input 
+  /// Returns `true` if the types match based on the group's input
   /// specifications, otherwise returns `false`.
   Future<bool> matchesByType(
     StructureMap map,

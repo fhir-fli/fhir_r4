@@ -2,7 +2,10 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The way in which this manufacturer is associated with the ingredient. For example whether it is a possible one (others allowed), or an exclusive authorized one for this ingredient. Note that this is not the manufacturing process role.
+/// The way in which this manufacturer is associated with the ingredient.
+/// For example whether it is a possible one (others allowed), or an
+/// exclusive authorized one for this ingredient. Note that this is not the
+/// manufacturing process role.
 class IngredientManufacturerRole extends FhirCode {
   // Private constructor for internal use (like enum)
   IngredientManufacturerRole._(

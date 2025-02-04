@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// How a rule statement is applied, such as adding additional consent or removing consent.
+/// How a rule statement is applied, such as adding additional consent or
+/// removing consent.
 class ConsentProvisionType extends FhirCode {
   // Private constructor for internal use (like enum)
   ConsentProvisionType._(

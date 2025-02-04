@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Indication of the degree of conformance expectations associated with a binding.
+/// Indication of the degree of conformance expectations associated with a
+/// binding.
 class BindingStrength extends FhirCode {
   // Private constructor for internal use (like enum)
   BindingStrength._(

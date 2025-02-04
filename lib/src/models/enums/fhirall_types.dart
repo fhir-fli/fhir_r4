@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A list of all the concrete types defined in this version of the FHIR specification - Abstract Types, Data Types and Resource Types.
+/// A list of all the concrete types defined in this version of the FHIR
+/// specification - Abstract Types, Data Types and Resource Types.
 class FHIRAllTypes extends FhirCode {
   // Private constructor for internal use (like enum)
   FHIRAllTypes._(

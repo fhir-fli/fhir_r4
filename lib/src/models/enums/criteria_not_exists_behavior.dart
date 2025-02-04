@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Behavior a server can exhibit when a criteria state does not exist (e.g., state prior to a create or after a delete).
+/// Behavior a server can exhibit when a criteria state does not exist
+/// (e.g., state prior to a create or after a delete).
 class CriteriaNotExistsBehavior extends FhirCode {
   // Private constructor for internal use (like enum)
   CriteriaNotExistsBehavior._(

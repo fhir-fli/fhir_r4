@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The extent of the content of the code system (the concepts and codes it defines) are represented in a code system resource.
+/// The extent of the content of the code system (the concepts and codes it
+/// defines) are represented in a code system resource.
 class CodeSystemContentMode extends FhirCode {
   // Private constructor for internal use (like enum)
   CodeSystemContentMode._(

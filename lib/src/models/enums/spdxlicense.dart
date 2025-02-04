@@ -2,7 +2,10 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/).
+/// The license that applies to an Implementation Guide (using an SPDX
+/// license Identifiers, or 'not-open-source'). The binding is required but
+/// new SPDX license Identifiers are allowed to be used
+/// (https://spdx.org/licenses/).
 class SPDXLicense extends FhirCode {
   // Private constructor for internal use (like enum)
   SPDXLicense._(

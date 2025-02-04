@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+/// This value set includes common codes from BCP-47
+/// (http://tools.ietf.org/html/bcp47)
 class CommonLanguages extends FhirCode {
   // Private constructor for internal use (like enum)
   CommonLanguages._(

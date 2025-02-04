@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Distinguishes groups from questions and display text and indicates data type for questions.
+/// Distinguishes groups from questions and display text and indicates data
+/// type for questions.
 class QuestionnaireItemType extends FhirCode {
   // Private constructor for internal use (like enum)
   QuestionnaireItemType._(

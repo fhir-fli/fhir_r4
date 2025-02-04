@@ -2,8 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Identification of the underlying physiological mechanism for a 
-/// Reaction Risk.
+/// Identification of the underlying physiological mechanism for a Reaction
+/// Risk.
 class AllergyIntoleranceType extends FhirCode {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceType._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// If this is the default rule set to apply for the source type, or this combination of types.
+/// If this is the default rule set to apply for the source type, or this
+/// combination of types.
 class StructureMapGroupTypeMode extends FhirCode {
   // Private constructor for internal use (like enum)
   StructureMapGroupTypeMode._(

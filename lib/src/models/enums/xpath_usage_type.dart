@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// How a search parameter relates to the set of elements returned by evaluating its xpath query.
+/// How a search parameter relates to the set of elements returned by
+/// evaluating its xpath query.
 class XPathUsageType extends FhirCode {
   // Private constructor for internal use (like enum)
   XPathUsageType._(

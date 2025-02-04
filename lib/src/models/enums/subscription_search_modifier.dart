@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
+/// FHIR search modifiers allowed for use in Subscriptions and
+/// SubscriptionTopics.
 class SubscriptionSearchModifier extends FhirCode {
   // Private constructor for internal use (like enum)
   SubscriptionSearchModifier._(

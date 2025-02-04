@@ -2,7 +2,10 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the evaluation for vaccine administration event.
+/// The value set to instantiate this attribute should be drawn from a
+/// terminologically robust code system that consists of or contains
+/// concepts to support describing the current status of the evaluation for
+/// vaccine administration event.
 class ImmunizationEvaluationStatusCodes extends FhirCode {
   // Private constructor for internal use (like enum)
   ImmunizationEvaluationStatusCodes._(

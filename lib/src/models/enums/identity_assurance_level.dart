@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+/// The level of confidence that this link represents the same actual
+/// person, based on NIST Authentication Levels.
 class IdentityAssuranceLevel extends FhirCode {
   // Private constructor for internal use (like enum)
   IdentityAssuranceLevel._(

@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
+/// Resource types defined as part of FHIR that can be represented as
+/// in-line definitions of a care plan activity.
 class CarePlanActivityKind extends FhirCode {
   // Private constructor for internal use (like enum)
   CarePlanActivityKind._(

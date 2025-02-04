@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Codes indicating the degree of authority/intentionality associated with a care plan.
+/// Codes indicating the degree of authority/intentionality associated with
+/// a care plan.
 class CarePlanIntent extends FhirCode {
   // Private constructor for internal use (like enum)
   CarePlanIntent._(

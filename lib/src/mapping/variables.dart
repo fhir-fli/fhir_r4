@@ -88,7 +88,7 @@ class Variables {
     return copy;
   }
 
-  /// Summary function providing information about input, output, 
+  /// Summary function providing information about input, output,
   /// and shared variables
   String summary() {
     final inputVars = _variablesSummary(VariableMode.INPUT);

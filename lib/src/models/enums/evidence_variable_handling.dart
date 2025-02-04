@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The handling of the variable in statistical analysis for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
+/// The handling of the variable in statistical analysis for exposures or
+/// outcomes (E.g. Dichotomous, Continuous, Descriptive).
 class EvidenceVariableHandling extends FhirCode {
   // Private constructor for internal use (like enum)
   EvidenceVariableHandling._(

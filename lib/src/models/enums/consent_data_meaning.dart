@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// How a resource reference is interpreted when testing consent restrictions.
+/// How a resource reference is interpreted when testing consent
+/// restrictions.
 class ConsentDataMeaning extends FhirCode {
   // Private constructor for internal use (like enum)
   ConsentDataMeaning._(

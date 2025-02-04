@@ -231,7 +231,7 @@
 //       } else if (ch == '@') {
 //         final start = cursor;
 //         cursor++;
-//         while (cursor < source.length && _isDateChar(source[cursor], start)) 
+//         while (cursor < source.length && _isDateChar(source[cursor], start))
 //         {
 //           cursor++;
 //         }

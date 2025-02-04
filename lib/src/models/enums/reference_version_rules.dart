@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Whether a reference needs to be version specific or version independent, or whether either can be used.
+/// Whether a reference needs to be version specific or version
+/// independent, or whether either can be used.
 class ReferenceVersionRules extends FhirCode {
   // Private constructor for internal use (like enum)
   ReferenceVersionRules._(

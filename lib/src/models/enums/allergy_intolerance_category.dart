@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Category of an identified substance associated with allergies or 
+/// Category of an identified substance associated with allergies or
 /// intolerances.
 class AllergyIntoleranceCategory extends FhirCode {
   // Private constructor for internal use (like enum)

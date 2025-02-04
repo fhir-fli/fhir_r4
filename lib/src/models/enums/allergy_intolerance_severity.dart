@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Clinical assessment of the severity of a reaction event as a whole, 
+/// Clinical assessment of the severity of a reaction event as a whole,
 /// potentially considering multiple different manifestations.
 class AllergyIntoleranceSeverity extends FhirCode {
   // Private constructor for internal use (like enum)

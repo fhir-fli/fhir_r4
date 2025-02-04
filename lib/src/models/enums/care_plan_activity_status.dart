@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Codes that reflect the current state of a care plan activity within its overall life cycle.
+/// Codes that reflect the current state of a care plan activity within its
+/// overall life cycle.
 class CarePlanActivityStatus extends FhirCode {
   // Private constructor for internal use (like enum)
   CarePlanActivityStatus._(

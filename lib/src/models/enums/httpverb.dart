@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// HTTP verbs (in the HTTP command line). See [HTTP rfc](https://tools.ietf.org/html/rfc7231) for details.
+/// HTTP verbs (in the HTTP command line). See [HTTP
+/// rfc](https://tools.ietf.org/html/rfc7231) for details.
 class HTTPVerb extends FhirCode {
   // Private constructor for internal use (like enum)
   HTTPVerb._(

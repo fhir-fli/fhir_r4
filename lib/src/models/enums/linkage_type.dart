@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// Used to distinguish different roles a resource can play within a set of linked resources.
+/// Used to distinguish different roles a resource can play within a set of
+/// linked resources.
 class LinkageType extends FhirCode {
   // Private constructor for internal use (like enum)
   LinkageType._(

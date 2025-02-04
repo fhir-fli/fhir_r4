@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A list of all the request resource types defined in this version of the FHIR specification.
+/// A list of all the request resource types defined in this version of the
+/// FHIR specification.
 class RequestResourceType extends FhirCode {
   // Private constructor for internal use (like enum)
   RequestResourceType._(

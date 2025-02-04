@@ -2,7 +2,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
+/// The degree to which the server supports the code search parameter on
+/// ValueSet, if it is supported.
 class CodeSearchSupport extends FhirCode {
   // Private constructor for internal use (like enum)
   CodeSearchSupport._(
