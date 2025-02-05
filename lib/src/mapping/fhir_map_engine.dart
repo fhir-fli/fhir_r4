@@ -56,16 +56,31 @@ class FhirMapEngine {
       final sourceType = await _getInputType(group, 'source');
       final targetType = await _getInputType(group, 'target');
 
-      final sourceNode = await _createMapNode(sourceType, source.toJson());
+      final sourceNode = await MapNode.fromMapAsync(
+        null,
+        sourceType,
+        sourceType,
+        source.toJson(),
+        resolver,
+      );
       final newTarget = target?.toJson() ?? await _generateEmptyTarget(map);
-      final targetNode = await _createMapNode(targetType, newTarget);
-      _log('Source: ${sourceNode.summary(2)}');
+      final targetNode = await MapNode.fromMapAsync(
+        null,
+        targetType,
+        targetType,
+        newTarget,
+        resolver,
+      );
+
+      print(sourceNode.summary(2));
       _log('Target: ${targetNode.summary(2)}');
 
       final vars = _initializeVariables(group, sourceNode, targetNode);
       final outputVarName = _getOutputVarName(group, targetType);
 
       await _executeGroup('', context, map, vars, group, true);
+
+      print(targetNode.summary(2));
 
       final finalMap =
           _retrieveTransformedTarget(vars, outputVarName, targetType);
@@ -96,13 +111,6 @@ class FhirMapEngine {
     }
 
     return resolvedType;
-  }
-
-  Future<ElementNode> _createMapNode(
-    String type,
-    Map<String, dynamic> data,
-  ) async {
-    return MapNode.fromMapAsync(type, null, null, data, resolver);
   }
 
   Variables _initializeVariables(
@@ -495,6 +503,7 @@ class FhirMapEngine {
               parseFhirPath(source.condition!.value!);
       source.setUserData('MAP_WHERE_EXPRESSION', conditionExpr);
       var expression = source.condition?.value ?? '';
+
       if (expression.startsWith('${source.context}.')) {
         expression = expression.replaceFirst('${source.context}.', '');
       }
@@ -502,6 +511,7 @@ class FhirMapEngine {
       final filteredItems = <ElementNode>[];
 
       final src = vars.getInputVar(source.context.toString());
+      // print(src?.summary());
       final srcMap = src?.toMap();
       final srcType = await src?.getInstanceType(resolver);
 
@@ -547,12 +557,14 @@ class FhirMapEngine {
               parseFhirPath(source.check!.value!);
       source.setUserData('MAP_WHERE_CHECK', checkExpr);
       var expression = source.check?.value ?? '';
+
       if (expression.startsWith('${source.context}.')) {
         expression = expression.replaceFirst('${source.context}.', '');
       }
       final node = fhirPathEngine.parse(expression);
 
       final src = vars.getInputVar(source.context.toString());
+      // print(src?.summary());
       final srcMap = src?.toMap();
       final srcType = await src?.getInstanceType(resolver);
 
@@ -645,7 +657,7 @@ class FhirMapEngine {
     if (parentNode is CompositeNode) {
       for (final child in parentNode.value) {
         final childEd =
-            await resolver.resolveElementDefinition(child.childObjectLocation);
+            await resolver.resolveElementDefinition(child.childLocalPath);
         String? polyName;
         if (childEd?.isPolymorphic ?? false) {
           polyName = childEd!.path.value?.split('.').last.replaceAll('[x]', '');
@@ -711,7 +723,7 @@ class FhirMapEngine {
       if (dest != null && value != null) {
         // Set property based on the resolved element
         value = await dest.setProperty(target.element!.value!, value, resolver);
-        dest = dest.updatePaths(dest.location!, dest.objectLocation!);
+        // dest = dest.updatePaths(dest.globalPath!, dest.localPath!);
       }
       // print('variables: ${vars.summary()}');
     } else if (dest != null) {

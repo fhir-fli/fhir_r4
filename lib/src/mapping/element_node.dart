@@ -19,70 +19,75 @@ void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
 abstract class ElementNode with Annotatable {
   ElementNode(
     this.name,
-    String? location,
-    String? objectLocation,
+    this.globalPath,
+    String? localPath,
     this.value,
-  )   : location = location ?? name,
-        objectLocation = objectLocation ?? location ?? name;
+  ) : localPath = localPath ?? globalPath;
   final String? name;
-  final String? location;
-  final String? objectLocation;
+  final String? globalPath;
+  final String? localPath;
   final dynamic value;
   ElementNode? parent;
 
 // Simplified copyWith logic, allowing nulls with a flag
   ElementNode copyWith({
     String? newName,
-    String? newLocation,
-    String? newObjectLocation,
+    String? newGlobalPath,
+    String? newLocalPath,
     dynamic value,
+    String? newType,
     bool allowNullLocations = false,
   }) {
     return _copyInternal(
       newName: newName ?? name,
-      newLocation: newLocation ?? (allowNullLocations ? null : location),
-      newObjectLocation:
-          newObjectLocation ?? (allowNullLocations ? null : objectLocation),
+      newGlobalPath: newGlobalPath ?? (allowNullLocations ? null : globalPath),
+      newLocalPath: newLocalPath ?? (allowNullLocations ? null : localPath),
       value: value ?? this.value,
+      newType: newType ?? (this is LeafNode ? (this as LeafNode).type : null),
     );
   }
 
-// Internal method for copying
+  ElementNode makeListElement() {
+    return _copyInternal(
+      newGlobalPath: globalPath == null
+          ? name
+          : name == null
+              ? globalPath
+              : '$globalPath.$name',
+      newLocalPath: localPath == null
+          ? name
+          : name == null
+              ? localPath
+              : '$localPath.$name',
+      value: value,
+      newType: this is LeafNode ? (this as LeafNode).type : null,
+    );
+  }
+
+  // Internal method for copying
   ElementNode _copyInternal({
     String? newName,
-    String? newLocation,
-    String? newObjectLocation,
+    String? newGlobalPath,
+    String? newLocalPath,
     dynamic value,
+    String? newType,
   }) {
     if (this is LeafNode) {
-      return LeafNode(newName, newLocation, newObjectLocation, value, null);
+      return LeafNode(newName, newGlobalPath, newLocalPath, value, newType);
     } else if (this is MapNode) {
       if (value is! List<ElementNode>?) {
         throw Exception('MapNode value must be a list of ElementNodes');
       }
-      return MapNode(newName, newLocation, newObjectLocation, value);
+
+      return MapNode(newName, newGlobalPath, newLocalPath, value);
     } else if (this is ListNode) {
       if (value is! List<ElementNode>?) {
         throw Exception('ListNode value must be a list of ElementNodes');
       }
-      return ListNode(newName, newLocation, newObjectLocation, value);
+      return ListNode(newName, newGlobalPath, newLocalPath, value);
     } else {
       throw Exception('Unknown ElementNode type.');
     }
-  }
-
-// Simplified copyWithNull to delegate to copyWith
-  ElementNode copyWithNull({
-    String? newName,
-    String? newLocation,
-    String? newObjectLocation,
-  }) {
-    return copyWith(
-      newName: newName,
-      newLocation: newLocation,
-      newObjectLocation: newObjectLocation,
-      allowNullLocations: true,
-    );
   }
 
   static T newNode<T extends ElementNode>(
@@ -90,57 +95,55 @@ abstract class ElementNode with Annotatable {
     ElementNode? parent, [
     dynamic value,
   ]) {
-    final newLocation = parent?.location == null
-        ? parent?.name
-        : parent?.location == parent?.name || parent?.name == null
-            ? parent?.location
-            : '${parent?.location}.${parent?.name}';
-    final newObjectLocation =
-        parent?.objectLocation == parent?.name || parent?.name == null
-            ? parent?.objectLocation
-            : parent?.objectLocation == null
-                ? parent?.name
-                : '${parent?.objectLocation}.${parent?.name}';
+    final newGlobalPath = parent?.globalPath != null
+        ? parent?.name == null
+            ? parent!.globalPath
+            : '${parent!.globalPath}.${parent.name}'
+        : parent?.name;
+    final newLocalPath = parent?.localPath != null
+        ? parent?.name == null
+            ? parent!.localPath
+            : '${parent!.localPath}.${parent.name}'
+        : parent?.name;
 
     switch (T) {
       case LeafNode:
         return LeafNode(
           elementName,
-          newLocation,
-          newObjectLocation,
+          newGlobalPath,
+          newLocalPath,
           value,
           null,
         ) as T;
       case MapNode:
-        return MapNode(elementName, newLocation, newObjectLocation, null) as T;
+        return MapNode(elementName, newGlobalPath, newLocalPath, null) as T;
       case ListNode:
-        return ListNode(elementName, newLocation, newObjectLocation, null) as T;
+        return ListNode(elementName, newGlobalPath, newLocalPath, null) as T;
       default:
         throw Exception('Unknown ElementNode type.');
     }
   }
 
-  String? get childLocation => location == null || location == name
+  String? get childGlobalPath => globalPath == null
       ? name
       : name == null
-          ? location
-          : '$location.$name';
-  String? get childObjectLocation =>
-      objectLocation == null || objectLocation == name
-          ? name
-          : name == null
-              ? objectLocation
-              : '$objectLocation.$name';
+          ? globalPath
+          : '$globalPath.$name';
+  String? get childLocalPath => localPath == null || localPath == name
+      ? name
+      : name == null
+          ? localPath
+          : '$localPath.$name';
   bool get isLeaf => this is LeafNode;
   bool get isComposite => this is CompositeNode;
   bool get isMap => this is MapNode;
   bool get isList => this is ListNode;
   String? pathForResolver([String? key]) {
-    final resolverPath = objectLocation == null
+    final resolverPath = localPath == null
         ? name
-        : objectLocation == name || name == null
-            ? objectLocation
-            : '$objectLocation.$name';
+        : localPath == name || name == null
+            ? localPath
+            : '$localPath.$name';
     if (resolverPath == null) {
       return key;
     }
@@ -153,8 +156,8 @@ abstract class ElementNode with Annotatable {
   Future<String?> getInstanceType(DefinitionResolver resolver) async {
     ElementDefinition? elementDefinition;
 
-    // Try to resolve element definition based on location or name
-    if (location != null) {
+    // Try to resolve element definition based on globalPath or name
+    if (globalPath != null) {
       elementDefinition =
           await resolver.resolveElementDefinition(pathForResolver());
     } else if (name != null && parent != null) {
@@ -178,6 +181,7 @@ abstract class ElementNode with Annotatable {
     DefinitionResolver resolver,
   ) async {
     var valueNode = newValue.copyWith();
+
     final compositeNode = this as CompositeNode;
     final elementDefinition =
         await _resolveElementDefinition(key, resolver, valueNode);
@@ -195,9 +199,9 @@ abstract class ElementNode with Annotatable {
         valueNode = valueNode.copyWith(
           value: castValue(valueNode.value, expectedType),
           newName: name,
-          newLocation: childLocation,
-          newObjectLocation:
-              _determineObjectLocation(elementDefinition, valueNode),
+          newGlobalPath: childGlobalPath,
+          newLocalPath: _determineObjectLocation(elementDefinition, valueNode),
+          newType: expectedType,
         );
       }
     }
@@ -222,12 +226,23 @@ abstract class ElementNode with Annotatable {
     DefinitionResolver resolver,
     ElementNode valueNode,
   ) async {
-    return (await resolver.resolveElementDefinition('$objectLocation.$key')) ??
-        (await resolver.resolveElementDefinition(pathForResolver(key))) ??
-        (await resolver
-            .resolveElementDefinition('$childObjectLocation.$key')) ??
-        await resolver
-            .resolveElementDefinition('${valueNode.objectLocation}.$key');
+    ElementDefinition? elementDefinition;
+    elementDefinition =
+        await resolver.resolveElementDefinition('$localPath.$key');
+    if (elementDefinition != null) {
+      return elementDefinition;
+    }
+    elementDefinition =
+        await resolver.resolveElementDefinition(pathForResolver(key));
+    if (elementDefinition != null) {
+      return elementDefinition;
+    }
+    elementDefinition =
+        await resolver.resolveElementDefinition('$childLocalPath.$key');
+    if (elementDefinition != null) {
+      return elementDefinition;
+    }
+    return resolver.resolveElementDefinition('${valueNode.localPath}.$key');
   }
 
 // Helper for polymorphic name assignment
@@ -239,21 +254,21 @@ abstract class ElementNode with Annotatable {
     return elementDefinition.isPolymorphic
         ? (valueNode is LeafNode && valueNode.type != null
             ? '$key${valueNode.type!.capitalize}'
-            : '$key${valueNode.objectLocation?.capitalize ?? ''}')
+            : '$key${valueNode.localPath?.capitalize ?? ''}')
         : key;
   }
 
-// Helper to determine object location
+// Helper to determine object globalPath
   String? _determineObjectLocation(
     ElementDefinition elementDefinition,
     ElementNode valueNode,
   ) {
     return elementDefinition.singleTypeString == 'Resource' &&
-            (valueNode.objectLocation?.isFhirResourceType ?? false)
-        ? valueNode.objectLocation
+            (valueNode.localPath?.isFhirResourceType ?? false)
+        ? valueNode.localPath
         : valueNode is LeafNode
-            ? objectLocation
-            : valueNode.objectLocation;
+            ? childLocalPath
+            : valueNode.localPath;
   }
 
 // Helper method for handling collections (ListNodes)
@@ -277,11 +292,10 @@ abstract class ElementNode with Annotatable {
       }
     } else {
       // Create a new ListNode
-      listNode = ListNode(key, location, objectLocation, [])
-        ..addChild(newValue);
+      listNode = ListNode(key, globalPath, localPath, [])
+        ..addChild(newValue.makeListElement());
       if (compositeNode is ListNode) {
-        final mapContainer =
-            MapNode(null, location, objectLocation, [listNode]);
+        final mapContainer = MapNode(null, globalPath, localPath, [listNode]);
         compositeNode.addChild(mapContainer);
       } else {
         compositeNode.addChild(listNode);
@@ -329,29 +343,21 @@ abstract class ElementNode with Annotatable {
 
     if (!addedToExistingMap) {
       // No suitable MapNode found, so create a new one
-      final mapNode = MapNode(null, null, null, [newValue]);
+      final mapNode =
+          MapNode(null, newValue.globalPath, newValue.localPath, [newValue]);
       listNode.addChild(mapNode);
     }
   }
 
 // Helper to add or replace a MapNode in a ListNode
   void _addOrReplaceMapInList(String key, ListNode listNode, MapNode newValue) {
-    final listObjectNode =
-        MapNode(null, childLocation, childObjectLocation, []);
-    final value = newValue.copyWithNull(
-      newLocation: listObjectNode.childLocation,
-      newObjectLocation: listObjectNode.childObjectLocation,
+    final listObjectNode = MapNode(null, childGlobalPath, childLocalPath, []);
+    final value = newValue.copyWith(
+      newGlobalPath: listObjectNode.childGlobalPath,
+      newLocalPath: listObjectNode.childLocalPath,
     ) as MapNode;
     listObjectNode.addChild(value);
-
     listNode.addChild(listObjectNode);
-  }
-
-  ElementNode updatePaths(String newPath, String newObjectLocation) {
-    return copyWithNull(
-      newLocation: newPath,
-      newObjectLocation: newObjectLocation,
-    );
   }
 
   @override
@@ -403,8 +409,8 @@ abstract class ElementNode with Annotatable {
     final indent = '  ' * depth;
 
     if (isLeaf) {
-      return '${indent}LeafNode(name: $name, location: $location, '
-          'objectLocation: $objectLocation, value: $value, '
+      return '${indent}LeafNode(name: $name, globalPath: $globalPath, '
+          'localPath: $localPath, value: $value, '
           'type: ${(this as LeafNode).type})';
     }
 
@@ -413,7 +419,7 @@ abstract class ElementNode with Annotatable {
         .join('\n');
 
     return '''
-$indent${isMap ? 'MapNode' : 'ListNode'}(name: $name, location: $location, objectLocation: $objectLocation)
+$indent${isMap ? 'MapNode' : 'ListNode'}(name: $name, globalPath: $globalPath, localPath: $localPath)
 $indent  children: [
 $childrenSummary
 $indent  ]
@@ -447,48 +453,37 @@ $indent  ]
 class LeafNode extends ElementNode {
   LeafNode(
     super.name,
-    super.location,
-    super.objectLocation,
+    super.globalPath,
+    super.localPath,
     super.value,
     this.type,
   );
 
   factory LeafNode.withCast(
     String? name,
-    String? location,
-    String? objectLocation,
+    String? globalPath,
+    String? localPath,
     dynamic value,
     String? type,
-  ) =>
-      LeafNode(name, location, objectLocation, castValue(value, type), type);
-
-  String? type;
-
-  @override
-  LeafNode updatePaths(String newPath, String newObjectLocation) {
-    return LeafNode(
-      name,
-      newPath,
-      newObjectLocation,
-      value,
-      type,
-    );
+  ) {
+    return LeafNode(name, globalPath, localPath, castValue(value, type), type);
   }
+  String? type;
 
   // Simplified copyWith logic, allowing nulls with a flag
   @override
   ElementNode copyWith({
     String? newName,
-    String? newLocation,
-    String? newObjectLocation,
+    String? newGlobalPath,
+    String? newLocalPath,
     dynamic value,
     bool allowNullLocations = false,
     String? newType,
   }) {
     return LeafNode(
       newName ?? name,
-      newLocation ?? (allowNullLocations ? null : location),
-      newObjectLocation ?? (allowNullLocations ? null : objectLocation),
+      newGlobalPath ?? (allowNullLocations ? null : globalPath),
+      newLocalPath ?? (allowNullLocations ? null : localPath),
       value ?? this.value,
       newType ?? type,
     );
@@ -498,11 +493,11 @@ class LeafNode extends ElementNode {
 abstract class CompositeNode extends ElementNode {
   CompositeNode(
     String? name,
-    String? location,
-    String? objectLocation,
+    String? globalPath,
+    String? localPath,
     List<ElementNode>? value,
   )   : value = value ?? <ElementNode>[],
-        super(name, location, objectLocation, value ?? <ElementNode>[]);
+        super(name, globalPath, localPath, value ?? <ElementNode>[]);
 
   @override
   // ignore: overridden_fields
@@ -554,56 +549,69 @@ abstract class CompositeNode extends ElementNode {
     String name,
     DefinitionResolver resolver,
   ) async {
-    // Determine if the element is a list
+    // Attempt to resolve the element definition from different possible paths
+    final elementDefinition =
+        await resolver.resolveElementDefinition(pathForResolver(name));
 
-    // Check if the node is a MapNode
+    if (elementDefinition == null) {
+      throw Exception('Element definition not found for $name');
+    }
+
+    // Determine if the property should be a collection (list)
+    final isCollection = elementDefinition.isCollection;
+
+    // If this node is a MapNode, check if it already contains this child
     if (this is MapNode) {
       final existingChild =
           value.firstWhereOrNull((child) => child.name == name);
-
       if (existingChild != null) {
         return existingChild;
       }
     }
 
-    if (this is! LeafNode) {
-      final parentEd =
-          await resolver.resolveElementDefinition(pathForResolver(name));
-      final childEd =
-          await resolver.resolveElementDefinition('$objectLocation.$name');
-      final elementDefinition = parentEd ?? childEd;
-      final newLocation = childLocation;
-      final newObjectLocation =
-          parentEd != null ? childObjectLocation : objectLocation;
-      final newChild = elementDefinition?.isPrimitive ?? false
-          ? LeafNode(
-              name,
-              newLocation,
-              newObjectLocation,
-              null,
-              elementDefinition?.singleTypeString,
-            )
-          : elementDefinition?.isCollection ?? false
-              ? ListNode(name, newLocation, newObjectLocation, null)
-              : MapNode(name, newLocation, newObjectLocation, null);
-      if (this is MapNode) {
-        addChild(newChild);
-        return newChild;
-      } else if (this is ListNode) {
-        // Only add the request to the first map in the list that doesn't
-        //already have it
-        final firstAvailableMapNode = value.firstWhereOrNull(
-          (child) => child is MapNode && !child.hasChildWithName(name),
-        );
+    // Determine the correct new globalPath and object globalPath
+    final newGlobalPath = childGlobalPath;
+    final newLocalPath = childLocalPath;
 
-        if (firstAvailableMapNode != null && firstAvailableMapNode is MapNode) {
-          firstAvailableMapNode.addChild(newChild);
-          return newChild;
-        }
+    // Create the new child node based on whether it's a collection
+    final newChild = elementDefinition.isPrimitive
+        ? LeafNode(
+            name,
+            newGlobalPath,
+            newLocalPath,
+            null,
+            elementDefinition.singleTypeString,
+          )
+        : isCollection
+            ? ListNode(name, newGlobalPath, newLocalPath, null)
+            : MapNode(name, newGlobalPath, newLocalPath, null);
+
+    // If the current node is a MapNode, add the child normally
+    if (this is MapNode) {
+      addChild(newChild);
+      return newChild;
+    }
+    // If the current node is a ListNode, insert the new child correctly
+    else if (this is ListNode) {
+      // Only add the request to the first map in the list that doesn't
+      // already have it
+      final firstAvailableMapNode = value.firstWhereOrNull(
+        (child) => child is MapNode && !child.hasChildWithName(name),
+      );
+
+      if (firstAvailableMapNode != null && firstAvailableMapNode is MapNode) {
+        firstAvailableMapNode.addChild(newChild);
+        return newChild;
+      } else {
+        // Create a new MapNode wrapper and add the ListNode
+        final listContainer = MapNode(null, newGlobalPath, newLocalPath, [])
+          ..addChild(newChild);
+        addChild(listContainer);
+        return newChild;
       }
     }
 
-    // If none of the above, throw an error for unknown node types
+    // If the node type is unsupported, throw an exception
     throw Exception('Unsupported CompositeNode type: $runtimeType');
   }
 }
@@ -612,24 +620,22 @@ abstract class CompositeNode extends ElementNode {
 class MapNode extends CompositeNode {
   MapNode(
     super.name,
-    super.location,
-    super.newObjectLocation,
+    super.globalPath,
+    super.newLocalPath,
     super.value,
   );
 
   // Async factory method for creating a MapNode from a map structure
   static Future<MapNode> fromMapAsync(
     String? name,
-    String? location,
-    String? newObjectLocation,
+    String? globalPath,
+    String? newLocalPath,
     Map<String, dynamic> map,
     DefinitionResolver resolver,
   ) async {
-    print('Creating MapNode - name: $name - location: $location '
-        'newObjectLocation: $newObjectLocation \nmap: $map');
-    final node = MapNode(name, location, newObjectLocation, null);
-    final nodeLocation = location ?? location;
-    final nodeObjectLocation = node.objectLocation ?? newObjectLocation;
+    final node = MapNode(name, globalPath, newLocalPath, null);
+    final nodeLocation = globalPath ?? globalPath;
+    final nodeObjectLocation = node.localPath ?? newLocalPath;
 
     for (final entry in map.entries) {
       final key = entry.key;
@@ -677,40 +683,23 @@ class MapNode extends CompositeNode {
 
     return node;
   }
-
-  @override
-  MapNode updatePaths(String newPath, String newObjectLocation) {
-    final updatedChildren = value.map((child) {
-      return child.updatePaths(
-        '$newPath.${child.name ?? ''}',
-        newObjectLocation,
-      );
-    }).toList();
-
-    return MapNode(
-      name,
-      newPath,
-      newObjectLocation,
-      updatedChildren,
-    );
-  }
 }
 
 // ListNode class for handling list-based nodes
 class ListNode extends CompositeNode {
-  ListNode(super.name, super.location, super.objectLocation, super.value);
+  ListNode(super.name, super.globalPath, super.localPath, super.value);
 
   // Async factory method for creating a ListNode from a list structure
   static Future<ListNode> fromListAsync(
     String? name,
-    String? location,
-    String? objectLocation,
+    String? globalPath,
+    String? localPath,
     List<dynamic> list,
     DefinitionResolver resolver,
   ) async {
-    final node = ListNode(name, location, objectLocation, <ElementNode>[]);
-    final nodeLocation = node.childLocation;
-    final nodeObjectLocation = node.childObjectLocation;
+    final node = ListNode(name, globalPath, localPath, <ElementNode>[]);
+    final nodeLocation = node.childGlobalPath;
+    final nodeObjectLocation = node.childLocalPath;
 
     for (final item in list) {
       final elementDefinition = nodeObjectLocation == null
@@ -741,28 +730,6 @@ class ListNode extends CompositeNode {
     }
 
     return node;
-  }
-
-  @override
-  ListNode updatePaths(String newPath, String newObjectLocation) {
-    final updatedChildren = value
-        .asMap()
-        .map((index, child) {
-          final updatedChild = child.updatePaths(
-            '$newPath[$index]',
-            newObjectLocation,
-          );
-          return MapEntry(index, updatedChild);
-        })
-        .values
-        .toList();
-
-    return ListNode(
-      name,
-      newPath,
-      newObjectLocation,
-      updatedChildren,
-    );
   }
 }
 

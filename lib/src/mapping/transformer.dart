@@ -203,8 +203,10 @@ class Transformer {
       return _createResourceNode(elementName, typeName, parent, target);
     }
 
-    final newLocation =
-        parent == null ? elementName : '${parent.location ?? ''}.$elementName';
+    final newLocation = parent == null
+        ? elementName
+        : '${parent.globalPath ?? ''}.$elementName';
+
     return MapNode(elementName, newLocation, typeName, []);
   }
 
@@ -216,12 +218,13 @@ class Transformer {
   ) async {
     final resourceType = _getResourceTypeFromMapOrTarget(target, typeName);
     final resourceId = _generateId();
-    final res = MapNode(elementName, parent?.location, typeName, []);
+
+    final res = MapNode(elementName, parent?.globalPath, typeName, []);
 
     if (resourceType != null) {
       return MapNode.fromMapAsync(
         null,
-        res.location,
+        res.globalPath,
         resourceType,
         {
           'resourceType': resourceType,
@@ -516,6 +519,7 @@ class Transformer {
   LeafNode _castToInt(LeafNode value, String ruleId, String targetType) {
     try {
       final intValue = int.parse(value.value.toString());
+
       return LeafNode(null, null, null, intValue, 'integer');
     } catch (e) {
       final errorMessage = e is FormatException
@@ -1088,6 +1092,7 @@ class Transformer {
         return null;
       } else if (result.length == 1) {
         final singleResult = result.first;
+
         return singleResult is Map<String, dynamic>
             ? await MapNode.fromMapAsync(
                 singleResult.fhirType,
@@ -1155,6 +1160,7 @@ class Transformer {
       final parts = text.split(' ');
       final value = double.parse(parts[0]);
       final unit = parts[1];
+
       return MapNode.fromMapAsync(
         null,
         null,
