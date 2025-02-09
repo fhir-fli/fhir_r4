@@ -1,13 +1,7 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, avoid_print
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
-  if (shouldPrint) {
-    print('[$level] $message');
-  }
-}
 
 Future<FhirBase?> fhirMappingEngine(
   FhirBase source,
@@ -72,23 +66,18 @@ class FhirMapEngine {
         resolver,
       );
 
-      print(sourceNode.summary(2));
-      _log('Target: ${targetNode.summary(2)}');
-
       final vars = _initializeVariables(group, sourceNode, targetNode);
       final outputVarName = _getOutputVarName(group, targetType);
 
       await _executeGroup('', context, map, vars, group, true);
-
-      print(targetNode.summary(2));
 
       final finalMap =
           _retrieveTransformedTarget(vars, outputVarName, targetType);
       return fromType(finalMap, targetType) ??
           (rightFromMap != null ? rightFromMap(finalMap) : null);
     } catch (e, s) {
-      _log('Error transforming source to target: $e');
-      _log('Stack trace: $s');
+      print('Error transforming source to target: $e');
+      print('Stack trace: $s');
       return createOperationOutcomeErrorNode(e, map, cache);
     }
   }
@@ -150,9 +139,6 @@ class FhirMapEngine {
         vars.getOutputVar(outputVarName ?? targetType);
 
     final map = (transformedTargetNode! as MapNode).toMap();
-
-    _log('Final vars: ${vars.summary()}');
-    _log('map: $map');
 
     if (map is! Map<String, dynamic>) {
       throw FHIRException(
@@ -335,7 +321,7 @@ class FhirMapEngine {
 
     // Ensure both target and targetMap are not null before continuing
     if (rg.target == null || rg.targetMap == null) {
-      _log(
+      print(
         "Resolved group for '${dependent.name}' has null target or targetMap.",
       );
       return;
@@ -397,7 +383,6 @@ class FhirMapEngine {
     String? pathForErrors,
     String indent,
   ) async {
-    _log('_processSourceStart: ${vars.targetSummary()}');
     var items = <ElementNode>[];
 
     // Process @search context
@@ -511,7 +496,7 @@ class FhirMapEngine {
       final filteredItems = <ElementNode>[];
 
       final src = vars.getInputVar(source.context.toString());
-      // print(src?.summary());
+
       final srcMap = src?.toMap();
       final srcType = await src?.getInstanceType(resolver);
 
@@ -535,7 +520,7 @@ class FhirMapEngine {
         if (conditionResult) {
           filteredItems.add(item);
         } else {
-          _log('Skipping rule $ruleId due to condition ${source.condition}');
+          print('Skipping rule $ruleId due to condition ${source.condition}');
         }
       }
       return filteredItems;
@@ -564,7 +549,6 @@ class FhirMapEngine {
       final node = fhirPathEngine.parse(expression);
 
       final src = vars.getInputVar(source.context.toString());
-      // print(src?.summary());
       final srcMap = src?.toMap();
       final srcType = await src?.getInstanceType(resolver);
 
@@ -638,7 +622,7 @@ class FhirMapEngine {
       }
       result.add(newVars);
     }
-    _log('_processSourceFinal: ${vars.targetSummary()}');
+
     return result;
   }
 
@@ -691,6 +675,7 @@ class FhirMapEngine {
     // Get the output variable (target context)
     if (target.context != null && target.context!.toString().isNotEmpty) {
       dest = vars.getOutputVar(target.context!.toString());
+      // print('dest: ${dest?.summary()}');
 
       if (dest == null) {
         throw FHIRException(
@@ -725,7 +710,6 @@ class FhirMapEngine {
         value = await dest.setProperty(target.element!.value!, value, resolver);
         // dest = dest.updatePaths(dest.globalPath!, dest.localPath!);
       }
-      // print('variables: ${vars.summary()}');
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared
       if (target.listMode?.contains(FhirCode('share')) ?? false) {

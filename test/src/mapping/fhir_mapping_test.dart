@@ -555,6 +555,7 @@ Future<void> main() async {
     });
   });
 
+  // TODO(Dokotela): - final answer is correct, but types are not
   group('10', () {
     resourceCache
       ..saveCanonicalResource(
@@ -582,101 +583,101 @@ Future<void> main() async {
     });
   });
 
-  // group('Step 11', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft11,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight11,
-  //     );
+  group('Step 11', () {
+    resourceCache
+      ..saveCanonicalResource(
+        resource: structureDefinitionTLeft11,
+      )
+      ..saveCanonicalResource(
+        resource: structureDefinitionTRight11,
+      );
 
-  //   test('Step 11 Source 11', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft11.fromJson(source11),
-  //       structureMapStep11,
-  //       resourceCache,
-  //       TLeft11.fromJson,
-  //       TRight11.fromJson,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep11Source11));
-  //   });
-  // });
+    test('Step 11 Source 11', () async {
+      final result = await fhirMappingEngine(
+        TLeft11.fromJson(source11),
+        structureMapStep11,
+        resourceCache,
+        TLeft11.fromJson,
+        TRight11.fromJson,
+      );
+      expect(result?.toJson(), equals(resultStep11Source11));
+    });
+  });
 
-  // group('Step 12', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft12,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight12,
-  //     );
+  group('Step 12', () {
+    resourceCache
+      ..saveCanonicalResource(
+        resource: structureDefinitionTLeft12,
+      )
+      ..saveCanonicalResource(
+        resource: structureDefinitionTRight12,
+      );
 
-  //   test('Step 12 Source 12', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft12.fromJson(source12),
-  //       structureMapStep12,
-  //       resourceCache,
-  //       TLeft12.fromJson,
-  //       TRight12.fromJson,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep12Source12));
-  //   });
-  // });
+    test('Step 12 Source 12', () async {
+      final result = await fhirMappingEngine(
+        TLeft12.fromJson(source12),
+        structureMapStep12,
+        resourceCache,
+        TLeft12.fromJson,
+        TRight12.fromJson,
+      );
+      expect(result?.toJson(), equals(resultStep12Source12));
+    });
+  });
 
-  // group('Step 13', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft13,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight13,
-  //     );
+  group('Step 13', () {
+    resourceCache
+      ..saveCanonicalResource(
+        resource: structureDefinitionTLeft13,
+      )
+      ..saveCanonicalResource(
+        resource: structureDefinitionTRight13,
+      );
 
-  //   test('Step 13', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft13.fromJson(source13),
-  //       structureMapStep13,
-  //       resourceCache,
-  //       TLeft13.fromJson,
-  //       TRight13.fromJson,
-  //     );
+    test('Step 13', () async {
+      final result = await fhirMappingEngine(
+        TLeft13.fromJson(source13),
+        structureMapStep13,
+        resourceCache,
+        TLeft13.fromJson,
+        TRight13.fromJson,
+      );
 
-  //     // Extract the generated ID from the actual result
-  //     final f2 = result?.toJson()['f2'];
-  //     final firstF2 = f2 is List && f2.isNotEmpty ? f2[0] : null;
-  //     final resultBasicId =
-  //         firstF2 is Map<String, dynamic> ? firstF2['id'] : null;
+      // Extract the generated ID from the actual result
+      final f2 = result?.toJson()['f2'];
+      final firstF2 = f2 is List && f2.isNotEmpty ? f2[0] : null;
+      final resultBasicId =
+          firstF2 is Map<String, dynamic> ? firstF2['id'] : null;
 
-  //     // Update the expected result with the generated ID
-  //     final expectedResult = Map<String, dynamic>.from(resultStep13Source13);
-  //     // ignore: avoid_dynamic_calls
-  //     expectedResult['f2'][0]['id'] = resultBasicId;
-  //     expectedResult['ptr'] = ['Basic/$resultBasicId'];
+      // Update the expected result with the generated ID
+      final expectedResult = Map<String, dynamic>.from(resultStep13Source13);
+      // ignore: avoid_dynamic_calls
+      expectedResult['f2'][0]['id'] = resultBasicId;
+      expectedResult['ptr'] = ['Basic/$resultBasicId'];
 
-  //     expect(result?.toJson(), equals(expectedResult));
-  //   });
-  // });
+      expect(result?.toJson(), equals(expectedResult));
+    });
+  });
 
-  // group('Step 14', () {
-  //   test('Step 14', () async {
-  //     final result = await fhirMappingEngine(
-  //       QuestionnaireResponse.fromJson(source14),
-  //       structureMapStep14,
-  //       resourceCache,
-  //     );
+  group('Step 14', () {
+    test('Step 14', () async {
+      final result = await fhirMappingEngine(
+        QuestionnaireResponse.fromJson(source14),
+        structureMapStep14,
+        resourceCache,
+      );
 
-  //     print(prettyPrintJson(result?.toJson() ?? {}));
+      print(prettyPrintJson(result?.toJson() ?? {}));
 
-  //     expect(
-  //       const DeepCollectionEquality().equals(
-  //         result?.toJson(),
-  //         resultStep14Source14,
-  //       ),
-  //       true,
-  //     );
-  //   });
-  // });
+      expect(
+        const DeepCollectionEquality().equals(
+          result?.toJson(),
+          resultStep14Source14,
+        ),
+        true,
+      );
+    });
+  });
 
   // group('Step 15', () {
   //   resourceCache

@@ -4,11 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:uuid/uuid.dart';
 
-// Logging function with control for verbosity
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
-  if (shouldPrint) print('[$level] $message');
-}
-
 /// Class to handle the transformations of a StructureMap
 class Transformer {
   /// Constructor for the Transformer class
@@ -196,11 +191,13 @@ class Transformer {
   ) async {
     final isPrimitive = typeName.isFhirPrimitive;
     final isResource = typeName.isFhirResourceType;
-
+    final isDataType = typeName.isFhirDataType;
     if (isPrimitive) {
       return ElementNode.newNode<LeafNode>(elementName, parent);
     } else if (isResource) {
-      return _createResourceNode(elementName, typeName, parent, target);
+      return _createFhirResourceNode(elementName, typeName, parent, target);
+    } else if (isDataType) {
+      return _createDataTypeNode(elementName, typeName, parent, target);
     }
 
     final newLocation = parent == null
@@ -210,31 +207,49 @@ class Transformer {
     return MapNode(elementName, newLocation, typeName, []);
   }
 
-  Future<MapNode> _createResourceNode(
+  Future<MapNode> _createDataTypeNode(
     String elementName,
     String typeName,
     ElementNode? parent,
     StructureMapTarget target,
   ) async {
-    final resourceType = _getResourceTypeFromMapOrTarget(target, typeName);
+    final globalPath = parent?.childGlobalPath;
+    return DataTypeNode(elementName, globalPath, typeName, []);
+  }
+
+  Future<MapNode> _createFhirResourceNode(
+    String elementName,
+    String typeName,
+    ElementNode? parent,
+    StructureMapTarget target,
+  ) async {
+    final resourceType =
+        _getResourceTypeFromMapOrTarget(target, typeName) ?? typeName;
     final resourceId = _generateId();
 
-    final res = MapNode(elementName, parent?.globalPath, typeName, []);
-
-    if (resourceType != null) {
-      return MapNode.fromMapAsync(
-        null,
-        res.globalPath,
-        resourceType,
-        {
-          'resourceType': resourceType,
-          'id': resourceId,
-        },
-        resolver,
-      );
-    }
-
-    return res;
+    final globalPath = parent?.childGlobalPath ?? resourceType;
+    final childGlobalPath = '$globalPath.$elementName';
+    return ResourceNode(
+      elementName,
+      globalPath,
+      resourceType,
+      [
+        LeafNode.withCast(
+          'resourceType',
+          childGlobalPath,
+          resourceType,
+          resourceType,
+          'http://hl7.org/fhirpath/System.String',
+        ),
+        LeafNode.withCast(
+          'id',
+          childGlobalPath,
+          resourceType,
+          resourceId,
+          'http://hl7.org/fhirpath/System.String',
+        ),
+      ],
+    );
   }
 
   String? _getResourceTypeFromMapOrTarget(
@@ -685,7 +700,7 @@ class Transformer {
 
     return MapNode.fromMapAsync(
       null,
-      null,
+      'CodeableConcept',
       'CodeableConcept',
       {
         'coding': [
@@ -738,7 +753,7 @@ class Transformer {
 
     return MapNode.fromMapAsync(
       null,
-      null,
+      'Coding',
       'Coding',
       {
         'system': system,
@@ -1071,8 +1086,6 @@ class Transformer {
       throwIfNull: true,
     )!;
 
-    _log('Evaluating FHIRPath expression: $expression');
-
     try {
       final newBase = await base?.toFhirBase(resolver);
       final node = fhirPathEngine.parse(expression);
@@ -1163,7 +1176,7 @@ class Transformer {
 
       return MapNode.fromMapAsync(
         null,
-        null,
+        'Quantity',
         'Quantity',
         {
           'value': value,
@@ -1206,7 +1219,7 @@ class Transformer {
 
       return MapNode.fromMapAsync(
         null,
-        null,
+        'Quantity',
         'Quantity',
         {
           'value': value,
@@ -1261,7 +1274,7 @@ class Transformer {
 
     return MapNode.fromMapAsync(
       null,
-      null,
+      'Identifier',
       'Identifier',
       {
         'system': system,
@@ -1311,7 +1324,7 @@ class Transformer {
 
     return MapNode.fromMapAsync(
       null,
-      null,
+      'ContactPoint',
       'ContactPoint',
       {
         if (system != null) 'system': system,

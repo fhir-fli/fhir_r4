@@ -3,19 +3,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
-// Updated logging function with verbosity control and log levels
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
-  final logLevels = ['DEBUG', 'INFO', 'WARNING', 'ERROR'];
-  final levelIndex = logLevels.indexOf(level.toUpperCase());
-
-  // Adjust based on the level of log desired
-  const currentLogLevel = 1; // 0=DEBUG, 1=INFO, 2=WARNING, 3=ERROR
-
-  if (levelIndex >= currentLogLevel) {
-    if (shouldPrint) print('[$level] $message');
-  }
-}
-
 abstract class ElementNode with Annotatable {
   ElementNode(
     this.name,
@@ -79,6 +66,22 @@ abstract class ElementNode with Annotatable {
         throw Exception('MapNode value must be a list of ElementNodes');
       }
 
+      if (this is DataTypeNode) {
+        return DataTypeNode(
+          newName,
+          newGlobalPath,
+          newLocalPath ?? localPath!,
+          value,
+        );
+      } else if (this is ResourceNode) {
+        return ResourceNode(
+          newName,
+          newGlobalPath,
+          newLocalPath ?? localPath!,
+          value,
+        );
+      }
+
       return MapNode(newName, newGlobalPath, newLocalPath, value);
     } else if (this is ListNode) {
       if (value is! List<ElementNode>?) {
@@ -138,6 +141,8 @@ abstract class ElementNode with Annotatable {
   bool get isComposite => this is CompositeNode;
   bool get isMap => this is MapNode;
   bool get isList => this is ListNode;
+  bool get isDataType => this is DataTypeNode;
+  bool get isResource => this is ResourceNode;
   String? pathForResolver([String? key]) {
     final resolverPath = localPath == null
         ? name
@@ -150,28 +155,26 @@ abstract class ElementNode with Annotatable {
     if (key == null) {
       return resolverPath;
     }
-    return '$resolverPath.$key';
+    final fullPath = '$resolverPath.$key';
+
+    return fullPath;
   }
 
   Future<String?> getInstanceType(DefinitionResolver resolver) async {
     ElementDefinition? elementDefinition;
-
-    // Try to resolve element definition based on globalPath or name
     if (globalPath != null) {
-      elementDefinition =
-          await resolver.resolveElementDefinition(pathForResolver());
+      final path = pathForResolver();
+      elementDefinition = await resolver.resolveElementDefinition(path);
     } else if (name != null && parent != null) {
-      elementDefinition = await resolver
-          .resolveElementDefinition(parent!.pathForResolver(name));
+      final path = parent!.pathForResolver(name);
+      elementDefinition = await resolver.resolveElementDefinition(path);
     }
 
-    // If element definition is found, return the single type string
     if (elementDefinition != null &&
         (elementDefinition.type?.isNotEmpty ?? false)) {
       return elementDefinition.singleTypeString;
     }
 
-    // Log a warning and return null instead of throwing an exception
     return null;
   }
 
@@ -187,7 +190,7 @@ abstract class ElementNode with Annotatable {
         await _resolveElementDefinition(key, resolver, valueNode);
 
     if (elementDefinition == null) {
-      throw Exception('Element definition not found for $key');
+      throw Exception('Element definition not found for $key (setProperty)');
     }
 
     final name = _getPolymorphicName(key, elementDefinition, valueNode);
@@ -220,32 +223,46 @@ abstract class ElementNode with Annotatable {
     return valueNode;
   }
 
-// Helper for resolving element definition
+  // Helper for resolving element definition
   Future<ElementDefinition?> _resolveElementDefinition(
     String key,
     DefinitionResolver resolver,
     ElementNode valueNode,
   ) async {
     ElementDefinition? elementDefinition;
-    elementDefinition =
-        await resolver.resolveElementDefinition('$localPath.$key');
+
+    final path1 = '$localPath.$key';
+
+    elementDefinition = await resolver.resolveElementDefinition(path1);
     if (elementDefinition != null) {
       return elementDefinition;
     }
-    elementDefinition =
-        await resolver.resolveElementDefinition(pathForResolver(key));
+
+    final path2 = pathForResolver(key);
+
+    elementDefinition = await resolver.resolveElementDefinition(path2);
     if (elementDefinition != null) {
       return elementDefinition;
     }
-    elementDefinition =
-        await resolver.resolveElementDefinition('$childLocalPath.$key');
+
+    final path3 = '$childLocalPath.$key';
+
+    elementDefinition = await resolver.resolveElementDefinition(path3);
     if (elementDefinition != null) {
       return elementDefinition;
     }
-    return resolver.resolveElementDefinition('${valueNode.localPath}.$key');
+
+    final path4 = '${valueNode.localPath}.$key';
+
+    elementDefinition = await resolver.resolveElementDefinition(path4);
+    if (elementDefinition != null) {
+      return elementDefinition;
+    }
+
+    return elementDefinition;
   }
 
-// Helper for polymorphic name assignment
+  // Helper for polymorphic name assignment
   String _getPolymorphicName(
     String key,
     ElementDefinition elementDefinition,
@@ -292,8 +309,12 @@ abstract class ElementNode with Annotatable {
       }
     } else {
       // Create a new ListNode
-      listNode = ListNode(key, globalPath, localPath, [])
-        ..addChild(newValue.makeListElement());
+      listNode = ListNode(
+        key,
+        compositeNode.childGlobalPath,
+        compositeNode.childLocalPath,
+        [],
+      )..addChild(newValue.makeListElement());
       if (compositeNode is ListNode) {
         final mapContainer = MapNode(null, globalPath, localPath, [listNode]);
         compositeNode.addChild(mapContainer);
@@ -349,15 +370,18 @@ abstract class ElementNode with Annotatable {
     }
   }
 
-// Helper to add or replace a MapNode in a ListNode
+  // Helper to add or replace a MapNode in a ListNode
   void _addOrReplaceMapInList(String key, ListNode listNode, MapNode newValue) {
-    final listObjectNode = MapNode(null, childGlobalPath, childLocalPath, []);
+    final listResourceNode =
+        MapNode(null, listNode.childGlobalPath, listNode.childLocalPath, []);
     final value = newValue.copyWith(
-      newGlobalPath: listObjectNode.childGlobalPath,
-      newLocalPath: listObjectNode.childLocalPath,
+      newGlobalPath: listResourceNode.childGlobalPath,
+      newLocalPath: R4ResourceType.typesAsStrings.contains(newValue.localPath)
+          ? newValue.localPath
+          : listResourceNode.childLocalPath,
     ) as MapNode;
-    listObjectNode.addChild(value);
-    listNode.addChild(listObjectNode);
+    listResourceNode.addChild(value);
+    listNode.addChild(listResourceNode);
   }
 
   @override
@@ -418,12 +442,19 @@ abstract class ElementNode with Annotatable {
         .map((child) => child.summary(depth + 2))
         .join('\n');
 
-    return '''
-$indent${isMap ? 'MapNode' : 'ListNode'}(name: $name, globalPath: $globalPath, localPath: $localPath)
-$indent  children: [
-$childrenSummary
-$indent  ]
-  ''';
+    final type = isMap
+        ? isResource
+            ? 'ResourceNode'
+            : isDataType
+                ? 'DataTypeNode'
+                : 'MapNode'
+        : 'ListNode';
+
+    return '$indent$type'
+        '(name: $name, globalPath: $globalPath, localPath: $localPath)\n'
+        '$indent  children: [\n'
+        '$childrenSummary\n'
+        '$indent  ]';
   }
 
   /// Converts an `ElementNode` to a `FhirBase` object using its type
@@ -512,8 +543,17 @@ abstract class CompositeNode extends ElementNode {
 
   // Refactored method for adding a child node
   void addChild(ElementNode child) {
-    child.parent = this;
-    value.add(child);
+    if(child is ListNode){
+      print(child.summary());
+    }
+    final newChild = child.copyWith(
+      newGlobalPath: childGlobalPath,
+      newLocalPath: child is ResourceNode || child is DataTypeNode
+          ? child.localPath
+          : childLocalPath,
+    )..parent = this;
+
+    value.add(newChild);
   }
 
   void replaceChild(ElementNode newChild) {
@@ -554,7 +594,7 @@ abstract class CompositeNode extends ElementNode {
         await resolver.resolveElementDefinition(pathForResolver(name));
 
     if (elementDefinition == null) {
-      throw Exception('Element definition not found for $name');
+      throw Exception('Element definition not found for $name (makeProperty)');
     }
 
     // Determine if the property should be a collection (list)
@@ -634,16 +674,29 @@ class MapNode extends CompositeNode {
     DefinitionResolver resolver,
   ) async {
     final node = MapNode(name, globalPath, newLocalPath, null);
-    final nodeLocation = globalPath ?? globalPath;
-    final nodeObjectLocation = node.localPath ?? newLocalPath;
+    await node.fromMapNodeAsync(name, globalPath, newLocalPath, map, resolver);
+    return node;
+  }
+
+  // Async factory method for creating a MapNode from a map structure
+  Future<void> fromMapNodeAsync(
+    String? name,
+    String? globalPath,
+    String? newLocalPath,
+    Map<String, dynamic> map,
+    DefinitionResolver resolver,
+  ) async {
+    final nodeLocation = globalPath; // typically the parent global path
+    final nodeObjectLocation = localPath ?? newLocalPath;
 
     for (final entry in map.entries) {
       final key = entry.key;
       final value = entry.value;
 
-      // Await the resolution of the element definition
+      final childPath = pathForResolver(key);
+
       final elementDefinition =
-          await resolver.resolveElementDefinition(node.pathForResolver(key));
+          await resolver.resolveElementDefinition(childPath);
 
       final type = elementDefinition == null
           ? null
@@ -653,8 +706,8 @@ class MapNode extends CompositeNode {
       if (value is Map<String, dynamic>) {
         final isNewObject =
             type != null && !type.isBackboneElement && !type.isFhirPrimitive;
-
-        // Recursively create a child MapNode
+        // If a new object is expected, use the resolved type as the new
+        // local context; otherwise, use nodeObjectLocation.
         final childNode = await MapNode.fromMapAsync(
           key,
           nodeLocation,
@@ -662,9 +715,8 @@ class MapNode extends CompositeNode {
           value,
           resolver,
         );
-        node.addChild(childNode);
+        addChild(childNode);
       } else if (value is List) {
-        // Recursively create a child ListNode
         final childNode = await ListNode.fromListAsync(
           key,
           nodeLocation,
@@ -672,17 +724,72 @@ class MapNode extends CompositeNode {
           value,
           resolver,
         );
-        node.addChild(childNode);
+        addChild(childNode);
       } else {
-        // Create a LeafNode
-        node.addChild(
+        addChild(
           LeafNode.withCast(key, nodeLocation, nodeObjectLocation, value, type),
         );
       }
     }
+  }
+}
 
+class DataTypeNode extends MapNode {
+  DataTypeNode(
+    super.name,
+    super.globalPath,
+    String super.newLocalPath,
+    super.value,
+  );
+
+  // Async factory method for creating a MapNode from a map structure
+  static Future<DataTypeNode> fromMapAsync(
+    String? name,
+    String? globalPath,
+    String newLocalPath,
+    Map<String, dynamic> map,
+    DefinitionResolver resolver,
+  ) async {
+    final node = DataTypeNode(name, globalPath, newLocalPath, null);
+    await node.fromMapNodeAsync(name, globalPath, newLocalPath, map, resolver);
     return node;
   }
+
+  @override
+  String? get childLocalPath => localPath;
+
+  @override
+  String? pathForResolver([String? key]) =>
+      key == null ? localPath : '$localPath.$key';
+}
+
+class ResourceNode extends MapNode {
+  ResourceNode(
+    super.name,
+    super.globalPath,
+    String super.newLocalPath,
+    super.value,
+  );
+
+  // Async factory method for creating a MapNode from a map structure
+  static Future<ResourceNode> fromMapAsync(
+    String? name,
+    String? globalPath,
+    String newLocalPath,
+    Map<String, dynamic> map,
+    DefinitionResolver resolver,
+  ) async {
+    final node = ResourceNode(name, globalPath, newLocalPath, null);
+    await node.fromMapNodeAsync(name, globalPath, newLocalPath, map, resolver);
+    return node;
+  }
+
+  @override
+  String? get childLocalPath => localPath;
+
+  @override
+  String? pathForResolver([String? key]) =>
+      key == null ? localPath : '$localPath.$key';
 }
 
 // ListNode class for handling list-based nodes
@@ -711,8 +818,6 @@ class ListNode extends CompositeNode {
       if (item is Map<String, dynamic>) {
         final isNewObject =
             type != null && !type.isBackboneElement && !type.isFhirPrimitive;
-
-        // Recursively create a MapNode for this item
         final childNode = await MapNode.fromMapAsync(
           null,
           nodeLocation,
@@ -722,7 +827,6 @@ class ListNode extends CompositeNode {
         );
         node.addChild(childNode);
       } else {
-        // Create a LeafNode for this item
         node.addChild(
           LeafNode.withCast(null, nodeLocation, nodeObjectLocation, item, type),
         );
