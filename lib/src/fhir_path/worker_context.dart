@@ -692,16 +692,16 @@ class WorkerContext {
     }
   }
 
-  Future<Map<String, dynamic>> _sendValidationRequestToServer(
-    Parameters params,
-  ) async {
-    // Mock response for now; integrate with an actual server later
-    try {
-      return {'result': true, 'message': 'Code is valid'};
-    } catch (e) {
-      throw Exception('Failed to send validation request: $e');
-    }
-  }
+  // Future<Map<String, dynamic>> _sendValidationRequestToServer(
+  //   Parameters params,
+  // ) async {
+  //   // Mock response for now; integrate with an actual server later
+  //   try {
+  //     return {'result': true, 'message': 'Code is valid'};
+  //   } catch (e) {
+  //     throw Exception('Failed to send validation request: $e');
+  //   }
+  // }
 
   ValidationResult processValidationResponse(Map<String, dynamic> response) {
     if (response['result'] == true) {

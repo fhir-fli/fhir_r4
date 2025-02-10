@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, avoid_print
 
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -29,6 +31,7 @@ class FhirMapEngine {
   late final Transformer transformer;
   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
   FhirBase? Function(Map<String, dynamic>)? _leftFromMap;
+  int rules = 0;
 
   void transformFromFhir(
     Resource sourceResource,
@@ -269,6 +272,13 @@ class FhirMapEngine {
         sourceVars,
         group,
       );
+    }
+    rules++;
+    if (rules > 1) {
+      File('output.txt')
+          .writeAsStringSync('Completed rule: ${rule.name}\n${vars.summary()}');
+      print(vars.summary());
+      throw FHIRException(message: 'Rule limit exceeded');
     }
   }
 
@@ -675,7 +685,6 @@ class FhirMapEngine {
     // Get the output variable (target context)
     if (target.context != null && target.context!.toString().isNotEmpty) {
       dest = vars.getOutputVar(target.context!.toString());
-      // print('dest: ${dest?.summary()}');
 
       if (dest == null) {
         throw FHIRException(

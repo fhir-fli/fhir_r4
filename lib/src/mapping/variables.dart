@@ -3,12 +3,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
-void _log(String cnt, [bool shouldPrint = false, String level = 'info']) {
-  if (shouldPrint) {
-    print('$level: $cnt');
-  }
-}
-
 /// Enum representing the different modes of a variable during FHIR mapping
 enum VariableMode {
   /// Represents an input variable
@@ -56,6 +50,33 @@ class Variable {
 /// Class representing a collection of variables in a FHIR mapping
 class Variables {
   final List<Variable> _variables = [];
+
+  /// Prints off the actual names of the variables
+  String variableNames() {
+    return (StringBuffer()
+          ..write('Input: ')
+          ..writeln(
+            _variables
+                .where((e) => e.mode == VariableMode.INPUT)
+                .map((v) => v.name)
+                .join(', '),
+          )
+          ..write('Output: ')
+          ..writeln(
+            _variables
+                .where((e) => e.mode == VariableMode.OUTPUT)
+                .map((v) => v.name)
+                .join(', '),
+          )
+          ..write('Shared: ')
+          ..writeln(
+            _variables
+                .where((e) => e.mode == VariableMode.SHARED)
+                .map((v) => v.name)
+                .join(', '),
+          ))
+        .toString();
+  }
 
   /// Adds a variable to the collection
   void add(VariableMode mode, String name, ElementNode value) {

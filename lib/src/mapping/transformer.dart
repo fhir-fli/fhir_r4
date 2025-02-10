@@ -698,7 +698,7 @@ class Transformer {
           )
         : null;
 
-    return MapNode.fromMapAsync(
+    return DataTypeNode.fromMapAsync(
       null,
       'CodeableConcept',
       'CodeableConcept',
@@ -751,7 +751,7 @@ class Transformer {
           )
         : null;
 
-    return MapNode.fromMapAsync(
+    return DataTypeNode.fromMapAsync(
       null,
       'Coding',
       'Coding',
@@ -1174,7 +1174,7 @@ class Transformer {
       final value = double.parse(parts[0]);
       final unit = parts[1];
 
-      return MapNode.fromMapAsync(
+      return DataTypeNode.fromMapAsync(
         null,
         'Quantity',
         'Quantity',
@@ -1217,7 +1217,7 @@ class Transformer {
 
       final value = double.tryParse(valueStr) ?? int.parse(valueStr);
 
-      return MapNode.fromMapAsync(
+      return DataTypeNode.fromMapAsync(
         null,
         'Quantity',
         'Quantity',
@@ -1272,7 +1272,7 @@ class Transformer {
       };
     }
 
-    return MapNode.fromMapAsync(
+    return DataTypeNode.fromMapAsync(
       null,
       'Identifier',
       'Identifier',
@@ -1322,7 +1322,7 @@ class Transformer {
       )!;
     }
 
-    return MapNode.fromMapAsync(
+    return DataTypeNode.fromMapAsync(
       null,
       'ContactPoint',
       'ContactPoint',

@@ -460,7 +460,8 @@ abstract class ElementNode with Annotatable {
   /// Converts an `ElementNode` to a `FhirBase` object using its type
   Future<FhirBase?> toFhirBase(DefinitionResolver resolver) async {
     // Resolve the type of the node
-    var instanceType = await getInstanceType(resolver);
+    var instanceType =
+        isDataType || isResource ? localPath : await getInstanceType(resolver);
 
     if (instanceType == 'BackboneElement') {
       final ed = await resolver.resolveElementDefinition(pathForResolver());
@@ -543,17 +544,24 @@ abstract class CompositeNode extends ElementNode {
 
   // Refactored method for adding a child node
   void addChild(ElementNode child) {
-    if(child is ListNode){
-      print(child.summary());
-    }
+    final updated = updatePaths(child);
+    value.add(updated);
+  }
+
+  ElementNode updatePaths(ElementNode child) {
     final newChild = child.copyWith(
       newGlobalPath: childGlobalPath,
       newLocalPath: child is ResourceNode || child is DataTypeNode
           ? child.localPath
           : childLocalPath,
-    )..parent = this;
+    );
+    if (newChild is! CompositeNode || newChild.value.isEmpty) {
+      return newChild;
+    }
 
-    value.add(newChild);
+    return newChild.copyWith(
+      value: newChild.value.map(newChild.updatePaths).toList(),
+    );
   }
 
   void replaceChild(ElementNode newChild) {
