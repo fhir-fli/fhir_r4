@@ -180,7 +180,7 @@
             "mode": "target"
         },
         {
-            "url": "http://hl7.org/fhir/cda/StructureDefinition/IVL_TS",
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/IVL-TS",
             "mode": "source"
         },
         {
@@ -373,7 +373,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use."
                 },
                 {
                     "name": "extension",
@@ -1935,7 +1936,8 @@
                             "variable": "vvv",
                             "transform": "create"
                         }
-                    ]
+                    ],
+                    "documentation": "use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"
                 }
             ]
         },
