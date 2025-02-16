@@ -123,6 +123,22 @@ class FhirInstant extends FhirDateTimeBase
         annotations: annotations,
       ) as FhirInstant;
 
+  /// Creates empty [FhirInstant] object
+  factory FhirInstant.empty() => FhirInstant.fromBase(
+        value: null,
+        year: null,
+        month: null,
+        day: null,
+        hour: null,
+        minute: null,
+        second: null,
+        millisecond: null,
+        microsecond: null,
+        timeZoneOffset: null,
+        isUtc: false,
+        element: Element.empty(),
+      );
+
   /// Factory constructor to create a [FhirInstant] from JSON input.
   factory FhirInstant.fromJson(Map<String, dynamic> json) {
     final value = json['value'];

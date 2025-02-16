@@ -36,6 +36,10 @@ class FhirMarkdown extends PrimitiveType<String>
     }
   }
 
+  /// Creates empty [FhirMarkdown] object
+  factory FhirMarkdown.empty() =>
+      FhirMarkdown(null, element: Element.empty());
+
   /// Factory constructor to create a [FhirMarkdown] from JSON input.
   factory FhirMarkdown.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;

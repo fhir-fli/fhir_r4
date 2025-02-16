@@ -36,6 +36,10 @@ class FhirCode extends PrimitiveType<String>
     }
   }
 
+  /// Creates empty [FhirCode] object
+  factory FhirCode.empty() =>
+      FhirCode(null, element: Element.empty());
+
   /// Factory constructor to create a [FhirCode] from JSON
   factory FhirCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;

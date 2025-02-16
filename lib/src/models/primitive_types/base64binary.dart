@@ -40,6 +40,10 @@ class FhirBase64Binary extends PrimitiveType<String?>
     }
   }
 
+  /// Creates empty [FhirBase64Binary] object
+  factory FhirBase64Binary.empty() =>
+      FhirBase64Binary(null, element: Element.empty());
+
   /// Factory constructor to create from JSON
   factory FhirBase64Binary.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;

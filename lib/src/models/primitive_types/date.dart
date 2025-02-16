@@ -130,6 +130,17 @@ class FhirDate extends FhirDateTimeBase
         annotations: annotations,
       ) as FhirDate;
 
+        /// Creates empty [FhirDate] object
+  factory FhirDate.empty() => FhirDate.fromBase(
+        value: null,
+        year: null,
+        month: null,
+        day: null,
+        isUtc: false,
+        element: Element.empty(),
+      );
+
+
   /// Factory constructor to create a [FhirDate] from a JSON input.
   ///
   /// The input must be a [String], otherwise throws a [FormatException].

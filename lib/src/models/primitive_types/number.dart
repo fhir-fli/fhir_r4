@@ -89,6 +89,9 @@ abstract class FhirNumber extends PrimitiveType<num?>
           );
   }
 
+  /// Factory to create an empty [FhirNumber] object.
+  factory FhirNumber.empty() => throw UnimplementedError();
+
   /// Factory constructor to create a [FhirNumber] from JSON input.
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;

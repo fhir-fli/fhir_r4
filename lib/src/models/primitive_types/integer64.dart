@@ -60,6 +60,10 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     return FhirInteger64(input, element: element);
   }
 
+    /// Creates empty [FhirInteger64] object
+  factory FhirInteger64.empty() =>
+      FhirInteger64(null, element: Element.empty());
+
   /// Factory constructor to create a [FhirInteger64] from JSON input.
   factory FhirInteger64.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;

@@ -51,6 +51,10 @@ class FhirCanonical extends PrimitiveType<Uri>
     }
   }
 
+    /// Creates empty [FhirCanonical] object
+  factory FhirCanonical.empty() =>
+      FhirCanonical(null, element: Element.empty());
+
   /// Constructs a [FhirCanonical] from a [Uri] object
   FhirCanonical.fromUri(
     Uri input, [

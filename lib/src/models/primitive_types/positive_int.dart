@@ -46,6 +46,10 @@ class FhirPositiveInt extends FhirNumber
     }
   }
 
+  /// Creates empty [FhirPositiveInt] object
+  factory FhirPositiveInt.empty() =>
+      FhirPositiveInt(null, element: Element.empty());
+
   /// Factory constructor to create [FhirPositiveInt] from JSON input.
   factory FhirPositiveInt.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;

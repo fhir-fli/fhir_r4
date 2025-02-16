@@ -35,6 +35,10 @@ class FhirXhtml extends PrimitiveType<String?> {
     super.objectPath = 'Xhtml',
   });
 
+  /// Creates empty [FhirXhtml] object
+  factory FhirXhtml.empty() =>
+      FhirXhtml(null, element: Element.empty());
+
   /// Factory constructor to create [FhirXhtml] from JSON.
   factory FhirXhtml.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;

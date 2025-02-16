@@ -44,6 +44,10 @@ class FhirUnsignedInt extends FhirNumber
     }
   }
 
+    /// Creates empty [FhirUnsignedInt] object
+  factory FhirUnsignedInt.empty() =>
+      FhirUnsignedInt(null, element: Element.empty());
+
   /// Factory constructor to create [FhirUnsignedInt] from JSON input.
   factory FhirUnsignedInt.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;

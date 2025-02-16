@@ -60,6 +60,10 @@ class FhirDecimal extends FhirNumber
     );
   }
 
+    /// Creates empty [FhirDecimal] object
+  factory FhirDecimal.empty() =>
+      FhirDecimal(null, element: Element.empty());
+
   /// Factory constructor to create a [FhirDecimal] from JSON input.
   factory FhirDecimal.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;

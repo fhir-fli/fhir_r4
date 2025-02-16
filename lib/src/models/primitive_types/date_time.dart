@@ -167,6 +167,22 @@ class FhirDateTime extends FhirDateTimeBase
         annotations: annotations,
       ) as FhirDateTime;
 
+  /// Creates empty [FhirDateTime] object
+  factory FhirDateTime.empty() => FhirDateTime.fromBase(
+        value: null,
+        year: null,
+        month: null,
+        day: null,
+        hour: null,
+        minute: null,
+        second: null,
+        millisecond: null,
+        microsecond: null,
+        timeZoneOffset: null,
+        isUtc: false,
+        element: Element.empty(),
+      );
+
   /// Factory constructor to create a [FhirDateTime] from JSON input.
   factory FhirDateTime.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
