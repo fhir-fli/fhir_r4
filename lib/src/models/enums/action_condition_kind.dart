@@ -14,6 +14,9 @@ class ActionConditionKind extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionConditionKind] with element only
+  factory ActionConditionKind.empty() => ActionConditionKind._('');
+
   /// Factory constructor to create [ActionConditionKind] from JSON.
   factory ActionConditionKind.fromJson(
     Map<String, dynamic> json,

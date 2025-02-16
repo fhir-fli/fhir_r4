@@ -14,6 +14,10 @@ class BiologicallyDerivedProductStorageScale extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [BiologicallyDerivedProductStorageScale] with element only
+  factory BiologicallyDerivedProductStorageScale.empty() =>
+      BiologicallyDerivedProductStorageScale._('');
+
   /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
     Map<String, dynamic> json,

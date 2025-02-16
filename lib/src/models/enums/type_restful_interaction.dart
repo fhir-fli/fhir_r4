@@ -14,6 +14,9 @@ class TypeRestfulInteraction extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TypeRestfulInteraction] with element only
+  factory TypeRestfulInteraction.empty() => TypeRestfulInteraction._('');
+
   /// Factory constructor to create [TypeRestfulInteraction] from JSON.
   factory TypeRestfulInteraction.fromJson(
     Map<String, dynamic> json,

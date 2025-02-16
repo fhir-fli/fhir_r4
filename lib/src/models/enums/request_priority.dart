@@ -15,6 +15,9 @@ class RequestPriority extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RequestPriority] with element only
+  factory RequestPriority.empty() => RequestPriority._('');
+
   /// Factory constructor to create [RequestPriority] from JSON.
   factory RequestPriority.fromJson(
     Map<String, dynamic> json,

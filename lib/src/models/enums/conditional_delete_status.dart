@@ -14,6 +14,9 @@ class ConditionalDeleteStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConditionalDeleteStatus] with element only
+  factory ConditionalDeleteStatus.empty() => ConditionalDeleteStatus._('');
+
   /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
   factory ConditionalDeleteStatus.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class DocumentReferenceStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DocumentReferenceStatus] with element only
+  factory DocumentReferenceStatus.empty() => DocumentReferenceStatus._('');
+
   /// Factory constructor to create [DocumentReferenceStatus] from JSON.
   factory DocumentReferenceStatus.fromJson(
     Map<String, dynamic> json,

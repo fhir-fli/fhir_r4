@@ -14,6 +14,9 @@ class TypeDerivationRule extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TypeDerivationRule] with element only
+  factory TypeDerivationRule.empty() => TypeDerivationRule._('');
+
   /// Factory constructor to create [TypeDerivationRule] from JSON.
   factory TypeDerivationRule.fromJson(
     Map<String, dynamic> json,

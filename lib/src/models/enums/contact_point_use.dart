@@ -14,6 +14,9 @@ class ContactPointUse extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ContactPointUse] with element only
+  factory ContactPointUse.empty() => ContactPointUse._('');
+
   /// Factory constructor to create [ContactPointUse] from JSON.
   factory ContactPointUse.fromJson(
     Map<String, dynamic> json,

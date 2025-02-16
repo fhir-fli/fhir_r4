@@ -14,6 +14,9 @@ class RequestStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RequestStatus] with element only
+  factory RequestStatus.empty() => RequestStatus._('');
+
   /// Factory constructor to create [RequestStatus] from JSON.
   factory RequestStatus.fromJson(
     Map<String, dynamic> json,

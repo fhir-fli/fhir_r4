@@ -14,6 +14,10 @@ class ExplanationOfBenefitStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ExplanationOfBenefitStatus] with element only
+  factory ExplanationOfBenefitStatus.empty() =>
+      ExplanationOfBenefitStatus._('');
+
   /// Factory constructor to create [ExplanationOfBenefitStatus] from JSON.
   factory ExplanationOfBenefitStatus.fromJson(
     Map<String, dynamic> json,

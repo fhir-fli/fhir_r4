@@ -14,6 +14,9 @@ class TaskIntent extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TaskIntent] with element only
+  factory TaskIntent.empty() => TaskIntent._('');
+
   /// Factory constructor to create [TaskIntent] from JSON.
   factory TaskIntent.fromJson(
     Map<String, dynamic> json,

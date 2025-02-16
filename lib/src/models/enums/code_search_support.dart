@@ -15,6 +15,9 @@ class CodeSearchSupport extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CodeSearchSupport] with element only
+  factory CodeSearchSupport.empty() => CodeSearchSupport._('');
+
   /// Factory constructor to create [CodeSearchSupport] from JSON.
   factory CodeSearchSupport.fromJson(
     Map<String, dynamic> json,

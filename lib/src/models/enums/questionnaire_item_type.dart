@@ -15,6 +15,9 @@ class QuestionnaireItemType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [QuestionnaireItemType] with element only
+  factory QuestionnaireItemType.empty() => QuestionnaireItemType._('');
+
   /// Factory constructor to create [QuestionnaireItemType] from JSON.
   factory QuestionnaireItemType.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class GuidanceResponseStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GuidanceResponseStatus] with element only
+  factory GuidanceResponseStatus.empty() => GuidanceResponseStatus._('');
+
   /// Factory constructor to create [GuidanceResponseStatus] from JSON.
   factory GuidanceResponseStatus.fromJson(
     Map<String, dynamic> json,

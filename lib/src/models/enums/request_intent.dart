@@ -15,6 +15,9 @@ class RequestIntent extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RequestIntent] with element only
+  factory RequestIntent.empty() => RequestIntent._('');
+
   /// Factory constructor to create [RequestIntent] from JSON.
   factory RequestIntent.fromJson(
     Map<String, dynamic> json,

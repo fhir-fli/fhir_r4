@@ -14,6 +14,9 @@ class IdentifierUse extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [IdentifierUse] with element only
+  factory IdentifierUse.empty() => IdentifierUse._('');
+
   /// Factory constructor to create [IdentifierUse] from JSON.
   factory IdentifierUse.fromJson(
     Map<String, dynamic> json,

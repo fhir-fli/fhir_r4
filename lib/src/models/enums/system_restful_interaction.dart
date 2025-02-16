@@ -14,6 +14,9 @@ class SystemRestfulInteraction extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SystemRestfulInteraction] with element only
+  factory SystemRestfulInteraction.empty() => SystemRestfulInteraction._('');
+
   /// Factory constructor to create [SystemRestfulInteraction] from JSON.
   factory SystemRestfulInteraction.fromJson(
     Map<String, dynamic> json,

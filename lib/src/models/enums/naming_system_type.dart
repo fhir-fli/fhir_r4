@@ -14,6 +14,9 @@ class NamingSystemType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [NamingSystemType] with element only
+  factory NamingSystemType.empty() => NamingSystemType._('');
+
   /// Factory constructor to create [NamingSystemType] from JSON.
   factory NamingSystemType.fromJson(
     Map<String, dynamic> json,

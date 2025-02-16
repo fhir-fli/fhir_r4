@@ -14,6 +14,9 @@ class StrandType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StrandType] with element only
+  factory StrandType.empty() => StrandType._('');
+
   /// Factory constructor to create [StrandType] from JSON.
   factory StrandType.fromJson(
     Map<String, dynamic> json,

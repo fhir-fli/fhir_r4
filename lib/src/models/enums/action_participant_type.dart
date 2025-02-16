@@ -14,6 +14,9 @@ class ActionParticipantType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionParticipantType] with element only
+  factory ActionParticipantType.empty() => ActionParticipantType._('');
+
   /// Factory constructor to create [ActionParticipantType] from JSON.
   factory ActionParticipantType.fromJson(
     Map<String, dynamic> json,

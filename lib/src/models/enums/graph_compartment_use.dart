@@ -14,6 +14,9 @@ class GraphCompartmentUse extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GraphCompartmentUse] with element only
+  factory GraphCompartmentUse.empty() => GraphCompartmentUse._('');
+
   /// Factory constructor to create [GraphCompartmentUse] from JSON.
   factory GraphCompartmentUse.fromJson(
     Map<String, dynamic> json,

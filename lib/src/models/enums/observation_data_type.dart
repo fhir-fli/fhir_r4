@@ -14,6 +14,9 @@ class ObservationDataType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ObservationDataType] with element only
+  factory ObservationDataType.empty() => ObservationDataType._('');
+
   /// Factory constructor to create [ObservationDataType] from JSON.
   factory ObservationDataType.fromJson(
     Map<String, dynamic> json,

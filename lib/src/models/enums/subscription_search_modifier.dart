@@ -15,6 +15,10 @@ class SubscriptionSearchModifier extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SubscriptionSearchModifier] with element only
+  factory SubscriptionSearchModifier.empty() =>
+      SubscriptionSearchModifier._('');
+
   /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
   factory SubscriptionSearchModifier.fromJson(
     Map<String, dynamic> json,

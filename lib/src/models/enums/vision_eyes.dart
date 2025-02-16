@@ -14,6 +14,9 @@ class VisionEyes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [VisionEyes] with element only
+  factory VisionEyes.empty() => VisionEyes._('');
+
   /// Factory constructor to create [VisionEyes] from JSON.
   factory VisionEyes.fromJson(
     Map<String, dynamic> json,

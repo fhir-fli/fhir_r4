@@ -14,6 +14,9 @@ class EventStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EventStatus] with element only
+  factory EventStatus.empty() => EventStatus._('');
+
   /// Factory constructor to create [EventStatus] from JSON.
   factory EventStatus.fromJson(
     Map<String, dynamic> json,

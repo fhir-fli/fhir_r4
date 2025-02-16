@@ -14,6 +14,9 @@ class AdministrativeGender extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AdministrativeGender] with element only
+  factory AdministrativeGender.empty() => AdministrativeGender._('');
+
   /// Factory constructor to create [AdministrativeGender] from JSON.
   factory AdministrativeGender.fromJson(
     Map<String, dynamic> json,

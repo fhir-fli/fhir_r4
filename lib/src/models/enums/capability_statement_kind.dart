@@ -14,6 +14,9 @@ class CapabilityStatementKind extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CapabilityStatementKind] with element only
+  factory CapabilityStatementKind.empty() => CapabilityStatementKind._('');
+
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
   factory CapabilityStatementKind.fromJson(
     Map<String, dynamic> json,

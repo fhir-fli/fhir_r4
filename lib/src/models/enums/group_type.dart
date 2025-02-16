@@ -14,6 +14,9 @@ class GroupType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GroupType] with element only
+  factory GroupType.empty() => GroupType._('');
+
   /// Factory constructor to create [GroupType] from JSON.
   factory GroupType.fromJson(
     Map<String, dynamic> json,

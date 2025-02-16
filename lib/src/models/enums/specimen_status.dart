@@ -14,6 +14,9 @@ class SpecimenStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SpecimenStatus] with element only
+  factory SpecimenStatus.empty() => SpecimenStatus._('');
+
   /// Factory constructor to create [SpecimenStatus] from JSON.
   factory SpecimenStatus.fromJson(
     Map<String, dynamic> json,

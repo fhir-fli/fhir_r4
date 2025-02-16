@@ -14,6 +14,9 @@ class DeviceMetricColor extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceMetricColor] with element only
+  factory DeviceMetricColor.empty() => DeviceMetricColor._('');
+
   /// Factory constructor to create [DeviceMetricColor] from JSON.
   factory DeviceMetricColor.fromJson(
     Map<String, dynamic> json,

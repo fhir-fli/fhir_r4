@@ -14,6 +14,10 @@ class ConceptMapGroupUnmappedMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConceptMapGroupUnmappedMode] with element only
+  factory ConceptMapGroupUnmappedMode.empty() =>
+      ConceptMapGroupUnmappedMode._('');
+
   /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
   factory ConceptMapGroupUnmappedMode.fromJson(
     Map<String, dynamic> json,

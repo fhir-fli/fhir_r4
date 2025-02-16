@@ -14,6 +14,9 @@ class ContactPointSystem extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ContactPointSystem] with element only
+  factory ContactPointSystem.empty() => ContactPointSystem._('');
+
   /// Factory constructor to create [ContactPointSystem] from JSON.
   factory ContactPointSystem.fromJson(
     Map<String, dynamic> json,

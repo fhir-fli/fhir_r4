@@ -15,6 +15,9 @@ class ConsentDataMeaning extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConsentDataMeaning] with element only
+  factory ConsentDataMeaning.empty() => ConsentDataMeaning._('');
+
   /// Factory constructor to create [ConsentDataMeaning] from JSON.
   factory ConsentDataMeaning.fromJson(
     Map<String, dynamic> json,

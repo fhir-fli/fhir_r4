@@ -15,6 +15,9 @@ class LinkageType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [LinkageType] with element only
+  factory LinkageType.empty() => LinkageType._('');
+
   /// Factory constructor to create [LinkageType] from JSON.
   factory LinkageType.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class DeviceMetricCategory extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceMetricCategory] with element only
+  factory DeviceMetricCategory.empty() => DeviceMetricCategory._('');
+
   /// Factory constructor to create [DeviceMetricCategory] from JSON.
   factory DeviceMetricCategory.fromJson(
     Map<String, dynamic> json,

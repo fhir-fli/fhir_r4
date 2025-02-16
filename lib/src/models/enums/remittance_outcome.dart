@@ -14,6 +14,9 @@ class RemittanceOutcome extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RemittanceOutcome] with element only
+  factory RemittanceOutcome.empty() => RemittanceOutcome._('');
+
   /// Factory constructor to create [RemittanceOutcome] from JSON.
   factory RemittanceOutcome.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class ActionSelectionBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionSelectionBehavior] with element only
+  factory ActionSelectionBehavior.empty() => ActionSelectionBehavior._('');
+
   /// Factory constructor to create [ActionSelectionBehavior] from JSON.
   factory ActionSelectionBehavior.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class UnitsOfTime extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [UnitsOfTime] with element only
+  factory UnitsOfTime.empty() => UnitsOfTime._('');
+
   /// Factory constructor to create [UnitsOfTime] from JSON.
   factory UnitsOfTime.fromJson(
     Map<String, dynamic> json,

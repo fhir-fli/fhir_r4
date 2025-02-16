@@ -15,6 +15,9 @@ class IdentityAssuranceLevel extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [IdentityAssuranceLevel] with element only
+  factory IdentityAssuranceLevel.empty() => IdentityAssuranceLevel._('');
+
   /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
   factory IdentityAssuranceLevel.fromJson(
     Map<String, dynamic> json,

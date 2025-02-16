@@ -14,6 +14,9 @@ class IssueType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [IssueType] with element only
+  factory IssueType.empty() => IssueType._('');
+
   /// Factory constructor to create [IssueType] from JSON.
   factory IssueType.fromJson(
     Map<String, dynamic> json,

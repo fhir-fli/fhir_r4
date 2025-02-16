@@ -14,6 +14,9 @@ class EncounterStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EncounterStatus] with element only
+  factory EncounterStatus.empty() => EncounterStatus._('');
+
   /// Factory constructor to create [EncounterStatus] from JSON.
   factory EncounterStatus.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class NutritionProductStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [NutritionProductStatus] with element only
+  factory NutritionProductStatus.empty() => NutritionProductStatus._('');
+
   /// Factory constructor to create [NutritionProductStatus] from JSON.
   factory NutritionProductStatus.fromJson(
     Map<String, dynamic> json,

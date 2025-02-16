@@ -15,6 +15,9 @@ class CarePlanIntent extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CarePlanIntent] with element only
+  factory CarePlanIntent.empty() => CarePlanIntent._('');
+
   /// Factory constructor to create [CarePlanIntent] from JSON.
   factory CarePlanIntent.fromJson(
     Map<String, dynamic> json,

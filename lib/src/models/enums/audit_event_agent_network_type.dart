@@ -14,6 +14,10 @@ class AuditEventAgentNetworkType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AuditEventAgentNetworkType] with element only
+  factory AuditEventAgentNetworkType.empty() =>
+      AuditEventAgentNetworkType._('');
+
   /// Factory constructor to create [AuditEventAgentNetworkType] from JSON.
   factory AuditEventAgentNetworkType.fromJson(
     Map<String, dynamic> json,

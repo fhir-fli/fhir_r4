@@ -14,6 +14,9 @@ class SearchParamType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SearchParamType] with element only
+  factory SearchParamType.empty() => SearchParamType._('');
+
   /// Factory constructor to create [SearchParamType] from JSON.
   factory SearchParamType.fromJson(
     Map<String, dynamic> json,

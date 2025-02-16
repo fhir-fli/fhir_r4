@@ -14,6 +14,9 @@ class DocumentRelationshipType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DocumentRelationshipType] with element only
+  factory DocumentRelationshipType.empty() => DocumentRelationshipType._('');
+
   /// Factory constructor to create [DocumentRelationshipType] from JSON.
   factory DocumentRelationshipType.fromJson(
     Map<String, dynamic> json,

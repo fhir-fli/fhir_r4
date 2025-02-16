@@ -15,6 +15,9 @@ class ActionRequiredBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionRequiredBehavior] with element only
+  factory ActionRequiredBehavior.empty() => ActionRequiredBehavior._('');
+
   /// Factory constructor to create [ActionRequiredBehavior] from JSON.
   factory ActionRequiredBehavior.fromJson(
     Map<String, dynamic> json,

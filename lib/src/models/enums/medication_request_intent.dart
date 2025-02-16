@@ -14,6 +14,9 @@ class MedicationRequestIntent extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [MedicationRequestIntent] with element only
+  factory MedicationRequestIntent.empty() => MedicationRequestIntent._('');
+
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
   factory MedicationRequestIntent.fromJson(
     Map<String, dynamic> json,

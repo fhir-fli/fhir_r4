@@ -14,6 +14,9 @@ class ExtensionContextType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ExtensionContextType] with element only
+  factory ExtensionContextType.empty() => ExtensionContextType._('');
+
   /// Factory constructor to create [ExtensionContextType] from JSON.
   factory ExtensionContextType.fromJson(
     Map<String, dynamic> json,

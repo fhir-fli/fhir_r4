@@ -15,6 +15,9 @@ class EvidenceVariableHandling extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EvidenceVariableHandling] with element only
+  factory EvidenceVariableHandling.empty() => EvidenceVariableHandling._('');
+
   /// Factory constructor to create [EvidenceVariableHandling] from JSON.
   factory EvidenceVariableHandling.fromJson(
     Map<String, dynamic> json,

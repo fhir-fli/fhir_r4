@@ -14,6 +14,9 @@ class AddressUse extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AddressUse] with element only
+  factory AddressUse.empty() => AddressUse._('');
+
   /// Factory constructor to create [AddressUse] from JSON.
   factory AddressUse.fromJson(
     Map<String, dynamic> json,

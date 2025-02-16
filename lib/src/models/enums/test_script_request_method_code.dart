@@ -14,6 +14,10 @@ class TestScriptRequestMethodCode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TestScriptRequestMethodCode] with element only
+  factory TestScriptRequestMethodCode.empty() =>
+      TestScriptRequestMethodCode._('');
+
   /// Factory constructor to create [TestScriptRequestMethodCode] from JSON.
   factory TestScriptRequestMethodCode.fromJson(
     Map<String, dynamic> json,

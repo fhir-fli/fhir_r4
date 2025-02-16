@@ -17,6 +17,10 @@ class IngredientManufacturerRole extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [IngredientManufacturerRole] with element only
+  factory IngredientManufacturerRole.empty() =>
+      IngredientManufacturerRole._('');
+
   /// Factory constructor to create [IngredientManufacturerRole] from JSON.
   factory IngredientManufacturerRole.fromJson(
     Map<String, dynamic> json,

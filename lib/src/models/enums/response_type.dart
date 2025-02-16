@@ -14,6 +14,9 @@ class ResponseType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ResponseType] with element only
+  factory ResponseType.empty() => ResponseType._('');
+
   /// Factory constructor to create [ResponseType] from JSON.
   factory ResponseType.fromJson(
     Map<String, dynamic> json,

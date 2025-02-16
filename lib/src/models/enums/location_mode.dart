@@ -15,6 +15,9 @@ class LocationMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [LocationMode] with element only
+  factory LocationMode.empty() => LocationMode._('');
+
   /// Factory constructor to create [LocationMode] from JSON.
   factory LocationMode.fromJson(
     Map<String, dynamic> json,

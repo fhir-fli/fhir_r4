@@ -14,6 +14,9 @@ class CompositionStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CompositionStatus] with element only
+  factory CompositionStatus.empty() => CompositionStatus._('');
+
   /// Factory constructor to create [CompositionStatus] from JSON.
   factory CompositionStatus.fromJson(
     Map<String, dynamic> json,

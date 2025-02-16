@@ -14,6 +14,9 @@ class SequenceType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SequenceType] with element only
+  factory SequenceType.empty() => SequenceType._('');
+
   /// Factory constructor to create [SequenceType] from JSON.
   factory SequenceType.fromJson(
     Map<String, dynamic> json,

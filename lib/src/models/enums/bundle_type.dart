@@ -14,6 +14,9 @@ class BundleType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [BundleType] with element only
+  factory BundleType.empty() => BundleType._('');
+
   /// Factory constructor to create [BundleType] from JSON.
   factory BundleType.fromJson(
     Map<String, dynamic> json,

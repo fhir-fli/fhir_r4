@@ -14,6 +14,9 @@ class Use extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [Use] with element only
+  factory Use.empty() => Use._('');
+
   /// Factory constructor to create [Use] from JSON.
   factory Use.fromJson(
     Map<String, dynamic> json,

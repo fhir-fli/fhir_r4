@@ -14,6 +14,9 @@ class VisionBase extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [VisionBase] with element only
+  factory VisionBase.empty() => VisionBase._('');
+
   /// Factory constructor to create [VisionBase] from JSON.
   factory VisionBase.fromJson(
     Map<String, dynamic> json,

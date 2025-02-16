@@ -14,6 +14,9 @@ class TaskStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TaskStatus] with element only
+  factory TaskStatus.empty() => TaskStatus._('');
+
   /// Factory constructor to create [TaskStatus] from JSON.
   factory TaskStatus.fromJson(
     Map<String, dynamic> json,

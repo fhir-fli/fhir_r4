@@ -15,6 +15,9 @@ class GoalLifecycleStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GoalLifecycleStatus] with element only
+  factory GoalLifecycleStatus.empty() => GoalLifecycleStatus._('');
+
   /// Factory constructor to create [GoalLifecycleStatus] from JSON.
   factory GoalLifecycleStatus.fromJson(
     Map<String, dynamic> json,

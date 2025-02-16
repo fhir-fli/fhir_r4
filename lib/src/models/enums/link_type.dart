@@ -15,6 +15,9 @@ class LinkType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [LinkType] with element only
+  factory LinkType.empty() => LinkType._('');
+
   /// Factory constructor to create [LinkType] from JSON.
   factory LinkType.fromJson(
     Map<String, dynamic> json,

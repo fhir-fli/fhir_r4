@@ -14,6 +14,9 @@ class StructureMapContextType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureMapContextType] with element only
+  factory StructureMapContextType.empty() => StructureMapContextType._('');
+
   /// Factory constructor to create [StructureMapContextType] from JSON.
   factory StructureMapContextType.fromJson(
     Map<String, dynamic> json,

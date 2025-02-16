@@ -14,6 +14,10 @@ class ContractResourcePublicationStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ContractResourcePublicationStatusCodes] with element only
+  factory ContractResourcePublicationStatusCodes.empty() =>
+      ContractResourcePublicationStatusCodes._('');
+
   /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
   factory ContractResourcePublicationStatusCodes.fromJson(
     Map<String, dynamic> json,

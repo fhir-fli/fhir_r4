@@ -14,6 +14,9 @@ class StructureMapInputMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureMapInputMode] with element only
+  factory StructureMapInputMode.empty() => StructureMapInputMode._('');
+
   /// Factory constructor to create [StructureMapInputMode] from JSON.
   factory StructureMapInputMode.fromJson(
     Map<String, dynamic> json,

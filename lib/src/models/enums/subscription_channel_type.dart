@@ -14,6 +14,9 @@ class SubscriptionChannelType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SubscriptionChannelType] with element only
+  factory SubscriptionChannelType.empty() => SubscriptionChannelType._('');
+
   /// Factory constructor to create [SubscriptionChannelType] from JSON.
   factory SubscriptionChannelType.fromJson(
     Map<String, dynamic> json,

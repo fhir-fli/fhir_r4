@@ -14,6 +14,9 @@ class PropertyTypeEnum extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [PropertyTypeEnum] with element only
+  factory PropertyTypeEnum.empty() => PropertyTypeEnum._('');
+
   /// Factory constructor to create [PropertyTypeEnum] from JSON.
   factory PropertyTypeEnum.fromJson(
     Map<String, dynamic> json,

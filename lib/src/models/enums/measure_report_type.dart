@@ -14,6 +14,9 @@ class MeasureReportType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [MeasureReportType] with element only
+  factory MeasureReportType.empty() => MeasureReportType._('');
+
   /// Factory constructor to create [MeasureReportType] from JSON.
   factory MeasureReportType.fromJson(
     Map<String, dynamic> json,

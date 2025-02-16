@@ -16,6 +16,9 @@ class SearchEntryMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SearchEntryMode] with element only
+  factory SearchEntryMode.empty() => SearchEntryMode._('');
+
   /// Factory constructor to create [SearchEntryMode] from JSON.
   factory SearchEntryMode.fromJson(
     Map<String, dynamic> json,

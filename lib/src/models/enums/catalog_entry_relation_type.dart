@@ -14,6 +14,9 @@ class CatalogEntryRelationType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CatalogEntryRelationType] with element only
+  factory CatalogEntryRelationType.empty() => CatalogEntryRelationType._('');
+
   /// Factory constructor to create [CatalogEntryRelationType] from JSON.
   factory CatalogEntryRelationType.fromJson(
     Map<String, dynamic> json,

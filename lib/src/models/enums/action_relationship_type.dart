@@ -14,6 +14,9 @@ class ActionRelationshipType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionRelationshipType] with element only
+  factory ActionRelationshipType.empty() => ActionRelationshipType._('');
+
   /// Factory constructor to create [ActionRelationshipType] from JSON.
   factory ActionRelationshipType.fromJson(
     Map<String, dynamic> json,

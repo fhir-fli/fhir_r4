@@ -15,6 +15,9 @@ class AllergyIntoleranceType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AllergyIntoleranceType] with element only
+  factory AllergyIntoleranceType.empty() => AllergyIntoleranceType._('');
+
   /// Factory constructor to create [AllergyIntoleranceType] from JSON.
   factory AllergyIntoleranceType.fromJson(
     Map<String, dynamic> json,

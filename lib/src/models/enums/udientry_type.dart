@@ -14,6 +14,9 @@ class UDIEntryType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [UDIEntryType] with element only
+  factory UDIEntryType.empty() => UDIEntryType._('');
+
   /// Factory constructor to create [UDIEntryType] from JSON.
   factory UDIEntryType.fromJson(
     Map<String, dynamic> json,

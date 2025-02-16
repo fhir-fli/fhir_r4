@@ -14,6 +14,9 @@ class InteractionTrigger extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [InteractionTrigger] with element only
+  factory InteractionTrigger.empty() => InteractionTrigger._('');
+
   /// Factory constructor to create [InteractionTrigger] from JSON.
   factory InteractionTrigger.fromJson(
     Map<String, dynamic> json,

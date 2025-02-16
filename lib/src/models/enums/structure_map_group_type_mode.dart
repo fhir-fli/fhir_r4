@@ -15,6 +15,9 @@ class StructureMapGroupTypeMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureMapGroupTypeMode] with element only
+  factory StructureMapGroupTypeMode.empty() => StructureMapGroupTypeMode._('');
+
   /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
   factory StructureMapGroupTypeMode.fromJson(
     Map<String, dynamic> json,

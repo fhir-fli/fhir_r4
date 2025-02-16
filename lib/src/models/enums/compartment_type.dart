@@ -14,6 +14,9 @@ class CompartmentType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CompartmentType] with element only
+  factory CompartmentType.empty() => CompartmentType._('');
+
   /// Factory constructor to create [CompartmentType] from JSON.
   factory CompartmentType.fromJson(
     Map<String, dynamic> json,

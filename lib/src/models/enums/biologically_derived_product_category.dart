@@ -14,6 +14,10 @@ class BiologicallyDerivedProductCategory extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [BiologicallyDerivedProductCategory] with element only
+  factory BiologicallyDerivedProductCategory.empty() =>
+      BiologicallyDerivedProductCategory._('');
+
   /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
   factory BiologicallyDerivedProductCategory.fromJson(
     Map<String, dynamic> json,

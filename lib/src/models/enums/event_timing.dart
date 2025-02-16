@@ -14,6 +14,9 @@ class EventTiming extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EventTiming] with element only
+  factory EventTiming.empty() => EventTiming._('');
+
   /// Factory constructor to create [EventTiming] from JSON.
   factory EventTiming.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class EligibilityRequestPurpose extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EligibilityRequestPurpose] with element only
+  factory EligibilityRequestPurpose.empty() => EligibilityRequestPurpose._('');
+
   /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
   factory EligibilityRequestPurpose.fromJson(
     Map<String, dynamic> json,

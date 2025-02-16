@@ -14,6 +14,9 @@ class ActionGroupingBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionGroupingBehavior] with element only
+  factory ActionGroupingBehavior.empty() => ActionGroupingBehavior._('');
+
   /// Factory constructor to create [ActionGroupingBehavior] from JSON.
   factory ActionGroupingBehavior.fromJson(
     Map<String, dynamic> json,

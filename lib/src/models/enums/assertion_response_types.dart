@@ -14,6 +14,9 @@ class AssertionResponseTypes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AssertionResponseTypes] with element only
+  factory AssertionResponseTypes.empty() => AssertionResponseTypes._('');
+
   /// Factory constructor to create [AssertionResponseTypes] from JSON.
   factory AssertionResponseTypes.fromJson(
     Map<String, dynamic> json,

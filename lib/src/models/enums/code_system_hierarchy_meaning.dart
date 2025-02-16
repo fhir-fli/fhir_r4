@@ -14,6 +14,10 @@ class CodeSystemHierarchyMeaning extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CodeSystemHierarchyMeaning] with element only
+  factory CodeSystemHierarchyMeaning.empty() =>
+      CodeSystemHierarchyMeaning._('');
+
   /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
   factory CodeSystemHierarchyMeaning.fromJson(
     Map<String, dynamic> json,

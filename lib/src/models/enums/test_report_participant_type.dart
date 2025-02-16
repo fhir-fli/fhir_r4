@@ -14,6 +14,9 @@ class TestReportParticipantType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TestReportParticipantType] with element only
+  factory TestReportParticipantType.empty() => TestReportParticipantType._('');
+
   /// Factory constructor to create [TestReportParticipantType] from JSON.
   factory TestReportParticipantType.fromJson(
     Map<String, dynamic> json,

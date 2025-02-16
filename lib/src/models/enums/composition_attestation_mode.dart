@@ -14,6 +14,10 @@ class CompositionAttestationMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CompositionAttestationMode] with element only
+  factory CompositionAttestationMode.empty() =>
+      CompositionAttestationMode._('');
+
   /// Factory constructor to create [CompositionAttestationMode] from JSON.
   factory CompositionAttestationMode.fromJson(
     Map<String, dynamic> json,

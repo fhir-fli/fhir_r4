@@ -15,6 +15,9 @@ class CarePlanActivityKind extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CarePlanActivityKind] with element only
+  factory CarePlanActivityKind.empty() => CarePlanActivityKind._('');
+
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
   factory CarePlanActivityKind.fromJson(
     Map<String, dynamic> json,

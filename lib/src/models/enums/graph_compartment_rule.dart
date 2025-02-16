@@ -14,6 +14,9 @@ class GraphCompartmentRule extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GraphCompartmentRule] with element only
+  factory GraphCompartmentRule.empty() => GraphCompartmentRule._('');
+
   /// Factory constructor to create [GraphCompartmentRule] from JSON.
   factory GraphCompartmentRule.fromJson(
     Map<String, dynamic> json,

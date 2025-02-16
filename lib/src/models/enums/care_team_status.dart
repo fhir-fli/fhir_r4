@@ -14,6 +14,9 @@ class CareTeamStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CareTeamStatus] with element only
+  factory CareTeamStatus.empty() => CareTeamStatus._('');
+
   /// Factory constructor to create [CareTeamStatus] from JSON.
   factory CareTeamStatus.fromJson(
     Map<String, dynamic> json,

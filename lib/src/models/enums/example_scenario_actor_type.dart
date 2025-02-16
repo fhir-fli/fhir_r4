@@ -14,6 +14,9 @@ class ExampleScenarioActorType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ExampleScenarioActorType] with element only
+  factory ExampleScenarioActorType.empty() => ExampleScenarioActorType._('');
+
   /// Factory constructor to create [ExampleScenarioActorType] from JSON.
   factory ExampleScenarioActorType.fromJson(
     Map<String, dynamic> json,

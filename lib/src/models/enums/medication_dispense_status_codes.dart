@@ -14,6 +14,10 @@ class MedicationDispenseStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [MedicationDispenseStatusCodes] with element only
+  factory MedicationDispenseStatusCodes.empty() =>
+      MedicationDispenseStatusCodes._('');
+
   /// Factory constructor to create [MedicationDispenseStatusCodes] from JSON.
   factory MedicationDispenseStatusCodes.fromJson(
     Map<String, dynamic> json,

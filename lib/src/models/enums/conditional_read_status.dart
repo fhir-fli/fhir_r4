@@ -14,6 +14,9 @@ class ConditionalReadStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConditionalReadStatus] with element only
+  factory ConditionalReadStatus.empty() => ConditionalReadStatus._('');
+
   /// Factory constructor to create [ConditionalReadStatus] from JSON.
   factory ConditionalReadStatus.fromJson(
     Map<String, dynamic> json,

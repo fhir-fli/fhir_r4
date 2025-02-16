@@ -14,6 +14,9 @@ class SearchComparator extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SearchComparator] with element only
+  factory SearchComparator.empty() => SearchComparator._('');
+
   /// Factory constructor to create [SearchComparator] from JSON.
   factory SearchComparator.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class CharacteristicCombination extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CharacteristicCombination] with element only
+  factory CharacteristicCombination.empty() => CharacteristicCombination._('');
+
   /// Factory constructor to create [CharacteristicCombination] from JSON.
   factory CharacteristicCombination.fromJson(
     Map<String, dynamic> json,

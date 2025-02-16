@@ -14,6 +14,9 @@ class GroupMeasure extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GroupMeasure] with element only
+  factory GroupMeasure.empty() => GroupMeasure._('');
+
   /// Factory constructor to create [GroupMeasure] from JSON.
   factory GroupMeasure.fromJson(
     Map<String, dynamic> json,

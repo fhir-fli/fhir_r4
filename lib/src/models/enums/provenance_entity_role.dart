@@ -14,6 +14,9 @@ class ProvenanceEntityRole extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ProvenanceEntityRole] with element only
+  factory ProvenanceEntityRole.empty() => ProvenanceEntityRole._('');
+
   /// Factory constructor to create [ProvenanceEntityRole] from JSON.
   factory ProvenanceEntityRole.fromJson(
     Map<String, dynamic> json,

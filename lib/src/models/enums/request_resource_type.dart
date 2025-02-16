@@ -15,6 +15,9 @@ class RequestResourceType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RequestResourceType] with element only
+  factory RequestResourceType.empty() => RequestResourceType._('');
+
   /// Factory constructor to create [RequestResourceType] from JSON.
   factory RequestResourceType.fromJson(
     Map<String, dynamic> json,

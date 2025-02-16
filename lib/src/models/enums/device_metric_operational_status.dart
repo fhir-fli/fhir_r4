@@ -14,6 +14,10 @@ class DeviceMetricOperationalStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceMetricOperationalStatus] with element only
+  factory DeviceMetricOperationalStatus.empty() =>
+      DeviceMetricOperationalStatus._('');
+
   /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
   factory DeviceMetricOperationalStatus.fromJson(
     Map<String, dynamic> json,

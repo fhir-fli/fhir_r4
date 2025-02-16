@@ -14,6 +14,9 @@ class AccountStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AccountStatus] with element only
+  factory AccountStatus.empty() => AccountStatus._('');
+
   /// Factory constructor to create [AccountStatus] from JSON.
   factory AccountStatus.fromJson(
     Map<String, dynamic> json,

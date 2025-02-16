@@ -15,6 +15,9 @@ class CriteriaNotExistsBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CriteriaNotExistsBehavior] with element only
+  factory CriteriaNotExistsBehavior.empty() => CriteriaNotExistsBehavior._('');
+
   /// Factory constructor to create [CriteriaNotExistsBehavior] from JSON.
   factory CriteriaNotExistsBehavior.fromJson(
     Map<String, dynamic> json,

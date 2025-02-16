@@ -14,6 +14,9 @@ class AddressType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AddressType] with element only
+  factory AddressType.empty() => AddressType._('');
+
   /// Factory constructor to create [AddressType] from JSON.
   factory AddressType.fromJson(
     Map<String, dynamic> json,

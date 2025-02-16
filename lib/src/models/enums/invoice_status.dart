@@ -14,6 +14,9 @@ class InvoiceStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [InvoiceStatus] with element only
+  factory InvoiceStatus.empty() => InvoiceStatus._('');
+
   /// Factory constructor to create [InvoiceStatus] from JSON.
   factory InvoiceStatus.fromJson(
     Map<String, dynamic> json,

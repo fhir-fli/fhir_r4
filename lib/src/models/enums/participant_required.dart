@@ -14,6 +14,9 @@ class ParticipantRequired extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ParticipantRequired] with element only
+  factory ParticipantRequired.empty() => ParticipantRequired._('');
+
   /// Factory constructor to create [ParticipantRequired] from JSON.
   factory ParticipantRequired.fromJson(
     Map<String, dynamic> json,

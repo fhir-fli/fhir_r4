@@ -15,6 +15,9 @@ class HTTPVerb extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [HTTPVerb] with element only
+  factory HTTPVerb.empty() => HTTPVerb._('');
+
   /// Factory constructor to create [HTTPVerb] from JSON.
   factory HTTPVerb.fromJson(
     Map<String, dynamic> json,

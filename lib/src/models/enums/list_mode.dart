@@ -14,6 +14,9 @@ class ListMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ListMode] with element only
+  factory ListMode.empty() => ListMode._('');
+
   /// Factory constructor to create [ListMode] from JSON.
   factory ListMode.fromJson(
     Map<String, dynamic> json,

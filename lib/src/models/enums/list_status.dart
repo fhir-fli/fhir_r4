@@ -14,6 +14,9 @@ class ListStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ListStatus] with element only
+  factory ListStatus.empty() => ListStatus._('');
+
   /// Factory constructor to create [ListStatus] from JSON.
   factory ListStatus.fromJson(
     Map<String, dynamic> json,

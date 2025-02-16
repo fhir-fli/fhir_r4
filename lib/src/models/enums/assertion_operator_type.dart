@@ -14,6 +14,9 @@ class AssertionOperatorType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AssertionOperatorType] with element only
+  factory AssertionOperatorType.empty() => AssertionOperatorType._('');
+
   /// Factory constructor to create [AssertionOperatorType] from JSON.
   factory AssertionOperatorType.fromJson(
     Map<String, dynamic> json,
@@ -64,8 +67,8 @@ class AssertionOperatorType extends FhirCode {
     'lessThan',
   );
 
-  /// empty
-  static final AssertionOperatorType empty = AssertionOperatorType._(
+  /// empty_
+  static final AssertionOperatorType empty_ = AssertionOperatorType._(
     'empty',
   );
 
@@ -101,7 +104,7 @@ class AssertionOperatorType extends FhirCode {
     notIn,
     greaterThan,
     lessThan,
-    empty,
+    empty_,
     notEmpty,
     contains,
     notContains,

@@ -14,6 +14,9 @@ class ObservationRangeCategory extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ObservationRangeCategory] with element only
+  factory ObservationRangeCategory.empty() => ObservationRangeCategory._('');
+
   /// Factory constructor to create [ObservationRangeCategory] from JSON.
   factory ObservationRangeCategory.fromJson(
     Map<String, dynamic> json,

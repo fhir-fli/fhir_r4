@@ -14,6 +14,9 @@ class StructureMapTransform extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureMapTransform] with element only
+  factory StructureMapTransform.empty() => StructureMapTransform._('');
+
   /// Factory constructor to create [StructureMapTransform] from JSON.
   factory StructureMapTransform.fromJson(
     Map<String, dynamic> json,

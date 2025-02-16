@@ -14,6 +14,9 @@ class AuditEventOutcome extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AuditEventOutcome] with element only
+  factory AuditEventOutcome.empty() => AuditEventOutcome._('');
+
   /// Factory constructor to create [AuditEventOutcome] from JSON.
   factory AuditEventOutcome.fromJson(
     Map<String, dynamic> json,

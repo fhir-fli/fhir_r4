@@ -14,6 +14,9 @@ class ActionPrecheckBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionPrecheckBehavior] with element only
+  factory ActionPrecheckBehavior.empty() => ActionPrecheckBehavior._('');
+
   /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
   factory ActionPrecheckBehavior.fromJson(
     Map<String, dynamic> json,

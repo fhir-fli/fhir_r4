@@ -14,6 +14,9 @@ class ReferenceHandlingPolicy extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ReferenceHandlingPolicy] with element only
+  factory ReferenceHandlingPolicy.empty() => ReferenceHandlingPolicy._('');
+
   /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
   factory ReferenceHandlingPolicy.fromJson(
     Map<String, dynamic> json,

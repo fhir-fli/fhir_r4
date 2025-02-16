@@ -14,6 +14,9 @@ class FHIRSubstanceStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FHIRSubstanceStatus] with element only
+  factory FHIRSubstanceStatus.empty() => FHIRSubstanceStatus._('');
+
   /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
   factory FHIRSubstanceStatus.fromJson(
     Map<String, dynamic> json,

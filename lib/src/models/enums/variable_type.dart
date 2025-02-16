@@ -15,6 +15,9 @@ class VariableType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [VariableType] with element only
+  factory VariableType.empty() => VariableType._('');
+
   /// Factory constructor to create [VariableType] from JSON.
   factory VariableType.fromJson(
     Map<String, dynamic> json,

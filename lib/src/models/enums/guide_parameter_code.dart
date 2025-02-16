@@ -14,6 +14,9 @@ class GuideParameterCode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GuideParameterCode] with element only
+  factory GuideParameterCode.empty() => GuideParameterCode._('');
+
   /// Factory constructor to create [GuideParameterCode] from JSON.
   factory GuideParameterCode.fromJson(
     Map<String, dynamic> json,

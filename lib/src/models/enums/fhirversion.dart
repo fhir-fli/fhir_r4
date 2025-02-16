@@ -14,6 +14,9 @@ class FHIRVersion extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FHIRVersion] with element only
+  factory FHIRVersion.empty() => FHIRVersion._('');
+
   /// Factory constructor to create [FHIRVersion] from JSON.
   factory FHIRVersion.fromJson(
     Map<String, dynamic> json,

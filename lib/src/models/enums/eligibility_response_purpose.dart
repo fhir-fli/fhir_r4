@@ -14,6 +14,10 @@ class EligibilityResponsePurpose extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EligibilityResponsePurpose] with element only
+  factory EligibilityResponsePurpose.empty() =>
+      EligibilityResponsePurpose._('');
+
   /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
   factory EligibilityResponsePurpose.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,10 @@ class StructureMapTargetListMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureMapTargetListMode] with element only
+  factory StructureMapTargetListMode.empty() =>
+      StructureMapTargetListMode._('');
+
   /// Factory constructor to create [StructureMapTargetListMode] from JSON.
   factory StructureMapTargetListMode.fromJson(
     Map<String, dynamic> json,

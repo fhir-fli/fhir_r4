@@ -14,6 +14,9 @@ class FilterOperator extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FilterOperator] with element only
+  factory FilterOperator.empty() => FilterOperator._('');
+
   /// Factory constructor to create [FilterOperator] from JSON.
   factory FilterOperator.fromJson(
     Map<String, dynamic> json,

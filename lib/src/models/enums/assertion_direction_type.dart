@@ -14,6 +14,9 @@ class AssertionDirectionType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AssertionDirectionType] with element only
+  factory AssertionDirectionType.empty() => AssertionDirectionType._('');
+
   /// Factory constructor to create [AssertionDirectionType] from JSON.
   factory AssertionDirectionType.fromJson(
     Map<String, dynamic> json,

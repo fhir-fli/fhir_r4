@@ -14,6 +14,10 @@ class FinancialResourceStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FinancialResourceStatusCodes] with element only
+  factory FinancialResourceStatusCodes.empty() =>
+      FinancialResourceStatusCodes._('');
+
   /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
   factory FinancialResourceStatusCodes.fromJson(
     Map<String, dynamic> json,

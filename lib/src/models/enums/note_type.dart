@@ -14,6 +14,9 @@ class NoteType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [NoteType] with element only
+  factory NoteType.empty() => NoteType._('');
+
   /// Factory constructor to create [NoteType] from JSON.
   factory NoteType.fromJson(
     Map<String, dynamic> json,

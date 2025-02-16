@@ -14,6 +14,9 @@ class Status extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [Status] with element only
+  factory Status.empty() => Status._('');
+
   /// Factory constructor to create [Status] from JSON.
   factory Status.fromJson(
     Map<String, dynamic> json,

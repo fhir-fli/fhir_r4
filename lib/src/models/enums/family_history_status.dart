@@ -14,6 +14,9 @@ class FamilyHistoryStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FamilyHistoryStatus] with element only
+  factory FamilyHistoryStatus.empty() => FamilyHistoryStatus._('');
+
   /// Factory constructor to create [FamilyHistoryStatus] from JSON.
   factory FamilyHistoryStatus.fromJson(
     Map<String, dynamic> json,

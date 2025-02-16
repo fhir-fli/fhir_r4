@@ -14,6 +14,9 @@ class SlicingRules extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SlicingRules] with element only
+  factory SlicingRules.empty() => SlicingRules._('');
+
   /// Factory constructor to create [SlicingRules] from JSON.
   factory SlicingRules.fromJson(
     Map<String, dynamic> json,

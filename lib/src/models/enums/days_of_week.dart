@@ -14,6 +14,9 @@ class DaysOfWeek extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DaysOfWeek] with element only
+  factory DaysOfWeek.empty() => DaysOfWeek._('');
+
   /// Factory constructor to create [DaysOfWeek] from JSON.
   factory DaysOfWeek.fromJson(
     Map<String, dynamic> json,

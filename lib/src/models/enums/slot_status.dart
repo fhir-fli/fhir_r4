@@ -14,6 +14,9 @@ class SlotStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SlotStatus] with element only
+  factory SlotStatus.empty() => SlotStatus._('');
+
   /// Factory constructor to create [SlotStatus] from JSON.
   factory SlotStatus.fromJson(
     Map<String, dynamic> json,

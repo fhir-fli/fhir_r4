@@ -14,6 +14,9 @@ class QualityType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [QualityType] with element only
+  factory QualityType.empty() => QualityType._('');
+
   /// Factory constructor to create [QualityType] from JSON.
   factory QualityType.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class OperationParameterUse extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [OperationParameterUse] with element only
+  factory OperationParameterUse.empty() => OperationParameterUse._('');
+
   /// Factory constructor to create [OperationParameterUse] from JSON.
   factory OperationParameterUse.fromJson(
     Map<String, dynamic> json,

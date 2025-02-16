@@ -14,6 +14,9 @@ class OrientationType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [OrientationType] with element only
+  factory OrientationType.empty() => OrientationType._('');
+
   /// Factory constructor to create [OrientationType] from JSON.
   factory OrientationType.fromJson(
     Map<String, dynamic> json,

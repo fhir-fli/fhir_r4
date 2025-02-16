@@ -14,6 +14,10 @@ class SubscriptionNotificationType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SubscriptionNotificationType] with element only
+  factory SubscriptionNotificationType.empty() =>
+      SubscriptionNotificationType._('');
+
   /// Factory constructor to create [SubscriptionNotificationType] from JSON.
   factory SubscriptionNotificationType.fromJson(
     Map<String, dynamic> json,

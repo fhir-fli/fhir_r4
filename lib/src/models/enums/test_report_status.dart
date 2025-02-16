@@ -14,6 +14,9 @@ class TestReportStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TestReportStatus] with element only
+  factory TestReportStatus.empty() => TestReportStatus._('');
+
   /// Factory constructor to create [TestReportStatus] from JSON.
   factory TestReportStatus.fromJson(
     Map<String, dynamic> json,

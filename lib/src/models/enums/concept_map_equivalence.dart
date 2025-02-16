@@ -14,6 +14,9 @@ class ConceptMapEquivalence extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConceptMapEquivalence] with element only
+  factory ConceptMapEquivalence.empty() => ConceptMapEquivalence._('');
+
   /// Factory constructor to create [ConceptMapEquivalence] from JSON.
   factory ConceptMapEquivalence.fromJson(
     Map<String, dynamic> json,

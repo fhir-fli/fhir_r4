@@ -14,6 +14,9 @@ class PublicationStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [PublicationStatus] with element only
+  factory PublicationStatus.empty() => PublicationStatus._('');
+
   /// Factory constructor to create [PublicationStatus] from JSON.
   factory PublicationStatus.fromJson(
     Map<String, dynamic> json,

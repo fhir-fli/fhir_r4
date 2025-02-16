@@ -14,6 +14,9 @@ class SupplyRequestStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SupplyRequestStatus] with element only
+  factory SupplyRequestStatus.empty() => SupplyRequestStatus._('');
+
   /// Factory constructor to create [SupplyRequestStatus] from JSON.
   factory SupplyRequestStatus.fromJson(
     Map<String, dynamic> json,

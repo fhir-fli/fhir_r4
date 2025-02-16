@@ -14,6 +14,9 @@ class DiscriminatorType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DiscriminatorType] with element only
+  factory DiscriminatorType.empty() => DiscriminatorType._('');
+
   /// Factory constructor to create [DiscriminatorType] from JSON.
   factory DiscriminatorType.fromJson(
     Map<String, dynamic> json,

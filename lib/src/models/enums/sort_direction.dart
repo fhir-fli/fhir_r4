@@ -14,6 +14,9 @@ class SortDirection extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SortDirection] with element only
+  factory SortDirection.empty() => SortDirection._('');
+
   /// Factory constructor to create [SortDirection] from JSON.
   factory SortDirection.fromJson(
     Map<String, dynamic> json,

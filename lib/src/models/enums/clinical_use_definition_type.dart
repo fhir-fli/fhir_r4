@@ -14,6 +14,9 @@ class ClinicalUseDefinitionType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ClinicalUseDefinitionType] with element only
+  factory ClinicalUseDefinitionType.empty() => ClinicalUseDefinitionType._('');
+
   /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
   factory ClinicalUseDefinitionType.fromJson(
     Map<String, dynamic> json,

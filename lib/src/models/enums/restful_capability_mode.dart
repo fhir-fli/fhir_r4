@@ -14,6 +14,9 @@ class RestfulCapabilityMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RestfulCapabilityMode] with element only
+  factory RestfulCapabilityMode.empty() => RestfulCapabilityMode._('');
+
   /// Factory constructor to create [RestfulCapabilityMode] from JSON.
   factory RestfulCapabilityMode.fromJson(
     Map<String, dynamic> json,

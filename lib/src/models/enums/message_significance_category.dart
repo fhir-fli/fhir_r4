@@ -14,6 +14,10 @@ class MessageSignificanceCategory extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [MessageSignificanceCategory] with element only
+  factory MessageSignificanceCategory.empty() =>
+      MessageSignificanceCategory._('');
+
   /// Factory constructor to create [MessageSignificanceCategory] from JSON.
   factory MessageSignificanceCategory.fromJson(
     Map<String, dynamic> json,

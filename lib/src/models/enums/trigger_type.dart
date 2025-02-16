@@ -14,6 +14,9 @@ class TriggerType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [TriggerType] with element only
+  factory TriggerType.empty() => TriggerType._('');
+
   /// Factory constructor to create [TriggerType] from JSON.
   factory TriggerType.fromJson(
     Map<String, dynamic> json,

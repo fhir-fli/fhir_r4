@@ -14,6 +14,9 @@ class ContributorType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ContributorType] with element only
+  factory ContributorType.empty() => ContributorType._('');
+
   /// Factory constructor to create [ContributorType] from JSON.
   factory ContributorType.fromJson(
     Map<String, dynamic> json,

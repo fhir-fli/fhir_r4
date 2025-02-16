@@ -15,6 +15,9 @@ class ResearchElementType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ResearchElementType] with element only
+  factory ResearchElementType.empty() => ResearchElementType._('');
+
   /// Factory constructor to create [ResearchElementType] from JSON.
   factory ResearchElementType.fromJson(
     Map<String, dynamic> json,

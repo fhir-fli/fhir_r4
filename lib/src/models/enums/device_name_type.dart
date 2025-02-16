@@ -14,6 +14,9 @@ class DeviceNameType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceNameType] with element only
+  factory DeviceNameType.empty() => DeviceNameType._('');
+
   /// Factory constructor to create [DeviceNameType] from JSON.
   factory DeviceNameType.fromJson(
     Map<String, dynamic> json,

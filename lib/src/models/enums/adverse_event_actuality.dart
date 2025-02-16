@@ -14,6 +14,9 @@ class AdverseEventActuality extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AdverseEventActuality] with element only
+  factory AdverseEventActuality.empty() => AdverseEventActuality._('');
+
   /// Factory constructor to create [AdverseEventActuality] from JSON.
   factory AdverseEventActuality.fromJson(
     Map<String, dynamic> json,

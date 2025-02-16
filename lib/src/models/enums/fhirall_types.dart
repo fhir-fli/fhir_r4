@@ -15,6 +15,9 @@ class FHIRAllTypes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FHIRAllTypes] with element only
+  factory FHIRAllTypes.empty() => FHIRAllTypes._('');
+
   /// Factory constructor to create [FHIRAllTypes] from JSON.
   factory FHIRAllTypes.fromJson(
     Map<String, dynamic> json,

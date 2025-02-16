@@ -14,6 +14,9 @@ class QuantityComparator extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [QuantityComparator] with element only
+  factory QuantityComparator.empty() => QuantityComparator._('');
+
   /// Factory constructor to create [QuantityComparator] from JSON.
   factory QuantityComparator.fromJson(
     Map<String, dynamic> json,

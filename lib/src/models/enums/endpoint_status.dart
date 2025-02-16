@@ -14,6 +14,9 @@ class EndpointStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EndpointStatus] with element only
+  factory EndpointStatus.empty() => EndpointStatus._('');
+
   /// Factory constructor to create [EndpointStatus] from JSON.
   factory EndpointStatus.fromJson(
     Map<String, dynamic> json,

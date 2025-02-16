@@ -15,6 +15,9 @@ class EnableWhenBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EnableWhenBehavior] with element only
+  factory EnableWhenBehavior.empty() => EnableWhenBehavior._('');
+
   /// Factory constructor to create [EnableWhenBehavior] from JSON.
   factory EnableWhenBehavior.fromJson(
     Map<String, dynamic> json,

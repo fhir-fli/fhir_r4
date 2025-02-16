@@ -14,6 +14,9 @@ class StructureDefinitionKind extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [StructureDefinitionKind] with element only
+  factory StructureDefinitionKind.empty() => StructureDefinitionKind._('');
+
   /// Factory constructor to create [StructureDefinitionKind] from JSON.
   factory StructureDefinitionKind.fromJson(
     Map<String, dynamic> json,

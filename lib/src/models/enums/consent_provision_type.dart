@@ -15,6 +15,9 @@ class ConsentProvisionType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConsentProvisionType] with element only
+  factory ConsentProvisionType.empty() => ConsentProvisionType._('');
+
   /// Factory constructor to create [ConsentProvisionType] from JSON.
   factory ConsentProvisionType.fromJson(
     Map<String, dynamic> json,

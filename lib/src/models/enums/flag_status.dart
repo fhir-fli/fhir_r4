@@ -15,6 +15,9 @@ class FlagStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [FlagStatus] with element only
+  factory FlagStatus.empty() => FlagStatus._('');
+
   /// Factory constructor to create [FlagStatus] from JSON.
   factory FlagStatus.fromJson(
     Map<String, dynamic> json,

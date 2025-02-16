@@ -14,6 +14,9 @@ class InvoicePriceComponentType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [InvoicePriceComponentType] with element only
+  factory InvoicePriceComponentType.empty() => InvoicePriceComponentType._('');
+
   /// Factory constructor to create [InvoicePriceComponentType] from JSON.
   factory InvoicePriceComponentType.fromJson(
     Map<String, dynamic> json,

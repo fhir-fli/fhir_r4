@@ -14,6 +14,9 @@ class ParticipationStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ParticipationStatus] with element only
+  factory ParticipationStatus.empty() => ParticipationStatus._('');
+
   /// Factory constructor to create [ParticipationStatus] from JSON.
   factory ParticipationStatus.fromJson(
     Map<String, dynamic> json,

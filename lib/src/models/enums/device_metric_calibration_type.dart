@@ -14,6 +14,10 @@ class DeviceMetricCalibrationType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceMetricCalibrationType] with element only
+  factory DeviceMetricCalibrationType.empty() =>
+      DeviceMetricCalibrationType._('');
+
   /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
   factory DeviceMetricCalibrationType.fromJson(
     Map<String, dynamic> json,

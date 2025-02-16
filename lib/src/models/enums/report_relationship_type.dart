@@ -14,6 +14,9 @@ class ReportRelationshipType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ReportRelationshipType] with element only
+  factory ReportRelationshipType.empty() => ReportRelationshipType._('');
+
   /// Factory constructor to create [ReportRelationshipType] from JSON.
   factory ReportRelationshipType.fromJson(
     Map<String, dynamic> json,

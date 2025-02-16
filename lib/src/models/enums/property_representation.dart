@@ -14,6 +14,9 @@ class PropertyRepresentation extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [PropertyRepresentation] with element only
+  factory PropertyRepresentation.empty() => PropertyRepresentation._('');
+
   /// Factory constructor to create [PropertyRepresentation] from JSON.
   factory PropertyRepresentation.fromJson(
     Map<String, dynamic> json,

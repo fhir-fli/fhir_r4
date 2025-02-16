@@ -15,6 +15,10 @@ class MessageheaderResponseRequest extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [MessageheaderResponseRequest] with element only
+  factory MessageheaderResponseRequest.empty() =>
+      MessageheaderResponseRequest._('');
+
   /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
   factory MessageheaderResponseRequest.fromJson(
     Map<String, dynamic> json,

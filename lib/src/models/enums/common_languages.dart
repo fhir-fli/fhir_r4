@@ -15,6 +15,9 @@ class CommonLanguages extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CommonLanguages] with element only
+  factory CommonLanguages.empty() => CommonLanguages._('');
+
   /// Factory constructor to create [CommonLanguages] from JSON.
   factory CommonLanguages.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class ConsentState extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConsentState] with element only
+  factory ConsentState.empty() => ConsentState._('');
+
   /// Factory constructor to create [ConsentState] from JSON.
   factory ConsentState.fromJson(
     Map<String, dynamic> json,

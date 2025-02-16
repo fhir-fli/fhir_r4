@@ -15,6 +15,9 @@ class DetectedIssueSeverity extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DetectedIssueSeverity] with element only
+  factory DetectedIssueSeverity.empty() => DetectedIssueSeverity._('');
+
   /// Factory constructor to create [DetectedIssueSeverity] from JSON.
   factory DetectedIssueSeverity.fromJson(
     Map<String, dynamic> json,

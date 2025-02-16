@@ -14,6 +14,9 @@ class DiagnosticReportStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DiagnosticReportStatus] with element only
+  factory DiagnosticReportStatus.empty() => DiagnosticReportStatus._('');
+
   /// Factory constructor to create [DiagnosticReportStatus] from JSON.
   factory DiagnosticReportStatus.fromJson(
     Map<String, dynamic> json,

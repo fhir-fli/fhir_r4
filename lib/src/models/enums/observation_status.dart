@@ -14,6 +14,9 @@ class ObservationStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ObservationStatus] with element only
+  factory ObservationStatus.empty() => ObservationStatus._('');
+
   /// Factory constructor to create [ObservationStatus] from JSON.
   factory ObservationStatus.fromJson(
     Map<String, dynamic> json,

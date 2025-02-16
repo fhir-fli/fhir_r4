@@ -15,6 +15,9 @@ class XPathUsageType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [XPathUsageType] with element only
+  factory XPathUsageType.empty() => XPathUsageType._('');
+
   /// Factory constructor to create [XPathUsageType] from JSON.
   factory XPathUsageType.fromJson(
     Map<String, dynamic> json,

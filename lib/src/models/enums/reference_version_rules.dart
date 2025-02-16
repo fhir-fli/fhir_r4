@@ -15,6 +15,9 @@ class ReferenceVersionRules extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ReferenceVersionRules] with element only
+  factory ReferenceVersionRules.empty() => ReferenceVersionRules._('');
+
   /// Factory constructor to create [ReferenceVersionRules] from JSON.
   factory ReferenceVersionRules.fromJson(
     Map<String, dynamic> json,

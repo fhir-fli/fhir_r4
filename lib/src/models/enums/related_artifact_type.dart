@@ -14,6 +14,9 @@ class RelatedArtifactType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RelatedArtifactType] with element only
+  factory RelatedArtifactType.empty() => RelatedArtifactType._('');
+
   /// Factory constructor to create [RelatedArtifactType] from JSON.
   factory RelatedArtifactType.fromJson(
     Map<String, dynamic> json,

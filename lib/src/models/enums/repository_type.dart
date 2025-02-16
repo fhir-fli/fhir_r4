@@ -14,6 +14,9 @@ class RepositoryType extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [RepositoryType] with element only
+  factory RepositoryType.empty() => RepositoryType._('');
+
   /// Factory constructor to create [RepositoryType] from JSON.
   factory RepositoryType.fromJson(
     Map<String, dynamic> json,

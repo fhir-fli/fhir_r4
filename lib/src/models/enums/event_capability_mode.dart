@@ -14,6 +14,9 @@ class EventCapabilityMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [EventCapabilityMode] with element only
+  factory EventCapabilityMode.empty() => EventCapabilityMode._('');
+
   /// Factory constructor to create [EventCapabilityMode] from JSON.
   factory EventCapabilityMode.fromJson(
     Map<String, dynamic> json,

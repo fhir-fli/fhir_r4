@@ -14,6 +14,9 @@ class OperationKind extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [OperationKind] with element only
+  factory OperationKind.empty() => OperationKind._('');
+
   /// Factory constructor to create [OperationKind] from JSON.
   factory OperationKind.fromJson(
     Map<String, dynamic> json,

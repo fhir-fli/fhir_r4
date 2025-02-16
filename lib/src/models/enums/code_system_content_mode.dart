@@ -15,6 +15,9 @@ class CodeSystemContentMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [CodeSystemContentMode] with element only
+  factory CodeSystemContentMode.empty() => CodeSystemContentMode._('');
+
   /// Factory constructor to create [CodeSystemContentMode] from JSON.
   factory CodeSystemContentMode.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class SubscriptionStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SubscriptionStatusCodes] with element only
+  factory SubscriptionStatusCodes.empty() => SubscriptionStatusCodes._('');
+
   /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
   factory SubscriptionStatusCodes.fromJson(
     Map<String, dynamic> json,

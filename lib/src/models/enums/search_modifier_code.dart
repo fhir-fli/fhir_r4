@@ -14,6 +14,9 @@ class SearchModifierCode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SearchModifierCode] with element only
+  factory SearchModifierCode.empty() => SearchModifierCode._('');
+
   /// Factory constructor to create [SearchModifierCode] from JSON.
   factory SearchModifierCode.fromJson(
     Map<String, dynamic> json,

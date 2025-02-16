@@ -14,6 +14,9 @@ class DocumentMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DocumentMode] with element only
+  factory DocumentMode.empty() => DocumentMode._('');
+
   /// Factory constructor to create [DocumentMode] from JSON.
   factory DocumentMode.fromJson(
     Map<String, dynamic> json,

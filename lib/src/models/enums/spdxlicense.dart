@@ -17,6 +17,9 @@ class SPDXLicense extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SPDXLicense] with element only
+  factory SPDXLicense.empty() => SPDXLicense._('');
+
   /// Factory constructor to create [SPDXLicense] from JSON.
   factory SPDXLicense.fromJson(
     Map<String, dynamic> json,

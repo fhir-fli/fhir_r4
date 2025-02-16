@@ -14,6 +14,9 @@ class ResearchStudyStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ResearchStudyStatus] with element only
+  factory ResearchStudyStatus.empty() => ResearchStudyStatus._('');
+
   /// Factory constructor to create [ResearchStudyStatus] from JSON.
   factory ResearchStudyStatus.fromJson(
     Map<String, dynamic> json,

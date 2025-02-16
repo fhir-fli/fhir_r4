@@ -14,6 +14,9 @@ class ChargeItemStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ChargeItemStatus] with element only
+  factory ChargeItemStatus.empty() => ChargeItemStatus._('');
+
   /// Factory constructor to create [ChargeItemStatus] from JSON.
   factory ChargeItemStatus.fromJson(
     Map<String, dynamic> json,

@@ -14,6 +14,9 @@ class DeviceUseStatementStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [DeviceUseStatementStatus] with element only
+  factory DeviceUseStatementStatus.empty() => DeviceUseStatementStatus._('');
+
   /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
   factory DeviceUseStatementStatus.fromJson(
     Map<String, dynamic> json,

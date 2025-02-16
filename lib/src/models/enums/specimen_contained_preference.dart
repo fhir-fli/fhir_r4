@@ -14,6 +14,10 @@ class SpecimenContainedPreference extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [SpecimenContainedPreference] with element only
+  factory SpecimenContainedPreference.empty() =>
+      SpecimenContainedPreference._('');
+
   /// Factory constructor to create [SpecimenContainedPreference] from JSON.
   factory SpecimenContainedPreference.fromJson(
     Map<String, dynamic> json,

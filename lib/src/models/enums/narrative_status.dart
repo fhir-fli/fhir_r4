@@ -14,6 +14,9 @@ class NarrativeStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [NarrativeStatus] with element only
+  factory NarrativeStatus.empty() => NarrativeStatus._('');
+
   /// Factory constructor to create [NarrativeStatus] from JSON.
   factory NarrativeStatus.fromJson(
     Map<String, dynamic> json,
@@ -49,8 +52,8 @@ class NarrativeStatus extends FhirCode {
     'additional',
   );
 
-  /// empty
-  static final NarrativeStatus empty = NarrativeStatus._(
+  /// empty_
+  static final NarrativeStatus empty_ = NarrativeStatus._(
     'empty',
   );
 
@@ -63,7 +66,7 @@ class NarrativeStatus extends FhirCode {
     generated,
     extensions,
     additional,
-    empty,
+    empty_,
   ];
 
   /// Clones the current instance

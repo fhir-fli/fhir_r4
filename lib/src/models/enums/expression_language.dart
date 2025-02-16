@@ -14,6 +14,9 @@ class ExpressionLanguage extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ExpressionLanguage] with element only
+  factory ExpressionLanguage.empty() => ExpressionLanguage._('');
+
   /// Factory constructor to create [ExpressionLanguage] from JSON.
   factory ExpressionLanguage.fromJson(
     Map<String, dynamic> json,

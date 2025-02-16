@@ -14,6 +14,9 @@ class ResourceVersionPolicy extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ResourceVersionPolicy] with element only
+  factory ResourceVersionPolicy.empty() => ResourceVersionPolicy._('');
+
   /// Factory constructor to create [ResourceVersionPolicy] from JSON.
   factory ResourceVersionPolicy.fromJson(
     Map<String, dynamic> json,

@@ -15,6 +15,9 @@ class ActionCardinalityBehavior extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ActionCardinalityBehavior] with element only
+  factory ActionCardinalityBehavior.empty() => ActionCardinalityBehavior._('');
+
   /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
   factory ActionCardinalityBehavior.fromJson(
     Map<String, dynamic> json,

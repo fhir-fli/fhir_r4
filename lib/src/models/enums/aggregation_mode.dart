@@ -14,6 +14,9 @@ class AggregationMode extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AggregationMode] with element only
+  factory AggregationMode.empty() => AggregationMode._('');
+
   /// Factory constructor to create [AggregationMode] from JSON.
   factory AggregationMode.fromJson(
     Map<String, dynamic> json,

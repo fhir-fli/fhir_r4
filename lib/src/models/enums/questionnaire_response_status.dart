@@ -14,6 +14,10 @@ class QuestionnaireResponseStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [QuestionnaireResponseStatus] with element only
+  factory QuestionnaireResponseStatus.empty() =>
+      QuestionnaireResponseStatus._('');
+
   /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
   factory QuestionnaireResponseStatus.fromJson(
     Map<String, dynamic> json,

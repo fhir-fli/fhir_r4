@@ -14,6 +14,9 @@ class ConstraintSeverity extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [ConstraintSeverity] with element only
+  factory ConstraintSeverity.empty() => ConstraintSeverity._('');
+
   /// Factory constructor to create [ConstraintSeverity] from JSON.
   factory ConstraintSeverity.fromJson(
     Map<String, dynamic> json,

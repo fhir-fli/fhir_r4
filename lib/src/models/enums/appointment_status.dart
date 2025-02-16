@@ -14,6 +14,9 @@ class AppointmentStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [AppointmentStatus] with element only
+  factory AppointmentStatus.empty() => AppointmentStatus._('');
+
   /// Factory constructor to create [AppointmentStatus] from JSON.
   factory AppointmentStatus.fromJson(
     Map<String, dynamic> json,

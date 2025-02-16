@@ -15,6 +15,9 @@ class BindingStrength extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [BindingStrength] with element only
+  factory BindingStrength.empty() => BindingStrength._('');
+
   /// Factory constructor to create [BindingStrength] from JSON.
   factory BindingStrength.fromJson(
     Map<String, dynamic> json,

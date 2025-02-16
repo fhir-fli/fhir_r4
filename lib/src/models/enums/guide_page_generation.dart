@@ -14,6 +14,9 @@ class GuidePageGeneration extends FhirCode {
     super.objectPath = 'Code',
   });
 
+  /// Create empty [GuidePageGeneration] with element only
+  factory GuidePageGeneration.empty() => GuidePageGeneration._('');
+
   /// Factory constructor to create [GuidePageGeneration] from JSON.
   factory GuidePageGeneration.fromJson(
     Map<String, dynamic> json,
