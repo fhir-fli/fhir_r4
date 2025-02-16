@@ -1,15 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-
-/// Logs messages for debugging purposes.
-/// - [message]: The log message.
-/// - [shouldPrint]: Whether to print the message.
-/// - [level]: The log level (default is 'INFO').
-void _log(String message, [bool shouldPrint = false, String level = 'INFO']) {
-  if (shouldPrint) {
-    print('[$level] $message');
-  }
-}
 
 /// Manages the transformation context for mapping FHIR structures.
 class TransformationContext {
@@ -58,7 +50,7 @@ class DefinitionResolver {
   /// Resolves a [StructureDefinition] by [type].
   Future<StructureDefinition?> resolveByType(String? type) async {
     if (type == null) {
-      _log('Cannot resolve StructureDefinition for null type.', true);
+      print('Cannot resolve StructureDefinition for null type.');
       return null;
     }
 
@@ -86,30 +78,52 @@ class DefinitionResolver {
     String? objectLocation,
   ) async {
     if (objectLocation == null) {
-      _log('Cannot resolve ElementDefinition for null location.', true);
+      print('Cannot resolve ElementDefinition for null location.');
       return null;
     }
-    final locationParts = objectLocation.split('.');
-    final baseType = locationParts.first;
-    var structureDef = await resolveByType(baseType);
 
-    for (var i = 1; i < locationParts.length; i++) {
-      final currentPath = locationParts.sublist(0, i + 1).join('.');
-      final elementDef =
-          _resolveElementDefinitionFromStructure(structureDef, currentPath);
-      if (elementDef == null) return null;
+    final pathParts = objectLocation.split('.');
+    final baseType = pathParts.first;
+    final sd = await resolveByType(baseType);
+    if (sd == null) {
+      print('Cannot resolve ElementDefinition for $objectLocation.');
+      return null;
+    }
 
-      if (i < locationParts.length - 1 &&
-          (elementDef.type?.isNotEmpty ?? false)) {
-        final nextType = elementDef.singleTypeString ??
-            resolvePolymorphicType(elementDef, currentPath);
-        if (nextType != 'BackboneElement') {
-          structureDef = await resolveByType(nextType);
+    return _resolveElementDefinition(sd, pathParts);
+  }
+
+  Future<ElementDefinition?> _resolveElementDefinition(
+    StructureDefinition sd,
+    List<String> pathParts,
+  ) async {
+    final ed = _resolveElementDefinitionFromStructure(sd, pathParts.join('.'));
+    if (ed != null) {
+      return ed;
+    }
+
+    for (var i = pathParts.length; i > 0; i--) {
+      final path = pathParts.sublist(0, i - 1).join('.');
+
+      final ed = _resolveElementDefinitionFromStructure(sd, path);
+
+      if (ed != null) {
+        final nextType =
+            ed.singleTypeString ?? resolvePolymorphicType(ed, path);
+
+        final sd = await resolveByType(nextType);
+        if (sd != null) {
+          return _resolveElementDefinition(
+            sd,
+            [nextType!, ...pathParts.sublist(i - 1)],
+          );
+        } else {
+          print('Cannot resolve ElementDefinition for $path.');
+          return null;
         }
       }
     }
-
-    return _resolveElementDefinitionFromStructure(structureDef, objectLocation);
+    return null;
   }
 
   /// Determines if [objectLocation] is a list.
@@ -130,11 +144,7 @@ class DefinitionResolver {
   Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
     final resource = await cache.getCanonicalResource(url: uri);
     if (resource is T) return resource;
-    _log(
-      'Resource $uri is not of expected type ${T.runtimeType}',
-      true,
-      'WARNING',
-    );
+    print('Resource $uri is not of expected type ${T.runtimeType}');
     return null;
   }
 

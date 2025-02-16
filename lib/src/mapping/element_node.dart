@@ -70,14 +70,14 @@ abstract class ElementNode with Annotatable {
         return DataTypeNode(
           newName,
           newGlobalPath,
-          newLocalPath ?? localPath!,
+          localPath!,
           value,
         );
       } else if (this is ResourceNode) {
         return ResourceNode(
           newName,
           newGlobalPath,
-          newLocalPath ?? localPath!,
+          localPath!,
           value,
         );
       }
@@ -198,6 +198,7 @@ abstract class ElementNode with Annotatable {
     if (valueNode is LeafNode) {
       // Cast the value using elementDefinition type
       final expectedType = elementDefinition.singleTypeString;
+
       if (expectedType != null) {
         valueNode = valueNode.copyWith(
           value: castValue(valueNode.value, expectedType),
@@ -231,16 +232,19 @@ abstract class ElementNode with Annotatable {
   ) async {
     ElementDefinition? elementDefinition;
 
-    final path1 = '$localPath.$key';
+    // final path1 = '$localPath.$key';
+    // print('path1: $path1');
 
-    elementDefinition = await resolver.resolveElementDefinition(path1);
-    if (elementDefinition != null) {
-      return elementDefinition;
-    }
+    // elementDefinition = await resolver.resolveElementDefinition(path1);
+    // print('elementDefinition1: ${elementDefinition?.path}');
+    // if (elementDefinition != null) {
+    //   return elementDefinition;
+    // }
 
     final path2 = pathForResolver(key);
 
     elementDefinition = await resolver.resolveElementDefinition(path2);
+
     if (elementDefinition != null) {
       return elementDefinition;
     }
@@ -248,6 +252,7 @@ abstract class ElementNode with Annotatable {
     final path3 = '$childLocalPath.$key';
 
     elementDefinition = await resolver.resolveElementDefinition(path3);
+
     if (elementDefinition != null) {
       return elementDefinition;
     }
@@ -255,6 +260,7 @@ abstract class ElementNode with Annotatable {
     final path4 = '${valueNode.localPath}.$key';
 
     elementDefinition = await resolver.resolveElementDefinition(path4);
+
     if (elementDefinition != null) {
       return elementDefinition;
     }
@@ -376,7 +382,7 @@ abstract class ElementNode with Annotatable {
         MapNode(null, listNode.childGlobalPath, listNode.childLocalPath, []);
     final value = newValue.copyWith(
       newGlobalPath: listResourceNode.childGlobalPath,
-      newLocalPath: R4ResourceType.typesAsStrings.contains(newValue.localPath)
+      newLocalPath: newValue is ResourceNode || newValue is DataTypeNode
           ? newValue.localPath
           : listResourceNode.childLocalPath,
     ) as MapNode;
@@ -544,6 +550,7 @@ abstract class CompositeNode extends ElementNode {
 
   // Refactored method for adding a child node
   void addChild(ElementNode child) {
+    
     final updated = updatePaths(child);
     value.add(updated);
   }

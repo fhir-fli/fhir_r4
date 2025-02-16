@@ -233,11 +233,14 @@ class FhirMapEngine {
     StructureMapRule rule,
     bool atRoot,
   ) async {
+    print('$indent Executing Rule: ${rule.name}');
+
     // Ensure single source and create copy of variables
     if (rule.source.length != 1) {
       throw Exception('Rule "${rule.name}" has multiple sources.');
     }
     final srcVars = vars.copy();
+    print('$indent Created copy of vars: ${srcVars.summary()}');
 
     // Process rule sources and targets
     final sourceVarsList = await _processSource(
@@ -248,8 +251,13 @@ class FhirMapEngine {
       map?.url.toString(),
       indent,
     );
+    print(
+      '$indent Source variables after _processSource: ${sourceVarsList.map((e) => e.summary()).toList()}',
+    );
+
     for (final sourceVars in sourceVarsList) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
+        print('$indent Processing target: ${target.context}');
         await _processTarget(
           rule.name.toString(),
           context,
@@ -274,10 +282,9 @@ class FhirMapEngine {
       );
     }
     rules++;
-    if (rules > 1) {
+    if (rules > 6) {
       File('output.txt')
           .writeAsStringSync('Completed rule: ${rule.name}\n${vars.summary()}');
-      print(vars.summary());
       throw FHIRException(message: 'Rule limit exceeded');
     }
   }
@@ -393,6 +400,7 @@ class FhirMapEngine {
     String? pathForErrors,
     String indent,
   ) async {
+    print('$indent Processing Source: ${source.context}');
     var items = <ElementNode>[];
 
     // Process @search context
@@ -405,6 +413,9 @@ class FhirMapEngine {
           pathForErrors,
         ) ??
         items;
+    print(
+      '$indent Items after search context: ${items.map((e) => e.summary()).toList()}',
+    );
 
     // Fetch children if not a search context
     if (source.context.toString() != '@search') {
@@ -416,6 +427,9 @@ class FhirMapEngine {
         );
       }
       items = await _getItemsFromSourceValue(source, sourceValue);
+      print(
+        '$indent Items after getItemsFromSourceValue: ${items.map((e) => e.summary()).toList()}',
+      );
     }
 
     // Apply condition and checks, if present
@@ -424,6 +438,7 @@ class FhirMapEngine {
 
     // Handle list modes
     items = _handleListMode(items, source.listMode?.toString());
+    print('$indent Final items: ${items.map((e) => e.summary()).toList()}');
 
     return _finalizeSourceItems(items, vars, source.variable?.value);
   }
@@ -680,11 +695,14 @@ class FhirMapEngine {
     bool atRoot,
     Variables sharedVars,
   ) async {
+    print('Processing Target: ${target.context}');
+
     ElementNode? dest;
 
     // Get the output variable (target context)
     if (target.context != null && target.context!.toString().isNotEmpty) {
       dest = vars.getOutputVar(target.context!.toString());
+      print('Destination (output variable) found: ${dest?.summary()}');
 
       if (dest == null) {
         throw FHIRException(
@@ -699,9 +717,10 @@ class FhirMapEngine {
       }
     }
 
+    print('Destination before transformation: ${dest?.summary()}');
     ElementNode? value;
-    // Check if there's a transformation and run it to get the value for the
-    // target
+
+    // Check if there's a transformation and run it to get the value for the target
     if (target.transform != null) {
       value = await transformer.runTransform(
         ruleId,
@@ -713,11 +732,13 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
+      print('Value after transformation: ${value?.summary()}');
 
       if (dest != null && value != null) {
         // Set property based on the resolved element
         value = await dest.setProperty(target.element!.value!, value, resolver);
-        // dest = dest.updatePaths(dest.globalPath!, dest.localPath!);
+        print('Updated destination after setProperty: ${dest.summary()}');
+        print('Updated value after setProperty: ${value.summary()}');
       }
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared
@@ -750,8 +771,11 @@ class FhirMapEngine {
       }
     }
 
+    print('Final value to be added to target: ${value?.summary()}');
+
     if (target.variable != null && value != null) {
       vars.add(VariableMode.OUTPUT, target.variable!.toString(), value);
+      print('Added value to variables: ${vars.summary()}');
     }
   }
 
