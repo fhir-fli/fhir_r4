@@ -3370,7 +3370,7 @@ class StructureMapTarget extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory StructureMapTarget.empty() => StructureMapTarget();
+  factory StructureMapTarget.empty() => const StructureMapTarget();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapTarget.fromJson(

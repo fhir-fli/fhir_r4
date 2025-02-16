@@ -1101,7 +1101,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ChargeItemDefinitionApplicability.empty() =>
-      ChargeItemDefinitionApplicability();
+      const ChargeItemDefinitionApplicability();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionApplicability.fromJson(
@@ -1429,7 +1429,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ChargeItemDefinitionPropertyGroup.empty() =>
-      ChargeItemDefinitionPropertyGroup();
+      const ChargeItemDefinitionPropertyGroup();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPropertyGroup.fromJson(

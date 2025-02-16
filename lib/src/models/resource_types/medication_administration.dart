@@ -1341,7 +1341,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationAdministrationDosage.empty() =>
-      MedicationAdministrationDosage();
+      const MedicationAdministrationDosage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministrationDosage.fromJson(

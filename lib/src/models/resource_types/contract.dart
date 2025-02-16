@@ -59,7 +59,7 @@ class Contract extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Contract.empty() => Contract();
+  factory Contract.empty() => const Contract();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Contract.fromJson(
@@ -2863,7 +2863,7 @@ class ContractOffer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractOffer.empty() => ContractOffer();
+  factory ContractOffer.empty() => const ContractOffer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractOffer.fromJson(
@@ -4104,7 +4104,7 @@ class ContractAsset extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractAsset.empty() => ContractAsset();
+  factory ContractAsset.empty() => const ContractAsset();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAsset.fromJson(
@@ -4831,7 +4831,7 @@ class ContractContext extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractContext.empty() => ContractContext();
+  factory ContractContext.empty() => const ContractContext();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractContext.fromJson(
@@ -5176,7 +5176,7 @@ class ContractValuedItem extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractValuedItem.empty() => ContractValuedItem();
+  factory ContractValuedItem.empty() => const ContractValuedItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractValuedItem.fromJson(
@@ -6740,7 +6740,7 @@ class ContractSubject extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractSubject.empty() => ContractSubject(
+  factory ContractSubject.empty() => const ContractSubject(
         reference: <Reference>[],
       );
 

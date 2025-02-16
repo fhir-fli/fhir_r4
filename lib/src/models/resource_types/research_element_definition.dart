@@ -1750,17 +1750,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
+        'participantEffectiveDescription', participantEffectiveDescription,);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX);
+          participantEffectiveX,);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
     return json;
   }
 
@@ -2066,33 +2066,33 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveDescription, o.studyEffectiveDescription)) {
+        studyEffectiveDescription, o.studyEffectiveDescription,)) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart)) {
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure)) {
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveDescription, o.participantEffectiveDescription)) {
+        participantEffectiveDescription, o.participantEffectiveDescription,)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
-        o.participantEffectiveTimeFromStart)) {
+        o.participantEffectiveTimeFromStart,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure)) {
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure,)) {
       return false;
     }
     return true;

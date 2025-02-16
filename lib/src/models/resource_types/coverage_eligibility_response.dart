@@ -1194,7 +1194,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory CoverageEligibilityResponseItem.empty() =>
-      CoverageEligibilityResponseItem();
+      const CoverageEligibilityResponseItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseItem.fromJson(

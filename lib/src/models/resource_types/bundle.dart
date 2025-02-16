@@ -769,7 +769,7 @@ class BundleEntry extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BundleEntry.empty() => BundleEntry();
+  factory BundleEntry.empty() => const BundleEntry();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleEntry.fromJson(
@@ -1183,7 +1183,7 @@ class BundleSearch extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BundleSearch.empty() => BundleSearch();
+  factory BundleSearch.empty() => const BundleSearch();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleSearch.fromJson(

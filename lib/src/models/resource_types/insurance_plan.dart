@@ -39,7 +39,7 @@ class InsurancePlan extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory InsurancePlan.empty() => InsurancePlan();
+  factory InsurancePlan.empty() => const InsurancePlan();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlan.fromJson(
@@ -834,7 +834,7 @@ class InsurancePlanContact extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory InsurancePlanContact.empty() => InsurancePlanContact();
+  factory InsurancePlanContact.empty() => const InsurancePlanContact();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanContact.fromJson(
@@ -1862,7 +1862,7 @@ class InsurancePlanLimit extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory InsurancePlanLimit.empty() => InsurancePlanLimit();
+  factory InsurancePlanLimit.empty() => const InsurancePlanLimit();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanLimit.fromJson(
@@ -2162,7 +2162,7 @@ class InsurancePlanPlan extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory InsurancePlanPlan.empty() => InsurancePlanPlan();
+  factory InsurancePlanPlan.empty() => const InsurancePlanPlan();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanPlan.fromJson(
@@ -2613,7 +2613,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory InsurancePlanGeneralCost.empty() => InsurancePlanGeneralCost();
+  factory InsurancePlanGeneralCost.empty() => const InsurancePlanGeneralCost();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanGeneralCost.fromJson(

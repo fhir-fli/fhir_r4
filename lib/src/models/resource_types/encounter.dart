@@ -1723,7 +1723,7 @@ class EncounterParticipant extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EncounterParticipant.empty() => EncounterParticipant();
+  factory EncounterParticipant.empty() => const EncounterParticipant();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterParticipant.fromJson(
@@ -2386,7 +2386,7 @@ class EncounterHospitalization extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EncounterHospitalization.empty() => EncounterHospitalization();
+  factory EncounterHospitalization.empty() => const EncounterHospitalization();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterHospitalization.fromJson(

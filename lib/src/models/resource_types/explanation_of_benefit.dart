@@ -1640,7 +1640,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitRelated.empty() => ExplanationOfBenefitRelated();
+  factory ExplanationOfBenefitRelated.empty() => const ExplanationOfBenefitRelated();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitRelated.fromJson(
@@ -1961,7 +1961,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayee.empty() => ExplanationOfBenefitPayee();
+  factory ExplanationOfBenefitPayee.empty() => const ExplanationOfBenefitPayee();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayee.fromJson(
@@ -4257,7 +4257,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ExplanationOfBenefitAccident.empty() =>
-      ExplanationOfBenefitAccident();
+      const ExplanationOfBenefitAccident();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAccident.fromJson(
@@ -9419,7 +9419,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayment.empty() => ExplanationOfBenefitPayment();
+  factory ExplanationOfBenefitPayment.empty() => const ExplanationOfBenefitPayment();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayment.fromJson(
@@ -9817,7 +9817,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ExplanationOfBenefitProcessNote.empty() =>
-      ExplanationOfBenefitProcessNote();
+      const ExplanationOfBenefitProcessNote();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitProcessNote.fromJson(

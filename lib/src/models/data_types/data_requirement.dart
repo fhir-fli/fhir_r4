@@ -538,7 +538,7 @@ class DataRequirementCodeFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() => DataRequirementCodeFilter();
+  factory DataRequirementCodeFilter.empty() => const DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
@@ -880,7 +880,7 @@ class DataRequirementDateFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() => DataRequirementDateFilter();
+  factory DataRequirementDateFilter.empty() => const DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(

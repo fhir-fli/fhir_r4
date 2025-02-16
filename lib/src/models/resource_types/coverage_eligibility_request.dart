@@ -1472,7 +1472,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory CoverageEligibilityRequestItem.empty() =>
-      CoverageEligibilityRequestItem();
+      const CoverageEligibilityRequestItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestItem.fromJson(
@@ -2004,7 +2004,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory CoverageEligibilityRequestDiagnosis.empty() =>
-      CoverageEligibilityRequestDiagnosis();
+      const CoverageEligibilityRequestDiagnosis();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestDiagnosis.fromJson(

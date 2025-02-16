@@ -49,7 +49,7 @@ class HealthcareService extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory HealthcareService.empty() => HealthcareService();
+  factory HealthcareService.empty() => const HealthcareService();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareService.fromJson(
@@ -1178,7 +1178,7 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory HealthcareServiceEligibility.empty() =>
-      HealthcareServiceEligibility();
+      const HealthcareServiceEligibility();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceEligibility.fromJson(
@@ -1476,7 +1476,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory HealthcareServiceAvailableTime.empty() =>
-      HealthcareServiceAvailableTime();
+      const HealthcareServiceAvailableTime();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceAvailableTime.fromJson(

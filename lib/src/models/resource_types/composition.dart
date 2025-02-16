@@ -1477,7 +1477,7 @@ class CompositionEvent extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CompositionEvent.empty() => CompositionEvent();
+  factory CompositionEvent.empty() => const CompositionEvent();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionEvent.fromJson(
@@ -1834,7 +1834,7 @@ class CompositionSection extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CompositionSection.empty() => CompositionSection();
+  factory CompositionSection.empty() => const CompositionSection();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionSection.fromJson(

@@ -765,7 +765,7 @@ class GraphDefinitionLink extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory GraphDefinitionLink.empty() => GraphDefinitionLink();
+  factory GraphDefinitionLink.empty() => const GraphDefinitionLink();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionLink.fromJson(

@@ -699,7 +699,7 @@ class MeasureReportGroup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureReportGroup.empty() => MeasureReportGroup();
+  factory MeasureReportGroup.empty() => const MeasureReportGroup();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportGroup.fromJson(
@@ -1071,7 +1071,7 @@ class MeasureReportPopulation extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureReportPopulation.empty() => MeasureReportPopulation();
+  factory MeasureReportPopulation.empty() => const MeasureReportPopulation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportPopulation.fromJson(
@@ -1392,7 +1392,7 @@ class MeasureReportStratifier extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureReportStratifier.empty() => MeasureReportStratifier();
+  factory MeasureReportStratifier.empty() => const MeasureReportStratifier();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportStratifier.fromJson(
@@ -1715,7 +1715,7 @@ class MeasureReportStratum extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureReportStratum.empty() => MeasureReportStratum();
+  factory MeasureReportStratum.empty() => const MeasureReportStratum();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportStratum.fromJson(
@@ -2381,7 +2381,7 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureReportPopulation1.empty() => MeasureReportPopulation1();
+  factory MeasureReportPopulation1.empty() => const MeasureReportPopulation1();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportPopulation1.fromJson(

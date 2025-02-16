@@ -47,7 +47,7 @@ class MedicationKnowledge extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicationKnowledge.empty() => MedicationKnowledge();
+  factory MedicationKnowledge.empty() => const MedicationKnowledge();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledge.fromJson(
@@ -1423,7 +1423,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationKnowledgeMonograph.empty() =>
-      MedicationKnowledgeMonograph();
+      const MedicationKnowledgeMonograph();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeMonograph.fromJson(
@@ -2385,7 +2385,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationKnowledgeMonitoringProgram.empty() =>
-      MedicationKnowledgeMonitoringProgram();
+      const MedicationKnowledgeMonitoringProgram();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeMonitoringProgram.fromJson(
@@ -2682,7 +2682,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationKnowledgeAdministrationGuidelines.empty() =>
-      MedicationKnowledgeAdministrationGuidelines();
+      const MedicationKnowledgeAdministrationGuidelines();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeAdministrationGuidelines.fromJson(
@@ -3504,7 +3504,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     addField('modifierExtension', modifierExtension);
     final characteristicXFhirType = characteristicX.fhirType;
     addField('characteristic${characteristicXFhirType.capitalize()}',
-        characteristicX);
+        characteristicX,);
 
     addField('value', value);
     return json;
@@ -3998,7 +3998,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationKnowledgePackaging.empty() =>
-      MedicationKnowledgePackaging();
+      const MedicationKnowledgePackaging();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgePackaging.fromJson(
@@ -4296,7 +4296,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationKnowledgeDrugCharacteristic.empty() =>
-      MedicationKnowledgeDrugCharacteristic();
+      const MedicationKnowledgeDrugCharacteristic();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeDrugCharacteristic.fromJson(
@@ -5865,7 +5865,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicationKnowledgeKinetics.empty() => MedicationKnowledgeKinetics();
+  factory MedicationKnowledgeKinetics.empty() => const MedicationKnowledgeKinetics();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeKinetics.fromJson(

@@ -805,7 +805,7 @@ class ConsentPolicy extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConsentPolicy.empty() => ConsentPolicy();
+  factory ConsentPolicy.empty() => const ConsentPolicy();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentPolicy.fromJson(
@@ -1436,7 +1436,7 @@ class ConsentProvision extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConsentProvision.empty() => ConsentProvision();
+  factory ConsentProvision.empty() => const ConsentProvision();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentProvision.fromJson(

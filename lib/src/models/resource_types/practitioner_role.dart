@@ -40,7 +40,7 @@ class PractitionerRole extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory PractitionerRole.empty() => PractitionerRole();
+  factory PractitionerRole.empty() => const PractitionerRole();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRole.fromJson(
@@ -840,7 +840,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory PractitionerRoleAvailableTime.empty() =>
-      PractitionerRoleAvailableTime();
+      const PractitionerRoleAvailableTime();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRoleAvailableTime.fromJson(

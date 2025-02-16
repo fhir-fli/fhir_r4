@@ -1604,7 +1604,7 @@ class EvidenceStatistic extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceStatistic.empty() => EvidenceStatistic();
+  factory EvidenceStatistic.empty() => const EvidenceStatistic();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceStatistic.fromJson(
@@ -2132,7 +2132,7 @@ class EvidenceSampleSize extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceSampleSize.empty() => EvidenceSampleSize();
+  factory EvidenceSampleSize.empty() => const EvidenceSampleSize();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceSampleSize.fromJson(
@@ -2517,7 +2517,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceAttributeEstimate.empty() => EvidenceAttributeEstimate();
+  factory EvidenceAttributeEstimate.empty() => const EvidenceAttributeEstimate();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceAttributeEstimate.fromJson(
@@ -3734,7 +3734,7 @@ class EvidenceCertainty extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceCertainty.empty() => EvidenceCertainty();
+  factory EvidenceCertainty.empty() => const EvidenceCertainty();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceCertainty.fromJson(

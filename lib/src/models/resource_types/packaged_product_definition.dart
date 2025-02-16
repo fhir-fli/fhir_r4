@@ -39,7 +39,7 @@ class PackagedProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinition.empty() => PackagedProductDefinition();
+  factory PackagedProductDefinition.empty() => const PackagedProductDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(
@@ -832,7 +832,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory PackagedProductDefinitionLegalStatusOfSupply.empty() =>
-      PackagedProductDefinitionLegalStatusOfSupply();
+      const PackagedProductDefinitionLegalStatusOfSupply();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
@@ -1141,7 +1141,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory PackagedProductDefinitionPackage.empty() =>
-      PackagedProductDefinitionPackage();
+      const PackagedProductDefinitionPackage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionPackage.fromJson(
@@ -1725,7 +1725,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory PackagedProductDefinitionShelfLifeStorage.empty() =>
-      PackagedProductDefinitionShelfLifeStorage();
+      const PackagedProductDefinitionShelfLifeStorage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(

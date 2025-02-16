@@ -60,7 +60,7 @@ class Range extends DataType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Range.empty() => Range();
+  factory Range.empty() => const Range();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Range.fromJson(

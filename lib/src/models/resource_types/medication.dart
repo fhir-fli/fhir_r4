@@ -36,7 +36,7 @@ class Medication extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Medication.empty() => Medication();
+  factory Medication.empty() => const Medication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Medication.fromJson(
@@ -955,7 +955,7 @@ class MedicationBatch extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicationBatch.empty() => MedicationBatch();
+  factory MedicationBatch.empty() => const MedicationBatch();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationBatch.fromJson(

@@ -853,7 +853,7 @@ class ValueSetCompose extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ValueSetCompose.empty() => ValueSetCompose(
+  factory ValueSetCompose.empty() => const ValueSetCompose(
         include: <ValueSetInclude>[],
       );
 
@@ -1230,7 +1230,7 @@ class ValueSetInclude extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ValueSetInclude.empty() => ValueSetInclude();
+  factory ValueSetInclude.empty() => const ValueSetInclude();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetInclude.fromJson(
@@ -3413,7 +3413,7 @@ class ValueSetContains extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ValueSetContains.empty() => ValueSetContains();
+  factory ValueSetContains.empty() => const ValueSetContains();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetContains.fromJson(

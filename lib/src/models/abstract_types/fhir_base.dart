@@ -254,6 +254,9 @@ abstract class FhirBase {
   /// Converts the object to a JSON string.
   String toJsonString() => jsonEncode(toJson());
 
+  /// Converts the object to a pretty JSON string.
+  String prettyPrint() => prettyPrintJson(toJson());
+
   /// Copies the object with new values.
   FhirBase copyWith({
     Map<String, dynamic>? userData,

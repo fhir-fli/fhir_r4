@@ -48,7 +48,7 @@ class Address extends DataType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Address.empty() => Address();
+  factory Address.empty() => const Address();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Address.fromJson(

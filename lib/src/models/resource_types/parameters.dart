@@ -24,7 +24,7 @@ class Parameters extends Resource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Parameters.empty() => Parameters();
+  factory Parameters.empty() => const Parameters();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Parameters.fromJson(
