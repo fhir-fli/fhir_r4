@@ -26,6 +26,13 @@ class Linkage extends DomainResource {
           resourceType: R4ResourceType.Linkage,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Linkage.empty() => Linkage(
+        item: <LinkageItem>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Linkage.fromJson(
     Map<String, dynamic> json,
@@ -459,6 +466,14 @@ class LinkageItem extends BackboneElement {
   }) : super(
           objectPath: 'Linkage.item',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory LinkageItem.empty() => LinkageItem(
+        type: LinkageType.values.first,
+        resource: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LinkageItem.fromJson(

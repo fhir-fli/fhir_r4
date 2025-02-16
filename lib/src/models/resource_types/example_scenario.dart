@@ -39,6 +39,13 @@ class ExampleScenario extends DomainResource {
           resourceType: R4ResourceType.ExampleScenario,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenario.empty() => ExampleScenario(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenario.fromJson(
     Map<String, dynamic> json,
@@ -911,6 +918,14 @@ class ExampleScenarioActor extends BackboneElement {
           objectPath: 'ExampleScenario.actor',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioActor.empty() => ExampleScenarioActor(
+        actorId: FhirString.empty(),
+        type: ExampleScenarioActorType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioActor.fromJson(
     Map<String, dynamic> json,
@@ -1248,6 +1263,14 @@ class ExampleScenarioInstance extends BackboneElement {
   }) : super(
           objectPath: 'ExampleScenario.instance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioInstance.empty() => ExampleScenarioInstance(
+        resourceId: FhirString.empty(),
+        resourceType: FhirCode.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioInstance.fromJson(
@@ -1654,6 +1677,14 @@ class ExampleScenarioVersion extends BackboneElement {
           objectPath: 'ExampleScenario.instance.version',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioVersion.empty() => ExampleScenarioVersion(
+        versionId: FhirString.empty(),
+        description: FhirMarkdown.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioVersion.fromJson(
     Map<String, dynamic> json,
@@ -1940,6 +1971,14 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   }) : super(
           objectPath: 'ExampleScenario.instance.containedInstance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioContainedInstance.empty() =>
+      ExampleScenarioContainedInstance(
+        resourceId: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioContainedInstance.fromJson(
@@ -2231,6 +2270,13 @@ class ExampleScenarioProcess extends BackboneElement {
   }) : super(
           objectPath: 'ExampleScenario.process',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioProcess.empty() => ExampleScenarioProcess(
+        title: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioProcess.fromJson(
@@ -2605,6 +2651,11 @@ class ExampleScenarioStep extends BackboneElement {
           objectPath: 'ExampleScenario.process.step',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioStep.empty() => ExampleScenarioStep();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioStep.fromJson(
     Map<String, dynamic> json,
@@ -2973,6 +3024,13 @@ class ExampleScenarioOperation extends BackboneElement {
   }) : super(
           objectPath: 'ExampleScenario.process.step.operation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioOperation.empty() => ExampleScenarioOperation(
+        number: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioOperation.fromJson(
@@ -3455,6 +3513,13 @@ class ExampleScenarioAlternative extends BackboneElement {
   }) : super(
           objectPath: 'ExampleScenario.process.step.alternative',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExampleScenarioAlternative.empty() => ExampleScenarioAlternative(
+        title: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExampleScenarioAlternative.fromJson(

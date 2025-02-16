@@ -52,9 +52,8 @@ class FhirInteger extends FhirNumber
     }
   }
 
-    /// Creates empty [FhirInteger] object
-  factory FhirInteger.empty() =>
-      FhirInteger(null, element: Element.empty());
+  /// Creates empty [FhirInteger] object
+  factory FhirInteger.empty() => FhirInteger(null, element: Element.empty());
 
   /// Factory constructor to create [FhirInteger] from JSON input.
   factory FhirInteger.fromJson(Map<String, dynamic> json) {

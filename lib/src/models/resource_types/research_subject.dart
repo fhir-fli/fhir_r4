@@ -31,6 +31,15 @@ class ResearchSubject extends DomainResource {
           resourceType: R4ResourceType.ResearchSubject,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchSubject.empty() => ResearchSubject(
+        status: ResearchSubjectStatus.values.first,
+        study: Reference.empty(),
+        individual: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchSubject.fromJson(
     Map<String, dynamic> json,

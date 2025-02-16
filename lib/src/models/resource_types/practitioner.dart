@@ -33,6 +33,11 @@ class Practitioner extends DomainResource {
           resourceType: R4ResourceType.Practitioner,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Practitioner.empty() => Practitioner();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Practitioner.fromJson(
     Map<String, dynamic> json,
@@ -707,6 +712,13 @@ class PractitionerQualification extends BackboneElement {
   }) : super(
           objectPath: 'Practitioner.qualification',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PractitionerQualification.empty() => PractitionerQualification(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerQualification.fromJson(

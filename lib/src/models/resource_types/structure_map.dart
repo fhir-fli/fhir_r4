@@ -41,6 +41,16 @@ class StructureMap extends CanonicalResource {
           resourceType: R4ResourceType.StructureMap,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMap.empty() => StructureMap(
+        url: FhirUri.empty(),
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        group: <StructureMapGroup>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMap.fromJson(
     Map<String, dynamic> json,
@@ -862,6 +872,14 @@ class StructureMapStructure extends BackboneElement {
           objectPath: 'StructureMap.structure',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapStructure.empty() => StructureMapStructure(
+        url: FhirCanonical.empty(),
+        mode: StructureMapModelMode.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapStructure.fromJson(
     Map<String, dynamic> json,
@@ -1200,6 +1218,16 @@ class StructureMapGroup extends BackboneElement {
   }) : super(
           objectPath: 'StructureMap.group',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapGroup.empty() => StructureMapGroup(
+        name: FhirId.empty(),
+        typeMode: StructureMapGroupTypeMode.values.first,
+        input: <StructureMapInput>[],
+        rule: <StructureMapRule>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapGroup.fromJson(
@@ -1607,6 +1635,14 @@ class StructureMapInput extends BackboneElement {
           objectPath: 'StructureMap.group.input',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapInput.empty() => StructureMapInput(
+        name: FhirId.empty(),
+        mode: StructureMapInputMode.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapInput.fromJson(
     Map<String, dynamic> json,
@@ -1944,6 +1980,14 @@ class StructureMapRule extends BackboneElement {
   }) : super(
           objectPath: 'StructureMap.group.rule',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapRule.empty() => StructureMapRule(
+        name: FhirId.empty(),
+        source: <StructureMapSource>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapRule.fromJson(
@@ -2379,6 +2423,13 @@ class StructureMapSource extends BackboneElement {
   }) : super(
           objectPath: 'StructureMap.group.rule.source',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapSource.empty() => StructureMapSource(
+        context: FhirId.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapSource.fromJson(
@@ -3316,6 +3367,11 @@ class StructureMapTarget extends BackboneElement {
           objectPath: 'StructureMap.group.rule.target',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapTarget.empty() => StructureMapTarget();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapTarget.fromJson(
     Map<String, dynamic> json,
@@ -3767,6 +3823,13 @@ class StructureMapParameter extends BackboneElement {
           objectPath: 'StructureMap.group.rule.target.parameter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapParameter.empty() => StructureMapParameter(
+        valueX: FhirId.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapParameter.fromJson(
     Map<String, dynamic> json,
@@ -4074,6 +4137,14 @@ class StructureMapDependent extends BackboneElement {
   }) : super(
           objectPath: 'StructureMap.group.rule.dependent',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory StructureMapDependent.empty() => StructureMapDependent(
+        name: FhirId.empty(),
+        variable: <FhirString>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapDependent.fromJson(

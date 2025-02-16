@@ -38,6 +38,13 @@ class MolecularSequence extends DomainResource {
           resourceType: R4ResourceType.MolecularSequence,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequence.empty() => MolecularSequence(
+        coordinateSystem: FhirInteger.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequence.fromJson(
     Map<String, dynamic> json,
@@ -854,6 +861,12 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           objectPath: 'MolecularSequence.referenceSeq',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceReferenceSeq.empty() =>
+      MolecularSequenceReferenceSeq();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceReferenceSeq.fromJson(
     Map<String, dynamic> json,
@@ -1338,6 +1351,11 @@ class MolecularSequenceVariant extends BackboneElement {
           objectPath: 'MolecularSequence.variant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceVariant.empty() => MolecularSequenceVariant();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceVariant.fromJson(
     Map<String, dynamic> json,
@@ -1757,6 +1775,13 @@ class MolecularSequenceQuality extends BackboneElement {
   }) : super(
           objectPath: 'MolecularSequence.quality',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceQuality.empty() => MolecularSequenceQuality(
+        type: QualityType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceQuality.fromJson(
@@ -2386,6 +2411,11 @@ class MolecularSequenceRoc extends BackboneElement {
           objectPath: 'MolecularSequence.quality.roc',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceRoc.empty() => MolecularSequenceRoc();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRoc.fromJson(
     Map<String, dynamic> json,
@@ -2857,6 +2887,13 @@ class MolecularSequenceRepository extends BackboneElement {
           objectPath: 'MolecularSequence.repository',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceRepository.empty() => MolecularSequenceRepository(
+        type: RepositoryType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRepository.fromJson(
     Map<String, dynamic> json,
@@ -3251,6 +3288,12 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           objectPath: 'MolecularSequence.structureVariant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceStructureVariant.empty() =>
+      MolecularSequenceStructureVariant();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceStructureVariant.fromJson(
     Map<String, dynamic> json,
@@ -3614,6 +3657,11 @@ class MolecularSequenceOuter extends BackboneElement {
           objectPath: 'MolecularSequence.structureVariant.outer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceOuter.empty() => MolecularSequenceOuter();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceOuter.fromJson(
     Map<String, dynamic> json,
@@ -3907,6 +3955,11 @@ class MolecularSequenceInner extends BackboneElement {
   }) : super(
           objectPath: 'MolecularSequence.structureVariant.inner',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MolecularSequenceInner.empty() => MolecularSequenceInner();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceInner.fromJson(

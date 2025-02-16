@@ -33,6 +33,14 @@ class DeviceMetric extends DomainResource {
           resourceType: R4ResourceType.DeviceMetric,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceMetric.empty() => DeviceMetric(
+        type: CodeableConcept.empty(),
+        category: DeviceMetricCategory.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceMetric.fromJson(
     Map<String, dynamic> json,
@@ -665,6 +673,11 @@ class DeviceMetricCalibration extends BackboneElement {
   }) : super(
           objectPath: 'DeviceMetric.calibration',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceMetricCalibration.empty() => DeviceMetricCalibration();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceMetricCalibration.fromJson(

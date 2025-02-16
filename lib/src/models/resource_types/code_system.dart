@@ -50,6 +50,14 @@ class CodeSystem extends CanonicalResource {
           resourceType: R4ResourceType.CodeSystem,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystem.empty() => CodeSystem(
+        status: PublicationStatus.values.first,
+        content: CodeSystemContentMode.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystem.fromJson(
     Map<String, dynamic> json,
@@ -1078,6 +1086,15 @@ class CodeSystemFilter extends BackboneElement {
           objectPath: 'CodeSystem.filter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystemFilter.empty() => CodeSystemFilter(
+        code: FhirCode.empty(),
+        operator_: <FilterOperator>[],
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemFilter.fromJson(
     Map<String, dynamic> json,
@@ -1420,6 +1437,14 @@ class CodeSystemProperty extends BackboneElement {
   }) : super(
           objectPath: 'CodeSystem.property',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystemProperty.empty() => CodeSystemProperty(
+        code: FhirCode.empty(),
+        type: PropertyTypeEnum.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemProperty.fromJson(
@@ -1767,6 +1792,13 @@ class CodeSystemConcept extends BackboneElement {
   }) : super(
           objectPath: 'CodeSystem.concept',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystemConcept.empty() => CodeSystemConcept(
+        code: FhirCode.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemConcept.fromJson(
@@ -2195,6 +2227,13 @@ class CodeSystemDesignation extends BackboneElement {
           objectPath: 'CodeSystem.concept.designation',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystemDesignation.empty() => CodeSystemDesignation(
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemDesignation.fromJson(
     Map<String, dynamic> json,
@@ -2506,6 +2545,14 @@ class CodeSystemProperty1 extends BackboneElement {
   }) : super(
           objectPath: 'CodeSystem.concept.property',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CodeSystemProperty1.empty() => CodeSystemProperty1(
+        code: FhirCode.empty(),
+        valueX: FhirCode.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeSystemProperty1.fromJson(

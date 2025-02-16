@@ -49,6 +49,19 @@ class OperationDefinition extends CanonicalResource {
           resourceType: R4ResourceType.OperationDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationDefinition.empty() => OperationDefinition(
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        kind: OperationKind.values.first,
+        code: FhirCode.empty(),
+        system: FhirBoolean.empty(),
+        type: FhirBoolean.empty(),
+        instance: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1054,6 +1067,16 @@ class OperationDefinitionParameter extends BackboneElement {
           objectPath: 'OperationDefinition.parameter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationDefinitionParameter.empty() => OperationDefinitionParameter(
+        name: FhirCode.empty(),
+        use: OperationParameterUse.values.first,
+        min: FhirInteger.empty(),
+        max: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionParameter.fromJson(
     Map<String, dynamic> json,
@@ -1594,6 +1617,14 @@ class OperationDefinitionBinding extends BackboneElement {
           objectPath: 'OperationDefinition.parameter.binding',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationDefinitionBinding.empty() => OperationDefinitionBinding(
+        strength: BindingStrength.values.first,
+        valueSet: FhirCanonical.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionBinding.fromJson(
     Map<String, dynamic> json,
@@ -1883,6 +1914,14 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   }) : super(
           objectPath: 'OperationDefinition.parameter.referencedFrom',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationDefinitionReferencedFrom.empty() =>
+      OperationDefinitionReferencedFrom(
+        source: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionReferencedFrom.fromJson(
@@ -2176,6 +2215,11 @@ class OperationDefinitionOverload extends BackboneElement {
   }) : super(
           objectPath: 'OperationDefinition.overload',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationDefinitionOverload.empty() => OperationDefinitionOverload();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(

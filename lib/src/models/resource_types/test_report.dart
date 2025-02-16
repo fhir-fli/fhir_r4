@@ -35,6 +35,15 @@ class TestReport extends DomainResource {
           resourceType: R4ResourceType.TestReport,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReport.empty() => TestReport(
+        status: TestReportStatus.values.first,
+        testScript: Reference.empty(),
+        result: TestReportResult.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReport.fromJson(
     Map<String, dynamic> json,
@@ -694,6 +703,14 @@ class TestReportParticipant extends BackboneElement {
           objectPath: 'TestReport.participant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportParticipant.empty() => TestReportParticipant(
+        type: TestReportParticipantType.values.first,
+        uri: FhirUri.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportParticipant.fromJson(
     Map<String, dynamic> json,
@@ -1004,6 +1021,13 @@ class TestReportSetup extends BackboneElement {
           objectPath: 'TestReport.setup',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportSetup.empty() => TestReportSetup(
+        action: <TestReportAction>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportSetup.fromJson(
     Map<String, dynamic> json,
@@ -1278,6 +1302,11 @@ class TestReportAction extends BackboneElement {
   }) : super(
           objectPath: 'TestReport.setup.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportAction.empty() => TestReportAction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction.fromJson(
@@ -1569,6 +1598,13 @@ class TestReportOperation extends BackboneElement {
   }) : super(
           objectPath: 'TestReport.setup.action.operation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportOperation.empty() => TestReportOperation(
+        result: TestReportActionResult.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportOperation.fromJson(
@@ -1883,6 +1919,13 @@ class TestReportAssert extends BackboneElement {
           objectPath: 'TestReport.setup.action.assert',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportAssert.empty() => TestReportAssert(
+        result: TestReportActionResult.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAssert.fromJson(
     Map<String, dynamic> json,
@@ -2195,6 +2238,13 @@ class TestReportTest extends BackboneElement {
   }) : super(
           objectPath: 'TestReport.test',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportTest.empty() => TestReportTest(
+        action: <TestReportAction>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportTest.fromJson(
@@ -2521,6 +2571,11 @@ class TestReportAction1 extends BackboneElement {
           objectPath: 'TestReport.test.action',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportAction1.empty() => TestReportAction1();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction1.fromJson(
     Map<String, dynamic> json,
@@ -2811,6 +2866,13 @@ class TestReportTeardown extends BackboneElement {
           objectPath: 'TestReport.teardown',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportTeardown.empty() => TestReportTeardown(
+        action: <TestReportAction>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportTeardown.fromJson(
     Map<String, dynamic> json,
@@ -3084,6 +3146,13 @@ class TestReportAction2 extends BackboneElement {
   }) : super(
           objectPath: 'TestReport.teardown.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestReportAction2.empty() => TestReportAction2(
+        operation: TestReportOperation.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestReportAction2.fromJson(

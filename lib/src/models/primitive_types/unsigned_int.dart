@@ -44,7 +44,7 @@ class FhirUnsignedInt extends FhirNumber
     }
   }
 
-    /// Creates empty [FhirUnsignedInt] object
+  /// Creates empty [FhirUnsignedInt] object
   factory FhirUnsignedInt.empty() =>
       FhirUnsignedInt(null, element: Element.empty());
 

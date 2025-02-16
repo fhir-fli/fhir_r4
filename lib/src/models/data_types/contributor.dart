@@ -29,6 +29,14 @@ class Contributor extends DataType
     super.objectPath = 'Contributor',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Contributor.empty() => Contributor(
+        type: ContributorType.values.first,
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Contributor.fromJson(
     Map<String, dynamic> json,

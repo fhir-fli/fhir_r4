@@ -37,6 +37,14 @@ class MessageHeader extends DomainResource {
           resourceType: R4ResourceType.MessageHeader,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageHeader.empty() => MessageHeader(
+        eventX: Coding.empty(),
+        source: MessageHeaderSource.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeader.fromJson(
     Map<String, dynamic> json,
@@ -701,6 +709,13 @@ class MessageHeaderDestination extends BackboneElement {
           objectPath: 'MessageHeader.destination',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageHeaderDestination.empty() => MessageHeaderDestination(
+        endpoint: FhirUrl.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderDestination.fromJson(
     Map<String, dynamic> json,
@@ -1042,6 +1057,13 @@ class MessageHeaderSource extends BackboneElement {
   }) : super(
           objectPath: 'MessageHeader.source',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageHeaderSource.empty() => MessageHeaderSource(
+        endpoint: FhirUrl.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderSource.fromJson(
@@ -1406,6 +1428,14 @@ class MessageHeaderResponse extends BackboneElement {
   }) : super(
           objectPath: 'MessageHeader.response',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageHeaderResponse.empty() => MessageHeaderResponse(
+        identifier: FhirId.empty(),
+        code: ResponseType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderResponse.fromJson(

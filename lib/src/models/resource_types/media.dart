@@ -45,6 +45,14 @@ class Media extends DomainResource {
           resourceType: R4ResourceType.Media,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Media.empty() => Media(
+        status: EventStatus.values.first,
+        content: Attachment.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Media.fromJson(
     Map<String, dynamic> json,

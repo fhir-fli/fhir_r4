@@ -31,6 +31,14 @@ class ManufacturedItemDefinition extends DomainResource {
           resourceType: R4ResourceType.ManufacturedItemDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ManufacturedItemDefinition.empty() => ManufacturedItemDefinition(
+        status: PublicationStatus.values.first,
+        manufacturedDoseForm: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ManufacturedItemDefinition.fromJson(
     Map<String, dynamic> json,
@@ -590,6 +598,14 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   }) : super(
           objectPath: 'ManufacturedItemDefinition.property',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ManufacturedItemDefinitionProperty.empty() =>
+      ManufacturedItemDefinitionProperty(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ManufacturedItemDefinitionProperty.fromJson(

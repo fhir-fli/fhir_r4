@@ -29,6 +29,11 @@ class ProdCharacteristic extends BackboneType {
     super.objectPath = 'ProdCharacteristic',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ProdCharacteristic.empty() => ProdCharacteristic();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProdCharacteristic.fromJson(
     Map<String, dynamic> json,

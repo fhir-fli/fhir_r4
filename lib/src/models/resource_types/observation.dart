@@ -47,6 +47,14 @@ class Observation extends DomainResource {
           resourceType: R4ResourceType.Observation,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Observation.empty() => Observation(
+        status: ObservationStatus.values.first,
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Observation.fromJson(
     Map<String, dynamic> json,
@@ -1270,6 +1278,11 @@ class ObservationReferenceRange extends BackboneElement {
           objectPath: 'Observation.referenceRange',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ObservationReferenceRange.empty() => ObservationReferenceRange();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
     Map<String, dynamic> json,
@@ -1689,6 +1702,13 @@ class ObservationComponent extends BackboneElement {
   }) : super(
           objectPath: 'Observation.component',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ObservationComponent.empty() => ObservationComponent(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationComponent.fromJson(

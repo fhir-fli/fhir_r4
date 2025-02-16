@@ -39,6 +39,11 @@ class Ratio extends DataType
     super.objectPath = 'Ratio',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Ratio.empty() => Ratio();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ratio.fromJson(
     Map<String, dynamic> json,

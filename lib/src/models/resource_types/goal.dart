@@ -41,6 +41,15 @@ class Goal extends DomainResource {
           resourceType: R4ResourceType.Goal,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Goal.empty() => Goal(
+        lifecycleStatus: GoalLifecycleStatus.values.first,
+        description: CodeableConcept.empty(),
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Goal.fromJson(
     Map<String, dynamic> json,
@@ -872,6 +881,11 @@ class GoalTarget extends BackboneElement {
   }) : super(
           objectPath: 'Goal.target',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GoalTarget.empty() => GoalTarget();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GoalTarget.fromJson(

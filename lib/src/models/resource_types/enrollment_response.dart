@@ -31,6 +31,11 @@ class EnrollmentResponse extends DomainResource {
           resourceType: R4ResourceType.EnrollmentResponse,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EnrollmentResponse.empty() => EnrollmentResponse();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EnrollmentResponse.fromJson(
     Map<String, dynamic> json,

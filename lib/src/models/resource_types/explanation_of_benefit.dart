@@ -67,6 +67,21 @@ class ExplanationOfBenefit extends DomainResource {
           resourceType: R4ResourceType.ExplanationOfBenefit,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefit.empty() => ExplanationOfBenefit(
+        status: ExplanationOfBenefitStatus.values.first,
+        type: CodeableConcept.empty(),
+        use: Use.values.first,
+        patient: Reference.empty(),
+        created: FhirDateTime.empty(),
+        insurer: Reference.empty(),
+        provider: Reference.empty(),
+        outcome: RemittanceOutcome.values.first,
+        insurance: <ExplanationOfBenefitInsurance>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefit.fromJson(
     Map<String, dynamic> json,
@@ -1622,6 +1637,11 @@ class ExplanationOfBenefitRelated extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.related',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitRelated.empty() => ExplanationOfBenefitRelated();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitRelated.fromJson(
     Map<String, dynamic> json,
@@ -1938,6 +1958,11 @@ class ExplanationOfBenefitPayee extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.payee',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitPayee.empty() => ExplanationOfBenefitPayee();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayee.fromJson(
     Map<String, dynamic> json,
@@ -2231,6 +2256,14 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.careTeam',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitCareTeam.empty() => ExplanationOfBenefitCareTeam(
+        sequence: FhirPositiveInt.empty(),
+        provider: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitCareTeam.fromJson(
@@ -2597,6 +2630,15 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.supportingInfo',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitSupportingInfo.empty() =>
+      ExplanationOfBenefitSupportingInfo(
+        sequence: FhirPositiveInt.empty(),
+        category: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSupportingInfo.fromJson(
@@ -3055,6 +3097,15 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.diagnosis',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitDiagnosis.empty() =>
+      ExplanationOfBenefitDiagnosis(
+        sequence: FhirPositiveInt.empty(),
+        diagnosisX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDiagnosis.fromJson(
     Map<String, dynamic> json,
@@ -3453,6 +3504,15 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.procedure',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitProcedure.empty() =>
+      ExplanationOfBenefitProcedure(
+        sequence: FhirPositiveInt.empty(),
+        procedureX: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitProcedure.fromJson(
@@ -3859,6 +3919,15 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.insurance',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitInsurance.empty() =>
+      ExplanationOfBenefitInsurance(
+        focal: FhirBoolean.empty(),
+        coverage: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitInsurance.fromJson(
     Map<String, dynamic> json,
@@ -4183,6 +4252,12 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.accident',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitAccident.empty() =>
+      ExplanationOfBenefitAccident();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAccident.fromJson(
@@ -4543,6 +4618,14 @@ class ExplanationOfBenefitItem extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.item',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitItem.empty() => ExplanationOfBenefitItem(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitItem.fromJson(
@@ -5517,6 +5600,14 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.item.adjudication',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitAdjudication.empty() =>
+      ExplanationOfBenefitAdjudication(
+        category: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAdjudication.fromJson(
     Map<String, dynamic> json,
@@ -5870,6 +5961,14 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.item.detail',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitDetail.empty() => ExplanationOfBenefitDetail(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDetail.fromJson(
@@ -6531,6 +6630,15 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.item.detail.subDetail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitSubDetail.empty() =>
+      ExplanationOfBenefitSubDetail(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSubDetail.fromJson(
     Map<String, dynamic> json,
@@ -7161,6 +7269,13 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.addItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitAddItem.empty() => ExplanationOfBenefitAddItem(
+        productOrService: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAddItem.fromJson(
@@ -8001,6 +8116,13 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.addItem.detail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitDetail1.empty() => ExplanationOfBenefitDetail1(
+        productOrService: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDetail1.fromJson(
     Map<String, dynamic> json,
@@ -8513,6 +8635,14 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.addItem.detail.subDetail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitSubDetail1.empty() =>
+      ExplanationOfBenefitSubDetail1(
+        productOrService: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSubDetail1.fromJson(
     Map<String, dynamic> json,
@@ -8984,6 +9114,14 @@ class ExplanationOfBenefitTotal extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.total',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitTotal.empty() => ExplanationOfBenefitTotal(
+        category: CodeableConcept.empty(),
+        amount: Money.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitTotal.fromJson(
     Map<String, dynamic> json,
@@ -9277,6 +9415,11 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.payment',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitPayment.empty() => ExplanationOfBenefitPayment();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayment.fromJson(
@@ -9670,6 +9813,12 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
           objectPath: 'ExplanationOfBenefit.processNote',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitProcessNote.empty() =>
+      ExplanationOfBenefitProcessNote();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitProcessNote.fromJson(
     Map<String, dynamic> json,
@@ -10013,6 +10162,14 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.benefitBalance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitBenefitBalance.empty() =>
+      ExplanationOfBenefitBenefitBalance(
+        category: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitBenefitBalance.fromJson(
@@ -10462,6 +10619,14 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   }) : super(
           objectPath: 'ExplanationOfBenefit.benefitBalance.financial',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ExplanationOfBenefitFinancial.empty() =>
+      ExplanationOfBenefitFinancial(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitFinancial.fromJson(

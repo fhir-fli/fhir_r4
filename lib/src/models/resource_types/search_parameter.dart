@@ -49,6 +49,19 @@ class SearchParameter extends CanonicalResource {
           resourceType: R4ResourceType.SearchParameter,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SearchParameter.empty() => SearchParameter(
+        url: FhirUri.empty(),
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        description: FhirMarkdown.empty(),
+        code: FhirCode.empty(),
+        base: <FhirCode>[],
+        type: SearchParamType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SearchParameter.fromJson(
     Map<String, dynamic> json,
@@ -1070,6 +1083,14 @@ class SearchParameterComponent extends BackboneElement {
   }) : super(
           objectPath: 'SearchParameter.component',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SearchParameterComponent.empty() => SearchParameterComponent(
+        definition: FhirCanonical.empty(),
+        expression: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SearchParameterComponent.fromJson(

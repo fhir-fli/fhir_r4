@@ -29,6 +29,13 @@ class Substance extends DomainResource {
           resourceType: R4ResourceType.Substance,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Substance.empty() => Substance(
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Substance.fromJson(
     Map<String, dynamic> json,
@@ -590,6 +597,11 @@ class SubstanceInstance extends BackboneElement {
           objectPath: 'Substance.instance',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubstanceInstance.empty() => SubstanceInstance();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceInstance.fromJson(
     Map<String, dynamic> json,
@@ -905,6 +917,13 @@ class SubstanceIngredient extends BackboneElement {
   }) : super(
           objectPath: 'Substance.ingredient',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubstanceIngredient.empty() => SubstanceIngredient(
+        substanceX: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceIngredient.fromJson(

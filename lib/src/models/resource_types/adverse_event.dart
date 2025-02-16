@@ -45,6 +45,14 @@ class AdverseEvent extends DomainResource {
           resourceType: R4ResourceType.AdverseEvent,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdverseEvent.empty() => AdverseEvent(
+        actuality: AdverseEventActuality.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEvent.fromJson(
     Map<String, dynamic> json,
@@ -963,6 +971,13 @@ class AdverseEventSuspectEntity extends BackboneElement {
           objectPath: 'AdverseEvent.suspectEntity',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdverseEventSuspectEntity.empty() => AdverseEventSuspectEntity(
+        instance: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventSuspectEntity.fromJson(
     Map<String, dynamic> json,
@@ -1265,6 +1280,11 @@ class AdverseEventCausality extends BackboneElement {
   }) : super(
           objectPath: 'AdverseEvent.suspectEntity.causality',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdverseEventCausality.empty() => AdverseEventCausality();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventCausality.fromJson(

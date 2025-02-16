@@ -48,6 +48,15 @@ class MessageDefinition extends CanonicalResource {
           resourceType: R4ResourceType.MessageDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageDefinition.empty() => MessageDefinition(
+        status: PublicationStatus.values.first,
+        date: FhirDateTime.empty(),
+        eventX: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1056,6 +1065,14 @@ class MessageDefinitionFocus extends BackboneElement {
           objectPath: 'MessageDefinition.focus',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageDefinitionFocus.empty() => MessageDefinitionFocus(
+        code: FhirCode.empty(),
+        min: FhirUnsignedInt.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageDefinitionFocus.fromJson(
     Map<String, dynamic> json,
@@ -1395,6 +1412,14 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   }) : super(
           objectPath: 'MessageDefinition.allowedResponse',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MessageDefinitionAllowedResponse.empty() =>
+      MessageDefinitionAllowedResponse(
+        message: FhirCanonical.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageDefinitionAllowedResponse.fromJson(

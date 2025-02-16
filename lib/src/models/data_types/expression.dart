@@ -35,6 +35,13 @@ class FhirExpression extends DataType
     super.objectPath = 'FhirExpression',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FhirExpression.empty() => FhirExpression(
+        language: ExpressionLanguage.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirExpression.fromJson(
     Map<String, dynamic> json,

@@ -59,6 +59,16 @@ class MedicationRequest extends DomainResource {
           resourceType: R4ResourceType.MedicationRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationRequest.empty() => MedicationRequest(
+        status: MedicationrequestStatus.values.first,
+        intent: MedicationRequestIntent.values.first,
+        medicationX: CodeableConcept.empty(),
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequest.fromJson(
     Map<String, dynamic> json,
@@ -1400,6 +1410,12 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           objectPath: 'MedicationRequest.dispenseRequest',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationRequestDispenseRequest.empty() =>
+      MedicationRequestDispenseRequest();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequestDispenseRequest.fromJson(
     Map<String, dynamic> json,
@@ -1823,6 +1839,12 @@ class MedicationRequestInitialFill extends BackboneElement {
           objectPath: 'MedicationRequest.dispenseRequest.initialFill',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationRequestInitialFill.empty() =>
+      MedicationRequestInitialFill();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequestInitialFill.fromJson(
     Map<String, dynamic> json,
@@ -2115,6 +2137,14 @@ class MedicationRequestSubstitution extends BackboneElement {
   }) : super(
           objectPath: 'MedicationRequest.substitution',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationRequestSubstitution.empty() =>
+      MedicationRequestSubstitution(
+        allowedX: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequestSubstitution.fromJson(

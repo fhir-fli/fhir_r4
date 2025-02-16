@@ -37,6 +37,17 @@ class NamingSystem extends DomainResource {
           resourceType: R4ResourceType.NamingSystem,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NamingSystem.empty() => NamingSystem(
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        kind: NamingSystemType.values.first,
+        date: FhirDateTime.empty(),
+        uniqueId: <NamingSystemUniqueId>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NamingSystem.fromJson(
     Map<String, dynamic> json,
@@ -753,6 +764,14 @@ class NamingSystemUniqueId extends BackboneElement {
   }) : super(
           objectPath: 'NamingSystem.uniqueId',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NamingSystemUniqueId.empty() => NamingSystemUniqueId(
+        type: NamingSystemIdentifierType.values.first,
+        value: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NamingSystemUniqueId.fromJson(

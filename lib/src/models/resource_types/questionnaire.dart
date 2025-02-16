@@ -47,6 +47,13 @@ class Questionnaire extends CanonicalResource {
           resourceType: R4ResourceType.Questionnaire,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Questionnaire.empty() => Questionnaire(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Questionnaire.fromJson(
     Map<String, dynamic> json,
@@ -991,6 +998,14 @@ class QuestionnaireItem extends BackboneElement {
           objectPath: 'Questionnaire.item',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireItem.empty() => QuestionnaireItem(
+        linkId: FhirString.empty(),
+        type: QuestionnaireItemType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireItem.fromJson(
     Map<String, dynamic> json,
@@ -1705,6 +1720,15 @@ class QuestionnaireEnableWhen extends BackboneElement {
           objectPath: 'Questionnaire.item.enableWhen',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireEnableWhen.empty() => QuestionnaireEnableWhen(
+        question: FhirString.empty(),
+        operator_: QuestionnaireItemOperator.values.first,
+        answerX: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireEnableWhen.fromJson(
     Map<String, dynamic> json,
@@ -2099,6 +2123,13 @@ class QuestionnaireAnswerOption extends BackboneElement {
           objectPath: 'Questionnaire.item.answerOption',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireAnswerOption.empty() => QuestionnaireAnswerOption(
+        valueX: FhirInteger.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireAnswerOption.fromJson(
     Map<String, dynamic> json,
@@ -2439,6 +2470,13 @@ class QuestionnaireInitial extends BackboneElement {
   }) : super(
           objectPath: 'Questionnaire.item.initial',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireInitial.empty() => QuestionnaireInitial(
+        valueX: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireInitial.fromJson(

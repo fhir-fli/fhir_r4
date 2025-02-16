@@ -33,6 +33,13 @@ class RelatedArtifact extends DataType
     super.objectPath = 'RelatedArtifact',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RelatedArtifact.empty() => RelatedArtifact(
+        type: RelatedArtifactType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedArtifact.fromJson(
     Map<String, dynamic> json,

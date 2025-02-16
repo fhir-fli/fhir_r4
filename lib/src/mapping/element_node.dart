@@ -550,7 +550,6 @@ abstract class CompositeNode extends ElementNode {
 
   // Refactored method for adding a child node
   void addChild(ElementNode child) {
-    
     final updated = updatePaths(child);
     value.add(updated);
   }

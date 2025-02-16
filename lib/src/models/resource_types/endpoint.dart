@@ -36,6 +36,16 @@ class FhirEndpoint extends DomainResource {
           resourceType: R4ResourceType.FhirEndpoint,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FhirEndpoint.empty() => FhirEndpoint(
+        status: EndpointStatus.values.first,
+        connectionType: Coding.empty(),
+        payloadType: <CodeableConcept>[],
+        address: FhirUrl.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirEndpoint.fromJson(
     Map<String, dynamic> json,

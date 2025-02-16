@@ -49,6 +49,14 @@ class ChargeItemDefinition extends DomainResource {
           resourceType: R4ResourceType.ChargeItemDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItemDefinition.empty() => ChargeItemDefinition(
+        url: FhirUri.empty(),
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1089,6 +1097,12 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
           objectPath: 'ChargeItemDefinition.applicability',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItemDefinitionApplicability.empty() =>
+      ChargeItemDefinitionApplicability();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionApplicability.fromJson(
     Map<String, dynamic> json,
@@ -1410,6 +1424,12 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   }) : super(
           objectPath: 'ChargeItemDefinition.propertyGroup',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItemDefinitionPropertyGroup.empty() =>
+      ChargeItemDefinitionPropertyGroup();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPropertyGroup.fromJson(
@@ -1735,6 +1755,14 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   }) : super(
           objectPath: 'ChargeItemDefinition.propertyGroup.priceComponent',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItemDefinitionPriceComponent.empty() =>
+      ChargeItemDefinitionPriceComponent(
+        type: InvoicePriceComponentType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPriceComponent.fromJson(

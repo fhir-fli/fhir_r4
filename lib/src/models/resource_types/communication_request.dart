@@ -46,6 +46,13 @@ class CommunicationRequest extends DomainResource {
           resourceType: R4ResourceType.CommunicationRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CommunicationRequest.empty() => CommunicationRequest(
+        status: RequestStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CommunicationRequest.fromJson(
     Map<String, dynamic> json,
@@ -1076,6 +1083,13 @@ class CommunicationRequestPayload extends BackboneElement {
   }) : super(
           objectPath: 'CommunicationRequest.payload',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CommunicationRequestPayload.empty() => CommunicationRequestPayload(
+        contentX: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CommunicationRequestPayload.fromJson(

@@ -37,6 +37,14 @@ class EpisodeOfCare extends DomainResource {
           resourceType: R4ResourceType.EpisodeOfCare,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EpisodeOfCare.empty() => EpisodeOfCare(
+        status: EpisodeOfCareStatus.values.first,
+        patient: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EpisodeOfCare.fromJson(
     Map<String, dynamic> json,
@@ -755,6 +763,14 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
           objectPath: 'EpisodeOfCare.statusHistory',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EpisodeOfCareStatusHistory.empty() => EpisodeOfCareStatusHistory(
+        status: EpisodeOfCareStatus.values.first,
+        period: Period.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EpisodeOfCareStatusHistory.fromJson(
     Map<String, dynamic> json,
@@ -1041,6 +1057,13 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
   }) : super(
           objectPath: 'EpisodeOfCare.diagnosis',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EpisodeOfCareDiagnosis.empty() => EpisodeOfCareDiagnosis(
+        condition: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EpisodeOfCareDiagnosis.fromJson(

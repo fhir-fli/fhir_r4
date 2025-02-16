@@ -38,6 +38,16 @@ class PaymentReconciliation extends DomainResource {
           resourceType: R4ResourceType.PaymentReconciliation,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PaymentReconciliation.empty() => PaymentReconciliation(
+        status: FinancialResourceStatusCodes.values.first,
+        created: FhirDateTime.empty(),
+        paymentDate: FhirDate.empty(),
+        paymentAmount: Money.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliation.fromJson(
     Map<String, dynamic> json,
@@ -783,6 +793,13 @@ class PaymentReconciliationDetail extends BackboneElement {
           objectPath: 'PaymentReconciliation.detail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PaymentReconciliationDetail.empty() => PaymentReconciliationDetail(
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationDetail.fromJson(
     Map<String, dynamic> json,
@@ -1268,6 +1285,12 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   }) : super(
           objectPath: 'PaymentReconciliation.processNote',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PaymentReconciliationProcessNote.empty() =>
+      PaymentReconciliationProcessNote();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationProcessNote.fromJson(

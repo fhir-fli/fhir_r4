@@ -34,6 +34,16 @@ class Slot extends DomainResource {
           resourceType: R4ResourceType.Slot,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Slot.empty() => Slot(
+        schedule: Reference.empty(),
+        status: SlotStatus.values.first,
+        start: FhirInstant.empty(),
+        end: FhirInstant.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Slot.fromJson(
     Map<String, dynamic> json,

@@ -51,6 +51,20 @@ class Claim extends DomainResource {
           resourceType: R4ResourceType.Claim,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Claim.empty() => Claim(
+        status: FinancialResourceStatusCodes.values.first,
+        type: CodeableConcept.empty(),
+        use: Use.values.first,
+        patient: Reference.empty(),
+        created: FhirDateTime.empty(),
+        provider: Reference.empty(),
+        priority: CodeableConcept.empty(),
+        insurance: <ClaimInsurance>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Claim.fromJson(
     Map<String, dynamic> json,
@@ -1139,6 +1153,11 @@ class ClaimRelated extends BackboneElement {
           objectPath: 'Claim.related',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimRelated.empty() => ClaimRelated();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimRelated.fromJson(
     Map<String, dynamic> json,
@@ -1455,6 +1474,13 @@ class ClaimPayee extends BackboneElement {
           objectPath: 'Claim.payee',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimPayee.empty() => ClaimPayee(
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimPayee.fromJson(
     Map<String, dynamic> json,
@@ -1746,6 +1772,14 @@ class ClaimCareTeam extends BackboneElement {
   }) : super(
           objectPath: 'Claim.careTeam',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimCareTeam.empty() => ClaimCareTeam(
+        sequence: FhirPositiveInt.empty(),
+        provider: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimCareTeam.fromJson(
@@ -2112,6 +2146,14 @@ class ClaimSupportingInfo extends BackboneElement {
   }) : super(
           objectPath: 'Claim.supportingInfo',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimSupportingInfo.empty() => ClaimSupportingInfo(
+        sequence: FhirPositiveInt.empty(),
+        category: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSupportingInfo.fromJson(
@@ -2568,6 +2610,14 @@ class ClaimDiagnosis extends BackboneElement {
           objectPath: 'Claim.diagnosis',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimDiagnosis.empty() => ClaimDiagnosis(
+        sequence: FhirPositiveInt.empty(),
+        diagnosisX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDiagnosis.fromJson(
     Map<String, dynamic> json,
@@ -2965,6 +3015,14 @@ class ClaimProcedure extends BackboneElement {
   }) : super(
           objectPath: 'Claim.procedure',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimProcedure.empty() => ClaimProcedure(
+        sequence: FhirPositiveInt.empty(),
+        procedureX: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimProcedure.fromJson(
@@ -3373,6 +3431,15 @@ class ClaimInsurance extends BackboneElement {
   }) : super(
           objectPath: 'Claim.insurance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimInsurance.empty() => ClaimInsurance(
+        sequence: FhirPositiveInt.empty(),
+        focal: FhirBoolean.empty(),
+        coverage: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimInsurance.fromJson(
@@ -3797,6 +3864,13 @@ class ClaimAccident extends BackboneElement {
           objectPath: 'Claim.accident',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimAccident.empty() => ClaimAccident(
+        date: FhirDate.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimAccident.fromJson(
     Map<String, dynamic> json,
@@ -4151,6 +4225,14 @@ class ClaimItem extends BackboneElement {
   }) : super(
           objectPath: 'Claim.item',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimItem.empty() => ClaimItem(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimItem.fromJson(
@@ -5064,6 +5146,14 @@ class ClaimDetail extends BackboneElement {
           objectPath: 'Claim.item.detail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimDetail.empty() => ClaimDetail(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDetail.fromJson(
     Map<String, dynamic> json,
@@ -5655,6 +5745,14 @@ class ClaimSubDetail extends BackboneElement {
   }) : super(
           objectPath: 'Claim.item.detail.subDetail',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimSubDetail.empty() => ClaimSubDetail(
+        sequence: FhirPositiveInt.empty(),
+        productOrService: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSubDetail.fromJson(

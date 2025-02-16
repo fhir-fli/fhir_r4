@@ -61,9 +61,8 @@ class FhirUri extends PrimitiveType<Uri>
           element: element,
         );
 
-          /// Creates empty [FhirUri] object
-  factory FhirUri.empty() =>
-      FhirUri(null, element: Element.empty());
+  /// Creates empty [FhirUri] object
+  factory FhirUri.empty() => FhirUri(null, element: Element.empty());
 
   /// Factory constructor to create [FhirUri] from JSON
   factory FhirUri.fromJson(Map<String, dynamic> json) {

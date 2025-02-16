@@ -67,8 +67,7 @@ class FhirBoolean extends PrimitiveType<bool>
   }
 
   /// Creates empty [FhirBoolean] object
-  factory FhirBoolean.empty() =>
-      FhirBoolean(null, element: Element.empty());
+  factory FhirBoolean.empty() => FhirBoolean(null, element: Element.empty());
 
   /// Factory constructor to create a [FhirBoolean] from JSON
   factory FhirBoolean.fromJson(Map<String, dynamic> json) {

@@ -25,6 +25,13 @@ class Bundle extends Resource {
           resourceType: R4ResourceType.Bundle,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Bundle.empty() => Bundle(
+        type: BundleType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Bundle.fromJson(
     Map<String, dynamic> json,
@@ -459,6 +466,14 @@ class BundleLink extends BackboneElement {
           objectPath: 'Bundle.link',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory BundleLink.empty() => BundleLink(
+        relation: FhirString.empty(),
+        url: FhirUri.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleLink.fromJson(
     Map<String, dynamic> json,
@@ -750,6 +765,11 @@ class BundleEntry extends BackboneElement {
   }) : super(
           objectPath: 'Bundle.entry',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory BundleEntry.empty() => BundleEntry();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleEntry.fromJson(
@@ -1160,6 +1180,11 @@ class BundleSearch extends BackboneElement {
           objectPath: 'Bundle.entry.search',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory BundleSearch.empty() => BundleSearch();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleSearch.fromJson(
     Map<String, dynamic> json,
@@ -1457,6 +1482,14 @@ class BundleRequest extends BackboneElement {
   }) : super(
           objectPath: 'Bundle.entry.request',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory BundleRequest.empty() => BundleRequest(
+        method: HTTPVerb.values.first,
+        url: FhirUri.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleRequest.fromJson(
@@ -1854,6 +1887,13 @@ class BundleResponse extends BackboneElement {
   }) : super(
           objectPath: 'Bundle.entry.response',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory BundleResponse.empty() => BundleResponse(
+        status: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleResponse.fromJson(

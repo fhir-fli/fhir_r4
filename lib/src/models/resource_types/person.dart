@@ -33,6 +33,11 @@ class Person extends DomainResource {
           resourceType: R4ResourceType.Person,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Person.empty() => Person();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Person.fromJson(
     Map<String, dynamic> json,
@@ -675,6 +680,13 @@ class PersonLink extends BackboneElement {
   }) : super(
           objectPath: 'Person.link',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PersonLink.empty() => PersonLink(
+        target: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PersonLink.fromJson(

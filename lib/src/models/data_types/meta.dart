@@ -28,6 +28,11 @@ class FhirMeta extends DataType
     super.objectPath = 'FhirMeta',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FhirMeta.empty() => FhirMeta();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirMeta.fromJson(
     Map<String, dynamic> json,
@@ -161,7 +166,6 @@ class FhirMeta extends DataType
   /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
-  // ignore: lines_longer_than_80_chars
   /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
   final List<FhirCanonical>? profile;
 

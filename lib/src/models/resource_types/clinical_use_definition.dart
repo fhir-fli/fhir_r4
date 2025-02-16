@@ -35,6 +35,13 @@ class ClinicalUseDefinition extends DomainResource {
           resourceType: R4ResourceType.ClinicalUseDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinition.empty() => ClinicalUseDefinition(
+        type: ClinicalUseDefinitionType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinition.fromJson(
     Map<String, dynamic> json,
@@ -699,6 +706,12 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
           objectPath: 'ClinicalUseDefinition.contraindication',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionContraindication.empty() =>
+      ClinicalUseDefinitionContraindication();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionContraindication.fromJson(
     Map<String, dynamic> json,
@@ -1053,9 +1066,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      diseaseSymptomProcedure,
-      o.diseaseSymptomProcedure,
-    )) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1100,6 +1111,15 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalUseDefinition.contraindication.otherTherapy',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionOtherTherapy.empty() =>
+      ClinicalUseDefinitionOtherTherapy(
+        relationshipType: CodeableConcept.empty(),
+        therapy: CodeableReference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionOtherTherapy.fromJson(
@@ -1393,6 +1413,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalUseDefinition.indication',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionIndication.empty() =>
+      ClinicalUseDefinitionIndication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionIndication.fromJson(
@@ -1815,9 +1841,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      diseaseSymptomProcedure,
-      o.diseaseSymptomProcedure,
-    )) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1870,6 +1894,12 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalUseDefinition.interaction',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionInteraction.empty() =>
+      ClinicalUseDefinitionInteraction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionInteraction.fromJson(
@@ -2258,6 +2288,14 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           objectPath: 'ClinicalUseDefinition.interaction.interactant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionInteractant.empty() =>
+      ClinicalUseDefinitionInteractant(
+        itemX: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionInteractant.fromJson(
     Map<String, dynamic> json,
@@ -2543,6 +2581,12 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalUseDefinition.undesirableEffect',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionUndesirableEffect.empty() =>
+      ClinicalUseDefinitionUndesirableEffect();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
@@ -2860,6 +2904,12 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalUseDefinition.warning',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalUseDefinitionWarning.empty() =>
+      ClinicalUseDefinitionWarning();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionWarning.fromJson(

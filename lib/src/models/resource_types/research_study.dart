@@ -52,6 +52,13 @@ class ResearchStudy extends DomainResource {
           resourceType: R4ResourceType.ResearchStudy,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchStudy.empty() => ResearchStudy(
+        status: ResearchStudyStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudy.fromJson(
     Map<String, dynamic> json,
@@ -1167,6 +1174,13 @@ class ResearchStudyArm extends BackboneElement {
           objectPath: 'ResearchStudy.arm',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchStudyArm.empty() => ResearchStudyArm(
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyArm.fromJson(
     Map<String, dynamic> json,
@@ -1482,6 +1496,11 @@ class ResearchStudyObjective extends BackboneElement {
   }) : super(
           objectPath: 'ResearchStudy.objective',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchStudyObjective.empty() => ResearchStudyObjective();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyObjective.fromJson(

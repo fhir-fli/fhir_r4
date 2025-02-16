@@ -53,6 +53,14 @@ class Task extends DomainResource {
           resourceType: R4ResourceType.Task,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Task.empty() => Task(
+        status: TaskStatus.values.first,
+        intent: TaskIntent.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Task.fromJson(
     Map<String, dynamic> json,
@@ -1266,6 +1274,11 @@ class TaskRestriction extends BackboneElement {
           objectPath: 'Task.restriction',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TaskRestriction.empty() => TaskRestriction();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskRestriction.fromJson(
     Map<String, dynamic> json,
@@ -1591,6 +1604,14 @@ class TaskInput extends BackboneElement {
   }) : super(
           objectPath: 'Task.input',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TaskInput.empty() => TaskInput(
+        type: CodeableConcept.empty(),
+        valueX: FhirBase64Binary.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskInput.fromJson(
@@ -2284,6 +2305,14 @@ class TaskOutput extends BackboneElement {
   }) : super(
           objectPath: 'Task.output',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TaskOutput.empty() => TaskOutput(
+        type: CodeableConcept.empty(),
+        valueX: FhirBase64Binary.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskOutput.fromJson(

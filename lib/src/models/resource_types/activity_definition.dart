@@ -70,6 +70,13 @@ class ActivityDefinition extends CanonicalResource {
           resourceType: R4ResourceType.ActivityDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ActivityDefinition.empty() => ActivityDefinition(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1831,6 +1838,14 @@ class ActivityDefinitionParticipant extends BackboneElement {
           objectPath: 'ActivityDefinition.participant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ActivityDefinitionParticipant.empty() =>
+      ActivityDefinitionParticipant(
+        type: ActionParticipantType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionParticipant.fromJson(
     Map<String, dynamic> json,
@@ -2123,6 +2138,15 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   }) : super(
           objectPath: 'ActivityDefinition.dynamicValue',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ActivityDefinitionDynamicValue.empty() =>
+      ActivityDefinitionDynamicValue(
+        path: FhirString.empty(),
+        expression: FhirExpression.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionDynamicValue.fromJson(

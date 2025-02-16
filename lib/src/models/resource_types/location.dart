@@ -41,6 +41,11 @@ class Location extends DomainResource {
           resourceType: R4ResourceType.Location,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Location.empty() => Location();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Location.fromJson(
     Map<String, dynamic> json,
@@ -875,6 +880,14 @@ class LocationPosition extends BackboneElement {
           objectPath: 'Location.position',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory LocationPosition.empty() => LocationPosition(
+        longitude: FhirDecimal.empty(),
+        latitude: FhirDecimal.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationPosition.fromJson(
     Map<String, dynamic> json,
@@ -1189,6 +1202,11 @@ class LocationHoursOfOperation extends BackboneElement {
   }) : super(
           objectPath: 'Location.hoursOfOperation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory LocationHoursOfOperation.empty() => LocationHoursOfOperation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationHoursOfOperation.fromJson(

@@ -40,6 +40,16 @@ class NutritionOrder extends DomainResource {
           resourceType: R4ResourceType.NutritionOrder,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrder.empty() => NutritionOrder(
+        status: RequestStatus.values.first,
+        intent: RequestIntent.values.first,
+        patient: Reference.empty(),
+        dateTime: FhirDateTime.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrder.fromJson(
     Map<String, dynamic> json,
@@ -904,6 +914,11 @@ class NutritionOrderOralDiet extends BackboneElement {
           objectPath: 'NutritionOrder.oralDiet',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderOralDiet.empty() => NutritionOrderOralDiet();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderOralDiet.fromJson(
     Map<String, dynamic> json,
@@ -1353,6 +1368,11 @@ class NutritionOrderNutrient extends BackboneElement {
           objectPath: 'NutritionOrder.oralDiet.nutrient',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderNutrient.empty() => NutritionOrderNutrient();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderNutrient.fromJson(
     Map<String, dynamic> json,
@@ -1643,6 +1663,11 @@ class NutritionOrderTexture extends BackboneElement {
   }) : super(
           objectPath: 'NutritionOrder.oralDiet.texture',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderTexture.empty() => NutritionOrderTexture();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderTexture.fromJson(
@@ -1939,6 +1964,11 @@ class NutritionOrderSupplement extends BackboneElement {
   }) : super(
           objectPath: 'NutritionOrder.supplement',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderSupplement.empty() => NutritionOrderSupplement();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderSupplement.fromJson(
@@ -2325,6 +2355,12 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   }) : super(
           objectPath: 'NutritionOrder.enteralFormula',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderEnteralFormula.empty() =>
+      NutritionOrderEnteralFormula();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderEnteralFormula.fromJson(
@@ -2788,9 +2824,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      administrationInstruction,
-      o.administrationInstruction,
-    )) {
+        administrationInstruction, o.administrationInstruction)) {
       return false;
     }
     return true;
@@ -2818,6 +2852,12 @@ class NutritionOrderAdministration extends BackboneElement {
   }) : super(
           objectPath: 'NutritionOrder.enteralFormula.administration',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionOrderAdministration.empty() =>
+      NutritionOrderAdministration();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderAdministration.fromJson(

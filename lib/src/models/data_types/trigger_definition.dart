@@ -31,6 +31,13 @@ class TriggerDefinition extends DataType
     super.objectPath = 'TriggerDefinition',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TriggerDefinition.empty() => TriggerDefinition(
+        type: TriggerType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TriggerDefinition.fromJson(
     Map<String, dynamic> json,

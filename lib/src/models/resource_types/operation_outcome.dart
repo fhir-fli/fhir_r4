@@ -24,6 +24,13 @@ class OperationOutcome extends DomainResource {
           resourceType: R4ResourceType.OperationOutcome,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationOutcome.empty() => OperationOutcome(
+        issue: <OperationOutcomeIssue>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcome.fromJson(
     Map<String, dynamic> json,
@@ -408,6 +415,14 @@ class OperationOutcomeIssue extends BackboneElement {
   }) : super(
           objectPath: 'OperationOutcome.issue',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OperationOutcomeIssue.empty() => OperationOutcomeIssue(
+        severity: IssueSeverity.values.first,
+        code: IssueType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcomeIssue.fromJson(

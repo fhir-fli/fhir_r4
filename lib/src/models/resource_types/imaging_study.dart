@@ -47,6 +47,14 @@ class ImagingStudy extends DomainResource {
           resourceType: R4ResourceType.ImagingStudy,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImagingStudy.empty() => ImagingStudy(
+        status: ImagingStudyStatus.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudy.fromJson(
     Map<String, dynamic> json,
@@ -1009,6 +1017,14 @@ class ImagingStudySeries extends BackboneElement {
           objectPath: 'ImagingStudy.series',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImagingStudySeries.empty() => ImagingStudySeries(
+        uid: FhirId.empty(),
+        modality: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudySeries.fromJson(
     Map<String, dynamic> json,
@@ -1593,6 +1609,13 @@ class ImagingStudyPerformer extends BackboneElement {
           objectPath: 'ImagingStudy.series.performer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImagingStudyPerformer.empty() => ImagingStudyPerformer(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudyPerformer.fromJson(
     Map<String, dynamic> json,
@@ -1883,6 +1906,14 @@ class ImagingStudyInstance extends BackboneElement {
   }) : super(
           objectPath: 'ImagingStudy.series.instance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImagingStudyInstance.empty() => ImagingStudyInstance(
+        uid: FhirId.empty(),
+        sopClass: Coding.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudyInstance.fromJson(

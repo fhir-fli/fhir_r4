@@ -35,6 +35,13 @@ class Account extends DomainResource {
           resourceType: R4ResourceType.Account,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Account.empty() => Account(
+        status: AccountStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Account.fromJson(
     Map<String, dynamic> json,
@@ -696,6 +703,13 @@ class AccountCoverage extends BackboneElement {
           objectPath: 'Account.coverage',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AccountCoverage.empty() => AccountCoverage(
+        coverage: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AccountCoverage.fromJson(
     Map<String, dynamic> json,
@@ -990,6 +1004,13 @@ class AccountGuarantor extends BackboneElement {
   }) : super(
           objectPath: 'Account.guarantor',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AccountGuarantor.empty() => AccountGuarantor(
+        party: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AccountGuarantor.fromJson(

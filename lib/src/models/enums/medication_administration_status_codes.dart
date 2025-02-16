@@ -14,8 +14,7 @@ class MedicationAdministrationStatusCodes extends FhirCode {
     super.objectPath = 'Code',
   });
 
-  /// Factory constructor to create [MedicationAdministrationStatusCodes] 
-  /// from JSON.
+  /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
   factory MedicationAdministrationStatusCodes.fromJson(
     Map<String, dynamic> json,
   ) {

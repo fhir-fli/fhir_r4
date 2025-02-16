@@ -30,6 +30,14 @@ class SubscriptionStatus extends DomainResource {
           resourceType: R4ResourceType.SubscriptionStatus,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionStatus.empty() => SubscriptionStatus(
+        type: SubscriptionNotificationType.values.first,
+        subscription: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionStatus.fromJson(
     Map<String, dynamic> json,
@@ -528,9 +536,7 @@ class SubscriptionStatus extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      eventsSinceSubscriptionStart,
-      o.eventsSinceSubscriptionStart,
-    )) {
+        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart)) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(
@@ -574,6 +580,14 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   }) : super(
           objectPath: 'SubscriptionStatus.notificationEvent',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionStatusNotificationEvent.empty() =>
+      SubscriptionStatusNotificationEvent(
+        eventNumber: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionStatusNotificationEvent.fromJson(

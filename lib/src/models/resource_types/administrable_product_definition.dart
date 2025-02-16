@@ -34,6 +34,15 @@ class AdministrableProductDefinition extends DomainResource {
           resourceType: R4ResourceType.AdministrableProductDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdministrableProductDefinition.empty() =>
+      AdministrableProductDefinition(
+        status: PublicationStatus.values.first,
+        routeOfAdministration: <AdministrableProductDefinitionRouteOfAdministration>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinition.fromJson(
     Map<String, dynamic> json,
@@ -718,6 +727,14 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
           objectPath: 'AdministrableProductDefinition.property',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdministrableProductDefinitionProperty.empty() =>
+      AdministrableProductDefinitionProperty(
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionProperty.fromJson(
     Map<String, dynamic> json,
@@ -1083,6 +1100,14 @@ class AdministrableProductDefinitionRouteOfAdministration
   }) : super(
           objectPath: 'AdministrableProductDefinition.routeOfAdministration',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdministrableProductDefinitionRouteOfAdministration.empty() =>
+      AdministrableProductDefinitionRouteOfAdministration(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionRouteOfAdministration.fromJson(
@@ -1476,9 +1501,7 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-      maxDosePerTreatmentPeriod,
-      o.maxDosePerTreatmentPeriod,
-    )) {
+        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -1509,9 +1532,16 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.disallowExtensions,
   }) : super(
           objectPath:
-              // ignore: lines_longer_than_80_chars
               'AdministrableProductDefinition.routeOfAdministration.targetSpecies',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdministrableProductDefinitionTargetSpecies.empty() =>
+      AdministrableProductDefinitionTargetSpecies(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionTargetSpecies.fromJson(
@@ -1814,16 +1844,25 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     this.supportingInformation,
     super.disallowExtensions,
   }) : super(
-          objectPath: 'AdministrableProductDefinition.routeOfAdministration'
-              '.targetSpecies.withdrawalPeriod',
+          objectPath:
+              'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AdministrableProductDefinitionWithdrawalPeriod.empty() =>
+      AdministrableProductDefinitionWithdrawalPeriod(
+        tissue: CodeableConcept.empty(),
+        value: Quantity.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'AdministrableProductDefinition.routeOfAdministration'
-        '.targetSpecies.withdrawalPeriod';
+    const objectPath =
+        'AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod';
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: JsonParser.parsePrimitive<FhirString>(
         json,

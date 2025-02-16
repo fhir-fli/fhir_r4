@@ -38,6 +38,14 @@ class SupplyRequest extends DomainResource {
           resourceType: R4ResourceType.SupplyRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SupplyRequest.empty() => SupplyRequest(
+        itemX: CodeableConcept.empty(),
+        quantity: Quantity.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequest.fromJson(
     Map<String, dynamic> json,
@@ -850,6 +858,11 @@ class SupplyRequestParameter extends BackboneElement {
   }) : super(
           objectPath: 'SupplyRequest.parameter',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SupplyRequestParameter.empty() => SupplyRequestParameter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequestParameter.fromJson(

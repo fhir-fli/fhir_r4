@@ -35,6 +35,11 @@ class Organization extends DomainResource {
           resourceType: R4ResourceType.Organization,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Organization.empty() => Organization();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Organization.fromJson(
     Map<String, dynamic> json,
@@ -698,6 +703,11 @@ class OrganizationContact extends BackboneElement {
   }) : super(
           objectPath: 'Organization.contact',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory OrganizationContact.empty() => OrganizationContact();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OrganizationContact.fromJson(

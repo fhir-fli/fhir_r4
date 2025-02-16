@@ -40,6 +40,17 @@ class CoverageEligibilityRequest extends DomainResource {
           resourceType: R4ResourceType.CoverageEligibilityRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageEligibilityRequest.empty() => CoverageEligibilityRequest(
+        status: FinancialResourceStatusCodes.values.first,
+        purpose: <EligibilityRequestPurpose>[],
+        patient: Reference.empty(),
+        created: FhirDateTime.empty(),
+        insurer: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequest.fromJson(
     Map<String, dynamic> json,
@@ -797,6 +808,15 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
           objectPath: 'CoverageEligibilityRequest.supportingInfo',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageEligibilityRequestSupportingInfo.empty() =>
+      CoverageEligibilityRequestSupportingInfo(
+        sequence: FhirPositiveInt.empty(),
+        information: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestSupportingInfo.fromJson(
     Map<String, dynamic> json,
@@ -1112,6 +1132,14 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   }) : super(
           objectPath: 'CoverageEligibilityRequest.insurance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageEligibilityRequestInsurance.empty() =>
+      CoverageEligibilityRequestInsurance(
+        coverage: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestInsurance.fromJson(
@@ -1439,6 +1467,12 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   }) : super(
           objectPath: 'CoverageEligibilityRequest.item',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageEligibilityRequestItem.empty() =>
+      CoverageEligibilityRequestItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestItem.fromJson(
@@ -1965,6 +1999,12 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   }) : super(
           objectPath: 'CoverageEligibilityRequest.item.diagnosis',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageEligibilityRequestDiagnosis.empty() =>
+      CoverageEligibilityRequestDiagnosis();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestDiagnosis.fromJson(

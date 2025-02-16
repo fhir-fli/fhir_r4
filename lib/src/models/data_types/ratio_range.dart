@@ -28,6 +28,11 @@ class RatioRange extends DataType
     super.objectPath = 'RatioRange',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RatioRange.empty() => RatioRange();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RatioRange.fromJson(
     Map<String, dynamic> json,

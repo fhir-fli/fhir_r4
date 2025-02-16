@@ -53,6 +53,15 @@ class ChargeItem extends DomainResource {
           resourceType: R4ResourceType.ChargeItem,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItem.empty() => ChargeItem(
+        status: ChargeItemStatus.values.first,
+        code: CodeableConcept.empty(),
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItem.fromJson(
     Map<String, dynamic> json,
@@ -1189,6 +1198,13 @@ class ChargeItemPerformer extends BackboneElement {
   }) : super(
           objectPath: 'ChargeItem.performer',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ChargeItemPerformer.empty() => ChargeItemPerformer(
+        actor: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemPerformer.fromJson(

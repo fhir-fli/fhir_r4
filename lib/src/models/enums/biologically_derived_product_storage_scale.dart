@@ -14,8 +14,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCode {
     super.objectPath = 'Code',
   });
 
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScale]
-  /// from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -27,8 +26,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCode {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductStorageScale cannot be constructed '
-        'from JSON.',
+        'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',
       );
     }
     return BiologicallyDerivedProductStorageScale._(

@@ -34,6 +34,16 @@ class Subscription extends DomainResource {
           resourceType: R4ResourceType.Subscription,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Subscription.empty() => Subscription(
+        status: SubscriptionStatusCodes.values.first,
+        reason: FhirString.empty(),
+        criteria: FhirString.empty(),
+        channel: SubscriptionChannel.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Subscription.fromJson(
     Map<String, dynamic> json,
@@ -558,6 +568,13 @@ class SubscriptionChannel extends BackboneElement {
   }) : super(
           objectPath: 'Subscription.channel',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionChannel.empty() => SubscriptionChannel(
+        type: SubscriptionChannelType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionChannel.fromJson(

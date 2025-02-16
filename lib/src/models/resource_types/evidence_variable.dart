@@ -47,6 +47,13 @@ class EvidenceVariable extends DomainResource {
           resourceType: R4ResourceType.EvidenceVariable,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceVariable.empty() => EvidenceVariable(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariable.fromJson(
     Map<String, dynamic> json,
@@ -1094,9 +1101,7 @@ class EvidenceVariable extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      characteristicCombination,
-      o.characteristicCombination,
-    )) {
+        characteristicCombination, o.characteristicCombination)) {
       return false;
     }
     if (!listEquals<EvidenceVariableCharacteristic>(
@@ -1140,6 +1145,14 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   }) : super(
           objectPath: 'EvidenceVariable.characteristic',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceVariableCharacteristic.empty() =>
+      EvidenceVariableCharacteristic(
+        definitionX: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCharacteristic.fromJson(
@@ -1598,6 +1611,12 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           objectPath: 'EvidenceVariable.characteristic.timeFromStart',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceVariableTimeFromStart.empty() =>
+      EvidenceVariableTimeFromStart();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableTimeFromStart.fromJson(
     Map<String, dynamic> json,
@@ -1949,6 +1968,11 @@ class EvidenceVariableCategory extends BackboneElement {
   }) : super(
           objectPath: 'EvidenceVariable.category',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceVariableCategory.empty() => EvidenceVariableCategory();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(

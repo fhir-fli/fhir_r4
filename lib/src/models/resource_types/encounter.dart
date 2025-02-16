@@ -47,6 +47,14 @@ class Encounter extends DomainResource {
           resourceType: R4ResourceType.Encounter,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Encounter.empty() => Encounter(
+        status: EncounterStatus.values.first,
+        class_: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Encounter.fromJson(
     Map<String, dynamic> json,
@@ -1116,6 +1124,14 @@ class EncounterStatusHistory extends BackboneElement {
           objectPath: 'Encounter.statusHistory',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterStatusHistory.empty() => EncounterStatusHistory(
+        status: EncounterStatus.values.first,
+        period: Period.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterStatusHistory.fromJson(
     Map<String, dynamic> json,
@@ -1409,6 +1425,14 @@ class EncounterClassHistory extends BackboneElement {
           objectPath: 'Encounter.classHistory',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterClassHistory.empty() => EncounterClassHistory(
+        class_: Coding.empty(),
+        period: Period.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterClassHistory.fromJson(
     Map<String, dynamic> json,
@@ -1695,6 +1719,11 @@ class EncounterParticipant extends BackboneElement {
   }) : super(
           objectPath: 'Encounter.participant',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterParticipant.empty() => EncounterParticipant();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterParticipant.fromJson(
@@ -2024,6 +2053,13 @@ class EncounterDiagnosis extends BackboneElement {
           objectPath: 'Encounter.diagnosis',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterDiagnosis.empty() => EncounterDiagnosis(
+        condition: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterDiagnosis.fromJson(
     Map<String, dynamic> json,
@@ -2346,6 +2382,11 @@ class EncounterHospitalization extends BackboneElement {
   }) : super(
           objectPath: 'Encounter.hospitalization',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterHospitalization.empty() => EncounterHospitalization();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterHospitalization.fromJson(
@@ -2840,6 +2881,13 @@ class EncounterLocation extends BackboneElement {
   }) : super(
           objectPath: 'Encounter.location',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EncounterLocation.empty() => EncounterLocation(
+        location: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterLocation.fromJson(

@@ -33,6 +33,11 @@ class Medication extends DomainResource {
           resourceType: R4ResourceType.Medication,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Medication.empty() => Medication();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Medication.fromJson(
     Map<String, dynamic> json,
@@ -604,6 +609,13 @@ class MedicationIngredient extends BackboneElement {
           objectPath: 'Medication.ingredient',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationIngredient.empty() => MedicationIngredient(
+        itemX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationIngredient.fromJson(
     Map<String, dynamic> json,
@@ -939,6 +951,11 @@ class MedicationBatch extends BackboneElement {
   }) : super(
           objectPath: 'Medication.batch',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationBatch.empty() => MedicationBatch();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationBatch.fromJson(

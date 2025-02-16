@@ -48,6 +48,15 @@ class CarePlan extends DomainResource {
           resourceType: R4ResourceType.CarePlan,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CarePlan.empty() => CarePlan(
+        status: RequestStatus.values.first,
+        intent: CarePlanIntent.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlan.fromJson(
     Map<String, dynamic> json,
@@ -1115,6 +1124,11 @@ class CarePlanActivity extends BackboneElement {
           objectPath: 'CarePlan.activity',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CarePlanActivity.empty() => CarePlanActivity();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlanActivity.fromJson(
     Map<String, dynamic> json,
@@ -1535,6 +1549,13 @@ class CarePlanDetail extends BackboneElement {
   }) : super(
           objectPath: 'CarePlan.activity.detail',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CarePlanDetail.empty() => CarePlanDetail(
+        status: CarePlanActivityStatus.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlanDetail.fromJson(

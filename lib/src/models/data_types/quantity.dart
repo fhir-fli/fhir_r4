@@ -68,6 +68,11 @@ class Quantity extends DataType
     super.objectPath = 'Quantity',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Quantity.empty() => Quantity();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Quantity.fromJson(
     Map<String, dynamic> json,

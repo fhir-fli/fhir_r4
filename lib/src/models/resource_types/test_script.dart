@@ -47,6 +47,15 @@ class TestScript extends DomainResource {
           resourceType: R4ResourceType.TestScript,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScript.empty() => TestScript(
+        url: FhirUri.empty(),
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScript.fromJson(
     Map<String, dynamic> json,
@@ -1101,6 +1110,14 @@ class TestScriptOrigin extends BackboneElement {
           objectPath: 'TestScript.origin',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptOrigin.empty() => TestScriptOrigin(
+        index: FhirInteger.empty(),
+        profile: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptOrigin.fromJson(
     Map<String, dynamic> json,
@@ -1389,6 +1406,14 @@ class TestScriptDestination extends BackboneElement {
           objectPath: 'TestScript.destination',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptDestination.empty() => TestScriptDestination(
+        index: FhirInteger.empty(),
+        profile: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptDestination.fromJson(
     Map<String, dynamic> json,
@@ -1676,6 +1701,13 @@ class TestScriptMetadata extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.metadata',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptMetadata.empty() => TestScriptMetadata(
+        capability: <TestScriptCapability>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptMetadata.fromJson(
@@ -1988,6 +2020,13 @@ class TestScriptLink extends BackboneElement {
           objectPath: 'TestScript.metadata.link',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptLink.empty() => TestScriptLink(
+        url: FhirUri.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptLink.fromJson(
     Map<String, dynamic> json,
@@ -2282,6 +2321,15 @@ class TestScriptCapability extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.metadata.capability',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptCapability.empty() => TestScriptCapability(
+        required_: FhirBoolean.empty(),
+        validated: FhirBoolean.empty(),
+        capabilities: FhirCanonical.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptCapability.fromJson(
@@ -2709,6 +2757,14 @@ class TestScriptFixture extends BackboneElement {
           objectPath: 'TestScript.fixture',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptFixture.empty() => TestScriptFixture(
+        autocreate: FhirBoolean.empty(),
+        autodelete: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptFixture.fromJson(
     Map<String, dynamic> json,
@@ -3032,6 +3088,13 @@ class TestScriptVariable extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.variable',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptVariable.empty() => TestScriptVariable(
+        name: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptVariable.fromJson(
@@ -3472,6 +3535,13 @@ class TestScriptSetup extends BackboneElement {
           objectPath: 'TestScript.setup',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptSetup.empty() => TestScriptSetup(
+        action: <TestScriptAction>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptSetup.fromJson(
     Map<String, dynamic> json,
@@ -3746,6 +3816,11 @@ class TestScriptAction extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.setup.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptAction.empty() => TestScriptAction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction.fromJson(
@@ -4052,6 +4127,13 @@ class TestScriptOperation extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.setup.action.operation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptOperation.empty() => TestScriptOperation(
+        encodeRequestUrl: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptOperation.fromJson(
@@ -4722,6 +4804,14 @@ class TestScriptRequestHeader extends BackboneElement {
           objectPath: 'TestScript.setup.action.operation.requestHeader',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptRequestHeader.empty() => TestScriptRequestHeader(
+        field: FhirString.empty(),
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptRequestHeader.fromJson(
     Map<String, dynamic> json,
@@ -5028,6 +5118,13 @@ class TestScriptAssert extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.setup.action.assert',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptAssert.empty() => TestScriptAssert(
+        warningOnly: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAssert.fromJson(
@@ -5740,9 +5837,7 @@ class TestScriptAssert extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      compareToSourceExpression,
-      o.compareToSourceExpression,
-    )) {
+        compareToSourceExpression, o.compareToSourceExpression)) {
       return false;
     }
     if (!equalsDeepWithNull(compareToSourcePath, o.compareToSourcePath)) {
@@ -5817,6 +5912,13 @@ class TestScriptTest extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.test',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptTest.empty() => TestScriptTest(
+        action: <TestScriptAction>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptTest.fromJson(
@@ -6143,6 +6245,11 @@ class TestScriptAction1 extends BackboneElement {
           objectPath: 'TestScript.test.action',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptAction1.empty() => TestScriptAction1();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction1.fromJson(
     Map<String, dynamic> json,
@@ -6434,6 +6541,13 @@ class TestScriptTeardown extends BackboneElement {
           objectPath: 'TestScript.teardown',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptTeardown.empty() => TestScriptTeardown(
+        action: <TestScriptAction>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptTeardown.fromJson(
     Map<String, dynamic> json,
@@ -6707,6 +6821,13 @@ class TestScriptAction2 extends BackboneElement {
   }) : super(
           objectPath: 'TestScript.teardown.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TestScriptAction2.empty() => TestScriptAction2(
+        operation: TestScriptOperation.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction2.fromJson(

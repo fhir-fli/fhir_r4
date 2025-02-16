@@ -60,7 +60,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     return FhirInteger64(input, element: element);
   }
 
-    /// Creates empty [FhirInteger64] object
+  /// Creates empty [FhirInteger64] object
   factory FhirInteger64.empty() =>
       FhirInteger64(null, element: Element.empty());
 

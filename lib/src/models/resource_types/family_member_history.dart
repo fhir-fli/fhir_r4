@@ -41,6 +41,15 @@ class FamilyMemberHistory extends DomainResource {
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FamilyMemberHistory.empty() => FamilyMemberHistory(
+        status: FamilyHistoryStatus.values.first,
+        patient: Reference.empty(),
+        relationship: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistory.fromJson(
     Map<String, dynamic> json,
@@ -1006,6 +1015,13 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   }) : super(
           objectPath: 'FamilyMemberHistory.condition',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FamilyMemberHistoryCondition.empty() => FamilyMemberHistoryCondition(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistoryCondition.fromJson(

@@ -43,6 +43,14 @@ class DocumentReference extends DomainResource {
           resourceType: R4ResourceType.DocumentReference,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentReference.empty() => DocumentReference(
+        status: DocumentReferenceStatus.values.first,
+        content: <DocumentReferenceContent>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReference.fromJson(
     Map<String, dynamic> json,
@@ -855,6 +863,14 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           objectPath: 'DocumentReference.relatesTo',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentReferenceRelatesTo.empty() => DocumentReferenceRelatesTo(
+        code: DocumentRelationshipType.values.first,
+        target: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceRelatesTo.fromJson(
     Map<String, dynamic> json,
@@ -1141,6 +1157,13 @@ class DocumentReferenceContent extends BackboneElement {
   }) : super(
           objectPath: 'DocumentReference.content',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentReferenceContent.empty() => DocumentReferenceContent(
+        attachment: Attachment.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceContent.fromJson(
@@ -1437,6 +1460,11 @@ class DocumentReferenceContext extends BackboneElement {
   }) : super(
           objectPath: 'DocumentReference.context',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentReferenceContext.empty() => DocumentReferenceContext();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceContext.fromJson(

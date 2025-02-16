@@ -37,6 +37,13 @@ class DetectedIssue extends DomainResource {
           resourceType: R4ResourceType.DetectedIssue,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DetectedIssue.empty() => DetectedIssue(
+        status: ObservationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssue.fromJson(
     Map<String, dynamic> json,
@@ -746,6 +753,11 @@ class DetectedIssueEvidence extends BackboneElement {
           objectPath: 'DetectedIssue.evidence',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DetectedIssueEvidence.empty() => DetectedIssueEvidence();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssueEvidence.fromJson(
     Map<String, dynamic> json,
@@ -1062,6 +1074,13 @@ class DetectedIssueMitigation extends BackboneElement {
   }) : super(
           objectPath: 'DetectedIssue.mitigation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DetectedIssueMitigation.empty() => DetectedIssueMitigation(
+        action: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssueMitigation.fromJson(

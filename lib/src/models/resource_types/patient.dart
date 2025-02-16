@@ -39,6 +39,11 @@ class Patient extends DomainResource {
           resourceType: R4ResourceType.Patient,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Patient.empty() => Patient();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Patient.fromJson(
     Map<String, dynamic> json,
@@ -925,6 +930,11 @@ class PatientContact extends BackboneElement {
           objectPath: 'Patient.contact',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PatientContact.empty() => PatientContact();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientContact.fromJson(
     Map<String, dynamic> json,
@@ -1363,6 +1373,13 @@ class PatientCommunication extends BackboneElement {
           objectPath: 'Patient.communication',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PatientCommunication.empty() => PatientCommunication(
+        language: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientCommunication.fromJson(
     Map<String, dynamic> json,
@@ -1654,6 +1671,14 @@ class PatientLink extends BackboneElement {
   }) : super(
           objectPath: 'Patient.link',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PatientLink.empty() => PatientLink(
+        other: Reference.empty(),
+        type: LinkType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PatientLink.fromJson(

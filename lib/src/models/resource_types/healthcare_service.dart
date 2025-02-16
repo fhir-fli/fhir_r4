@@ -46,6 +46,11 @@ class HealthcareService extends DomainResource {
           resourceType: R4ResourceType.HealthcareService,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory HealthcareService.empty() => HealthcareService();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareService.fromJson(
     Map<String, dynamic> json,
@@ -1169,6 +1174,12 @@ class HealthcareServiceEligibility extends BackboneElement {
           objectPath: 'HealthcareService.eligibility',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory HealthcareServiceEligibility.empty() =>
+      HealthcareServiceEligibility();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceEligibility.fromJson(
     Map<String, dynamic> json,
@@ -1460,6 +1471,12 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   }) : super(
           objectPath: 'HealthcareService.availableTime',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory HealthcareServiceAvailableTime.empty() =>
+      HealthcareServiceAvailableTime();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceAvailableTime.fromJson(
@@ -1810,6 +1827,14 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   }) : super(
           objectPath: 'HealthcareService.notAvailable',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory HealthcareServiceNotAvailable.empty() =>
+      HealthcareServiceNotAvailable(
+        description: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HealthcareServiceNotAvailable.fromJson(

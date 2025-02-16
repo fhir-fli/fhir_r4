@@ -40,6 +40,15 @@ class Coverage extends DomainResource {
           resourceType: R4ResourceType.Coverage,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Coverage.empty() => Coverage(
+        status: FinancialResourceStatusCodes.values.first,
+        beneficiary: Reference.empty(),
+        payor: <Reference>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Coverage.fromJson(
     Map<String, dynamic> json,
@@ -862,6 +871,14 @@ class CoverageClass extends BackboneElement {
           objectPath: 'Coverage.class',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageClass.empty() => CoverageClass(
+        type: CodeableConcept.empty(),
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageClass.fromJson(
     Map<String, dynamic> json,
@@ -1176,6 +1193,13 @@ class CoverageCostToBeneficiary extends BackboneElement {
   }) : super(
           objectPath: 'Coverage.costToBeneficiary',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageCostToBeneficiary.empty() => CoverageCostToBeneficiary(
+        valueX: Quantity.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageCostToBeneficiary.fromJson(
@@ -1521,6 +1545,13 @@ class CoverageException extends BackboneElement {
   }) : super(
           objectPath: 'Coverage.costToBeneficiary.exception',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CoverageException.empty() => CoverageException(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageException.fromJson(

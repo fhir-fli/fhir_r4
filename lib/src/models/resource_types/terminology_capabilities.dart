@@ -49,6 +49,15 @@ class TerminologyCapabilities extends CanonicalResource {
           resourceType: R4ResourceType.TerminologyCapabilities,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilities.empty() => TerminologyCapabilities(
+        status: PublicationStatus.values.first,
+        date: FhirDateTime.empty(),
+        kind: CapabilityStatementKind.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -996,6 +1005,14 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
           objectPath: 'TerminologyCapabilities.software',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesSoftware.empty() =>
+      TerminologyCapabilitiesSoftware(
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesSoftware.fromJson(
     Map<String, dynamic> json,
@@ -1285,6 +1302,14 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   }) : super(
           objectPath: 'TerminologyCapabilities.implementation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesImplementation.empty() =>
+      TerminologyCapabilitiesImplementation(
+        description: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesImplementation.fromJson(
@@ -1577,6 +1602,12 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   }) : super(
           objectPath: 'TerminologyCapabilities.codeSystem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesCodeSystem.empty() =>
+      TerminologyCapabilitiesCodeSystem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesCodeSystem.fromJson(
@@ -1908,6 +1939,12 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   }) : super(
           objectPath: 'TerminologyCapabilities.codeSystem.version',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesVersion.empty() =>
+      TerminologyCapabilitiesVersion();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesVersion.fromJson(
@@ -2321,6 +2358,15 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
           objectPath: 'TerminologyCapabilities.codeSystem.version.filter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesFilter.empty() =>
+      TerminologyCapabilitiesFilter(
+        code: FhirCode.empty(),
+        op: <FhirCode>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesFilter.fromJson(
     Map<String, dynamic> json,
@@ -2617,6 +2663,12 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   }) : super(
           objectPath: 'TerminologyCapabilities.expansion',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesExpansion.empty() =>
+      TerminologyCapabilitiesExpansion();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesExpansion.fromJson(
@@ -2991,6 +3043,14 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
           objectPath: 'TerminologyCapabilities.expansion.parameter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesParameter.empty() =>
+      TerminologyCapabilitiesParameter(
+        name: FhirCode.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesParameter.fromJson(
     Map<String, dynamic> json,
@@ -3280,6 +3340,14 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
           objectPath: 'TerminologyCapabilities.validateCode',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesValidateCode.empty() =>
+      TerminologyCapabilitiesValidateCode(
+        translations: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesValidateCode.fromJson(
     Map<String, dynamic> json,
@@ -3544,6 +3612,14 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
           objectPath: 'TerminologyCapabilities.translation',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesTranslation.empty() =>
+      TerminologyCapabilitiesTranslation(
+        needsMap: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesTranslation.fromJson(
     Map<String, dynamic> json,
@@ -3806,6 +3882,12 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   }) : super(
           objectPath: 'TerminologyCapabilities.closure',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory TerminologyCapabilitiesClosure.empty() =>
+      TerminologyCapabilitiesClosure();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesClosure.fromJson(

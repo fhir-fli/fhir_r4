@@ -43,6 +43,13 @@ class ValueSet extends CanonicalResource {
           resourceType: R4ResourceType.ValueSet,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSet.empty() => ValueSet(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSet.fromJson(
     Map<String, dynamic> json,
@@ -843,6 +850,13 @@ class ValueSetCompose extends BackboneElement {
           objectPath: 'ValueSet.compose',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetCompose.empty() => ValueSetCompose(
+        include: <ValueSetInclude>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetCompose.fromJson(
     Map<String, dynamic> json,
@@ -1212,6 +1226,11 @@ class ValueSetInclude extends BackboneElement {
   }) : super(
           objectPath: 'ValueSet.compose.include',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetInclude.empty() => ValueSetInclude();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetInclude.fromJson(
@@ -1613,6 +1632,13 @@ class ValueSetConcept extends BackboneElement {
           objectPath: 'ValueSet.compose.include.concept',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetConcept.empty() => ValueSetConcept(
+        code: FhirCode.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetConcept.fromJson(
     Map<String, dynamic> json,
@@ -1943,6 +1969,13 @@ class ValueSetDesignation extends BackboneElement {
           objectPath: 'ValueSet.compose.include.concept.designation',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetDesignation.empty() => ValueSetDesignation(
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetDesignation.fromJson(
     Map<String, dynamic> json,
@@ -2258,6 +2291,15 @@ class ValueSetFilter extends BackboneElement {
   }) : super(
           objectPath: 'ValueSet.compose.include.filter',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetFilter.empty() => ValueSetFilter(
+        property: FhirCode.empty(),
+        op: FilterOperator.values.first,
+        value: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetFilter.fromJson(
@@ -2578,6 +2620,13 @@ class ValueSetExpansion extends BackboneElement {
   }) : super(
           objectPath: 'ValueSet.expansion',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetExpansion.empty() => ValueSetExpansion(
+        timestamp: FhirDateTime.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetExpansion.fromJson(
@@ -2998,6 +3047,13 @@ class ValueSetParameter extends BackboneElement {
           objectPath: 'ValueSet.expansion.parameter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetParameter.empty() => ValueSetParameter(
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetParameter.fromJson(
     Map<String, dynamic> json,
@@ -3353,6 +3409,11 @@ class ValueSetContains extends BackboneElement {
   }) : super(
           objectPath: 'ValueSet.expansion.contains',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ValueSetContains.empty() => ValueSetContains();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetContains.fromJson(

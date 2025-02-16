@@ -33,6 +33,11 @@ class SupplyDelivery extends DomainResource {
           resourceType: R4ResourceType.SupplyDelivery,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SupplyDelivery.empty() => SupplyDelivery();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyDelivery.fromJson(
     Map<String, dynamic> json,
@@ -721,6 +726,11 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   }) : super(
           objectPath: 'SupplyDelivery.suppliedItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SupplyDeliverySuppliedItem.empty() => SupplyDeliverySuppliedItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyDeliverySuppliedItem.fromJson(

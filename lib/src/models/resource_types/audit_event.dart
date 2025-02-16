@@ -35,6 +35,16 @@ class AuditEvent extends DomainResource {
           resourceType: R4ResourceType.AuditEvent,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEvent.empty() => AuditEvent(
+        type: Coding.empty(),
+        recorded: FhirInstant.empty(),
+        agent: <AuditEventAgent>[],
+        source: AuditEventSource.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEvent.fromJson(
     Map<String, dynamic> json,
@@ -694,6 +704,13 @@ class AuditEventAgent extends BackboneElement {
           objectPath: 'AuditEvent.agent',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEventAgent.empty() => AuditEventAgent(
+        requestor: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventAgent.fromJson(
     Map<String, dynamic> json,
@@ -1241,6 +1258,11 @@ class AuditEventNetwork extends BackboneElement {
           objectPath: 'AuditEvent.agent.network',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEventNetwork.empty() => AuditEventNetwork();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventNetwork.fromJson(
     Map<String, dynamic> json,
@@ -1533,6 +1555,13 @@ class AuditEventSource extends BackboneElement {
   }) : super(
           objectPath: 'AuditEvent.source',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEventSource.empty() => AuditEventSource(
+        observer: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventSource.fromJson(
@@ -1865,6 +1894,11 @@ class AuditEventEntity extends BackboneElement {
   }) : super(
           objectPath: 'AuditEvent.entity',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEventEntity.empty() => AuditEventEntity();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventEntity.fromJson(
@@ -2349,6 +2383,14 @@ class AuditEventDetail extends BackboneElement {
   }) : super(
           objectPath: 'AuditEvent.entity.detail',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AuditEventDetail.empty() => AuditEventDetail(
+        type: FhirString.empty(),
+        valueX: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventDetail.fromJson(

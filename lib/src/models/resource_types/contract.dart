@@ -56,6 +56,11 @@ class Contract extends DomainResource {
           resourceType: R4ResourceType.Contract,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Contract.empty() => Contract();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Contract.fromJson(
     Map<String, dynamic> json,
@@ -1450,6 +1455,14 @@ class ContractContentDefinition extends BackboneElement {
           objectPath: 'Contract.contentDefinition',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractContentDefinition.empty() => ContractContentDefinition(
+        type: CodeableConcept.empty(),
+        publicationStatus: ContractResourcePublicationStatusCodes.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractContentDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1853,6 +1866,13 @@ class ContractTerm extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractTerm.empty() => ContractTerm(
+        offer: ContractOffer.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractTerm.fromJson(
@@ -2456,6 +2476,13 @@ class ContractSecurityLabel extends BackboneElement {
           objectPath: 'Contract.term.securityLabel',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractSecurityLabel.empty() => ContractSecurityLabel(
+        classification: Coding.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSecurityLabel.fromJson(
     Map<String, dynamic> json,
@@ -2832,6 +2859,11 @@ class ContractOffer extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term.offer',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractOffer.empty() => ContractOffer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractOffer.fromJson(
@@ -3378,6 +3410,14 @@ class ContractParty extends BackboneElement {
           objectPath: 'Contract.term.offer.party',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractParty.empty() => ContractParty(
+        reference: <Reference>[],
+        role: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractParty.fromJson(
     Map<String, dynamic> json,
@@ -3673,6 +3713,13 @@ class ContractAnswer extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term.offer.answer',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractAnswer.empty() => ContractAnswer(
+        valueX: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAnswer.fromJson(
@@ -4053,6 +4100,11 @@ class ContractAsset extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term.asset',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractAsset.empty() => ContractAsset();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAsset.fromJson(
@@ -4776,6 +4828,11 @@ class ContractContext extends BackboneElement {
           objectPath: 'Contract.term.asset.context',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractContext.empty() => ContractContext();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractContext.fromJson(
     Map<String, dynamic> json,
@@ -5115,6 +5172,11 @@ class ContractValuedItem extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term.asset.valuedItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractValuedItem.empty() => ContractValuedItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractValuedItem.fromJson(
@@ -5763,6 +5825,15 @@ class ContractAction extends BackboneElement {
   }) : super(
           objectPath: 'Contract.term.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractAction.empty() => ContractAction(
+        type: CodeableConcept.empty(),
+        intent: CodeableConcept.empty(),
+        status: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAction.fromJson(
@@ -6666,6 +6737,13 @@ class ContractSubject extends BackboneElement {
           objectPath: 'Contract.term.action.subject',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractSubject.empty() => ContractSubject(
+        reference: <Reference>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSubject.fromJson(
     Map<String, dynamic> json,
@@ -6968,6 +7046,15 @@ class ContractSigner extends BackboneElement {
   }) : super(
           objectPath: 'Contract.signer',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractSigner.empty() => ContractSigner(
+        type: Coding.empty(),
+        party: Reference.empty(),
+        signature: <Signature>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSigner.fromJson(
@@ -7293,6 +7380,13 @@ class ContractFriendly extends BackboneElement {
           objectPath: 'Contract.friendly',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractFriendly.empty() => ContractFriendly(
+        contentX: Attachment.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractFriendly.fromJson(
     Map<String, dynamic> json,
@@ -7578,6 +7672,13 @@ class ContractLegal extends BackboneElement {
           objectPath: 'Contract.legal',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractLegal.empty() => ContractLegal(
+        contentX: Attachment.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractLegal.fromJson(
     Map<String, dynamic> json,
@@ -7861,6 +7962,13 @@ class ContractRule extends BackboneElement {
   }) : super(
           objectPath: 'Contract.rule',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContractRule.empty() => ContractRule(
+        contentX: Attachment.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractRule.fromJson(

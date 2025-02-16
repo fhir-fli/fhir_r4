@@ -34,9 +34,8 @@ class FhirOid extends PrimitiveType<String>
     }
   }
 
-    /// Creates empty [FhirOid] object
-  factory FhirOid.empty() =>
-      FhirOid(null, element: Element.empty());
+  /// Creates empty [FhirOid] object
+  factory FhirOid.empty() => FhirOid(null, element: Element.empty());
 
   /// Factory constructor to create [FhirOid] from JSON.
   factory FhirOid.fromJson(Map<String, dynamic> json) {

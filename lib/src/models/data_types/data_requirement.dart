@@ -35,6 +35,13 @@ class DataRequirement extends DataType
     super.objectPath = 'DataRequirement',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DataRequirement.empty() => DataRequirement(
+        type: FHIRAllTypes.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirement.fromJson(
     Map<String, dynamic> json,
@@ -528,6 +535,11 @@ class DataRequirementCodeFilter extends Element {
     super.objectPath = 'DataRequirementCodeFilter',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DataRequirementCodeFilter.empty() => DataRequirementCodeFilter();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
     Map<String, dynamic> json,
@@ -865,6 +877,11 @@ class DataRequirementDateFilter extends Element {
     super.objectPath = 'DataRequirementDateFilter',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DataRequirementDateFilter.empty() => DataRequirementDateFilter();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
     Map<String, dynamic> json,
@@ -1189,6 +1206,14 @@ class DataRequirementSort extends Element {
     super.disallowExtensions,
     super.objectPath = 'DataRequirementSort',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DataRequirementSort.empty() => DataRequirementSort(
+        path: FhirString.empty(),
+        direction: SortDirection.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementSort.fromJson(

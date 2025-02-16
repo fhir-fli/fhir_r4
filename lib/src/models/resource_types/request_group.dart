@@ -42,6 +42,14 @@ class RequestGroup extends DomainResource {
           resourceType: R4ResourceType.RequestGroup,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RequestGroup.empty() => RequestGroup(
+        status: RequestStatus.values.first,
+        intent: RequestIntent.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroup.fromJson(
     Map<String, dynamic> json,
@@ -938,6 +946,11 @@ class RequestGroupAction extends BackboneElement {
           objectPath: 'RequestGroup.action',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RequestGroupAction.empty() => RequestGroupAction();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupAction.fromJson(
     Map<String, dynamic> json,
@@ -1767,6 +1780,13 @@ class RequestGroupCondition extends BackboneElement {
           objectPath: 'RequestGroup.action.condition',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RequestGroupCondition.empty() => RequestGroupCondition(
+        kind: ActionConditionKind.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupCondition.fromJson(
     Map<String, dynamic> json,
@@ -2057,6 +2077,14 @@ class RequestGroupRelatedAction extends BackboneElement {
   }) : super(
           objectPath: 'RequestGroup.action.relatedAction',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RequestGroupRelatedAction.empty() => RequestGroupRelatedAction(
+        actionId: FhirId.empty(),
+        relationship: ActionRelationshipType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupRelatedAction.fromJson(

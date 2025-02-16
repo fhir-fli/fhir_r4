@@ -56,6 +56,15 @@ class ResearchElementDefinition extends DomainResource {
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchElementDefinition.empty() => ResearchElementDefinition(
+        status: PublicationStatus.values.first,
+        type: ResearchElementType.values.first,
+        characteristic: <ResearchElementDefinitionCharacteristic>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchElementDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1418,6 +1427,14 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           objectPath: 'ResearchElementDefinition.characteristic',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchElementDefinitionCharacteristic.empty() =>
+      ResearchElementDefinitionCharacteristic(
+        definitionX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchElementDefinitionCharacteristic.fromJson(
     Map<String, dynamic> json,
@@ -1733,25 +1750,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -2057,45 +2066,33 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveDescription,
-      o.studyEffectiveDescription,
-    )) {
+        studyEffectiveDescription, o.studyEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveTimeFromStart,
-      o.studyEffectiveTimeFromStart,
-    )) {
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveGroupMeasure,
-      o.studyEffectiveGroupMeasure,
-    )) {
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveDescription,
-      o.participantEffectiveDescription,
-    )) {
+        participantEffectiveDescription, o.participantEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (!equalsDeepWithNull(
-      participantEffectiveTimeFromStart,
-      o.participantEffectiveTimeFromStart,
-    )) {
+    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
+        o.participantEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveGroupMeasure,
-      o.participantEffectiveGroupMeasure,
-    )) {
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure)) {
       return false;
     }
     return true;

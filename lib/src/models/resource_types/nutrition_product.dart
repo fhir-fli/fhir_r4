@@ -32,6 +32,13 @@ class NutritionProduct extends DomainResource {
           resourceType: R4ResourceType.NutritionProduct,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionProduct.empty() => NutritionProduct(
+        status: NutritionProductStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProduct.fromJson(
     Map<String, dynamic> json,
@@ -698,6 +705,11 @@ class NutritionProductNutrient extends BackboneElement {
           objectPath: 'NutritionProduct.nutrient',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionProductNutrient.empty() => NutritionProductNutrient();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductNutrient.fromJson(
     Map<String, dynamic> json,
@@ -1000,6 +1012,13 @@ class NutritionProductIngredient extends BackboneElement {
           objectPath: 'NutritionProduct.ingredient',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionProductIngredient.empty() => NutritionProductIngredient(
+        item: CodeableReference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductIngredient.fromJson(
     Map<String, dynamic> json,
@@ -1298,6 +1317,15 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   }) : super(
           objectPath: 'NutritionProduct.productCharacteristic',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionProductProductCharacteristic.empty() =>
+      NutritionProductProductCharacteristic(
+        type: CodeableConcept.empty(),
+        valueX: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductProductCharacteristic.fromJson(
@@ -1642,6 +1670,11 @@ class NutritionProductInstance extends BackboneElement {
   }) : super(
           objectPath: 'NutritionProduct.instance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory NutritionProductInstance.empty() => NutritionProductInstance();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductInstance.fromJson(

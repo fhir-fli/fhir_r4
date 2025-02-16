@@ -40,6 +40,15 @@ class GraphDefinition extends CanonicalResource {
           resourceType: R4ResourceType.GraphDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GraphDefinition.empty() => GraphDefinition(
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        start: FhirCode.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinition.fromJson(
     Map<String, dynamic> json,
@@ -753,6 +762,11 @@ class GraphDefinitionLink extends BackboneElement {
           objectPath: 'GraphDefinition.link',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GraphDefinitionLink.empty() => GraphDefinitionLink();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionLink.fromJson(
     Map<String, dynamic> json,
@@ -1155,6 +1169,13 @@ class GraphDefinitionTarget extends BackboneElement {
           objectPath: 'GraphDefinition.link.target',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GraphDefinitionTarget.empty() => GraphDefinitionTarget(
+        type: FhirCode.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionTarget.fromJson(
     Map<String, dynamic> json,
@@ -1539,6 +1560,15 @@ class GraphDefinitionCompartment extends BackboneElement {
   }) : super(
           objectPath: 'GraphDefinition.link.target.compartment',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GraphDefinitionCompartment.empty() => GraphDefinitionCompartment(
+        use: GraphCompartmentUse.values.first,
+        code: CompartmentType.values.first,
+        rule: GraphCompartmentRule.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GraphDefinitionCompartment.fromJson(

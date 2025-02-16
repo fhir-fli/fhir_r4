@@ -30,6 +30,15 @@ class Ingredient extends DomainResource {
           resourceType: R4ResourceType.Ingredient,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Ingredient.empty() => Ingredient(
+        status: PublicationStatus.values.first,
+        role: CodeableConcept.empty(),
+        substance: IngredientSubstance.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ingredient.fromJson(
     Map<String, dynamic> json,
@@ -614,6 +623,13 @@ class IngredientManufacturer extends BackboneElement {
           objectPath: 'Ingredient.manufacturer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory IngredientManufacturer.empty() => IngredientManufacturer(
+        manufacturer: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientManufacturer.fromJson(
     Map<String, dynamic> json,
@@ -904,6 +920,13 @@ class IngredientSubstance extends BackboneElement {
   }) : super(
           objectPath: 'Ingredient.substance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory IngredientSubstance.empty() => IngredientSubstance(
+        code: CodeableReference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientSubstance.fromJson(
@@ -1216,6 +1239,11 @@ class IngredientStrength extends BackboneElement {
   }) : super(
           objectPath: 'Ingredient.substance.strength',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory IngredientStrength.empty() => IngredientStrength();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientStrength.fromJson(
@@ -1716,6 +1744,13 @@ class IngredientReferenceStrength extends BackboneElement {
   }) : super(
           objectPath: 'Ingredient.substance.strength.referenceStrength',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory IngredientReferenceStrength.empty() => IngredientReferenceStrength(
+        strengthX: Ratio.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientReferenceStrength.fromJson(

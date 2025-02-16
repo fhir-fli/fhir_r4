@@ -52,8 +52,7 @@ class FhirUuid extends PrimitiveType<UuidValue?>
   });
 
   /// Creates empty [FhirUuid] object
-  factory FhirUuid.empty() =>
-      FhirUuid(null, element: Element.empty());
+  factory FhirUuid.empty() => FhirUuid(null, element: Element.empty());
 
   /// Factory constructor to create [FhirUuid] from JSON.
   factory FhirUuid.fromJson(Map<String, dynamic> json) {

@@ -29,6 +29,15 @@ class ImmunizationRecommendation extends DomainResource {
           resourceType: R4ResourceType.ImmunizationRecommendation,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationRecommendation.empty() => ImmunizationRecommendation(
+        patient: Reference.empty(),
+        date: FhirDateTime.empty(),
+        recommendation: <ImmunizationRecommendationRecommendation>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendation.fromJson(
     Map<String, dynamic> json,
@@ -520,6 +529,14 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   }) : super(
           objectPath: 'ImmunizationRecommendation.recommendation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationRecommendationRecommendation.empty() =>
+      ImmunizationRecommendationRecommendation(
+        forecastStatus: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationRecommendation.fromJson(
@@ -1170,6 +1187,15 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   }) : super(
           objectPath: 'ImmunizationRecommendation.recommendation.dateCriterion',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationRecommendationDateCriterion.empty() =>
+      ImmunizationRecommendationDateCriterion(
+        code: CodeableConcept.empty(),
+        value: FhirDateTime.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationDateCriterion.fromJson(

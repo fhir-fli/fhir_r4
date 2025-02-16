@@ -45,6 +45,14 @@ class SubscriptionTopic extends CanonicalResource {
           resourceType: R4ResourceType.SubscriptionTopic,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopic.empty() => SubscriptionTopic(
+        url: FhirUri.empty(),
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopic.fromJson(
     Map<String, dynamic> json,
@@ -1002,6 +1010,14 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           objectPath: 'SubscriptionTopic.resourceTrigger',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopicResourceTrigger.empty() =>
+      SubscriptionTopicResourceTrigger(
+        resource: FhirUri.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicResourceTrigger.fromJson(
     Map<String, dynamic> json,
@@ -1385,6 +1401,12 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           objectPath: 'SubscriptionTopic.resourceTrigger.queryCriteria',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopicQueryCriteria.empty() =>
+      SubscriptionTopicQueryCriteria();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicQueryCriteria.fromJson(
     Map<String, dynamic> json,
@@ -1754,6 +1776,15 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           objectPath: 'SubscriptionTopic.eventTrigger',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopicEventTrigger.empty() =>
+      SubscriptionTopicEventTrigger(
+        event: CodeableConcept.empty(),
+        resource: FhirUri.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicEventTrigger.fromJson(
     Map<String, dynamic> json,
@@ -2079,6 +2110,13 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   }) : super(
           objectPath: 'SubscriptionTopic.canFilterBy',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopicCanFilterBy.empty() => SubscriptionTopicCanFilterBy(
+        filterParameter: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicCanFilterBy.fromJson(
@@ -2461,6 +2499,14 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   }) : super(
           objectPath: 'SubscriptionTopic.notificationShape',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SubscriptionTopicNotificationShape.empty() =>
+      SubscriptionTopicNotificationShape(
+        resource: FhirUri.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicNotificationShape.fromJson(

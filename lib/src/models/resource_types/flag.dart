@@ -31,6 +31,15 @@ class Flag extends DomainResource {
           resourceType: R4ResourceType.Flag,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Flag.empty() => Flag(
+        status: FlagStatus.values.first,
+        code: CodeableConcept.empty(),
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Flag.fromJson(
     Map<String, dynamic> json,

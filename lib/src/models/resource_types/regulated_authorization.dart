@@ -39,6 +39,11 @@ class RegulatedAuthorization extends DomainResource {
           resourceType: R4ResourceType.RegulatedAuthorization,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RegulatedAuthorization.empty() => RegulatedAuthorization();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorization.fromJson(
     Map<String, dynamic> json,
@@ -790,6 +795,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
   }) : super(
           objectPath: 'RegulatedAuthorization.case',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RegulatedAuthorizationCase.empty() => RegulatedAuthorizationCase();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(

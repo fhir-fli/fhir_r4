@@ -53,6 +53,11 @@ class Attachment extends DataType
     super.objectPath = 'Attachment',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Attachment.empty() => Attachment();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Attachment.fromJson(
     Map<String, dynamic> json,

@@ -40,6 +40,13 @@ class Condition extends DomainResource {
           resourceType: R4ResourceType.Condition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Condition.empty() => Condition(
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Condition.fromJson(
     Map<String, dynamic> json,
@@ -965,6 +972,11 @@ class ConditionStage extends BackboneElement {
           objectPath: 'Condition.stage',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConditionStage.empty() => ConditionStage();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConditionStage.fromJson(
     Map<String, dynamic> json,
@@ -1293,6 +1305,11 @@ class ConditionEvidence extends BackboneElement {
   }) : super(
           objectPath: 'Condition.evidence',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConditionEvidence.empty() => ConditionEvidence();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConditionEvidence.fromJson(

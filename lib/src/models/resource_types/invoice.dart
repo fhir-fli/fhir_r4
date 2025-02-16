@@ -39,6 +39,13 @@ class Invoice extends DomainResource {
           resourceType: R4ResourceType.Invoice,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Invoice.empty() => Invoice(
+        status: InvoiceStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Invoice.fromJson(
     Map<String, dynamic> json,
@@ -834,6 +841,13 @@ class InvoiceParticipant extends BackboneElement {
           objectPath: 'Invoice.participant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InvoiceParticipant.empty() => InvoiceParticipant(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceParticipant.fromJson(
     Map<String, dynamic> json,
@@ -1127,6 +1141,13 @@ class InvoiceLineItem extends BackboneElement {
   }) : super(
           objectPath: 'Invoice.lineItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InvoiceLineItem.empty() => InvoiceLineItem(
+        chargeItemX: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceLineItem.fromJson(
@@ -1486,6 +1507,13 @@ class InvoicePriceComponent extends BackboneElement {
   }) : super(
           objectPath: 'Invoice.lineItem.priceComponent',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InvoicePriceComponent.empty() => InvoicePriceComponent(
+        type: InvoicePriceComponentType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoicePriceComponent.fromJson(

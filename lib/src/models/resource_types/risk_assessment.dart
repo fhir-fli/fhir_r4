@@ -40,6 +40,14 @@ class RiskAssessment extends DomainResource {
           resourceType: R4ResourceType.RiskAssessment,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RiskAssessment.empty() => RiskAssessment(
+        status: ObservationStatus.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessment.fromJson(
     Map<String, dynamic> json,
@@ -884,6 +892,11 @@ class RiskAssessmentPrediction extends BackboneElement {
   }) : super(
           objectPath: 'RiskAssessment.prediction',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RiskAssessmentPrediction.empty() => RiskAssessmentPrediction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessmentPrediction.fromJson(

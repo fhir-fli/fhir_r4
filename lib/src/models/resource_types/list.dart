@@ -35,6 +35,14 @@ class FhirList extends DomainResource {
           resourceType: R4ResourceType.FhirList,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FhirList.empty() => FhirList(
+        status: ListStatus.values.first,
+        mode: ListMode.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirList.fromJson(
     Map<String, dynamic> json,
@@ -730,6 +738,13 @@ class ListEntry extends BackboneElement {
   }) : super(
           objectPath: 'List.entry',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ListEntry.empty() => ListEntry(
+        item: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ListEntry.fromJson(

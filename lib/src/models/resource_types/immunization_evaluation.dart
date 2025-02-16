@@ -37,6 +37,17 @@ class ImmunizationEvaluation extends DomainResource {
           resourceType: R4ResourceType.ImmunizationEvaluation,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationEvaluation.empty() => ImmunizationEvaluation(
+        status: ImmunizationEvaluationStatusCodes.values.first,
+        patient: Reference.empty(),
+        targetDisease: CodeableConcept.empty(),
+        immunizationEvent: Reference.empty(),
+        doseStatus: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationEvaluation.fromJson(
     Map<String, dynamic> json,

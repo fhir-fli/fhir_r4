@@ -50,9 +50,8 @@ class FhirUrl extends PrimitiveType<Uri>
           element: element,
         );
 
-          /// Creates empty [FhirUrl] object
-  factory FhirUrl.empty() =>
-      FhirUrl(null, element: Element.empty());
+  /// Creates empty [FhirUrl] object
+  factory FhirUrl.empty() => FhirUrl(null, element: Element.empty());
 
   /// Factory constructor to create [FhirUrl] from JSON
   factory FhirUrl.fromJson(Map<String, dynamic> json) {

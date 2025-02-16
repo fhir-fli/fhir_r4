@@ -36,6 +36,11 @@ class CareTeam extends DomainResource {
           resourceType: R4ResourceType.CareTeam,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CareTeam.empty() => CareTeam();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CareTeam.fromJson(
     Map<String, dynamic> json,
@@ -794,6 +799,11 @@ class CareTeamParticipant extends BackboneElement {
   }) : super(
           objectPath: 'CareTeam.participant',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CareTeamParticipant.empty() => CareTeamParticipant();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CareTeamParticipant.fromJson(

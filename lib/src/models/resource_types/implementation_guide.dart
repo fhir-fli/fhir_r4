@@ -46,6 +46,17 @@ class ImplementationGuide extends CanonicalResource {
           resourceType: R4ResourceType.ImplementationGuide,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuide.empty() => ImplementationGuide(
+        url: FhirUri.empty(),
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        packageId: FhirId.empty(),
+        fhirVersion: <FHIRVersion>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuide.fromJson(
     Map<String, dynamic> json,
@@ -907,6 +918,13 @@ class ImplementationGuideDependsOn extends BackboneElement {
           objectPath: 'ImplementationGuide.dependsOn',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideDependsOn.empty() => ImplementationGuideDependsOn(
+        uri: FhirCanonical.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDependsOn.fromJson(
     Map<String, dynamic> json,
@@ -1222,6 +1240,14 @@ class ImplementationGuideGlobal extends BackboneElement {
           objectPath: 'ImplementationGuide.global',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideGlobal.empty() => ImplementationGuideGlobal(
+        type: FhirCode.empty(),
+        profile: FhirCanonical.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGlobal.fromJson(
     Map<String, dynamic> json,
@@ -1511,6 +1537,14 @@ class ImplementationGuideDefinition extends BackboneElement {
   }) : super(
           objectPath: 'ImplementationGuide.definition',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideDefinition.empty() =>
+      const ImplementationGuideDefinition(
+        resource: <ImplementationGuideResource>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDefinition.fromJson(
@@ -1922,6 +1956,13 @@ class ImplementationGuideGrouping extends BackboneElement {
           objectPath: 'ImplementationGuide.definition.grouping',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideGrouping.empty() => ImplementationGuideGrouping(
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGrouping.fromJson(
     Map<String, dynamic> json,
@@ -2217,6 +2258,13 @@ class ImplementationGuideResource extends BackboneElement {
   }) : super(
           objectPath: 'ImplementationGuide.definition.resource',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideResource.empty() => ImplementationGuideResource(
+        reference: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource.fromJson(
@@ -2640,6 +2688,15 @@ class ImplementationGuidePage extends BackboneElement {
           objectPath: 'ImplementationGuide.definition.page',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuidePage.empty() => ImplementationGuidePage(
+        nameX: FhirUrl.empty(),
+        title: FhirString.empty(),
+        generation: GuidePageGeneration.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage.fromJson(
     Map<String, dynamic> json,
@@ -3004,6 +3061,14 @@ class ImplementationGuideParameter extends BackboneElement {
           objectPath: 'ImplementationGuide.definition.parameter',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideParameter.empty() => ImplementationGuideParameter(
+        code: GuideParameterCode.values.first,
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideParameter.fromJson(
     Map<String, dynamic> json,
@@ -3292,6 +3357,14 @@ class ImplementationGuideTemplate extends BackboneElement {
   }) : super(
           objectPath: 'ImplementationGuide.definition.template',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideTemplate.empty() => ImplementationGuideTemplate(
+        code: FhirCode.empty(),
+        source: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideTemplate.fromJson(
@@ -3606,6 +3679,14 @@ class ImplementationGuideManifest extends BackboneElement {
   }) : super(
           objectPath: 'ImplementationGuide.manifest',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideManifest.empty() =>
+      const ImplementationGuideManifest(
+        resource: <ImplementationGuideResource1>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideManifest.fromJson(
@@ -4013,6 +4094,13 @@ class ImplementationGuideResource1 extends BackboneElement {
           objectPath: 'ImplementationGuide.manifest.resource',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuideResource1.empty() => ImplementationGuideResource1(
+        reference: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
@@ -4348,6 +4436,13 @@ class ImplementationGuidePage1 extends BackboneElement {
   }) : super(
           objectPath: 'ImplementationGuide.manifest.page',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImplementationGuidePage1.empty() => ImplementationGuidePage1(
+        name: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage1.fromJson(

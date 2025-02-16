@@ -23,6 +23,13 @@ class Binary extends Resource {
           resourceType: R4ResourceType.Binary,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Binary.empty() => Binary(
+        contentType: FhirCode.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Binary.fromJson(
     Map<String, dynamic> json,

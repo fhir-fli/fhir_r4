@@ -43,6 +43,14 @@ class EvidenceReport extends DomainResource {
           resourceType: R4ResourceType.EvidenceReport,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceReport.empty() => EvidenceReport(
+        status: PublicationStatus.values.first,
+        subject: EvidenceReportSubject.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReport.fromJson(
     Map<String, dynamic> json,
@@ -993,6 +1001,11 @@ class EvidenceReportSubject extends BackboneElement {
           objectPath: 'EvidenceReport.subject',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceReportSubject.empty() => EvidenceReportSubject();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportSubject.fromJson(
     Map<String, dynamic> json,
@@ -1306,6 +1319,14 @@ class EvidenceReportCharacteristic extends BackboneElement {
   }) : super(
           objectPath: 'EvidenceReport.subject.characteristic',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceReportCharacteristic.empty() => EvidenceReportCharacteristic(
+        code: CodeableConcept.empty(),
+        valueX: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportCharacteristic.fromJson(
@@ -1686,6 +1707,14 @@ class EvidenceReportRelatesTo extends BackboneElement {
           objectPath: 'EvidenceReport.relatesTo',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceReportRelatesTo.empty() => EvidenceReportRelatesTo(
+        code: ReportRelationshipType.values.first,
+        targetX: Identifier.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportRelatesTo.fromJson(
     Map<String, dynamic> json,
@@ -2002,6 +2031,11 @@ class EvidenceReportSection extends BackboneElement {
   }) : super(
           objectPath: 'EvidenceReport.section',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory EvidenceReportSection.empty() => EvidenceReportSection();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceReportSection.fromJson(

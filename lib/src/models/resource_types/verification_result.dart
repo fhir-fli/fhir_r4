@@ -37,6 +37,13 @@ class VerificationResult extends DomainResource {
           resourceType: R4ResourceType.VerificationResult,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VerificationResult.empty() => VerificationResult(
+        status: Status.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResult.fromJson(
     Map<String, dynamic> json,
@@ -778,6 +785,12 @@ class VerificationResultPrimarySource extends BackboneElement {
           objectPath: 'VerificationResult.primarySource',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VerificationResultPrimarySource.empty() =>
+      VerificationResultPrimarySource();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultPrimarySource.fromJson(
     Map<String, dynamic> json,
@@ -1232,6 +1245,12 @@ class VerificationResultAttestation extends BackboneElement {
           objectPath: 'VerificationResult.attestation',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VerificationResultAttestation.empty() =>
+      VerificationResultAttestation();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultAttestation.fromJson(
     Map<String, dynamic> json,
@@ -1640,15 +1659,11 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      sourceIdentityCertificate,
-      o.sourceIdentityCertificate,
-    )) {
+        sourceIdentityCertificate, o.sourceIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      proxyIdentityCertificate,
-      o.proxyIdentityCertificate,
-    )) {
+        proxyIdentityCertificate, o.proxyIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
@@ -1678,6 +1693,13 @@ class VerificationResultValidator extends BackboneElement {
   }) : super(
           objectPath: 'VerificationResult.validator',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VerificationResultValidator.empty() => VerificationResultValidator(
+        organization: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultValidator.fromJson(

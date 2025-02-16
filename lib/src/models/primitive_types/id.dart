@@ -36,8 +36,7 @@ class FhirId extends PrimitiveType<String>
   }
 
   /// Creates empty [FhirId] object
-  factory FhirId.empty() =>
-      FhirId(null, element: Element.empty());
+  factory FhirId.empty() => FhirId(null, element: Element.empty());
 
   /// Factory constructor to create [FhirId] from JSON input.
   factory FhirId.fromJson(Map<String, dynamic> json) {

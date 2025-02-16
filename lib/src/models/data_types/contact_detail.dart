@@ -27,6 +27,11 @@ class ContactDetail extends DataType
     super.objectPath = 'ContactDetail',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ContactDetail.empty() => ContactDetail();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContactDetail.fromJson(
     Map<String, dynamic> json,

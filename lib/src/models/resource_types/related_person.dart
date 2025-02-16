@@ -36,6 +36,13 @@ class RelatedPerson extends DomainResource {
           resourceType: R4ResourceType.RelatedPerson,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RelatedPerson.empty() => RelatedPerson(
+        patient: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedPerson.fromJson(
     Map<String, dynamic> json,
@@ -750,6 +757,13 @@ class RelatedPersonCommunication extends BackboneElement {
   }) : super(
           objectPath: 'RelatedPerson.communication',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory RelatedPersonCommunication.empty() => RelatedPersonCommunication(
+        language: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedPersonCommunication.fromJson(

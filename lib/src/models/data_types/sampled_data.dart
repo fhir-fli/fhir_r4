@@ -35,6 +35,15 @@ class SampledData extends DataType
     super.objectPath = 'SampledData',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SampledData.empty() => SampledData(
+        origin: Quantity.empty(),
+        period: FhirDecimal.empty(),
+        dimensions: FhirPositiveInt.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SampledData.fromJson(
     Map<String, dynamic> json,

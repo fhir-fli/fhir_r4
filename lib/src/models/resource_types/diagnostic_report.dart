@@ -45,6 +45,14 @@ class DiagnosticReport extends DomainResource {
           resourceType: R4ResourceType.DiagnosticReport,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DiagnosticReport.empty() => DiagnosticReport(
+        status: DiagnosticReportStatus.values.first,
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DiagnosticReport.fromJson(
     Map<String, dynamic> json,
@@ -982,6 +990,13 @@ class DiagnosticReportMedia extends BackboneElement {
   }) : super(
           objectPath: 'DiagnosticReport.media',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DiagnosticReportMedia.empty() => DiagnosticReportMedia(
+        link: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DiagnosticReportMedia.fromJson(

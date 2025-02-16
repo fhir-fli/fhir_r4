@@ -33,6 +33,11 @@ class Count extends Quantity
     super.objectPath = 'Count',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Count.empty() => Count();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Count.fromJson(
     Map<String, dynamic> json,

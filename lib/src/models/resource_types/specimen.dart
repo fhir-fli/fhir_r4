@@ -35,6 +35,11 @@ class Specimen extends DomainResource {
           resourceType: R4ResourceType.Specimen,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Specimen.empty() => Specimen();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Specimen.fromJson(
     Map<String, dynamic> json,
@@ -784,6 +789,11 @@ class SpecimenCollection extends BackboneElement {
           objectPath: 'Specimen.collection',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenCollection.empty() => SpecimenCollection();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenCollection.fromJson(
     Map<String, dynamic> json,
@@ -1245,6 +1255,11 @@ class SpecimenProcessing extends BackboneElement {
           objectPath: 'Specimen.processing',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenProcessing.empty() => SpecimenProcessing();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenProcessing.fromJson(
     Map<String, dynamic> json,
@@ -1620,6 +1635,11 @@ class SpecimenContainer extends BackboneElement {
   }) : super(
           objectPath: 'Specimen.container',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenContainer.empty() => SpecimenContainer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenContainer.fromJson(

@@ -35,6 +35,13 @@ class QuestionnaireResponse extends DomainResource {
           resourceType: R4ResourceType.QuestionnaireResponse,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireResponse.empty() => QuestionnaireResponse(
+        status: QuestionnaireResponseStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponse.fromJson(
     Map<String, dynamic> json,
@@ -693,6 +700,13 @@ class QuestionnaireResponseItem extends BackboneElement {
           objectPath: 'QuestionnaireResponse.item',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireResponseItem.empty() => QuestionnaireResponseItem(
+        linkId: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseItem.fromJson(
     Map<String, dynamic> json,
@@ -1077,6 +1091,11 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   }) : super(
           objectPath: 'QuestionnaireResponse.item.answer',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory QuestionnaireResponseAnswer.empty() => QuestionnaireResponseAnswer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseAnswer.fromJson(

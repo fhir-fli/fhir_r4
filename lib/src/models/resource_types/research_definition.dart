@@ -59,6 +59,14 @@ class ResearchDefinition extends DomainResource {
           resourceType: R4ResourceType.ResearchDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ResearchDefinition.empty() => ResearchDefinition(
+        status: PublicationStatus.values.first,
+        population: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchDefinition.fromJson(
     Map<String, dynamic> json,

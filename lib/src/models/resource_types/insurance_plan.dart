@@ -36,6 +36,11 @@ class InsurancePlan extends DomainResource {
           resourceType: R4ResourceType.InsurancePlan,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlan.empty() => InsurancePlan();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlan.fromJson(
     Map<String, dynamic> json,
@@ -826,6 +831,11 @@ class InsurancePlanContact extends BackboneElement {
           objectPath: 'InsurancePlan.contact',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanContact.empty() => InsurancePlanContact();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanContact.fromJson(
     Map<String, dynamic> json,
@@ -1177,6 +1187,14 @@ class InsurancePlanCoverage extends BackboneElement {
           objectPath: 'InsurancePlan.coverage',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanCoverage.empty() => InsurancePlanCoverage(
+        type: CodeableConcept.empty(),
+        benefit: <InsurancePlanBenefit>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanCoverage.fromJson(
     Map<String, dynamic> json,
@@ -1511,6 +1529,13 @@ class InsurancePlanBenefit extends BackboneElement {
           objectPath: 'InsurancePlan.coverage.benefit',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanBenefit.empty() => InsurancePlanBenefit(
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanBenefit.fromJson(
     Map<String, dynamic> json,
@@ -1834,6 +1859,11 @@ class InsurancePlanLimit extends BackboneElement {
           objectPath: 'InsurancePlan.coverage.benefit.limit',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanLimit.empty() => InsurancePlanLimit();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanLimit.fromJson(
     Map<String, dynamic> json,
@@ -2128,6 +2158,11 @@ class InsurancePlanPlan extends BackboneElement {
   }) : super(
           objectPath: 'InsurancePlan.plan',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanPlan.empty() => InsurancePlanPlan();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanPlan.fromJson(
@@ -2575,6 +2610,11 @@ class InsurancePlanGeneralCost extends BackboneElement {
           objectPath: 'InsurancePlan.plan.generalCost',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanGeneralCost.empty() => InsurancePlanGeneralCost();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanGeneralCost.fromJson(
     Map<String, dynamic> json,
@@ -2914,6 +2954,13 @@ class InsurancePlanSpecificCost extends BackboneElement {
           objectPath: 'InsurancePlan.plan.specificCost',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanSpecificCost.empty() => InsurancePlanSpecificCost(
+        category: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanSpecificCost.fromJson(
     Map<String, dynamic> json,
@@ -3213,6 +3260,13 @@ class InsurancePlanBenefit1 extends BackboneElement {
   }) : super(
           objectPath: 'InsurancePlan.plan.specificCost.benefit',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanBenefit1.empty() => InsurancePlanBenefit1(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanBenefit1.fromJson(
@@ -3515,6 +3569,13 @@ class InsurancePlanCost extends BackboneElement {
   }) : super(
           objectPath: 'InsurancePlan.plan.specificCost.benefit.cost',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory InsurancePlanCost.empty() => InsurancePlanCost(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanCost.fromJson(

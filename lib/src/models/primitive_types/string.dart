@@ -78,9 +78,8 @@ class FhirString extends PrimitiveType<String>
     }
   }
 
-    /// Creates empty [FhirString] object
-  factory FhirString.empty() =>
-      FhirString(null, element: Element.empty());
+  /// Creates empty [FhirString] object
+  factory FhirString.empty() => FhirString(null, element: Element.empty());
 
   /// Factory constructor to create [FhirString] from JSON.
   factory FhirString.fromJson(Map<String, dynamic> json) {

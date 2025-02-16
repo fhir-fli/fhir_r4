@@ -39,6 +39,13 @@ class AllergyIntolerance extends DomainResource {
           resourceType: R4ResourceType.AllergyIntolerance,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AllergyIntolerance.empty() => AllergyIntolerance(
+        patient: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AllergyIntolerance.fromJson(
     Map<String, dynamic> json,
@@ -884,6 +891,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
   }) : super(
           objectPath: 'AllergyIntolerance.reaction',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AllergyIntoleranceReaction.empty() => AllergyIntoleranceReaction(
+        manifestation: <CodeableConcept>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AllergyIntoleranceReaction.fromJson(

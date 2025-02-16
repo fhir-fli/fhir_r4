@@ -35,6 +35,14 @@ class FhirGroup extends DomainResource {
           resourceType: R4ResourceType.FhirGroup,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory FhirGroup.empty() => FhirGroup(
+        type: GroupType.values.first,
+        actual: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirGroup.fromJson(
     Map<String, dynamic> json,
@@ -660,6 +668,15 @@ class GroupCharacteristic extends BackboneElement {
           objectPath: 'Group.characteristic',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GroupCharacteristic.empty() => GroupCharacteristic(
+        code: CodeableConcept.empty(),
+        valueX: CodeableConcept.empty(),
+        exclude: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupCharacteristic.fromJson(
     Map<String, dynamic> json,
@@ -1039,6 +1056,13 @@ class GroupMember extends BackboneElement {
   }) : super(
           objectPath: 'Group.member',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory GroupMember.empty() => GroupMember(
+        entity: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupMember.fromJson(

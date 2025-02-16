@@ -46,6 +46,17 @@ class Composition extends DomainResource {
           resourceType: R4ResourceType.Composition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Composition.empty() => Composition(
+        status: CompositionStatus.values.first,
+        type: CodeableConcept.empty(),
+        date: FhirDateTime.empty(),
+        author: <Reference>[],
+        title: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Composition.fromJson(
     Map<String, dynamic> json,
@@ -826,6 +837,13 @@ class CompositionAttester extends BackboneElement {
           objectPath: 'Composition.attester',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompositionAttester.empty() => CompositionAttester(
+        mode: CompositionAttestationMode.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionAttester.fromJson(
     Map<String, dynamic> json,
@@ -1139,6 +1157,14 @@ class CompositionRelatesTo extends BackboneElement {
           objectPath: 'Composition.relatesTo',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompositionRelatesTo.empty() => CompositionRelatesTo(
+        code: DocumentRelationshipType.values.first,
+        targetX: Identifier.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionRelatesTo.fromJson(
     Map<String, dynamic> json,
@@ -1447,6 +1473,11 @@ class CompositionEvent extends BackboneElement {
   }) : super(
           objectPath: 'Composition.event',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompositionEvent.empty() => CompositionEvent();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionEvent.fromJson(
@@ -1799,6 +1830,11 @@ class CompositionSection extends BackboneElement {
   }) : super(
           objectPath: 'Composition.section',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompositionSection.empty() => CompositionSection();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionSection.fromJson(

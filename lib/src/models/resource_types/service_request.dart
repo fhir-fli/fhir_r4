@@ -56,6 +56,15 @@ class ServiceRequest extends DomainResource {
           resourceType: R4ResourceType.ServiceRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ServiceRequest.empty() => ServiceRequest(
+        status: RequestStatus.values.first,
+        intent: RequestIntent.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ServiceRequest.fromJson(
     Map<String, dynamic> json,

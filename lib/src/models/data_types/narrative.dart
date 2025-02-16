@@ -18,6 +18,14 @@ class Narrative extends DataType {
     super.objectPath = 'Narrative',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Narrative.empty() => Narrative(
+        status: NarrativeStatus.values.first,
+        div: FhirXhtml.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Narrative.fromJson(
     Map<String, dynamic> json,

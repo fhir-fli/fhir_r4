@@ -56,6 +56,13 @@ class MedicinalProductDefinition extends DomainResource {
           resourceType: R4ResourceType.MedicinalProductDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinition.empty() => MedicinalProductDefinition(
+        name: <MedicinalProductDefinitionName>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1182,9 +1189,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      combinedPharmaceuticalDoseForm,
-      o.combinedPharmaceuticalDoseForm,
-    )) {
+        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1200,9 +1205,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-      additionalMonitoringIndicator,
-      o.additionalMonitoringIndicator,
-    )) {
+        additionalMonitoringIndicator, o.additionalMonitoringIndicator)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1318,6 +1321,14 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   }) : super(
           objectPath: 'MedicinalProductDefinition.contact',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionContact.empty() =>
+      MedicinalProductDefinitionContact(
+        contact: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionContact.fromJson(
@@ -1609,6 +1620,14 @@ class MedicinalProductDefinitionName extends BackboneElement {
   }) : super(
           objectPath: 'MedicinalProductDefinition.name',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionName.empty() =>
+      MedicinalProductDefinitionName(
+        productName: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionName.fromJson(
@@ -1969,6 +1988,15 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
           objectPath: 'MedicinalProductDefinition.name.namePart',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionNamePart.empty() =>
+      MedicinalProductDefinitionNamePart(
+        part_: FhirString.empty(),
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionNamePart.fromJson(
     Map<String, dynamic> json,
@@ -2256,6 +2284,15 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   }) : super(
           objectPath: 'MedicinalProductDefinition.name.countryLanguage',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionCountryLanguage.empty() =>
+      MedicinalProductDefinitionCountryLanguage(
+        country: CodeableConcept.empty(),
+        language: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCountryLanguage.fromJson(
@@ -2570,6 +2607,14 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
           objectPath: 'MedicinalProductDefinition.crossReference',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionCrossReference.empty() =>
+      MedicinalProductDefinitionCrossReference(
+        product: CodeableReference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCrossReference.fromJson(
     Map<String, dynamic> json,
@@ -2864,6 +2909,12 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   }) : super(
           objectPath: 'MedicinalProductDefinition.operation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionOperation.empty() =>
+      MedicinalProductDefinitionOperation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionOperation.fromJson(
@@ -3196,9 +3247,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      confidentialityIndicator,
-      o.confidentialityIndicator,
-    )) {
+        confidentialityIndicator, o.confidentialityIndicator)) {
       return false;
     }
     return true;
@@ -3222,6 +3271,14 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   }) : super(
           objectPath: 'MedicinalProductDefinition.characteristic',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicinalProductDefinitionCharacteristic.empty() =>
+      MedicinalProductDefinitionCharacteristic(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCharacteristic.fromJson(

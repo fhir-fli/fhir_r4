@@ -37,6 +37,15 @@ class Signature extends DataType
     super.objectPath = 'Signature',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Signature.empty() => Signature(
+        type: <Coding>[],
+        when: FhirInstant.empty(),
+        who: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Signature.fromJson(
     Map<String, dynamic> json,

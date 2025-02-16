@@ -35,6 +35,14 @@ class DocumentManifest extends DomainResource {
           resourceType: R4ResourceType.DocumentManifest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentManifest.empty() => DocumentManifest(
+        status: DocumentReferenceStatus.values.first,
+        content: <Reference>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifest.fromJson(
     Map<String, dynamic> json,
@@ -733,6 +741,11 @@ class DocumentManifestRelated extends BackboneElement {
   }) : super(
           objectPath: 'DocumentManifest.related',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DocumentManifestRelated.empty() => DocumentManifestRelated();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifestRelated.fromJson(

@@ -51,6 +51,17 @@ class CapabilityStatement extends CanonicalResource {
           resourceType: R4ResourceType.CapabilityStatement,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatement.empty() => CapabilityStatement(
+        status: PublicationStatus.values.first,
+        date: FhirDateTime.empty(),
+        kind: CapabilityStatementKind.values.first,
+        fhirVersion: FHIRVersion.values.first,
+        format: <FhirCode>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatement.fromJson(
     Map<String, dynamic> json,
@@ -1105,6 +1116,13 @@ class CapabilityStatementSoftware extends BackboneElement {
           objectPath: 'CapabilityStatement.software',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementSoftware.empty() => CapabilityStatementSoftware(
+        name: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSoftware.fromJson(
     Map<String, dynamic> json,
@@ -1419,6 +1437,14 @@ class CapabilityStatementImplementation extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.implementation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementImplementation.empty() =>
+      CapabilityStatementImplementation(
+        description: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementImplementation.fromJson(
@@ -1740,6 +1766,13 @@ class CapabilityStatementRest extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.rest',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementRest.empty() => CapabilityStatementRest(
+        mode: RestfulCapabilityMode.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementRest.fromJson(
@@ -2236,6 +2269,11 @@ class CapabilityStatementSecurity extends BackboneElement {
           objectPath: 'CapabilityStatement.rest.security',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementSecurity.empty() => CapabilityStatementSecurity();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSecurity.fromJson(
     Map<String, dynamic> json,
@@ -2577,6 +2615,13 @@ class CapabilityStatementResource extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.rest.resource',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementResource.empty() => CapabilityStatementResource(
+        type: FhirCode.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementResource.fromJson(
@@ -3312,6 +3357,14 @@ class CapabilityStatementInteraction extends BackboneElement {
           objectPath: 'CapabilityStatement.rest.resource.interaction',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementInteraction.empty() =>
+      CapabilityStatementInteraction(
+        code: TypeRestfulInteraction.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementInteraction.fromJson(
     Map<String, dynamic> json,
@@ -3606,6 +3659,15 @@ class CapabilityStatementSearchParam extends BackboneElement {
           objectPath: 'CapabilityStatement.rest.resource.searchParam',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementSearchParam.empty() =>
+      CapabilityStatementSearchParam(
+        name: FhirString.empty(),
+        type: SearchParamType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSearchParam.fromJson(
     Map<String, dynamic> json,
@@ -3715,7 +3777,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// An absolute URI that is a formal reference to where this parameter was
   /// first defined, so that a client can be confident of the meaning of the
   /// search parameter (a reference to
-  // ignore: lines_longer_than_80_chars
   /// [SearchParameter.url](searchparameter-definitions.html#SearchParameter.url)).
   /// This element SHALL be populated if the search parameter refers to a
   /// SearchParameter defined by the FHIR core specification or externally
@@ -3952,6 +4013,14 @@ class CapabilityStatementOperation extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.rest.resource.operation',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementOperation.empty() => CapabilityStatementOperation(
+        name: FhirString.empty(),
+        definition: FhirCanonical.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementOperation.fromJson(
@@ -4275,6 +4344,14 @@ class CapabilityStatementInteraction1 extends BackboneElement {
           objectPath: 'CapabilityStatement.rest.interaction',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementInteraction1.empty() =>
+      CapabilityStatementInteraction1(
+        code: SystemRestfulInteraction.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementInteraction1.fromJson(
     Map<String, dynamic> json,
@@ -4566,6 +4643,12 @@ class CapabilityStatementMessaging extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.messaging',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementMessaging.empty() =>
+      CapabilityStatementMessaging();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementMessaging.fromJson(
@@ -4935,6 +5018,14 @@ class CapabilityStatementEndpoint extends BackboneElement {
           objectPath: 'CapabilityStatement.messaging.endpoint',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementEndpoint.empty() => CapabilityStatementEndpoint(
+        protocol: Coding.empty(),
+        address: FhirUrl.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementEndpoint.fromJson(
     Map<String, dynamic> json,
@@ -5224,6 +5315,15 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
           objectPath: 'CapabilityStatement.messaging.supportedMessage',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementSupportedMessage.empty() =>
+      CapabilityStatementSupportedMessage(
+        mode: EventCapabilityMode.values.first,
+        definition: FhirCanonical.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSupportedMessage.fromJson(
     Map<String, dynamic> json,
@@ -5512,6 +5612,14 @@ class CapabilityStatementDocument extends BackboneElement {
   }) : super(
           objectPath: 'CapabilityStatement.document',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CapabilityStatementDocument.empty() => CapabilityStatementDocument(
+        mode: DocumentMode.values.first,
+        profile: FhirCanonical.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementDocument.fromJson(

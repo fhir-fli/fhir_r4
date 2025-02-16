@@ -50,6 +50,11 @@ class Device extends DomainResource {
           resourceType: R4ResourceType.Device,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Device.empty() => Device();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Device.fromJson(
     Map<String, dynamic> json,
@@ -1155,6 +1160,11 @@ class DeviceUdiCarrier extends BackboneElement {
           objectPath: 'Device.udiCarrier',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceUdiCarrier.empty() => DeviceUdiCarrier();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceUdiCarrier.fromJson(
     Map<String, dynamic> json,
@@ -1563,6 +1573,14 @@ class DeviceDeviceName extends BackboneElement {
           objectPath: 'Device.deviceName',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceDeviceName.empty() => DeviceDeviceName(
+        name: FhirString.empty(),
+        type: DeviceNameType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDeviceName.fromJson(
     Map<String, dynamic> json,
@@ -1853,6 +1871,13 @@ class DeviceSpecialization extends BackboneElement {
           objectPath: 'Device.specialization',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceSpecialization.empty() => DeviceSpecialization(
+        systemType: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceSpecialization.fromJson(
     Map<String, dynamic> json,
@@ -2142,6 +2167,13 @@ class DeviceVersion extends BackboneElement {
   }) : super(
           objectPath: 'Device.version',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceVersion.empty() => DeviceVersion(
+        value: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceVersion.fromJson(
@@ -2456,6 +2488,13 @@ class DeviceProperty extends BackboneElement {
   }) : super(
           objectPath: 'Device.property',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceProperty.empty() => DeviceProperty(
+        type: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceProperty.fromJson(

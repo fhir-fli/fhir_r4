@@ -50,6 +50,19 @@ class ClaimResponse extends DomainResource {
           resourceType: R4ResourceType.ClaimResponse,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponse.empty() => ClaimResponse(
+        status: FinancialResourceStatusCodes.values.first,
+        type: CodeableConcept.empty(),
+        use: Use.values.first,
+        patient: Reference.empty(),
+        created: FhirDateTime.empty(),
+        insurer: Reference.empty(),
+        outcome: RemittanceOutcome.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponse.fromJson(
     Map<String, dynamic> json,
@@ -1151,6 +1164,14 @@ class ClaimResponseItem extends BackboneElement {
           objectPath: 'ClaimResponse.item',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseItem.empty() => ClaimResponseItem(
+        itemSequence: FhirPositiveInt.empty(),
+        adjudication: <ClaimResponseAdjudication>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseItem.fromJson(
     Map<String, dynamic> json,
@@ -1522,6 +1543,13 @@ class ClaimResponseAdjudication extends BackboneElement {
           objectPath: 'ClaimResponse.item.adjudication',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseAdjudication.empty() => ClaimResponseAdjudication(
+        category: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseAdjudication.fromJson(
     Map<String, dynamic> json,
@@ -1867,6 +1895,14 @@ class ClaimResponseDetail extends BackboneElement {
   }) : super(
           objectPath: 'ClaimResponse.item.detail',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseDetail.empty() => ClaimResponseDetail(
+        detailSequence: FhirPositiveInt.empty(),
+        adjudication: <ClaimResponseAdjudication>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseDetail.fromJson(
@@ -2233,6 +2269,13 @@ class ClaimResponseSubDetail extends BackboneElement {
           objectPath: 'ClaimResponse.item.detail.subDetail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseSubDetail.empty() => ClaimResponseSubDetail(
+        subDetailSequence: FhirPositiveInt.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseSubDetail.fromJson(
     Map<String, dynamic> json,
@@ -2580,6 +2623,14 @@ class ClaimResponseAddItem extends BackboneElement {
   }) : super(
           objectPath: 'ClaimResponse.addItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseAddItem.empty() => ClaimResponseAddItem(
+        productOrService: CodeableConcept.empty(),
+        adjudication: <ClaimResponseAdjudication>[],
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseAddItem.fromJson(
@@ -3416,6 +3467,14 @@ class ClaimResponseDetail1 extends BackboneElement {
           objectPath: 'ClaimResponse.addItem.detail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseDetail1.empty() => ClaimResponseDetail1(
+        productOrService: CodeableConcept.empty(),
+        adjudication: <ClaimResponseAdjudication>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseDetail1.fromJson(
     Map<String, dynamic> json,
@@ -3926,6 +3985,14 @@ class ClaimResponseSubDetail1 extends BackboneElement {
           objectPath: 'ClaimResponse.addItem.detail.subDetail',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseSubDetail1.empty() => ClaimResponseSubDetail1(
+        productOrService: CodeableConcept.empty(),
+        adjudication: <ClaimResponseAdjudication>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseSubDetail1.fromJson(
     Map<String, dynamic> json,
@@ -4395,6 +4462,14 @@ class ClaimResponseTotal extends BackboneElement {
           objectPath: 'ClaimResponse.total',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseTotal.empty() => ClaimResponseTotal(
+        category: CodeableConcept.empty(),
+        amount: Money.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseTotal.fromJson(
     Map<String, dynamic> json,
@@ -4688,6 +4763,14 @@ class ClaimResponsePayment extends BackboneElement {
   }) : super(
           objectPath: 'ClaimResponse.payment',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponsePayment.empty() => ClaimResponsePayment(
+        type: CodeableConcept.empty(),
+        amount: Money.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponsePayment.fromJson(
@@ -5077,6 +5160,13 @@ class ClaimResponseProcessNote extends BackboneElement {
           objectPath: 'ClaimResponse.processNote',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseProcessNote.empty() => ClaimResponseProcessNote(
+        text: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseProcessNote.fromJson(
     Map<String, dynamic> json,
@@ -5416,6 +5506,15 @@ class ClaimResponseInsurance extends BackboneElement {
   }) : super(
           objectPath: 'ClaimResponse.insurance',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseInsurance.empty() => ClaimResponseInsurance(
+        sequence: FhirPositiveInt.empty(),
+        focal: FhirBoolean.empty(),
+        coverage: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseInsurance.fromJson(
@@ -5781,6 +5880,13 @@ class ClaimResponseError extends BackboneElement {
   }) : super(
           objectPath: 'ClaimResponse.error',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClaimResponseError.empty() => ClaimResponseError(
+        code: CodeableConcept.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseError.fromJson(

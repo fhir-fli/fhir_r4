@@ -38,6 +38,15 @@ class Consent extends DomainResource {
           resourceType: R4ResourceType.Consent,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Consent.empty() => Consent(
+        status: ConsentState.values.first,
+        scope: CodeableConcept.empty(),
+        category: <CodeableConcept>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Consent.fromJson(
     Map<String, dynamic> json,
@@ -793,6 +802,11 @@ class ConsentPolicy extends BackboneElement {
           objectPath: 'Consent.policy',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConsentPolicy.empty() => ConsentPolicy();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentPolicy.fromJson(
     Map<String, dynamic> json,
@@ -1088,6 +1102,13 @@ class ConsentVerification extends BackboneElement {
   }) : super(
           objectPath: 'Consent.verification',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConsentVerification.empty() => ConsentVerification(
+        verified: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentVerification.fromJson(
@@ -1411,6 +1432,11 @@ class ConsentProvision extends BackboneElement {
   }) : super(
           objectPath: 'Consent.provision',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConsentProvision.empty() => ConsentProvision();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentProvision.fromJson(
@@ -2015,6 +2041,14 @@ class ConsentActor extends BackboneElement {
           objectPath: 'Consent.provision.actor',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConsentActor.empty() => ConsentActor(
+        role: CodeableConcept.empty(),
+        reference: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentActor.fromJson(
     Map<String, dynamic> json,
@@ -2304,6 +2338,14 @@ class ConsentData extends BackboneElement {
   }) : super(
           objectPath: 'Consent.provision.data',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConsentData.empty() => ConsentData(
+        meaning: ConsentDataMeaning.values.first,
+        reference: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentData.fromJson(

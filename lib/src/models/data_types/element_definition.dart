@@ -51,6 +51,13 @@ class ElementDefinition extends BackboneType {
     super.objectPath = 'ElementDefinition',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinition.empty() => ElementDefinition(
+        path: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinition.fromJson(
     Map<String, dynamic> json,
@@ -2701,6 +2708,13 @@ class ElementDefinitionSlicing extends Element {
     super.objectPath = 'ElementDefinitionSlicing',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionSlicing.empty() => ElementDefinitionSlicing(
+        rules: SlicingRules.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionSlicing.fromJson(
     Map<String, dynamic> json,
@@ -3029,6 +3043,15 @@ class ElementDefinitionDiscriminator extends Element {
     super.objectPath = 'ElementDefinitionDiscriminator',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionDiscriminator.empty() =>
+      ElementDefinitionDiscriminator(
+        type: DiscriminatorType.values.first,
+        path: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionDiscriminator.fromJson(
     Map<String, dynamic> json,
@@ -3292,6 +3315,15 @@ class ElementDefinitionBase extends Element {
     super.disallowExtensions,
     super.objectPath = 'ElementDefinitionBase',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionBase.empty() => ElementDefinitionBase(
+        path: FhirString.empty(),
+        min: FhirUnsignedInt.empty(),
+        max: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionBase.fromJson(
@@ -3576,6 +3608,13 @@ class ElementDefinitionType extends Element {
     super.disallowExtensions,
     super.objectPath = 'ElementDefinitionType',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionType.empty() => ElementDefinitionType(
+        code: FhirUri.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionType.fromJson(
@@ -3946,6 +3985,14 @@ class ElementDefinitionExample extends Element {
     super.disallowExtensions,
     super.objectPath = 'ElementDefinitionExample',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionExample.empty() => ElementDefinitionExample(
+        label: FhirString.empty(),
+        valueX: FhirBase64Binary.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionExample.fromJson(
@@ -4623,6 +4670,15 @@ class ElementDefinitionConstraint extends Element {
     super.objectPath = 'ElementDefinitionConstraint',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionConstraint.empty() => ElementDefinitionConstraint(
+        key: FhirId.empty(),
+        severity: ConstraintSeverity.values.first,
+        human: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionConstraint.fromJson(
     Map<String, dynamic> json,
@@ -5004,6 +5060,13 @@ class ElementDefinitionBinding extends Element {
     super.objectPath = 'ElementDefinitionBinding',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionBinding.empty() => ElementDefinitionBinding(
+        strength: BindingStrength.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionBinding.fromJson(
     Map<String, dynamic> json,
@@ -5289,6 +5352,14 @@ class ElementDefinitionMapping extends Element {
     super.disallowExtensions,
     super.objectPath = 'ElementDefinitionMapping',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ElementDefinitionMapping.empty() => ElementDefinitionMapping(
+        identity: FhirId.empty(),
+        map: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ElementDefinitionMapping.fromJson(

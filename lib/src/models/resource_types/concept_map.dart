@@ -42,6 +42,13 @@ class ConceptMap extends CanonicalResource {
           resourceType: R4ResourceType.ConceptMap,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMap.empty() => ConceptMap(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMap.fromJson(
     Map<String, dynamic> json,
@@ -879,6 +886,13 @@ class ConceptMapGroup extends BackboneElement {
           objectPath: 'ConceptMap.group',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMapGroup.empty() => ConceptMapGroup(
+        element: <ConceptMapElement>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapGroup.fromJson(
     Map<String, dynamic> json,
@@ -1283,6 +1297,11 @@ class ConceptMapElement extends BackboneElement {
           objectPath: 'ConceptMap.group.element',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMapElement.empty() => ConceptMapElement();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapElement.fromJson(
     Map<String, dynamic> json,
@@ -1612,6 +1631,13 @@ class ConceptMapTarget extends BackboneElement {
   }) : super(
           objectPath: 'ConceptMap.group.element.target',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMapTarget.empty() => ConceptMapTarget(
+        equivalence: ConceptMapEquivalence.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapTarget.fromJson(
@@ -2033,6 +2059,14 @@ class ConceptMapDependsOn extends BackboneElement {
           objectPath: 'ConceptMap.group.element.target.dependsOn',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMapDependsOn.empty() => ConceptMapDependsOn(
+        property: FhirUri.empty(),
+        value: FhirString.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapDependsOn.fromJson(
     Map<String, dynamic> json,
@@ -2376,6 +2410,13 @@ class ConceptMapUnmapped extends BackboneElement {
   }) : super(
           objectPath: 'ConceptMap.group.unmapped',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ConceptMapUnmapped.empty() => ConceptMapUnmapped(
+        mode: ConceptMapGroupUnmappedMode.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConceptMapUnmapped.fromJson(

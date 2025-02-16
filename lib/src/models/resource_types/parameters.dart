@@ -21,6 +21,11 @@ class Parameters extends Resource {
           resourceType: R4ResourceType.Parameters,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Parameters.empty() => Parameters();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Parameters.fromJson(
     Map<String, dynamic> json,
@@ -297,6 +302,13 @@ class ParametersParameter extends BackboneElement {
   }) : super(
           objectPath: 'Parameters.parameter',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ParametersParameter.empty() => ParametersParameter(
+        name: FhirString.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ParametersParameter.fromJson(

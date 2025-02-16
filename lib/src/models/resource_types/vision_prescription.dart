@@ -31,6 +31,18 @@ class VisionPrescription extends DomainResource {
           resourceType: R4ResourceType.VisionPrescription,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VisionPrescription.empty() => VisionPrescription(
+        status: FinancialResourceStatusCodes.values.first,
+        created: FhirDateTime.empty(),
+        patient: Reference.empty(),
+        dateWritten: FhirDateTime.empty(),
+        prescriber: Reference.empty(),
+        lensSpecification: <VisionPrescriptionLensSpecification>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescription.fromJson(
     Map<String, dynamic> json,
@@ -596,6 +608,15 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }) : super(
           objectPath: 'VisionPrescription.lensSpecification',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VisionPrescriptionLensSpecification.empty() =>
+      VisionPrescriptionLensSpecification(
+        product: CodeableConcept.empty(),
+        eye: VisionEyes.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionLensSpecification.fromJson(
@@ -1194,6 +1215,14 @@ class VisionPrescriptionPrism extends BackboneElement {
   }) : super(
           objectPath: 'VisionPrescription.lensSpecification.prism',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory VisionPrescriptionPrism.empty() => VisionPrescriptionPrism(
+        amount: FhirDecimal.empty(),
+        base: VisionBase.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionPrism.fromJson(

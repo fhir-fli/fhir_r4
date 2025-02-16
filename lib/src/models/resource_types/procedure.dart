@@ -52,6 +52,14 @@ class Procedure extends DomainResource {
           resourceType: R4ResourceType.Procedure,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Procedure.empty() => Procedure(
+        status: EventStatus.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Procedure.fromJson(
     Map<String, dynamic> json,
@@ -1320,6 +1328,13 @@ class ProcedurePerformer extends BackboneElement {
           objectPath: 'Procedure.performer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ProcedurePerformer.empty() => ProcedurePerformer(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedurePerformer.fromJson(
     Map<String, dynamic> json,
@@ -1634,6 +1649,13 @@ class ProcedureFocalDevice extends BackboneElement {
   }) : super(
           objectPath: 'Procedure.focalDevice',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ProcedureFocalDevice.empty() => ProcedureFocalDevice(
+        manipulated: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedureFocalDevice.fromJson(

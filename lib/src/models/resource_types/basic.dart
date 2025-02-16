@@ -30,6 +30,13 @@ class Basic extends DomainResource {
           resourceType: R4ResourceType.Basic,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Basic.empty() => Basic(
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Basic.fromJson(
     Map<String, dynamic> json,

@@ -45,6 +45,16 @@ class MedicationAdministration extends DomainResource {
           resourceType: R4ResourceType.MedicationAdministration,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationAdministration.empty() => MedicationAdministration(
+        status: MedicationAdministrationStatusCodes.values.first,
+        medicationX: CodeableConcept.empty(),
+        subject: Reference.empty(),
+        effectiveX: FhirDateTime.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministration.fromJson(
     Map<String, dynamic> json,
@@ -1025,6 +1035,14 @@ class MedicationAdministrationPerformer extends BackboneElement {
           objectPath: 'MedicationAdministration.performer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationAdministrationPerformer.empty() =>
+      MedicationAdministrationPerformer(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministrationPerformer.fromJson(
     Map<String, dynamic> json,
@@ -1318,6 +1336,12 @@ class MedicationAdministrationDosage extends BackboneElement {
   }) : super(
           objectPath: 'MedicationAdministration.dosage',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationAdministrationDosage.empty() =>
+      MedicationAdministrationDosage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministrationDosage.fromJson(

@@ -37,6 +37,17 @@ class CompartmentDefinition extends DomainResource {
           resourceType: R4ResourceType.CompartmentDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompartmentDefinition.empty() => CompartmentDefinition(
+        url: FhirUri.empty(),
+        name: FhirString.empty(),
+        status: PublicationStatus.values.first,
+        code: CompartmentType.values.first,
+        search: FhirBoolean.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompartmentDefinition.fromJson(
     Map<String, dynamic> json,
@@ -771,6 +782,14 @@ class CompartmentDefinitionResource extends BackboneElement {
   }) : super(
           objectPath: 'CompartmentDefinition.resource',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CompartmentDefinitionResource.empty() =>
+      CompartmentDefinitionResource(
+        code: FhirCode.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompartmentDefinitionResource.fromJson(

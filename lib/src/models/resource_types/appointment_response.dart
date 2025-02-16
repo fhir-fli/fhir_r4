@@ -31,6 +31,14 @@ class AppointmentResponse extends DomainResource {
           resourceType: R4ResourceType.AppointmentResponse,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AppointmentResponse.empty() => AppointmentResponse(
+        appointment: Reference.empty(),
+        participantStatus: ParticipationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AppointmentResponse.fromJson(
     Map<String, dynamic> json,

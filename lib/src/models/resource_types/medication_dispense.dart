@@ -50,6 +50,14 @@ class MedicationDispense extends DomainResource {
           resourceType: R4ResourceType.MedicationDispense,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationDispense.empty() => MedicationDispense(
+        status: MedicationDispenseStatusCodes.values.first,
+        medicationX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationDispense.fromJson(
     Map<String, dynamic> json,
@@ -1149,6 +1157,13 @@ class MedicationDispensePerformer extends BackboneElement {
           objectPath: 'MedicationDispense.performer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationDispensePerformer.empty() => MedicationDispensePerformer(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationDispensePerformer.fromJson(
     Map<String, dynamic> json,
@@ -1444,6 +1459,14 @@ class MedicationDispenseSubstitution extends BackboneElement {
   }) : super(
           objectPath: 'MedicationDispense.substitution',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MedicationDispenseSubstitution.empty() =>
+      MedicationDispenseSubstitution(
+        wasSubstituted: FhirBoolean.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationDispenseSubstitution.fromJson(

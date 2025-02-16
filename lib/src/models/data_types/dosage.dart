@@ -40,6 +40,11 @@ class Dosage extends BackboneType
     super.objectPath = 'Dosage',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Dosage.empty() => Dosage();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Dosage.fromJson(
     Map<String, dynamic> json,
@@ -617,9 +622,7 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-      maxDosePerAdministration,
-      o.maxDosePerAdministration,
-    )) {
+        maxDosePerAdministration, o.maxDosePerAdministration)) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
@@ -644,6 +647,11 @@ class DosageDoseAndRate extends Element {
     super.disallowExtensions,
     super.objectPath = 'DosageDoseAndRate',
   });
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DosageDoseAndRate.empty() => DosageDoseAndRate();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DosageDoseAndRate.fromJson(

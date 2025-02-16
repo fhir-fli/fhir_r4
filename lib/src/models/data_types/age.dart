@@ -40,6 +40,11 @@ class Age extends Quantity
     super.objectPath = 'Age',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Age.empty() => Age();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Age.fromJson(
     Map<String, dynamic> json,

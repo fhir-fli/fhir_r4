@@ -46,6 +46,14 @@ class Appointment extends DomainResource {
           resourceType: R4ResourceType.Appointment,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Appointment.empty() => Appointment(
+        status: AppointmentStatus.values.first,
+        participant: <AppointmentParticipant>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Appointment.fromJson(
     Map<String, dynamic> json,
@@ -1079,6 +1087,13 @@ class AppointmentParticipant extends BackboneElement {
   }) : super(
           objectPath: 'Appointment.participant',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory AppointmentParticipant.empty() => AppointmentParticipant(
+        status: ParticipationStatus.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AppointmentParticipant.fromJson(

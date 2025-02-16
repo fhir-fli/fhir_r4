@@ -36,6 +36,13 @@ class ObservationDefinition extends DomainResource {
           resourceType: R4ResourceType.ObservationDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ObservationDefinition.empty() => ObservationDefinition(
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinition.fromJson(
     Map<String, dynamic> json,
@@ -744,6 +751,12 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
           objectPath: 'ObservationDefinition.quantitativeDetails',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ObservationDefinitionQuantitativeDetails.empty() =>
+      ObservationDefinitionQuantitativeDetails();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQuantitativeDetails.fromJson(
     Map<String, dynamic> json,
@@ -1093,6 +1106,12 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   }) : super(
           objectPath: 'ObservationDefinition.qualifiedInterval',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ObservationDefinitionQualifiedInterval.empty() =>
+      ObservationDefinitionQualifiedInterval();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQualifiedInterval.fromJson(

@@ -36,6 +36,14 @@ class CatalogEntry extends DomainResource {
           resourceType: R4ResourceType.CatalogEntry,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CatalogEntry.empty() => CatalogEntry(
+        orderable: FhirBoolean.empty(),
+        referencedItem: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CatalogEntry.fromJson(
     Map<String, dynamic> json,
@@ -762,6 +770,14 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   }) : super(
           objectPath: 'CatalogEntry.relatedEntry',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory CatalogEntryRelatedEntry.empty() => CatalogEntryRelatedEntry(
+        relationtype: CatalogEntryRelationType.values.first,
+        item: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CatalogEntryRelatedEntry.fromJson(

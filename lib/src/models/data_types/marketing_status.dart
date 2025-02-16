@@ -23,6 +23,13 @@ class MarketingStatus extends BackboneType {
     super.objectPath = 'MarketingStatus',
   });
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory MarketingStatus.empty() => MarketingStatus(
+        status: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MarketingStatus.fromJson(
     Map<String, dynamic> json,

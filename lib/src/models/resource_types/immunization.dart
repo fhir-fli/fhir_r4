@@ -52,6 +52,16 @@ class Immunization extends DomainResource {
           resourceType: R4ResourceType.Immunization,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Immunization.empty() => Immunization(
+        status: ImmunizationStatusCodes.values.first,
+        vaccineCode: CodeableConcept.empty(),
+        patient: Reference.empty(),
+        occurrenceX: FhirDateTime.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Immunization.fromJson(
     Map<String, dynamic> json,
@@ -1208,6 +1218,13 @@ class ImmunizationPerformer extends BackboneElement {
           objectPath: 'Immunization.performer',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationPerformer.empty() => ImmunizationPerformer(
+        actor: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationPerformer.fromJson(
     Map<String, dynamic> json,
@@ -1499,6 +1516,11 @@ class ImmunizationEducation extends BackboneElement {
   }) : super(
           objectPath: 'Immunization.education',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationEducation.empty() => ImmunizationEducation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationEducation.fromJson(
@@ -1841,6 +1863,11 @@ class ImmunizationReaction extends BackboneElement {
           objectPath: 'Immunization.reaction',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationReaction.empty() => ImmunizationReaction();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationReaction.fromJson(
     Map<String, dynamic> json,
@@ -2158,6 +2185,13 @@ class ImmunizationProtocolApplied extends BackboneElement {
   }) : super(
           objectPath: 'Immunization.protocolApplied',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ImmunizationProtocolApplied.empty() => ImmunizationProtocolApplied(
+        doseNumberX: FhirPositiveInt.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationProtocolApplied.fromJson(

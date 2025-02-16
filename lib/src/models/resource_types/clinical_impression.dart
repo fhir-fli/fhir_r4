@@ -49,6 +49,14 @@ class ClinicalImpression extends DomainResource {
           resourceType: R4ResourceType.ClinicalImpression,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalImpression.empty() => ClinicalImpression(
+        status: ClinicalImpressionStatus.values.first,
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpression.fromJson(
     Map<String, dynamic> json,
@@ -1007,6 +1015,14 @@ class ClinicalImpressionInvestigation extends BackboneElement {
           objectPath: 'ClinicalImpression.investigation',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalImpressionInvestigation.empty() =>
+      ClinicalImpressionInvestigation(
+        code: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionInvestigation.fromJson(
     Map<String, dynamic> json,
@@ -1310,6 +1326,11 @@ class ClinicalImpressionFinding extends BackboneElement {
   }) : super(
           objectPath: 'ClinicalImpression.finding',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ClinicalImpressionFinding.empty() => ClinicalImpressionFinding();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionFinding.fromJson(

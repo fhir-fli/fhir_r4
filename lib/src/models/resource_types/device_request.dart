@@ -48,6 +48,15 @@ class DeviceRequest extends DomainResource {
           resourceType: R4ResourceType.DeviceRequest,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceRequest.empty() => DeviceRequest(
+        intent: RequestIntent.values.first,
+        codeX: Reference.empty(),
+        subject: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceRequest.fromJson(
     Map<String, dynamic> json,
@@ -1156,6 +1165,11 @@ class DeviceRequestParameter extends BackboneElement {
   }) : super(
           objectPath: 'DeviceRequest.parameter',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory DeviceRequestParameter.empty() => DeviceRequestParameter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceRequestParameter.fromJson(

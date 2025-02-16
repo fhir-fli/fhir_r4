@@ -42,6 +42,15 @@ class Provenance extends DomainResource {
           resourceType: R4ResourceType.Provenance,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory Provenance.empty() => Provenance(
+        target: <Reference>[],
+        recorded: FhirInstant.empty(),
+        agent: <ProvenanceAgent>[],
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Provenance.fromJson(
     Map<String, dynamic> json,
@@ -715,6 +724,13 @@ class ProvenanceAgent extends BackboneElement {
           objectPath: 'Provenance.agent',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ProvenanceAgent.empty() => ProvenanceAgent(
+        who: Reference.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceAgent.fromJson(
     Map<String, dynamic> json,
@@ -1063,6 +1079,14 @@ class ProvenanceEntity extends BackboneElement {
   }) : super(
           objectPath: 'Provenance.entity',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory ProvenanceEntity.empty() => ProvenanceEntity(
+        role: ProvenanceEntityRole.values.first,
+        what: Reference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceEntity.fromJson(

@@ -67,9 +67,8 @@ class FhirTime extends PrimitiveType<String>
     return FhirTime(timeString);
   }
 
-    /// Creates empty [FhirTime] object
-  factory FhirTime.empty() =>
-      FhirTime(null, element: Element.empty());
+  /// Creates empty [FhirTime] object
+  factory FhirTime.empty() => FhirTime(null, element: Element.empty());
 
   /// Factory constructor to create [FhirTime] from JSON.
   factory FhirTime.fromJson(Map<String, dynamic> json) {

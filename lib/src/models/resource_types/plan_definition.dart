@@ -57,6 +57,13 @@ class PlanDefinition extends CanonicalResource {
           resourceType: R4ResourceType.PlanDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinition.empty() => PlanDefinition(
+        status: PublicationStatus.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinition.fromJson(
     Map<String, dynamic> json,
@@ -1321,6 +1328,13 @@ class PlanDefinitionGoal extends BackboneElement {
           objectPath: 'PlanDefinition.goal',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionGoal.empty() => PlanDefinitionGoal(
+        description: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionGoal.fromJson(
     Map<String, dynamic> json,
@@ -1770,6 +1784,11 @@ class PlanDefinitionTarget extends BackboneElement {
           objectPath: 'PlanDefinition.goal.target',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionTarget.empty() => PlanDefinitionTarget();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionTarget.fromJson(
     Map<String, dynamic> json,
@@ -2149,6 +2168,11 @@ class PlanDefinitionAction extends BackboneElement {
   }) : super(
           objectPath: 'PlanDefinition.action',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionAction.empty() => PlanDefinitionAction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionAction.fromJson(
@@ -3305,6 +3329,13 @@ class PlanDefinitionCondition extends BackboneElement {
           objectPath: 'PlanDefinition.action.condition',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionCondition.empty() => PlanDefinitionCondition(
+        kind: ActionConditionKind.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionCondition.fromJson(
     Map<String, dynamic> json,
@@ -3595,6 +3626,14 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   }) : super(
           objectPath: 'PlanDefinition.action.relatedAction',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionRelatedAction.empty() => PlanDefinitionRelatedAction(
+        actionId: FhirId.empty(),
+        relationship: ActionRelationshipType.values.first,
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionRelatedAction.fromJson(
@@ -3927,6 +3966,13 @@ class PlanDefinitionParticipant extends BackboneElement {
           objectPath: 'PlanDefinition.action.participant',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionParticipant.empty() => PlanDefinitionParticipant(
+        type: ActionParticipantType.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionParticipant.fromJson(
     Map<String, dynamic> json,
@@ -4219,6 +4265,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   }) : super(
           objectPath: 'PlanDefinition.action.dynamicValue',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PlanDefinitionDynamicValue.empty() => PlanDefinitionDynamicValue();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionDynamicValue.fromJson(

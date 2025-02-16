@@ -36,6 +36,11 @@ class PackagedProductDefinition extends DomainResource {
           resourceType: R4ResourceType.PackagedProductDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinition.empty() => PackagedProductDefinition();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(
     Map<String, dynamic> json,
@@ -823,6 +828,12 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
           objectPath: 'PackagedProductDefinition.legalStatusOfSupply',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinitionLegalStatusOfSupply.empty() =>
+      PackagedProductDefinitionLegalStatusOfSupply();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
     Map<String, dynamic> json,
@@ -1125,6 +1136,12 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   }) : super(
           objectPath: 'PackagedProductDefinition.package',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinitionPackage.empty() =>
+      PackagedProductDefinitionPackage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionPackage.fromJson(
@@ -1704,6 +1721,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           objectPath: 'PackagedProductDefinition.package.shelfLifeStorage',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinitionShelfLifeStorage.empty() =>
+      PackagedProductDefinitionShelfLifeStorage();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
     Map<String, dynamic> json,
@@ -2063,6 +2086,14 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           objectPath: 'PackagedProductDefinition.package.property',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinitionProperty.empty() =>
+      PackagedProductDefinitionProperty(
+        type: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionProperty.fromJson(
     Map<String, dynamic> json,
@@ -2395,6 +2426,14 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   }) : super(
           objectPath: 'PackagedProductDefinition.package.containedItem',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory PackagedProductDefinitionContainedItem.empty() =>
+      PackagedProductDefinitionContainedItem(
+        item: CodeableReference.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionContainedItem.fromJson(

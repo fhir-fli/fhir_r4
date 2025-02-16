@@ -28,6 +28,11 @@ class SpecimenDefinition extends DomainResource {
           resourceType: R4ResourceType.SpecimenDefinition,
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenDefinition.empty() => SpecimenDefinition();
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinition.fromJson(
     Map<String, dynamic> json,
@@ -559,6 +564,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           objectPath: 'SpecimenDefinition.typeTested',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenDefinitionTypeTested.empty() => SpecimenDefinitionTypeTested(
+        preference: SpecimenContainedPreference.values.first,
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionTypeTested.fromJson(
     Map<String, dynamic> json,
@@ -1022,6 +1034,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }) : super(
           objectPath: 'SpecimenDefinition.typeTested.container',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenDefinitionContainer.empty() => SpecimenDefinitionContainer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
@@ -1491,6 +1508,13 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           objectPath: 'SpecimenDefinition.typeTested.container.additive',
         );
 
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenDefinitionAdditive.empty() => SpecimenDefinitionAdditive(
+        additiveX: CodeableConcept.empty(),
+      );
+
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionAdditive.fromJson(
     Map<String, dynamic> json,
@@ -1780,6 +1804,11 @@ class SpecimenDefinitionHandling extends BackboneElement {
   }) : super(
           objectPath: 'SpecimenDefinition.typeTested.handling',
         );
+
+  /// An empty constructor for partial usage.
+  /// All required fields are assigned placeholder values, so
+  /// you can instantiate and fill them in later if desired.
+  factory SpecimenDefinitionHandling.empty() => SpecimenDefinitionHandling();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(

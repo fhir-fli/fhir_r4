@@ -14,8 +14,7 @@ class BiologicallyDerivedProductStatus extends FhirCode {
     super.objectPath = 'Code',
   });
 
-  /// Factory constructor to create [BiologicallyDerivedProductStatus] 
-  /// from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
   factory BiologicallyDerivedProductStatus.fromJson(
     Map<String, dynamic> json,
   ) {
