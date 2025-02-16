@@ -14,6 +14,9 @@ abstract class FhirBase {
     this.objectPath,
   });
 
+  /// Creates an empty [FhirBase] object.
+  factory FhirBase.empty() => throw UnimplementedError();
+
   /// User data map for storing additional information.
   final Map<String, dynamic>? userData;
 

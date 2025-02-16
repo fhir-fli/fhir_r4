@@ -23,6 +23,9 @@ abstract class DomainResource extends Resource {
     super.objectPath = 'DomainResource',
   });
 
+  /// Creates an empty [DomainResource] object
+  factory DomainResource.empty() => throw UnimplementedError();
+
   /// Factory constructor for [DomainResource] that takes in a
   /// [Map<String, dynamic>] and returns a [DomainResource]
   factory DomainResource.fromJson(Map<String, dynamic> json) =>

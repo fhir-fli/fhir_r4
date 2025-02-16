@@ -19,6 +19,9 @@ abstract class Resource extends FhirBase {
     super.objectPath = 'Resource',
   });
 
+  /// Creates an empty [Resource] object
+  factory Resource.empty() => throw UnimplementedError();
+
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, dynamic>] as an argument
   factory Resource.fromJson(Map<String, dynamic> json) =>

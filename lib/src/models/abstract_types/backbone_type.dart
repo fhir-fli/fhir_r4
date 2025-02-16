@@ -19,6 +19,9 @@ abstract class BackboneType extends DataType {
     super.objectPath = 'BackboneType',
   });
 
+  /// Creates an empty [BackboneType] object
+  factory BackboneType.empty() => throw UnimplementedError();
+
   /// FromJson Factory Constructor for [BackboneType]
   factory BackboneType.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('BackboneType.fromJson $json');

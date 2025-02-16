@@ -17,6 +17,9 @@ class Element extends FhirBase {
     super.objectPath = 'Element',
   });
 
+  /// Creates an empty [Element] object
+  factory Element.empty() => const Element();
+
   /// Factory constructor for [Element] that takes in a [YamlMap] and returns
   /// a [Element]
   factory Element.fromYaml(dynamic yaml) => yaml is String

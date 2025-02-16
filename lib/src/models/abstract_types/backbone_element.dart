@@ -18,6 +18,9 @@ abstract class BackboneElement extends DataType {
     super.objectPath = 'BackboneElement',
   });
 
+  /// Creates an empty [BackboneElement] object
+  factory BackboneElement.empty() => throw UnimplementedError();
+
   /// FromJson Factory Constructor for [BackboneElement]
   factory BackboneElement.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('BackboneElement.fromJson $json');

@@ -17,6 +17,9 @@ abstract class DataType extends Element {
     super.objectPath = 'DataType',
   });
 
+  /// Creates an empty [DataType] object
+  factory DataType.empty() => throw UnimplementedError();
+
   /// FromJson Factory Constructor for [DataType]
   factory DataType.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('DataType.fromJson $json');

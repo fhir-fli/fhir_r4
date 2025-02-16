@@ -33,6 +33,9 @@ abstract class CanonicalResource extends DomainResource {
     super.objectPath = 'CanonicalResource',
   });
 
+  /// Creates an empty [CanonicalResource] object
+  factory CanonicalResource.empty() => throw UnimplementedError();
+
   /// Factory constructor for [CanonicalResource] that takes in a
   /// [Map<String, dynamic>] and returns a [CanonicalResource]
   factory CanonicalResource.fromJson(Map<String, dynamic> json) =>
