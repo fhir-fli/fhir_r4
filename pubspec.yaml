@@ -1,5 +1,5 @@
 name: fhir_r4
-description: FHIR library for supporing the R5 Version of FHIR for Dart & Flutter.
+description: FHIR library for supporing the R4 Version of FHIR for Dart & Flutter.
 version: 0.2.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
@@ -17,7 +17,7 @@ environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
-  archive: ^3.6.1
+  archive: ^4.0.0
   collection: ^1.18.0
   crypto: ^3.0.5
   fhir_primitives: ^0.1.3
