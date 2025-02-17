@@ -1,0 +1,861 @@
+{
+    "resourceType": "StructureMap",
+    "id": "BundleToCdaChEmedMedicationDispenseDocument",
+    "url": "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaChEmedMedicationDispenseDocument",
+    "name": "BundleToCdaChEmedMedicationDispenseDocument",
+    "status": "draft",
+    "description": "Medication Dispense document, 2.16.756.5.30.1.1.10.1.5\r\n2020-01-09 Oliver Egger, copyright ahdis ag, Apache License\r\nCDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-\r\nFHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+            "mode": "target",
+            "alias": "ClinicalDocument"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor",
+            "mode": "target",
+            "alias": "AssignedAuthor"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity",
+            "mode": "target",
+            "alias": "AssignedEntity"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Author",
+            "mode": "target",
+            "alias": "Author"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization",
+            "mode": "target",
+            "alias": "CustodianOrganization"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/IVL_TS",
+            "mode": "target",
+            "alias": "IVL_TS"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/EIVL_TS",
+            "mode": "target",
+            "alias": "EIVL_TS"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/PatientRole",
+            "mode": "target",
+            "alias": "PatientRole"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget",
+            "mode": "target",
+            "alias": "RecordTarget"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Section",
+            "mode": "target",
+            "alias": "Section"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration",
+            "mode": "target",
+            "alias": "SubstanceAdministration"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/SXPR_TS",
+            "mode": "target",
+            "alias": "SXPR_TS"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Supply",
+            "mode": "target",
+            "alias": "Supply"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "source",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Composition",
+            "mode": "source",
+            "alias": "Composition"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "source",
+            "alias": "Patient"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+            "mode": "source",
+            "alias": "Practitioner"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Organization",
+            "mode": "source",
+            "alias": "Organization"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+            "mode": "source",
+            "alias": "MedicationDispense"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Dosage",
+            "mode": "source",
+            "alias": "Dosage"
+        }
+    ],
+    "import": [
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/FhirToCdaTypes",
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCda",
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaCh",
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaChEmed"
+    ],
+    "group": [
+        {
+            "name": "BundleToCdaChEmedMedicationDispenseDocument",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationdispense.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.5",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "bundle",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "recordTarget",
+                            "variable": "recordTarget"
+                        },
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "author",
+                            "variable": "author"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "BundleToClinicalDocumentEmedMedicationDispenseDocument",
+                            "variable": [
+                                "bundle",
+                                "recordTarget",
+                                "author",
+                                "cda"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CompositionClinicalDocumentChEmedMedicationDispenseDocument",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationdispense.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.5",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "composition",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "fixloinc",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "type"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "code",
+                            "variable": "code"
+                        },
+                        {
+                            "context": "code",
+                            "contextType": "variable",
+                            "element": "codeSystem",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.840.1.113883.6.1"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "code",
+                            "contextType": "variable",
+                            "element": "codeSystemName",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "LOINC"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "code",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "60593-1"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "code",
+                            "contextType": "variable",
+                            "element": "displayName",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "Medication dispensed.extended"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "SectionDispenseSectionContentModule",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "section",
+                            "variable": "section",
+                            "condition": "$this.code.coding.where((system = 'http://loinc.org') and (code = '60590-7'))"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "component"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "contextConductionInd",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "contextConductionInd",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "cdasection",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "structuredBody",
+                                    "variable": "structuredBody"
+                                },
+                                {
+                                    "context": "structuredBody",
+                                    "contextType": "variable",
+                                    "element": "component",
+                                    "variable": "component"
+                                },
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "section",
+                                    "variable": "cdasection"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "SectionDispenseSectionContentModule",
+                                    "variable": [
+                                        "bundle",
+                                        "section",
+                                        "cdasection"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "SectionRemarksCoded",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "section",
+                            "variable": "section",
+                            "condition": "$this.code.coding.where((system = 'http://loinc.org') and (code = '48767-8'))"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "component"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "contextConductionInd",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "contextConductionInd",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "cdasection",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "structuredBody",
+                                    "variable": "structuredBody"
+                                },
+                                {
+                                    "context": "structuredBody",
+                                    "contextType": "variable",
+                                    "element": "component",
+                                    "variable": "component"
+                                },
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "section",
+                                    "variable": "cdasection"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "SectionCdaRemarksCoded",
+                                    "variable": [
+                                        "bundle",
+                                        "section",
+                                        "cdasection"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "SectionCdaOriginalRepresentation",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "section",
+                            "variable": "section",
+                            "condition": "$this.code.coding.where((system = 'http://loinc.org') and (code = '55108-5'))"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "component"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "contextConductionInd",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "contextConductionInd",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "cdasection",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "structuredBody",
+                                    "variable": "structuredBody"
+                                },
+                                {
+                                    "context": "structuredBody",
+                                    "contextType": "variable",
+                                    "element": "component",
+                                    "variable": "component"
+                                },
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "section",
+                                    "variable": "cdasection"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "SectionCdaOriginalRepresentation",
+                                    "variable": [
+                                        "bundle",
+                                        "section",
+                                        "cdasection"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SectionDispenseSectionContentModule",
+            "extends": "SectionCdaSection",
+            "typeMode": "none",
+            "documentation": "_________________________ Section Level Templates _________________________\r\nsource: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationdispense.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.3.11",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "section",
+                    "type": "Section",
+                    "mode": "source"
+                },
+                {
+                    "name": "cdasection",
+                    "type": "CdaSection",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "CH-PHARM-DispenseSectionContentModule",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.3.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "IHE-DispenseSectionContentModule",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "1.3.6.1.4.1.19376.1.9.1.2.3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Section",
+                    "source": [
+                        {
+                            "context": "section",
+                            "condition": "text.exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "text",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "<div xmlns=\"\"http://www.w3.org/1999/xhtml\"\"><span id=\"\"refpdf\"\">see pdf</span></div>"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "fullUrlAsUuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %section.entry.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "MedicationDispense",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "element": "resource",
+                                            "variable": "medicationDispense",
+                                            "condition": "$this.ofType(FHIR.MedicationDispense)"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "cdasection",
+                                            "contextType": "variable",
+                                            "element": "entry",
+                                            "variable": "entry"
+                                        },
+                                        {
+                                            "context": "entry",
+                                            "contextType": "variable",
+                                            "element": "supply",
+                                            "variable": "supply"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "DispenseItemEntryContentModule",
+                                            "variable": [
+                                                "bundle",
+                                                "medicationDispense",
+                                                "supply"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "MedicationDispense",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "medicationDispense",
+                                    "condition": "$this.ofType(FHIR.MedicationDispense) and (('MedicationDispense' + '/' + $this.id) in %section.entry.reference)"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "entry",
+                                    "variable": "entry"
+                                },
+                                {
+                                    "context": "entry",
+                                    "contextType": "variable",
+                                    "element": "supply",
+                                    "variable": "supply"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "DispenseItemEntryContentModule",
+                                    "variable": [
+                                        "bundle",
+                                        "medicationDispense",
+                                        "supply"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BundleToClinicalDocumentEmedMedicationDispenseDocument",
+            "extends": "BundleToClinicalDocumentCh",
+            "typeMode": "none",
+            "documentation": "_________________________ Header Level Templates _________________________\r\nsource: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationdispense.html\r\ntarget: 2.16.756.5.30.1.1.10.9.42",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "recordTarget",
+                    "type": "RecordTarget",
+                    "mode": "target"
+                },
+                {
+                    "name": "author",
+                    "type": "Author",
+                    "mode": "target"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "ExchangeFormatAccordingToTheSwissEPR",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.127.1.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "IHE-PCC",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "1.3.6.1.4.1.19376.1.5.3.1.1.1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "IHE-PharmacyDispenseDocumentContentModule",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "1.3.6.1.4.1.19376.1.9.1.1.3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "CDA-CH-EMED-MedicationDispenseDocument",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.1.5"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "resource",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "resource",
+                                    "condition": "$this.ofType(FHIR.Composition)"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CompositionClinicalDocumentChEmedMedicationDispenseDocument",
+                                    "variable": [
+                                        "bundle",
+                                        "resource",
+                                        "cda"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

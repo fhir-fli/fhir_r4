@@ -1,0 +1,162 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// MedicationStatement Status Codes
+class MedicationStatementStatusCodes extends FhirCode {
+  // Private constructor for internal use (like enum)
+  MedicationStatementStatusCodes._(
+    super.value, {
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Code',
+  });
+
+  /// Create empty [MedicationStatementStatusCodes] with element only
+  factory MedicationStatementStatusCodes.empty() =>
+      MedicationStatementStatusCodes._('');
+
+  /// Factory constructor to create [MedicationStatementStatusCodes] from JSON.
+  factory MedicationStatementStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationStatementStatusCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+        'MedicationStatementStatusCodes cannot be constructed from JSON.',
+      );
+    }
+    return MedicationStatementStatusCodes._(
+      value,
+      element: element,
+    );
+  }
+
+  /// active
+  static final MedicationStatementStatusCodes active =
+      MedicationStatementStatusCodes._(
+    'active',
+  );
+
+  /// completed
+  static final MedicationStatementStatusCodes completed =
+      MedicationStatementStatusCodes._(
+    'completed',
+  );
+
+  /// entered_in_error
+  static final MedicationStatementStatusCodes entered_in_error =
+      MedicationStatementStatusCodes._(
+    'entered-in-error',
+  );
+
+  /// intended
+  static final MedicationStatementStatusCodes intended =
+      MedicationStatementStatusCodes._(
+    'intended',
+  );
+
+  /// stopped
+  static final MedicationStatementStatusCodes stopped =
+      MedicationStatementStatusCodes._(
+    'stopped',
+  );
+
+  /// on_hold
+  static final MedicationStatementStatusCodes on_hold =
+      MedicationStatementStatusCodes._(
+    'on-hold',
+  );
+
+  /// unknown
+  static final MedicationStatementStatusCodes unknown =
+      MedicationStatementStatusCodes._(
+    'unknown',
+  );
+
+  /// not_taken
+  static final MedicationStatementStatusCodes not_taken =
+      MedicationStatementStatusCodes._(
+    'not-taken',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationStatementStatusCodes elementOnly =
+      MedicationStatementStatusCodes._('');
+
+  /// List of all enum-like values
+  static final List<MedicationStatementStatusCodes> values = [
+    active,
+    completed,
+    entered_in_error,
+    intended,
+    stopped,
+    on_hold,
+    unknown,
+    not_taken,
+  ];
+
+  /// Clones the current instance
+  @override
+  MedicationStatementStatusCodes clone() => MedicationStatementStatusCodes._(
+        value,
+        element: element?.clone() as Element?,
+      );
+
+  /// Returns the enum value with an element attached
+  MedicationStatementStatusCodes withElement(Element? newElement) {
+    return MedicationStatementStatusCodes._(
+      value,
+      element: newElement,
+    );
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        'value': (value?.isEmpty ?? false) ? null : value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// String representation
+  @override
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationStatementStatusCodes copyWith({
+    String? newValue,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    bool? disallowExtensions,
+    String? objectPath,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationStatementStatusCodes._(
+      newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+      ),
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
+      objectPath: objectPath ?? this.objectPath,
+    );
+  }
+}

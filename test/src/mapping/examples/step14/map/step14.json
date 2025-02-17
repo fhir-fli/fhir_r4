@@ -1,0 +1,1516 @@
+{
+    "resourceType": "StructureMap",
+    "id": "SDOHCC-StructureMapHungerVitalSign",
+    "text": {
+        "status": "additional",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <pre>/// name = &quot;SDOHCCHungerVitalSignMap&quot;\n/// status = draft\n/// title = &quot;SDOHCC StructureMap HungerVitalSign&quot;\n/// description = &quot;A StructureMap instance that represents the resource that transforms a specific question and answer from the LOINC Hunger Vital Sign [HVS] questionnaire (LOINC code 88121-9) into a corresponding Observation (SDOHCC Observation response Hunger Vital Sign Q3 Example) and derived Condition (SDOHCC Condition Food Insecurity Example).&quot;\n\nmap &quot;http://hl7.org/fhir/us/sdoh-clinicalcare/StructureMap/SDOHCC-StructureMapHungerVitalSign&quot; = &quot;SDOHCCHungerVitalSignMap&quot;\n\nuses &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot; alias questionnaireResponse as source\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Observation&quot; alias observation as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot; alias sdohccCondition as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Observation&quot; alias sdohccObservation as target\n\ngroup sdohMapping(source src : questionnaireResponse, target bundle : Bundle) {\n  //temporarily set id to human-readable id as example\n  //src -&gt; bundle.id = uuid();\n  src -&gt; bundle.id = 'SDOHCC-BundleHungerVitalSignExample' &quot;bundleId&quot;;\n  src -&gt; bundle.type = 'transaction' &quot;bundleType&quot;;\n\n  //for each 'key' answer item in the questionnareResponse, create an Observation\n  src.item as answerItem3 where linkId = '/88124-3' -&gt; bundle.entry as entry, entry.resource = create('Observation') as observation3 then \n    TransformObservation(src, answerItem3, observation3, entry); \n\n  //create condition if answer to third question is &quot;At Risk&quot;\n  src.item as answerItem4 where linkId = '/88124-3' and answer.value.code ='LA19952-3' -&gt; bundle.entry as entry, entry.resource = create('Condition') as condition then\n    TransformCondition(src, bundle, condition, entry);\n}\n\ngroup TransformObservation(source src: questionnaireResponse, source answerItem, target observation: Observation, target entry)\n{\n  src -&gt; entry.request as request then {\n    src -&gt; request.method = 'POST' &quot;obsnRequestMethod&quot;;\n    src -&gt; request.url = 'Observation' &quot;obsnRequestUrl&quot;;\n  } &quot;obsnEntryRequest&quot;;\n\n  //temporarily set id to human-readable id as example\n  //src -&gt; observation.id = uuid() then\n  //  SetObservationFullUrl(observation, entry);\n  src -&gt; observation.id = 'SDOHCC-ObservationResponseHungerVitalSignQuestion3Example' then\n   \tSetObservationFullUrl(observation, entry) &quot;obsn3Id&quot;;\n\n  src -&gt; observation.meta = create('Meta') as newMeta then {\n    src -&gt; newMeta.profile = 'http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-ObservationScreeningResponse' &quot;obsnMetaProfile&quot;;\n  } &quot;obsnMeta&quot;;\n\n  src -&gt; observation.status = 'final' &quot;obsnStatus&quot;;\n\n  src -&gt; observation.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'social-history', 'Social History') &quot;obsnCatSocialHist&quot;;\n  src -&gt; observation.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'survey', 'Survey') &quot;obsnCatSurvey&quot;;\n  src -&gt; observation.category = cc('http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes', 'food-insecurity', 'Food Insecurity') &quot;obsnCatFoodInsecurity&quot;;  \n\n  answerItem as i -&gt; observation.code = cc('http://loinc.org', '88124-3') as code &quot;obsn3Code&quot;;\n\n  src.subject as qSubject -&gt; observation.subject = create('Reference') as newReference then {\n    qSubject.reference as qReference -&gt; newReference.reference = qReference;\n    qSubject.display as qDisplay -&gt; newReference.display = qDisplay;\n  };\n\n  src.authored as authored -&gt; observation.effective = authored, observation.issued = authored;\n\n  answerItem.answer as answer -&gt; observation.value = create('CodeableConcept') as newCC then {\n    answer.value as coding -&gt; newCC.coding = coding as newCoding;\n  };\n\n  src -&gt; observation.derivedFrom = create('Reference') as newReference then {\n    src.id as id -&gt; newReference.reference = append('QuestionnaireResponse/', id);\n  } &quot;obsnDerivation&quot;;\n}\n\ngroup SetObservationFullUrl(source observation: Observation, target entry)\n{\n  observation.id as id -&gt; entry.fullUrl = append('http://hl7.org/fhir/us/sdoh-clinicalcare/Observation/', id);\n}\n\ngroup TransformCondition(source src: QuestionnaireResponse, source bundle: Bundle, target condition: Condition, target entry)\n{\n  //temporarily set id to human-readable id as example\n  //src -&gt; condition.id = uuid() then\n  src -&gt; condition.id = 'SDOHCC-ConditionFoodInsecurityExample' then\n    SetConditionFullUrl(condition, entry) &quot;conditionId&quot;;\n       \n  src -&gt; condition.meta = create('Meta') as newMeta then {\n    src -&gt; newMeta.profile = 'http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-Condition' &quot;conditionMetaProfile&quot;;\n  } &quot;conditionMeta&quot;;\n\n  src -&gt; condition.clinicalStatus = cc('http://terminology.hl7.org/CodeSystem/condition-clinical', 'active', 'Active') &quot;conditionClinicalStatus&quot;;\n  src -&gt; condition.verificationStatus = cc('http://terminology.hl7.org/CodeSystem/condition-ver-status', 'unconfirmed', 'Unconfirmed') &quot;conditionVeriStatus&quot;;\n  src -&gt; condition.category = create('CodeableConcept') as newCC then {\n      src -&gt; newCC.coding = create('Coding') as newCoding then {\n        src -&gt; newCoding.system = 'http://hl7.org/fhir/us/core/CodeSystem/condition-category' &quot;conditionCatCodingSystemHealthConcern&quot;;\n        src -&gt; newCoding.code = 'health-concern' &quot;conditionCatCodingCodeHealthConcern&quot;;\n        src -&gt; newCoding.display = 'Health Concern' &quot;conditionCatCodingDisplayHealthConcern&quot;;\n    } &quot;conditionCatCodingHealthConcern&quot;;\n  } &quot;conditionCatHealthConcern&quot;;\n\n  //Add sdoh category\n  src -&gt; condition.category = cc('http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes', 'food-insecurity', 'Food Insecurity') &quot;conditionCatFoodInsecurity&quot;;\n\n  src -&gt; condition.code = create('CodeableConcept') as newCodeCC then {\n      src -&gt; newCodeCC.coding = create('Coding') as newCoding then {\n        src -&gt; newCoding.system = 'http://snomed.info/sct' &quot;conditionCodeCodingSystemFoodInsecurity&quot;;\n        src -&gt; newCoding.code = '733423003' &quot;conditionCodeCodingCodeFoodInsecurity&quot;;\n        src -&gt; newCoding.display = 'Food insecurity' &quot;conditionCodeCodingDisplayFoodInsecurity&quot;;\n    } &quot;conditionCodeCodingFoodInsecurity&quot;;\n    src -&gt; newCodeCC.coding = create('Coding') as newCoding2 then {\n        src -&gt; newCoding2.system = 'http://hl7.org/fhir/sid/icd-10-cm' &quot;conditionCodeCodingSystemLackOfFood&quot;;\n        src -&gt; newCoding2.code = 'Z59.4' &quot;conditionCodeCodingCodeLackOfFood&quot;;\n        src -&gt; newCoding2.display = 'Lack of adequate food' &quot;conditionCodeCodingDisplayLackOfFood&quot;;\n    } &quot;conditionCodeCodingLackOfFood&quot;;\n  } &quot;conditionCode&quot;;\n      \n  src.authored as authored -&gt; condition.onset = create('Period') as period,\n    period.start = authored;\n\n  bundle.entry as entries -&gt; condition.evidence as evidence, evidence.detail = create('Reference') as detailReference then {\n  \tentries.resource as obs3 where code.coding.code = '88124-3'-&gt; detailReference.reference = reference(obs3); \n  };\n\n  src.subject as qSubject -&gt; condition.subject = create('Reference') as newReference then {\n    qSubject.reference as qReference -&gt; newReference.reference = qReference;\n    qSubject.display as qDisplay -&gt; newReference.display = qDisplay;\n  };\n\n  src -&gt; entry.request as request then {\n    src -&gt; request.method = 'POST' &quot;conditionRequestMethod&quot;;\n    src -&gt; request.url = 'Condition' &quot;conditionRequestUrl&quot;;\n  } &quot;conditionEntryRequest&quot;;  \n}\n\ngroup SetConditionFullUrl(source condition: Condition, target entry)\n{\n  condition.id as id -&gt; entry.fullUrl = append('http://hl7.org/fhir/us/sdoh-clinicalcare/Condition/', id);\n}</pre>\n    </div>"
+    },
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+            "valueCode": "pc"
+        }
+    ],
+    "url": "http://hl7.org/fhir/us/sdoh-clinicalcare/StructureMap/SDOHCC-StructureMapHungerVitalSign",
+    "version": "2.2.0",
+    "name": "SDOHCCHungerVitalSignMap",
+    "status": "draft",
+    "date": "2024-09-06T13:58:27+00:00",
+    "publisher": "HL7 International / Patient Care",
+    "contact": [
+        {
+            "name": "HL7 International / Patient Care",
+            "telecom": [
+                {
+                    "system": "url",
+                    "value": "http://www.hl7.org/Special/committees/patientcare"
+                },
+                {
+                    "system": "email",
+                    "value": "patientcare@lists.hl7.org"
+                }
+            ]
+        }
+    ],
+    "description": "A StructureMap instance that represents the resource that transforms a specific question and answer from the LOINC Hunger Vital Sign [HVS] questionnaire (LOINC code 88121-9) into a corresponding Observation (SDOHCC Observation response Hunger Vital Sign Q3 Example) and derived Condition (SDOHCC Condition Food Insecurity Example)",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "urn:iso:std:iso:3166",
+                    "code": "US",
+                    "display": "United States of America"
+                }
+            ]
+        }
+    ],
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+            "mode": "source",
+            "alias": "questionnaireResponse"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "target",
+            "alias": "bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+            "mode": "target",
+            "alias": "observation"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Condition",
+            "mode": "target",
+            "alias": "sdohccCondition"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+            "mode": "target",
+            "alias": "sdohccObservation"
+        }
+    ],
+    "group": [
+        {
+            "name": "sdohMapping",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "questionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "bundleId",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "bundle",
+                            "contextType": "variable",
+                            "element": "id",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "SDOHCC-BundleHungerVitalSignExample"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bundleType",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "bundle",
+                            "contextType": "variable",
+                            "element": "type",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "transaction"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "answerItem3",
+                            "condition": "linkId = '/88124-3'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "bundle",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "entry"
+                        },
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "resource",
+                            "variable": "observation3",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Observation"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "TransformObservation",
+                            "variable": [
+                                "src",
+                                "answerItem3",
+                                "observation3",
+                                "entry"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "answerItem4",
+                            "condition": "(linkId = '/88124-3') and (answer.value.code = 'LA19952-3')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "bundle",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "entry"
+                        },
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "resource",
+                            "variable": "condition",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Condition"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "TransformCondition",
+                            "variable": [
+                                "src",
+                                "bundle",
+                                "condition",
+                                "entry"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TransformObservation",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "questionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "answerItem",
+                    "mode": "source"
+                },
+                {
+                    "name": "observation",
+                    "type": "Observation",
+                    "mode": "target"
+                },
+                {
+                    "name": "entry",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "obsnEntryRequest",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "request",
+                            "variable": "request"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "obsnRequestMethod",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "request",
+                                    "contextType": "variable",
+                                    "element": "method",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "POST"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "obsnRequestUrl",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "request",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Observation"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsn3Id",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "id",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "SDOHCC-ObservationResponseHungerVitalSignQuestion3Example"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "SetObservationFullUrl",
+                            "variable": [
+                                "observation",
+                                "entry"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnMeta",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "meta",
+                            "variable": "newMeta",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Meta"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "obsnMetaProfile",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newMeta",
+                                    "contextType": "variable",
+                                    "element": "profile",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-ObservationScreeningResponse"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnStatus",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "status",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "final"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnCatSocialHist",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "category",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://terminology.hl7.org/CodeSystem/observation-category"
+                                },
+                                {
+                                    "valueString": "social-history"
+                                },
+                                {
+                                    "valueString": "Social History"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnCatSurvey",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "category",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://terminology.hl7.org/CodeSystem/observation-category"
+                                },
+                                {
+                                    "valueString": "survey"
+                                },
+                                {
+                                    "valueString": "Survey"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnCatFoodInsecurity",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "category",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes"
+                                },
+                                {
+                                    "valueString": "food-insecurity"
+                                },
+                                {
+                                    "valueString": "Food Insecurity"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsn3Code",
+                    "source": [
+                        {
+                            "context": "answerItem",
+                            "variable": "i"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "code",
+                            "variable": "code",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://loinc.org"
+                                },
+                                {
+                                    "valueString": "88124-3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "subject",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "subject",
+                            "variable": "qSubject"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "subject",
+                            "variable": "newReference",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Reference"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "reference",
+                            "source": [
+                                {
+                                    "context": "qSubject",
+                                    "element": "reference",
+                                    "variable": "qReference"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newReference",
+                                    "contextType": "variable",
+                                    "element": "reference",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "qReference"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "display",
+                            "source": [
+                                {
+                                    "context": "qSubject",
+                                    "element": "display",
+                                    "variable": "qDisplay"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newReference",
+                                    "contextType": "variable",
+                                    "element": "display",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "qDisplay"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "authored",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "authored",
+                            "variable": "authored"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "effective",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "authored"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "issued",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "authored"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "answer",
+                    "source": [
+                        {
+                            "context": "answerItem",
+                            "element": "answer",
+                            "variable": "answer"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "value",
+                            "variable": "newCC",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "CodeableConcept"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "value",
+                            "source": [
+                                {
+                                    "context": "answer",
+                                    "element": "value",
+                                    "variable": "coding"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newCC",
+                                    "contextType": "variable",
+                                    "element": "coding",
+                                    "variable": "newCoding",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "coding"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "obsnDerivation",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "observation",
+                            "contextType": "variable",
+                            "element": "derivedFrom",
+                            "variable": "newReference",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Reference"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "id",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "id",
+                                    "variable": "id"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newReference",
+                                    "contextType": "variable",
+                                    "element": "reference",
+                                    "transform": "append",
+                                    "parameter": [
+                                        {
+                                            "valueString": "QuestionnaireResponse/"
+                                        },
+                                        {
+                                            "valueId": "id"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SetObservationFullUrl",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "observation",
+                    "type": "Observation",
+                    "mode": "source"
+                },
+                {
+                    "name": "entry",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "observation",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "fullUrl",
+                            "transform": "append",
+                            "parameter": [
+                                {
+                                    "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/Observation/"
+                                },
+                                {
+                                    "valueId": "id"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TransformCondition",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "QuestionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "condition",
+                    "type": "Condition",
+                    "mode": "target"
+                },
+                {
+                    "name": "entry",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "conditionId",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "id",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "SDOHCC-ConditionFoodInsecurityExample"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "SetConditionFullUrl",
+                            "variable": [
+                                "condition",
+                                "entry"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionMeta",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "meta",
+                            "variable": "newMeta",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Meta"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "conditionMetaProfile",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newMeta",
+                                    "contextType": "variable",
+                                    "element": "profile",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-Condition"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionClinicalStatus",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "clinicalStatus",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+                                },
+                                {
+                                    "valueString": "active"
+                                },
+                                {
+                                    "valueString": "Active"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionVeriStatus",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "verificationStatus",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+                                },
+                                {
+                                    "valueString": "unconfirmed"
+                                },
+                                {
+                                    "valueString": "Unconfirmed"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionCatHealthConcern",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "category",
+                            "variable": "newCC",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "CodeableConcept"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "conditionCatCodingHealthConcern",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newCC",
+                                    "contextType": "variable",
+                                    "element": "coding",
+                                    "variable": "newCoding",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Coding"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "conditionCatCodingSystemHealthConcern",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "system",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "http://hl7.org/fhir/us/core/CodeSystem/condition-category"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCatCodingCodeHealthConcern",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "code",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "health-concern"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCatCodingDisplayHealthConcern",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "display",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Health Concern"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionCatFoodInsecurity",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "category",
+                            "transform": "cc",
+                            "parameter": [
+                                {
+                                    "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes"
+                                },
+                                {
+                                    "valueString": "food-insecurity"
+                                },
+                                {
+                                    "valueString": "Food Insecurity"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionCode",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "code",
+                            "variable": "newCodeCC",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "CodeableConcept"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "conditionCodeCodingFoodInsecurity",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newCodeCC",
+                                    "contextType": "variable",
+                                    "element": "coding",
+                                    "variable": "newCoding",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Coding"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "conditionCodeCodingSystemFoodInsecurity",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "system",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "http://snomed.info/sct"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCodeCodingCodeFoodInsecurity",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "code",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "733423003"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCodeCodingDisplayFoodInsecurity",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding",
+                                            "contextType": "variable",
+                                            "element": "display",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Food insecurity"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "conditionCodeCodingLackOfFood",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newCodeCC",
+                                    "contextType": "variable",
+                                    "element": "coding",
+                                    "variable": "newCoding2",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Coding"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "conditionCodeCodingSystemLackOfFood",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding2",
+                                            "contextType": "variable",
+                                            "element": "system",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "http://hl7.org/fhir/sid/icd-10-cm"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCodeCodingCodeLackOfFood",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding2",
+                                            "contextType": "variable",
+                                            "element": "code",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Z59.4"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "conditionCodeCodingDisplayLackOfFood",
+                                    "source": [
+                                        {
+                                            "context": "src"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "newCoding2",
+                                            "contextType": "variable",
+                                            "element": "display",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Lack of adequate food"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "authored",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "authored",
+                            "variable": "authored"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "onset",
+                            "variable": "period",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Period"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "period",
+                            "contextType": "variable",
+                            "element": "start",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "authored"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entries"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "evidence",
+                            "variable": "evidence"
+                        },
+                        {
+                            "context": "evidence",
+                            "contextType": "variable",
+                            "element": "detail",
+                            "variable": "detailReference",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Reference"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "resource",
+                            "source": [
+                                {
+                                    "context": "entries",
+                                    "element": "resource",
+                                    "variable": "obs3",
+                                    "condition": "code.coding.code = '88124-3'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "detailReference",
+                                    "contextType": "variable",
+                                    "element": "reference",
+                                    "transform": "reference",
+                                    "parameter": [
+                                        {
+                                            "valueId": "obs3"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "subject",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "subject",
+                            "variable": "qSubject"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "condition",
+                            "contextType": "variable",
+                            "element": "subject",
+                            "variable": "newReference",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Reference"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "reference",
+                            "source": [
+                                {
+                                    "context": "qSubject",
+                                    "element": "reference",
+                                    "variable": "qReference"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newReference",
+                                    "contextType": "variable",
+                                    "element": "reference",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "qReference"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "display",
+                            "source": [
+                                {
+                                    "context": "qSubject",
+                                    "element": "display",
+                                    "variable": "qDisplay"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "newReference",
+                                    "contextType": "variable",
+                                    "element": "display",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "qDisplay"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "conditionEntryRequest",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "request",
+                            "variable": "request"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "conditionRequestMethod",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "request",
+                                    "contextType": "variable",
+                                    "element": "method",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "POST"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "conditionRequestUrl",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "request",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Condition"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SetConditionFullUrl",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "condition",
+                    "type": "Condition",
+                    "mode": "source"
+                },
+                {
+                    "name": "entry",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "condition",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "fullUrl",
+                            "transform": "append",
+                            "parameter": [
+                                {
+                                    "valueString": "http://hl7.org/fhir/us/sdoh-clinicalcare/Condition/"
+                                },
+                                {
+                                    "valueId": "id"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

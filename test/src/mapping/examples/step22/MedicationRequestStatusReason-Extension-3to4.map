@@ -1,0 +1,50 @@
+map "http://fhir.nhs.uk/StructureMap/MedicationRequestStatusReason-Extension-3to4" = "R3 to R4 conversion for CareConnect MedicationRequest StatusReason extension"
+uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedicationRequest as source
+uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedicationRequest as target
+
+group MedicationRequest(source src : MedicationRequest, target tgt : MedicationRequest)  {
+    src.extension as ext where $this.url='https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationStatusReason-1' or
+       $this.url='https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatusReason-1'
+       -> tgt.statusReason as vt then {
+       ext.extension as vs where $this.url='statusReason' -> tgt.statusReason as vt1 then {
+          vs.value : CodeableConcept as vs1 -> tgt.statusReason as vt2 then CodeableConceptStatusReason(vs1, vt2);
+       };
+
+       // Using convention detailed here https://build.fhir.org/versions.html#extensions
+       ext.extension as vs where $this.url='statusChangeDate' -> tgt.extension = create('Extension') as vt, 
+          vt.url='http://fhir.nhs.uk/fhir/3.0/StructureDefinition/extension-statusChangeDate' then {
+          vs.value : dateTime as vs1 -> vt.extension = create('Extension') as vt1, 
+             vt1.url='statusChangeDate' then {
+                vs.value : dateTime as vs2 -> vt1.value = create('dateTime') as vt2, vt2.value = vs2;
+          };
+       };
+    };
+
+}
+
+group CodeableConceptStatusReason(source src : CodeableConcept, target tgt : CodeableConcept) {
+    src.coding -> tgt.coding;
+    src.text as text -> tgt.text = text;
+}
+
+group Coding(source src : Coding, target tgt : Coding) <<type+>> {
+    src.system as system -> tgt.system = system;
+    src.version as version -> tgt.version = version;
+    src.code as code -> tgt.code = code;
+    src.display as display -> tgt.display = display;
+    src.userSelected as userSelected -> tgt.userSelected = userSelected;
+
+    src.extension as vs where $this.url='https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid' or
+                              $this.url='https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid' ->
+       tgt.extension = create('Extension') as vt, vt.url = 'https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-CodingSCTDescId' then {
+
+          vs.extension as vsx where $this.url='descriptionId' -> vt.extension = create('Extension') as vtx, vtx.url = 'descriptionId' then {
+             vsx.value: id as vsv -> vtx.value = create('Identifier') as vtv,
+                vtv.system='http://snomed.info/sct',
+                vtv.value = vsv;
+          };
+
+          vs.extension as vsx where $this.url='descriptionDisplay' -> vt.extension = create('Extension') as vtx, vt.extension = vsx;
+       };
+}
+

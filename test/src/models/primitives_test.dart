@@ -1,0 +1,45 @@
+import 'primitive_types/base64binary_test.dart';
+import 'primitive_types/boolean_test.dart';
+import 'primitive_types/canonical_test.dart';
+import 'primitive_types/code_test.dart';
+import 'primitive_types/date_test.dart';
+import 'primitive_types/date_time_test.dart';
+import 'primitive_types/decimal_test.dart';
+import 'primitive_types/id_test.dart';
+import 'primitive_types/instant_test.dart';
+import 'primitive_types/integer64_test.dart';
+import 'primitive_types/integer_test.dart';
+import 'primitive_types/markdown_test.dart';
+import 'primitive_types/oid_test.dart';
+import 'primitive_types/positive_int_test.dart';
+import 'primitive_types/string_test.dart';
+import 'primitive_types/time_test.dart';
+import 'primitive_types/unsigned_int_test.dart';
+import 'primitive_types/uri_test.dart';
+import 'primitive_types/url_test.dart';
+import 'primitive_types/uuid_test.dart';
+import 'primitive_types/xhtml_test.dart';
+
+void main() {
+  base64BinaryTest();
+  booleanTest();
+  canonicalTest();
+  codeTest();
+  dateTest();
+  dateTimeTest();
+  decimalTest();
+  idTest();
+  instantTest();
+  integerTest();
+  integer64Test();
+  markdownTest();
+  oidTest();
+  positiveIntTest();
+  stringTest();
+  timeTest();
+  unsignedIntTest();
+  uriTest();
+  urlTest();
+  uuidTest();
+  xhtmlTest();
+}
