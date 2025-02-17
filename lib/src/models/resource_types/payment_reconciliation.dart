@@ -523,6 +523,207 @@ class PaymentReconciliation extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is FinancialResourceStatusCodes) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is Period) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'created':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(created: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'paymentIssuer':
+        {
+          if (child is Reference) {
+            return copyWith(paymentIssuer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'request':
+        {
+          if (child is Reference) {
+            return copyWith(request: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'requestor':
+        {
+          if (child is Reference) {
+            return copyWith(requestor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'outcome':
+        {
+          if (child is RemittanceOutcome) {
+            return copyWith(outcome: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'disposition':
+        {
+          if (child is FhirString) {
+            return copyWith(disposition: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'paymentDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(paymentDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'paymentAmount':
+        {
+          if (child is Money) {
+            return copyWith(paymentAmount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'paymentIdentifier':
+        {
+          if (child is Identifier) {
+            return copyWith(paymentIdentifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'detail':
+        {
+          if (child is List<PaymentReconciliationDetail>) {
+            return copyWith(detail: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'formCode':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(formCode: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'processNote':
+        {
+          if (child is List<PaymentReconciliationProcessNote>) {
+            return copyWith(processNote: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   PaymentReconciliation clone() => throw UnimplementedError();
   @override
   PaymentReconciliation copyWith({
@@ -1124,6 +1325,127 @@ class PaymentReconciliationDetail extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is Identifier) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'predecessor':
+        {
+          if (child is Identifier) {
+            return copyWith(predecessor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'request':
+        {
+          if (child is Reference) {
+            return copyWith(request: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'submitter':
+        {
+          if (child is Reference) {
+            return copyWith(submitter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'response':
+        {
+          if (child is Reference) {
+            return copyWith(response: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'date':
+        {
+          if (child is FhirDate) {
+            return copyWith(date: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'responsible':
+        {
+          if (child is Reference) {
+            return copyWith(responsible: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'payee':
+        {
+          if (child is Reference) {
+            return copyWith(payee: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amount':
+        {
+          if (child is Money) {
+            return copyWith(amount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   PaymentReconciliationDetail clone() => throw UnimplementedError();
   @override
   PaymentReconciliationDetail copyWith({
@@ -1290,7 +1612,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory PaymentReconciliationProcessNote.empty() =>
-      const PaymentReconciliationProcessNote();
+      PaymentReconciliationProcessNote();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationProcessNote.fromJson(
@@ -1482,6 +1804,63 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is NoteType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is FhirString) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

@@ -579,6 +579,223 @@ class Coverage extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is FinancialResourceStatusCodes) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'policyHolder':
+        {
+          if (child is Reference) {
+            return copyWith(policyHolder: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subscriber':
+        {
+          if (child is Reference) {
+            return copyWith(subscriber: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subscriberId':
+        {
+          if (child is FhirString) {
+            return copyWith(subscriberId: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'beneficiary':
+        {
+          if (child is Reference) {
+            return copyWith(beneficiary: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dependent':
+        {
+          if (child is FhirString) {
+            return copyWith(dependent: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'relationship':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(relationship: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is Period) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'payor':
+        {
+          if (child is List<Reference>) {
+            return copyWith(payor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'class':
+        {
+          if (child is List<CoverageClass>) {
+            return copyWith(class_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'order':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(order: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'network':
+        {
+          if (child is FhirString) {
+            return copyWith(network: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'costToBeneficiary':
+        {
+          if (child is List<CoverageCostToBeneficiary>) {
+            return copyWith(costToBeneficiary: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subrogation':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(subrogation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contract':
+        {
+          if (child is List<Reference>) {
+            return copyWith(contract: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Coverage clone() => throw UnimplementedError();
   @override
   Coverage copyWith({
@@ -1086,6 +1303,71 @@ class CoverageClass extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'value':
+        {
+          if (child is FhirString) {
+            return copyWith(value: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   CoverageClass clone() => throw UnimplementedError();
   @override
   CoverageClass copyWith({
@@ -1433,6 +1715,88 @@ class CoverageCostToBeneficiary extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueX':
+        {
+          if (child is ValueXCoverageCostToBeneficiary) {
+            // child is e.g. SubjectX union
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueMoney':
+        {
+          if (child is Money) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'exception':
+        {
+          if (child is List<CoverageException>) {
+            return copyWith(exception: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   CoverageCostToBeneficiary clone() => throw UnimplementedError();
   @override
   CoverageCostToBeneficiary copyWith({
@@ -1741,6 +2105,63 @@ class CoverageException extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is Period) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

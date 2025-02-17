@@ -247,6 +247,80 @@ class Annotation extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'authorX':
+        {
+          if (child is AuthorXAnnotation) {
+            // child is e.g. SubjectX union
+            return copyWith(authorX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'authorReference':
+        {
+          if (child is Reference) {
+            return copyWith(authorX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'authorFhirString':
+        {
+          if (child is FhirString) {
+            return copyWith(authorX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'time':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(time: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Annotation clone() => throw UnimplementedError();
   @override
   Annotation copyWith({

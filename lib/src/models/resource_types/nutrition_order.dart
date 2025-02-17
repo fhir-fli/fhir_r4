@@ -591,6 +591,223 @@ class NutritionOrder extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instantiatesCanonical':
+        {
+          if (child is List<FhirCanonical>) {
+            return copyWith(instantiatesCanonical: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instantiatesUri':
+        {
+          if (child is List<FhirUri>) {
+            return copyWith(instantiatesUri: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instantiates':
+        {
+          if (child is List<FhirUri>) {
+            return copyWith(instantiates: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is RequestStatus) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'intent':
+        {
+          if (child is RequestIntent) {
+            return copyWith(intent: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'patient':
+        {
+          if (child is Reference) {
+            return copyWith(patient: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'encounter':
+        {
+          if (child is Reference) {
+            return copyWith(encounter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(dateTime: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'orderer':
+        {
+          if (child is Reference) {
+            return copyWith(orderer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'allergyIntolerance':
+        {
+          if (child is List<Reference>) {
+            return copyWith(allergyIntolerance: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'foodPreferenceModifier':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(foodPreferenceModifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'excludeFoodModifier':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(excludeFoodModifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'oralDiet':
+        {
+          if (child is NutritionOrderOralDiet) {
+            return copyWith(oralDiet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'supplement':
+        {
+          if (child is List<NutritionOrderSupplement>) {
+            return copyWith(supplement: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'enteralFormula':
+        {
+          if (child is NutritionOrderEnteralFormula) {
+            return copyWith(enteralFormula: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'note':
+        {
+          if (child is List<Annotation>) {
+            return copyWith(note: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrder clone() => throw UnimplementedError();
   @override
   NutritionOrder copyWith({
@@ -917,7 +1134,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionOrderOralDiet.empty() => const NutritionOrderOralDiet();
+  factory NutritionOrderOralDiet.empty() => NutritionOrderOralDiet();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderOralDiet.fromJson(
@@ -1203,6 +1420,95 @@ class NutritionOrderOralDiet extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'schedule':
+        {
+          if (child is List<Timing>) {
+            return copyWith(schedule: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'nutrient':
+        {
+          if (child is List<NutritionOrderNutrient>) {
+            return copyWith(nutrient: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'texture':
+        {
+          if (child is List<NutritionOrderTexture>) {
+            return copyWith(texture: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'fluidConsistencyType':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(fluidConsistencyType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instruction':
+        {
+          if (child is FhirString) {
+            return copyWith(instruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrderOralDiet clone() => throw UnimplementedError();
   @override
   NutritionOrderOralDiet copyWith({
@@ -1371,7 +1677,7 @@ class NutritionOrderNutrient extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionOrderNutrient.empty() => const NutritionOrderNutrient();
+  factory NutritionOrderNutrient.empty() => NutritionOrderNutrient();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderNutrient.fromJson(
@@ -1566,6 +1872,63 @@ class NutritionOrderNutrient extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifier':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(modifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amount':
+        {
+          if (child is Quantity) {
+            return copyWith(amount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrderNutrient clone() => throw UnimplementedError();
   @override
   NutritionOrderNutrient copyWith({
@@ -1667,7 +2030,7 @@ class NutritionOrderTexture extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionOrderTexture.empty() => const NutritionOrderTexture();
+  factory NutritionOrderTexture.empty() => NutritionOrderTexture();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderTexture.fromJson(
@@ -1864,6 +2227,63 @@ class NutritionOrderTexture extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifier':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(modifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'foodType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(foodType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrderTexture clone() => throw UnimplementedError();
   @override
   NutritionOrderTexture copyWith({
@@ -1968,7 +2388,7 @@ class NutritionOrderSupplement extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionOrderSupplement.empty() => const NutritionOrderSupplement();
+  factory NutritionOrderSupplement.empty() => NutritionOrderSupplement();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderSupplement.fromJson(
@@ -2220,6 +2640,87 @@ class NutritionOrderSupplement extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productName':
+        {
+          if (child is FhirString) {
+            return copyWith(productName: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'schedule':
+        {
+          if (child is List<Timing>) {
+            return copyWith(schedule: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'quantity':
+        {
+          if (child is Quantity) {
+            return copyWith(quantity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instruction':
+        {
+          if (child is FhirString) {
+            return copyWith(instruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrderSupplement clone() => throw UnimplementedError();
   @override
   NutritionOrderSupplement copyWith({
@@ -2360,7 +2861,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory NutritionOrderEnteralFormula.empty() =>
-      const NutritionOrderEnteralFormula();
+      NutritionOrderEnteralFormula();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderEnteralFormula.fromJson(
@@ -2687,6 +3188,119 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'baseFormulaType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(baseFormulaType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'baseFormulaProductName':
+        {
+          if (child is FhirString) {
+            return copyWith(baseFormulaProductName: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additiveType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(additiveType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additiveProductName':
+        {
+          if (child is FhirString) {
+            return copyWith(additiveProductName: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'caloricDensity':
+        {
+          if (child is Quantity) {
+            return copyWith(caloricDensity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'routeofAdministration':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(routeofAdministration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'administration':
+        {
+          if (child is List<NutritionOrderAdministration>) {
+            return copyWith(administration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'maxVolumeToDeliver':
+        {
+          if (child is Quantity) {
+            return copyWith(maxVolumeToDeliver: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'administrationInstruction':
+        {
+          if (child is FhirString) {
+            return copyWith(administrationInstruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   NutritionOrderEnteralFormula clone() => throw UnimplementedError();
   @override
   NutritionOrderEnteralFormula copyWith({
@@ -2824,7 +3438,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        administrationInstruction, o.administrationInstruction,)) {
+        administrationInstruction, o.administrationInstruction)) {
       return false;
     }
     return true;
@@ -2857,7 +3471,7 @@ class NutritionOrderAdministration extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory NutritionOrderAdministration.empty() =>
-      const NutritionOrderAdministration();
+      NutritionOrderAdministration();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderAdministration.fromJson(
@@ -3088,6 +3702,88 @@ class NutritionOrderAdministration extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'schedule':
+        {
+          if (child is Timing) {
+            return copyWith(schedule: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'quantity':
+        {
+          if (child is Quantity) {
+            return copyWith(quantity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateX':
+        {
+          if (child is RateXNutritionOrderAdministration) {
+            // child is e.g. SubjectX union
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateRatio':
+        {
+          if (child is Ratio) {
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

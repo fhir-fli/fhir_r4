@@ -23,7 +23,7 @@ class Population extends BackboneType {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Population.empty() => const Population();
+  factory Population.empty() => Population();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Population.fromJson(
@@ -268,6 +268,96 @@ class Population extends BackboneType {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ageX':
+        {
+          if (child is AgeXPopulation) {
+            // child is e.g. SubjectX union
+            return copyWith(ageX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ageRange':
+        {
+          if (child is Range) {
+            return copyWith(ageX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ageCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(ageX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'gender':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(gender: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'race':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(race: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'physiologicalCondition':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(physiologicalCondition: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

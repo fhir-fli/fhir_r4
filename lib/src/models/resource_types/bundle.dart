@@ -322,6 +322,111 @@ class Bundle extends Resource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is Identifier) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is BundleType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timestamp':
+        {
+          if (child is FhirInstant) {
+            return copyWith(timestamp: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'total':
+        {
+          if (child is FhirUnsignedInt) {
+            return copyWith(total: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'link':
+        {
+          if (child is List<BundleLink>) {
+            return copyWith(link: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'entry':
+        {
+          if (child is List<BundleEntry>) {
+            return copyWith(entry: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'signature':
+        {
+          if (child is Signature) {
+            return copyWith(signature: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Bundle clone() => throw UnimplementedError();
   @override
   Bundle copyWith({
@@ -664,6 +769,63 @@ class BundleLink extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'relation':
+        {
+          if (child is FhirString) {
+            return copyWith(relation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'url':
+        {
+          if (child is FhirUri) {
+            return copyWith(url: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BundleLink clone() => throw UnimplementedError();
   @override
   BundleLink copyWith({
@@ -769,7 +931,7 @@ class BundleEntry extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BundleEntry.empty() => const BundleEntry();
+  factory BundleEntry.empty() => BundleEntry();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleEntry.fromJson(
@@ -1046,6 +1208,95 @@ class BundleEntry extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'link':
+        {
+          if (child is List<BundleLink>) {
+            return copyWith(link: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'fullUrl':
+        {
+          if (child is FhirUri) {
+            return copyWith(fullUrl: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'resource':
+        {
+          if (child is Resource) {
+            return copyWith(resource: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'search':
+        {
+          if (child is BundleSearch) {
+            return copyWith(search: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'request':
+        {
+          if (child is BundleRequest) {
+            return copyWith(request: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'response':
+        {
+          if (child is BundleResponse) {
+            return copyWith(response: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BundleEntry clone() => throw UnimplementedError();
   @override
   BundleEntry copyWith({
@@ -1183,7 +1434,7 @@ class BundleSearch extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BundleSearch.empty() => const BundleSearch();
+  factory BundleSearch.empty() => BundleSearch();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleSearch.fromJson(
@@ -1377,6 +1628,63 @@ class BundleSearch extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'mode':
+        {
+          if (child is SearchEntryMode) {
+            return copyWith(mode: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'score':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(score: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -1751,6 +2059,95 @@ class BundleRequest extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'method':
+        {
+          if (child is HTTPVerb) {
+            return copyWith(method: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'url':
+        {
+          if (child is FhirUri) {
+            return copyWith(url: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ifNoneMatch':
+        {
+          if (child is FhirString) {
+            return copyWith(ifNoneMatch: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ifModifiedSince':
+        {
+          if (child is FhirInstant) {
+            return copyWith(ifModifiedSince: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ifMatch':
+        {
+          if (child is FhirString) {
+            return copyWith(ifMatch: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ifNoneExist':
+        {
+          if (child is FhirString) {
+            return copyWith(ifNoneExist: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -2138,6 +2535,87 @@ class BundleResponse extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is FhirString) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'location':
+        {
+          if (child is FhirUri) {
+            return copyWith(location: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'etag':
+        {
+          if (child is FhirString) {
+            return copyWith(etag: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lastModified':
+        {
+          if (child is FhirInstant) {
+            return copyWith(lastModified: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'outcome':
+        {
+          if (child is Resource) {
+            return copyWith(outcome: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

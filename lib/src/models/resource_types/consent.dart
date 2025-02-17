@@ -534,6 +534,208 @@ class Consent extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is ConsentState) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'scope':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(scope: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'category':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(category: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'patient':
+        {
+          if (child is Reference) {
+            return copyWith(patient: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(dateTime: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'performer':
+        {
+          if (child is List<Reference>) {
+            return copyWith(performer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'organization':
+        {
+          if (child is List<Reference>) {
+            return copyWith(organization: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceX':
+        {
+          if (child is SourceXConsent) {
+            // child is e.g. SubjectX union
+            return copyWith(sourceX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceAttachment':
+        {
+          if (child is Attachment) {
+            return copyWith(sourceX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceReference':
+        {
+          if (child is Reference) {
+            return copyWith(sourceX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'policy':
+        {
+          if (child is List<ConsentPolicy>) {
+            return copyWith(policy: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'policyRule':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(policyRule: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'verification':
+        {
+          if (child is List<ConsentVerification>) {
+            return copyWith(verification: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'provision':
+        {
+          if (child is ConsentProvision) {
+            return copyWith(provision: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Consent clone() => throw UnimplementedError();
   @override
   Consent copyWith({
@@ -805,7 +1007,7 @@ class ConsentPolicy extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConsentPolicy.empty() => const ConsentPolicy();
+  factory ConsentPolicy.empty() => ConsentPolicy();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentPolicy.fromJson(
@@ -1000,6 +1202,63 @@ class ConsentPolicy extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'authority':
+        {
+          if (child is FhirUri) {
+            return copyWith(authority: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'uri':
+        {
+          if (child is FhirUri) {
+            return copyWith(uri: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -1318,6 +1577,71 @@ class ConsentVerification extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'verified':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(verified: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'verifiedWith':
+        {
+          if (child is Reference) {
+            return copyWith(verifiedWith: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'verificationDate':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(verificationDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ConsentVerification clone() => throw UnimplementedError();
   @override
   ConsentVerification copyWith({
@@ -1436,7 +1760,7 @@ class ConsentProvision extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConsentProvision.empty() => const ConsentProvision();
+  factory ConsentProvision.empty() => ConsentProvision();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentProvision.fromJson(
@@ -1812,6 +2136,135 @@ class ConsentProvision extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is ConsentProvisionType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is Period) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'actor':
+        {
+          if (child is List<ConsentActor>) {
+            return copyWith(actor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'action':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(action: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'securityLabel':
+        {
+          if (child is List<Coding>) {
+            return copyWith(securityLabel: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'purpose':
+        {
+          if (child is List<Coding>) {
+            return copyWith(purpose: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'class':
+        {
+          if (child is List<Coding>) {
+            return copyWith(class_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dataPeriod':
+        {
+          if (child is Period) {
+            return copyWith(dataPeriod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'data':
+        {
+          if (child is List<ConsentData>) {
+            return copyWith(data: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'provision':
+        {
+          if (child is List<ConsentProvision>) {
+            return copyWith(provision: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -2241,6 +2694,63 @@ class ConsentActor extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'role':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(role: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'reference':
+        {
+          if (child is Reference) {
+            return copyWith(reference: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ConsentActor clone() => throw UnimplementedError();
   @override
   ConsentActor copyWith({
@@ -2535,6 +3045,63 @@ class ConsentData extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meaning':
+        {
+          if (child is ConsentDataMeaning) {
+            return copyWith(meaning: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'reference':
+        {
+          if (child is Reference) {
+            return copyWith(reference: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

@@ -38,7 +38,7 @@ class Organization extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Organization.empty() => const Organization();
+  factory Organization.empty() => Organization();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Organization.fromJson(
@@ -453,6 +453,167 @@ class Organization extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'active':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(active: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'alias':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(alias: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'telecom':
+        {
+          if (child is List<ContactPoint>) {
+            return copyWith(telecom: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'address':
+        {
+          if (child is List<Address>) {
+            return copyWith(address: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'partOf':
+        {
+          if (child is Reference) {
+            return copyWith(partOf: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contact':
+        {
+          if (child is List<OrganizationContact>) {
+            return copyWith(contact: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'endpoint':
+        {
+          if (child is List<Reference>) {
+            return copyWith(endpoint: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Organization clone() => throw UnimplementedError();
   @override
   Organization copyWith({
@@ -707,7 +868,7 @@ class OrganizationContact extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OrganizationContact.empty() => const OrganizationContact();
+  factory OrganizationContact.empty() => OrganizationContact();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OrganizationContact.fromJson(
@@ -936,6 +1097,79 @@ class OrganizationContact extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'purpose':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(purpose: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is HumanName) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'telecom':
+        {
+          if (child is List<ContactPoint>) {
+            return copyWith(telecom: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'address':
+        {
+          if (child is Address) {
+            return copyWith(address: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

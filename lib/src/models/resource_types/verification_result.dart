@@ -513,6 +513,199 @@ class VerificationResult extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'target':
+        {
+          if (child is List<Reference>) {
+            return copyWith(target: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'targetLocation':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(targetLocation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'need':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(need: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is Status) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'statusDate':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(statusDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validationType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(validationType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validationProcess':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(validationProcess: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'frequency':
+        {
+          if (child is Timing) {
+            return copyWith(frequency: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lastPerformed':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(lastPerformed: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'nextScheduled':
+        {
+          if (child is FhirDate) {
+            return copyWith(nextScheduled: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'failureAction':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(failureAction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'primarySource':
+        {
+          if (child is List<VerificationResultPrimarySource>) {
+            return copyWith(primarySource: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'attestation':
+        {
+          if (child is VerificationResultAttestation) {
+            return copyWith(attestation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validator':
+        {
+          if (child is List<VerificationResultValidator>) {
+            return copyWith(validator: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   VerificationResult clone() => throw UnimplementedError();
   @override
   VerificationResult copyWith({
@@ -789,7 +982,7 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory VerificationResultPrimarySource.empty() =>
-      const VerificationResultPrimarySource();
+      VerificationResultPrimarySource();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultPrimarySource.fromJson(
@@ -1081,6 +1274,103 @@ class VerificationResultPrimarySource extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'who':
+        {
+          if (child is Reference) {
+            return copyWith(who: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'communicationMethod':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(communicationMethod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validationStatus':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(validationStatus: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validationDate':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(validationDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'canPushUpdates':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(canPushUpdates: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'pushTypeAvailable':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(pushTypeAvailable: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
   VerificationResultPrimarySource copyWith({
@@ -1249,7 +1539,7 @@ class VerificationResultAttestation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory VerificationResultAttestation.empty() =>
-      const VerificationResultAttestation();
+      VerificationResultAttestation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultAttestation.fromJson(
@@ -1546,6 +1836,111 @@ class VerificationResultAttestation extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'who':
+        {
+          if (child is Reference) {
+            return copyWith(who: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'onBehalfOf':
+        {
+          if (child is Reference) {
+            return copyWith(onBehalfOf: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'communicationMethod':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(communicationMethod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'date':
+        {
+          if (child is FhirDate) {
+            return copyWith(date: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceIdentityCertificate':
+        {
+          if (child is FhirString) {
+            return copyWith(sourceIdentityCertificate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'proxyIdentityCertificate':
+        {
+          if (child is FhirString) {
+            return copyWith(proxyIdentityCertificate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'proxySignature':
+        {
+          if (child is Signature) {
+            return copyWith(proxySignature: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceSignature':
+        {
+          if (child is Signature) {
+            return copyWith(sourceSignature: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
   VerificationResultAttestation copyWith({
@@ -1659,11 +2054,11 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
+        sourceIdentityCertificate, o.sourceIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
+        proxyIdentityCertificate, o.proxyIdentityCertificate)) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
@@ -1906,6 +2301,71 @@ class VerificationResultValidator extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'organization':
+        {
+          if (child is Reference) {
+            return copyWith(organization: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identityCertificate':
+        {
+          if (child is FhirString) {
+            return copyWith(identityCertificate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'attestationSignature':
+        {
+          if (child is Signature) {
+            return copyWith(attestationSignature: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

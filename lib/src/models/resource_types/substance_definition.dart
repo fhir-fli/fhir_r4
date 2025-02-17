@@ -45,7 +45,7 @@ class SubstanceDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinition.empty() => const SubstanceDefinition();
+  factory SubstanceDefinition.empty() => SubstanceDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinition.fromJson(
@@ -638,6 +638,239 @@ class SubstanceDefinition extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'version':
+        {
+          if (child is FhirString) {
+            return copyWith(version: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'classification':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(classification: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'domain':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(domain: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'grade':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(grade: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'informationSource':
+        {
+          if (child is List<Reference>) {
+            return copyWith(informationSource: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'note':
+        {
+          if (child is List<Annotation>) {
+            return copyWith(note: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'manufacturer':
+        {
+          if (child is List<Reference>) {
+            return copyWith(manufacturer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'supplier':
+        {
+          if (child is List<Reference>) {
+            return copyWith(supplier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'moiety':
+        {
+          if (child is List<SubstanceDefinitionMoiety>) {
+            return copyWith(moiety: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'property':
+        {
+          if (child is List<SubstanceDefinitionProperty>) {
+            return copyWith(property: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'molecularWeight':
+        {
+          if (child is List<SubstanceDefinitionMolecularWeight>) {
+            return copyWith(molecularWeight: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'structure':
+        {
+          if (child is SubstanceDefinitionStructure) {
+            return copyWith(structure: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is List<SubstanceDefinitionCode>) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is List<SubstanceDefinitionName>) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'relationship':
+        {
+          if (child is List<SubstanceDefinitionRelationship>) {
+            return copyWith(relationship: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceMaterial':
+        {
+          if (child is SubstanceDefinitionSourceMaterial) {
+            return copyWith(sourceMaterial: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinition clone() => throw UnimplementedError();
   @override
   SubstanceDefinition copyWith({
@@ -1010,7 +1243,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() => SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1322,6 +1555,128 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'role':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(role: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is Identifier) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'stereochemistry':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(stereochemistry: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'opticalActivity':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(opticalActivity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'molecularFormula':
+        {
+          if (child is FhirString) {
+            return copyWith(molecularFormula: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountX':
+        {
+          if (child is AmountXSubstanceDefinitionMoiety) {
+            // child is e.g. SubjectX union
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountFhirString':
+        {
+          if (child is FhirString) {
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'measurementType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(measurementType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -1712,6 +2067,104 @@ class SubstanceDefinitionProperty extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueX':
+        {
+          if (child is ValueXSubstanceDefinitionProperty) {
+            // child is e.g. SubjectX union
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueFhirDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueFhirBoolean':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueAttachment':
+        {
+          if (child is Attachment) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinitionProperty clone() => throw UnimplementedError();
   @override
   SubstanceDefinitionProperty copyWith({
@@ -2030,6 +2483,71 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'method':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(method: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amount':
+        {
+          if (child is Quantity) {
+            return copyWith(amount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinitionMolecularWeight clone() => throw UnimplementedError();
   @override
   SubstanceDefinitionMolecularWeight copyWith({
@@ -2145,7 +2663,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionStructure.empty() =>
-      const SubstanceDefinitionStructure();
+      SubstanceDefinitionStructure();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionStructure.fromJson(
@@ -2453,6 +2971,111 @@ class SubstanceDefinitionStructure extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'stereochemistry':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(stereochemistry: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'opticalActivity':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(opticalActivity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'molecularFormula':
+        {
+          if (child is FhirString) {
+            return copyWith(molecularFormula: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'molecularFormulaByMoiety':
+        {
+          if (child is FhirString) {
+            return copyWith(molecularFormulaByMoiety: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'molecularWeight':
+        {
+          if (child is SubstanceDefinitionMolecularWeight) {
+            return copyWith(molecularWeight: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'technique':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(technique: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sourceDocument':
+        {
+          if (child is List<Reference>) {
+            return copyWith(sourceDocument: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'representation':
+        {
+          if (child is List<SubstanceDefinitionRepresentation>) {
+            return copyWith(representation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinitionStructure clone() => throw UnimplementedError();
   @override
   SubstanceDefinitionStructure copyWith({
@@ -2575,7 +3198,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
+        molecularFormulaByMoiety, o.molecularFormulaByMoiety)) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -2626,7 +3249,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionRepresentation.empty() =>
-      const SubstanceDefinitionRepresentation();
+      SubstanceDefinitionRepresentation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionRepresentation.fromJson(
@@ -2858,6 +3481,79 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'representation':
+        {
+          if (child is FhirString) {
+            return copyWith(representation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'format':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(format: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'document':
+        {
+          if (child is Reference) {
+            return copyWith(document: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
   @override
   SubstanceDefinitionRepresentation copyWith({
@@ -2977,7 +3673,7 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionCode.empty() => const SubstanceDefinitionCode();
+  factory SubstanceDefinitionCode.empty() => SubstanceDefinitionCode();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionCode.fromJson(
@@ -3226,6 +3922,87 @@ class SubstanceDefinitionCode extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'statusDate':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(statusDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'note':
+        {
+          if (child is List<Annotation>) {
+            return copyWith(note: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'source':
+        {
+          if (child is List<Reference>) {
+            return copyWith(source: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -3745,6 +4522,135 @@ class SubstanceDefinitionName extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'preferred':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(preferred: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'domain':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(domain: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'jurisdiction':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(jurisdiction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'synonym':
+        {
+          if (child is List<SubstanceDefinitionName>) {
+            return copyWith(synonym: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'translation':
+        {
+          if (child is List<SubstanceDefinitionName>) {
+            return copyWith(translation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'official':
+        {
+          if (child is List<SubstanceDefinitionOfficial>) {
+            return copyWith(official: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'source':
+        {
+          if (child is List<Reference>) {
+            return copyWith(source: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SubstanceDefinitionName clone() => throw UnimplementedError();
   @override
   SubstanceDefinitionName copyWith({
@@ -3967,7 +4873,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() => SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -4176,6 +5082,71 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'authority':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(authority: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'date':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(date: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -4515,7 +5486,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
     addField('type', type);
@@ -4631,6 +5602,145 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'substanceDefinitionX':
+        {
+          if (child is SubstanceDefinitionXSubstanceDefinitionRelationship) {
+            // child is e.g. SubjectX union
+            return copyWith(substanceDefinitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'substanceDefinitionReference':
+        {
+          if (child is Reference) {
+            return copyWith(substanceDefinitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'substanceDefinitionCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(substanceDefinitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'isDefining':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(isDefining: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountX':
+        {
+          if (child is AmountXSubstanceDefinitionRelationship) {
+            // child is e.g. SubjectX union
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountRatio':
+        {
+          if (child is Ratio) {
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amountFhirString':
+        {
+          if (child is FhirString) {
+            return copyWith(amountX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'ratioHighLimitAmount':
+        {
+          if (child is Ratio) {
+            return copyWith(ratioHighLimitAmount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'comparator':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(comparator: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'source':
+        {
+          if (child is List<Reference>) {
+            return copyWith(source: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -4785,7 +5895,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionSourceMaterial.empty() =>
-      const SubstanceDefinitionSourceMaterial();
+      SubstanceDefinitionSourceMaterial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionSourceMaterial.fromJson(
@@ -5032,6 +6142,87 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'genus':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(genus: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'species':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(species: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'part':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(part_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'countryOfOrigin':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(countryOfOrigin: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

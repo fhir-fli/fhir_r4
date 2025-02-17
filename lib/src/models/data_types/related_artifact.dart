@@ -301,6 +301,95 @@ class RelatedArtifact extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is RelatedArtifactType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'label':
+        {
+          if (child is FhirString) {
+            return copyWith(label: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'display':
+        {
+          if (child is FhirString) {
+            return copyWith(display: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'citation':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(citation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'url':
+        {
+          if (child is FhirUrl) {
+            return copyWith(url: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'document':
+        {
+          if (child is Attachment) {
+            return copyWith(document: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'resource':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(resource: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override
   RelatedArtifact copyWith({

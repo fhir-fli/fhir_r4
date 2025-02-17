@@ -52,7 +52,7 @@ class Timing extends BackboneType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Timing.empty() => const Timing();
+  factory Timing.empty() => Timing();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Timing.fromJson(
@@ -269,6 +269,71 @@ class Timing extends BackboneType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'event':
+        {
+          if (child is List<FhirDateTime>) {
+            return copyWith(event: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'repeat':
+        {
+          if (child is TimingRepeat) {
+            return copyWith(repeat: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Timing clone() => throw UnimplementedError();
   @override
   Timing copyWith({
@@ -395,7 +460,7 @@ class TimingRepeat extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TimingRepeat.empty() => const TimingRepeat();
+  factory TimingRepeat.empty() => TimingRepeat();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TimingRepeat.fromJson(
@@ -828,6 +893,184 @@ class TimingRepeat extends Element {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'boundsX':
+        {
+          if (child is BoundsXTimingRepeat) {
+            // child is e.g. SubjectX union
+            return copyWith(boundsX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'boundsFhirDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(boundsX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'boundsRange':
+        {
+          if (child is Range) {
+            return copyWith(boundsX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'boundsPeriod':
+        {
+          if (child is Period) {
+            return copyWith(boundsX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'count':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(count: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'countMax':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(countMax: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'duration':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(duration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'durationMax':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(durationMax: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'durationUnit':
+        {
+          if (child is UnitsOfTime) {
+            return copyWith(durationUnit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'frequency':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(frequency: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'frequencyMax':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(frequencyMax: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'periodMax':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(periodMax: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'periodUnit':
+        {
+          if (child is UnitsOfTime) {
+            return copyWith(periodUnit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dayOfWeek':
+        {
+          if (child is List<DaysOfWeek>) {
+            return copyWith(dayOfWeek: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeOfDay':
+        {
+          if (child is List<FhirTime>) {
+            return copyWith(timeOfDay: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'when':
+        {
+          if (child is List<EventTiming>) {
+            return copyWith(when: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'offset':
+        {
+          if (child is FhirUnsignedInt) {
+            return copyWith(offset: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

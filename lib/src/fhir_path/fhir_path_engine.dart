@@ -5630,8 +5630,7 @@ class FHIRPathEngine {
       if (s != null) {
         FhirBase? res;
         if (s.startsWith('#')) {
-          final property =
-              context.rootResource?.getChildByName('contained');
+          final property = context.rootResource?.getChildByName('contained');
           if (property != null) {
             for (final c in property.listChildrenNames()) {
               final val = property.getChildByName(c);
@@ -7088,9 +7087,7 @@ class FHIRPathEngine {
     final property = base.getChildByName(name);
     final propertyChildren = property?.listChildrenNames();
     if (property != null && propertyChildren!.length == 1) {
-      return property
-          .getChildByName(propertyChildren.first)
-          ?.primitiveValue;
+      return property.getChildByName(propertyChildren.first)?.primitiveValue;
     }
     return null;
   }

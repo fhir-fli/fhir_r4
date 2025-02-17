@@ -311,6 +311,95 @@ class Signature extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is List<Coding>) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'when':
+        {
+          if (child is FhirInstant) {
+            return copyWith(when: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'who':
+        {
+          if (child is Reference) {
+            return copyWith(who: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'onBehalfOf':
+        {
+          if (child is Reference) {
+            return copyWith(onBehalfOf: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'targetFormat':
+        {
+          if (child is FhirCode) {
+            return copyWith(targetFormat: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sigFormat':
+        {
+          if (child is FhirCode) {
+            return copyWith(sigFormat: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'data':
+        {
+          if (child is FhirBase64Binary) {
+            return copyWith(data: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Signature clone() => throw UnimplementedError();
   @override
   Signature copyWith({

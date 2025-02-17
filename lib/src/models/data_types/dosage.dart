@@ -43,7 +43,7 @@ class Dosage extends BackboneType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Dosage.empty() => const Dosage();
+  factory Dosage.empty() => Dosage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Dosage.fromJson(
@@ -449,6 +449,168 @@ class Dosage extends BackboneType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sequence':
+        {
+          if (child is FhirInteger) {
+            return copyWith(sequence: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is FhirString) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additionalInstruction':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(additionalInstruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'patientInstruction':
+        {
+          if (child is FhirString) {
+            return copyWith(patientInstruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timing':
+        {
+          if (child is Timing) {
+            return copyWith(timing: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'asNeededX':
+        {
+          if (child is AsNeededXDosage) {
+            // child is e.g. SubjectX union
+            return copyWith(asNeededX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'asNeededFhirBoolean':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(asNeededX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'asNeededCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(asNeededX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'site':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(site: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'route':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(route: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'method':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(method: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'doseAndRate':
+        {
+          if (child is List<DosageDoseAndRate>) {
+            return copyWith(doseAndRate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'maxDosePerPeriod':
+        {
+          if (child is Ratio) {
+            return copyWith(maxDosePerPeriod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'maxDosePerAdministration':
+        {
+          if (child is Quantity) {
+            return copyWith(maxDosePerAdministration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'maxDosePerLifetime':
+        {
+          if (child is Quantity) {
+            return copyWith(maxDosePerLifetime: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Dosage clone() => throw UnimplementedError();
   @override
   Dosage copyWith({
@@ -622,7 +784,7 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerAdministration, o.maxDosePerAdministration,)) {
+        maxDosePerAdministration, o.maxDosePerAdministration)) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
@@ -651,7 +813,7 @@ class DosageDoseAndRate extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DosageDoseAndRate.empty() => const DosageDoseAndRate();
+  factory DosageDoseAndRate.empty() => DosageDoseAndRate();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DosageDoseAndRate.fromJson(
@@ -891,6 +1053,105 @@ class DosageDoseAndRate extends Element {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'doseX':
+        {
+          if (child is DoseXDosageDoseAndRate) {
+            // child is e.g. SubjectX union
+            return copyWith(doseX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'doseRange':
+        {
+          if (child is Range) {
+            return copyWith(doseX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'doseQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(doseX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateX':
+        {
+          if (child is RateXDosageDoseAndRate) {
+            // child is e.g. SubjectX union
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateRatio':
+        {
+          if (child is Ratio) {
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateRange':
+        {
+          if (child is Range) {
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rateQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(rateX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

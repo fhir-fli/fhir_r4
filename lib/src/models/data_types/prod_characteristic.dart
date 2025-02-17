@@ -32,7 +32,7 @@ class ProdCharacteristic extends BackboneType {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ProdCharacteristic.empty() => const ProdCharacteristic();
+  factory ProdCharacteristic.empty() => ProdCharacteristic();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProdCharacteristic.fromJson(
@@ -397,6 +397,135 @@ class ProdCharacteristic extends BackboneType {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'height':
+        {
+          if (child is Quantity) {
+            return copyWith(height: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'width':
+        {
+          if (child is Quantity) {
+            return copyWith(width: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'depth':
+        {
+          if (child is Quantity) {
+            return copyWith(depth: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'weight':
+        {
+          if (child is Quantity) {
+            return copyWith(weight: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'nominalVolume':
+        {
+          if (child is Quantity) {
+            return copyWith(nominalVolume: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'externalDiameter':
+        {
+          if (child is Quantity) {
+            return copyWith(externalDiameter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'shape':
+        {
+          if (child is FhirString) {
+            return copyWith(shape: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'color':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(color: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'imprint':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(imprint: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'image':
+        {
+          if (child is List<Attachment>) {
+            return copyWith(image: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'scoring':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(scoring: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

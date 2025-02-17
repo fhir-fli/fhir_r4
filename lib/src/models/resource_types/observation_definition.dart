@@ -497,6 +497,191 @@ class ObservationDefinition extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'category':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(category: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'permittedDataType':
+        {
+          if (child is List<ObservationDataType>) {
+            return copyWith(permittedDataType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'multipleResultsAllowed':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(multipleResultsAllowed: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'method':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(method: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'preferredReportName':
+        {
+          if (child is FhirString) {
+            return copyWith(preferredReportName: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'quantitativeDetails':
+        {
+          if (child is ObservationDefinitionQuantitativeDetails) {
+            return copyWith(quantitativeDetails: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'qualifiedInterval':
+        {
+          if (child is List<ObservationDefinitionQualifiedInterval>) {
+            return copyWith(qualifiedInterval: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'validCodedValueSet':
+        {
+          if (child is Reference) {
+            return copyWith(validCodedValueSet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'normalCodedValueSet':
+        {
+          if (child is Reference) {
+            return copyWith(normalCodedValueSet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'abnormalCodedValueSet':
+        {
+          if (child is Reference) {
+            return copyWith(abnormalCodedValueSet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'criticalCodedValueSet':
+        {
+          if (child is Reference) {
+            return copyWith(criticalCodedValueSet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ObservationDefinition clone() => throw UnimplementedError();
   @override
   ObservationDefinition copyWith({
@@ -755,7 +940,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ObservationDefinitionQuantitativeDetails.empty() =>
-      const ObservationDefinitionQuantitativeDetails();
+      ObservationDefinitionQuantitativeDetails();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQuantitativeDetails.fromJson(
@@ -986,6 +1171,79 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'customaryUnit':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(customaryUnit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'unit':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(unit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'conversionFactor':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(conversionFactor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'decimalPrecision':
+        {
+          if (child is FhirInteger) {
+            return copyWith(decimalPrecision: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ObservationDefinitionQuantitativeDetails clone() =>
       throw UnimplementedError();
   @override
@@ -1111,7 +1369,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ObservationDefinitionQualifiedInterval.empty() =>
-      const ObservationDefinitionQualifiedInterval();
+      ObservationDefinitionQualifiedInterval();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQualifiedInterval.fromJson(
@@ -1409,6 +1667,111 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'category':
+        {
+          if (child is ObservationRangeCategory) {
+            return copyWith(category: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'range':
+        {
+          if (child is Range) {
+            return copyWith(range: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'context':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(context: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'appliesTo':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(appliesTo: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'gender':
+        {
+          if (child is AdministrativeGender) {
+            return copyWith(gender: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'age':
+        {
+          if (child is Range) {
+            return copyWith(age: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'gestationalAge':
+        {
+          if (child is Range) {
+            return copyWith(gestationalAge: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'condition':
+        {
+          if (child is FhirString) {
+            return copyWith(condition: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

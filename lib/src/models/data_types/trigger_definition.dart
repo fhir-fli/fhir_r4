@@ -307,6 +307,112 @@ class TriggerDefinition extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is TriggerType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingX':
+        {
+          if (child is TimingXTriggerDefinition) {
+            // child is e.g. SubjectX union
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingTiming':
+        {
+          if (child is Timing) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingReference':
+        {
+          if (child is Reference) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingFhirDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'data':
+        {
+          if (child is List<DataRequirement>) {
+            return copyWith(data: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'condition':
+        {
+          if (child is FhirExpression) {
+            return copyWith(condition: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override
   TriggerDefinition copyWith({

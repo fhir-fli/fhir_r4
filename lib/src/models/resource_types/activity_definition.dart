@@ -1224,6 +1224,546 @@ class ActivityDefinition extends CanonicalResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'url':
+        {
+          if (child is FhirUri) {
+            return copyWith(url: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'version':
+        {
+          if (child is FhirString) {
+            return copyWith(version: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'title':
+        {
+          if (child is FhirString) {
+            return copyWith(title: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subtitle':
+        {
+          if (child is FhirString) {
+            return copyWith(subtitle: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is PublicationStatus) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'experimental':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(experimental: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectX':
+        {
+          if (child is SubjectXActivityDefinition) {
+            // child is e.g. SubjectX union
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectReference':
+        {
+          if (child is Reference) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectFhirCanonical':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'date':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(date: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'publisher':
+        {
+          if (child is FhirString) {
+            return copyWith(publisher: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contact':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(contact: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'useContext':
+        {
+          if (child is List<UsageContext>) {
+            return copyWith(useContext: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'jurisdiction':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(jurisdiction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'purpose':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(purpose: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'usage':
+        {
+          if (child is FhirString) {
+            return copyWith(usage: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'copyright':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(copyright: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'approvalDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(approvalDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lastReviewDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(lastReviewDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'effectivePeriod':
+        {
+          if (child is Period) {
+            return copyWith(effectivePeriod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'topic':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(topic: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'author':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(author: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'editor':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(editor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'reviewer':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(reviewer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'endorser':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(endorser: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'relatedArtifact':
+        {
+          if (child is List<RelatedArtifact>) {
+            return copyWith(relatedArtifact: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'library':
+        {
+          if (child is List<FhirCanonical>) {
+            return copyWith(library_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'kind':
+        {
+          if (child is RequestResourceType) {
+            return copyWith(kind: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'profile':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(profile: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'intent':
+        {
+          if (child is RequestIntent) {
+            return copyWith(intent: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'priority':
+        {
+          if (child is RequestPriority) {
+            return copyWith(priority: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'doNotPerform':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(doNotPerform: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingX':
+        {
+          if (child is TimingXActivityDefinition) {
+            // child is e.g. SubjectX union
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingTiming':
+        {
+          if (child is Timing) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingAge':
+        {
+          if (child is Age) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingPeriod':
+        {
+          if (child is Period) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingRange':
+        {
+          if (child is Range) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timingFhirDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(timingX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'location':
+        {
+          if (child is Reference) {
+            return copyWith(location: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participant':
+        {
+          if (child is List<ActivityDefinitionParticipant>) {
+            return copyWith(participant: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productX':
+        {
+          if (child is ProductXActivityDefinition) {
+            // child is e.g. SubjectX union
+            return copyWith(productX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productReference':
+        {
+          if (child is Reference) {
+            return copyWith(productX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(productX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'quantity':
+        {
+          if (child is Quantity) {
+            return copyWith(quantity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dosage':
+        {
+          if (child is List<Dosage>) {
+            return copyWith(dosage: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'bodySite':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(bodySite: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'specimenRequirement':
+        {
+          if (child is List<Reference>) {
+            return copyWith(specimenRequirement: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'observationRequirement':
+        {
+          if (child is List<Reference>) {
+            return copyWith(observationRequirement: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'observationResultRequirement':
+        {
+          if (child is List<Reference>) {
+            return copyWith(observationResultRequirement: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'transform':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(transform: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dynamicValue':
+        {
+          if (child is List<ActivityDefinitionDynamicValue>) {
+            return copyWith(dynamicValue: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ActivityDefinition clone() => throw UnimplementedError();
   @override
   ActivityDefinition copyWith({
@@ -2038,6 +2578,63 @@ class ActivityDefinitionParticipant extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is ActionParticipantType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'role':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(role: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ActivityDefinitionParticipant clone() => throw UnimplementedError();
   @override
   ActivityDefinitionParticipant copyWith({
@@ -2342,6 +2939,63 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'path':
+        {
+          if (child is FhirString) {
+            return copyWith(path: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'expression':
+        {
+          if (child is FhirExpression) {
+            return copyWith(expression: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

@@ -398,6 +398,151 @@ class VisionPrescription extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is FinancialResourceStatusCodes) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'created':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(created: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'patient':
+        {
+          if (child is Reference) {
+            return copyWith(patient: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'encounter':
+        {
+          if (child is Reference) {
+            return copyWith(encounter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dateWritten':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(dateWritten: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'prescriber':
+        {
+          if (child is Reference) {
+            return copyWith(prescriber: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lensSpecification':
+        {
+          if (child is List<VisionPrescriptionLensSpecification>) {
+            return copyWith(lensSpecification: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   VisionPrescription clone() => throw UnimplementedError();
   @override
   VisionPrescription copyWith({
@@ -1009,6 +1154,159 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'product':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(product: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'eye':
+        {
+          if (child is VisionEyes) {
+            return copyWith(eye: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sphere':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(sphere: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'cylinder':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(cylinder: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'axis':
+        {
+          if (child is FhirInteger) {
+            return copyWith(axis: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'prism':
+        {
+          if (child is List<VisionPrescriptionPrism>) {
+            return copyWith(prism: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'add':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(add: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'power':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(power: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'backCurve':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(backCurve: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'diameter':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(diameter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'duration':
+        {
+          if (child is Quantity) {
+            return copyWith(duration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'color':
+        {
+          if (child is FhirString) {
+            return copyWith(color: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'brand':
+        {
+          if (child is FhirString) {
+            return copyWith(brand: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'note':
+        {
+          if (child is List<Annotation>) {
+            return copyWith(note: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
   VisionPrescriptionLensSpecification copyWith({
@@ -1410,6 +1708,63 @@ class VisionPrescriptionPrism extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'amount':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(amount: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'base':
+        {
+          if (child is VisionBase) {
+            return copyWith(base: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

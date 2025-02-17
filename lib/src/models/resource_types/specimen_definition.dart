@@ -31,7 +31,7 @@ class SpecimenDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinition.empty() => const SpecimenDefinition();
+  factory SpecimenDefinition.empty() => SpecimenDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinition.fromJson(
@@ -365,6 +365,135 @@ class SpecimenDefinition extends DomainResource {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is Identifier) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'typeCollected':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(typeCollected: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'patientPreparation':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(patientPreparation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeAspect':
+        {
+          if (child is FhirString) {
+            return copyWith(timeAspect: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collection':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(collection: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'typeTested':
+        {
+          if (child is List<SpecimenDefinitionTypeTested>) {
+            return copyWith(typeTested: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -870,6 +999,111 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'isDerived':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(isDerived: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'preference':
+        {
+          if (child is SpecimenContainedPreference) {
+            return copyWith(preference: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'container':
+        {
+          if (child is SpecimenDefinitionContainer) {
+            return copyWith(container: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'requirement':
+        {
+          if (child is FhirString) {
+            return copyWith(requirement: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'retentionTime':
+        {
+          if (child is FhirDuration) {
+            return copyWith(retentionTime: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'rejectionCriterion':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(rejectionCriterion: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'handling':
+        {
+          if (child is List<SpecimenDefinitionHandling>) {
+            return copyWith(handling: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
   @override
   SpecimenDefinitionTypeTested copyWith({
@@ -1038,7 +1272,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionContainer.empty() => const SpecimenDefinitionContainer();
+  factory SpecimenDefinitionContainer.empty() => SpecimenDefinitionContainer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
@@ -1353,6 +1587,128 @@ class SpecimenDefinitionContainer extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'material':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(material: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'cap':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(cap: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirString) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'capacity':
+        {
+          if (child is Quantity) {
+            return copyWith(capacity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'minimumVolumeX':
+        {
+          if (child is MinimumVolumeXSpecimenDefinitionContainer) {
+            // child is e.g. SubjectX union
+            return copyWith(minimumVolumeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'minimumVolumeQuantity':
+        {
+          if (child is Quantity) {
+            return copyWith(minimumVolumeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'minimumVolumeFhirString':
+        {
+          if (child is FhirString) {
+            return copyWith(minimumVolumeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additive':
+        {
+          if (child is List<SpecimenDefinitionAdditive>) {
+            return copyWith(additive: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'preparation':
+        {
+          if (child is FhirString) {
+            return copyWith(preparation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -1713,6 +2069,72 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additiveX':
+        {
+          if (child is AdditiveXSpecimenDefinitionAdditive) {
+            // child is e.g. SubjectX union
+            return copyWith(additiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additiveCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(additiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additiveReference':
+        {
+          if (child is Reference) {
+            return copyWith(additiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SpecimenDefinitionAdditive clone() => throw UnimplementedError();
   @override
   SpecimenDefinitionAdditive copyWith({
@@ -1808,7 +2230,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionHandling.empty() => const SpecimenDefinitionHandling();
+  factory SpecimenDefinitionHandling.empty() => SpecimenDefinitionHandling();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(
@@ -2036,6 +2458,79 @@ class SpecimenDefinitionHandling extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'temperatureQualifier':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(temperatureQualifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'temperatureRange':
+        {
+          if (child is Range) {
+            return copyWith(temperatureRange: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'maxDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(maxDuration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'instruction':
+        {
+          if (child is FhirString) {
+            return copyWith(instruction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

@@ -463,6 +463,175 @@ class Slot extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'serviceCategory':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(serviceCategory: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'serviceType':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(serviceType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'specialty':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(specialty: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'appointmentType':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(appointmentType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'schedule':
+        {
+          if (child is Reference) {
+            return copyWith(schedule: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is SlotStatus) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'start':
+        {
+          if (child is FhirInstant) {
+            return copyWith(start: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'end':
+        {
+          if (child is FhirInstant) {
+            return copyWith(end: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'overbooked':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(overbooked: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'comment':
+        {
+          if (child is FhirString) {
+            return copyWith(comment: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   Slot clone() => throw UnimplementedError();
   @override
   Slot copyWith({

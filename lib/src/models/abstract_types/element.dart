@@ -280,6 +280,7 @@ class Element extends FhirBase {
   }
 
   @override
+
   /// Sets a property by name.
   FhirBase setChildByName(String name, dynamic child) {
     if (child is! FhirBase && child is! List<FhirBase>) {

@@ -305,6 +305,95 @@ class SampledData extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'origin':
+        {
+          if (child is Quantity) {
+            return copyWith(origin: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'period':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(period: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'factor':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(factor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lowerLimit':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(lowerLimit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'upperLimit':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(upperLimit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dimensions':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(dimensions: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'data':
+        {
+          if (child is FhirString) {
+            return copyWith(data: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   SampledData clone() => throw UnimplementedError();
   @override
   SampledData copyWith({

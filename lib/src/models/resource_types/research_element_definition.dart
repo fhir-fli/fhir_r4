@@ -941,6 +941,368 @@ class ResearchElementDefinition extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'url':
+        {
+          if (child is FhirUri) {
+            return copyWith(url: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'version':
+        {
+          if (child is FhirString) {
+            return copyWith(version: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'name':
+        {
+          if (child is FhirString) {
+            return copyWith(name: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'title':
+        {
+          if (child is FhirString) {
+            return copyWith(title: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'shortTitle':
+        {
+          if (child is FhirString) {
+            return copyWith(shortTitle: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subtitle':
+        {
+          if (child is FhirString) {
+            return copyWith(subtitle: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is PublicationStatus) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'experimental':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(experimental: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectX':
+        {
+          if (child is SubjectXResearchElementDefinition) {
+            // child is e.g. SubjectX union
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectReference':
+        {
+          if (child is Reference) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'date':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(date: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'publisher':
+        {
+          if (child is FhirString) {
+            return copyWith(publisher: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contact':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(contact: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'comment':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(comment: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'useContext':
+        {
+          if (child is List<UsageContext>) {
+            return copyWith(useContext: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'jurisdiction':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(jurisdiction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'purpose':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(purpose: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'usage':
+        {
+          if (child is FhirString) {
+            return copyWith(usage: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'copyright':
+        {
+          if (child is FhirMarkdown) {
+            return copyWith(copyright: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'approvalDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(approvalDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'lastReviewDate':
+        {
+          if (child is FhirDate) {
+            return copyWith(lastReviewDate: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'effectivePeriod':
+        {
+          if (child is Period) {
+            return copyWith(effectivePeriod: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'topic':
+        {
+          if (child is List<CodeableConcept>) {
+            return copyWith(topic: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'author':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(author: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'editor':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(editor: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'reviewer':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(reviewer: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'endorser':
+        {
+          if (child is List<ContactDetail>) {
+            return copyWith(endorser: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'relatedArtifact':
+        {
+          if (child is List<RelatedArtifact>) {
+            return copyWith(relatedArtifact: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'library':
+        {
+          if (child is List<FhirCanonical>) {
+            return copyWith(library_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is ResearchElementType) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'variableType':
+        {
+          if (child is VariableType) {
+            return copyWith(variableType: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'characteristic':
+        {
+          if (child is List<ResearchElementDefinitionCharacteristic>) {
+            return copyWith(characteristic: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ResearchElementDefinition clone() => throw UnimplementedError();
   @override
   ResearchElementDefinition copyWith({
@@ -1750,17 +2112,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription,);
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX,);
+          participantEffectiveX);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -1922,6 +2284,243 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'definitionX':
+        {
+          if (child is DefinitionXResearchElementDefinitionCharacteristic) {
+            // child is e.g. SubjectX union
+            return copyWith(definitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'definitionCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(definitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'definitionFhirCanonical':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(definitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'definitionFhirExpression':
+        {
+          if (child is FhirExpression) {
+            return copyWith(definitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'definitionDataRequirement':
+        {
+          if (child is DataRequirement) {
+            return copyWith(definitionX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'usageContext':
+        {
+          if (child is List<UsageContext>) {
+            return copyWith(usageContext: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'exclude':
+        {
+          if (child is FhirBoolean) {
+            return copyWith(exclude: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'unitOfMeasure':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(unitOfMeasure: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveDescription':
+        {
+          if (child is FhirString) {
+            return copyWith(studyEffectiveDescription: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveX':
+        {
+          if (child is StudyEffectiveXResearchElementDefinitionCharacteristic) {
+            // child is e.g. SubjectX union
+            return copyWith(studyEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(studyEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectivePeriod':
+        {
+          if (child is Period) {
+            return copyWith(studyEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveFhirDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(studyEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveTiming':
+        {
+          if (child is Timing) {
+            return copyWith(studyEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveTimeFromStart':
+        {
+          if (child is FhirDuration) {
+            return copyWith(studyEffectiveTimeFromStart: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'studyEffectiveGroupMeasure':
+        {
+          if (child is GroupMeasure) {
+            return copyWith(studyEffectiveGroupMeasure: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveDescription':
+        {
+          if (child is FhirString) {
+            return copyWith(participantEffectiveDescription: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveX':
+        {
+          if (child
+              is ParticipantEffectiveXResearchElementDefinitionCharacteristic) {
+            // child is e.g. SubjectX union
+            return copyWith(participantEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(participantEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectivePeriod':
+        {
+          if (child is Period) {
+            return copyWith(participantEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveFhirDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(participantEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveTiming':
+        {
+          if (child is Timing) {
+            return copyWith(participantEffectiveX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveTimeFromStart':
+        {
+          if (child is FhirDuration) {
+            return copyWith(participantEffectiveTimeFromStart: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'participantEffectiveGroupMeasure':
+        {
+          if (child is GroupMeasure) {
+            return copyWith(participantEffectiveGroupMeasure: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   ResearchElementDefinitionCharacteristic clone() => throw UnimplementedError();
   @override
   ResearchElementDefinitionCharacteristic copyWith({
@@ -2066,33 +2665,33 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveDescription, o.studyEffectiveDescription,)) {
+        studyEffectiveDescription, o.studyEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart,)) {
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure,)) {
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveDescription, o.participantEffectiveDescription,)) {
+        participantEffectiveDescription, o.participantEffectiveDescription)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
-        o.participantEffectiveTimeFromStart,)) {
+        o.participantEffectiveTimeFromStart)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure,)) {
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure)) {
       return false;
     }
     return true;

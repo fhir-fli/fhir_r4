@@ -38,7 +38,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() => const BiologicallyDerivedProduct();
+  factory BiologicallyDerivedProduct.empty() => BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
@@ -473,6 +473,175 @@ class BiologicallyDerivedProduct extends DomainResource {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'meta':
+        {
+          if (child is FhirMeta) {
+            return copyWith(meta: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'implicitRules':
+        {
+          if (child is FhirUri) {
+            return copyWith(implicitRules: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'language':
+        {
+          if (child is CommonLanguages) {
+            return copyWith(language: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'text':
+        {
+          if (child is Narrative) {
+            return copyWith(text: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'contained':
+        {
+          if (child is List<Resource>) {
+            return copyWith(contained: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'identifier':
+        {
+          if (child is List<Identifier>) {
+            return copyWith(identifier: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productCategory':
+        {
+          if (child is BiologicallyDerivedProductCategory) {
+            return copyWith(productCategory: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'productCode':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(productCode: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'status':
+        {
+          if (child is BiologicallyDerivedProductStatus) {
+            return copyWith(status: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'request':
+        {
+          if (child is List<Reference>) {
+            return copyWith(request: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'quantity':
+        {
+          if (child is FhirInteger) {
+            return copyWith(quantity: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'parent':
+        {
+          if (child is List<Reference>) {
+            return copyWith(parent: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collection':
+        {
+          if (child is BiologicallyDerivedProductCollection) {
+            return copyWith(collection: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'processing':
+        {
+          if (child is List<BiologicallyDerivedProductProcessing>) {
+            return copyWith(processing: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'manipulation':
+        {
+          if (child is BiologicallyDerivedProductManipulation) {
+            return copyWith(manipulation: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'storage':
+        {
+          if (child is List<BiologicallyDerivedProductStorage>) {
+            return copyWith(storage: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BiologicallyDerivedProduct clone() => throw UnimplementedError();
   @override
   BiologicallyDerivedProduct copyWith({
@@ -721,7 +890,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductCollection.empty() =>
-      const BiologicallyDerivedProductCollection();
+      BiologicallyDerivedProductCollection();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
@@ -954,6 +1123,88 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collector':
+        {
+          if (child is Reference) {
+            return copyWith(collector: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'source':
+        {
+          if (child is Reference) {
+            return copyWith(source: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collectedX':
+        {
+          if (child is CollectedXBiologicallyDerivedProductCollection) {
+            // child is e.g. SubjectX union
+            return copyWith(collectedX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collectedFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(collectedX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'collectedPeriod':
+        {
+          if (child is Period) {
+            return copyWith(collectedX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
   @override
   BiologicallyDerivedProductCollection copyWith({
@@ -1067,7 +1318,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductProcessing.empty() =>
-      const BiologicallyDerivedProductProcessing();
+      BiologicallyDerivedProductProcessing();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
@@ -1315,6 +1566,96 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirString) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'procedure':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(procedure: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'additive':
+        {
+          if (child is Reference) {
+            return copyWith(additive: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeX':
+        {
+          if (child is TimeXBiologicallyDerivedProductProcessing) {
+            // child is e.g. SubjectX union
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timePeriod':
+        {
+          if (child is Period) {
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
   @override
   BiologicallyDerivedProductProcessing copyWith({
@@ -1434,7 +1775,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductManipulation.empty() =>
-      const BiologicallyDerivedProductManipulation();
+      BiologicallyDerivedProductManipulation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(
@@ -1650,6 +1991,80 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirString) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeX':
+        {
+          if (child is TimeXBiologicallyDerivedProductManipulation) {
+            // child is e.g. SubjectX union
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timeFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'timePeriod':
+        {
+          if (child is Period) {
+            return copyWith(timeX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
   @override
   BiologicallyDerivedProductManipulation copyWith({
@@ -1753,7 +2168,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductStorage.empty() =>
-      const BiologicallyDerivedProductStorage();
+      BiologicallyDerivedProductStorage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductStorage.fromJson(
@@ -1977,6 +2392,79 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'modifierExtension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(modifierExtension: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'description':
+        {
+          if (child is FhirString) {
+            return copyWith(description: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'temperature':
+        {
+          if (child is FhirDecimal) {
+            return copyWith(temperature: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'scale':
+        {
+          if (child is BiologicallyDerivedProductStorageScale) {
+            return copyWith(scale: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'duration':
+        {
+          if (child is Period) {
+            return copyWith(duration: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override

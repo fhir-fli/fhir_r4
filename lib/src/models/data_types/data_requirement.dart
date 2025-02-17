@@ -367,6 +367,120 @@ class DataRequirement extends DataType
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'type':
+        {
+          if (child is FHIRAllTypes) {
+            return copyWith(type: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'profile':
+        {
+          if (child is List<FhirCanonical>) {
+            return copyWith(profile: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectX':
+        {
+          if (child is SubjectXDataRequirement) {
+            // child is e.g. SubjectX union
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectCodeableConcept':
+        {
+          if (child is CodeableConcept) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'subjectReference':
+        {
+          if (child is Reference) {
+            return copyWith(subjectX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'mustSupport':
+        {
+          if (child is List<FhirString>) {
+            return copyWith(mustSupport: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'codeFilter':
+        {
+          if (child is List<DataRequirementCodeFilter>) {
+            return copyWith(codeFilter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'dateFilter':
+        {
+          if (child is List<DataRequirementDateFilter>) {
+            return copyWith(dateFilter: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'limit':
+        {
+          if (child is FhirPositiveInt) {
+            return copyWith(limit: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'sort':
+        {
+          if (child is List<DataRequirementSort>) {
+            return copyWith(sort: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   DataRequirement clone() => throw UnimplementedError();
   @override
   DataRequirement copyWith({
@@ -538,7 +652,7 @@ class DataRequirementCodeFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() => const DataRequirementCodeFilter();
+  factory DataRequirementCodeFilter.empty() => DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
@@ -770,6 +884,71 @@ class DataRequirementCodeFilter extends Element {
   }
 
   @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'path':
+        {
+          if (child is FhirString) {
+            return copyWith(path: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'searchParam':
+        {
+          if (child is FhirString) {
+            return copyWith(searchParam: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueSet':
+        {
+          if (child is FhirCanonical) {
+            return copyWith(valueSet: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'code':
+        {
+          if (child is List<Coding>) {
+            return copyWith(code: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
   DataRequirementCodeFilter copyWith({
@@ -880,7 +1059,7 @@ class DataRequirementDateFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() => const DataRequirementDateFilter();
+  factory DataRequirementDateFilter.empty() => DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
@@ -1116,6 +1295,88 @@ class DataRequirementDateFilter extends Element {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'path':
+        {
+          if (child is FhirString) {
+            return copyWith(path: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'searchParam':
+        {
+          if (child is FhirString) {
+            return copyWith(searchParam: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueX':
+        {
+          if (child is ValueXDataRequirementDateFilter) {
+            // child is e.g. SubjectX union
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueFhirDateTime':
+        {
+          if (child is FhirDateTime) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valuePeriod':
+        {
+          if (child is Period) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'valueFhirDuration':
+        {
+          if (child is FhirDuration) {
+            return copyWith(valueX: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
@@ -1389,6 +1650,55 @@ class DataRequirementSort extends Element {
       throw StateError('Too many values for $name found');
     }
     return values.isNotEmpty ? values.first : null;
+  }
+
+  @override
+  FhirBase setChildByName(String name, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $name');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+
+    switch (name) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            return copyWith(extension_: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'path':
+        {
+          if (child is FhirString) {
+            return copyWith(path: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      case 'direction':
+        {
+          if (child is SortDirection) {
+            return copyWith(direction: child);
+          } else {
+            throw Exception('Cannot set child value for $name');
+          }
+        }
+      default:
+        throw Exception('Cannot set child value for $name');
+    }
   }
 
   @override
