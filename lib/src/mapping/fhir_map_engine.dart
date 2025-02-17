@@ -107,8 +107,8 @@ class FhirMapEngine {
 
   Variables _initializeVariables(
     StructureMapGroup group,
-    ElementNode sourceNode,
-    ElementNode targetNode,
+    FhirBase sourceNode,
+    FhirBase targetNode,
   ) {
     final vars = Variables();
 
@@ -401,7 +401,7 @@ class FhirMapEngine {
     String indent,
   ) async {
     print('$indent Processing Source: ${source.context}');
-    var items = <ElementNode>[];
+    var items = <FhirBase>[];
 
     // Process @search context
     items = _processSearchContext(
@@ -414,7 +414,7 @@ class FhirMapEngine {
         ) ??
         items;
     print(
-      '$indent Items after search context: ${items.map((e) => e.summary()).toList()}',
+      '$indent Items after search context: ${items.map((e) => e.prettyPrint()).toList()}',
     );
 
     // Fetch children if not a search context
@@ -428,7 +428,7 @@ class FhirMapEngine {
       }
       items = await _getItemsFromSourceValue(source, sourceValue);
       print(
-        '$indent Items after getItemsFromSourceValue: ${items.map((e) => e.summary()).toList()}',
+        '$indent Items after getItemsFromSourceValue: ${items.map((e) => e.prettyPrint()).toList()}',
       );
     }
 
@@ -438,13 +438,13 @@ class FhirMapEngine {
 
     // Handle list modes
     items = _handleListMode(items, source.listMode?.toString());
-    print('$indent Final items: ${items.map((e) => e.summary()).toList()}');
+    print('$indent Final items: ${items.map((e) => e.prettyPrint()).toList()}');
 
     return _finalizeSourceItems(items, vars, source.variable?.value);
   }
 
   // Helper function to handle @search context
-  List<ElementNode>? _processSearchContext(
+  List<FhirBase>? _processSearchContext(
     String ruleId,
     StructureMapSource source,
     Variables vars,
@@ -470,9 +470,9 @@ class FhirMapEngine {
   }
 
   // Helper function to retrieve items from sourceValue
-  Future<List<ElementNode>> _getItemsFromSourceValue(
+  Future<List<FhirBase>> _getItemsFromSourceValue(
     StructureMapSource source,
-    ElementNode? sourceValue,
+    FhirBase? sourceValue,
   ) async {
     if (sourceValue == null) {
       throw Exception(
@@ -481,7 +481,7 @@ class FhirMapEngine {
       );
     }
 
-    final items = <ElementNode>[];
+    final items = <FhirBase>[];
     if (source.element?.value == null || source.element!.value!.isEmpty) {
       items.add(sourceValue);
     } else {
@@ -489,8 +489,6 @@ class FhirMapEngine {
         sourceValue,
         source.element!.value,
         items,
-        map,
-        resolver,
       );
       if (items.isEmpty && source.defaultValueX != null) {
         items.add(await source.defaultValueX!.toTypedElement(resolver));
@@ -500,11 +498,11 @@ class FhirMapEngine {
   }
 
   // Helper function to evaluate condition
-  Future<List<ElementNode>> _applyCondition(
+  Future<List<FhirBase>> _applyCondition(
     StructureMapSource source,
     String ruleId,
     Variables vars,
-    List<ElementNode> items,
+    List<FhirBase> items,
     DefinitionResolver resolver,
   ) async {
     if (source.condition != null && source.condition!.isNotEmpty) {
@@ -518,28 +516,16 @@ class FhirMapEngine {
         expression = expression.replaceFirst('${source.context}.', '');
       }
       final node = fhirPathEngine.parse(expression);
-      final filteredItems = <ElementNode>[];
+      final filteredItems = <FhirBase>[];
 
       final src = vars.getInputVar(source.context.toString());
 
-      final srcMap = src?.toMap();
-      final srcType = await src?.getInstanceType(resolver);
-
-      FhirBase? srcBase;
-      if (srcMap is Map<String, dynamic>) {
-        if (srcType != null) {
-          srcBase = fromType(srcMap, srcType);
-        }
-        srcBase ??= _leftFromMap?.call(srcMap);
-      }
-
       for (final item in items) {
-        final base = await item.toFhirBase(resolver);
         final conditionResult = fhirPathEngine.evaluateToBoolean(
           '',
           null,
           null,
-          srcBase ?? base ?? ''.toFhirString,
+          src ?? item,
           node,
         );
         if (conditionResult) {
@@ -558,7 +544,7 @@ class FhirMapEngine {
     StructureMapSource source,
     String ruleId,
     Variables vars,
-    List<ElementNode> items,
+    List<FhirBase> items,
     DefinitionResolver resolver,
   ) async {
     if (source.check != null && source.check!.isNotEmpty) {
@@ -574,24 +560,13 @@ class FhirMapEngine {
       final node = fhirPathEngine.parse(expression);
 
       final src = vars.getInputVar(source.context.toString());
-      final srcMap = src?.toMap();
-      final srcType = await src?.getInstanceType(resolver);
-
-      FhirBase? srcBase;
-      if (srcMap is Map<String, dynamic>) {
-        if (srcType != null) {
-          srcBase = fromType(srcMap, srcType);
-        }
-        srcBase ??= _leftFromMap?.call(srcMap);
-      }
 
       for (final item in items) {
-        final base = await item.toFhirBase(resolver);
         final checkResult = fhirPathEngine.evaluateToBoolean(
           vars,
           null,
           null,
-          srcBase ?? base ?? ''.toFhirString,
+          src ?? item,
           node,
         );
         if (!checkResult) {
@@ -604,8 +579,8 @@ class FhirMapEngine {
   }
 
   // Helper function to handle list modes
-  List<ElementNode> _handleListMode(
-    List<ElementNode> items,
+  List<FhirBase> _handleListMode(
+    List<FhirBase> items,
     String? listMode,
   ) {
     if (listMode == null || items.isEmpty) return items;
@@ -635,7 +610,7 @@ class FhirMapEngine {
 
   // Finalize and wrap items in Variables
   List<Variables> _finalizeSourceItems(
-    List<ElementNode> items,
+    List<FhirBase> items,
     Variables vars,
     String? variableName,
   ) {
@@ -652,35 +627,13 @@ class FhirMapEngine {
   }
 
   Future<void> _getChildrenByName(
-    ElementNode parentNode,
+    FhirBase parentNode,
     String? elementName,
-    List<ElementNode> resultItems,
-    StructureMap map,
-    DefinitionResolver resolver,
+    List<FhirBase> resultItems,
   ) async {
-    if (parentNode is LeafNode) {
-      // Leaf nodes don't have children; no action needed
-      return;
-    }
-
-    if (parentNode is CompositeNode) {
-      for (final child in parentNode.value) {
-        final childEd =
-            await resolver.resolveElementDefinition(child.childLocalPath);
-        String? polyName;
-        if (childEd?.isPolymorphic ?? false) {
-          polyName = childEd!.path.value?.split('.').last.replaceAll('[x]', '');
-        }
-        if (child.name == elementName ||
-            (polyName != null && polyName == elementName)) {
-          if (child is ListNode) {
-            // If the child is a ListNode, add all its children to resultItems
-            resultItems.addAll(child.value);
-          } else {
-            resultItems.add(child);
-          }
-        }
-      }
+    if (elementName != null) {
+      final children = parentNode.getChildrenByName(elementName);
+      resultItems.addAll(children);
     }
   }
 
@@ -697,12 +650,12 @@ class FhirMapEngine {
   ) async {
     print('Processing Target: ${target.context}');
 
-    ElementNode? dest;
+    FhirBase? dest;
 
     // Get the output variable (target context)
     if (target.context != null && target.context!.toString().isNotEmpty) {
       dest = vars.getOutputVar(target.context!.toString());
-      print('Destination (output variable) found: ${dest?.summary()}');
+      print('Destination (output variable) found: ${dest?.prettyPrint()}');
 
       if (dest == null) {
         throw FHIRException(
@@ -717,8 +670,8 @@ class FhirMapEngine {
       }
     }
 
-    print('Destination before transformation: ${dest?.summary()}');
-    ElementNode? value;
+    print('Destination before transformation: ${dest?.prettyPrint()}');
+    FhirBase? value;
 
     // Check if there's a transformation and run it to get the value for the target
     if (target.transform != null) {
@@ -732,13 +685,13 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
-      print('Value after transformation: ${value?.summary()}');
+      print('Value after transformation: ${value?.prettyPrint()}');
 
       if (dest != null && value != null) {
         // Set property based on the resolved element
         value = await dest.setProperty(target.element!.value!, value, resolver);
-        print('Updated destination after setProperty: ${dest.summary()}');
-        print('Updated value after setProperty: ${value.summary()}');
+        print('Updated destination after setProperty: ${dest.prettyPrint()}');
+        print('Updated value after setProperty: ${value.prettyPrint()}');
       }
     } else if (dest != null) {
       // Handle ListMode.Share or create a new property if not shared
@@ -771,7 +724,7 @@ class FhirMapEngine {
       }
     }
 
-    print('Final value to be added to target: ${value?.summary()}');
+    print('Final value to be added to target: ${value?.prettyPrint()}');
 
     if (target.variable != null && value != null) {
       vars.add(VariableMode.OUTPUT, target.variable!.toString(), value);

@@ -1392,7 +1392,7 @@ class ElementDefinition extends BackboneType {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1437,7 +1437,7 @@ class ElementDefinition extends BackboneType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2283,8 +2283,8 @@ class ElementDefinition extends BackboneType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2875,7 +2875,7 @@ class ElementDefinitionSlicing extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2889,7 +2889,7 @@ class ElementDefinitionSlicing extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2927,8 +2927,8 @@ class ElementDefinitionSlicing extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3179,7 +3179,7 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3191,7 +3191,7 @@ class ElementDefinitionDiscriminator extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3219,8 +3219,8 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3465,7 +3465,7 @@ class ElementDefinitionBase extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3478,7 +3478,7 @@ class ElementDefinitionBase extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3508,8 +3508,8 @@ class ElementDefinitionBase extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3794,7 +3794,7 @@ class ElementDefinitionType extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3809,7 +3809,7 @@ class ElementDefinitionType extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3851,8 +3851,8 @@ class ElementDefinitionType extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -4329,7 +4329,7 @@ class ElementDefinitionExample extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -4341,7 +4341,7 @@ class ElementDefinitionExample extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -4575,8 +4575,8 @@ class ElementDefinitionExample extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -4866,7 +4866,7 @@ class ElementDefinitionConstraint extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -4883,7 +4883,7 @@ class ElementDefinitionConstraint extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -4929,8 +4929,8 @@ class ElementDefinitionConstraint extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -5206,7 +5206,7 @@ class ElementDefinitionBinding extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -5219,7 +5219,7 @@ class ElementDefinitionBinding extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -5253,8 +5253,8 @@ class ElementDefinitionBinding extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -5509,7 +5509,7 @@ class ElementDefinitionMapping extends Element {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -5523,7 +5523,7 @@ class ElementDefinitionMapping extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -5559,8 +5559,8 @@ class ElementDefinitionMapping extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }

@@ -472,7 +472,7 @@ class TerminologyCapabilities extends CanonicalResource {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'meta',
@@ -512,7 +512,7 @@ class TerminologyCapabilities extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -654,8 +654,8 @@ class TerminologyCapabilities extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1148,7 +1148,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1161,7 +1161,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1195,8 +1195,8 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1447,7 +1447,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1460,7 +1460,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1494,8 +1494,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1760,7 +1760,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1774,7 +1774,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1814,8 +1814,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2130,7 +2130,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2147,7 +2147,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2199,8 +2199,8 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2502,7 +2502,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2515,7 +2515,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2547,8 +2547,8 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2842,7 +2842,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2858,7 +2858,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2906,8 +2906,8 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3186,7 +3186,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3199,7 +3199,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3233,8 +3233,8 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3472,7 +3472,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3484,7 +3484,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3514,8 +3514,8 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3744,7 +3744,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3756,7 +3756,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3786,8 +3786,8 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -4013,7 +4013,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -4025,7 +4025,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -4057,8 +4057,8 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }

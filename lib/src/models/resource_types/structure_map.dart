@@ -396,7 +396,7 @@ class StructureMap extends CanonicalResource {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'meta',
@@ -430,7 +430,7 @@ class StructureMap extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -546,8 +546,8 @@ class StructureMap extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1037,7 +1037,7 @@ class StructureMapStructure extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1052,7 +1052,7 @@ class StructureMapStructure extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1092,8 +1092,8 @@ class StructureMapStructure extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1419,7 +1419,7 @@ class StructureMapGroup extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1436,7 +1436,7 @@ class StructureMapGroup extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1480,8 +1480,8 @@ class StructureMapGroup extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1800,7 +1800,7 @@ class StructureMapInput extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1815,7 +1815,7 @@ class StructureMapInput extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1855,8 +1855,8 @@ class StructureMapInput extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2184,7 +2184,7 @@ class StructureMapRule extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2201,7 +2201,7 @@ class StructureMapRule extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -2249,8 +2249,8 @@ class StructureMapRule extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -2891,7 +2891,7 @@ class StructureMapSource extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -2913,7 +2913,7 @@ class StructureMapSource extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3183,8 +3183,8 @@ class StructureMapSource extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3577,7 +3577,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3596,7 +3596,7 @@ class StructureMapTarget extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -3656,8 +3656,8 @@ class StructureMapTarget extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -3976,7 +3976,7 @@ class StructureMapParameter extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -3988,7 +3988,7 @@ class StructureMapParameter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -4040,8 +4040,8 @@ class StructureMapParameter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -4281,7 +4281,7 @@ class StructureMapDependent extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -4294,7 +4294,7 @@ class StructureMapDependent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -4326,8 +4326,8 @@ class StructureMapDependent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }

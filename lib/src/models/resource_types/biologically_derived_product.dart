@@ -345,7 +345,7 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'meta',
@@ -372,7 +372,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -464,8 +464,8 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -883,7 +883,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -897,7 +897,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -945,8 +945,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1239,7 +1239,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1254,7 +1254,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1306,8 +1306,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1584,7 +1584,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1597,7 +1597,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1641,8 +1641,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }
@@ -1912,7 +1912,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   /// Lists the JSON keys for the object.
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return [
       'id',
       'extension',
@@ -1927,7 +1927,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -1971,8 +1971,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
     }

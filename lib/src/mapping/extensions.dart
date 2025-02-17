@@ -13,24 +13,3 @@ extension IsResource on Map<String, dynamic> {
         type.toLowerCase().contains('tleft');
   }
 }
-
-/// Extension on [Map<String, dynamic] to check if it is a bundle.
-extension FhirBaseChildren on FhirBase {
-  /// Returns the children of the [FhirBase] as a map.
-  Future<ElementNode> toTypedElement(DefinitionResolver resolver) async =>
-      this is PrimitiveType
-          ? LeafNode(
-              null,
-              null,
-              null,
-              toJson(),
-              fhirType,
-            )
-          : MapNode.fromMapAsync(
-              null,
-              null,
-              null,
-              toJson(),
-              resolver,
-            );
-}

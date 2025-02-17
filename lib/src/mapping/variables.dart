@@ -31,7 +31,7 @@ enum VariableMode {
 /// Class representing a variable in a FHIR mapping
 class Variable {
   /// Constructor for a variable
-  Variable(this.mode, this.name, this.node);
+  Variable(this.mode, this.name, this.base);
 
   /// The mode of the variable
   final VariableMode mode;
@@ -40,11 +40,10 @@ class Variable {
   final String name;
 
   /// The value of the variable
-  final ElementNode node;
+  final FhirBase base;
 
-  /// Improved summary function to handle LeafNode and CompositeNode details
-  String summary([int depth = 0]) =>
-      '${"  " * depth}$name:${node.summary(depth)}';
+  /// SummaryFunction
+  String summary() => prettyPrintJson(base.toJson());
 }
 
 /// Class representing a collection of variables in a FHIR mapping
@@ -79,26 +78,26 @@ class Variables {
   }
 
   /// Adds a variable to the collection
-  void add(VariableMode mode, String name, ElementNode value) {
+  void add(VariableMode mode, String name, FhirBase value) {
     _variables
       ..removeWhere((v) => v.mode == mode && v.name == name)
       ..add(Variable(mode, name, value));
   }
 
   /// Adds an input variable to the collection
-  ElementNode? get(VariableMode mode, String name) {
+  FhirBase? get(VariableMode mode, String name) {
     return _variables
         .firstWhereOrNull((v) => v.mode == mode && v.name == name)
-        ?.node;
+        ?.base;
   }
 
   /// Retrieves an input variable from the collection
-  ElementNode? getInputVar(String name) {
+  FhirBase? getInputVar(String name) {
     return get(VariableMode.INPUT, name);
   }
 
   /// Retrieves an output variable from the collection
-  ElementNode? getOutputVar(String? name) {
+  FhirBase? getOutputVar(String? name) {
     return name == null ? null : get(VariableMode.OUTPUT, name);
   }
 
@@ -138,7 +137,7 @@ class Variables {
   // Helper function to generate summaries for each variable mode
   String _variablesSummary(VariableMode mode) => _variables
       .where((v) => v.mode == mode)
-      .map((v) => v.summary(2))
+      .map((v) => v.summary())
       .whereType<String>()
       .join('\n');
 

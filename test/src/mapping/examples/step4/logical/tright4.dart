@@ -77,12 +77,12 @@ class TRight4 extends Element {
   }
 
   @override
-  List<String> children() {
+  List<String> listChildrenNames() {
     return ['id', 'extension', 'a21'];
   }
 
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -101,8 +101,8 @@ class TRight4 extends Element {
   }
 
   @override
-  FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Multiple values found for $name');
     }

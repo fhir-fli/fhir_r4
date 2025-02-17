@@ -79,10 +79,10 @@ class TRight12 extends Element {
   }
 
   @override
-  List<String> children() => ['id', 'extension', 'az1'];
+  List<String> listChildrenNames() => ['id', 'extension', 'az1'];
 
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -102,7 +102,7 @@ class TRight12 extends Element {
 
   @override
   FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+    final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');
     return values.isNotEmpty ? values.first : null;
   }
@@ -205,10 +205,10 @@ class TRight12az1 extends BackboneElement {
   }
 
   @override
-  List<String> children() => ['id', 'extension', 'az2', 'az3'];
+  List<String> listChildrenNames() => ['id', 'extension', 'az2', 'az3'];
 
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -230,7 +230,7 @@ class TRight12az1 extends BackboneElement {
 
   @override
   FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+    final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');
     return values.isNotEmpty ? values.first : null;
   }

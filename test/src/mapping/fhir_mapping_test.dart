@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_single_quotes, always_specify_types,
 // ignore_for_file: avoid_escaping_inner_quotes
 
-import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
@@ -9,7 +8,6 @@ import 'examples/step10/export.dart';
 import 'examples/step11/export.dart';
 import 'examples/step12/export.dart';
 import 'examples/step13/export.dart';
-import 'examples/step14/step14.dart';
 import 'examples/step2/export.dart';
 import 'examples/step3/export.dart';
 import 'examples/step4/export.dart';

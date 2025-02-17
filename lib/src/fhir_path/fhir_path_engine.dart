@@ -1683,8 +1683,8 @@ class FHIRPathEngine {
   ///
   void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
     if (oldName == '*') {
-      for (final child in item.children()) {
-        result.addAll(item.listChildrenByName(child));
+      for (final child in item.listChildrenNames()) {
+        result.addAll(item.getChildrenByName(child));
       }
     } else {
       String? tn;
@@ -1692,7 +1692,7 @@ class FHIRPathEngine {
 
       if (allowPolymorphicNames) {
         // we'll look to see whether we have a polymorphic name
-        for (final p in item.children()) {
+        for (final p in item.listChildrenNames()) {
           if (p.endsWith('X')) {
             final n = p.substring(0, p.length - 1);
             if (name.startsWith(n)) {
@@ -1704,7 +1704,7 @@ class FHIRPathEngine {
         }
       }
 
-      final list = item.listChildrenByName(name);
+      final list = item.getChildrenByName(name);
       if (list.isNotEmpty) {
         for (final v in list) {
           if (tn == null || tn.isEmpty || v.fhirType.equalsIgnoreCase(tn)) {
@@ -3023,18 +3023,18 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
+        var lUnit = l.getChildrenByName('code');
         if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
+          lUnit = l.getChildrenByName('unit');
         }
-        var rUnit = r.listChildrenByName('code');
+        var rUnit = r.getChildrenByName('code');
         if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
+          rUnit = r.getChildrenByName('unit');
         }
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opLessThan(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
+            l.getChildrenByName('value'),
+            r.getChildrenByName('value'),
             expr,
           );
         } else {
@@ -3083,18 +3083,18 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
+        var lUnit = l.getChildrenByName('code');
         if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
+          lUnit = l.getChildrenByName('unit');
         }
-        var rUnit = r.listChildrenByName('code');
+        var rUnit = r.getChildrenByName('code');
         if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
+          rUnit = r.getChildrenByName('unit');
         }
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opGreater(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
+            l.getChildrenByName('value'),
+            r.getChildrenByName('value'),
             expr,
           );
         } else {
@@ -3142,18 +3142,18 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
+        var lUnit = l.getChildrenByName('code');
         if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
+          lUnit = l.getChildrenByName('unit');
         }
-        var rUnit = r.listChildrenByName('code');
+        var rUnit = r.getChildrenByName('code');
         if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
+          rUnit = r.getChildrenByName('unit');
         }
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opLessOrEqual(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
+            l.getChildrenByName('value'),
+            r.getChildrenByName('value'),
             expr,
           );
         } else {
@@ -3201,18 +3201,18 @@ class FHIRPathEngine {
           );
         }
       } else if (l.fhirType == 'Quantity' && r.fhirType == 'Quantity') {
-        var lUnit = l.listChildrenByName('code');
+        var lUnit = l.getChildrenByName('code');
         if (lUnit.isEmpty) {
-          lUnit = l.listChildrenByName('unit');
+          lUnit = l.getChildrenByName('unit');
         }
-        var rUnit = r.listChildrenByName('code');
+        var rUnit = r.getChildrenByName('code');
         if (rUnit.isEmpty) {
-          rUnit = r.listChildrenByName('unit');
+          rUnit = r.getChildrenByName('unit');
         }
         if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
           return opGreaterOrEqual(
-            l.listChildrenByName('value'),
-            r.listChildrenByName('value'),
+            l.getChildrenByName('value'),
+            r.getChildrenByName('value'),
             expr,
           );
         } else {
@@ -5608,10 +5608,10 @@ class FHIRPathEngine {
       String? s = convertToString(item);
       if (item.fhirType == 'Reference') {
         refContext = item;
-        final property = item.getChildValueByName('reference');
+        final property = item.getChildByName('reference');
         if (property != null && property.hasValues()) {
-          for (final child in property.children()) {
-            final prop = property.getChildValueByName(child);
+          for (final child in property.listChildrenNames()) {
+            final prop = property.getChildByName(child);
             if (prop != null && prop is PrimitiveType) {
               s = prop.primitiveValue;
               break;
@@ -5631,10 +5631,10 @@ class FHIRPathEngine {
         FhirBase? res;
         if (s.startsWith('#')) {
           final property =
-              context.rootResource?.getChildValueByName('contained');
+              context.rootResource?.getChildByName('contained');
           if (property != null) {
-            for (final c in property.children()) {
-              final val = property.getChildValueByName(c);
+            for (final c in property.listChildrenNames()) {
+              final val = property.getChildByName(c);
               final id = val is Element
                   ? val.id
                   : val is Resource
@@ -7085,11 +7085,11 @@ class FHIRPathEngine {
   }
 
   String? getNamedValue(FhirBase base, String name) {
-    final property = base.getChildValueByName(name);
-    final propertyChildren = property?.children();
+    final property = base.getChildByName(name);
+    final propertyChildren = property?.listChildrenNames();
     if (property != null && propertyChildren!.length == 1) {
       return property
-          .getChildValueByName(propertyChildren.first)
+          .getChildByName(propertyChildren.first)
           ?.primitiveValue;
     }
     return null;

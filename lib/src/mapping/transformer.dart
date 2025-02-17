@@ -22,12 +22,12 @@ class Transformer {
   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
 
   /// runTransform no longer handles create logic directly
-  Future<ElementNode?> runTransform(
+  Future<FhirBase?> runTransform(
     String ruleId,
     StructureMapGroup? group,
     StructureMapTarget target,
     Variables vars,
-    ElementNode? dest,
+    FhirBase? dest,
     String elementName,
     String? srcVar,
     // ignore: avoid_positional_boolean_parameters
@@ -103,10 +103,10 @@ class Transformer {
     }
   }
 
-  Future<ElementNode> _create(
+  Future<FhirBase> _create(
     StructureMapTarget target,
     Variables vars,
-    ElementNode? parent,
+    FhirBase? parent,
     String elementName,
     String ruleId,
     String? srcVar,
@@ -128,7 +128,7 @@ class Transformer {
   Future<String> _determineTypeName(
     StructureMapTarget target,
     Variables vars,
-    ElementNode? parent,
+    FhirBase? parent,
     String elementName,
     String ruleId,
     String? srcVar,
@@ -183,17 +183,17 @@ class Transformer {
     );
   }
 
-  Future<ElementNode> _instantiateElement(
+  Future<FhirBase> _instantiateElement(
     String typeName,
     String elementName,
-    ElementNode? parent,
+    FhirBase? parent,
     StructureMapTarget target,
   ) async {
     final isPrimitive = typeName.isFhirPrimitive;
     final isResource = typeName.isFhirResourceType;
     final isDataType = typeName.isFhirDataType;
     if (isPrimitive) {
-      return ElementNode.newNode<LeafNode>(elementName, parent);
+      return FhirBase.newNode<LeafNode>(elementName, parent);
     } else if (isResource) {
       return _createFhirResourceNode(elementName, typeName, parent, target);
     } else if (isDataType) {
@@ -210,7 +210,7 @@ class Transformer {
   Future<MapNode> _createDataTypeNode(
     String elementName,
     String typeName,
-    ElementNode? parent,
+    FhirBase? parent,
     StructureMapTarget target,
   ) async {
     final globalPath = parent?.childGlobalPath;
@@ -220,7 +220,7 @@ class Transformer {
   Future<MapNode> _createFhirResourceNode(
     String elementName,
     String typeName,
-    ElementNode? parent,
+    FhirBase? parent,
     StructureMapTarget target,
   ) async {
     final resourceType =
@@ -275,7 +275,7 @@ class Transformer {
   Future<String> _determineTypeFromSourceType(
     StructureMap map,
     StructureMapGroup? group,
-    ElementNode baseNode,
+    FhirBase baseNode,
     List<String> possibleTypes,
   ) async {
     final baseType = (await baseNode.getInstanceType(resolver)) ?? '';
@@ -347,7 +347,7 @@ class Transformer {
     return null;
   }
 
-  Future<ElementNode> _copy(
+  Future<FhirBase> _copy(
     Variables vars,
     StructureMapParameter parameter,
   ) async {
@@ -404,7 +404,7 @@ class Transformer {
     return sourceNode;
   }
 
-  int? _parseLength(ElementNode lengthNode) {
+  int? _parseLength(FhirBase lengthNode) {
     if (lengthNode is LeafNode) {
       final value = lengthNode.value;
       if (value is int) return value;
@@ -416,7 +416,7 @@ class Transformer {
     );
   }
 
-  LeafNode _cast(ElementNode value, String targetType, String ruleId) {
+  LeafNode _cast(FhirBase value, String targetType, String ruleId) {
     if (value is! LeafNode) {
       throw FHIRMappingCastException(
         message:
@@ -568,7 +568,7 @@ class Transformer {
     return LeafNode(null, null, null, buffer.toString(), 'string');
   }
 
-  Future<ElementNode?> _translate(
+  Future<FhirBase?> _translate(
     StructureMap map,
     Variables variables,
     List<StructureMapParameter> parameters,
@@ -791,7 +791,7 @@ class Transformer {
     return null;
   }
 
-  ElementNode _getParam(Variables variables, StructureMapParameter parameter) {
+  FhirBase _getParam(Variables variables, StructureMapParameter parameter) {
     final paramValue = parameter.valueX;
 
     // Return a LeafNode if the paramValue is a primitive type
@@ -833,8 +833,8 @@ class Transformer {
     return variableNode;
   }
 
-  Future<ElementNode?> _processConceptMapTranslation(
-    ElementNode sourceElement,
+  Future<FhirBase?> _processConceptMapTranslation(
+    FhirBase sourceElement,
     String? conceptMapUrl,
     String? fieldToReturn,
     StructureMap map,
@@ -867,7 +867,7 @@ class Transformer {
     return resolver.fetchResource<ConceptMap>(conceptMapUrl);
   }
 
-  Future<ElementNode?> _translateCoding(
+  Future<FhirBase?> _translateCoding(
     ConceptMap conceptMap,
     dynamic sourceCoding,
     String? fieldToReturn,
@@ -935,7 +935,7 @@ class Transformer {
         ['equal', 'relatedto', 'equivalent', 'wider'].contains(equivalence);
   }
 
-  ElementNode _getFirstParam(
+  FhirBase _getFirstParam(
     StructureMapTarget target,
     Variables variables,
     StructureMap map,
@@ -967,7 +967,7 @@ class Transformer {
     return statedType;
   }
 
-  ElementNode _escape(Variables vars, StructureMapTarget target) {
+  FhirBase _escape(Variables vars, StructureMapTarget target) {
     if (target.parameter == null || target.parameter!.length < 3) {
       throw FHIRException(
         message: 'Escape transform requires source, fmt1, and fmt2 parameters',
@@ -1029,7 +1029,7 @@ class Transformer {
     return escaped;
   }
 
-  ElementNode _dateOp(Variables vars, StructureMapTarget target) {
+  FhirBase _dateOp(Variables vars, StructureMapTarget target) {
     if (target.parameter == null || target.parameter!.length < 2) {
       throw FHIRException(
         message: 'dateOp transform requires a source date and an '
@@ -1068,10 +1068,10 @@ class Transformer {
     return LeafNode(null, null, null, resultDate.toIso8601String(), 'dateTime');
   }
 
-  Future<ElementNode?> _evaluate(
+  Future<FhirBase?> _evaluate(
     Variables vars,
     StructureMapTarget target,
-    ElementNode? base,
+    FhirBase? base,
   ) async {
     if (target.parameter == null || target.parameter!.isEmpty) {
       throw FHIRException(
@@ -1099,7 +1099,7 @@ class Transformer {
         node,
       );
 
-      // Return the result as an ElementNode. We handle primitive types with
+      // Return the result as an FhirBase. We handle primitive types with
       // `LeafNode` and complex structures with `MapNode`.
       if (result.isEmpty) {
         return null;
@@ -1122,7 +1122,7 @@ class Transformer {
                 singleResult.runtimeType.toString(),
               );
       } else {
-        final nodes = <ElementNode>[];
+        final nodes = <FhirBase>[];
         for (final item in result) {
           if (item is PrimitiveType) {
             nodes.add(LeafNode(null, null, null, item.value, item.fhirType));
@@ -1139,7 +1139,7 @@ class Transformer {
           }
         }
         // If the expression results in multiple values, convert each to an
-        // `ElementNode`.
+        // `FhirBase`.
         return await ListNode.fromListAsync(
           null,
           null,

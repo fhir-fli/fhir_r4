@@ -123,18 +123,41 @@ abstract class FhirBase {
       (formatCommentsPost?.isNotEmpty ?? false);
 
   /// Lists the JSON keys for the object.
-  List<String> children() {
+  List<String> listChildrenNames() {
     // Subclasses should override this to return their specific children.
     return <String>[];
   }
 
-  /// Retrieves the properties of the object.
-  // ignore: avoid_positional_boolean_parameters
-  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]);
-
   /// Retrieves a property by name, or if its a list that contains only one
   /// element, returns that element.
-  FhirBase? getChildValueByName(String name);
+  FhirBase? getChildByName(String name) {
+    final children = getChildrenByName(name);
+    if (children.isEmpty) {
+      return null;
+    }
+    if (children.length == 1) {
+      return children.first;
+    }
+    throw Exception('Cannot get child value for $name');
+  }
+
+  /// Retrieves the properties of the object.
+  // ignore: avoid_positional_boolean_parameters
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
+
+  /// Sets a property by name.
+  FhirBase setChildByName(String name, FhirBase? child) {
+    throw Exception('Cannot set child value for $name');
+  }
+
+  /// Sets the properties of the object.
+  FhirBase setChildrenByName(Map<String, FhirBase> children) {
+    var updated = this;
+    for (final entry in children.entries) {
+      updated = updated.setChildByName(entry.key, entry.value);
+    }
+    return updated;
+  }
 
   /// Deep equality check.
   bool equalsDeep(FhirBase? o) {
@@ -183,8 +206,8 @@ abstract class FhirBase {
 
   /// Checks if the object has values.
   bool hasValues() {
-    for (final child in children()) {
-      if (getChildValueByName(child) != null) {
+    for (final child in listChildrenNames()) {
+      if (getChildByName(child) != null) {
         return true;
       }
     }

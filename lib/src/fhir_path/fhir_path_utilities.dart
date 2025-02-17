@@ -409,7 +409,7 @@ class ClassTypeInfo extends FhirBase {
   }
 
   @override
-  FhirBase? getChildValueByName(String name) {
+  FhirBase? getChildByName(String name) {
     if (name == 'name') {
       return FhirString(getName());
     } else if (name == 'namespace') {
@@ -420,7 +420,7 @@ class ClassTypeInfo extends FhirBase {
   }
 
   @override
-  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
     if (name == 'name') {
       return [FhirString(getName())];
     } else if (name == 'namespace') {

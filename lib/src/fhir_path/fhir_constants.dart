@@ -65,12 +65,12 @@ class FHIRConstant extends FhirBase {
   }
 
   @override
-  FhirBase? getChildValueByName(String name) {
+  FhirBase? getChildByName(String name) {
     throw UnimplementedError();
   }
 
   @override
-  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
     throw UnimplementedError();
   }
 

@@ -91,10 +91,10 @@ class TLeft11 extends Element {
   }
 
   @override
-  List<String> children() => ['id', 'extension', 'e', 'f'];
+  List<String> listChildrenNames() => ['id', 'extension', 'e', 'f'];
 
   @override
-  List<FhirBase> listChildrenByName(
+  List<FhirBase> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
@@ -116,7 +116,7 @@ class TLeft11 extends Element {
 
   @override
   FhirBase? getChildValueByName(String name) {
-    final values = listChildrenByName(name);
+    final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');
     return values.isNotEmpty ? values.first : null;
   }

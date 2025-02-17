@@ -254,7 +254,7 @@ class Element extends FhirBase {
   FhirBase clone() => copy();
 
   @override
-  FhirBase? getChildValueByName(String name) {
+  FhirBase? getChildByName(String name) {
     if (name == 'id') {
       return id;
     } else if (name == 'extension') {
@@ -270,12 +270,33 @@ class Element extends FhirBase {
   }
 
   @override
-  List<FhirBase> listChildrenByName(String name, [bool checkValid = false]) {
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
     if (name == 'id') {
       return [id!];
     } else if (name == 'extension') {
       return extension_ ?? <FhirExtension>[];
     }
     return <FhirBase>[];
+  }
+
+  @override
+  /// Sets a property by name.
+  FhirBase setChildByName(String name, dynamic child) {
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $name');
+    }
+    switch (name) {
+      case 'id':
+        if (child is FhirString) {
+          return copyWith(id: child);
+        }
+        throw Exception('Cannot set child value for $name');
+      case 'extension':
+        if (child is List<FhirExtension>) {
+          return copyWith(extension_: child);
+        }
+        throw Exception('Cannot set child value for $name');
+    }
+    throw Exception('Cannot set child value for $name');
   }
 }

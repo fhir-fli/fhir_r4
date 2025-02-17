@@ -22,8 +22,8 @@ class TransformationContext {
   /// Searches within the structure.
   ///
   /// Placeholder method that should be implemented later.
-  List<ElementNode> performSearch(String search) {
-    return <ElementNode>[]; // Replace with actual search logic later
+  List<FhirBase> performSearch(String search) {
+    return <FhirBase>[]; // Replace with actual search logic later
   }
 }
 
