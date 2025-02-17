@@ -1484,7 +1484,7 @@ class DeviceRequestParameter extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DeviceRequestParameter.empty() => DeviceRequestParameter();
+  factory DeviceRequestParameter.empty() => const DeviceRequestParameter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceRequestParameter.fromJson(

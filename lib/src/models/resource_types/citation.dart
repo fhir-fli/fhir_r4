@@ -1959,7 +1959,7 @@ class CitationClassification extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationClassification.empty() => CitationClassification();
+  factory CitationClassification.empty() => const CitationClassification();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationClassification.fromJson(
@@ -3183,7 +3183,7 @@ class CitationCitedArtifact extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationCitedArtifact.empty() => CitationCitedArtifact();
+  factory CitationCitedArtifact.empty() => const CitationCitedArtifact();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationCitedArtifact.fromJson(
@@ -5628,7 +5628,7 @@ class CitationPart extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationPart.empty() => CitationPart();
+  factory CitationPart.empty() => const CitationPart();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationPart.fromJson(
@@ -6486,7 +6486,7 @@ class CitationPublicationForm extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationPublicationForm.empty() => CitationPublicationForm();
+  factory CitationPublicationForm.empty() => const CitationPublicationForm();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationPublicationForm.fromJson(
@@ -7142,7 +7142,7 @@ class CitationPublishedIn extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationPublishedIn.empty() => CitationPublishedIn();
+  factory CitationPublishedIn.empty() => const CitationPublishedIn();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationPublishedIn.fromJson(
@@ -7604,7 +7604,7 @@ class CitationPeriodicRelease extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationPeriodicRelease.empty() => CitationPeriodicRelease();
+  factory CitationPeriodicRelease.empty() => const CitationPeriodicRelease();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationPeriodicRelease.fromJson(
@@ -8026,7 +8026,7 @@ class CitationDateOfPublication extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationDateOfPublication.empty() => CitationDateOfPublication();
+  factory CitationDateOfPublication.empty() => const CitationDateOfPublication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationDateOfPublication.fromJson(
@@ -8508,7 +8508,7 @@ class CitationWebLocation extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationWebLocation.empty() => CitationWebLocation();
+  factory CitationWebLocation.empty() => const CitationWebLocation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationWebLocation.fromJson(
@@ -8861,7 +8861,7 @@ class CitationClassification1 extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationClassification1.empty() => CitationClassification1();
+  factory CitationClassification1.empty() => const CitationClassification1();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationClassification1.fromJson(
@@ -9259,7 +9259,7 @@ class CitationWhoClassified extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationWhoClassified.empty() => CitationWhoClassified();
+  factory CitationWhoClassified.empty() => const CitationWhoClassified();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationWhoClassified.fromJson(
@@ -9710,7 +9710,7 @@ class CitationContributorship extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationContributorship.empty() => CitationContributorship();
+  factory CitationContributorship.empty() => const CitationContributorship();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationContributorship.fromJson(
@@ -10127,7 +10127,7 @@ class CitationEntry extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationEntry.empty() => CitationEntry();
+  factory CitationEntry.empty() => const CitationEntry();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationEntry.fromJson(
@@ -10869,7 +10869,7 @@ class CitationAffiliationInfo extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationAffiliationInfo.empty() => CitationAffiliationInfo();
+  factory CitationAffiliationInfo.empty() => const CitationAffiliationInfo();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationAffiliationInfo.fromJson(

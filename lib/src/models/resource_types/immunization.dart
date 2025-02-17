@@ -1899,7 +1899,7 @@ class ImmunizationEducation extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImmunizationEducation.empty() => ImmunizationEducation();
+  factory ImmunizationEducation.empty() => const ImmunizationEducation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationEducation.fromJson(
@@ -2318,7 +2318,7 @@ class ImmunizationReaction extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImmunizationReaction.empty() => ImmunizationReaction();
+  factory ImmunizationReaction.empty() => const ImmunizationReaction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationReaction.fromJson(

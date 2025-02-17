@@ -1743,7 +1743,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubscriptionTopicQueryCriteria.empty() =>
-      SubscriptionTopicQueryCriteria();
+      const SubscriptionTopicQueryCriteria();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicQueryCriteria.fromJson(

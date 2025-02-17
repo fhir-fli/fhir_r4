@@ -31,7 +31,7 @@ class FhirMeta extends DataType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory FhirMeta.empty() => FhirMeta();
+  factory FhirMeta.empty() => const FhirMeta();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirMeta.fromJson(

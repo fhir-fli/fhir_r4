@@ -1994,7 +1994,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory TerminologyCapabilitiesCodeSystem.empty() =>
-      TerminologyCapabilitiesCodeSystem();
+      const TerminologyCapabilitiesCodeSystem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesCodeSystem.fromJson(
@@ -2396,7 +2396,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory TerminologyCapabilitiesVersion.empty() =>
-      TerminologyCapabilitiesVersion();
+      const TerminologyCapabilitiesVersion();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesVersion.fromJson(
@@ -3266,7 +3266,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory TerminologyCapabilitiesExpansion.empty() =>
-      TerminologyCapabilitiesExpansion();
+      const TerminologyCapabilitiesExpansion();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesExpansion.fromJson(
@@ -4721,7 +4721,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory TerminologyCapabilitiesClosure.empty() =>
-      TerminologyCapabilitiesClosure();
+      const TerminologyCapabilitiesClosure();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesClosure.fromJson(

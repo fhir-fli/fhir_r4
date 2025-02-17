@@ -1785,7 +1785,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationRequestDispenseRequest.empty() =>
-      MedicationRequestDispenseRequest();
+      const MedicationRequestDispenseRequest();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequestDispenseRequest.fromJson(
@@ -2311,7 +2311,7 @@ class MedicationRequestInitialFill extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicationRequestInitialFill.empty() =>
-      MedicationRequestInitialFill();
+      const MedicationRequestInitialFill();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationRequestInitialFill.fromJson(

@@ -982,7 +982,7 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory VerificationResultPrimarySource.empty() =>
-      VerificationResultPrimarySource();
+      const VerificationResultPrimarySource();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultPrimarySource.fromJson(
@@ -1539,7 +1539,7 @@ class VerificationResultAttestation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory VerificationResultAttestation.empty() =>
-      VerificationResultAttestation();
+      const VerificationResultAttestation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VerificationResultAttestation.fromJson(
@@ -2054,11 +2054,11 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate)) {
+        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate)) {
+        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {

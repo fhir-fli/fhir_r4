@@ -1866,7 +1866,7 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod)) {
+        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod,)) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {

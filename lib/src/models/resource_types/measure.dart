@@ -731,7 +731,7 @@ class Measure extends CanonicalResource {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement);
+        'clinicalRecommendationStatement', clinicalRecommendationStatement,);
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);
@@ -1961,7 +1961,7 @@ class Measure extends CanonicalResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        clinicalRecommendationStatement, o.clinicalRecommendationStatement)) {
+        clinicalRecommendationStatement, o.clinicalRecommendationStatement,)) {
       return false;
     }
     if (!equalsDeepWithNull(improvementNotation, o.improvementNotation)) {
@@ -2014,7 +2014,7 @@ class MeasureGroup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureGroup.empty() => MeasureGroup();
+  factory MeasureGroup.empty() => const MeasureGroup();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureGroup.fromJson(
@@ -2846,7 +2846,7 @@ class MeasureStratifier extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MeasureStratifier.empty() => MeasureStratifier();
+  factory MeasureStratifier.empty() => const MeasureStratifier();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureStratifier.fromJson(

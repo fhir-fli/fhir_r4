@@ -1559,7 +1559,7 @@ class AuditEventNetwork extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory AuditEventNetwork.empty() => AuditEventNetwork();
+  factory AuditEventNetwork.empty() => const AuditEventNetwork();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventNetwork.fromJson(
@@ -2318,7 +2318,7 @@ class AuditEventEntity extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory AuditEventEntity.empty() => AuditEventEntity();
+  factory AuditEventEntity.empty() => const AuditEventEntity();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventEntity.fromJson(

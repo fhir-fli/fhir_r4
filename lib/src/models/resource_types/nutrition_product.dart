@@ -869,7 +869,7 @@ class NutritionProductNutrient extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionProductNutrient.empty() => NutritionProductNutrient();
+  factory NutritionProductNutrient.empty() => const NutritionProductNutrient();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductNutrient.fromJson(
@@ -2055,7 +2055,7 @@ class NutritionProductInstance extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory NutritionProductInstance.empty() => NutritionProductInstance();
+  factory NutritionProductInstance.empty() => const NutritionProductInstance();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductInstance.fromJson(

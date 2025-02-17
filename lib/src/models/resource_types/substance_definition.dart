@@ -45,7 +45,7 @@ class SubstanceDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinition.empty() => SubstanceDefinition();
+  factory SubstanceDefinition.empty() => const SubstanceDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinition.fromJson(
@@ -1243,7 +1243,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() => SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -2663,7 +2663,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionStructure.empty() =>
-      SubstanceDefinitionStructure();
+      const SubstanceDefinitionStructure();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionStructure.fromJson(
@@ -3198,7 +3198,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        molecularFormulaByMoiety, o.molecularFormulaByMoiety)) {
+        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -3249,7 +3249,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionRepresentation.empty() =>
-      SubstanceDefinitionRepresentation();
+      const SubstanceDefinitionRepresentation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionRepresentation.fromJson(
@@ -3673,7 +3673,7 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionCode.empty() => SubstanceDefinitionCode();
+  factory SubstanceDefinitionCode.empty() => const SubstanceDefinitionCode();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionCode.fromJson(
@@ -4873,7 +4873,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() => SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -5486,7 +5486,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
     }
 
     addField('type', type);
@@ -5895,7 +5895,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory SubstanceDefinitionSourceMaterial.empty() =>
-      SubstanceDefinitionSourceMaterial();
+      const SubstanceDefinitionSourceMaterial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionSourceMaterial.fromJson(

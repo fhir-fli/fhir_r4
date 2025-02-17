@@ -48,7 +48,7 @@ class DeviceDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinition.empty() => DeviceDefinition();
+  factory DeviceDefinition.empty() => const DeviceDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDefinition.fromJson(
@@ -1296,7 +1296,7 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        physicalCharacteristics, o.physicalCharacteristics)) {
+        physicalCharacteristics, o.physicalCharacteristics,)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

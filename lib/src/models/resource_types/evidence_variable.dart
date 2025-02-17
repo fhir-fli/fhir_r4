@@ -1374,7 +1374,7 @@ class EvidenceVariable extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        characteristicCombination, o.characteristicCombination)) {
+        characteristicCombination, o.characteristicCombination,)) {
       return false;
     }
     if (!listEquals<EvidenceVariableCharacteristic>(
@@ -2018,7 +2018,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory EvidenceVariableTimeFromStart.empty() =>
-      EvidenceVariableTimeFromStart();
+      const EvidenceVariableTimeFromStart();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableTimeFromStart.fromJson(
@@ -2448,7 +2448,7 @@ class EvidenceVariableCategory extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceVariableCategory.empty() => EvidenceVariableCategory();
+  factory EvidenceVariableCategory.empty() => const EvidenceVariableCategory();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(

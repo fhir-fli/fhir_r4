@@ -38,7 +38,7 @@ class Organization extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Organization.empty() => Organization();
+  factory Organization.empty() => const Organization();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Organization.fromJson(
@@ -868,7 +868,7 @@ class OrganizationContact extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OrganizationContact.empty() => OrganizationContact();
+  factory OrganizationContact.empty() => const OrganizationContact();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OrganizationContact.fromJson(

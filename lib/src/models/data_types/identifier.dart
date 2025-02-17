@@ -39,7 +39,7 @@ class Identifier extends DataType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Identifier.empty() => Identifier();
+  factory Identifier.empty() => const Identifier();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Identifier.fromJson(

@@ -39,7 +39,7 @@ class OrganizationAffiliation extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OrganizationAffiliation.empty() => OrganizationAffiliation();
+  factory OrganizationAffiliation.empty() => const OrganizationAffiliation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OrganizationAffiliation.fromJson(
@@ -885,7 +885,7 @@ class OrganizationAffiliation extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        participatingOrganization, o.participatingOrganization)) {
+        participatingOrganization, o.participatingOrganization,)) {
       return false;
     }
     if (!listEquals<Reference>(

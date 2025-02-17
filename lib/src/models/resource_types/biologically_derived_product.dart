@@ -38,7 +38,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() => BiologicallyDerivedProduct();
+  factory BiologicallyDerivedProduct.empty() => const BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
@@ -890,7 +890,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductCollection.empty() =>
-      BiologicallyDerivedProductCollection();
+      const BiologicallyDerivedProductCollection();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
@@ -1318,7 +1318,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductProcessing.empty() =>
-      BiologicallyDerivedProductProcessing();
+      const BiologicallyDerivedProductProcessing();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
@@ -1775,7 +1775,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductManipulation.empty() =>
-      BiologicallyDerivedProductManipulation();
+      const BiologicallyDerivedProductManipulation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(
@@ -2168,7 +2168,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory BiologicallyDerivedProductStorage.empty() =>
-      BiologicallyDerivedProductStorage();
+      const BiologicallyDerivedProductStorage();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductStorage.fromJson(

@@ -44,7 +44,7 @@ class Location extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Location.empty() => Location();
+  factory Location.empty() => const Location();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Location.fromJson(
@@ -1488,7 +1488,7 @@ class LocationHoursOfOperation extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory LocationHoursOfOperation.empty() => LocationHoursOfOperation();
+  factory LocationHoursOfOperation.empty() => const LocationHoursOfOperation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationHoursOfOperation.fromJson(

@@ -52,7 +52,7 @@ class Timing extends BackboneType
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory Timing.empty() => Timing();
+  factory Timing.empty() => const Timing();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Timing.fromJson(
@@ -460,7 +460,7 @@ class TimingRepeat extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TimingRepeat.empty() => TimingRepeat();
+  factory TimingRepeat.empty() => const TimingRepeat();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TimingRepeat.fromJson(

@@ -59,7 +59,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicinalProductDefinition.empty() => MedicinalProductDefinition(
+  factory MedicinalProductDefinition.empty() => const MedicinalProductDefinition(
         name: <MedicinalProductDefinitionName>[],
       );
 
@@ -1494,7 +1494,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm)) {
+        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm,)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1510,7 +1510,7 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        additionalMonitoringIndicator, o.additionalMonitoringIndicator)) {
+        additionalMonitoringIndicator, o.additionalMonitoringIndicator,)) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3528,7 +3528,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory MedicinalProductDefinitionOperation.empty() =>
-      MedicinalProductDefinitionOperation();
+      const MedicinalProductDefinitionOperation();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionOperation.fromJson(
@@ -3934,7 +3934,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        confidentialityIndicator, o.confidentialityIndicator)) {
+        confidentialityIndicator, o.confidentialityIndicator,)) {
       return false;
     }
     return true;

@@ -879,7 +879,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ClinicalUseDefinitionContraindication.empty() =>
-      ClinicalUseDefinitionContraindication();
+      const ClinicalUseDefinitionContraindication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionContraindication.fromJson(
@@ -1316,7 +1316,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1725,7 +1725,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ClinicalUseDefinitionIndication.empty() =>
-      ClinicalUseDefinitionIndication();
+      const ClinicalUseDefinitionIndication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionIndication.fromJson(
@@ -2262,7 +2262,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure)) {
+        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -2320,7 +2320,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ClinicalUseDefinitionInteraction.empty() =>
-      ClinicalUseDefinitionInteraction();
+      const ClinicalUseDefinitionInteraction();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionInteraction.fromJson(
@@ -3154,7 +3154,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ClinicalUseDefinitionUndesirableEffect.empty() =>
-      ClinicalUseDefinitionUndesirableEffect();
+      const ClinicalUseDefinitionUndesirableEffect();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
@@ -3542,7 +3542,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ClinicalUseDefinitionWarning.empty() =>
-      ClinicalUseDefinitionWarning();
+      const ClinicalUseDefinitionWarning();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionWarning.fromJson(

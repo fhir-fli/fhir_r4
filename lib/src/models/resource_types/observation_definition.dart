@@ -940,7 +940,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ObservationDefinitionQuantitativeDetails.empty() =>
-      ObservationDefinitionQuantitativeDetails();
+      const ObservationDefinitionQuantitativeDetails();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQuantitativeDetails.fromJson(
@@ -1369,7 +1369,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ObservationDefinitionQualifiedInterval.empty() =>
-      ObservationDefinitionQualifiedInterval();
+      const ObservationDefinitionQualifiedInterval();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQualifiedInterval.fromJson(
