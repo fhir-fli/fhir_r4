@@ -95,7 +95,7 @@ class TLeft12 extends Element {
   }
 
   @override
-  FhirBase? getChildValueByName(String name) {
+  FhirBase? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');
     return values.isNotEmpty ? values.first : null;
@@ -223,7 +223,7 @@ class TLeft12az1 extends BackboneElement {
   }
 
   @override
-  FhirBase? getChildValueByName(String name) {
+  FhirBase? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');
     return values.isNotEmpty ? values.first : null;
