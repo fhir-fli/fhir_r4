@@ -47,8 +47,8 @@ void main() {
     ..writeln("import 'package:fhir_r4/fhir_r4.dart';\n")
     ..writeln('extension MakeIterable on FhirBase {')
     ..writeln('  /// Returns an iterable of the given type.')
-    ..writeln('  Iterable<FhirBase> makeIterable() {')
-    ..writeln('    return <FhirBase>[this];')
+    ..writeln('  Iterable<T> makeIterable<T extends FhirBase>() {')
+    ..writeln('    return <T>[this as T];')
     ..writeln('  }')
     ..writeln('}\n')
     ..writeln('void main() {');
@@ -83,9 +83,12 @@ String buildDartAccessor(String exp) {
         sb.write(segment);
       } else {
         if (isList) {
-          sb.write('?.map((e) => e.${fhirFieldToDartName(segment)}).toList()');
+          sb.write('?.map((e) => e?.${fhirFieldToDartName(segment)})');
+        } else if (segment.contains('[')) {
+          final firstSegment = segment.split('[').first;
+          sb.write('.$firstSegment?.firstOrNull?');
         } else {
-          sb.write('.${fhirFieldToDartName(segment)}');
+          sb.write('?.${fhirFieldToDartName(segment)}');
         }
       }
       continue;
@@ -100,7 +103,7 @@ String buildDartAccessor(String exp) {
         sb.write(whereIsType(type));
       } else {
         sb.write(
-          '.${fhirFieldToDartName(segment)}.makeIterable${whereIsType(type)}',
+          '?.makeIterable<${fhirField.type}>()${whereIsType(type)}',
         );
       }
       isList = true;
@@ -116,15 +119,27 @@ String buildDartAccessor(String exp) {
         if (i != 0 && isList) {
           sb.write(whereEqualsType(type));
         } else {
+          final thisType = fhirFieldMap[fhirField.type]?[segment]?.type;
+          if (thisType == null) {
+            throw Exception('Type not found in $segment');
+          }
           sb.write(
-            '.${fhirFieldToDartName(segment)}.makeIterable${whereEqualsType(type)}',
+            '.${fhirFieldToDartName(segment)}.makeIterable<$thisType>()${whereEqualsType(type)}',
           );
         }
         isList = true;
       } else if (isList) {
-        sb.write('?.map((e) => e.${fhirFieldToDartName(segment)}).toList()');
+        final thisField = fhirFieldMap[fhirField.type]?[segment];
+        if (thisField == null) {
+          throw Exception('Field not found in $segment');
+        }
+        if (thisField.isList) {
+          sb.write('?.expand((e) => e?.${fhirFieldToDartName(segment)} ?? [])');
+        } else {
+          sb.write('?.map((e) => e?.${fhirFieldToDartName(segment)})');
+        }
       } else {
-        sb.write('.${fhirFieldToDartName(segment)}');
+        sb.write('?.${fhirFieldToDartName(segment)}');
       }
     }
   }
@@ -135,7 +150,7 @@ String whereIsType(String type) => '''
 ?.where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == '$type';
-  }).toList()''';
+  })''';
 
 String whereEqualsType(String type) =>
-    "?.where((e) => e?.type.value.toString() == '$type').toList()";
+    "?.where((e) => e?.type.value.toString() == '$type')";
