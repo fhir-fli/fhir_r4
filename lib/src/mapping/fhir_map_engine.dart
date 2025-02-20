@@ -133,7 +133,7 @@
 //         targetType;
 //   }
 
-//   Map<String, dynamic> _retrieveTransformedTarget(
+//   FhirBase _retrieveTransformedTarget(
 //     Variables vars,
 //     String? outputVarName,
 //     String targetType,
@@ -141,14 +141,13 @@
 //     final transformedTargetNode =
 //         vars.getOutputVar(outputVarName ?? targetType);
 
-//     final map = (transformedTargetNode! as MapNode).toMap();
-
-//     if (map is! Map<String, dynamic>) {
+//     if (transformedTargetNode == null) {
 //       throw FHIRException(
-//         message: 'Transformed target is not a Map<String, dynamic>',
+//         message: 'Transformed target is null',
 //       );
 //     }
-//     return map;
+
+//     return transformedTargetNode;
 //   }
 
 //   OperationOutcome createOperationOutcomeErrorNode(

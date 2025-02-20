@@ -13,6 +13,38 @@ class FhirField {
   final String type;
 }
 
+/// Resolves a simple path to a FHIR field, this means it can only have
+/// identifiers and ".", it is not in anyway a full FHIRPath implementation
+FhirField? resolveSimplePath(String path) {
+  final segments = path.split('.');
+  if (segments.isEmpty) return null;
+
+  var currentType = segments.first;
+
+  // Walk through each segment of the path
+  for (var i = 1; i < segments.length; i++) {
+    final fieldName = segments[i];
+
+    // Look up the current type in the field map
+    final typeFields = fhirFieldMap[currentType];
+    if (typeFields == null) return null;
+
+    // Look up the current field
+    final field = typeFields[fieldName];
+    if (field == null) return null;
+
+    // Update current type for next iteration
+    currentType = field.type;
+
+    // If this is the last segment, return the field
+    if (i == segments.length - 1) {
+      return field;
+    }
+  }
+
+  return null;
+}
+
 /// Field map for FHIR structures
 final Map<String, Map<String, FhirField>> fhirFieldMap =
     <String, Map<String, FhirField>>{
