@@ -1,5 +1,5 @@
 // Generated from FHIR R4 SearchParameter definitions
-// ignore_for_file: unnecessary_statements, cascade_invocations
+// ignore_for_file: unnecessary_statements, cascade_invocations, lines_longer_than_80_chars
 import 'package:fhir_r4/fhir_r4.dart';
 
 extension MakeIterable on FhirBase {
@@ -11,3620 +11,3623 @@ extension MakeIterable on FhirBase {
 
 void main() {
   final account = Account.empty();
- // Account.identifier
+ // Account.identifier (token)
 account.identifier;
- // Account.name
+ // Account.name (string)
 account.name;
- // Account.owner
+ // Account.owner (reference)
 account.owner;
- // Account.subject.where(resolve() is Patient)
+ // Account.subject.where(resolve() is Patient) (reference)
 account.subject?.where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Account.servicePeriod
+ // Account.servicePeriod (date)
 account.servicePeriod;
- // Account.status
+ // Account.status (token)
 account.status;
- // Account.subject
+ // Account.subject (reference)
 account.subject;
- // Account.type
+ // Account.type (token)
 account.type;
   final activityDefinition = ActivityDefinition.empty();
- // ActivityDefinition.relatedArtifact.where(type='composed-of').resource
+ // ActivityDefinition.relatedArtifact.where(type='composed-of').resource (reference)
 activityDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // ActivityDefinition.useContext.code
+ // ActivityDefinition.useContext.code (token)
 activityDefinition.useContext?.map((e) => e.code);
- // ActivityDefinition.date
+ // ActivityDefinition.date (date)
 activityDefinition.date;
- // ActivityDefinition.relatedArtifact.where(type='depends-on').resource
+ // ActivityDefinition.relatedArtifact.where(type='depends-on').resource (reference)
 activityDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // ActivityDefinition.library
+ // ActivityDefinition.library (reference)
 activityDefinition.library_;
- // ActivityDefinition.relatedArtifact.where(type='derived-from').resource
+ // ActivityDefinition.relatedArtifact.where(type='derived-from').resource (reference)
 activityDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // ActivityDefinition.description
+ // ActivityDefinition.description (string)
 activityDefinition.description;
- // ActivityDefinition.effectivePeriod
+ // ActivityDefinition.effectivePeriod (date)
 activityDefinition.effectivePeriod;
- // ActivityDefinition.identifier
+ // ActivityDefinition.identifier (token)
 activityDefinition.identifier;
- // ActivityDefinition.jurisdiction
+ // ActivityDefinition.jurisdiction (token)
 activityDefinition.jurisdiction;
- // ActivityDefinition.name
+ // ActivityDefinition.name (string)
 activityDefinition.name;
- // ActivityDefinition.relatedArtifact.where(type='predecessor').resource
+ // ActivityDefinition.relatedArtifact.where(type='predecessor').resource (reference)
 activityDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // ActivityDefinition.publisher
+ // ActivityDefinition.publisher (string)
 activityDefinition.publisher;
- // ActivityDefinition.status
+ // ActivityDefinition.status (token)
 activityDefinition.status;
- // ActivityDefinition.relatedArtifact.where(type='successor').resource
+ // ActivityDefinition.relatedArtifact.where(type='successor').resource (reference)
 activityDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // ActivityDefinition.title
+ // ActivityDefinition.title (string)
 activityDefinition.title;
- // ActivityDefinition.topic
+ // ActivityDefinition.topic (token)
 activityDefinition.topic;
- // ActivityDefinition.url
+ // ActivityDefinition.url (uri)
 activityDefinition.url;
- // ActivityDefinition.version
+ // ActivityDefinition.version (token)
 activityDefinition.version;
- // ActivityDefinition.useContext
+ // ActivityDefinition.useContext (composite)
 activityDefinition.useContext;
- // ActivityDefinition.useContext
+ // ActivityDefinition.useContext (composite)
 activityDefinition.useContext;
   final administrableProductDefinition = AdministrableProductDefinition.empty();
- // AdministrableProductDefinition.device
+ // AdministrableProductDefinition.device (reference)
 administrableProductDefinition.device;
- // AdministrableProductDefinition.administrableDoseForm
+ // AdministrableProductDefinition.administrableDoseForm (token)
 administrableProductDefinition.administrableDoseForm;
- // AdministrableProductDefinition.formOf
+ // AdministrableProductDefinition.formOf (reference)
 administrableProductDefinition.formOf;
- // AdministrableProductDefinition.identifier
+ // AdministrableProductDefinition.identifier (token)
 administrableProductDefinition.identifier;
- // AdministrableProductDefinition.ingredient
+ // AdministrableProductDefinition.ingredient (token)
 administrableProductDefinition.ingredient;
- // AdministrableProductDefinition.producedFrom
+ // AdministrableProductDefinition.producedFrom (reference)
 administrableProductDefinition.producedFrom;
- // AdministrableProductDefinition.routeOfAdministration.code
+ // AdministrableProductDefinition.routeOfAdministration.code (token)
 administrableProductDefinition.routeOfAdministration.map((e) => e.code);
- // AdministrableProductDefinition.routeOfAdministration.targetSpecies.code
-administrableProductDefinition.routeOfAdministration.expand((e) => e.targetSpecies ?? []).map((e) => e?.code);
+ // AdministrableProductDefinition.routeOfAdministration.targetSpecies.code (token)
+administrableProductDefinition.routeOfAdministration.expand((e) => e.targetSpecies ?? <AdministrableProductDefinitionTargetSpecies>[]).map((e) => e.code);
   final adverseEvent = AdverseEvent.empty();
- // AdverseEvent.actuality
+ // AdverseEvent.actuality (token)
 adverseEvent.actuality;
- // AdverseEvent.category
+ // AdverseEvent.category (token)
 adverseEvent.category;
- // AdverseEvent.date
+ // AdverseEvent.date (date)
 adverseEvent.date;
- // AdverseEvent.event
+ // AdverseEvent.event (token)
 adverseEvent.event;
- // AdverseEvent.location
+ // AdverseEvent.location (reference)
 adverseEvent.location;
- // AdverseEvent.recorder
+ // AdverseEvent.recorder (reference)
 adverseEvent.recorder;
- // AdverseEvent.resultingCondition
+ // AdverseEvent.resultingCondition (reference)
 adverseEvent.resultingCondition;
- // AdverseEvent.seriousness
+ // AdverseEvent.seriousness (token)
 adverseEvent.seriousness;
- // AdverseEvent.severity
+ // AdverseEvent.severity (token)
 adverseEvent.severity;
- // AdverseEvent.study
+ // AdverseEvent.study (reference)
 adverseEvent.study;
- // AdverseEvent.subject
+ // AdverseEvent.subject (reference)
 adverseEvent.subject;
- // AdverseEvent.suspectEntity.instance
+ // AdverseEvent.suspectEntity.instance (reference)
 adverseEvent.suspectEntity?.map((e) => e.instance);
   final allergyIntolerance = AllergyIntolerance.empty();
- // AllergyIntolerance.asserter
+ // AllergyIntolerance.asserter (reference)
 allergyIntolerance.asserter;
- // AllergyIntolerance.category
+ // AllergyIntolerance.category (token)
 allergyIntolerance.category;
- // AllergyIntolerance.clinicalStatus
+ // AllergyIntolerance.clinicalStatus (token)
 allergyIntolerance.clinicalStatus;
- // AllergyIntolerance.code
+ // AllergyIntolerance.code (token)
 allergyIntolerance.code;
- // AllergyIntolerance.reaction.substance
+ // AllergyIntolerance.reaction.substance (token)
 allergyIntolerance.reaction?.map((e) => e.substance);
- // AllergyIntolerance.criticality
+ // AllergyIntolerance.criticality (token)
 allergyIntolerance.criticality;
- // AllergyIntolerance.recordedDate
+ // AllergyIntolerance.recordedDate (token)
 allergyIntolerance.recordedDate;
- // AllergyIntolerance.identifier
+ // AllergyIntolerance.identifier (token)
 allergyIntolerance.identifier;
- // AllergyIntolerance.lastOccurrence
+ // AllergyIntolerance.lastOccurrence (token)
 allergyIntolerance.lastOccurrence;
- // AllergyIntolerance.reaction.manifestation
-allergyIntolerance.reaction?.map((e) => e.manifestation);
- // AllergyIntolerance.reaction.onset
+ // AllergyIntolerance.reaction.manifestation (token)
+allergyIntolerance.reaction?.expand((e) => e.manifestation ?? <CodeableConcept>[]);
+ // AllergyIntolerance.reaction.onset (token)
 allergyIntolerance.reaction?.map((e) => e.onset);
- // AllergyIntolerance.patient
+ // AllergyIntolerance.patient (token)
 allergyIntolerance.patient;
- // AllergyIntolerance.recorder
+ // AllergyIntolerance.recorder (token)
 allergyIntolerance.recorder;
- // AllergyIntolerance.reaction.exposureRoute
+ // AllergyIntolerance.reaction.exposureRoute (token)
 allergyIntolerance.reaction?.map((e) => e.exposureRoute);
- // AllergyIntolerance.reaction.severity
+ // AllergyIntolerance.reaction.severity (date)
 allergyIntolerance.reaction?.map((e) => e.severity);
- // AllergyIntolerance.type
+ // AllergyIntolerance.type (date)
 allergyIntolerance.type;
- // AllergyIntolerance.verificationStatus
+ // AllergyIntolerance.verificationStatus (date)
 allergyIntolerance.verificationStatus;
   final appointment = Appointment.empty();
- // Appointment.participant.actor
+ // Appointment.participant.actor (date)
 appointment.participant.map((e) => e.actor);
- // Appointment.appointmentType
+ // Appointment.appointmentType (date)
 appointment.appointmentType;
- // Appointment.basedOn
+ // Appointment.basedOn (date)
 appointment.basedOn;
- // Appointment.start
+ // Appointment.start (date)
 appointment.start;
- // Appointment.identifier
+ // Appointment.identifier (date)
 appointment.identifier;
- // Appointment.participant.actor.where(resolve() is Location)
+ // Appointment.participant.actor.where(resolve() is Location) (date)
 appointment.participant.map((e) => e.actor).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Location';
   });
- // Appointment.participant.status
+ // Appointment.participant.status (date)
 appointment.participant.map((e) => e.status);
- // Appointment.participant.actor.where(resolve() is Patient)
+ // Appointment.participant.actor.where(resolve() is Patient) (date)
 appointment.participant.map((e) => e.actor).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Appointment.participant.actor.where(resolve() is Practitioner)
+ // Appointment.participant.actor.where(resolve() is Practitioner) (date)
 appointment.participant.map((e) => e.actor).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
   });
- // Appointment.reasonCode
+ // Appointment.reasonCode (date)
 appointment.reasonCode;
- // Appointment.reasonReference
+ // Appointment.reasonReference (date)
 appointment.reasonReference;
- // Appointment.serviceCategory
+ // Appointment.serviceCategory (date)
 appointment.serviceCategory;
- // Appointment.serviceType
+ // Appointment.serviceType (token)
 appointment.serviceType;
- // Appointment.slot
+ // Appointment.slot (token)
 appointment.slot;
- // Appointment.specialty
+ // Appointment.specialty (token)
 appointment.specialty;
- // Appointment.status
+ // Appointment.status (token)
 appointment.status;
- // Appointment.supportingInformation
+ // Appointment.supportingInformation (token)
 appointment.supportingInformation;
   final appointmentResponse = AppointmentResponse.empty();
- // AppointmentResponse.actor
+ // AppointmentResponse.actor (token)
 appointmentResponse.actor;
- // AppointmentResponse.appointment
+ // AppointmentResponse.appointment (token)
 appointmentResponse.appointment;
- // AppointmentResponse.identifier
+ // AppointmentResponse.identifier (token)
 appointmentResponse.identifier;
- // AppointmentResponse.actor.where(resolve() is Location)
+ // AppointmentResponse.actor.where(resolve() is Location) (token)
 appointmentResponse.actor?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Location';
   });
- // AppointmentResponse.participantStatus
+ // AppointmentResponse.participantStatus (token)
 appointmentResponse.participantStatus;
- // AppointmentResponse.actor.where(resolve() is Patient)
+ // AppointmentResponse.actor.where(resolve() is Patient) (token)
 appointmentResponse.actor?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // AppointmentResponse.actor.where(resolve() is Practitioner)
+ // AppointmentResponse.actor.where(resolve() is Practitioner) (token)
 appointmentResponse.actor?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
   });
   final auditEvent = AuditEvent.empty();
- // AuditEvent.action
+ // AuditEvent.action (token)
 auditEvent.action;
- // AuditEvent.agent.network.address
+ // AuditEvent.agent.network.address (token)
 auditEvent.agent.map((e) => e.network).map((e) => e?.address);
- // AuditEvent.agent.who
+ // AuditEvent.agent.who (token)
 auditEvent.agent.map((e) => e.who);
- // AuditEvent.agent.name
+ // AuditEvent.agent.name (token)
 auditEvent.agent.map((e) => e.name);
- // AuditEvent.agent.role
-auditEvent.agent.map((e) => e.role);
- // AuditEvent.agent.altId
+ // AuditEvent.agent.role (token)
+auditEvent.agent.expand((e) => e.role ?? <CodeableConcept>[]);
+ // AuditEvent.agent.altId (token)
 auditEvent.agent.map((e) => e.altId);
- // AuditEvent.recorded
+ // AuditEvent.recorded (token)
 auditEvent.recorded;
- // AuditEvent.entity.what
+ // AuditEvent.entity.what (token)
 auditEvent.entity?.map((e) => e.what);
- // AuditEvent.entity.name
+ // AuditEvent.entity.name (token)
 auditEvent.entity?.map((e) => e.name);
- // AuditEvent.entity.role
+ // AuditEvent.entity.role (token)
 auditEvent.entity?.map((e) => e.role);
- // AuditEvent.entity.type
+ // AuditEvent.entity.type (token)
 auditEvent.entity?.map((e) => e.type);
- // AuditEvent.outcome
+ // AuditEvent.outcome (token)
 auditEvent.outcome;
- // AuditEvent.agent.who.where(resolve() is Patient)
+ // AuditEvent.agent.who.where(resolve() is Patient) (token)
 auditEvent.agent.map((e) => e.who).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // AuditEvent.entity.what.where(resolve() is Patient)
+ // AuditEvent.entity.what.where(resolve() is Patient) (token)
 auditEvent.entity?.map((e) => e.what).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // AuditEvent.agent.policy
-auditEvent.agent.map((e) => e.policy);
- // AuditEvent.source.site
+ // AuditEvent.agent.policy (token)
+auditEvent.agent.expand((e) => e.policy ?? <FhirUri>[]);
+ // AuditEvent.source.site (token)
 auditEvent.source.site;
- // AuditEvent.source.observer
+ // AuditEvent.source.observer (token)
 auditEvent.source.observer;
- // AuditEvent.subtype
+ // AuditEvent.subtype (token)
 auditEvent.subtype;
- // AuditEvent.type
+ // AuditEvent.type (token)
 auditEvent.type;
   final basic = Basic.empty();
- // Basic.author
+ // Basic.author (token)
 basic.author;
- // Basic.code
+ // Basic.code (date)
 basic.code;
- // Basic.created
+ // Basic.created (token)
 basic.created;
- // Basic.identifier
+ // Basic.identifier (date)
 basic.identifier;
- // Basic.subject.where(resolve() is Patient)
+ // Basic.subject.where(resolve() is Patient) (reference)
 basic.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Basic.subject
+ // Basic.subject (reference)
 basic.subject;
   final binary = Binary.empty();
   final biologicallyDerivedProduct = BiologicallyDerivedProduct.empty();
   final bodyStructure = BodyStructure.empty();
- // BodyStructure.identifier
+ // BodyStructure.identifier (reference)
 bodyStructure.identifier;
- // BodyStructure.location
+ // BodyStructure.location (reference)
 bodyStructure.location;
- // BodyStructure.morphology
+ // BodyStructure.morphology (reference)
 bodyStructure.morphology;
- // BodyStructure.patient
+ // BodyStructure.patient (reference)
 bodyStructure.patient;
   final bundle = Bundle.empty();
- // Bundle.entry[0].resource
-bundle.entry?.firstOrNull??.resource;
- // Bundle.identifier
+ // Bundle.entry[0].resource (reference)
+bundle.entry?.firstOrNull?.resource;
+ // Bundle.identifier (reference)
 bundle.identifier;
- // Bundle.entry[0].resource
-bundle.entry?.firstOrNull??.resource;
- // Bundle.timestamp
+ // Bundle.entry[0].resource (reference)
+bundle.entry?.firstOrNull?.resource;
+ // Bundle.timestamp (reference)
 bundle.timestamp;
- // Bundle.type
+ // Bundle.type (reference)
 bundle.type;
   final capabilityStatement = CapabilityStatement.empty();
- // CapabilityStatement.useContext.code
+ // CapabilityStatement.useContext.code (reference)
 capabilityStatement.useContext?.map((e) => e.code);
- // CapabilityStatement.date
+ // CapabilityStatement.date (reference)
 capabilityStatement.date;
- // CapabilityStatement.description
+ // CapabilityStatement.description (reference)
 capabilityStatement.description;
- // CapabilityStatement.version
+ // CapabilityStatement.version (reference)
 capabilityStatement.version;
- // CapabilityStatement.format
+ // CapabilityStatement.format (reference)
 capabilityStatement.format;
- // CapabilityStatement.implementationGuide
+ // CapabilityStatement.implementationGuide (reference)
 capabilityStatement.implementationGuide;
- // CapabilityStatement.jurisdiction
+ // CapabilityStatement.jurisdiction (reference)
 capabilityStatement.jurisdiction;
- // CapabilityStatement.rest.mode
+ // CapabilityStatement.rest.mode (reference)
 capabilityStatement.rest?.map((e) => e.mode);
- // CapabilityStatement.name
+ // CapabilityStatement.name (reference)
 capabilityStatement.name;
- // CapabilityStatement.publisher
+ // CapabilityStatement.publisher (reference)
 capabilityStatement.publisher;
- // CapabilityStatement.rest.resource.type
-capabilityStatement.rest?.map((e) => e.resource).map((e) => e?.type);
- // CapabilityStatement.rest.resource.profile
-capabilityStatement.rest?.map((e) => e.resource).map((e) => e?.profile);
- // CapabilityStatement.rest.security.service
-capabilityStatement.rest?.map((e) => e.security).map((e) => e?.service);
- // CapabilityStatement.software.name
+ // CapabilityStatement.rest.resource.type (reference)
+capabilityStatement.rest?.expand((e) => e.resource ?? <CapabilityStatementResource>[]).map((e) => e.type);
+ // CapabilityStatement.rest.resource.profile (reference)
+capabilityStatement.rest?.expand((e) => e.resource ?? <CapabilityStatementResource>[]).map((e) => e.profile);
+ // CapabilityStatement.rest.security.service (reference)
+capabilityStatement.rest?.map((e) => e.security).expand((e) => e?.service ?? <CodeableConcept>[]);
+ // CapabilityStatement.software.name (reference)
 capabilityStatement.software?.name;
- // CapabilityStatement.status
+ // CapabilityStatement.status (reference)
 capabilityStatement.status;
- // CapabilityStatement.rest.resource.supportedProfile
-capabilityStatement.rest?.map((e) => e.resource).map((e) => e?.supportedProfile);
- // CapabilityStatement.title
+ // CapabilityStatement.rest.resource.supportedProfile (reference)
+capabilityStatement.rest?.expand((e) => e.resource ?? <CapabilityStatementResource>[]).expand((e) => e.supportedProfile ?? <FhirCanonical>[]);
+ // CapabilityStatement.title (reference)
 capabilityStatement.title;
- // CapabilityStatement.url
+ // CapabilityStatement.url (reference)
 capabilityStatement.url;
- // CapabilityStatement.version
+ // CapabilityStatement.version (reference)
 capabilityStatement.version;
- // CapabilityStatement.useContext
+ // CapabilityStatement.useContext (reference)
 capabilityStatement.useContext;
- // CapabilityStatement.useContext
+ // CapabilityStatement.useContext (reference)
 capabilityStatement.useContext;
   final carePlan = CarePlan.empty();
- // CarePlan.period
+ // CarePlan.period (reference)
 carePlan.period;
- // CarePlan.identifier
+ // CarePlan.identifier (token)
 carePlan.identifier;
- // CarePlan.subject.where(resolve() is Patient)
+ // CarePlan.subject.where(resolve() is Patient) (token)
 carePlan.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // CarePlan.activity.detail.code
+ // CarePlan.activity.detail.code (token)
 carePlan.activity?.map((e) => e.detail).map((e) => e?.code);
- // CarePlan.activity.detail.scheduled
-carePlan.activity?.map((e) => e.detail).map((e) => e?.scheduled);
- // CarePlan.activity.reference
+ // CarePlan.activity.detail.scheduled (token)
+carePlan.activity?.map((e) => e.detail).map((e) => e?.scheduledX);
+ // CarePlan.activity.reference (token)
 carePlan.activity?.map((e) => e.reference);
- // CarePlan.basedOn
+ // CarePlan.basedOn (token)
 carePlan.basedOn;
- // CarePlan.careTeam
+ // CarePlan.careTeam (token)
 carePlan.careTeam;
- // CarePlan.category
+ // CarePlan.category (token)
 carePlan.category;
- // CarePlan.addresses
+ // CarePlan.addresses (token)
 carePlan.addresses;
- // CarePlan.encounter
+ // CarePlan.encounter (reference)
 carePlan.encounter;
- // CarePlan.goal
+ // CarePlan.goal (token)
 carePlan.goal;
- // CarePlan.instantiatesCanonical
+ // CarePlan.instantiatesCanonical (reference)
 carePlan.instantiatesCanonical;
- // CarePlan.instantiatesUri
+ // CarePlan.instantiatesUri (date)
 carePlan.instantiatesUri;
- // CarePlan.intent
+ // CarePlan.intent (token)
 carePlan.intent;
- // CarePlan.partOf
+ // CarePlan.partOf (reference)
 carePlan.partOf;
- // CarePlan.activity.detail.performer
-carePlan.activity?.map((e) => e.detail).map((e) => e?.performer);
- // CarePlan.replaces
+ // CarePlan.activity.detail.performer (token)
+carePlan.activity?.map((e) => e.detail).expand((e) => e?.performer ?? <Reference>[]);
+ // CarePlan.replaces (reference)
 carePlan.replaces;
- // CarePlan.status
+ // CarePlan.status (reference)
 carePlan.status;
- // CarePlan.subject
+ // CarePlan.subject (token)
 carePlan.subject;
   final careTeam = CareTeam.empty();
- // CareTeam.period
+ // CareTeam.period (reference)
 careTeam.period;
- // CareTeam.identifier
+ // CareTeam.identifier (token)
 careTeam.identifier;
- // CareTeam.subject.where(resolve() is Patient)
+ // CareTeam.subject.where(resolve() is Patient) (token)
 careTeam.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // CareTeam.category
+ // CareTeam.category (reference)
 careTeam.category;
- // CareTeam.encounter
+ // CareTeam.encounter (token)
 careTeam.encounter;
- // CareTeam.participant.member
+ // CareTeam.participant.member (token)
 careTeam.participant?.map((e) => e.member);
- // CareTeam.status
+ // CareTeam.status (reference)
 careTeam.status;
- // CareTeam.subject
+ // CareTeam.subject (reference)
 careTeam.subject;
   final catalogEntry = CatalogEntry.empty();
   final chargeItem = ChargeItem.empty();
- // ChargeItem.account
+ // ChargeItem.account (reference)
 chargeItem.account;
- // ChargeItem.code
+ // ChargeItem.code (token)
 chargeItem.code;
- // ChargeItem.context
+ // ChargeItem.context (reference)
 chargeItem.context;
- // ChargeItem.enteredDate
+ // ChargeItem.enteredDate (token)
 chargeItem.enteredDate;
- // ChargeItem.enterer
+ // ChargeItem.enterer (reference)
 chargeItem.enterer;
- // ChargeItem.factorOverride
+ // ChargeItem.factorOverride (reference)
 chargeItem.factorOverride;
- // ChargeItem.identifier
+ // ChargeItem.identifier (token)
 chargeItem.identifier;
- // ChargeItem.occurrence
-chargeItem.occurrence;
- // ChargeItem.subject.where(resolve() is Patient)
+ // ChargeItem.occurrence (string)
+chargeItem.occurrenceX;
+ // ChargeItem.subject.where(resolve() is Patient) (reference)
 chargeItem.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // ChargeItem.performer.actor
+ // ChargeItem.performer.actor (string)
 chargeItem.performer?.map((e) => e.actor);
- // ChargeItem.performer.function
+ // ChargeItem.performer.function (token)
 chargeItem.performer?.map((e) => e.function_);
- // ChargeItem.performingOrganization
+ // ChargeItem.performingOrganization (token)
 chargeItem.performingOrganization;
- // ChargeItem.priceOverride
+ // ChargeItem.priceOverride (date)
 chargeItem.priceOverride;
- // ChargeItem.quantity
+ // ChargeItem.quantity (reference)
 chargeItem.quantity;
- // ChargeItem.requestingOrganization
+ // ChargeItem.requestingOrganization (string)
 chargeItem.requestingOrganization;
- // ChargeItem.service
+ // ChargeItem.service (token)
 chargeItem.service;
- // ChargeItem.subject
+ // ChargeItem.subject (token)
 chargeItem.subject;
   final chargeItemDefinition = ChargeItemDefinition.empty();
- // ChargeItemDefinition.useContext.code
+ // ChargeItemDefinition.useContext.code (token)
 chargeItemDefinition.useContext?.map((e) => e.code);
- // ChargeItemDefinition.date
+ // ChargeItemDefinition.date (reference)
 chargeItemDefinition.date;
- // ChargeItemDefinition.description
+ // ChargeItemDefinition.description (reference)
 chargeItemDefinition.description;
- // ChargeItemDefinition.effectivePeriod
+ // ChargeItemDefinition.effectivePeriod (uri)
 chargeItemDefinition.effectivePeriod;
- // ChargeItemDefinition.identifier
+ // ChargeItemDefinition.identifier (token)
 chargeItemDefinition.identifier;
- // ChargeItemDefinition.jurisdiction
+ // ChargeItemDefinition.jurisdiction (reference)
 chargeItemDefinition.jurisdiction;
- // ChargeItemDefinition.publisher
+ // ChargeItemDefinition.publisher (token)
 chargeItemDefinition.publisher;
- // ChargeItemDefinition.status
+ // ChargeItemDefinition.status (token)
 chargeItemDefinition.status;
- // ChargeItemDefinition.title
+ // ChargeItemDefinition.title (reference)
 chargeItemDefinition.title;
- // ChargeItemDefinition.url
+ // ChargeItemDefinition.url (token)
 chargeItemDefinition.url;
- // ChargeItemDefinition.version
+ // ChargeItemDefinition.version (date)
 chargeItemDefinition.version;
- // ChargeItemDefinition.useContext
+ // ChargeItemDefinition.useContext (token)
 chargeItemDefinition.useContext;
- // ChargeItemDefinition.useContext
+ // ChargeItemDefinition.useContext (reference)
 chargeItemDefinition.useContext;
   final citation = Citation.empty();
- // Citation.useContext.code
+ // Citation.useContext.code (reference)
 citation.useContext?.map((e) => e.code);
- // Citation.date
+ // Citation.date (token)
 citation.date;
- // Citation.description
+ // Citation.description (token)
 citation.description;
- // Citation.effectivePeriod
+ // Citation.effectivePeriod (token)
 citation.effectivePeriod;
- // Citation.identifier
+ // Citation.identifier (reference)
 citation.identifier;
- // Citation.jurisdiction
+ // Citation.jurisdiction (reference)
 citation.jurisdiction;
- // Citation.name
+ // Citation.name (token)
 citation.name;
- // Citation.publisher
+ // Citation.publisher (reference)
 citation.publisher;
- // Citation.status
+ // Citation.status (date)
 citation.status;
- // Citation.title
+ // Citation.title (token)
 citation.title;
- // Citation.url
+ // Citation.url (token)
 citation.url;
- // Citation.version
+ // Citation.version (token)
 citation.version;
- // Citation.useContext
+ // Citation.useContext (token)
 citation.useContext;
- // Citation.useContext
+ // Citation.useContext (token)
 citation.useContext;
   final claim = Claim.empty();
- // Claim.careTeam.provider
+ // Claim.careTeam.provider (token)
 claim.careTeam?.map((e) => e.provider);
- // Claim.created
+ // Claim.created (token)
 claim.created;
- // Claim.item.detail.udi
-claim.item?.map((e) => e.detail).map((e) => e?.udi);
- // Claim.item.encounter
-claim.item?.map((e) => e.encounter);
- // Claim.enterer
+ // Claim.item.detail.udi (token)
+claim.item?.expand((e) => e.detail ?? <ClaimDetail>[]).expand((e) => e.udi ?? <Reference>[]);
+ // Claim.item.encounter (token)
+claim.item?.expand((e) => e.encounter ?? <Reference>[]);
+ // Claim.enterer (token)
 claim.enterer;
- // Claim.facility
+ // Claim.facility (token)
 claim.facility;
- // Claim.identifier
+ // Claim.identifier (token)
 claim.identifier;
- // Claim.insurer
+ // Claim.insurer (token)
 claim.insurer;
- // Claim.item.udi
-claim.item?.map((e) => e.udi);
- // Claim.patient
+ // Claim.item.udi (token)
+claim.item?.expand((e) => e.udi ?? <Reference>[]);
+ // Claim.patient (token)
 claim.patient;
- // Claim.payee.party
+ // Claim.payee.party (date)
 claim.payee?.party;
- // Claim.priority
+ // Claim.priority (date)
 claim.priority;
- // Claim.procedure.udi
-claim.procedure?.map((e) => e.udi);
- // Claim.provider
+ // Claim.procedure.udi (date)
+claim.procedure?.expand((e) => e.udi ?? <Reference>[]);
+ // Claim.provider (date)
 claim.provider;
- // Claim.status
+ // Claim.status (date)
 claim.status;
- // Claim.item.detail.subDetail.udi
-claim.item?.map((e) => e.detail).map((e) => e?.subDetail).map((e) => e?.udi);
- // Claim.use
+ // Claim.item.detail.subDetail.udi (date)
+claim.item?.expand((e) => e.detail ?? <ClaimDetail>[]).expand((e) => e.subDetail ?? <ClaimSubDetail>[]).expand((e) => e.udi ?? <Reference>[]);
+ // Claim.use (date)
 claim.use;
   final claimResponse = ClaimResponse.empty();
- // ClaimResponse.created
+ // ClaimResponse.created (date)
 claimResponse.created;
- // ClaimResponse.disposition
+ // ClaimResponse.disposition (date)
 claimResponse.disposition;
- // ClaimResponse.identifier
+ // ClaimResponse.identifier (date)
 claimResponse.identifier;
- // ClaimResponse.insurer
+ // ClaimResponse.insurer (date)
 claimResponse.insurer;
- // ClaimResponse.outcome
+ // ClaimResponse.outcome (date)
 claimResponse.outcome;
- // ClaimResponse.patient
+ // ClaimResponse.patient (date)
 claimResponse.patient;
- // ClaimResponse.payment.date
+ // ClaimResponse.payment.date (date)
 claimResponse.payment?.date;
- // ClaimResponse.request
+ // ClaimResponse.request (string)
 claimResponse.request;
- // ClaimResponse.requestor
+ // ClaimResponse.requestor (string)
 claimResponse.requestor;
- // ClaimResponse.status
+ // ClaimResponse.status (string)
 claimResponse.status;
- // ClaimResponse.use
+ // ClaimResponse.use (string)
 claimResponse.use;
   final clinicalImpression = ClinicalImpression.empty();
- // ClinicalImpression.date
+ // ClinicalImpression.date (string)
 clinicalImpression.date;
- // ClinicalImpression.subject.where(resolve() is Patient)
+ // ClinicalImpression.subject.where(resolve() is Patient) (string)
 clinicalImpression.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // ClinicalImpression.assessor
+ // ClinicalImpression.assessor (string)
 clinicalImpression.assessor;
- // ClinicalImpression.encounter
+ // ClinicalImpression.encounter (string)
 clinicalImpression.encounter;
- // ClinicalImpression.finding.itemCodeableConcept
+ // ClinicalImpression.finding.itemCodeableConcept (string)
 clinicalImpression.finding?.map((e) => e.itemCodeableConcept);
- // ClinicalImpression.finding.itemReference
+ // ClinicalImpression.finding.itemReference (string)
 clinicalImpression.finding?.map((e) => e.itemReference);
- // ClinicalImpression.identifier
+ // ClinicalImpression.identifier (string)
 clinicalImpression.identifier;
- // ClinicalImpression.investigation.item
-clinicalImpression.investigation?.map((e) => e.item);
- // ClinicalImpression.previous
+ // ClinicalImpression.investigation.item (string)
+clinicalImpression.investigation?.expand((e) => e.item ?? <Reference>[]);
+ // ClinicalImpression.previous (string)
 clinicalImpression.previous;
- // ClinicalImpression.problem
+ // ClinicalImpression.problem (string)
 clinicalImpression.problem;
- // ClinicalImpression.status
+ // ClinicalImpression.status (token)
 clinicalImpression.status;
- // ClinicalImpression.subject
+ // ClinicalImpression.subject (token)
 clinicalImpression.subject;
- // ClinicalImpression.supportingInfo
+ // ClinicalImpression.supportingInfo (reference)
 clinicalImpression.supportingInfo;
   final clinicalUseDefinition = ClinicalUseDefinition.empty();
- // ClinicalUseDefinition.contraindication.diseaseSymptomProcedure
+ // ClinicalUseDefinition.contraindication.diseaseSymptomProcedure (token)
 clinicalUseDefinition.contraindication?.diseaseSymptomProcedure;
- // ClinicalUseDefinition.contraindication.diseaseSymptomProcedure
+ // ClinicalUseDefinition.contraindication.diseaseSymptomProcedure (token)
 clinicalUseDefinition.contraindication?.diseaseSymptomProcedure;
- // ClinicalUseDefinition.undesirableEffect.symptomConditionEffect
+ // ClinicalUseDefinition.undesirableEffect.symptomConditionEffect (token)
 clinicalUseDefinition.undesirableEffect?.symptomConditionEffect;
- // ClinicalUseDefinition.undesirableEffect.symptomConditionEffect
+ // ClinicalUseDefinition.undesirableEffect.symptomConditionEffect (token)
 clinicalUseDefinition.undesirableEffect?.symptomConditionEffect;
- // ClinicalUseDefinition.identifier
+ // ClinicalUseDefinition.identifier (token)
 clinicalUseDefinition.identifier;
- // ClinicalUseDefinition.indication.diseaseSymptomProcedure
+ // ClinicalUseDefinition.indication.diseaseSymptomProcedure (token)
 clinicalUseDefinition.indication?.diseaseSymptomProcedure;
- // ClinicalUseDefinition.indication.diseaseSymptomProcedure
+ // ClinicalUseDefinition.indication.diseaseSymptomProcedure (token)
 clinicalUseDefinition.indication?.diseaseSymptomProcedure;
- // ClinicalUseDefinition.interaction.type
+ // ClinicalUseDefinition.interaction.type (token)
 clinicalUseDefinition.interaction?.type;
- // ClinicalUseDefinition.subject.where(resolve() is MedicinalProductDefinition)
+ // ClinicalUseDefinition.subject.where(resolve() is MedicinalProductDefinition) (token)
 clinicalUseDefinition.subject?.where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'MedicinalProductDefinition';
   });
- // ClinicalUseDefinition.subject
+ // ClinicalUseDefinition.subject (token)
 clinicalUseDefinition.subject;
- // ClinicalUseDefinition.type
+ // ClinicalUseDefinition.type (token)
 clinicalUseDefinition.type;
   final codeSystem = CodeSystem.empty();
- // CodeSystem.useContext.code
+ // CodeSystem.useContext.code (token)
 codeSystem.useContext?.map((e) => e.code);
- // CodeSystem.date
+ // CodeSystem.date (token)
 codeSystem.date;
- // CodeSystem.description
+ // CodeSystem.description (token)
 codeSystem.description;
- // CodeSystem.jurisdiction
+ // CodeSystem.jurisdiction (string)
 codeSystem.jurisdiction;
- // CodeSystem.name
+ // CodeSystem.name (string)
 codeSystem.name;
- // CodeSystem.publisher
+ // CodeSystem.publisher (string)
 codeSystem.publisher;
- // CodeSystem.status
+ // CodeSystem.status (string)
 codeSystem.status;
- // CodeSystem.title
+ // CodeSystem.title (string)
 codeSystem.title;
- // CodeSystem.url
+ // CodeSystem.url (string)
 codeSystem.url;
- // CodeSystem.version
+ // CodeSystem.version (string)
 codeSystem.version;
- // CodeSystem.useContext
+ // CodeSystem.useContext (string)
 codeSystem.useContext;
- // CodeSystem.useContext
+ // CodeSystem.useContext (string)
 codeSystem.useContext;
- // CodeSystem.concept.code
+ // CodeSystem.concept.code (string)
 codeSystem.concept?.map((e) => e.code);
- // CodeSystem.content
+ // CodeSystem.content (string)
 codeSystem.content;
- // CodeSystem.identifier
+ // CodeSystem.identifier (string)
 codeSystem.identifier;
- // CodeSystem.concept.designation.language
-codeSystem.concept?.map((e) => e.designation).map((e) => e?.language);
- // CodeSystem.supplements
+ // CodeSystem.concept.designation.language (string)
+codeSystem.concept?.expand((e) => e.designation ?? <CodeSystemDesignation>[]).map((e) => e.language);
+ // CodeSystem.supplements (string)
 codeSystem.supplements;
- // CodeSystem.url
+ // CodeSystem.url (string)
 codeSystem.url;
   final communication = Communication.empty();
- // Communication.basedOn
+ // Communication.basedOn (string)
 communication.basedOn;
- // Communication.category
+ // Communication.category (string)
 communication.category;
- // Communication.encounter
+ // Communication.encounter (string)
 communication.encounter;
- // Communication.identifier
+ // Communication.identifier (string)
 communication.identifier;
- // Communication.instantiatesCanonical
+ // Communication.instantiatesCanonical (string)
 communication.instantiatesCanonical;
- // Communication.instantiatesUri
+ // Communication.instantiatesUri (string)
 communication.instantiatesUri;
- // Communication.medium
+ // Communication.medium (string)
 communication.medium;
- // Communication.partOf
+ // Communication.partOf (string)
 communication.partOf;
- // Communication.subject.where(resolve() is Patient)
+ // Communication.subject.where(resolve() is Patient) (string)
 communication.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Communication.received
+ // Communication.received (string)
 communication.received;
- // Communication.recipient
+ // Communication.recipient (string)
 communication.recipient;
- // Communication.sender
+ // Communication.sender (string)
 communication.sender;
- // Communication.sent
+ // Communication.sent (string)
 communication.sent;
- // Communication.status
+ // Communication.status (token)
 communication.status;
- // Communication.subject
+ // Communication.subject (reference)
 communication.subject;
   final communicationRequest = CommunicationRequest.empty();
- // CommunicationRequest.authoredOn
+ // CommunicationRequest.authoredOn (token)
 communicationRequest.authoredOn;
- // CommunicationRequest.basedOn
+ // CommunicationRequest.basedOn (string)
 communicationRequest.basedOn;
- // CommunicationRequest.category
+ // CommunicationRequest.category (token)
 communicationRequest.category;
- // CommunicationRequest.encounter
+ // CommunicationRequest.encounter (token)
 communicationRequest.encounter;
- // CommunicationRequest.groupIdentifier
+ // CommunicationRequest.groupIdentifier (token)
 communicationRequest.groupIdentifier;
- // CommunicationRequest.identifier
+ // CommunicationRequest.identifier (token)
 communicationRequest.identifier;
- // CommunicationRequest.medium
+ // CommunicationRequest.medium (token)
 communicationRequest.medium;
- // CommunicationRequest.subject.where(resolve() is Patient)
+ // CommunicationRequest.subject.where(resolve() is Patient) (token)
 communicationRequest.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // CommunicationRequest.priority
+ // CommunicationRequest.priority (token)
 communicationRequest.priority;
- // CommunicationRequest.recipient
+ // CommunicationRequest.recipient (token)
 communicationRequest.recipient;
- // CommunicationRequest.replaces
+ // CommunicationRequest.replaces (token)
 communicationRequest.replaces;
- // CommunicationRequest.requester
+ // CommunicationRequest.requester (token)
 communicationRequest.requester;
- // CommunicationRequest.sender
+ // CommunicationRequest.sender (token)
 communicationRequest.sender;
- // CommunicationRequest.status
+ // CommunicationRequest.status (token)
 communicationRequest.status;
- // CommunicationRequest.subject
+ // CommunicationRequest.subject (token)
 communicationRequest.subject;
   final compartmentDefinition = CompartmentDefinition.empty();
- // CompartmentDefinition.useContext.code
+ // CompartmentDefinition.useContext.code (token)
 compartmentDefinition.useContext?.map((e) => e.code);
- // CompartmentDefinition.date
+ // CompartmentDefinition.date (reference)
 compartmentDefinition.date;
- // CompartmentDefinition.description
+ // CompartmentDefinition.description (string)
 compartmentDefinition.description;
- // CompartmentDefinition.name
+ // CompartmentDefinition.name (string)
 compartmentDefinition.name;
- // CompartmentDefinition.publisher
+ // CompartmentDefinition.publisher (string)
 compartmentDefinition.publisher;
- // CompartmentDefinition.status
+ // CompartmentDefinition.status (string)
 compartmentDefinition.status;
- // CompartmentDefinition.url
+ // CompartmentDefinition.url (string)
 compartmentDefinition.url;
- // CompartmentDefinition.version
+ // CompartmentDefinition.version (string)
 compartmentDefinition.version;
- // CompartmentDefinition.useContext
+ // CompartmentDefinition.useContext (string)
 compartmentDefinition.useContext;
- // CompartmentDefinition.useContext
+ // CompartmentDefinition.useContext (string)
 compartmentDefinition.useContext;
- // CompartmentDefinition.code
+ // CompartmentDefinition.code (string)
 compartmentDefinition.code;
- // CompartmentDefinition.resource.code
+ // CompartmentDefinition.resource.code (string)
 compartmentDefinition.resource?.map((e) => e.code);
   final composition = Composition.empty();
- // Composition.date
+ // Composition.date (uri)
 composition.date;
- // Composition.identifier
+ // Composition.identifier (uri)
 composition.identifier;
- // Composition.subject.where(resolve() is Patient)
+ // Composition.subject.where(resolve() is Patient) (uri)
 composition.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Composition.type
+ // Composition.type (uri)
 composition.type;
- // Composition.attester.party
+ // Composition.attester.party (uri)
 composition.attester?.map((e) => e.party);
- // Composition.author
+ // Composition.author (uri)
 composition.author;
- // Composition.category
+ // Composition.category (uri)
 composition.category;
- // Composition.confidentiality
+ // Composition.confidentiality (uri)
 composition.confidentiality;
- // Composition.event.code
-composition.event?.map((e) => e.code);
- // Composition.encounter
+ // Composition.event.code (uri)
+composition.event?.expand((e) => e.code ?? <CodeableConcept>[]);
+ // Composition.encounter (uri)
 composition.encounter;
- // Composition.section.entry
-composition.section?.map((e) => e.entry);
- // Composition.event.period
+ // Composition.section.entry (uri)
+composition.section?.expand((e) => e.entry ?? <Reference>[]);
+ // Composition.event.period (uri)
 composition.event?.map((e) => e.period);
- // Composition.section.code
+ // Composition.section.code (uri)
 composition.section?.map((e) => e.code);
- // Composition.status
+ // Composition.status (token)
 composition.status;
- // Composition.subject
+ // Composition.subject (token)
 composition.subject;
- // Composition.title
+ // Composition.title (token)
 composition.title;
   final conceptMap = ConceptMap.empty();
- // ConceptMap.useContext.code
+ // ConceptMap.useContext.code (token)
 conceptMap.useContext?.map((e) => e.code);
- // ConceptMap.date
+ // ConceptMap.date (token)
 conceptMap.date;
- // ConceptMap.description
+ // ConceptMap.description (token)
 conceptMap.description;
- // ConceptMap.jurisdiction
+ // ConceptMap.jurisdiction (token)
 conceptMap.jurisdiction;
- // ConceptMap.name
+ // ConceptMap.name (token)
 conceptMap.name;
- // ConceptMap.publisher
+ // ConceptMap.publisher (token)
 conceptMap.publisher;
- // ConceptMap.status
+ // ConceptMap.status (token)
 conceptMap.status;
- // ConceptMap.title
+ // ConceptMap.title (token)
 conceptMap.title;
- // ConceptMap.url
+ // ConceptMap.url (token)
 conceptMap.url;
- // ConceptMap.version
+ // ConceptMap.version (token)
 conceptMap.version;
- // ConceptMap.useContext
+ // ConceptMap.useContext (composite)
 conceptMap.useContext;
- // ConceptMap.useContext
+ // ConceptMap.useContext (composite)
 conceptMap.useContext;
- // ConceptMap.identifier
+ // ConceptMap.identifier (composite)
 conceptMap.identifier;
- // ConceptMap.group.element.target.dependsOn.property
-conceptMap.group?.map((e) => e.element).map((e) => e.target).map((e) => e?.dependsOn).map((e) => e?.property);
- // ConceptMap.group.unmapped.url
+ // ConceptMap.group.element.target.dependsOn.property (composite)
+conceptMap.group?.expand((e) => e.element ?? <ConceptMapElement>[]).expand((e) => e.target ?? <ConceptMapTarget>[]).expand((e) => e.dependsOn ?? <ConceptMapDependsOn>[]).map((e) => e.property);
+ // ConceptMap.group.unmapped.url (composite)
 conceptMap.group?.map((e) => e.unmapped).map((e) => e?.url);
- // ConceptMap.group.element.target.product.property
-conceptMap.group?.map((e) => e.element).map((e) => e.target).map((e) => e?.product).map((e) => e?.property);
- // ConceptMap.group.element.code
-conceptMap.group?.map((e) => e.element).map((e) => e.code);
- // ConceptMap.group.source
+ // ConceptMap.group.element.target.product.property (composite)
+conceptMap.group?.expand((e) => e.element ?? <ConceptMapElement>[]).expand((e) => e.target ?? <ConceptMapTarget>[]).expand((e) => e.product ?? <ConceptMapDependsOn>[]).map((e) => e.property);
+ // ConceptMap.group.element.code (composite)
+conceptMap.group?.expand((e) => e.element ?? <ConceptMapElement>[]).map((e) => e.code);
+ // ConceptMap.group.source (composite)
 conceptMap.group?.map((e) => e.source);
- // ConceptMap.group.element.target.code
-conceptMap.group?.map((e) => e.element).map((e) => e.target).map((e) => e?.code);
- // ConceptMap.group.target
+ // ConceptMap.group.element.target.code (composite)
+conceptMap.group?.expand((e) => e.element ?? <ConceptMapElement>[]).expand((e) => e.target ?? <ConceptMapTarget>[]).map((e) => e.code);
+ // ConceptMap.group.target (composite)
 conceptMap.group?.map((e) => e.target);
   final condition = Condition.empty();
- // Condition.code
+ // Condition.code (composite)
 condition.code;
- // Condition.identifier
+ // Condition.identifier (composite)
 condition.identifier;
- // Condition.subject.where(resolve() is Patient)
+ // Condition.subject.where(resolve() is Patient) (composite)
 condition.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Condition.abatement.as(Age)
-condition.abatement?.as(Age);
- // Condition.abatement.as(Range)
-condition.abatement?.as(Range);
- // Condition.abatement.as(dateTime)
-condition.abatement?.as(dateTime);
- // Condition.abatement.as(Period)
-condition.abatement?.as(Period);
- // Condition.abatement.as(string)
-condition.abatement?.as(string);
- // Condition.asserter
+ // Condition.abatement.as(Age) (composite)
+condition.abatementAge;
+ // Condition.abatement.as(Range) (composite)
+condition.abatementRange;
+ // Condition.abatement.as(dateTime) (composite)
+condition.abatementDateTime;
+ // Condition.abatement.as(Period) (composite)
+condition.abatementPeriod;
+ // Condition.abatement.as(string) (composite)
+condition.abatementString;
+ // Condition.asserter (composite)
 condition.asserter;
- // Condition.bodySite
+ // Condition.bodySite (composite)
 condition.bodySite;
- // Condition.category
+ // Condition.category (composite)
 condition.category;
- // Condition.clinicalStatus
+ // Condition.clinicalStatus (composite)
 condition.clinicalStatus;
- // Condition.encounter
+ // Condition.encounter (composite)
 condition.encounter;
- // Condition.evidence.code
-condition.evidence?.map((e) => e.code);
- // Condition.evidence.detail
-condition.evidence?.map((e) => e.detail);
- // Condition.onset.as(Age)
-condition.onset?.as(Age);
- // Condition.onset.as(Range)
-condition.onset?.as(Range);
- // Condition.onset.as(dateTime)
-condition.onset?.as(dateTime);
- // Condition.onset.as(Period)
-condition.onset?.as(Period);
- // Condition.onset.as(string)
-condition.onset?.as(string);
- // Condition.recordedDate
+ // Condition.evidence.code (composite)
+condition.evidence?.expand((e) => e.code ?? <CodeableConcept>[]);
+ // Condition.evidence.detail (composite)
+condition.evidence?.expand((e) => e.detail ?? <Reference>[]);
+ // Condition.onset.as(Age) (composite)
+condition.onsetAge;
+ // Condition.onset.as(Range) (composite)
+condition.onsetRange;
+ // Condition.onset.as(dateTime) (composite)
+condition.onsetDateTime;
+ // Condition.onset.as(Period) (token)
+condition.onsetPeriod;
+ // Condition.onset.as(string) (date)
+condition.onsetString;
+ // Condition.recordedDate (reference)
 condition.recordedDate;
- // Condition.severity
+ // Condition.severity (reference)
 condition.severity;
- // Condition.stage.summary
+ // Condition.stage.summary (reference)
 condition.stage?.map((e) => e.summary);
- // Condition.subject
+ // Condition.subject (token)
 condition.subject;
- // Condition.verificationStatus
+ // Condition.verificationStatus (reference)
 condition.verificationStatus;
   final consent = Consent.empty();
- // Consent.dateTime
+ // Consent.dateTime (reference)
 consent.dateTime;
- // Consent.identifier
+ // Consent.identifier (reference)
 consent.identifier;
- // Consent.patient
+ // Consent.patient (reference)
 consent.patient;
- // Consent.provision.action
+ // Consent.provision.action (uri)
 consent.provision?.action;
- // Consent.provision.actor.reference
+ // Consent.provision.actor.reference (token)
 consent.provision?.actor?.map((e) => e.reference);
- // Consent.category
+ // Consent.category (reference)
 consent.category;
- // Consent.performer
+ // Consent.performer (reference)
 consent.performer;
- // Consent.provision.data.reference
+ // Consent.provision.data.reference (reference)
 consent.provision?.data?.map((e) => e.reference);
- // Consent.organization
+ // Consent.organization (token)
 consent.organization;
- // Consent.provision.period
+ // Consent.provision.period (reference)
 consent.provision?.period;
- // Consent.provision.purpose
+ // Consent.provision.purpose (token)
 consent.provision?.purpose;
- // Consent.scope
+ // Consent.scope (reference)
 consent.scope;
- // Consent.provision.securityLabel
+ // Consent.provision.securityLabel (reference)
 consent.provision?.securityLabel;
- // Consent.source
-consent.source;
- // Consent.status
+ // Consent.source (token)
+consent.sourceX;
+ // Consent.status (reference)
 consent.status;
   final contract = Contract.empty();
- // Contract.authority
+ // Contract.authority (reference)
 contract.authority;
- // Contract.domain
+ // Contract.domain (token)
 contract.domain;
- // Contract.identifier
+ // Contract.identifier (reference)
 contract.identifier;
- // Contract.instantiatesUri
+ // Contract.instantiatesUri (date)
 contract.instantiatesUri;
- // Contract.issued
+ // Contract.issued (reference)
 contract.issued;
- // Contract.subject.where(resolve() is Patient)
+ // Contract.subject.where(resolve() is Patient) (number)
 contract.subject?.where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Contract.signer.party
+ // Contract.signer.party (token)
 contract.signer?.map((e) => e.party);
- // Contract.status
+ // Contract.status (date)
 contract.status;
- // Contract.subject
+ // Contract.subject (reference)
 contract.subject;
- // Contract.url
+ // Contract.url (reference)
 contract.url;
   final coverage = Coverage.empty();
- // Coverage.beneficiary
+ // Coverage.beneficiary (token)
 coverage.beneficiary;
- // Coverage.class.type
+ // Coverage.class.type (reference)
 coverage.class_?.map((e) => e.type);
- // Coverage.class.value
+ // Coverage.class.value (quantity)
 coverage.class_?.map((e) => e.value);
- // Coverage.dependent
+ // Coverage.dependent (quantity)
 coverage.dependent;
- // Coverage.identifier
+ // Coverage.identifier (reference)
 coverage.identifier;
- // Coverage.beneficiary
+ // Coverage.beneficiary (reference)
 coverage.beneficiary;
- // Coverage.payor
+ // Coverage.payor (reference)
 coverage.payor;
- // Coverage.policyHolder
+ // Coverage.policyHolder (token)
 coverage.policyHolder;
- // Coverage.status
+ // Coverage.status (date)
 coverage.status;
- // Coverage.subscriber
+ // Coverage.subscriber (string)
 coverage.subscriber;
- // Coverage.type
+ // Coverage.type (date)
 coverage.type;
   final coverageEligibilityRequest = CoverageEligibilityRequest.empty();
- // CoverageEligibilityRequest.created
+ // CoverageEligibilityRequest.created (token)
 coverageEligibilityRequest.created;
- // CoverageEligibilityRequest.enterer
+ // CoverageEligibilityRequest.enterer (token)
 coverageEligibilityRequest.enterer;
- // CoverageEligibilityRequest.facility
+ // CoverageEligibilityRequest.facility (string)
 coverageEligibilityRequest.facility;
- // CoverageEligibilityRequest.identifier
+ // CoverageEligibilityRequest.identifier (token)
 coverageEligibilityRequest.identifier;
- // CoverageEligibilityRequest.patient
+ // CoverageEligibilityRequest.patient (string)
 coverageEligibilityRequest.patient;
- // CoverageEligibilityRequest.provider
+ // CoverageEligibilityRequest.provider (uri)
 coverageEligibilityRequest.provider;
- // CoverageEligibilityRequest.status
+ // CoverageEligibilityRequest.status (token)
 coverageEligibilityRequest.status;
   final coverageEligibilityResponse = CoverageEligibilityResponse.empty();
- // CoverageEligibilityResponse.created
+ // CoverageEligibilityResponse.created (composite)
 coverageEligibilityResponse.created;
- // CoverageEligibilityResponse.disposition
+ // CoverageEligibilityResponse.disposition (composite)
 coverageEligibilityResponse.disposition;
- // CoverageEligibilityResponse.identifier
+ // CoverageEligibilityResponse.identifier (token)
 coverageEligibilityResponse.identifier;
- // CoverageEligibilityResponse.insurer
+ // CoverageEligibilityResponse.insurer (date)
 coverageEligibilityResponse.insurer;
- // CoverageEligibilityResponse.outcome
+ // CoverageEligibilityResponse.outcome (string)
 coverageEligibilityResponse.outcome;
- // CoverageEligibilityResponse.patient
+ // CoverageEligibilityResponse.patient (date)
 coverageEligibilityResponse.patient;
- // CoverageEligibilityResponse.request
+ // CoverageEligibilityResponse.request (token)
 coverageEligibilityResponse.request;
- // CoverageEligibilityResponse.requestor
+ // CoverageEligibilityResponse.requestor (token)
 coverageEligibilityResponse.requestor;
- // CoverageEligibilityResponse.status
+ // CoverageEligibilityResponse.status (string)
 coverageEligibilityResponse.status;
   final detectedIssue = DetectedIssue.empty();
- // DetectedIssue.identifier
+ // DetectedIssue.identifier (string)
 detectedIssue.identifier;
- // DetectedIssue.patient
+ // DetectedIssue.patient (token)
 detectedIssue.patient;
- // DetectedIssue.author
+ // DetectedIssue.author (string)
 detectedIssue.author;
- // DetectedIssue.code
+ // DetectedIssue.code (uri)
 detectedIssue.code;
- // DetectedIssue.identified
-detectedIssue.identified;
- // DetectedIssue.implicated
+ // DetectedIssue.identified (token)
+detectedIssue.identifiedX;
+ // DetectedIssue.implicated (composite)
 detectedIssue.implicated;
   final device = Device.empty();
- // Device.deviceName.name
+ // Device.deviceName.name (composite)
 device.deviceName?.map((e) => e.name);
- // Device.type.coding.display
+ // Device.type.coding.display (reference)
 device.type?.coding?.map((e) => e.display);
- // Device.type.text
+ // Device.type.text (date)
 device.type?.text;
- // Device.identifier
+ // Device.identifier (reference)
 device.identifier;
- // Device.location
+ // Device.location (reference)
 device.location;
- // Device.manufacturer
+ // Device.manufacturer (reference)
 device.manufacturer;
- // Device.modelNumber
+ // Device.modelNumber (reference)
 device.modelNumber;
- // Device.owner
+ // Device.owner (token)
 device.owner;
- // Device.patient
+ // Device.patient (reference)
 device.patient;
- // Device.status
+ // Device.status (reference)
 device.status;
- // Device.type
+ // Device.type (reference)
 device.type;
- // Device.udiCarrier.carrierHRF
+ // Device.udiCarrier.carrierHRF (reference)
 device.udiCarrier?.map((e) => e.carrierHRF);
- // Device.udiCarrier.deviceIdentifier
+ // Device.udiCarrier.deviceIdentifier (token)
 device.udiCarrier?.map((e) => e.deviceIdentifier);
- // Device.url
+ // Device.url (reference)
 device.url;
   final deviceDefinition = DeviceDefinition.empty();
- // DeviceDefinition.identifier
+ // DeviceDefinition.identifier (reference)
 deviceDefinition.identifier;
- // DeviceDefinition.parentDevice
+ // DeviceDefinition.parentDevice (token)
 deviceDefinition.parentDevice;
- // DeviceDefinition.type
+ // DeviceDefinition.type (reference)
 deviceDefinition.type;
   final deviceMetric = DeviceMetric.empty();
- // DeviceMetric.category
+ // DeviceMetric.category (token)
 deviceMetric.category;
- // DeviceMetric.identifier
+ // DeviceMetric.identifier (date)
 deviceMetric.identifier;
- // DeviceMetric.parent
+ // DeviceMetric.parent (string)
 deviceMetric.parent;
- // DeviceMetric.source
+ // DeviceMetric.source (token)
 deviceMetric.source;
- // DeviceMetric.type
+ // DeviceMetric.type (reference)
 deviceMetric.type;
   final deviceRequest = DeviceRequest.empty();
- // DeviceRequest.identifier
+ // DeviceRequest.identifier (token)
 deviceRequest.identifier;
- // DeviceRequest.subject.where(resolve() is Patient)
+ // DeviceRequest.subject.where(resolve() is Patient) (reference)
 deviceRequest.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // DeviceRequest.encounter
+ // DeviceRequest.encounter (date)
 deviceRequest.encounter;
- // DeviceRequest.authoredOn
+ // DeviceRequest.authoredOn (reference)
 deviceRequest.authoredOn;
- // DeviceRequest.basedOn
+ // DeviceRequest.basedOn (reference)
 deviceRequest.basedOn;
- // DeviceRequest.groupIdentifier
+ // DeviceRequest.groupIdentifier (token)
 deviceRequest.groupIdentifier;
- // DeviceRequest.instantiatesCanonical
+ // DeviceRequest.instantiatesCanonical (token)
 deviceRequest.instantiatesCanonical;
- // DeviceRequest.instantiatesUri
+ // DeviceRequest.instantiatesUri (reference)
 deviceRequest.instantiatesUri;
- // DeviceRequest.insurance
+ // DeviceRequest.insurance (reference)
 deviceRequest.insurance;
- // DeviceRequest.intent
+ // DeviceRequest.intent (token)
 deviceRequest.intent;
- // DeviceRequest.performer
+ // DeviceRequest.performer (reference)
 deviceRequest.performer;
- // DeviceRequest.priorRequest
+ // DeviceRequest.priorRequest (token)
 deviceRequest.priorRequest;
- // DeviceRequest.requester
+ // DeviceRequest.requester (reference)
 deviceRequest.requester;
- // DeviceRequest.status
+ // DeviceRequest.status (reference)
 deviceRequest.status;
- // DeviceRequest.subject
+ // DeviceRequest.subject (reference)
 deviceRequest.subject;
   final deviceUseStatement = DeviceUseStatement.empty();
- // DeviceUseStatement.subject.where(resolve() is Patient)
+ // DeviceUseStatement.subject.where(resolve() is Patient) (token)
 deviceUseStatement.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // DeviceUseStatement.device
+ // DeviceUseStatement.device (reference)
 deviceUseStatement.device;
- // DeviceUseStatement.identifier
+ // DeviceUseStatement.identifier (reference)
 deviceUseStatement.identifier;
- // DeviceUseStatement.subject
+ // DeviceUseStatement.subject (token)
 deviceUseStatement.subject;
   final diagnosticReport = DiagnosticReport.empty();
- // DiagnosticReport.code
+ // DiagnosticReport.code (reference)
 diagnosticReport.code;
- // DiagnosticReport.effective
-diagnosticReport.effective;
- // DiagnosticReport.identifier
+ // DiagnosticReport.effective (token)
+diagnosticReport.effectiveX;
+ // DiagnosticReport.identifier (reference)
 diagnosticReport.identifier;
- // DiagnosticReport.subject.where(resolve() is Patient)
+ // DiagnosticReport.subject.where(resolve() is Patient) (token)
 diagnosticReport.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // DiagnosticReport.encounter
+ // DiagnosticReport.encounter (token)
 diagnosticReport.encounter;
- // DiagnosticReport.basedOn
+ // DiagnosticReport.basedOn (reference)
 diagnosticReport.basedOn;
- // DiagnosticReport.category
+ // DiagnosticReport.category (token)
 diagnosticReport.category;
- // DiagnosticReport.conclusionCode
+ // DiagnosticReport.conclusionCode (reference)
 diagnosticReport.conclusionCode;
- // DiagnosticReport.issued
+ // DiagnosticReport.issued (reference)
 diagnosticReport.issued;
- // DiagnosticReport.media.link
+ // DiagnosticReport.media.link (token)
 diagnosticReport.media?.map((e) => e.link);
- // DiagnosticReport.performer
+ // DiagnosticReport.performer (token)
 diagnosticReport.performer;
- // DiagnosticReport.result
+ // DiagnosticReport.result (token)
 diagnosticReport.result;
- // DiagnosticReport.resultsInterpreter
+ // DiagnosticReport.resultsInterpreter (token)
 diagnosticReport.resultsInterpreter;
- // DiagnosticReport.specimen
+ // DiagnosticReport.specimen (token)
 diagnosticReport.specimen;
- // DiagnosticReport.status
+ // DiagnosticReport.status (token)
 diagnosticReport.status;
- // DiagnosticReport.subject
+ // DiagnosticReport.subject (token)
 diagnosticReport.subject;
   final documentManifest = DocumentManifest.empty();
- // DocumentManifest.masterIdentifier
+ // DocumentManifest.masterIdentifier (token)
 documentManifest.masterIdentifier;
- // DocumentManifest.identifier
+ // DocumentManifest.identifier (token)
 documentManifest.identifier;
- // DocumentManifest.subject.where(resolve() is Patient)
+ // DocumentManifest.subject.where(resolve() is Patient) (token)
 documentManifest.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // DocumentManifest.type
+ // DocumentManifest.type (reference)
 documentManifest.type;
- // DocumentManifest.author
+ // DocumentManifest.author (uri)
 documentManifest.author;
- // DocumentManifest.created
+ // DocumentManifest.created (reference)
 documentManifest.created;
- // DocumentManifest.description
+ // DocumentManifest.description (token)
 documentManifest.description;
- // DocumentManifest.content
+ // DocumentManifest.content (reference)
 documentManifest.content;
- // DocumentManifest.recipient
+ // DocumentManifest.recipient (token)
 documentManifest.recipient;
- // DocumentManifest.related.identifier
+ // DocumentManifest.related.identifier (reference)
 documentManifest.related?.map((e) => e.identifier);
- // DocumentManifest.related.ref
+ // DocumentManifest.related.ref (uri)
 documentManifest.related?.map((e) => e.ref);
- // DocumentManifest.source
+ // DocumentManifest.source (token)
 documentManifest.source;
- // DocumentManifest.status
+ // DocumentManifest.status (reference)
 documentManifest.status;
- // DocumentManifest.subject
+ // DocumentManifest.subject (reference)
 documentManifest.subject;
   final documentReference = DocumentReference.empty();
- // DocumentReference.masterIdentifier
+ // DocumentReference.masterIdentifier (date)
 documentReference.masterIdentifier;
- // DocumentReference.identifier
+ // DocumentReference.identifier (reference)
 documentReference.identifier;
- // DocumentReference.subject.where(resolve() is Patient)
+ // DocumentReference.subject.where(resolve() is Patient) (reference)
 documentReference.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // DocumentReference.type
+ // DocumentReference.type (date)
 documentReference.type;
- // DocumentReference.context.encounter.where(resolve() is Encounter)
+ // DocumentReference.context.encounter.where(resolve() is Encounter) (token)
 documentReference.context?.encounter?.where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Encounter';
   });
- // DocumentReference.authenticator
+ // DocumentReference.authenticator (reference)
 documentReference.authenticator;
- // DocumentReference.author
+ // DocumentReference.author (date)
 documentReference.author;
- // DocumentReference.category
+ // DocumentReference.category (reference)
 documentReference.category;
- // DocumentReference.content.attachment.contentType
+ // DocumentReference.content.attachment.contentType (token)
 documentReference.content.map((e) => e.attachment).map((e) => e.contentType);
- // DocumentReference.custodian
+ // DocumentReference.custodian (reference)
 documentReference.custodian;
- // DocumentReference.date
+ // DocumentReference.date (token)
 documentReference.date;
- // DocumentReference.description
+ // DocumentReference.description (token)
 documentReference.description;
- // DocumentReference.context.event
+ // DocumentReference.context.event (token)
 documentReference.context?.event;
- // DocumentReference.context.facilityType
+ // DocumentReference.context.facilityType (reference)
 documentReference.context?.facilityType;
- // DocumentReference.content.format
+ // DocumentReference.content.format (token)
 documentReference.content.map((e) => e.format);
- // DocumentReference.content.attachment.language
+ // DocumentReference.content.attachment.language (reference)
 documentReference.content.map((e) => e.attachment).map((e) => e.language);
- // DocumentReference.content.attachment.url
+ // DocumentReference.content.attachment.url (reference)
 documentReference.content.map((e) => e.attachment).map((e) => e.url);
- // DocumentReference.context.period
+ // DocumentReference.context.period (reference)
 documentReference.context?.period;
- // DocumentReference.context.related
+ // DocumentReference.context.related (reference)
 documentReference.context?.related;
- // DocumentReference.relatesTo.target
+ // DocumentReference.relatesTo.target (token)
 documentReference.relatesTo?.map((e) => e.target);
- // DocumentReference.relatesTo.code
+ // DocumentReference.relatesTo.code (reference)
 documentReference.relatesTo?.map((e) => e.code);
- // DocumentReference.securityLabel
+ // DocumentReference.securityLabel (token)
 documentReference.securityLabel;
- // DocumentReference.context.practiceSetting
+ // DocumentReference.context.practiceSetting (token)
 documentReference.context?.practiceSetting;
- // DocumentReference.status
+ // DocumentReference.status (reference)
 documentReference.status;
- // DocumentReference.subject
+ // DocumentReference.subject (reference)
 documentReference.subject;
- // DocumentReference.relatesTo
+ // DocumentReference.relatesTo (token)
 documentReference.relatesTo;
   final encounter = Encounter.empty();
- // Encounter.period
+ // Encounter.period (token)
 encounter.period;
- // Encounter.identifier
+ // Encounter.identifier (token)
 encounter.identifier;
- // Encounter.subject.where(resolve() is Patient)
+ // Encounter.subject.where(resolve() is Patient) (reference)
 encounter.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Encounter.type
+ // Encounter.type (reference)
 encounter.type;
- // Encounter.account
+ // Encounter.account (reference)
 encounter.account;
- // Encounter.appointment
+ // Encounter.appointment (reference)
 encounter.appointment;
- // Encounter.basedOn
+ // Encounter.basedOn (reference)
 encounter.basedOn;
- // Encounter.class
+ // Encounter.class (reference)
 encounter.class_;
- // Encounter.diagnosis.condition
+ // Encounter.diagnosis.condition (reference)
 encounter.diagnosis?.map((e) => e.condition);
- // Encounter.episodeOfCare
+ // Encounter.episodeOfCare (reference)
 encounter.episodeOfCare;
- // Encounter.length
+ // Encounter.length (reference)
 encounter.length;
- // Encounter.location.location
+ // Encounter.location.location (reference)
 encounter.location?.map((e) => e.location);
- // Encounter.location.period
+ // Encounter.location.period (reference)
 encounter.location?.map((e) => e.period);
- // Encounter.partOf
+ // Encounter.partOf (reference)
 encounter.partOf;
- // Encounter.participant.individual
+ // Encounter.participant.individual (reference)
 encounter.participant?.map((e) => e.individual);
- // Encounter.participant.type
-encounter.participant?.map((e) => e.type);
- // Encounter.participant.individual.where(resolve() is Practitioner)
+ // Encounter.participant.type (date)
+encounter.participant?.expand((e) => e.type ?? <CodeableConcept>[]);
+ // Encounter.participant.individual.where(resolve() is Practitioner) (token)
 encounter.participant?.map((e) => e.individual).where((e) {
     final ref = e?.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
   });
- // Encounter.reasonCode
+ // Encounter.reasonCode (token)
 encounter.reasonCode;
- // Encounter.reasonReference
+ // Encounter.reasonReference (reference)
 encounter.reasonReference;
- // Encounter.serviceProvider
+ // Encounter.serviceProvider (string)
 encounter.serviceProvider;
- // Encounter.hospitalization.specialArrangement
+ // Encounter.hospitalization.specialArrangement (uri)
 encounter.hospitalization?.specialArrangement;
- // Encounter.status
+ // Encounter.status (reference)
 encounter.status;
- // Encounter.subject
+ // Encounter.subject (uri)
 encounter.subject;
   final enrollmentRequest = EnrollmentRequest.empty();
- // EnrollmentRequest.identifier
+ // EnrollmentRequest.identifier (token)
 enrollmentRequest.identifier;
- // EnrollmentRequest.candidate
+ // EnrollmentRequest.candidate (uri)
 enrollmentRequest.candidate;
- // EnrollmentRequest.status
+ // EnrollmentRequest.status (token)
 enrollmentRequest.status;
- // EnrollmentRequest.candidate
+ // EnrollmentRequest.candidate (uri)
 enrollmentRequest.candidate;
   final enrollmentResponse = EnrollmentResponse.empty();
- // EnrollmentResponse.identifier
+ // EnrollmentResponse.identifier (quantity)
 enrollmentResponse.identifier;
- // EnrollmentResponse.request
+ // EnrollmentResponse.request (quantity)
 enrollmentResponse.request;
- // EnrollmentResponse.status
+ // EnrollmentResponse.status (date)
 enrollmentResponse.status;
   final episodeOfCare = EpisodeOfCare.empty();
- // EpisodeOfCare.period
+ // EpisodeOfCare.period (date)
 episodeOfCare.period;
- // EpisodeOfCare.identifier
+ // EpisodeOfCare.identifier (string)
 episodeOfCare.identifier;
- // EpisodeOfCare.patient
+ // EpisodeOfCare.patient (reference)
 episodeOfCare.patient;
- // EpisodeOfCare.type
+ // EpisodeOfCare.type (token)
 episodeOfCare.type;
- // EpisodeOfCare.careManager.where(resolve() is Practitioner)
+ // EpisodeOfCare.careManager.where(resolve() is Practitioner) (token)
 episodeOfCare.careManager?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
   });
- // EpisodeOfCare.diagnosis.condition
+ // EpisodeOfCare.diagnosis.condition (token)
 episodeOfCare.diagnosis?.map((e) => e.condition);
- // EpisodeOfCare.referralRequest
+ // EpisodeOfCare.referralRequest (reference)
 episodeOfCare.referralRequest;
- // EpisodeOfCare.managingOrganization
+ // EpisodeOfCare.managingOrganization (token)
 episodeOfCare.managingOrganization;
- // EpisodeOfCare.status
+ // EpisodeOfCare.status (reference)
 episodeOfCare.status;
   final eventDefinition = EventDefinition.empty();
- // EventDefinition.relatedArtifact.where(type='composed-of').resource
+ // EventDefinition.relatedArtifact.where(type='composed-of').resource (quantity)
 eventDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // EventDefinition.useContext.code
+ // EventDefinition.useContext.code (quantity)
 eventDefinition.useContext?.map((e) => e.code);
- // EventDefinition.date
+ // EventDefinition.date (date)
 eventDefinition.date;
- // EventDefinition.relatedArtifact.where(type='depends-on').resource
+ // EventDefinition.relatedArtifact.where(type='depends-on').resource (date)
 eventDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // EventDefinition.relatedArtifact.where(type='derived-from').resource
+ // EventDefinition.relatedArtifact.where(type='derived-from').resource (string)
 eventDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // EventDefinition.description
+ // EventDefinition.description (date)
 eventDefinition.description;
- // EventDefinition.effectivePeriod
+ // EventDefinition.effectivePeriod (token)
 eventDefinition.effectivePeriod;
- // EventDefinition.identifier
+ // EventDefinition.identifier (token)
 eventDefinition.identifier;
- // EventDefinition.jurisdiction
+ // EventDefinition.jurisdiction (reference)
 eventDefinition.jurisdiction;
- // EventDefinition.name
+ // EventDefinition.name (token)
 eventDefinition.name;
- // EventDefinition.relatedArtifact.where(type='predecessor').resource
+ // EventDefinition.relatedArtifact.where(type='predecessor').resource (token)
 eventDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // EventDefinition.publisher
+ // EventDefinition.publisher (reference)
 eventDefinition.publisher;
- // EventDefinition.status
+ // EventDefinition.status (token)
 eventDefinition.status;
- // EventDefinition.relatedArtifact.where(type='successor').resource
+ // EventDefinition.relatedArtifact.where(type='successor').resource (reference)
 eventDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // EventDefinition.title
+ // EventDefinition.title (reference)
 eventDefinition.title;
- // EventDefinition.topic
+ // EventDefinition.topic (reference)
 eventDefinition.topic;
- // EventDefinition.url
+ // EventDefinition.url (date)
 eventDefinition.url;
- // EventDefinition.version
+ // EventDefinition.version (token)
 eventDefinition.version;
- // EventDefinition.useContext
+ // EventDefinition.useContext (token)
 eventDefinition.useContext;
- // EventDefinition.useContext
+ // EventDefinition.useContext (token)
 eventDefinition.useContext;
   final evidence = Evidence.empty();
- // Evidence.useContext.code
+ // Evidence.useContext.code (reference)
 evidence.useContext?.map((e) => e.code);
- // Evidence.date
+ // Evidence.date (token)
 evidence.date;
- // Evidence.description
+ // Evidence.description (reference)
 evidence.description;
- // Evidence.identifier
+ // Evidence.identifier (reference)
 evidence.identifier;
- // Evidence.publisher
+ // Evidence.publisher (token)
 evidence.publisher;
- // Evidence.status
+ // Evidence.status (uri)
 evidence.status;
- // Evidence.title
+ // Evidence.title (date)
 evidence.title;
- // Evidence.url
+ // Evidence.url (reference)
 evidence.url;
- // Evidence.version
+ // Evidence.version (reference)
 evidence.version;
- // Evidence.useContext
+ // Evidence.useContext (token)
 evidence.useContext;
- // Evidence.useContext
+ // Evidence.useContext (reference)
 evidence.useContext;
   final evidenceReport = EvidenceReport.empty();
- // EvidenceReport.useContext.code
+ // EvidenceReport.useContext.code (uri)
 evidenceReport.useContext?.map((e) => e.code);
- // EvidenceReport.identifier
+ // EvidenceReport.identifier (reference)
 evidenceReport.identifier;
- // EvidenceReport.publisher
+ // EvidenceReport.publisher (token)
 evidenceReport.publisher;
- // EvidenceReport.status
+ // EvidenceReport.status (string)
 evidenceReport.status;
- // EvidenceReport.url
+ // EvidenceReport.url (string)
 evidenceReport.url;
- // EvidenceReport.useContext
+ // EvidenceReport.useContext (token)
 evidenceReport.useContext;
- // EvidenceReport.useContext
+ // EvidenceReport.useContext (reference)
 evidenceReport.useContext;
   final evidenceVariable = EvidenceVariable.empty();
- // EvidenceVariable.useContext.code
+ // EvidenceVariable.useContext.code (reference)
 evidenceVariable.useContext?.map((e) => e.code);
- // EvidenceVariable.date
+ // EvidenceVariable.date (reference)
 evidenceVariable.date;
- // EvidenceVariable.description
+ // EvidenceVariable.description (token)
 evidenceVariable.description;
- // EvidenceVariable.identifier
+ // EvidenceVariable.identifier (reference)
 evidenceVariable.identifier;
- // EvidenceVariable.name
+ // EvidenceVariable.name (token)
 evidenceVariable.name;
- // EvidenceVariable.publisher
+ // EvidenceVariable.publisher (date)
 evidenceVariable.publisher;
- // EvidenceVariable.status
+ // EvidenceVariable.status (reference)
 evidenceVariable.status;
- // EvidenceVariable.title
+ // EvidenceVariable.title (reference)
 evidenceVariable.title;
- // EvidenceVariable.url
+ // EvidenceVariable.url (token)
 evidenceVariable.url;
- // EvidenceVariable.version
+ // EvidenceVariable.version (reference)
 evidenceVariable.version;
- // EvidenceVariable.useContext
+ // EvidenceVariable.useContext (reference)
 evidenceVariable.useContext;
- // EvidenceVariable.useContext
+ // EvidenceVariable.useContext (token)
 evidenceVariable.useContext;
   final exampleScenario = ExampleScenario.empty();
- // ExampleScenario.useContext.code
+ // ExampleScenario.useContext.code (date)
 exampleScenario.useContext?.map((e) => e.code);
- // ExampleScenario.date
+ // ExampleScenario.date (string)
 exampleScenario.date;
- // ExampleScenario.identifier
+ // ExampleScenario.identifier (token)
 exampleScenario.identifier;
- // ExampleScenario.jurisdiction
+ // ExampleScenario.jurisdiction (reference)
 exampleScenario.jurisdiction;
- // ExampleScenario.name
+ // ExampleScenario.name (token)
 exampleScenario.name;
- // ExampleScenario.publisher
+ // ExampleScenario.publisher (reference)
 exampleScenario.publisher;
- // ExampleScenario.status
+ // ExampleScenario.status (reference)
 exampleScenario.status;
- // ExampleScenario.url
+ // ExampleScenario.url (reference)
 exampleScenario.url;
- // ExampleScenario.version
+ // ExampleScenario.version (token)
 exampleScenario.version;
- // ExampleScenario.useContext
+ // ExampleScenario.useContext (reference)
 exampleScenario.useContext;
- // ExampleScenario.useContext
+ // ExampleScenario.useContext (token)
 exampleScenario.useContext;
   final explanationOfBenefit = ExplanationOfBenefit.empty();
- // ExplanationOfBenefit.careTeam.provider
+ // ExplanationOfBenefit.careTeam.provider (date)
 explanationOfBenefit.careTeam?.map((e) => e.provider);
- // ExplanationOfBenefit.claim
+ // ExplanationOfBenefit.claim (reference)
 explanationOfBenefit.claim;
- // ExplanationOfBenefit.insurance.coverage
+ // ExplanationOfBenefit.insurance.coverage (string)
 explanationOfBenefit.insurance.map((e) => e.coverage);
- // ExplanationOfBenefit.created
+ // ExplanationOfBenefit.created (string)
 explanationOfBenefit.created;
- // ExplanationOfBenefit.item.detail.udi
-explanationOfBenefit.item?.map((e) => e.detail).map((e) => e?.udi);
- // ExplanationOfBenefit.disposition
+ // ExplanationOfBenefit.item.detail.udi (string)
+explanationOfBenefit.item?.expand((e) => e.detail ?? <ExplanationOfBenefitDetail>[]).expand((e) => e.udi ?? <Reference>[]);
+ // ExplanationOfBenefit.disposition (token)
 explanationOfBenefit.disposition;
- // ExplanationOfBenefit.item.encounter
-explanationOfBenefit.item?.map((e) => e.encounter);
- // ExplanationOfBenefit.enterer
+ // ExplanationOfBenefit.item.encounter (reference)
+explanationOfBenefit.item?.expand((e) => e.encounter ?? <Reference>[]);
+ // ExplanationOfBenefit.enterer (string)
 explanationOfBenefit.enterer;
- // ExplanationOfBenefit.facility
+ // ExplanationOfBenefit.facility (string)
 explanationOfBenefit.facility;
- // ExplanationOfBenefit.identifier
+ // ExplanationOfBenefit.identifier (reference)
 explanationOfBenefit.identifier;
- // ExplanationOfBenefit.item.udi
-explanationOfBenefit.item?.map((e) => e.udi);
- // ExplanationOfBenefit.patient
+ // ExplanationOfBenefit.item.udi (reference)
+explanationOfBenefit.item?.expand((e) => e.udi ?? <Reference>[]);
+ // ExplanationOfBenefit.patient (token)
 explanationOfBenefit.patient;
- // ExplanationOfBenefit.payee.party
+ // ExplanationOfBenefit.payee.party (token)
 explanationOfBenefit.payee?.party;
- // ExplanationOfBenefit.procedure.udi
-explanationOfBenefit.procedure?.map((e) => e.udi);
- // ExplanationOfBenefit.provider
+ // ExplanationOfBenefit.procedure.udi (string)
+explanationOfBenefit.procedure?.expand((e) => e.udi ?? <Reference>[]);
+ // ExplanationOfBenefit.provider (string)
 explanationOfBenefit.provider;
- // ExplanationOfBenefit.status
+ // ExplanationOfBenefit.status (uri)
 explanationOfBenefit.status;
- // ExplanationOfBenefit.item.detail.subDetail.udi
-explanationOfBenefit.item?.map((e) => e.detail).map((e) => e?.subDetail).map((e) => e?.udi);
+ // ExplanationOfBenefit.item.detail.subDetail.udi (token)
+explanationOfBenefit.item?.expand((e) => e.detail ?? <ExplanationOfBenefitDetail>[]).expand((e) => e.subDetail ?? <ExplanationOfBenefitSubDetail>[]).expand((e) => e.udi ?? <Reference>[]);
   final familyMemberHistory = FamilyMemberHistory.empty();
- // FamilyMemberHistory.condition.code
+ // FamilyMemberHistory.condition.code (reference)
 familyMemberHistory.condition?.map((e) => e.code);
- // FamilyMemberHistory.date
+ // FamilyMemberHistory.date (token)
 familyMemberHistory.date;
- // FamilyMemberHistory.identifier
+ // FamilyMemberHistory.identifier (token)
 familyMemberHistory.identifier;
- // FamilyMemberHistory.patient
+ // FamilyMemberHistory.patient (token)
 familyMemberHistory.patient;
- // FamilyMemberHistory.instantiatesCanonical
+ // FamilyMemberHistory.instantiatesCanonical (reference)
 familyMemberHistory.instantiatesCanonical;
- // FamilyMemberHistory.instantiatesUri
+ // FamilyMemberHistory.instantiatesUri (reference)
 familyMemberHistory.instantiatesUri;
- // FamilyMemberHistory.relationship
+ // FamilyMemberHistory.relationship (token)
 familyMemberHistory.relationship;
- // FamilyMemberHistory.sex
+ // FamilyMemberHistory.sex (date)
 familyMemberHistory.sex;
- // FamilyMemberHistory.status
+ // FamilyMemberHistory.status (reference)
 familyMemberHistory.status;
-  final endpoint = Endpoint.empty();
- // Endpoint.connectionType
-endpoint?.connectionType;
- // Endpoint.identifier
-endpoint?.identifier;
- // Endpoint.name
-endpoint?.name;
- // Endpoint.managingOrganization
-endpoint?.managingOrganization;
- // Endpoint.payloadType
-endpoint?.payloadType;
- // Endpoint.status
-endpoint?.status;
-  final group = Group.empty();
- // Group.actual
-group?.actual;
- // Group.characteristic.code
-group?.characteristic?.code;
- // Group.code
-group?.code;
- // Group.characteristic.exclude
-group?.characteristic?.exclude;
- // Group.identifier
-group?.identifier;
- // Group.managingEntity
-group?.managingEntity;
- // Group.member.entity
-group?.member?.entity;
- // Group.type
-group?.type;
- // Group.characteristic
-group?.characteristic;
-  final list = List.empty();
- // List.code
-list.code;
- // List.date
-list.date;
- // List.identifier
-list.identifier;
- // List.subject.where(resolve() is Patient)
-list.subject?.where(resolve() is Patient);
- // List.encounter
-list.encounter;
- // List.emptyReason
-list.emptyReason;
- // List.entry.item
-list.entry?.item;
- // List.note.text
-list.note?.text;
- // List.source
-list.source;
- // List.status
-list.status;
- // List.subject
-list.subject;
- // List.title
-list.title;
+  final fhirEndpoint = FhirEndpoint.empty();
+ // Endpoint.connectionType (token)
+fhirEndpoint.connectionType;
+ // Endpoint.identifier (reference)
+fhirEndpoint.identifier;
+ // Endpoint.name (uri)
+fhirEndpoint.name;
+ // Endpoint.managingOrganization (reference)
+fhirEndpoint.managingOrganization;
+ // Endpoint.payloadType (token)
+fhirEndpoint.payloadType;
+ // Endpoint.status (reference)
+fhirEndpoint.status;
+  final fhirGroup = FhirGroup.empty();
+ // Group.actual (reference)
+fhirGroup.actual;
+ // Group.characteristic.code (reference)
+fhirGroup.characteristic?.map((e) => e.code);
+ // Group.code (token)
+fhirGroup.code;
+ // Group.characteristic.exclude (reference)
+fhirGroup.characteristic?.map((e) => e.exclude);
+ // Group.identifier (reference)
+fhirGroup.identifier;
+ // Group.managingEntity (token)
+fhirGroup.managingEntity;
+ // Group.member.entity (reference)
+fhirGroup.member?.map((e) => e.entity);
+ // Group.type (reference)
+fhirGroup.type;
+ // Group.characteristic (token)
+fhirGroup.characteristic;
+  final fhirList = FhirList.empty();
+ // List.code (token)
+fhirList.code;
+ // List.date (date)
+fhirList.date;
+ // List.identifier (reference)
+fhirList.identifier;
+ // List.subject.where(resolve() is Patient) (reference)
+fhirList.subject?.makeIterable<Reference>().where((e) {
+    final ref = e.reference?.toString().split('/') ?? [];
+    return ref.length > 1 && ref[ref.length - 2] == 'Patient';
+  });
+ // List.encounter (reference)
+fhirList.encounter;
+ // List.emptyReason (reference)
+fhirList.emptyReason;
+ // List.entry.item (reference)
+fhirList.entry?.map((e) => e.item);
+ // List.note.text (token)
+fhirList.note?.map((e) => e.text);
+ // List.source (reference)
+fhirList.source;
+ // List.status (reference)
+fhirList.status;
+ // List.subject (date)
+fhirList.subject;
+ // List.title (string)
+fhirList.title;
   final flag = Flag.empty();
- // Flag.period
+ // Flag.period (reference)
 flag.period;
- // Flag.subject.where(resolve() is Patient)
+ // Flag.subject.where(resolve() is Patient) (reference)
 flag.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Flag.encounter
+ // Flag.encounter (token)
 flag.encounter;
- // Flag.author
+ // Flag.author (reference)
 flag.author;
- // Flag.identifier
+ // Flag.identifier (uri)
 flag.identifier;
- // Flag.subject
+ // Flag.subject (token)
 flag.subject;
   final goal = Goal.empty();
- // Goal.identifier
+ // Goal.identifier (reference)
 goal.identifier;
- // Goal.subject.where(resolve() is Patient)
+ // Goal.subject.where(resolve() is Patient) (reference)
 goal.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Goal.achievementStatus
+ // Goal.achievementStatus (reference)
 goal.achievementStatus;
- // Goal.category
+ // Goal.category (token)
 goal.category;
- // Goal.lifecycleStatus
+ // Goal.lifecycleStatus (token)
 goal.lifecycleStatus;
- // Goal.subject
+ // Goal.subject (reference)
 goal.subject;
   final graphDefinition = GraphDefinition.empty();
- // GraphDefinition.useContext.code
+ // GraphDefinition.useContext.code (date)
 graphDefinition.useContext?.map((e) => e.code);
- // GraphDefinition.date
+ // GraphDefinition.date (string)
 graphDefinition.date;
- // GraphDefinition.description
+ // GraphDefinition.description (token)
 graphDefinition.description;
- // GraphDefinition.jurisdiction
+ // GraphDefinition.jurisdiction (token)
 graphDefinition.jurisdiction;
- // GraphDefinition.name
+ // GraphDefinition.name (token)
 graphDefinition.name;
- // GraphDefinition.publisher
+ // GraphDefinition.publisher (token)
 graphDefinition.publisher;
- // GraphDefinition.status
+ // GraphDefinition.status (uri)
 graphDefinition.status;
- // GraphDefinition.url
+ // GraphDefinition.url (date)
 graphDefinition.url;
- // GraphDefinition.version
+ // GraphDefinition.version (reference)
 graphDefinition.version;
- // GraphDefinition.useContext
+ // GraphDefinition.useContext (reference)
 graphDefinition.useContext;
- // GraphDefinition.useContext
+ // GraphDefinition.useContext (token)
 graphDefinition.useContext;
- // GraphDefinition.start
+ // GraphDefinition.start (token)
 graphDefinition.start;
   final guidanceResponse = GuidanceResponse.empty();
- // GuidanceResponse.identifier
+ // GuidanceResponse.identifier (token)
 guidanceResponse.identifier;
- // GuidanceResponse.subject.where(resolve() is Patient)
+ // GuidanceResponse.subject.where(resolve() is Patient) (token)
 guidanceResponse.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // GuidanceResponse.requestIdentifier
+ // GuidanceResponse.requestIdentifier (reference)
 guidanceResponse.requestIdentifier;
- // GuidanceResponse.subject
+ // GuidanceResponse.subject (composite)
 guidanceResponse.subject;
   final healthcareService = HealthcareService.empty();
- // HealthcareService.active
+ // HealthcareService.active (reference)
 healthcareService.active;
- // HealthcareService.characteristic
+ // HealthcareService.characteristic (reference)
 healthcareService.characteristic;
- // HealthcareService.coverageArea
+ // HealthcareService.coverageArea (reference)
 healthcareService.coverageArea;
- // HealthcareService.endpoint
+ // HealthcareService.endpoint (token)
 healthcareService.endpoint;
- // HealthcareService.identifier
+ // HealthcareService.identifier (reference)
 healthcareService.identifier;
- // HealthcareService.location
+ // HealthcareService.location (reference)
 healthcareService.location;
- // HealthcareService.name
+ // HealthcareService.name (quantity)
 healthcareService.name;
- // HealthcareService.providedBy
+ // HealthcareService.providedBy (reference)
 healthcareService.providedBy;
- // HealthcareService.program
+ // HealthcareService.program (date)
 healthcareService.program;
- // HealthcareService.category
+ // HealthcareService.category (reference)
 healthcareService.category;
- // HealthcareService.type
+ // HealthcareService.type (reference)
 healthcareService.type;
- // HealthcareService.specialty
+ // HealthcareService.specialty (token)
 healthcareService.specialty;
   final imagingStudy = ImagingStudy.empty();
- // ImagingStudy.identifier
+ // ImagingStudy.identifier (reference)
 imagingStudy.identifier;
- // ImagingStudy.subject.where(resolve() is Patient)
+ // ImagingStudy.subject.where(resolve() is Patient) (token)
 imagingStudy.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // ImagingStudy.basedOn
+ // ImagingStudy.basedOn (reference)
 imagingStudy.basedOn;
- // ImagingStudy.series.bodySite
+ // ImagingStudy.series.bodySite (reference)
 imagingStudy.series?.map((e) => e.bodySite);
- // ImagingStudy.series.instance.sopClass
-imagingStudy.series?.map((e) => e.instance).map((e) => e?.sopClass);
- // ImagingStudy.encounter
+ // ImagingStudy.series.instance.sopClass (token)
+imagingStudy.series?.expand((e) => e.instance ?? <ImagingStudyInstance>[]).map((e) => e.sopClass);
+ // ImagingStudy.encounter (token)
 imagingStudy.encounter;
- // ImagingStudy.endpoint
+ // ImagingStudy.endpoint (reference)
 imagingStudy.endpoint;
- // ImagingStudy.series.endpoint
-imagingStudy.series?.map((e) => e.endpoint);
- // ImagingStudy.series.instance.uid
-imagingStudy.series?.map((e) => e.instance).map((e) => e?.uid);
- // ImagingStudy.interpreter
+ // ImagingStudy.series.endpoint (token)
+imagingStudy.series?.expand((e) => e.endpoint ?? <Reference>[]);
+ // ImagingStudy.series.instance.uid (token)
+imagingStudy.series?.expand((e) => e.instance ?? <ImagingStudyInstance>[]).map((e) => e.uid);
+ // ImagingStudy.interpreter (string)
 imagingStudy.interpreter;
- // ImagingStudy.series.modality
+ // ImagingStudy.series.modality (reference)
 imagingStudy.series?.map((e) => e.modality);
- // ImagingStudy.series.performer.actor
-imagingStudy.series?.map((e) => e.performer).map((e) => e?.actor);
- // ImagingStudy.reasonCode
+ // ImagingStudy.series.performer.actor (token)
+imagingStudy.series?.expand((e) => e.performer ?? <ImagingStudyPerformer>[]).map((e) => e.actor);
+ // ImagingStudy.reasonCode (token)
 imagingStudy.reasonCode;
- // ImagingStudy.referrer
+ // ImagingStudy.referrer (token)
 imagingStudy.referrer;
- // ImagingStudy.series.uid
+ // ImagingStudy.series.uid (reference)
 imagingStudy.series?.map((e) => e.uid);
- // ImagingStudy.started
+ // ImagingStudy.started (token)
 imagingStudy.started;
- // ImagingStudy.status
+ // ImagingStudy.status (reference)
 imagingStudy.status;
- // ImagingStudy.subject
+ // ImagingStudy.subject (token)
 imagingStudy.subject;
   final immunization = Immunization.empty();
- // Immunization.identifier
+ // Immunization.identifier (reference)
 immunization.identifier;
- // Immunization.patient
+ // Immunization.patient (token)
 immunization.patient;
- // Immunization.location
+ // Immunization.location (reference)
 immunization.location;
- // Immunization.lotNumber
+ // Immunization.lotNumber (reference)
 immunization.lotNumber;
- // Immunization.manufacturer
+ // Immunization.manufacturer (reference)
 immunization.manufacturer;
- // Immunization.performer.actor
+ // Immunization.performer.actor (reference)
 immunization.performer?.map((e) => e.actor);
- // Immunization.reaction.detail
+ // Immunization.reaction.detail (token)
 immunization.reaction?.map((e) => e.detail);
- // Immunization.reaction.date
+ // Immunization.reaction.date (reference)
 immunization.reaction?.map((e) => e.date);
- // Immunization.reasonCode
+ // Immunization.reasonCode (token)
 immunization.reasonCode;
- // Immunization.reasonReference
+ // Immunization.reasonReference (date)
 immunization.reasonReference;
- // Immunization.protocolApplied.series
+ // Immunization.protocolApplied.series (reference)
 immunization.protocolApplied?.map((e) => e.series);
- // Immunization.status
+ // Immunization.status (reference)
 immunization.status;
- // Immunization.statusReason
+ // Immunization.statusReason (string)
 immunization.statusReason;
- // Immunization.protocolApplied.targetDisease
-immunization.protocolApplied?.map((e) => e.targetDisease);
- // Immunization.vaccineCode
+ // Immunization.protocolApplied.targetDisease (date)
+immunization.protocolApplied?.expand((e) => e.targetDisease ?? <CodeableConcept>[]);
+ // Immunization.vaccineCode (token)
 immunization.vaccineCode;
   final immunizationEvaluation = ImmunizationEvaluation.empty();
- // ImmunizationEvaluation.date
+ // ImmunizationEvaluation.date (token)
 immunizationEvaluation.date;
- // ImmunizationEvaluation.doseStatus
+ // ImmunizationEvaluation.doseStatus (string)
 immunizationEvaluation.doseStatus;
- // ImmunizationEvaluation.identifier
+ // ImmunizationEvaluation.identifier (reference)
 immunizationEvaluation.identifier;
- // ImmunizationEvaluation.immunizationEvent
+ // ImmunizationEvaluation.immunizationEvent (string)
 immunizationEvaluation.immunizationEvent;
- // ImmunizationEvaluation.patient
+ // ImmunizationEvaluation.patient (token)
 immunizationEvaluation.patient;
- // ImmunizationEvaluation.status
+ // ImmunizationEvaluation.status (reference)
 immunizationEvaluation.status;
- // ImmunizationEvaluation.targetDisease
+ // ImmunizationEvaluation.targetDisease (string)
 immunizationEvaluation.targetDisease;
   final immunizationRecommendation = ImmunizationRecommendation.empty();
- // ImmunizationRecommendation.date
+ // ImmunizationRecommendation.date (token)
 immunizationRecommendation.date;
- // ImmunizationRecommendation.identifier
+ // ImmunizationRecommendation.identifier (uri)
 immunizationRecommendation.identifier;
- // ImmunizationRecommendation.recommendation.supportingPatientInformation
-immunizationRecommendation.recommendation.map((e) => e.supportingPatientInformation);
- // ImmunizationRecommendation.patient
+ // ImmunizationRecommendation.recommendation.supportingPatientInformation (token)
+immunizationRecommendation.recommendation.expand((e) => e.supportingPatientInformation ?? <Reference>[]);
+ // ImmunizationRecommendation.patient (composite)
 immunizationRecommendation.patient;
- // ImmunizationRecommendation.recommendation.forecastStatus
+ // ImmunizationRecommendation.recommendation.forecastStatus (composite)
 immunizationRecommendation.recommendation.map((e) => e.forecastStatus);
- // ImmunizationRecommendation.recommendation.supportingImmunization
-immunizationRecommendation.recommendation.map((e) => e.supportingImmunization);
- // ImmunizationRecommendation.recommendation.targetDisease
+ // ImmunizationRecommendation.recommendation.supportingImmunization (token)
+immunizationRecommendation.recommendation.expand((e) => e.supportingImmunization ?? <Reference>[]);
+ // ImmunizationRecommendation.recommendation.targetDisease (date)
 immunizationRecommendation.recommendation.map((e) => e.targetDisease);
- // ImmunizationRecommendation.recommendation.vaccineCode
-immunizationRecommendation.recommendation.map((e) => e.vaccineCode);
+ // ImmunizationRecommendation.recommendation.vaccineCode (string)
+immunizationRecommendation.recommendation.expand((e) => e.vaccineCode ?? <CodeableConcept>[]);
   final implementationGuide = ImplementationGuide.empty();
- // ImplementationGuide.useContext.code
+ // ImplementationGuide.useContext.code (token)
 implementationGuide.useContext?.map((e) => e.code);
- // ImplementationGuide.date
+ // ImplementationGuide.date (string)
 implementationGuide.date;
- // ImplementationGuide.description
+ // ImplementationGuide.description (token)
 implementationGuide.description;
- // ImplementationGuide.jurisdiction
+ // ImplementationGuide.jurisdiction (string)
 implementationGuide.jurisdiction;
- // ImplementationGuide.name
+ // ImplementationGuide.name (uri)
 implementationGuide.name;
- // ImplementationGuide.publisher
+ // ImplementationGuide.publisher (token)
 implementationGuide.publisher;
- // ImplementationGuide.status
+ // ImplementationGuide.status (composite)
 implementationGuide.status;
- // ImplementationGuide.title
+ // ImplementationGuide.title (composite)
 implementationGuide.title;
- // ImplementationGuide.url
+ // ImplementationGuide.url (token)
 implementationGuide.url;
- // ImplementationGuide.version
+ // ImplementationGuide.version (token)
 implementationGuide.version;
- // ImplementationGuide.useContext
+ // ImplementationGuide.useContext (string)
 implementationGuide.useContext;
- // ImplementationGuide.useContext
+ // ImplementationGuide.useContext (token)
 implementationGuide.useContext;
- // ImplementationGuide.dependsOn.uri
+ // ImplementationGuide.dependsOn.uri (uri)
 implementationGuide.dependsOn?.map((e) => e.uri);
- // ImplementationGuide.experimental
+ // ImplementationGuide.experimental (composite)
 implementationGuide.experimental;
- // ImplementationGuide.global.profile
+ // ImplementationGuide.global.profile (composite)
 implementationGuide.global?.map((e) => e.profile);
- // ImplementationGuide.definition.resource.reference
+ // ImplementationGuide.definition.resource.reference (token)
 implementationGuide.definition?.resource.map((e) => e.reference);
   final ingredient = Ingredient.empty();
- // Ingredient.for
+ // Ingredient.for (date)
 ingredient.for_;
- // Ingredient.function
+ // Ingredient.function (string)
 ingredient.function_;
- // Ingredient.identifier
+ // Ingredient.identifier (token)
 ingredient.identifier;
- // Ingredient.manufacturer
+ // Ingredient.manufacturer (string)
 ingredient.manufacturer;
- // Ingredient.role
+ // Ingredient.role (string)
 ingredient.role;
- // Ingredient.substance.code.reference
+ // Ingredient.substance.code.reference (token)
 ingredient.substance.code.reference;
- // Ingredient.substance.code.concept
+ // Ingredient.substance.code.concept (string)
 ingredient.substance.code.concept;
- // Ingredient.substance.code.reference
+ // Ingredient.substance.code.reference (uri)
 ingredient.substance.code.reference;
   final insurancePlan = InsurancePlan.empty();
- // InsurancePlan.contact.address
+ // InsurancePlan.contact.address (token)
 insurancePlan.contact?.map((e) => e.address);
- // InsurancePlan.contact.address.city
+ // InsurancePlan.contact.address.city (composite)
 insurancePlan.contact?.map((e) => e.address).map((e) => e?.city);
- // InsurancePlan.contact.address.country
+ // InsurancePlan.contact.address.country (composite)
 insurancePlan.contact?.map((e) => e.address).map((e) => e?.country);
- // InsurancePlan.contact.address.postalCode
+ // InsurancePlan.contact.address.postalCode (token)
 insurancePlan.contact?.map((e) => e.address).map((e) => e?.postalCode);
- // InsurancePlan.contact.address.state
+ // InsurancePlan.contact.address.state (date)
 insurancePlan.contact?.map((e) => e.address).map((e) => e?.state);
- // InsurancePlan.contact.address.use
+ // InsurancePlan.contact.address.use (token)
 insurancePlan.contact?.map((e) => e.address).map((e) => e?.use);
- // InsurancePlan.administeredBy
+ // InsurancePlan.administeredBy (token)
 insurancePlan.administeredBy;
- // InsurancePlan.endpoint
+ // InsurancePlan.endpoint (string)
 insurancePlan.endpoint;
- // InsurancePlan.identifier
+ // InsurancePlan.identifier (string)
 insurancePlan.identifier;
- // InsurancePlan.ownedBy
+ // InsurancePlan.ownedBy (token)
 insurancePlan.ownedBy;
- // InsurancePlan.name
+ // InsurancePlan.name (uri)
 insurancePlan.name;
- // InsurancePlan.status
+ // InsurancePlan.status (token)
 insurancePlan.status;
- // InsurancePlan.type
+ // InsurancePlan.type (composite)
 insurancePlan.type;
   final invoice = Invoice.empty();
- // Invoice.account
+ // Invoice.account (composite)
 invoice.account;
- // Invoice.date
+ // Invoice.date (reference)
 invoice.date;
- // Invoice.identifier
+ // Invoice.identifier (reference)
 invoice.identifier;
- // Invoice.issuer
+ // Invoice.issuer (reference)
 invoice.issuer;
- // Invoice.participant.actor
+ // Invoice.participant.actor (date)
 invoice.participant?.map((e) => e.actor);
- // Invoice.participant.role
+ // Invoice.participant.role (reference)
 invoice.participant?.map((e) => e.role);
- // Invoice.subject.where(resolve() is Patient)
+ // Invoice.subject.where(resolve() is Patient) (string)
 invoice.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Invoice.recipient
+ // Invoice.recipient (reference)
 invoice.recipient;
- // Invoice.status
+ // Invoice.status (reference)
 invoice.status;
- // Invoice.subject
+ // Invoice.subject (reference)
 invoice.subject;
- // Invoice.totalGross
+ // Invoice.totalGross (token)
 invoice.totalGross;
- // Invoice.totalNet
+ // Invoice.totalNet (reference)
 invoice.totalNet;
- // Invoice.type
+ // Invoice.type (reference)
 invoice.type;
   final library = Library.empty();
- // Library.relatedArtifact.where(type='composed-of').resource
+ // Library.relatedArtifact.where(type='composed-of').resource (reference)
 library.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // Library.content.contentType
+ // Library.content.contentType (reference)
 library.content?.map((e) => e.contentType);
- // Library.useContext.code
+ // Library.useContext.code (reference)
 library.useContext?.map((e) => e.code);
- // Library.date
+ // Library.date (token)
 library.date;
- // Library.relatedArtifact.where(type='depends-on').resource
+ // Library.relatedArtifact.where(type='depends-on').resource (reference)
 library.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // Library.relatedArtifact.where(type='derived-from').resource
+ // Library.relatedArtifact.where(type='derived-from').resource (reference)
 library.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // Library.description
+ // Library.description (uri)
 library.description;
- // Library.effectivePeriod
+ // Library.effectivePeriod (token)
 library.effectivePeriod;
- // Library.identifier
+ // Library.identifier (token)
 library.identifier;
- // Library.jurisdiction
+ // Library.jurisdiction (token)
 library.jurisdiction;
- // Library.name
+ // Library.name (reference)
 library.name;
- // Library.relatedArtifact.where(type='predecessor').resource
+ // Library.relatedArtifact.where(type='predecessor').resource (token)
 library.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // Library.publisher
+ // Library.publisher (reference)
 library.publisher;
- // Library.status
+ // Library.status (token)
 library.status;
- // Library.relatedArtifact.where(type='successor').resource
+ // Library.relatedArtifact.where(type='successor').resource (token)
 library.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // Library.title
+ // Library.title (token)
 library.title;
- // Library.topic
+ // Library.topic (reference)
 library.topic;
- // Library.type
+ // Library.type (token)
 library.type;
- // Library.url
+ // Library.url (token)
 library.url;
- // Library.version
+ // Library.version (token)
 library.version;
- // Library.useContext
+ // Library.useContext (token)
 library.useContext;
- // Library.useContext
+ // Library.useContext (token)
 library.useContext;
   final linkage = Linkage.empty();
- // Linkage.author
+ // Linkage.author (token)
 linkage.author;
- // Linkage.item.resource
+ // Linkage.item.resource (reference)
 linkage.item.map((e) => e.resource);
- // Linkage.item.resource
+ // Linkage.item.resource (reference)
 linkage.item.map((e) => e.resource);
   final location = Location.empty();
- // Location.address
+ // Location.address (token)
 location.address;
- // Location.address.city
+ // Location.address.city (composite)
 location.address?.city;
- // Location.address.country
+ // Location.address.country (token)
 location.address?.country;
- // Location.address.postalCode
+ // Location.address.postalCode (reference)
 location.address?.postalCode;
- // Location.address.state
+ // Location.address.state (token)
 location.address?.state;
- // Location.address.use
+ // Location.address.use (reference)
 location.address?.use;
- // Location.endpoint
+ // Location.endpoint (token)
 location.endpoint;
- // Location.identifier
+ // Location.identifier (token)
 location.identifier;
- // Location.name
+ // Location.name (reference)
 location.name;
- // Location.alias
+ // Location.alias (reference)
 location.alias;
- // Location.position
+ // Location.position (token)
 location.position;
- // Location.operationalStatus
+ // Location.operationalStatus (reference)
 location.operationalStatus;
- // Location.managingOrganization
+ // Location.managingOrganization (string)
 location.managingOrganization;
- // Location.partOf
+ // Location.partOf (reference)
 location.partOf;
- // Location.status
+ // Location.status (token)
 location.status;
- // Location.type
+ // Location.type (token)
 location.type;
   final manufacturedItemDefinition = ManufacturedItemDefinition.empty();
- // ManufacturedItemDefinition.manufacturedDoseForm
+ // ManufacturedItemDefinition.manufacturedDoseForm (token)
 manufacturedItemDefinition.manufacturedDoseForm;
- // ManufacturedItemDefinition.identifier
+ // ManufacturedItemDefinition.identifier (token)
 manufacturedItemDefinition.identifier;
- // ManufacturedItemDefinition.ingredient
+ // ManufacturedItemDefinition.ingredient (reference)
 manufacturedItemDefinition.ingredient;
   final measure = Measure.empty();
- // Measure.relatedArtifact.where(type='composed-of').resource
+ // Measure.relatedArtifact.where(type='composed-of').resource (token)
 measure.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // Measure.useContext.code
+ // Measure.useContext.code (token)
 measure.useContext?.map((e) => e.code);
- // Measure.date
+ // Measure.date (reference)
 measure.date;
- // Measure.relatedArtifact.where(type='depends-on').resource
+ // Measure.relatedArtifact.where(type='depends-on').resource (reference)
 measure.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // Measure.library
+ // Measure.library (reference)
 measure.library_;
- // Measure.relatedArtifact.where(type='derived-from').resource
+ // Measure.relatedArtifact.where(type='derived-from').resource (token)
 measure.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // Measure.description
+ // Measure.description (reference)
 measure.description;
- // Measure.effectivePeriod
+ // Measure.effectivePeriod (token)
 measure.effectivePeriod;
- // Measure.identifier
+ // Measure.identifier (reference)
 measure.identifier;
- // Measure.jurisdiction
+ // Measure.jurisdiction (token)
 measure.jurisdiction;
- // Measure.name
+ // Measure.name (reference)
 measure.name;
- // Measure.relatedArtifact.where(type='predecessor').resource
+ // Measure.relatedArtifact.where(type='predecessor').resource (token)
 measure.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // Measure.publisher
+ // Measure.publisher (date)
 measure.publisher;
- // Measure.status
+ // Measure.status (token)
 measure.status;
- // Measure.relatedArtifact.where(type='successor').resource
+ // Measure.relatedArtifact.where(type='successor').resource (reference)
 measure.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // Measure.title
+ // Measure.title (reference)
 measure.title;
- // Measure.topic
+ // Measure.topic (string)
 measure.topic;
- // Measure.url
+ // Measure.url (reference)
 measure.url;
- // Measure.version
+ // Measure.version (reference)
 measure.version;
- // Measure.useContext
+ // Measure.useContext (reference)
 measure.useContext;
- // Measure.useContext
+ // Measure.useContext (date)
 measure.useContext;
   final measureReport = MeasureReport.empty();
- // MeasureReport.date
+ // MeasureReport.date (token)
 measureReport.date;
- // MeasureReport.evaluatedResource
+ // MeasureReport.evaluatedResource (reference)
 measureReport.evaluatedResource;
- // MeasureReport.identifier
+ // MeasureReport.identifier (string)
 measureReport.identifier;
- // MeasureReport.measure
+ // MeasureReport.measure (token)
 measureReport.measure;
- // MeasureReport.subject.where(resolve() is Patient)
+ // MeasureReport.subject.where(resolve() is Patient) (token)
 measureReport.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // MeasureReport.period
+ // MeasureReport.period (token)
 measureReport.period;
- // MeasureReport.reporter
+ // MeasureReport.reporter (token)
 measureReport.reporter;
- // MeasureReport.status
+ // MeasureReport.status (date)
 measureReport.status;
- // MeasureReport.subject
+ // MeasureReport.subject (token)
 measureReport.subject;
   final media = Media.empty();
- // Media.basedOn
+ // Media.basedOn (token)
 media.basedOn;
- // Media.created
-media.created;
- // Media.device
+ // Media.created (reference)
+media.createdX;
+ // Media.device (reference)
 media.device;
- // Media.encounter
+ // Media.encounter (token)
 media.encounter;
- // Media.identifier
+ // Media.identifier (token)
 media.identifier;
- // Media.modality
+ // Media.modality (date)
 media.modality;
- // Media.operator
+ // Media.operator (token)
 media.operator_;
- // Media.subject.where(resolve() is Patient)
+ // Media.subject.where(resolve() is Patient) (reference)
 media.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Media.bodySite
+ // Media.bodySite (reference)
 media.bodySite;
- // Media.status
+ // Media.status (token)
 media.status;
- // Media.subject
+ // Media.subject (reference)
 media.subject;
- // Media.type
+ // Media.type (token)
 media.type;
- // Media.view
+ // Media.view (token)
 media.view;
   final medication = Medication.empty();
- // Medication.code
+ // Medication.code (reference)
 medication.code;
- // Medication.batch.expirationDate
+ // Medication.batch.expirationDate (token)
 medication.batch?.expirationDate;
- // Medication.form
+ // Medication.form (reference)
 medication.form;
- // Medication.identifier
+ // Medication.identifier (reference)
 medication.identifier;
- // Medication.batch.lotNumber
+ // Medication.batch.lotNumber (reference)
 medication.batch?.lotNumber;
- // Medication.manufacturer
+ // Medication.manufacturer (token)
 medication.manufacturer;
- // Medication.status
+ // Medication.status (token)
 medication.status;
   final medicationAdministration = MedicationAdministration.empty();
- // MedicationAdministration.identifier
+ // MedicationAdministration.identifier (reference)
 medicationAdministration.identifier;
- // MedicationAdministration.subject.where(resolve() is Patient)
+ // MedicationAdministration.subject.where(resolve() is Patient) (token)
 medicationAdministration.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // MedicationAdministration.context
+ // MedicationAdministration.context (reference)
 medicationAdministration.context;
- // MedicationAdministration.device
+ // MedicationAdministration.device (token)
 medicationAdministration.device;
- // MedicationAdministration.effective
-medicationAdministration.effective;
- // MedicationAdministration.performer.actor
+ // MedicationAdministration.effective (reference)
+medicationAdministration.effectiveX;
+ // MedicationAdministration.performer.actor (string)
 medicationAdministration.performer?.map((e) => e.actor);
- // MedicationAdministration.reasonCode
+ // MedicationAdministration.reasonCode (string)
 medicationAdministration.reasonCode;
- // MedicationAdministration.statusReason
+ // MedicationAdministration.statusReason (string)
 medicationAdministration.statusReason;
- // MedicationAdministration.request
+ // MedicationAdministration.request (string)
 medicationAdministration.request;
- // MedicationAdministration.status
+ // MedicationAdministration.status (string)
 medicationAdministration.status;
- // MedicationAdministration.subject
+ // MedicationAdministration.subject (token)
 medicationAdministration.subject;
   final medicationDispense = MedicationDispense.empty();
- // MedicationDispense.identifier
+ // MedicationDispense.identifier (reference)
 medicationDispense.identifier;
- // MedicationDispense.subject.where(resolve() is Patient)
+ // MedicationDispense.subject.where(resolve() is Patient) (reference)
 medicationDispense.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // MedicationDispense.status
+ // MedicationDispense.status (token)
 medicationDispense.status;
- // MedicationDispense.context
+ // MedicationDispense.context (reference)
 medicationDispense.context;
- // MedicationDispense.destination
+ // MedicationDispense.destination (string)
 medicationDispense.destination;
- // MedicationDispense.performer.actor
+ // MedicationDispense.performer.actor (token)
 medicationDispense.performer?.map((e) => e.actor);
- // MedicationDispense.authorizingPrescription
+ // MedicationDispense.authorizingPrescription (token)
 medicationDispense.authorizingPrescription;
- // MedicationDispense.receiver
+ // MedicationDispense.receiver (reference)
 medicationDispense.receiver;
- // MedicationDispense.substitution.responsibleParty
+ // MedicationDispense.substitution.responsibleParty (date)
 medicationDispense.substitution?.responsibleParty;
- // MedicationDispense.subject
+ // MedicationDispense.subject (token)
 medicationDispense.subject;
- // MedicationDispense.type
+ // MedicationDispense.type (reference)
 medicationDispense.type;
- // MedicationDispense.whenHandedOver
+ // MedicationDispense.whenHandedOver (reference)
 medicationDispense.whenHandedOver;
- // MedicationDispense.whenPrepared
+ // MedicationDispense.whenPrepared (token)
 medicationDispense.whenPrepared;
   final medicationKnowledge = MedicationKnowledge.empty();
- // MedicationKnowledge.medicineClassification.classification
-medicationKnowledge.medicineClassification?.map((e) => e.classification);
- // MedicationKnowledge.medicineClassification.type
+ // MedicationKnowledge.medicineClassification.classification (reference)
+medicationKnowledge.medicineClassification?.expand((e) => e.classification ?? <CodeableConcept>[]);
+ // MedicationKnowledge.medicineClassification.type (reference)
 medicationKnowledge.medicineClassification?.map((e) => e.type);
- // MedicationKnowledge.code
+ // MedicationKnowledge.code (token)
 medicationKnowledge.code;
- // MedicationKnowledge.doseForm
+ // MedicationKnowledge.doseForm (reference)
 medicationKnowledge.doseForm;
- // MedicationKnowledge.manufacturer
+ // MedicationKnowledge.manufacturer (quantity)
 medicationKnowledge.manufacturer;
- // MedicationKnowledge.monitoringProgram.name
+ // MedicationKnowledge.monitoringProgram.name (quantity)
 medicationKnowledge.monitoringProgram?.map((e) => e.name);
- // MedicationKnowledge.monitoringProgram.type
+ // MedicationKnowledge.monitoringProgram.type (token)
 medicationKnowledge.monitoringProgram?.map((e) => e.type);
- // MedicationKnowledge.monograph.source
+ // MedicationKnowledge.monograph.source (reference)
 medicationKnowledge.monograph?.map((e) => e.source);
- // MedicationKnowledge.monograph.type
+ // MedicationKnowledge.monograph.type (token)
 medicationKnowledge.monograph?.map((e) => e.type);
- // MedicationKnowledge.cost.source
+ // MedicationKnowledge.cost.source (token)
 medicationKnowledge.cost?.map((e) => e.source);
- // MedicationKnowledge.status
+ // MedicationKnowledge.status (date)
 medicationKnowledge.status;
   final medicationRequest = MedicationRequest.empty();
- // MedicationRequest.identifier
+ // MedicationRequest.identifier (reference)
 medicationRequest.identifier;
- // MedicationRequest.subject.where(resolve() is Patient)
+ // MedicationRequest.subject.where(resolve() is Patient) (reference)
 medicationRequest.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // MedicationRequest.status
+ // MedicationRequest.status (string)
 medicationRequest.status;
- // MedicationRequest.authoredOn
+ // MedicationRequest.authoredOn (date)
 medicationRequest.authoredOn;
- // MedicationRequest.category
+ // MedicationRequest.category (token)
 medicationRequest.category;
- // MedicationRequest.dosageInstruction.timing.event
-medicationRequest.dosageInstruction?.map((e) => e.timing).map((e) => e?.event);
- // MedicationRequest.encounter
+ // MedicationRequest.dosageInstruction.timing.event (token)
+medicationRequest.dosageInstruction?.map((e) => e.timing).expand((e) => e?.event ?? <FhirDateTime>[]);
+ // MedicationRequest.encounter (string)
 medicationRequest.encounter;
- // MedicationRequest.dispenseRequest.performer
+ // MedicationRequest.dispenseRequest.performer (reference)
 medicationRequest.dispenseRequest?.performer;
- // MedicationRequest.performer
+ // MedicationRequest.performer (string)
 medicationRequest.performer;
- // MedicationRequest.performerType
+ // MedicationRequest.performerType (token)
 medicationRequest.performerType;
- // MedicationRequest.intent
+ // MedicationRequest.intent (reference)
 medicationRequest.intent;
- // MedicationRequest.priority
+ // MedicationRequest.priority (string)
 medicationRequest.priority;
- // MedicationRequest.requester
+ // MedicationRequest.requester (token)
 medicationRequest.requester;
- // MedicationRequest.subject
+ // MedicationRequest.subject (token)
 medicationRequest.subject;
   final medicationStatement = MedicationStatement.empty();
- // MedicationStatement.identifier
+ // MedicationStatement.identifier (uri)
 medicationStatement.identifier;
- // MedicationStatement.subject.where(resolve() is Patient)
+ // MedicationStatement.subject.where(resolve() is Patient) (token)
 medicationStatement.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // MedicationStatement.status
+ // MedicationStatement.status (composite)
 medicationStatement.status;
- // MedicationStatement.category
+ // MedicationStatement.category (composite)
 medicationStatement.category;
- // MedicationStatement.context
+ // MedicationStatement.context (reference)
 medicationStatement.context;
- // MedicationStatement.effective
-medicationStatement.effective;
- // MedicationStatement.partOf
+ // MedicationStatement.effective (reference)
+medicationStatement.effectiveX;
+ // MedicationStatement.partOf (reference)
 medicationStatement.partOf;
- // MedicationStatement.informationSource
+ // MedicationStatement.informationSource (token)
 medicationStatement.informationSource;
- // MedicationStatement.subject
+ // MedicationStatement.subject (reference)
 medicationStatement.subject;
   final medicinalProductDefinition = MedicinalProductDefinition.empty();
- // MedicinalProductDefinition.characteristic.value
-medicinalProductDefinition.characteristic?.map((e) => e.value);
- // MedicinalProductDefinition.characteristic.type
+ // MedicinalProductDefinition.characteristic.value (string)
+medicinalProductDefinition.characteristic?.map((e) => e.valueX);
+ // MedicinalProductDefinition.characteristic.type (reference)
 medicinalProductDefinition.characteristic?.map((e) => e.type);
- // MedicinalProductDefinition.contact.contact
+ // MedicinalProductDefinition.contact.contact (token)
 medicinalProductDefinition.contact?.map((e) => e.contact);
- // MedicinalProductDefinition.domain
+ // MedicinalProductDefinition.domain (reference)
 medicinalProductDefinition.domain;
- // MedicinalProductDefinition.identifier
+ // MedicinalProductDefinition.identifier (string)
 medicinalProductDefinition.identifier;
- // MedicinalProductDefinition.ingredient
+ // MedicinalProductDefinition.ingredient (string)
 medicinalProductDefinition.ingredient;
- // MedicinalProductDefinition.masterFile
+ // MedicinalProductDefinition.masterFile (string)
 medicinalProductDefinition.masterFile;
- // MedicinalProductDefinition.name.productName
+ // MedicinalProductDefinition.name.productName (string)
 medicinalProductDefinition.name.map((e) => e.productName);
- // MedicinalProductDefinition.name.countryLanguage.language
-medicinalProductDefinition.name.map((e) => e.countryLanguage).map((e) => e?.language);
- // MedicinalProductDefinition.classification
+ // MedicinalProductDefinition.name.countryLanguage.language (string)
+medicinalProductDefinition.name.expand((e) => e.countryLanguage ?? <MedicinalProductDefinitionCountryLanguage>[]).map((e) => e.language);
+ // MedicinalProductDefinition.classification (string)
 medicinalProductDefinition.classification;
- // MedicinalProductDefinition.status
+ // MedicinalProductDefinition.status (token)
 medicinalProductDefinition.status;
- // MedicinalProductDefinition.type
+ // MedicinalProductDefinition.type (reference)
 medicinalProductDefinition.type;
   final messageDefinition = MessageDefinition.empty();
- // MessageDefinition.useContext.code
+ // MessageDefinition.useContext.code (token)
 messageDefinition.useContext?.map((e) => e.code);
- // MessageDefinition.date
+ // MessageDefinition.date (string)
 messageDefinition.date;
- // MessageDefinition.description
+ // MessageDefinition.description (string)
 messageDefinition.description;
- // MessageDefinition.jurisdiction
+ // MessageDefinition.jurisdiction (special)
 messageDefinition.jurisdiction;
- // MessageDefinition.name
+ // MessageDefinition.name (token)
 messageDefinition.name;
- // MessageDefinition.publisher
+ // MessageDefinition.publisher (reference)
 messageDefinition.publisher;
- // MessageDefinition.status
+ // MessageDefinition.status (reference)
 messageDefinition.status;
- // MessageDefinition.title
+ // MessageDefinition.title (token)
 messageDefinition.title;
- // MessageDefinition.url
+ // MessageDefinition.url (token)
 messageDefinition.url;
- // MessageDefinition.version
+ // MessageDefinition.version (token)
 messageDefinition.version;
- // MessageDefinition.useContext
+ // MessageDefinition.useContext (token)
 messageDefinition.useContext;
- // MessageDefinition.useContext
+ // MessageDefinition.useContext (token)
 messageDefinition.useContext;
- // MessageDefinition.identifier
+ // MessageDefinition.identifier (reference)
 messageDefinition.identifier;
- // MessageDefinition.category
+ // MessageDefinition.category (token)
 messageDefinition.category;
- // MessageDefinition.event
-messageDefinition.event;
- // MessageDefinition.focus.code
+ // MessageDefinition.event (date)
+messageDefinition.eventX;
+ // MessageDefinition.focus.code (reference)
 messageDefinition.focus?.map((e) => e.code);
- // MessageDefinition.parent
+ // MessageDefinition.parent (reference)
 messageDefinition.parent;
   final messageHeader = MessageHeader.empty();
- // MessageHeader.author
+ // MessageHeader.author (reference)
 messageHeader.author;
- // MessageHeader.response.code
+ // MessageHeader.response.code (string)
 messageHeader.response?.code;
- // MessageHeader.destination.name
+ // MessageHeader.destination.name (date)
 messageHeader.destination?.map((e) => e.name);
- // MessageHeader.destination.endpoint
+ // MessageHeader.destination.endpoint (token)
 messageHeader.destination?.map((e) => e.endpoint);
- // MessageHeader.enterer
+ // MessageHeader.enterer (token)
 messageHeader.enterer;
- // MessageHeader.event
-messageHeader.event;
- // MessageHeader.focus
+ // MessageHeader.event (string)
+messageHeader.eventX;
+ // MessageHeader.focus (reference)
 messageHeader.focus;
- // MessageHeader.destination.receiver
+ // MessageHeader.destination.receiver (string)
 messageHeader.destination?.map((e) => e.receiver);
- // MessageHeader.response.identifier
+ // MessageHeader.response.identifier (token)
 messageHeader.response?.identifier;
- // MessageHeader.responsible
+ // MessageHeader.responsible (reference)
 messageHeader.responsible;
- // MessageHeader.sender
+ // MessageHeader.sender (string)
 messageHeader.sender;
- // MessageHeader.source.name
+ // MessageHeader.source.name (token)
 messageHeader.source.name;
- // MessageHeader.source.endpoint
+ // MessageHeader.source.endpoint (uri)
 messageHeader.source.endpoint;
- // MessageHeader.destination.target
+ // MessageHeader.destination.target (token)
 messageHeader.destination?.map((e) => e.target);
   final molecularSequence = MolecularSequence.empty();
- // MolecularSequence.referenceSeq.chromosome
+ // MolecularSequence.referenceSeq.chromosome (composite)
 molecularSequence.referenceSeq?.chromosome;
- // MolecularSequence.identifier
+ // MolecularSequence.identifier (composite)
 molecularSequence.identifier;
- // MolecularSequence.patient
+ // MolecularSequence.patient (date)
 molecularSequence.patient;
- // MolecularSequence.referenceSeq.referenceSeqId
+ // MolecularSequence.referenceSeq.referenceSeqId (reference)
 molecularSequence.referenceSeq?.referenceSeqId;
- // MolecularSequence.type
+ // MolecularSequence.type (token)
 molecularSequence.type;
- // MolecularSequence.variant.end
+ // MolecularSequence.variant.end (reference)
 molecularSequence.variant?.map((e) => e.end);
- // MolecularSequence.variant.start
+ // MolecularSequence.variant.start (reference)
 molecularSequence.variant?.map((e) => e.start);
- // MolecularSequence.referenceSeq.windowEnd
+ // MolecularSequence.referenceSeq.windowEnd (date)
 molecularSequence.referenceSeq?.windowEnd;
- // MolecularSequence.referenceSeq.windowStart
+ // MolecularSequence.referenceSeq.windowStart (reference)
 molecularSequence.referenceSeq?.windowStart;
- // MolecularSequence.variant
+ // MolecularSequence.variant (token)
 molecularSequence.variant;
- // MolecularSequence.referenceSeq
+ // MolecularSequence.referenceSeq (reference)
 molecularSequence.referenceSeq;
- // MolecularSequence.variant
+ // MolecularSequence.variant (reference)
 molecularSequence.variant;
- // MolecularSequence.referenceSeq
+ // MolecularSequence.referenceSeq (date)
 molecularSequence.referenceSeq;
   final namingSystem = NamingSystem.empty();
- // NamingSystem.useContext.code
+ // NamingSystem.useContext.code (reference)
 namingSystem.useContext?.map((e) => e.code);
- // NamingSystem.date
+ // NamingSystem.date (reference)
 namingSystem.date;
- // NamingSystem.description
+ // NamingSystem.description (token)
 namingSystem.description;
- // NamingSystem.jurisdiction
+ // NamingSystem.jurisdiction (token)
 namingSystem.jurisdiction;
- // NamingSystem.name
+ // NamingSystem.name (reference)
 namingSystem.name;
- // NamingSystem.publisher
+ // NamingSystem.publisher (reference)
 namingSystem.publisher;
- // NamingSystem.status
+ // NamingSystem.status (token)
 namingSystem.status;
- // NamingSystem.useContext
+ // NamingSystem.useContext (token)
 namingSystem.useContext;
- // NamingSystem.useContext
+ // NamingSystem.useContext (reference)
 namingSystem.useContext;
- // NamingSystem.contact.name
+ // NamingSystem.contact.name (token)
 namingSystem.contact?.map((e) => e.name);
- // NamingSystem.uniqueId.type
+ // NamingSystem.uniqueId.type (token)
 namingSystem.uniqueId.map((e) => e.type);
- // NamingSystem.kind
+ // NamingSystem.kind (date)
 namingSystem.kind;
- // NamingSystem.uniqueId.period
+ // NamingSystem.uniqueId.period (token)
 namingSystem.uniqueId.map((e) => e.period);
- // NamingSystem.responsible
+ // NamingSystem.responsible (token)
 namingSystem.responsible;
- // NamingSystem.contact.telecom
-namingSystem.contact?.map((e) => e.telecom);
- // NamingSystem.type
+ // NamingSystem.contact.telecom (token)
+namingSystem.contact?.expand((e) => e.telecom ?? <ContactPoint>[]);
+ // NamingSystem.type (reference)
 namingSystem.type;
- // NamingSystem.uniqueId.value
+ // NamingSystem.uniqueId.value (token)
 namingSystem.uniqueId.map((e) => e.value);
   final nutritionOrder = NutritionOrder.empty();
- // NutritionOrder.identifier
+ // NutritionOrder.identifier (reference)
 nutritionOrder.identifier;
- // NutritionOrder.patient
+ // NutritionOrder.patient (reference)
 nutritionOrder.patient;
- // NutritionOrder.encounter
+ // NutritionOrder.encounter (date)
 nutritionOrder.encounter;
- // NutritionOrder.enteralFormula.additiveType
+ // NutritionOrder.enteralFormula.additiveType (reference)
 nutritionOrder.enteralFormula?.additiveType;
- // NutritionOrder.dateTime
+ // NutritionOrder.dateTime (token)
 nutritionOrder.dateTime;
- // NutritionOrder.enteralFormula.baseFormulaType
+ // NutritionOrder.enteralFormula.baseFormulaType (token)
 nutritionOrder.enteralFormula?.baseFormulaType;
- // NutritionOrder.instantiatesCanonical
+ // NutritionOrder.instantiatesCanonical (reference)
 nutritionOrder.instantiatesCanonical;
- // NutritionOrder.instantiatesUri
+ // NutritionOrder.instantiatesUri (token)
 nutritionOrder.instantiatesUri;
- // NutritionOrder.oralDiet.type
+ // NutritionOrder.oralDiet.type (token)
 nutritionOrder.oralDiet?.type;
- // NutritionOrder.orderer
+ // NutritionOrder.orderer (token)
 nutritionOrder.orderer;
- // NutritionOrder.status
+ // NutritionOrder.status (token)
 nutritionOrder.status;
- // NutritionOrder.supplement.type
+ // NutritionOrder.supplement.type (reference)
 nutritionOrder.supplement?.map((e) => e.type);
   final nutritionProduct = NutritionProduct.empty();
- // NutritionProduct.instance.identifier
+ // NutritionProduct.instance.identifier (reference)
 nutritionProduct.instance?.identifier;
- // NutritionProduct.status
+ // NutritionProduct.status (reference)
 nutritionProduct.status;
   final observation = Observation.empty();
- // Observation.code
+ // Observation.code (reference)
 observation.code;
- // Observation.effective
-observation.effective;
- // Observation.identifier
+ // Observation.effective (reference)
+observation.effectiveX;
+ // Observation.identifier (reference)
 observation.identifier;
- // Observation.subject.where(resolve() is Patient)
+ // Observation.subject.where(resolve() is Patient) (reference)
 observation.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Observation.encounter
+ // Observation.encounter (reference)
 observation.encounter;
- // Observation.basedOn
+ // Observation.basedOn (token)
 observation.basedOn;
- // Observation.category
+ // Observation.category (date)
 observation.category;
- // Observation.code
+ // Observation.code (date)
 observation.code;
- // Observation.component.code
+ // Observation.component.code (token)
 observation.component?.map((e) => e.code);
- // Observation.dataAbsentReason
+ // Observation.dataAbsentReason (token)
 observation.dataAbsentReason;
- // Observation.component.dataAbsentReason
+ // Observation.component.dataAbsentReason (token)
 observation.component?.map((e) => e.dataAbsentReason);
- // Observation.component.code
+ // Observation.component.code (token)
 observation.component?.map((e) => e.code);
- // Observation.component.dataAbsentReason
+ // Observation.component.dataAbsentReason (reference)
 observation.component?.map((e) => e.dataAbsentReason);
- // Observation.dataAbsentReason
+ // Observation.dataAbsentReason (token)
 observation.dataAbsentReason;
- // Observation.derivedFrom
+ // Observation.derivedFrom (token)
 observation.derivedFrom;
- // Observation.device
+ // Observation.device (reference)
 observation.device;
- // Observation.focus
+ // Observation.focus (token)
 observation.focus;
- // Observation.hasMember
+ // Observation.hasMember (token)
 observation.hasMember;
- // Observation.method
+ // Observation.method (token)
 observation.method;
- // Observation.partOf
+ // Observation.partOf (date)
 observation.partOf;
- // Observation.performer
+ // Observation.performer (token)
 observation.performer;
- // Observation.specimen
+ // Observation.specimen (date)
 observation.specimen;
- // Observation.status
+ // Observation.status (reference)
 observation.status;
- // Observation.subject
+ // Observation.subject (reference)
 observation.subject;
- // Observation
+ // Observation (reference)
 observation;
- // Observation
+ // Observation (token)
 observation;
- // Observation
+ // Observation (token)
 observation;
- // Observation
+ // Observation (token)
 observation;
- // Observation
+ // Observation (reference)
 observation;
- // Observation.component
+ // Observation.component (reference)
 observation.component;
- // Observation
+ // Observation (token)
 observation;
- // Observation.component
+ // Observation.component (reference)
 observation.component;
- // Observation.component
+ // Observation.component (date)
 observation.component;
- // Observation.component
+ // Observation.component (reference)
 observation.component;
   final observationDefinition = ObservationDefinition.empty();
   final operationDefinition = OperationDefinition.empty();
- // OperationDefinition.useContext.code
+ // OperationDefinition.useContext.code (reference)
 operationDefinition.useContext?.map((e) => e.code);
- // OperationDefinition.date
+ // OperationDefinition.date (reference)
 operationDefinition.date;
- // OperationDefinition.description
+ // OperationDefinition.description (token)
 operationDefinition.description;
- // OperationDefinition.jurisdiction
+ // OperationDefinition.jurisdiction (token)
 operationDefinition.jurisdiction;
- // OperationDefinition.name
+ // OperationDefinition.name (reference)
 operationDefinition.name;
- // OperationDefinition.publisher
+ // OperationDefinition.publisher (token)
 operationDefinition.publisher;
- // OperationDefinition.status
+ // OperationDefinition.status (token)
 operationDefinition.status;
- // OperationDefinition.title
+ // OperationDefinition.title (token)
 operationDefinition.title;
- // OperationDefinition.url
+ // OperationDefinition.url (reference)
 operationDefinition.url;
- // OperationDefinition.version
+ // OperationDefinition.version (string)
 operationDefinition.version;
- // OperationDefinition.useContext
+ // OperationDefinition.useContext (token)
 operationDefinition.useContext;
- // OperationDefinition.useContext
+ // OperationDefinition.useContext (token)
 operationDefinition.useContext;
- // OperationDefinition.base
+ // OperationDefinition.base (token)
 operationDefinition.base;
- // OperationDefinition.code
+ // OperationDefinition.code (token)
 operationDefinition.code;
- // OperationDefinition.inputProfile
+ // OperationDefinition.inputProfile (token)
 operationDefinition.inputProfile;
- // OperationDefinition.instance
+ // OperationDefinition.instance (token)
 operationDefinition.instance;
- // OperationDefinition.kind
+ // OperationDefinition.kind (token)
 operationDefinition.kind;
- // OperationDefinition.outputProfile
+ // OperationDefinition.outputProfile (reference)
 operationDefinition.outputProfile;
- // OperationDefinition.system
+ // OperationDefinition.system (reference)
 operationDefinition.system;
- // OperationDefinition.type
+ // OperationDefinition.type (token)
 operationDefinition.type;
   final operationOutcome = OperationOutcome.empty();
   final organization = Organization.empty();
- // Organization.active
+ // Organization.active (string)
 organization.active;
- // Organization.address
+ // Organization.address (uri)
 organization.address;
- // Organization.address.city
+ // Organization.address.city (reference)
 organization.address?.map((e) => e.city);
- // Organization.address.country
+ // Organization.address.country (token)
 organization.address?.map((e) => e.country);
- // Organization.address.postalCode
+ // Organization.address.postalCode (reference)
 organization.address?.map((e) => e.postalCode);
- // Organization.address.state
+ // Organization.address.state (reference)
 organization.address?.map((e) => e.state);
- // Organization.address.use
+ // Organization.address.use (token)
 organization.address?.map((e) => e.use);
- // Organization.endpoint
+ // Organization.endpoint (reference)
 organization.endpoint;
- // Organization.identifier
+ // Organization.identifier (reference)
 organization.identifier;
- // Organization.name
+ // Organization.name (string)
 organization.name;
- // Organization.alias
+ // Organization.alias (uri)
 organization.alias;
- // Organization.partOf
+ // Organization.partOf (reference)
 organization.partOf;
- // Organization.name
+ // Organization.name (token)
 organization.name;
- // Organization.type
+ // Organization.type (token)
 organization.type;
   final organizationAffiliation = OrganizationAffiliation.empty();
- // OrganizationAffiliation.active
+ // OrganizationAffiliation.active (reference)
 organizationAffiliation.active;
- // OrganizationAffiliation.period
+ // OrganizationAffiliation.period (token)
 organizationAffiliation.period;
- // OrganizationAffiliation.telecom.where(system='email')
-organizationAffiliation.telecom?.map((e) => e.where(system='email'));
- // OrganizationAffiliation.endpoint
+ // OrganizationAffiliation.telecom.where(system='email') (token)
+organizationAffiliation.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // OrganizationAffiliation.endpoint (number)
 organizationAffiliation.endpoint;
- // OrganizationAffiliation.identifier
+ // OrganizationAffiliation.identifier (number)
 organizationAffiliation.identifier;
- // OrganizationAffiliation.location
+ // OrganizationAffiliation.location (number)
 organizationAffiliation.location;
- // OrganizationAffiliation.network
+ // OrganizationAffiliation.network (number)
 organizationAffiliation.network;
- // OrganizationAffiliation.participatingOrganization
+ // OrganizationAffiliation.participatingOrganization (composite)
 organizationAffiliation.participatingOrganization;
- // OrganizationAffiliation.telecom.where(system='phone')
-organizationAffiliation.telecom?.map((e) => e.where(system='phone'));
- // OrganizationAffiliation.organization
+ // OrganizationAffiliation.telecom.where(system='phone') (composite)
+organizationAffiliation.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // OrganizationAffiliation.organization (composite)
 organizationAffiliation.organization;
- // OrganizationAffiliation.code
+ // OrganizationAffiliation.code (composite)
 organizationAffiliation.code;
- // OrganizationAffiliation.healthcareService
+ // OrganizationAffiliation.healthcareService (string)
 organizationAffiliation.healthcareService;
- // OrganizationAffiliation.specialty
+ // OrganizationAffiliation.specialty (token)
 organizationAffiliation.specialty;
- // OrganizationAffiliation.telecom
+ // OrganizationAffiliation.telecom (token)
 organizationAffiliation.telecom;
   final packagedProductDefinition = PackagedProductDefinition.empty();
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (date)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (string)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (token)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.identifier
+ // PackagedProductDefinition.identifier (token)
 packagedProductDefinition.identifier;
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (string)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (token)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.name
+ // PackagedProductDefinition.name (date)
 packagedProductDefinition.name;
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (token)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.package.containedItem.item.reference
+ // PackagedProductDefinition.package.containedItem.item.reference (reference)
 packagedProductDefinition.package?.containedItem?.map((e) => e.item).map((e) => e.reference);
- // PackagedProductDefinition.packageFor
+ // PackagedProductDefinition.packageFor (uri)
 packagedProductDefinition.packageFor;
- // PackagedProductDefinition.status
+ // PackagedProductDefinition.status (token)
 packagedProductDefinition.status;
   final parameters = Parameters.empty();
   final patient = Patient.empty();
- // Patient.active
+ // Patient.active (reference)
 patient.active;
- // Patient.address
+ // Patient.address (token)
 patient.address;
- // Patient.address.city
+ // Patient.address.city (token)
 patient.address?.map((e) => e.city);
- // Patient.address.country
+ // Patient.address.country (token)
 patient.address?.map((e) => e.country);
- // Patient.address.postalCode
+ // Patient.address.postalCode (token)
 patient.address?.map((e) => e.postalCode);
- // Patient.address.state
+ // Patient.address.state (reference)
 patient.address?.map((e) => e.state);
- // Patient.address.use
+ // Patient.address.use (token)
 patient.address?.map((e) => e.use);
- // Patient.birthDate
+ // Patient.birthDate (token)
 patient.birthDate;
- // Patient.deceased.exists() and Patient.deceased != false
-patient.deceased?.exists() and Patient.deceased != false;
- // Patient.telecom.where(system='email')
-patient.telecom?.map((e) => e.where(system='email'));
- // Patient.name.family
+ // Patient.deceased.exists() and Patient.deceased != false (token)
+patient.deceasedBoolean?.value != false || patient.deceasedDateTime?.value != null;
+ // Patient.telecom.where(system='email') (token)
+patient.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // Patient.name.family (token)
 patient.name?.map((e) => e.family);
- // Patient.gender
+ // Patient.gender (token)
 patient.gender;
- // Patient.generalPractitioner
+ // Patient.generalPractitioner (token)
 patient.generalPractitioner;
- // Patient.name.given
-patient.name?.map((e) => e.given);
- // Patient.identifier
+ // Patient.name.given (token)
+patient.name?.expand((e) => e.given ?? <FhirString>[]);
+ // Patient.identifier (reference)
 patient.identifier;
- // Patient.communication.language
+ // Patient.communication.language (reference)
 patient.communication?.map((e) => e.language);
- // Patient.link.other
+ // Patient.link.other (reference)
 patient.link?.map((e) => e.other);
- // Patient.name
+ // Patient.name (reference)
 patient.name;
- // Patient.managingOrganization
+ // Patient.managingOrganization (token)
 patient.managingOrganization;
- // Patient.telecom.where(system='phone')
-patient.telecom?.map((e) => e.where(system='phone'));
- // Patient.name
+ // Patient.telecom.where(system='phone') (reference)
+patient.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // Patient.name (reference)
 patient.name;
- // Patient.telecom
+ // Patient.telecom (reference)
 patient.telecom;
   final paymentNotice = PaymentNotice.empty();
- // PaymentNotice.created
+ // PaymentNotice.created (token)
 paymentNotice.created;
- // PaymentNotice.identifier
+ // PaymentNotice.identifier (reference)
 paymentNotice.identifier;
- // PaymentNotice.paymentStatus
+ // PaymentNotice.paymentStatus (composite)
 paymentNotice.paymentStatus;
- // PaymentNotice.provider
+ // PaymentNotice.provider (composite)
 paymentNotice.provider;
- // PaymentNotice.request
+ // PaymentNotice.request (composite)
 paymentNotice.request;
- // PaymentNotice.response
+ // PaymentNotice.response (composite)
 paymentNotice.response;
- // PaymentNotice.status
+ // PaymentNotice.status (composite)
 paymentNotice.status;
   final paymentReconciliation = PaymentReconciliation.empty();
- // PaymentReconciliation.created
+ // PaymentReconciliation.created (composite)
 paymentReconciliation.created;
- // PaymentReconciliation.disposition
+ // PaymentReconciliation.disposition (composite)
 paymentReconciliation.disposition;
- // PaymentReconciliation.identifier
+ // PaymentReconciliation.identifier (composite)
 paymentReconciliation.identifier;
- // PaymentReconciliation.outcome
+ // PaymentReconciliation.outcome (composite)
 paymentReconciliation.outcome;
- // PaymentReconciliation.paymentIssuer
+ // PaymentReconciliation.paymentIssuer (composite)
 paymentReconciliation.paymentIssuer;
- // PaymentReconciliation.request
+ // PaymentReconciliation.request (reference)
 paymentReconciliation.request;
- // PaymentReconciliation.requestor
+ // PaymentReconciliation.requestor (token)
 paymentReconciliation.requestor;
- // PaymentReconciliation.status
+ // PaymentReconciliation.status (reference)
 paymentReconciliation.status;
   final person = Person.empty();
- // Person.address
+ // Person.address (token)
 person.address;
- // Person.address.city
+ // Person.address.city (token)
 person.address?.map((e) => e.city);
- // Person.address.country
+ // Person.address.country (reference)
 person.address?.map((e) => e.country);
- // Person.address.postalCode
+ // Person.address.postalCode (token)
 person.address?.map((e) => e.postalCode);
- // Person.address.state
+ // Person.address.state (token)
 person.address?.map((e) => e.state);
- // Person.address.use
+ // Person.address.use (token)
 person.address?.map((e) => e.use);
- // Person.birthDate
+ // Person.birthDate (string)
 person.birthDate;
- // Person.telecom.where(system='email')
-person.telecom?.map((e) => e.where(system='email'));
- // Person.gender
+ // Person.telecom.where(system='email') (string)
+person.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // Person.gender (string)
 person.gender;
- // Person.telecom.where(system='phone')
-person.telecom?.map((e) => e.where(system='phone'));
- // Person.name
+ // Person.telecom.where(system='phone') (string)
+person.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // Person.name (string)
 person.name;
- // Person.telecom
+ // Person.telecom (token)
 person.telecom;
- // Person.identifier
+ // Person.identifier (reference)
 person.identifier;
- // Person.link.target
+ // Person.link.target (token)
 person.link?.map((e) => e.target);
- // Person.name
+ // Person.name (string)
 person.name;
- // Person.managingOrganization
+ // Person.managingOrganization (string)
 person.managingOrganization;
- // Person.link.target.where(resolve() is Patient)
+ // Person.link.target.where(resolve() is Patient) (reference)
 person.link?.map((e) => e.target).where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Person.link.target.where(resolve() is Practitioner)
+ // Person.link.target.where(resolve() is Practitioner) (string)
 person.link?.map((e) => e.target).where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
   });
- // Person.link.target.where(resolve() is RelatedPerson)
+ // Person.link.target.where(resolve() is RelatedPerson) (token)
 person.link?.map((e) => e.target).where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'RelatedPerson';
   });
   final planDefinition = PlanDefinition.empty();
- // PlanDefinition.relatedArtifact.where(type='composed-of').resource
+ // PlanDefinition.relatedArtifact.where(type='composed-of').resource (token)
 planDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // PlanDefinition.useContext.code
+ // PlanDefinition.useContext.code (date)
 planDefinition.useContext?.map((e) => e.code);
- // PlanDefinition.date
+ // PlanDefinition.date (token)
 planDefinition.date;
- // PlanDefinition.action.definition
-planDefinition.action?.map((e) => e.definition);
- // PlanDefinition.relatedArtifact.where(type='depends-on').resource
+ // PlanDefinition.action.definition (reference)
+planDefinition.action?.map((e) => e.definitionX);
+ // PlanDefinition.relatedArtifact.where(type='depends-on').resource (token)
 planDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // PlanDefinition.library
+ // PlanDefinition.library (reference)
 planDefinition.library_;
- // PlanDefinition.relatedArtifact.where(type='derived-from').resource
+ // PlanDefinition.relatedArtifact.where(type='derived-from').resource (reference)
 planDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // PlanDefinition.description
+ // PlanDefinition.description (reference)
 planDefinition.description;
- // PlanDefinition.effectivePeriod
+ // PlanDefinition.effectivePeriod (token)
 planDefinition.effectivePeriod;
- // PlanDefinition.identifier
+ // PlanDefinition.identifier (reference)
 planDefinition.identifier;
- // PlanDefinition.jurisdiction
+ // PlanDefinition.jurisdiction (token)
 planDefinition.jurisdiction;
- // PlanDefinition.name
+ // PlanDefinition.name (reference)
 planDefinition.name;
- // PlanDefinition.relatedArtifact.where(type='predecessor').resource
+ // PlanDefinition.relatedArtifact.where(type='predecessor').resource (token)
 planDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // PlanDefinition.publisher
+ // PlanDefinition.publisher (token)
 planDefinition.publisher;
- // PlanDefinition.status
+ // PlanDefinition.status (reference)
 planDefinition.status;
- // PlanDefinition.relatedArtifact.where(type='successor').resource
+ // PlanDefinition.relatedArtifact.where(type='successor').resource (reference)
 planDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // PlanDefinition.title
+ // PlanDefinition.title (reference)
 planDefinition.title;
- // PlanDefinition.topic
+ // PlanDefinition.topic (token)
 planDefinition.topic;
- // PlanDefinition.type
+ // PlanDefinition.type (reference)
 planDefinition.type;
- // PlanDefinition.url
+ // PlanDefinition.url (reference)
 planDefinition.url;
- // PlanDefinition.version
+ // PlanDefinition.version (token)
 planDefinition.version;
- // PlanDefinition.useContext
+ // PlanDefinition.useContext (reference)
 planDefinition.useContext;
- // PlanDefinition.useContext
+ // PlanDefinition.useContext (reference)
 planDefinition.useContext;
   final practitioner = Practitioner.empty();
- // Practitioner.address
+ // Practitioner.address (reference)
 practitioner.address;
- // Practitioner.address.city
+ // Practitioner.address.city (token)
 practitioner.address?.map((e) => e.city);
- // Practitioner.address.country
+ // Practitioner.address.country (token)
 practitioner.address?.map((e) => e.country);
- // Practitioner.address.postalCode
+ // Practitioner.address.postalCode (string)
 practitioner.address?.map((e) => e.postalCode);
- // Practitioner.address.state
+ // Practitioner.address.state (string)
 practitioner.address?.map((e) => e.state);
- // Practitioner.address.use
+ // Practitioner.address.use (string)
 practitioner.address?.map((e) => e.use);
- // Practitioner.telecom.where(system='email')
-practitioner.telecom?.map((e) => e.where(system='email'));
- // Practitioner.name.family
+ // Practitioner.telecom.where(system='email') (string)
+practitioner.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // Practitioner.name.family (string)
 practitioner.name?.map((e) => e.family);
- // Practitioner.gender
+ // Practitioner.gender (string)
 practitioner.gender;
- // Practitioner.name.given
-practitioner.name?.map((e) => e.given);
- // Practitioner.telecom.where(system='phone')
-practitioner.telecom?.map((e) => e.where(system='phone'));
- // Practitioner.name
+ // Practitioner.name.given (string)
+practitioner.name?.expand((e) => e.given ?? <FhirString>[]);
+ // Practitioner.telecom.where(system='phone') (string)
+practitioner.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // Practitioner.name (string)
 practitioner.name;
- // Practitioner.telecom
+ // Practitioner.telecom (string)
 practitioner.telecom;
- // Practitioner.active
+ // Practitioner.active (string)
 practitioner.active;
- // Practitioner.communication
+ // Practitioner.communication (string)
 practitioner.communication;
- // Practitioner.identifier
+ // Practitioner.identifier (string)
 practitioner.identifier;
- // Practitioner.name
+ // Practitioner.name (string)
 practitioner.name;
   final practitionerRole = PractitionerRole.empty();
- // PractitionerRole.telecom.where(system='email')
-practitionerRole.telecom?.map((e) => e.where(system='email'));
- // PractitionerRole.telecom.where(system='phone')
-practitionerRole.telecom?.map((e) => e.where(system='phone'));
- // PractitionerRole.telecom
+ // PractitionerRole.telecom.where(system='email') (string)
+practitionerRole.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // PractitionerRole.telecom.where(system='phone') (string)
+practitionerRole.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // PractitionerRole.telecom (string)
 practitionerRole.telecom;
- // PractitionerRole.active
+ // PractitionerRole.active (string)
 practitionerRole.active;
- // PractitionerRole.period
+ // PractitionerRole.period (string)
 practitionerRole.period;
- // PractitionerRole.endpoint
+ // PractitionerRole.endpoint (string)
 practitionerRole.endpoint;
- // PractitionerRole.identifier
+ // PractitionerRole.identifier (token)
 practitionerRole.identifier;
- // PractitionerRole.location
+ // PractitionerRole.location (token)
 practitionerRole.location;
- // PractitionerRole.organization
+ // PractitionerRole.organization (token)
 practitionerRole.organization;
- // PractitionerRole.practitioner
+ // PractitionerRole.practitioner (token)
 practitionerRole.practitioner;
- // PractitionerRole.code
+ // PractitionerRole.code (date)
 practitionerRole.code;
- // PractitionerRole.healthcareService
+ // PractitionerRole.healthcareService (date)
 practitionerRole.healthcareService;
- // PractitionerRole.specialty
+ // PractitionerRole.specialty (date)
 practitionerRole.specialty;
   final procedure = Procedure.empty();
- // Procedure.code
+ // Procedure.code (token)
 procedure.code;
- // Procedure.performed
-procedure.performed;
- // Procedure.identifier
+ // Procedure.performed (token)
+procedure.performedX;
+ // Procedure.identifier (token)
 procedure.identifier;
- // Procedure.subject.where(resolve() is Patient)
+ // Procedure.subject.where(resolve() is Patient) (token)
 procedure.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Procedure.encounter
+ // Procedure.encounter (token)
 procedure.encounter;
- // Procedure.basedOn
+ // Procedure.basedOn (token)
 procedure.basedOn;
- // Procedure.category
+ // Procedure.category (string)
 procedure.category;
- // Procedure.instantiatesCanonical
+ // Procedure.instantiatesCanonical (string)
 procedure.instantiatesCanonical;
- // Procedure.instantiatesUri
+ // Procedure.instantiatesUri (token)
 procedure.instantiatesUri;
- // Procedure.location
+ // Procedure.location (token)
 procedure.location;
- // Procedure.partOf
+ // Procedure.partOf (token)
 procedure.partOf;
- // Procedure.performer.actor
+ // Procedure.performer.actor (token)
 procedure.performer?.map((e) => e.actor);
- // Procedure.reasonCode
+ // Procedure.reasonCode (reference)
 procedure.reasonCode;
- // Procedure.reasonReference
+ // Procedure.reasonReference (string)
 procedure.reasonReference;
- // Procedure.status
+ // Procedure.status (string)
 procedure.status;
- // Procedure.subject
+ // Procedure.subject (token)
 procedure.subject;
   final provenance = Provenance.empty();
- // Provenance.agent.who
+ // Provenance.agent.who (token)
 provenance.agent.map((e) => e.who);
- // Provenance.agent.role
-provenance.agent.map((e) => e.role);
- // Provenance.agent.type
+ // Provenance.agent.role (reference)
+provenance.agent.expand((e) => e.role ?? <CodeableConcept>[]);
+ // Provenance.agent.type (string)
 provenance.agent.map((e) => e.type);
- // Provenance.entity.what
+ // Provenance.entity.what (reference)
 provenance.entity?.map((e) => e.what);
- // Provenance.location
+ // Provenance.location (token)
 provenance.location;
- // Provenance.target.where(resolve() is Patient)
+ // Provenance.target.where(resolve() is Patient) (token)
 provenance.target.where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Provenance.recorded
+ // Provenance.recorded (token)
 provenance.recorded;
- // Provenance.signature.type
-provenance.signature?.map((e) => e.type);
- // Provenance.target
+ // Provenance.signature.type (token)
+provenance.signature?.expand((e) => e.type ?? <Coding>[]);
+ // Provenance.target (token)
 provenance.target;
   final questionnaire = Questionnaire.empty();
- // Questionnaire.item.code
-questionnaire.item?.map((e) => e.code);
- // Questionnaire.useContext.code
+ // Questionnaire.item.code (string)
+questionnaire.item?.expand((e) => e.code ?? <Coding>[]);
+ // Questionnaire.useContext.code (string)
 questionnaire.useContext?.map((e) => e.code);
- // Questionnaire.date
+ // Questionnaire.date (string)
 questionnaire.date;
- // Questionnaire.item.definition
+ // Questionnaire.item.definition (string)
 questionnaire.item?.map((e) => e.definition);
- // Questionnaire.description
+ // Questionnaire.description (token)
 questionnaire.description;
- // Questionnaire.effectivePeriod
+ // Questionnaire.effectivePeriod (token)
 questionnaire.effectivePeriod;
- // Questionnaire.identifier
+ // Questionnaire.identifier (token)
 questionnaire.identifier;
- // Questionnaire.jurisdiction
+ // Questionnaire.jurisdiction (token)
 questionnaire.jurisdiction;
- // Questionnaire.name
+ // Questionnaire.name (token)
 questionnaire.name;
- // Questionnaire.publisher
+ // Questionnaire.publisher (date)
 questionnaire.publisher;
- // Questionnaire.status
+ // Questionnaire.status (token)
 questionnaire.status;
- // Questionnaire.subjectType
+ // Questionnaire.subjectType (token)
 questionnaire.subjectType;
- // Questionnaire.title
+ // Questionnaire.title (reference)
 questionnaire.title;
- // Questionnaire.url
+ // Questionnaire.url (reference)
 questionnaire.url;
- // Questionnaire.version
+ // Questionnaire.version (reference)
 questionnaire.version;
- // Questionnaire.useContext
+ // Questionnaire.useContext (token)
 questionnaire.useContext;
- // Questionnaire.useContext
+ // Questionnaire.useContext (date)
 questionnaire.useContext;
   final questionnaireResponse = QuestionnaireResponse.empty();
- // QuestionnaireResponse.author
+ // QuestionnaireResponse.author (string)
 questionnaireResponse.author;
- // QuestionnaireResponse.authored
+ // QuestionnaireResponse.authored (token)
 questionnaireResponse.authored;
- // QuestionnaireResponse.basedOn
+ // QuestionnaireResponse.basedOn (token)
 questionnaireResponse.basedOn;
- // QuestionnaireResponse.encounter
+ // QuestionnaireResponse.encounter (reference)
 questionnaireResponse.encounter;
- // QuestionnaireResponse.identifier
+ // QuestionnaireResponse.identifier (reference)
 questionnaireResponse.identifier;
- // QuestionnaireResponse.partOf
+ // QuestionnaireResponse.partOf (reference)
 questionnaireResponse.partOf;
- // QuestionnaireResponse.subject.where(resolve() is Patient)
+ // QuestionnaireResponse.subject.where(resolve() is Patient) (token)
 questionnaireResponse.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // QuestionnaireResponse.questionnaire
+ // QuestionnaireResponse.questionnaire (token)
 questionnaireResponse.questionnaire;
- // QuestionnaireResponse.source
+ // QuestionnaireResponse.source (reference)
 questionnaireResponse.source;
- // QuestionnaireResponse.status
+ // QuestionnaireResponse.status (string)
 questionnaireResponse.status;
- // QuestionnaireResponse.subject
+ // QuestionnaireResponse.subject (reference)
 questionnaireResponse.subject;
   final regulatedAuthorization = RegulatedAuthorization.empty();
- // RegulatedAuthorization.case.identifier
+ // RegulatedAuthorization.case.identifier (reference)
 regulatedAuthorization.case_?.identifier;
- // RegulatedAuthorization.case.type
+ // RegulatedAuthorization.case.type (reference)
 regulatedAuthorization.case_?.type;
- // RegulatedAuthorization.holder
+ // RegulatedAuthorization.holder (reference)
 regulatedAuthorization.holder;
- // RegulatedAuthorization.identifier
+ // RegulatedAuthorization.identifier (reference)
 regulatedAuthorization.identifier;
- // RegulatedAuthorization.region
+ // RegulatedAuthorization.region (token)
 regulatedAuthorization.region;
- // RegulatedAuthorization.status
+ // RegulatedAuthorization.status (date)
 regulatedAuthorization.status;
- // RegulatedAuthorization.subject
+ // RegulatedAuthorization.subject (reference)
 regulatedAuthorization.subject;
   final relatedPerson = RelatedPerson.empty();
- // RelatedPerson.address
+ // RelatedPerson.address (reference)
 relatedPerson.address;
- // RelatedPerson.address.city
+ // RelatedPerson.address.city (reference)
 relatedPerson.address?.map((e) => e.city);
- // RelatedPerson.address.country
+ // RelatedPerson.address.country (reference)
 relatedPerson.address?.map((e) => e.country);
- // RelatedPerson.address.postalCode
+ // RelatedPerson.address.postalCode (string)
 relatedPerson.address?.map((e) => e.postalCode);
- // RelatedPerson.address.state
+ // RelatedPerson.address.state (date)
 relatedPerson.address?.map((e) => e.state);
- // RelatedPerson.address.use
+ // RelatedPerson.address.use (token)
 relatedPerson.address?.map((e) => e.use);
- // RelatedPerson.birthDate
+ // RelatedPerson.birthDate (token)
 relatedPerson.birthDate;
- // RelatedPerson.telecom.where(system='email')
-relatedPerson.telecom?.map((e) => e.where(system='email'));
- // RelatedPerson.gender
+ // RelatedPerson.telecom.where(system='email') (string)
+relatedPerson.telecom?.where((e) => e.system?.value.toString() == 'email');
+ // RelatedPerson.gender (reference)
 relatedPerson.gender;
- // RelatedPerson.telecom.where(system='phone')
-relatedPerson.telecom?.map((e) => e.where(system='phone'));
- // RelatedPerson.name
+ // RelatedPerson.telecom.where(system='phone') (string)
+relatedPerson.telecom?.where((e) => e.system?.value.toString() == 'phone');
+ // RelatedPerson.name (token)
 relatedPerson.name;
- // RelatedPerson.telecom
+ // RelatedPerson.telecom (reference)
 relatedPerson.telecom;
- // RelatedPerson.active
+ // RelatedPerson.active (string)
 relatedPerson.active;
- // RelatedPerson.identifier
+ // RelatedPerson.identifier (token)
 relatedPerson.identifier;
- // RelatedPerson.name
+ // RelatedPerson.name (token)
 relatedPerson.name;
- // RelatedPerson.patient
+ // RelatedPerson.patient (uri)
 relatedPerson.patient;
- // RelatedPerson.relationship
+ // RelatedPerson.relationship (token)
 relatedPerson.relationship;
   final requestGroup = RequestGroup.empty();
- // RequestGroup.author
+ // RequestGroup.author (composite)
 requestGroup.author;
- // RequestGroup.authoredOn
+ // RequestGroup.authoredOn (composite)
 requestGroup.authoredOn;
- // RequestGroup.code
+ // RequestGroup.code (token)
 requestGroup.code;
- // RequestGroup.encounter
+ // RequestGroup.encounter (token)
 requestGroup.encounter;
- // RequestGroup.groupIdentifier
+ // RequestGroup.groupIdentifier (token)
 requestGroup.groupIdentifier;
- // RequestGroup.identifier
+ // RequestGroup.identifier (string)
 requestGroup.identifier;
- // RequestGroup.instantiatesCanonical
+ // RequestGroup.instantiatesCanonical (token)
 requestGroup.instantiatesCanonical;
- // RequestGroup.instantiatesUri
+ // RequestGroup.instantiatesUri (date)
 requestGroup.instantiatesUri;
- // RequestGroup.intent
+ // RequestGroup.intent (reference)
 requestGroup.intent;
- // RequestGroup.action.participant
-requestGroup.action?.map((e) => e.participant);
- // RequestGroup.subject.where(resolve() is Patient)
+ // RequestGroup.action.participant (token)
+requestGroup.action?.expand((e) => e.participant ?? <Reference>[]);
+ // RequestGroup.subject.where(resolve() is Patient) (reference)
 requestGroup.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // RequestGroup.priority
+ // RequestGroup.priority (reference)
 requestGroup.priority;
- // RequestGroup.status
+ // RequestGroup.status (reference)
 requestGroup.status;
- // RequestGroup.subject
+ // RequestGroup.subject (token)
 requestGroup.subject;
   final researchDefinition = ResearchDefinition.empty();
- // ResearchDefinition.relatedArtifact.where(type='composed-of').resource
+ // ResearchDefinition.relatedArtifact.where(type='composed-of').resource (reference)
 researchDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // ResearchDefinition.useContext.code
+ // ResearchDefinition.useContext.code (token)
 researchDefinition.useContext?.map((e) => e.code);
- // ResearchDefinition.date
+ // ResearchDefinition.date (reference)
 researchDefinition.date;
- // ResearchDefinition.relatedArtifact.where(type='depends-on').resource
+ // ResearchDefinition.relatedArtifact.where(type='depends-on').resource (token)
 researchDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // ResearchDefinition.library
+ // ResearchDefinition.library (reference)
 researchDefinition.library_;
- // ResearchDefinition.relatedArtifact.where(type='derived-from').resource
+ // ResearchDefinition.relatedArtifact.where(type='derived-from').resource (uri)
 researchDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // ResearchDefinition.description
+ // ResearchDefinition.description (reference)
 researchDefinition.description;
- // ResearchDefinition.effectivePeriod
+ // ResearchDefinition.effectivePeriod (reference)
 researchDefinition.effectivePeriod;
- // ResearchDefinition.identifier
+ // ResearchDefinition.identifier (reference)
 researchDefinition.identifier;
- // ResearchDefinition.jurisdiction
+ // ResearchDefinition.jurisdiction (token)
 researchDefinition.jurisdiction;
- // ResearchDefinition.name
+ // ResearchDefinition.name (reference)
 researchDefinition.name;
- // ResearchDefinition.relatedArtifact.where(type='predecessor').resource
+ // ResearchDefinition.relatedArtifact.where(type='predecessor').resource (token)
 researchDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // ResearchDefinition.publisher
+ // ResearchDefinition.publisher (reference)
 researchDefinition.publisher;
- // ResearchDefinition.status
+ // ResearchDefinition.status (reference)
 researchDefinition.status;
- // ResearchDefinition.relatedArtifact.where(type='successor').resource
+ // ResearchDefinition.relatedArtifact.where(type='successor').resource (token)
 researchDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // ResearchDefinition.title
+ // ResearchDefinition.title (token)
 researchDefinition.title;
- // ResearchDefinition.topic
+ // ResearchDefinition.topic (reference)
 researchDefinition.topic;
- // ResearchDefinition.url
+ // ResearchDefinition.url (reference)
 researchDefinition.url;
- // ResearchDefinition.version
+ // ResearchDefinition.version (reference)
 researchDefinition.version;
- // ResearchDefinition.useContext
+ // ResearchDefinition.useContext (date)
 researchDefinition.useContext;
- // ResearchDefinition.useContext
+ // ResearchDefinition.useContext (token)
 researchDefinition.useContext;
   final researchElementDefinition = ResearchElementDefinition.empty();
- // ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource
+ // ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource (reference)
 researchElementDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'composed-of').map((e) => e.resource);
- // ResearchElementDefinition.useContext.code
+ // ResearchElementDefinition.useContext.code (token)
 researchElementDefinition.useContext?.map((e) => e.code);
- // ResearchElementDefinition.date
+ // ResearchElementDefinition.date (token)
 researchElementDefinition.date;
- // ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource
+ // ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource (date)
 researchElementDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'depends-on').map((e) => e.resource);
- // ResearchElementDefinition.library
+ // ResearchElementDefinition.library (uri)
 researchElementDefinition.library_;
- // ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource
+ // ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource (string)
 researchElementDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'derived-from').map((e) => e.resource);
- // ResearchElementDefinition.description
+ // ResearchElementDefinition.description (date)
 researchElementDefinition.description;
- // ResearchElementDefinition.effectivePeriod
+ // ResearchElementDefinition.effectivePeriod (token)
 researchElementDefinition.effectivePeriod;
- // ResearchElementDefinition.identifier
+ // ResearchElementDefinition.identifier (token)
 researchElementDefinition.identifier;
- // ResearchElementDefinition.jurisdiction
+ // ResearchElementDefinition.jurisdiction (string)
 researchElementDefinition.jurisdiction;
- // ResearchElementDefinition.name
+ // ResearchElementDefinition.name (string)
 researchElementDefinition.name;
- // ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource
+ // ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource (token)
 researchElementDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'predecessor').map((e) => e.resource);
- // ResearchElementDefinition.publisher
+ // ResearchElementDefinition.publisher (token)
 researchElementDefinition.publisher;
- // ResearchElementDefinition.status
+ // ResearchElementDefinition.status (string)
 researchElementDefinition.status;
- // ResearchElementDefinition.relatedArtifact.where(type='successor').resource
+ // ResearchElementDefinition.relatedArtifact.where(type='successor').resource (uri)
 researchElementDefinition.relatedArtifact?.where((e) => e.type.value.toString() == 'successor').map((e) => e.resource);
- // ResearchElementDefinition.title
+ // ResearchElementDefinition.title (token)
 researchElementDefinition.title;
- // ResearchElementDefinition.topic
+ // ResearchElementDefinition.topic (composite)
 researchElementDefinition.topic;
- // ResearchElementDefinition.url
+ // ResearchElementDefinition.url (composite)
 researchElementDefinition.url;
- // ResearchElementDefinition.version
+ // ResearchElementDefinition.version (reference)
 researchElementDefinition.version;
- // ResearchElementDefinition.useContext
+ // ResearchElementDefinition.useContext (date)
 researchElementDefinition.useContext;
- // ResearchElementDefinition.useContext
+ // ResearchElementDefinition.useContext (reference)
 researchElementDefinition.useContext;
   final researchStudy = ResearchStudy.empty();
- // ResearchStudy.category
+ // ResearchStudy.category (reference)
 researchStudy.category;
- // ResearchStudy.period
+ // ResearchStudy.period (token)
 researchStudy.period;
- // ResearchStudy.focus
+ // ResearchStudy.focus (reference)
 researchStudy.focus;
- // ResearchStudy.identifier
+ // ResearchStudy.identifier (reference)
 researchStudy.identifier;
- // ResearchStudy.keyword
+ // ResearchStudy.keyword (reference)
 researchStudy.keyword;
- // ResearchStudy.location
+ // ResearchStudy.location (reference)
 researchStudy.location;
- // ResearchStudy.partOf
+ // ResearchStudy.partOf (token)
 researchStudy.partOf;
- // ResearchStudy.principalInvestigator
+ // ResearchStudy.principalInvestigator (reference)
 researchStudy.principalInvestigator;
- // ResearchStudy.protocol
+ // ResearchStudy.protocol (token)
 researchStudy.protocol;
- // ResearchStudy.site
+ // ResearchStudy.site (token)
 researchStudy.site;
- // ResearchStudy.sponsor
+ // ResearchStudy.sponsor (reference)
 researchStudy.sponsor;
- // ResearchStudy.status
+ // ResearchStudy.status (token)
 researchStudy.status;
- // ResearchStudy.title
+ // ResearchStudy.title (token)
 researchStudy.title;
   final researchSubject = ResearchSubject.empty();
- // ResearchSubject.period
+ // ResearchSubject.period (token)
 researchSubject.period;
- // ResearchSubject.identifier
+ // ResearchSubject.identifier (reference)
 researchSubject.identifier;
- // ResearchSubject.individual
+ // ResearchSubject.individual (token)
 researchSubject.individual;
- // ResearchSubject.individual
+ // ResearchSubject.individual (token)
 researchSubject.individual;
- // ResearchSubject.status
+ // ResearchSubject.status (string)
 researchSubject.status;
- // ResearchSubject.study
+ // ResearchSubject.study (reference)
 researchSubject.study;
   final riskAssessment = RiskAssessment.empty();
- // RiskAssessment.identifier
+ // RiskAssessment.identifier (token)
 riskAssessment.identifier;
- // RiskAssessment.subject.where(resolve() is Patient)
+ // RiskAssessment.subject.where(resolve() is Patient) (reference)
 riskAssessment.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // RiskAssessment.encounter
+ // RiskAssessment.encounter (date)
 riskAssessment.encounter;
- // RiskAssessment.condition
+ // RiskAssessment.condition (token)
 riskAssessment.condition;
- // RiskAssessment.method
+ // RiskAssessment.method (reference)
 riskAssessment.method;
- // RiskAssessment.performer
+ // RiskAssessment.performer (token)
 riskAssessment.performer;
- // RiskAssessment.prediction.probability
-riskAssessment.prediction?.map((e) => e.probability);
- // RiskAssessment.prediction.qualitativeRisk
+ // RiskAssessment.prediction.probability (token)
+riskAssessment.prediction?.map((e) => e.probabilityX);
+ // RiskAssessment.prediction.qualitativeRisk (reference)
 riskAssessment.prediction?.map((e) => e.qualitativeRisk);
- // RiskAssessment.subject
+ // RiskAssessment.subject (uri)
 riskAssessment.subject;
   final schedule = Schedule.empty();
- // Schedule.active
+ // Schedule.active (token)
 schedule.active;
- // Schedule.actor
+ // Schedule.actor (reference)
 schedule.actor;
- // Schedule.planningHorizon
+ // Schedule.planningHorizon (reference)
 schedule.planningHorizon;
- // Schedule.identifier
+ // Schedule.identifier (token)
 schedule.identifier;
- // Schedule.serviceCategory
+ // Schedule.serviceCategory (token)
 schedule.serviceCategory;
- // Schedule.serviceType
+ // Schedule.serviceType (reference)
 schedule.serviceType;
- // Schedule.specialty
+ // Schedule.specialty (reference)
 schedule.specialty;
   final searchParameter = SearchParameter.empty();
- // SearchParameter.useContext.code
+ // SearchParameter.useContext.code (token)
 searchParameter.useContext?.map((e) => e.code);
- // SearchParameter.date
+ // SearchParameter.date (date)
 searchParameter.date;
- // SearchParameter.description
+ // SearchParameter.description (reference)
 searchParameter.description;
- // SearchParameter.jurisdiction
+ // SearchParameter.jurisdiction (reference)
 searchParameter.jurisdiction;
- // SearchParameter.name
+ // SearchParameter.name (reference)
 searchParameter.name;
- // SearchParameter.publisher
+ // SearchParameter.publisher (string)
 searchParameter.publisher;
- // SearchParameter.status
+ // SearchParameter.status (date)
 searchParameter.status;
- // SearchParameter.url
+ // SearchParameter.url (token)
 searchParameter.url;
- // SearchParameter.version
+ // SearchParameter.version (token)
 searchParameter.version;
- // SearchParameter.useContext
+ // SearchParameter.useContext (string)
 searchParameter.useContext;
- // SearchParameter.useContext
+ // SearchParameter.useContext (reference)
 searchParameter.useContext;
- // SearchParameter.base
+ // SearchParameter.base (string)
 searchParameter.base;
- // SearchParameter.code
+ // SearchParameter.code (token)
 searchParameter.code;
- // SearchParameter.component.definition
+ // SearchParameter.component.definition (reference)
 searchParameter.component?.map((e) => e.definition);
- // SearchParameter.derivedFrom
+ // SearchParameter.derivedFrom (string)
 searchParameter.derivedFrom;
- // SearchParameter.target
+ // SearchParameter.target (token)
 searchParameter.target;
- // SearchParameter.type
+ // SearchParameter.type (uri)
 searchParameter.type;
   final serviceRequest = ServiceRequest.empty();
- // ServiceRequest.code
+ // ServiceRequest.code (token)
 serviceRequest.code;
- // ServiceRequest.identifier
+ // ServiceRequest.identifier (composite)
 serviceRequest.identifier;
- // ServiceRequest.subject.where(resolve() is Patient)
+ // ServiceRequest.subject.where(resolve() is Patient) (composite)
 serviceRequest.subject.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // ServiceRequest.encounter
+ // ServiceRequest.encounter (reference)
 serviceRequest.encounter;
- // ServiceRequest.authoredOn
+ // ServiceRequest.authoredOn (token)
 serviceRequest.authoredOn;
- // ServiceRequest.basedOn
+ // ServiceRequest.basedOn (date)
 serviceRequest.basedOn;
- // ServiceRequest.bodySite
+ // ServiceRequest.bodySite (reference)
 serviceRequest.bodySite;
- // ServiceRequest.category
+ // ServiceRequest.category (reference)
 serviceRequest.category;
- // ServiceRequest.instantiatesCanonical
+ // ServiceRequest.instantiatesCanonical (reference)
 serviceRequest.instantiatesCanonical;
- // ServiceRequest.instantiatesUri
+ // ServiceRequest.instantiatesUri (string)
 serviceRequest.instantiatesUri;
- // ServiceRequest.intent
+ // ServiceRequest.intent (date)
 serviceRequest.intent;
- // ServiceRequest.occurrence
-serviceRequest.occurrence;
- // ServiceRequest.performer
+ // ServiceRequest.occurrence (token)
+serviceRequest.occurrenceX;
+ // ServiceRequest.performer (token)
 serviceRequest.performer;
- // ServiceRequest.performerType
+ // ServiceRequest.performerType (string)
 serviceRequest.performerType;
- // ServiceRequest.priority
+ // ServiceRequest.priority (reference)
 serviceRequest.priority;
- // ServiceRequest.replaces
+ // ServiceRequest.replaces (string)
 serviceRequest.replaces;
- // ServiceRequest.requester
+ // ServiceRequest.requester (token)
 serviceRequest.requester;
- // ServiceRequest.requisition
+ // ServiceRequest.requisition (reference)
 serviceRequest.requisition;
- // ServiceRequest.specimen
+ // ServiceRequest.specimen (string)
 serviceRequest.specimen;
- // ServiceRequest.status
+ // ServiceRequest.status (token)
 serviceRequest.status;
- // ServiceRequest.subject
+ // ServiceRequest.subject (uri)
 serviceRequest.subject;
   final slot = Slot.empty();
- // Slot.appointmentType
+ // Slot.appointmentType (token)
 slot.appointmentType;
- // Slot.identifier
+ // Slot.identifier (composite)
 slot.identifier;
- // Slot.schedule
+ // Slot.schedule (composite)
 slot.schedule;
- // Slot.serviceCategory
+ // Slot.serviceCategory (token)
 slot.serviceCategory;
- // Slot.serviceType
+ // Slot.serviceType (date)
 slot.serviceType;
- // Slot.specialty
+ // Slot.specialty (token)
 slot.specialty;
- // Slot.start
+ // Slot.start (token)
 slot.start;
- // Slot.status
+ // Slot.status (token)
 slot.status;
   final specimen = Specimen.empty();
- // Specimen.accessionIdentifier
+ // Specimen.accessionIdentifier (token)
 specimen.accessionIdentifier;
- // Specimen.collection.bodySite
+ // Specimen.collection.bodySite (reference)
 specimen.collection?.bodySite;
- // Specimen.collection.collected
-specimen.collection?.collected;
- // Specimen.collection.collector
+ // Specimen.collection.collected (reference)
+specimen.collection?.collectedX;
+ // Specimen.collection.collector (reference)
 specimen.collection?.collector;
- // Specimen.container.type
+ // Specimen.container.type (reference)
 specimen.container?.map((e) => e.type);
- // Specimen.container.identifier
-specimen.container?.map((e) => e.identifier);
- // Specimen.identifier
+ // Specimen.container.identifier (reference)
+specimen.container?.expand((e) => e.identifier ?? <Identifier>[]);
+ // Specimen.identifier (token)
 specimen.identifier;
- // Specimen.parent
+ // Specimen.parent (string)
 specimen.parent;
- // Specimen.subject.where(resolve() is Patient)
+ // Specimen.subject.where(resolve() is Patient) (date)
 specimen.subject?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Specimen.status
+ // Specimen.status (token)
 specimen.status;
- // Specimen.subject
+ // Specimen.subject (reference)
 specimen.subject;
- // Specimen.type
+ // Specimen.type (reference)
 specimen.type;
   final specimenDefinition = SpecimenDefinition.empty();
- // SpecimenDefinition.typeTested.container.type
+ // SpecimenDefinition.typeTested.container.type (token)
 specimenDefinition.typeTested?.map((e) => e.container).map((e) => e?.type);
- // SpecimenDefinition.identifier
+ // SpecimenDefinition.identifier (reference)
 specimenDefinition.identifier;
- // SpecimenDefinition.typeCollected
+ // SpecimenDefinition.typeCollected (reference)
 specimenDefinition.typeCollected;
   final structureDefinition = StructureDefinition.empty();
- // StructureDefinition.useContext.code
+ // StructureDefinition.useContext.code (token)
 structureDefinition.useContext?.map((e) => e.code);
- // StructureDefinition.date
+ // StructureDefinition.date (reference)
 structureDefinition.date;
- // StructureDefinition.description
+ // StructureDefinition.description (number)
 structureDefinition.description;
- // StructureDefinition.jurisdiction
+ // StructureDefinition.jurisdiction (token)
 structureDefinition.jurisdiction;
- // StructureDefinition.name
+ // StructureDefinition.name (reference)
 structureDefinition.name;
- // StructureDefinition.publisher
+ // StructureDefinition.publisher (token)
 structureDefinition.publisher;
- // StructureDefinition.status
+ // StructureDefinition.status (reference)
 structureDefinition.status;
- // StructureDefinition.title
+ // StructureDefinition.title (date)
 structureDefinition.title;
- // StructureDefinition.url
+ // StructureDefinition.url (token)
 structureDefinition.url;
- // StructureDefinition.version
+ // StructureDefinition.version (token)
 structureDefinition.version;
- // StructureDefinition.useContext
+ // StructureDefinition.useContext (token)
 structureDefinition.useContext;
- // StructureDefinition.useContext
+ // StructureDefinition.useContext (token)
 structureDefinition.useContext;
- // StructureDefinition.identifier
+ // StructureDefinition.identifier (token)
 structureDefinition.identifier;
- // StructureDefinition.abstract
+ // StructureDefinition.abstract (token)
 structureDefinition.abstract_;
- // StructureDefinition.baseDefinition
+ // StructureDefinition.baseDefinition (reference)
 structureDefinition.baseDefinition;
- // StructureDefinition.snapshot.element.base.path
+ // StructureDefinition.snapshot.element.base.path (reference)
 structureDefinition.snapshot?.element.map((e) => e.base).map((e) => e?.path);
- // StructureDefinition.differential.element.base.path
+ // StructureDefinition.differential.element.base.path (token)
 structureDefinition.differential?.element.map((e) => e.base).map((e) => e?.path);
- // StructureDefinition.derivation
+ // StructureDefinition.derivation (token)
 structureDefinition.derivation;
- // StructureDefinition.experimental
+ // StructureDefinition.experimental (date)
 structureDefinition.experimental;
- // StructureDefinition.context.type
+ // StructureDefinition.context.type (reference)
 structureDefinition.context?.map((e) => e.type);
- // StructureDefinition.keyword
+ // StructureDefinition.keyword (token)
 structureDefinition.keyword;
- // StructureDefinition.kind
+ // StructureDefinition.kind (token)
 structureDefinition.kind;
- // StructureDefinition.snapshot.element.path
+ // StructureDefinition.snapshot.element.path (reference)
 structureDefinition.snapshot?.element.map((e) => e.path);
- // StructureDefinition.differential.element.path
+ // StructureDefinition.differential.element.path (uri)
 structureDefinition.differential?.element.map((e) => e.path);
- // StructureDefinition.type
+ // StructureDefinition.type (token)
 structureDefinition.type;
- // StructureDefinition.snapshot.element.binding.valueSet
+ // StructureDefinition.snapshot.element.binding.valueSet (date)
 structureDefinition.snapshot?.element.map((e) => e.binding).map((e) => e?.valueSet);
   final structureMap = StructureMap.empty();
- // StructureMap.useContext.code
+ // StructureMap.useContext.code (reference)
 structureMap.useContext?.map((e) => e.code);
- // StructureMap.date
+ // StructureMap.date (token)
 structureMap.date;
- // StructureMap.description
+ // StructureMap.description (token)
 structureMap.description;
- // StructureMap.jurisdiction
+ // StructureMap.jurisdiction (reference)
 structureMap.jurisdiction;
- // StructureMap.name
+ // StructureMap.name (reference)
 structureMap.name;
- // StructureMap.publisher
+ // StructureMap.publisher (token)
 structureMap.publisher;
- // StructureMap.status
+ // StructureMap.status (reference)
 structureMap.status;
- // StructureMap.title
+ // StructureMap.title (token)
 structureMap.title;
- // StructureMap.url
+ // StructureMap.url (reference)
 structureMap.url;
- // StructureMap.version
+ // StructureMap.version (token)
 structureMap.version;
- // StructureMap.useContext
+ // StructureMap.useContext (token)
 structureMap.useContext;
- // StructureMap.useContext
+ // StructureMap.useContext (reference)
 structureMap.useContext;
- // StructureMap.identifier
+ // StructureMap.identifier (token)
 structureMap.identifier;
   final subscription = Subscription.empty();
- // Subscription.contact
+ // Subscription.contact (token)
 subscription.contact;
- // Subscription.criteria
+ // Subscription.criteria (token)
 subscription.criteria;
- // Subscription.channel.payload
+ // Subscription.channel.payload (date)
 subscription.channel.payload;
- // Subscription.status
+ // Subscription.status (token)
 subscription.status;
- // Subscription.channel.type
+ // Subscription.channel.type (token)
 subscription.channel.type;
- // Subscription.channel.endpoint
+ // Subscription.channel.endpoint (token)
 subscription.channel.endpoint;
   final subscriptionStatus = SubscriptionStatus.empty();
   final subscriptionTopic = SubscriptionTopic.empty();
- // SubscriptionTopic.date
+ // SubscriptionTopic.date (date)
 subscriptionTopic.date;
- // SubscriptionTopic.url
+ // SubscriptionTopic.url (reference)
 subscriptionTopic.url;
- // SubscriptionTopic.derivedFrom
+ // SubscriptionTopic.derivedFrom (token)
 subscriptionTopic.derivedFrom;
- // SubscriptionTopic.identifier
+ // SubscriptionTopic.identifier (token)
 subscriptionTopic.identifier;
- // SubscriptionTopic.resourceTrigger.resource
+ // SubscriptionTopic.resourceTrigger.resource (token)
 subscriptionTopic.resourceTrigger?.map((e) => e.resource);
- // SubscriptionTopic.status
+ // SubscriptionTopic.status (reference)
 subscriptionTopic.status;
- // SubscriptionTopic.title
+ // SubscriptionTopic.title (reference)
 subscriptionTopic.title;
- // SubscriptionTopic.resourceTrigger.description
+ // SubscriptionTopic.resourceTrigger.description (token)
 subscriptionTopic.resourceTrigger?.map((e) => e.description);
- // SubscriptionTopic.url
+ // SubscriptionTopic.url (reference)
 subscriptionTopic.url;
- // SubscriptionTopic.version
+ // SubscriptionTopic.version (token)
 subscriptionTopic.version;
   final substance = Substance.empty();
- // Substance.category
+ // Substance.category (token)
 substance.category;
- // Substance.code
+ // Substance.code (token)
 substance.code;
- // Substance.instance.identifier
+ // Substance.instance.identifier (token)
 substance.instance?.map((e) => e.identifier);
- // Substance.instance.expiry
+ // Substance.instance.expiry (token)
 substance.instance?.map((e) => e.expiry);
- // Substance.identifier
+ // Substance.identifier (reference)
 substance.identifier;
- // Substance.instance.quantity
+ // Substance.instance.quantity (token)
 substance.instance?.map((e) => e.quantity);
- // Substance.status
+ // Substance.status (token)
 substance.status;
   final substanceDefinition = SubstanceDefinition.empty();
- // SubstanceDefinition.classification
+ // SubstanceDefinition.classification (token)
 substanceDefinition.classification;
- // SubstanceDefinition.code.code
+ // SubstanceDefinition.code.code (token)
 substanceDefinition.code?.map((e) => e.code);
- // SubstanceDefinition.domain
+ // SubstanceDefinition.domain (token)
 substanceDefinition.domain;
- // SubstanceDefinition.identifier
+ // SubstanceDefinition.identifier (token)
 substanceDefinition.identifier;
- // SubstanceDefinition.name.name
+ // SubstanceDefinition.name.name (token)
 substanceDefinition.name?.map((e) => e.name);
   final supplyDelivery = SupplyDelivery.empty();
- // SupplyDelivery.identifier
+ // SupplyDelivery.identifier (token)
 supplyDelivery.identifier;
- // SupplyDelivery.patient
+ // SupplyDelivery.patient (token)
 supplyDelivery.patient;
- // SupplyDelivery.receiver
+ // SupplyDelivery.receiver (uri)
 supplyDelivery.receiver;
- // SupplyDelivery.status
+ // SupplyDelivery.status (reference)
 supplyDelivery.status;
- // SupplyDelivery.supplier
+ // SupplyDelivery.supplier (token)
 supplyDelivery.supplier;
   final supplyRequest = SupplyRequest.empty();
- // SupplyRequest.authoredOn
+ // SupplyRequest.authoredOn (string)
 supplyRequest.authoredOn;
- // SupplyRequest.identifier
+ // SupplyRequest.identifier (token)
 supplyRequest.identifier;
- // SupplyRequest.category
+ // SupplyRequest.category (token)
 supplyRequest.category;
- // SupplyRequest.requester
+ // SupplyRequest.requester (token)
 supplyRequest.requester;
- // SupplyRequest.status
+ // SupplyRequest.status (uri)
 supplyRequest.status;
- // SupplyRequest.deliverTo
+ // SupplyRequest.deliverTo (date)
 supplyRequest.deliverTo;
- // SupplyRequest.supplier
+ // SupplyRequest.supplier (uri)
 supplyRequest.supplier;
   final task = Task.empty();
- // Task.authoredOn
+ // Task.authoredOn (uri)
 task.authoredOn;
- // Task.basedOn
+ // Task.basedOn (token)
 task.basedOn;
- // Task.businessStatus
+ // Task.businessStatus (uri)
 task.businessStatus;
- // Task.code
+ // Task.code (token)
 task.code;
- // Task.encounter
+ // Task.encounter (string)
 task.encounter;
- // Task.focus
+ // Task.focus (string)
 task.focus;
- // Task.groupIdentifier
+ // Task.groupIdentifier (uri)
 task.groupIdentifier;
- // Task.identifier
+ // Task.identifier (token)
 task.identifier;
- // Task.intent
+ // Task.intent (token)
 task.intent;
- // Task.lastModified
+ // Task.lastModified (token)
 task.lastModified;
- // Task.owner
+ // Task.owner (token)
 task.owner;
- // Task.partOf
+ // Task.partOf (date)
 task.partOf;
- // Task.for.where(resolve() is Patient)
+ // Task.for.where(resolve() is Patient) (token)
 task.for_?.makeIterable<Reference>().where((e) {
     final ref = e.reference?.toString().split('/') ?? [];
     return ref.length > 1 && ref[ref.length - 2] == 'Patient';
   });
- // Task.performerType
+ // Task.performerType (quantity)
 task.performerType;
- // Task.executionPeriod
+ // Task.executionPeriod (token)
 task.executionPeriod;
- // Task.priority
+ // Task.priority (token)
 task.priority;
- // Task.requester
+ // Task.requester (token)
 task.requester;
- // Task.status
+ // Task.status (token)
 task.status;
- // Task.for
+ // Task.for (token)
 task.for_;
   final terminologyCapabilities = TerminologyCapabilities.empty();
- // TerminologyCapabilities.useContext.code
+ // TerminologyCapabilities.useContext.code (string)
 terminologyCapabilities.useContext?.map((e) => e.code);
- // TerminologyCapabilities.date
+ // TerminologyCapabilities.date (reference)
 terminologyCapabilities.date;
- // TerminologyCapabilities.description
+ // TerminologyCapabilities.description (token)
 terminologyCapabilities.description;
- // TerminologyCapabilities.jurisdiction
+ // TerminologyCapabilities.jurisdiction (reference)
 terminologyCapabilities.jurisdiction;
- // TerminologyCapabilities.name
+ // TerminologyCapabilities.name (token)
 terminologyCapabilities.name;
- // TerminologyCapabilities.publisher
+ // TerminologyCapabilities.publisher (reference)
 terminologyCapabilities.publisher;
- // TerminologyCapabilities.status
+ // TerminologyCapabilities.status (token)
 terminologyCapabilities.status;
- // TerminologyCapabilities.title
+ // TerminologyCapabilities.title (reference)
 terminologyCapabilities.title;
- // TerminologyCapabilities.url
+ // TerminologyCapabilities.url (reference)
 terminologyCapabilities.url;
- // TerminologyCapabilities.version
+ // TerminologyCapabilities.version (date)
 terminologyCapabilities.version;
- // TerminologyCapabilities.useContext
+ // TerminologyCapabilities.useContext (reference)
 terminologyCapabilities.useContext;
- // TerminologyCapabilities.useContext
+ // TerminologyCapabilities.useContext (token)
 terminologyCapabilities.useContext;
   final testReport = TestReport.empty();
- // TestReport.identifier
+ // TestReport.identifier (token)
 testReport.identifier;
- // TestReport.issued
+ // TestReport.issued (reference)
 testReport.issued;
- // TestReport.participant.uri
+ // TestReport.participant.uri (reference)
 testReport.participant?.map((e) => e.uri);
- // TestReport.result
+ // TestReport.result (token)
 testReport.result;
- // TestReport.tester
+ // TestReport.tester (token)
 testReport.tester;
- // TestReport.testScript
+ // TestReport.testScript (token)
 testReport.testScript;
   final testScript = TestScript.empty();
- // TestScript.useContext.code
+ // TestScript.useContext.code (date)
 testScript.useContext?.map((e) => e.code);
- // TestScript.date
+ // TestScript.date (reference)
 testScript.date;
- // TestScript.description
+ // TestScript.description (reference)
 testScript.description;
- // TestScript.identifier
+ // TestScript.identifier (reference)
 testScript.identifier;
- // TestScript.jurisdiction
+ // TestScript.jurisdiction (token)
 testScript.jurisdiction;
- // TestScript.name
+ // TestScript.name (date)
 testScript.name;
- // TestScript.publisher
+ // TestScript.publisher (token)
 testScript.publisher;
- // TestScript.status
+ // TestScript.status (reference)
 testScript.status;
- // TestScript.metadata.capability.description
+ // TestScript.metadata.capability.description (token)
 testScript.metadata?.capability.map((e) => e.description);
- // TestScript.title
+ // TestScript.title (reference)
 testScript.title;
- // TestScript.url
+ // TestScript.url (token)
 testScript.url;
- // TestScript.version
+ // TestScript.version (date)
 testScript.version;
- // TestScript.useContext
+ // TestScript.useContext (uri)
 testScript.useContext;
- // TestScript.useContext
+ // TestScript.useContext (token)
 testScript.useContext;
   final valueSet = ValueSet.empty();
- // ValueSet.useContext.code
+ // ValueSet.useContext.code (string)
 valueSet.useContext?.map((e) => e.code);
- // ValueSet.date
+ // ValueSet.date (reference)
 valueSet.date;
- // ValueSet.description
+ // ValueSet.description (token)
 valueSet.description;
- // ValueSet.jurisdiction
+ // ValueSet.jurisdiction (date)
 valueSet.jurisdiction;
- // ValueSet.name
+ // ValueSet.name (string)
 valueSet.name;
- // ValueSet.publisher
+ // ValueSet.publisher (token)
 valueSet.publisher;
- // ValueSet.status
+ // ValueSet.status (token)
 valueSet.status;
- // ValueSet.title
+ // ValueSet.title (string)
 valueSet.title;
- // ValueSet.url
+ // ValueSet.url (string)
 valueSet.url;
- // ValueSet.version
+ // ValueSet.version (token)
 valueSet.version;
- // ValueSet.useContext
+ // ValueSet.useContext (string)
 valueSet.useContext;
- // ValueSet.useContext
+ // ValueSet.useContext (string)
 valueSet.useContext;
- // ValueSet.identifier
+ // ValueSet.identifier (uri)
 valueSet.identifier;
- // ValueSet.expansion.contains.code
+ // ValueSet.expansion.contains.code (token)
 valueSet.expansion?.contains?.map((e) => e.code);
- // ValueSet.compose.include.concept.code
-valueSet.compose?.include.map((e) => e.concept).map((e) => e?.code);
- // ValueSet.expansion.identifier
+ // ValueSet.compose.include.concept.code (composite)
+valueSet.compose?.include.expand((e) => e.concept ?? <ValueSetConcept>[]).map((e) => e.code);
+ // ValueSet.expansion.identifier (composite)
 valueSet.expansion?.identifier;
- // ValueSet.compose.include.system
+ // ValueSet.compose.include.system (token)
 valueSet.compose?.include.map((e) => e.system);
   final verificationResult = VerificationResult.empty();
- // VerificationResult.target
+ // VerificationResult.target (token)
 verificationResult.target;
   final visionPrescription = VisionPrescription.empty();
- // VisionPrescription.identifier
+ // VisionPrescription.identifier (uri)
 visionPrescription.identifier;
- // VisionPrescription.patient
+ // VisionPrescription.patient (uri)
 visionPrescription.patient;
- // VisionPrescription.encounter
+ // VisionPrescription.encounter (reference)
 visionPrescription.encounter;
- // VisionPrescription.dateWritten
+ // VisionPrescription.dateWritten (date)
 visionPrescription.dateWritten;
- // VisionPrescription.prescriber
+ // VisionPrescription.prescriber (reference)
 visionPrescription.prescriber;
- // VisionPrescription.status
+ // VisionPrescription.status (token)
 visionPrescription.status;
   }

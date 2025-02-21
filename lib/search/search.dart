@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'dart:io';
 // ignore: always_use_package_imports
+import '../src/utils/fhir_field_map.dart';
+// ignore: always_use_package_imports
 import 'utils.dart';
 
 /// The main function that generates Dart code from `search-parameters.json`.
@@ -12,9 +14,11 @@ void main() {
   // A map of resourceType -> a list of expression sub-segment lists
   final expressions = <String, List<String>>{};
 
+  final returnTypes = <String>[];
+
   // 1) Initialize expressions[resourceType] = []
   for (final t in typesAsStrings) {
-    expressions[t] = [];
+    expressions[makeDartClass(t)] = [];
   }
 
   // 2) Extract sub-segments from each expression in the JSON
@@ -37,13 +41,19 @@ void main() {
         continue;
       }
 
+      final returnType = resource['type'] as String?;
+      if (returnType != null) {
+        returnTypes.add(returnType);
+      }
       // Store them for that resourceType
-      expressions[resourceType]!.add(exp);
+      expressions[makeDartClass(resourceType)]!.add(exp);
     }
   }
   final sb = StringBuffer()
     ..writeln('// Generated from FHIR R4 SearchParameter definitions')
-    ..writeln('// ignore_for_file: unnecessary_statements, cascade_invocations')
+    ..writeln(
+      '// ignore_for_file: unnecessary_statements, cascade_invocations, lines_longer_than_80_chars',
+    )
     ..writeln("import 'package:fhir_r4/fhir_r4.dart';\n")
     ..writeln('extension MakeIterable on FhirBase {')
     ..writeln('  /// Returns an iterable of the given type.')
@@ -52,26 +62,31 @@ void main() {
     ..writeln('  }')
     ..writeln('}\n')
     ..writeln('void main() {');
+  var total = -1;
   for (final t in typesAsStrings) {
-    sb.writeln('  final ${_firstLetterToLowerCase(t)} = $t.empty();');
-    for (final exp in expressions[t]!) {
+    final type = makeDartClass(t);
+    sb.writeln('  final ${_firstLetterToLowerCase(type)} = $type.empty();');
+    for (final exp in expressions[type]!) {
+      total++;
       sb
-        ..writeln(' // $exp')
+        ..writeln(' // $exp (${returnTypes[total]})')
         ..writeln('${_firstLetterToLowerCase(buildDartAccessor(exp))};');
     }
   }
   sb.writeln('  }');
+  var sbString = sb.toString();
+  sbString = sbString.replaceAll(
+    'patient?.deceasedX?.exists() and Patient?.deceased != false',
+    'patient.deceasedBoolean?.value != false || patient.deceasedDateTime?.value != null',
+  );
 
-  File('search_parameters.dart').writeAsStringSync(sb.toString());
-}
-
-String _firstLetterToLowerCase(String s) {
-  return s[0].toLowerCase() + s.substring(1);
+  File('search_parameters.dart').writeAsStringSync(sbString);
 }
 
 String buildDartAccessor(String exp) {
   final segments = exp.split('.');
   if (segments.isEmpty) return '';
+  segments[0] = makeDartClass(segments[0]);
   final sb = StringBuffer();
   var isList = false;
   for (var i = 0; i < segments.length; i++) {
@@ -86,9 +101,11 @@ String buildDartAccessor(String exp) {
           sb.write('?.map((e) => e?.${fhirFieldToDartName(segment)})');
         } else if (segment.contains('[')) {
           final firstSegment = segment.split('[').first;
-          sb.write('.$firstSegment?.firstOrNull?');
+          sb.write('.$firstSegment?.firstOrNull');
         } else {
-          sb.write('?.${fhirFieldToDartName(segment)}');
+          final thisField = resolveSimplePath('$priorPath.$segment');
+          final safeSeg = thisField?.type == 'X' ? '${segment}X' : segment;
+          sb.write('?.${fhirFieldToDartName(safeSeg)}');
         }
       }
       continue;
@@ -117,34 +134,79 @@ String buildDartAccessor(String exp) {
         }
 
         if (i != 0 && isList) {
-          sb.write(whereEqualsType(type));
+          sb.write(whereEquals('type', type));
         } else {
-          final thisType = fhirFieldMap[fhirField.type]?[segment]?.type;
+          final thisField = fhirFieldMap[fhirField.type]?[segment];
+          final thisType = thisField?.type;
           if (thisType == null) {
             throw Exception('Type not found in $segment');
           }
+          final safeSeg = thisField!.type == 'X' ? '${segment}X' : segment;
           sb.write(
-            '.${fhirFieldToDartName(segment)}.makeIterable<$thisType>()${whereEqualsType(type)}',
+            '.${fhirFieldToDartName(safeSeg)}.makeIterable<$thisType>()${whereEquals('type', type)}',
           );
         }
         isList = true;
-      } else if (isList) {
-        final thisField = fhirFieldMap[fhirField.type]?[segment];
-        if (thisField == null) {
-          throw Exception('Field not found in $segment');
-        }
-        if (thisField.isList) {
-          sb.write('?.expand((e) => e?.${fhirFieldToDartName(segment)} ?? [])');
-        } else {
-          sb.write('?.map((e) => e?.${fhirFieldToDartName(segment)})');
-        }
       } else {
-        sb.write('?.${fhirFieldToDartName(segment)}');
+        final pattern = RegExp(r"where\(system='(.+)'\)");
+        if (pattern.hasMatch(segment)) {
+          final match = pattern.firstMatch(segment);
+          final type = match?.group(1);
+          if (type == null) {
+            throw Exception('Type not found in $segment');
+          }
+
+          if (i != 0 && isList) {
+            sb.write(whereEquals('system', type));
+          } else {
+            final thisField = fhirFieldMap[fhirField.type]?[segment];
+            final thisType = thisField?.type;
+            if (thisType == null) {
+              throw Exception('Type not found in $segment');
+            }
+            final safeSeg = thisField!.type == 'X' ? '${segment}X' : segment;
+            sb.write(
+              '.${fhirFieldToDartName(safeSeg)}.makeIterable<$thisType>()${whereEquals('system', type)}',
+            );
+          }
+          isList = true;
+        } else if (isList) {
+          final thisField = fhirFieldMap[fhirField.type]?[segment];
+          if (thisField == null) {
+            throw Exception('Field not found in $segment');
+          }
+          final safeSeg = thisField.type == 'X' ? '${segment}X' : segment;
+          if (thisField.isList) {
+            sb.write(
+              '?.expand((e) => e?.${fhirFieldToDartName(safeSeg)} ?? <${thisField.type}>[])',
+            );
+          } else {
+            sb.write('?.map((e) => e?.${fhirFieldToDartName(safeSeg)})');
+          }
+        } else {
+          final pattern = RegExp(r'as\((.+)\)');
+          if (pattern.hasMatch(segment)) {
+            final asType = _firstLetterToUpperCase(
+              segment.split('as(').last.split(')').first,
+            );
+            final tempSb = sb.toString();
+            sb
+              ..clear()
+              ..write('${tempSb.substring(0, tempSb.length - 1)}$asType');
+          } else {
+            final thisField = fhirFieldMap[fhirField.type]?[segment];
+            final safeSeg = thisField?.type == 'X' ? '${segment}X' : segment;
+            sb.write('?.${fhirFieldToDartName(safeSeg)}');
+          }
+        }
       }
     }
   }
   return sb.toString();
 }
+
+String makeDartClass(String type) =>
+    ['Group', 'Endpoint', 'List'].contains(type) ? 'Fhir$type' : type;
 
 String whereIsType(String type) => '''
 ?.where((e) {
@@ -152,5 +214,13 @@ String whereIsType(String type) => '''
     return ref.length > 1 && ref[ref.length - 2] == '$type';
   })''';
 
-String whereEqualsType(String type) =>
-    "?.where((e) => e?.type.value.toString() == '$type')";
+String whereEquals(String field, String type) =>
+    "?.where((e) => e?.$field?.value.toString() == '$type')";
+
+String _firstLetterToLowerCase(String s) {
+  return s[0].toLowerCase() + s.substring(1);
+}
+
+String _firstLetterToUpperCase(String s) {
+  return s[0].toUpperCase() + s.substring(1);
+}
